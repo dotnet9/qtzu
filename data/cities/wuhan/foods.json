@@ -6,14 +6,14 @@
       "name": "热干面",
       "en": "Hot Dry Noodles",
       "desc": "碱水面拌芝麻酱，武汉人「过早」的头牌",
-      "img": "data/cities/wuhan/img/Hot_dry_noodles.jpg",
+      "img": "data/cities/wuhan/img/330px-Hot_Dry_Noodles.jpg",
       "bearing": "C"
     },
     {
       "name": "豆皮",
       "en": "Doupi",
       "desc": "老通城三鲜豆皮，糯米鸡蛋皮金黄焦香",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan%20doupi.jpg?width=640",
+      "img": "data/cities/wuhan/img/330px-Doupi.jpg",
       "bearing": "C"
     },
     {
@@ -27,7 +27,7 @@
       "name": "排骨藕汤",
       "en": "Pork Rib & Lotus Root Soup",
       "desc": "洪湖粉藕炖排骨，湖北伢的家乡味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lotus%20root%20soup.jpg?width=640",
+      "img": "data/cities/wuhan/img/330px-Lotus_Root_Soup.jpg",
       "bearing": "C"
     },
     {
@@ -48,14 +48,14 @@
       "name": "武昌鱼",
       "en": "Wuchang Fish",
       "desc": "「才饮长沙水，又食武昌鱼」清蒸最鲜",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuchang%20fish.jpg?width=640",
+      "img": "data/cities/wuhan/img/330px-Megalobrama_amblycephala_Kasumigaura2.jpg",
       "bearing": "E"
     },
     {
       "name": "汤包",
       "en": "Soup Dumplings",
       "desc": "四季美汤包皮薄如纸，先开窗后喝汤",
-      "img": "data/cities/wuhan/img/Soup_dumplings.jpg",
+      "img": "data/cities/wuhan/img/330px-_.jpg",
       "bearing": "C"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20wine.jpg?width=640",
       "bearing": "NW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuhan\\foods.json"
+  ]
 }

@@ -10,11 +10,11 @@
   "history": "沈阳古称盛京、奉天，1625 年努尔哈赤迁都于此，沈阳故宫是除北京故宫外保存最完整的皇家宫殿群。张氏帅府见证近代风云，「九·一八」历史博物馆警钟长鸣。作为共和国工业长子，第一枚国徽、第一台机床都诞生在这里。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shenyang%20Imperial%20Palace.jpg?width=960",
+      "img": "data/cities/shenyang/img/330px-_.jpg",
       "caption": "沈阳故宫"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marshal%20Zhang%20Mansion.jpg?width=960",
+      "img": "data/cities/shenyang/img/330px-_2024_10__2_.jpg",
       "caption": "张氏帅府"
     },
     {
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\city.json"
+  }
 }

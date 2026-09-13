@@ -10,7 +10,7 @@
   "history": "拉萨 1300 多年前因大昭寺而兴，「先有大昭寺，后有拉萨城」。布达拉宫是世界上海拔最高的宫堡建筑群，1994 年列入世界遗产。全年日照 3000 小时以上，人称「日光城」。转经筒、酥油茶与磕长头的朝圣者构成世界屋脊的精神图景。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potala%20Palace%20Lhasa.jpg?width=960",
+      "img": "data/cities/lhasa/img/330px-Potala_palace23.jpg",
       "caption": "布达拉宫"
     },
     {
@@ -18,7 +18,7 @@
       "caption": "大昭寺"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Namtso%20Lake.jpg?width=960",
+      "img": "data/cities/lhasa/img/330px-Namtso-and-holy-rock.jpg",
       "caption": "纳木错"
     }
   ],
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lhasa\\city.json"
+  }
 }

@@ -13,14 +13,14 @@
       "name": "赵州桥",
       "en": "Zhaozhou Bridge",
       "desc": "隋代李春建造，世界最古老敞肩石桥",
-      "img": "data/cities/shijiazhuang/img/Zhaozhou_Bridge.jpg",
+      "img": "data/cities/shijiazhuang/img/330px-Anji_Bridge__Zhao_County__2020-09-06_05.jpg",
       "bearing": "SE"
     },
     {
       "name": "西柏坡",
       "en": "Xibaipo",
       "desc": "「新中国从这里走来」的红色圣地",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xibaipo.jpg?width=640",
+      "img": "data/cities/shijiazhuang/img/330px-Xibaipo_Memorial_Hall__20240609100945_.jpg",
       "bearing": "NW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tuoliang.jpg?width=640",
       "bearing": "NW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shijiazhuang\\scenes.json"
+  ]
 }

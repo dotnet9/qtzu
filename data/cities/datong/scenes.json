@@ -6,49 +6,49 @@
       "name": "云冈石窟",
       "en": "Yungang Grottoes",
       "desc": "世界文化遗产，北魏皇家石窟",
-      "img": "data/cities/datong/img/Yungang_Grottoes.jpg",
+      "img": "data/cities/datong/img/330px-61292-Yungang-Grottoes__28498548881_.jpg",
       "bearing": "W"
     },
     {
       "name": "悬空寺",
       "en": "Hanging Temple",
       "desc": "恒山金龙峡崖壁上的千年古寺",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hanging%20Temple%20Datong.jpg?width=640",
+      "img": "data/cities/datong/img/330px-Hangingtemple20190929.jpg",
       "bearing": "S"
     },
     {
       "name": "大同古城墙",
       "en": "Datong City Wall",
       "desc": "明代城墙完整修复，夜景壮美",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Datong%20City%20Wall.jpg?width=640",
+      "img": "data/cities/datong/img/330px-Datongsouthgate2019.jpg",
       "bearing": "C"
     },
     {
       "name": "华严寺",
       "en": "Huayan Temple",
       "desc": "辽金巨刹，薄伽教藏殿合掌露齿菩萨",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huayan%20Temple%20Datong.jpg?width=640",
+      "img": "data/cities/datong/img/960px-20220121____.jpg",
       "bearing": "C"
     },
     {
       "name": "九龙壁",
       "en": "Nine Dragon Wall",
       "desc": "中国最大最古老的九龙壁",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Dragon%20Wall%20Datong.jpg?width=640",
+      "img": "data/cities/datong/img/330px-_.jpg",
       "bearing": "C"
     },
     {
       "name": "善化寺",
       "en": "Shanhua Temple",
       "desc": "现存最完整的辽金寺院布局",
-      "img": "data/cities/datong/img/Shanhua_Temple.jpg",
+      "img": "data/cities/datong/img/330px-Datong_Shanhua_Si_2013_08_29_12-28-45.jpg",
       "bearing": "S"
     },
     {
       "name": "恒山",
       "en": "Mount Heng",
       "desc": "北岳恒山，道教第五小洞天",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mount%20Heng%20Shanxi.jpg?width=640",
+      "img": "data/cities/datong/img/330px-Mountheng-Shanxi2019.jpg",
       "bearing": "S"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Earth%20Forest.jpg?width=640",
       "bearing": "E"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\datong\\scenes.json"
+  ]
 }

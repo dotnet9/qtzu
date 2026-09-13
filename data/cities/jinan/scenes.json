@@ -6,7 +6,7 @@
       "name": "趵突泉",
       "en": "Baotu Spring",
       "desc": "天下第一泉，三窟并发腾空",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baotu%20Spring%20Jinan.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Jinan_Baotu_Spring-20150519-RM-165055.jpg/960px-Jinan_Baotu_Spring-20150519-RM-165055.jpg",
       "bearing": "C"
     },
     {
@@ -20,21 +20,21 @@
       "name": "千佛山",
       "en": "Qianfo Mountain",
       "desc": "隋代摩崖佛像，登顶望泉城",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qianfo%20Mountain.jpg?width=640",
+      "img": "data/cities/jinan/img/330px-Qianfoshan_buddha_statues1.jpg",
       "bearing": "S"
     },
     {
       "name": "芙蓉街",
       "en": "Furong Street",
       "desc": "泉城老街小吃飘香",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Furong%20Street.jpg?width=640",
+      "img": "data/cities/jinan/img/330px-Furong-Street.jpg",
       "bearing": "C"
     },
     {
       "name": "黑虎泉",
       "en": "Heihu Spring",
       "desc": "三只石虎头喷涌，市民打水盛景",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Heihu%20Spring.jpg?width=640",
+      "img": "data/cities/jinan/img/330px-Black_Tiger_Spring_20250301.jpg",
       "bearing": "E"
     },
     {
@@ -48,16 +48,15 @@
       "name": "曲水亭街",
       "en": "Qushuiting Street",
       "desc": "家家泉水户户垂杨",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qushuiting%20Street.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Qushuitingjie_2008_11_12.jpg/960px-Qushuitingjie_2008_11_12.jpg",
       "bearing": "C"
     },
     {
       "name": "山东博物馆",
       "en": "Shandong Museum",
       "desc": "蛋壳黑陶杯与银雀山汉简",
-      "img": "data/cities/jinan/img/Shandong_Museum.jpg",
+      "img": "data/cities/jinan/img/SHANDONG_MUSEUM_LOGO.png",
       "bearing": "E"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\jinan\\scenes.json"
+  ]
 }

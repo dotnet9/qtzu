@@ -14,7 +14,7 @@
       "caption": "孔庙"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kong%20Family%20Mansion.jpg?width=960",
+      "img": "data/cities/qufu/img/330px-Kong_Family_Mansion_49273-Qufu__49055868867_.jpg",
       "caption": "孔府"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qufu\\city.json"
+  }
 }

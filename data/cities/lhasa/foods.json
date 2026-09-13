@@ -6,28 +6,28 @@
       "name": "酥油茶",
       "en": "Butter Tea",
       "desc": "咸香酥油茶配糌粑，高原能量",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Butter%20tea.jpg?width=640",
+      "img": "data/cities/lhasa/img/330px-1962-04_1962___.jpg",
       "bearing": "C"
     },
     {
       "name": "糌粑",
       "en": "Tsampa",
       "desc": "青稞炒面捏团吃，藏餐主食",
-      "img": "data/cities/lhasa/img/Tsampa.jpg",
+      "img": "data/cities/lhasa/img/330px-_2.jpg",
       "bearing": "C"
     },
     {
       "name": "藏面",
       "en": "Tibetan Noodles",
       "desc": "甜茶馆里的牦牛肉汤面",
-      "img": "data/cities/lhasa/img/Noodles.jpg",
+      "img": "data/cities/lhasa/img/330px-Thukpa__Tibetan_noodle_in_Osaka__Japan.jpg",
       "bearing": "C"
     },
     {
       "name": "甜茶",
       "en": "Sweet Milk Tea",
       "desc": "拉萨甜茶馆的红茶奶粉味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20tea.jpg?width=640",
+      "img": "data/cities/lhasa/img/330px-Glass_of_Iced_Tea.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jelly%20noodles.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lhasa\\foods.json"
+  ]
 }

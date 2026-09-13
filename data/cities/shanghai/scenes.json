@@ -6,14 +6,14 @@
       "name": "外滩",
       "en": "The Bund",
       "desc": "万国建筑博览群对望陆家嘴摩天楼，百年光影一线江景",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Bund%2C%20Shanghai%20(December%202015)%20-%20panoramio.jpg?width=640",
+      "img": "data/cities/shanghai/img/330px-A_picture_from_China_every_day_101.jpg",
       "bearing": "W"
     },
     {
       "name": "豫园",
       "en": "Yu Garden",
       "desc": "明代江南园林，九曲桥湖心亭茶楼",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yuyuan%20Garden%2C%20Shanghai.jpg?width=640",
+      "img": "data/cities/shanghai/img/330px-Shanghai_-_Yu_Garden_-_0035.jpg",
       "bearing": "C"
     },
     {
@@ -27,7 +27,7 @@
       "name": "南京路步行街",
       "en": "Nanjing Road",
       "desc": "中华商业第一街，百年商业繁华延续至今",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing%20Road%20Shanghai.jpg?width=640",
+      "img": "data/cities/shanghai/img/330px-East_Nanjing_Road_2020__50361842166_.jpg",
       "bearing": "N"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongming%20Dongtan.jpg?width=640",
       "bearing": "NE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shanghai\\scenes.json"
+  ]
 }

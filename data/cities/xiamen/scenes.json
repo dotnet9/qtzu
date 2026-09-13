@@ -13,14 +13,14 @@
       "name": "厦门大学",
       "en": "Xiamen University",
       "desc": "中国最美大学，芙蓉隧道涂鸦与上弦场",
-      "img": "data/cities/xiamen/img/Xiamen_University.jpg",
+      "img": "data/cities/xiamen/img/langzh-330px-Xiamen_University_logo.png",
       "bearing": "S"
     },
     {
       "name": "南普陀寺",
       "en": "Nanputuo Temple",
       "desc": "千年名刹，紧邻厦大素饼闻名",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanputuo%20Temple.jpg?width=640",
+      "img": "data/cities/xiamen/img/330px-South_Putuo_Temple_07235-Xiamen__48814044816_.jpg",
       "bearing": "S"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuyuan%20Bay.jpg?width=640",
       "bearing": "NE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xiamen\\scenes.json"
+  ]
 }

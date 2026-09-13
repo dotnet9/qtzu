@@ -14,11 +14,11 @@
       "caption": "圣索菲亚教堂"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Harbin%20Ice%20and%20Snow%20World.jpg?width=960",
+      "img": "data/cities/harbin/img/330px-Ice_Snow_World.jpg",
       "caption": "冰雪大世界"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Central%20Street%20Harbin.jpg?width=960",
+      "img": "data/cities/harbin/img/330px-Central_Street_at_West_13th_St__20230721112501_.jpg",
       "caption": "中央大街"
     }
   ],
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\city.json"
+  }
 }

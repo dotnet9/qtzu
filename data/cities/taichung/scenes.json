@@ -13,14 +13,14 @@
       "name": "彩虹眷村",
       "en": "Rainbow Village",
       "desc": "百岁老兵黄爷爷的童话彩绘救下整座眷村，世界游客慕名而来。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rainbow%20Village%2C%20Taichung.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Rainbow_lanterns_lit_up_the_Rainbow_Village_%28cropped%29.jpg/330px-Rainbow_lanterns_lit_up_the_Rainbow_Village_%28cropped%29.jpg",
       "bearing": "SW"
     },
     {
       "name": "路思义教堂",
       "en": "Luce Chapel",
       "desc": "贝聿铭与陈其宽合作的曲面双壳建筑，东海大学的精神象征。",
-      "img": "data/cities/taichung/img/Luce_Memorial_Chapel.jpg",
+      "img": "data/cities/taichung/img/330px-_.jpg",
       "bearing": "W"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dakeng%20Taichung.jpg?width=640",
       "bearing": "NE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taichung\\scenes.json"
+  ]
 }

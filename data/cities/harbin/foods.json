@@ -6,21 +6,21 @@
       "name": "红肠",
       "en": "Smoked Sausage",
       "desc": "里道斯果木熏制，百年俄式风味",
-      "img": "data/cities/harbin/img/Sausage.jpg",
+      "img": "data/cities/harbin/img/330px-Smoked_Chinese_sausage.jpg",
       "bearing": "C"
     },
     {
       "name": "锅包肉",
       "en": "Guobaorou",
       "desc": "糖醋汁挂糊炸肉片，东北菜头牌",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guobaorou.jpg?width=640",
+      "img": "data/cities/harbin/img/330px-Liaoning-style_Guobaorou_at_Handsome_Cooking_Guys__Hopson_One__20230306162.jpg",
       "bearing": "C"
     },
     {
       "name": "大列巴",
       "en": "Bolshoi Bread",
       "desc": "秋林公司俄式大面包，重达四斤",
-      "img": "data/cities/harbin/img/Rye_bread.jpg",
+      "img": "data/cities/harbin/img/330px-Dalieba_bread_in_Dalian__2018_.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Frozen%20pear.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\foods.json"
+  ]
 }

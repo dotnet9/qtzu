@@ -14,7 +14,7 @@
       "caption": "渔女雕像"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hong%20Kong-Zhuhai-Macau%20Bridge.jpg?width=960",
+      "img": "data/cities/zhuhai/img/330px-HZMB_Qinzhou_Birdge__20190517_.jpg",
       "caption": "港珠澳大桥"
     },
     {
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhuhai\\city.json"
+  }
 }

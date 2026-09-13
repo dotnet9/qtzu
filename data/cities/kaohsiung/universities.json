@@ -12,7 +12,7 @@
       "nationalRank": 10,
       "bearing": "W",
       "history": "复校于西子湾，依山面海，是台湾最漂亮的滨海校园之一。",
-      "img": null
+      "img": "data/cities/kaohsiung/img/langzh-330px-Sun_Yat-sen_Univ_Logo.png"
     },
     {
       "zh": "高雄医学大学",
@@ -23,7 +23,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "C",
-      "history": "台湾第一所私立医学院，南台湾医疗人才培养重镇。"
+      "history": "台湾第一所私立医学院，南台湾医疗人才培养重镇。",
+      "img": "data/cities/kaohsiung/img/langzh-330px-Kaohsiung_Medical_University_logo.png"
     },
     {
       "zh": "高雄大学",
@@ -67,7 +68,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NE",
-      "history": "烨隆集团创办的私立大学，国际学生比例居台湾前列。"
+      "history": "烨隆集团创办的私立大学，国际学生比例居台湾前列。",
+      "img": "data/cities/kaohsiung/img/330px-_.jpg"
     },
     {
       "zh": "树德科技大学",
@@ -78,7 +80,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NE",
-      "history": "设计学院在全台设计竞赛中屡获大奖。"
+      "history": "设计学院在全台设计竞赛中屡获大奖。",
+      "img": "data/cities/kaohsiung/img/langzh-330px-STU_logo.png"
     },
     {
       "zh": "辅英科技大学",
@@ -89,7 +92,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "SE",
-      "history": "从高级护理职业学校发展为医护养生特色科技大学。"
+      "history": "从高级护理职业学校发展为医护养生特色科技大学。",
+      "img": "data/cities/kaohsiung/img/langzh-330px-Fooyin_University_logo.png"
     },
     {
       "zh": "文藻外语大学",
@@ -100,7 +104,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NE",
-      "history": "台湾唯一的外语大学，开设八种外语科系。"
+      "history": "台湾唯一的外语大学，开设八种外语科系。",
+      "img": "data/cities/kaohsiung/img/langzh-330px-Wenzao_Ursuline_University_of_Languages_logo.png"
     },
     {
       "zh": "正修科技大学",
@@ -111,8 +116,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NE",
-      "history": "工管并重，超微量研究科技中心检测能力获国际认证。"
+      "history": "工管并重，超微量研究科技中心检测能力获国际认证。",
+      "img": "data/cities/kaohsiung/img/langzh-330px-Csu.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaohsiung\\universities.json"
+  ]
 }

@@ -13,35 +13,35 @@
       "name": "滨海路",
       "en": "Binhai Road",
       "desc": "30 公里山海景观路，北大桥到棒棰岛步步是景",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Binhai%20Road%20Dalian.jpg?width=640",
+      "img": "data/cities/dalian/img/960px-_.jpg",
       "bearing": "SE"
     },
     {
       "name": "老虎滩海洋公园",
       "en": "Laohutan Ocean Park",
       "desc": "极地馆海豚表演，国家 5A 景区",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laohutan%20Ocean%20Park.jpg?width=640",
+      "img": "data/cities/dalian/img/330px-_.jpg",
       "bearing": "SE"
     },
     {
       "name": "金石滩",
       "en": "Golden Pebble Beach",
       "desc": "「神力雕塑公园」海蚀奇石，地质博物馆",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinshitan%20Beach.jpg?width=640",
+      "img": "data/cities/dalian/img/330px-_2.jpg",
       "bearing": "NE"
     },
     {
       "name": "旅顺口",
       "en": "Lüshunkou",
       "desc": "半部近代史，日俄战争遗迹与军港公园",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lushun%20Port.jpg?width=640",
+      "img": "data/cities/dalian/img/330px-ChinaDalianLushunkou.png",
       "bearing": "SW"
     },
     {
       "name": "棒棰岛",
       "en": "Bangchui Island",
       "desc": "国宾馆海滨，细沙碧水礁石如棒槌",
-      "img": "data/cities/dalian/img/Bangchui_Island.jpg",
+      "img": "data/cities/dalian/img/330px-Bangchui_Island.jpg",
       "bearing": "SE"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/dalian/img/Donggang_Dalian.jpg",
       "bearing": "E"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\scenes.json"
+  ]
 }

@@ -12,7 +12,8 @@
       "nationalRank": 28,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/langzh-330px-Dalian_University_of_Technology_logo.png"
     },
     {
       "zh": "大连海事大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/langzh-330px-DalianMaritimeUniv_Logo.png"
     },
     {
       "zh": "东北财经大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/Dongbei_University_of_Finance_and_Economics.jpg"
     },
     {
       "zh": "大连交通大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/langzh-330px-Dalian_Jiaotong_University_Emblem.png"
     },
     {
       "zh": "大连医科大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/langzh-330px-Dalian_Medical_University_Emblem.png"
     },
     {
       "zh": "辽宁师范大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/Logo_of_Liaoning_Normal_University.jpg"
     },
     {
       "zh": "大连外国语大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/DLUFL_Sear_Image.png"
     },
     {
       "zh": "大连工业大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/Dalian_Polytechnic_University.jpg"
     },
     {
       "zh": "大连海洋大学",
@@ -108,8 +116,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/dalian/img/Logo_of_Dalian_Ocean_University.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\universities.json"
+  ]
 }

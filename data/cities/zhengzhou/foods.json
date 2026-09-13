@@ -6,14 +6,14 @@
       "name": "烩面",
       "en": "Henan Braised Noodles",
       "desc": "羊肉汤拉面烩，中原面食代表",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20noodles.jpg?width=640",
+      "img": "data/cities/zhengzhou/img/330px-Henan_braised_noodles.jpg",
       "bearing": "C"
     },
     {
       "name": "胡辣汤",
       "en": "Hu La Tang",
       "desc": "方中山胡辣汤配水煎包，河南早餐之魂",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hu%20La%20Tang.jpg?width=640",
+      "img": "data/cities/zhengzhou/img/330px-20240826_Hulatang_in_Xiaoyao_Town.jpg",
       "bearing": "C"
     },
     {
@@ -41,7 +41,7 @@
       "name": "水煎包",
       "en": "Pan-fried Buns",
       "desc": "底脆面软配胡辣汤绝了",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20buns.jpg?width=640",
+      "img": "data/cities/zhengzhou/img/330px-Cuisine_of_China_0050.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/zhengzhou/img/Beef.jpg",
       "bearing": "SW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\foods.json"
+  ]
 }

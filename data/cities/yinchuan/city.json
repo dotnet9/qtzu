@@ -10,7 +10,7 @@
   "history": "银川古称兴庆府，西夏王朝在此建都 189 年。贺兰山下西夏王陵的夯土巨冢被称为「东方金字塔」，岩画记录着游牧先民的生活。「天下黄河富宁夏」，引黄灌溉两千年的银川平原有塞上江南之称。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Western%20Xia%20Tombs.jpg?width=960",
+      "img": "data/cities/yinchuan/img/330px-XiXia_Tomb_3_F.jpg",
       "caption": "西夏王陵"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yinchuan\\city.json"
+  }
 }

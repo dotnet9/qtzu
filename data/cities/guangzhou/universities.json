@@ -12,7 +12,8 @@
       "nationalRank": 8,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-Sun_Yat-sen_Univ_Logo.png"
     },
     {
       "zh": "华南理工大学",
@@ -24,7 +25,8 @@
       "nationalRank": 20,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-South_China_University_of_Technology_Logo__Since_2022_.png"
     },
     {
       "zh": "暨南大学",
@@ -36,7 +38,8 @@
       "nationalRank": 40,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-Jinan_University_Emblem.png"
     },
     {
       "zh": "华南师范大学",
@@ -48,7 +51,8 @@
       "nationalRank": 55,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-SouthChinaNormalUniv_Logo.png"
     },
     {
       "zh": "广东工业大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-Guangdong_University_of_Technology_Logo.png"
     },
     {
       "zh": "华南农业大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-South_China_Agricultural_University_Emblem.png"
     },
     {
       "zh": "广州大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/330px-_.png"
     },
     {
       "zh": "南方医科大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/Southern_Medical_University_Badge.jpg"
     },
     {
       "zh": "广州中医药大学",
@@ -108,7 +116,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-Guangzhou_University_of_Chinese_Medicine_logo.png"
     },
     {
       "zh": "广东外语外贸大学",
@@ -120,7 +129,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/langzh-330px-Guangdong_University_of_Foreign_Studies_Emblem.png"
     },
     {
       "zh": "广州医科大学",
@@ -132,7 +142,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/Guangzhou_Medical_University_logo.jpg"
     },
     {
       "zh": "星海音乐学院",
@@ -144,8 +155,8 @@
       "nationalRank": null,
       "bearing": "C",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guangzhou/img/Xinghai_Conservatory_of_Music_logo.jpg"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guangzhou\\universities.json"
+  ]
 }

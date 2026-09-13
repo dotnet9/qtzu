@@ -10,15 +10,15 @@
   "history": "长沙有 3000 年历史，是屈贾之乡、楚汉名城，马王堆汉墓的辛追夫人和素纱襌衣震惊世界。岳麓书院「惟楚有材，于斯为盛」，朱熹张栻在此会讲。橘子洲头青年毛泽东指点江山。今天的长沙以芒果台、茶颜悦色、夜经济闻名，联合国教科文组织授予「媒体艺术之都」称号。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange%20Isle%20Mao%20Statue.jpg?width=960",
+      "img": "data/cities/changsha/img/330px-__1.jpg",
       "caption": "橘子洲头"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yuelu%20Academy.jpg?width=960",
+      "img": "data/cities/changsha/img/330px-Changsha_Yuelu_Shuyuan_2014_03_04_08-09-37__adjusted_.jpg",
       "caption": "岳麓书院"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mawangdui%20Silk%20Garment.jpg?width=960",
+      "img": "data/cities/changsha/img/330px-Mawangduihanmu.jpg",
       "caption": "马王堆汉墓"
     }
   ],
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changsha\\city.json"
+  }
 }

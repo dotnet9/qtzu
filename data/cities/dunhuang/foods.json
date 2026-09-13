@@ -13,7 +13,7 @@
       "name": "胡羊焖饼",
       "en": "Lamb with Flatbread",
       "desc": "羊肉焖薄饼吸满汤汁",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20lamb.jpg?width=640",
+      "img": "data/cities/dunhuang/img/960px-Huyang_Menbing_at_Aftertaste_Studio__Dunhuang__20230916205124_.jpg",
       "bearing": "C"
     },
     {
@@ -27,7 +27,7 @@
       "name": "烤羊肉",
       "en": "Dunhuang Kebabs",
       "desc": "沙漠边城的红柳烤肉",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kebabs.jpg?width=640",
+      "img": "data/cities/dunhuang/img/960px-Meze.jpg",
       "bearing": "C"
     },
     {
@@ -48,7 +48,7 @@
       "name": "沙葱",
       "en": "Desert Onion",
       "desc": "沙漠野葱炒鸡蛋",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vegetable%20dish.jpg?width=640",
+      "img": "data/cities/dunhuang/img/330px-_.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/dunhuang/img/Apricot.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dunhuang\\foods.json"
+  ]
 }

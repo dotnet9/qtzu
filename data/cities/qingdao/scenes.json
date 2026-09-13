@@ -6,21 +6,21 @@
       "name": "栈桥",
       "en": "Zhanqiao Pier",
       "desc": "百年海上长廊，海鸥翔集城市名片",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhanqiao%20Pier%20Qingdao.jpg?width=640",
+      "img": "data/cities/qingdao/img/330px-Seebr_cke_Swakopmund__Namibia.jpg",
       "bearing": "W"
     },
     {
       "name": "八大关",
       "en": "Badaguan Scenic Area",
       "desc": "「万国建筑博览会」，花石楼与公主楼",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Badaguan%20Qingdao.jpg?width=640",
+      "img": "data/cities/qingdao/img/330px-_.jpg",
       "bearing": "SE"
     },
     {
       "name": "崂山",
       "en": "Mount Lao",
       "desc": "海上第一名山，道教太清宫",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mount%20Lao%20Qingdao.jpg?width=640",
+      "img": "data/cities/qingdao/img/330px-_.jpg",
       "bearing": "E"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden%20Beach%20Qingdao.jpg?width=640",
       "bearing": "SW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qingdao\\scenes.json"
+  ]
 }

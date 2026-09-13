@@ -10,15 +10,15 @@
   "history": "贵阳因古时盛产竹子筑城得名，喀斯特山水造就「山中有城，城中有山」。甲秀楼立于南明河上四百年，青岩古镇明清风貌保存完好。凉爽气候让贵阳成为中国大数据产业的先行地，被称为「中国数谷」。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiaxiu%20Tower%20Guiyang.jpg?width=960",
+      "img": "data/cities/guiyang/img/330px-Jiaxiu_Pavilion__Guiyang.jpg",
       "caption": "甲秀楼"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingyan%20Ancient%20Town.jpg?width=960",
+      "img": "data/cities/guiyang/img/330px-Qingyan_Town.jpg",
       "caption": "青岩古镇"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qianling%20Park.jpg?width=960",
+      "img": "data/cities/guiyang/img/330px-___.jpg",
       "caption": "黔灵山"
     }
   ],
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\city.json"
+  }
 }

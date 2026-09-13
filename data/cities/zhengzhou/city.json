@@ -18,7 +18,7 @@
       "caption": "二七塔"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20River%20Zhengzhou.jpg?width=960",
+      "img": "data/cities/zhengzhou/img/330px-Yellowrivermap-zh-hans.jpg",
       "caption": "黄河"
     }
   ],
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\city.json"
+  }
 }

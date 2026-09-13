@@ -12,7 +12,8 @@
       "nationalRank": 4,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-Fudan_University_Logo.png"
     },
     {
       "zh": "上海交通大学",
@@ -24,7 +25,8 @@
       "nationalRank": 5,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-SJTU_emblem.png"
     },
     {
       "zh": "同济大学",
@@ -36,7 +38,8 @@
       "nationalRank": 16,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-Tongji_University_Emblem.png"
     },
     {
       "zh": "华东师范大学",
@@ -48,7 +51,8 @@
       "nationalRank": 28,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-ECNU_Emblem.png"
     },
     {
       "zh": "上海科技大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-ShanghaiTech_University_Emblem.png"
     },
     {
       "zh": "上海外国语大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-Shanghai_International_Studies_University_logo.png"
     },
     {
       "zh": "上海财经大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/Shanghai_University_of_Finance_and_Economics_logo.jpg"
     },
     {
       "zh": "华东理工大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-ECUST_New_Logo.png"
     },
     {
       "zh": "东华大学",
@@ -120,7 +128,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-SHU_VI_LOGO.png"
     },
     {
       "zh": "上海师范大学",
@@ -132,7 +141,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-Shanghai_Normal_University_Emblem.png"
     },
     {
       "zh": "上海理工大学",
@@ -144,7 +154,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-USST_logo.png"
     },
     {
       "zh": "上海海事大学",
@@ -156,7 +167,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-Shanghai_Maritime_University.png"
     },
     {
       "zh": "上海中医药大学",
@@ -168,7 +180,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/LOGO_of_Shanghai_University_of_Traditional_Chinese_Medicine.png"
     },
     {
       "zh": "上海海洋大学",
@@ -180,7 +193,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-Shanghai_Ocean_University_logo.png"
     },
     {
       "zh": "上海对外经贸大学",
@@ -192,8 +206,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shanghai/img/langzh-330px-Shanghai_University_of_International_Business_and_Economics_emblem.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shanghai\\universities.json"
+  ]
 }

@@ -10,15 +10,15 @@
   "history": "成都约有 4500 年城市文明史，古蜀文明在此发源，金沙遗址的太阳神鸟金饰是成都的城市标志。秦代张仪筑城，汉代织锦业兴盛得名「锦官城」，五代遍种芙蓉又称「蓉城」。都江堰水利工程让成都平原成为「天府之国」，两千多年来城名未改、城址未迁，这在中国城市中独一无二。三国时蜀汉定都于此，武侯祠里诸葛亮的传奇流传至今。今天的成都是西部科技、商贸、金融中心和交通枢纽，也是联合国教科文组织认定的「美食之都」，茶馆文化和大熊猫一样闻名世界。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu%20panda%20-%20 panoramio.jpg?width=960",
+      "img": "data/cities/chengdu/img/330px-Giant_Panda_at_Singapore_River_Safari.jpg",
       "caption": "大熊猫"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Anshunbridge.jpg?width=960",
+      "img": "data/cities/chengdu/img/330px-Anshun_Bridge_20260512-5.jpg",
       "caption": "安顺廊桥"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinli%20street%20in%20Chengdu.jpg?width=960",
+      "img": "data/cities/chengdu/img/330px-Jinli_Street_35201-Chengdu__49068150581_.jpg",
       "caption": "锦里古街"
     },
     {
@@ -81,6 +81,5 @@
       }
     ],
     "eggsOnSigns": 5
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengdu\\city.json"
+  }
 }

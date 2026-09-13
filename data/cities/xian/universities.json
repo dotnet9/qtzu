@@ -12,7 +12,8 @@
       "nationalRank": 10,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-XJTU_emblem.png"
     },
     {
       "zh": "西北工业大学",
@@ -24,7 +25,8 @@
       "nationalRank": 25,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-Northwestern_Polytechnical_University_badge.png"
     },
     {
       "zh": "西安电子科技大学",
@@ -36,7 +38,8 @@
       "nationalRank": 40,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-Xidian_University_Logo.png"
     },
     {
       "zh": "西北大学",
@@ -60,7 +63,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-Shaanxi_Normal_University_logo.png"
     },
     {
       "zh": "长安大学",
@@ -72,7 +76,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-Chang_an_University_Emblem.png"
     },
     {
       "zh": "西北农林科技大学",
@@ -84,7 +89,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "校本部在杨凌",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-Northwest_A_F_University.png"
     },
     {
       "zh": "西安理工大学",
@@ -96,7 +102,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-Xi_an_University_of_Technology_logo.png"
     },
     {
       "zh": "西安建筑科技大学",
@@ -108,7 +115,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-XAUAT_Emblem.png"
     },
     {
       "zh": "陕西科技大学",
@@ -120,7 +128,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/Shaanxi_University_of_Science___Technololgy_logo.jpg"
     },
     {
       "zh": "西安邮电大学",
@@ -132,7 +141,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/_.jpg"
     },
     {
       "zh": "西北政法大学",
@@ -144,7 +154,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/School_Emblem_of_Northwest_University_of_Political_Science_and_Law.png"
     },
     {
       "zh": "西安外国语大学",
@@ -156,7 +167,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/Xi_an_International_Studies_University_logo.png"
     },
     {
       "zh": "西安科技大学",
@@ -168,7 +180,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/langzh-330px-Xi_An_University_of_Science_and_Technology_Seal.png"
     },
     {
       "zh": "西安工业大学",
@@ -180,7 +193,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/9/99/Xi%27an_Technological_University_logo.jpg"
     },
     {
       "zh": "西安石油大学",
@@ -192,8 +206,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/xian/img/Xi_an_Shiyou_University.jpg"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xian\\universities.json"
+  ]
 }

@@ -6,28 +6,28 @@
       "name": "台北 101",
       "en": "Taipei 101",
       "desc": "508 米 bamboo-shaped 摩天楼，曾为世界第一高楼，89 层观景台可俯瞰全城。",
-      "img": "data/cities/taipei/img/Taipei_101_from_afar.jpg",
+      "img": "data/cities/taipei/img/langzh-330px-Taipei_101_logo.png",
       "bearing": "SE"
     },
     {
       "name": "台北故宫博物院",
       "en": "National Palace Museum",
       "desc": "收藏 69 万件中华文物，翠玉白菜与肉形石是镇馆之宝。",
-      "img": "data/cities/taipei/img/National_Palace_Museum_Taipei.jpg",
+      "img": "data/cities/taipei/img/langzh-330px-ROC_National_Palace_Museum_Logo.png",
       "bearing": "N"
     },
     {
       "name": "中正纪念堂",
       "en": "Chiang Kai-shek Memorial Hall",
       "desc": "蓝瓦白墙八角顶建筑，整点卫兵交接仪式庄重有趣。",
-      "img": "data/cities/taipei/img/Chiang_Kai-shek_Memorial_Hall.jpg",
+      "img": "data/cities/taipei/img/330px-2022_.jpg",
       "bearing": "C"
     },
     {
       "name": "士林夜市",
       "en": "Shilin Night Market",
       "desc": "台北最大夜市，几百个摊位从蚵仔煎吃到青蛙下蛋。",
-      "img": "data/cities/taipei/img/Shilin_Night_Market.jpg",
+      "img": "data/cities/taipei/img/330px-_8512.jpg",
       "bearing": "N"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/taipei/img/Taipei_Baoan_Temple.jpg",
       "bearing": "N"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taipei\\scenes.json"
+  ]
 }

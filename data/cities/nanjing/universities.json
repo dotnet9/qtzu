@@ -12,7 +12,8 @@
       "nationalRank": 6,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-_.png"
     },
     {
       "zh": "东南大学",
@@ -24,7 +25,8 @@
       "nationalRank": 13,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-_logo.png"
     },
     {
       "zh": "南京航空航天大学",
@@ -36,7 +38,8 @@
       "nationalRank": 35,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Nanjing_University_of_Aeronautics_and_Astronautics.png"
     },
     {
       "zh": "南京理工大学",
@@ -48,7 +51,8 @@
       "nationalRank": 37,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Nust.png"
     },
     {
       "zh": "河海大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Hohai_University_logo.png"
     },
     {
       "zh": "南京师范大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Nanjing_Normal_University.png"
     },
     {
       "zh": "南京农业大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Nanjing_Agricultural_University.png"
     },
     {
       "zh": "中国药科大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/Yaokedaxue_Emblem.jpg"
     },
     {
       "zh": "南京邮电大学",
@@ -108,7 +116,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Logo_of_NJUPT.png"
     },
     {
       "zh": "南京林业大学",
@@ -120,7 +129,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Nanjing_Forestry_University_badge.png"
     },
     {
       "zh": "南京信息工程大学",
@@ -132,7 +142,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-NUIST.png"
     },
     {
       "zh": "南京工业大学",
@@ -144,7 +155,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-Nanjing_Tech_University_Emblem.png"
     },
     {
       "zh": "南京医科大学",
@@ -156,7 +168,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/Nanjing_Medical_University_logo.jpg"
     },
     {
       "zh": "南京财经大学",
@@ -168,8 +181,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/nanjing/img/langzh-330px-NUFE_Emblem.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanjing\\universities.json"
+  ]
 }

@@ -48,7 +48,7 @@
       "name": "金鸡湖",
       "en": "Jinji Lake",
       "desc": "现代化湖畔天际线与摩天轮",
-      "img": "data/cities/suzhou/img/Jinji_Lake.jpg",
+      "img": "data/cities/suzhou/img/330px-Jinji_Lake_Suzhou_November_2017_002.jpg",
       "bearing": "E"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Master%20of%20Nets%20Garden.jpg?width=640",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\suzhou\\scenes.json"
+  ]
 }

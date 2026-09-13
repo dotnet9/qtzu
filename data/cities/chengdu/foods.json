@@ -6,35 +6,35 @@
       "name": "火锅",
       "en": "Hot Pot",
       "desc": "红油翻滚、麻辣鲜香，一群人围着一口锅，是成都最热闹的吃法。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sichuan%20hotpot.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Hot_Pot.jpg",
       "bearing": "S"
     },
     {
       "name": "麻婆豆腐",
       "en": "Mapo Tofu",
       "desc": "麻、辣、烫、香、酥、嫩，一百五十年前的陈麻婆创造了这道世界名菜。",
-      "img": "data/cities/chengdu/img/Mapo_doufu.jpg",
+      "img": "data/cities/chengdu/img/330px-Billyfoodmabodofu3.jpg",
       "bearing": "W"
     },
     {
       "name": "担担面",
       "en": "Dandan Noodles",
       "desc": "小贩挑着担子沿街叫卖的面条，芽菜肉末加红油，一碗不过瘾。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dandan%20noodles.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Dan-dan_noodles__Shanghai.jpg",
       "bearing": "C"
     },
     {
       "name": "串串香",
       "en": "Chuanchuan",
       "desc": "竹签串起各色食材在红油锅里涮，数签子结账，最接地气的成都味道。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chuanchuanxiang.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Malatang_from_Hope_Tree__20220226172344_.jpg",
       "bearing": "S"
     },
     {
       "name": "龙抄手",
       "en": "Long Wonton",
       "desc": "皮薄馅嫩的四川馄饨，清汤红油两相宜，老字号总店在春熙路。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wonton%20noodles.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Didishenshan13.jpg",
       "bearing": "C"
     },
     {
@@ -48,21 +48,21 @@
       "name": "夫妻肺片",
       "en": "Fuqi Feipian",
       "desc": "牛肉牛杂片配红油花生碎，名字源于一对摆摊夫妻，实为凉菜之王。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fuqi%20feipian.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Fuqi_Fei_Pian.jpg",
       "bearing": "W"
     },
     {
       "name": "蛋烘糕",
       "en": "Egg Pancake",
       "desc": "街头小铜锅烘出的小圆饼，外酥内软，甜咸夹馅任选，学生最爱。",
-      "img": "data/cities/chengdu/img/Pancake.jpg",
+      "img": "data/cities/chengdu/img/330px-1963-08_1963___.jpg",
       "bearing": "C"
     },
     {
       "name": "三大炮",
       "en": "Three Cannon Rice Cakes",
       "desc": "糯米团甩向案板「砰砰砰」三声弹上竹簸箕，抛得远才算好手艺。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/San%20Da%20Pao.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Chengdu_travel_037__36057415511_.jpg",
       "bearing": "S"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rabbit%20head%20spicy.jpg?width=640",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengdu\\foods.json"
+  ]
 }

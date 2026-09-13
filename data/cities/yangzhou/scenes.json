@@ -34,21 +34,21 @@
       "name": "东关街",
       "en": "Dongguan Street",
       "desc": "千年古街，谢馥春与漆器",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dongguan%20Street.jpg?width=640",
+      "img": "data/cities/yangzhou/img/330px-__-_Dongguan_Street_-_2015_04_-_panoramio.jpg",
       "bearing": "C"
     },
     {
       "name": "文昌阁",
       "en": "Wenchang Pavilion Yangzhou",
       "desc": "运河旁城市地标",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wenchang%20Pavilion%20Yangzhou.jpg?width=640",
+      "img": "data/cities/yangzhou/img/330px-1963-09_1963___.jpg",
       "bearing": "C"
     },
     {
       "name": "中国大运河博物馆",
       "en": "Canal Museum",
       "desc": "运河文化全景巨舰造型",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Canal%20Museum.jpg?width=640",
+      "img": "data/cities/yangzhou/img/330px-China_Grand_Canal_Museum.jpg",
       "bearing": "SE"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shaobo%20Ancient%20Town.jpg?width=640",
       "bearing": "NE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yangzhou\\scenes.json"
+  ]
 }

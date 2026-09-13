@@ -10,7 +10,7 @@
   "history": "开封古称汴梁，八朝建都，北宋东京城是当时世界最大城市，《清明上河图》描绘的正是它的繁华。「城摞城」奇观：六座古城上下叠压。铁塔、龙亭、大相国寺诉说着千年往事，开封小吃夜市自宋代延续至今。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dragon%20Pavilion%20Kaifeng.jpg?width=960",
+      "img": "data/cities/kaifeng/img/960px-_.jpg",
       "caption": "龙亭"
     },
     {
@@ -78,6 +78,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaifeng\\city.json"
+  }
 }

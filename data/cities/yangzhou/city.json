@@ -14,7 +14,7 @@
       "caption": "瘦西湖"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ge%20Garden.jpg?width=960",
+      "img": "data/cities/yangzhou/img/330px-Bamb_Garden_in_Yangzhou.jpg",
       "caption": "个园"
     },
     {
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yangzhou\\city.json"
+  }
 }

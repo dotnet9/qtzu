@@ -14,7 +14,7 @@
       "caption": "莫高窟"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Crescent%20Lake%20Dunhuang.jpg?width=960",
+      "img": "data/cities/dunhuang/img/330px-Crescent_Lake_from_the_Singing_Sand_Dunes__20230918101214_.jpg",
       "caption": "月牙泉"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dunhuang\\city.json"
+  }
 }

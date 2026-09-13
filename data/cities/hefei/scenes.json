@@ -13,7 +13,7 @@
       "name": "包公园",
       "en": "Bao Gong Park",
       "desc": "包拯祠堂与清风阁，铁面无私",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bao%20Gong%20Temple.jpg?width=640",
+      "img": "data/cities/hefei/img/330px-Baogong_Park__He_Fei.jpg",
       "bearing": "SE"
     },
     {
@@ -27,7 +27,7 @@
       "name": "三河古镇",
       "en": "Sanhe Ancient Town",
       "desc": "2500 年水乡古镇，八古景观",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanhe%20Ancient%20Town.jpg?width=640",
+      "img": "data/cities/hefei/img/330px-_.jpg",
       "bearing": "S"
     },
     {
@@ -41,7 +41,7 @@
       "name": "天鹅湖",
       "en": "Swan Lake",
       "desc": "政务区城市湖景，日落剪影",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Swan%20Lake%20Hefei.jpg?width=640",
+      "img": "data/cities/hefei/img/330px-Swan_Lake_baku.jpg",
       "bearing": "SW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dashu%20Mountain.jpg?width=640",
       "bearing": "W"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hefei\\scenes.json"
+  ]
 }

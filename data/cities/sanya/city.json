@@ -10,7 +10,7 @@
   "history": "三亚古称崖州，古时是谪臣流放的「天涯海角」，如今是中国最著名的热带滨海度假胜地。亚龙湾号称「天下第一湾」，南山海上观音高达 108 米。黎族苗族自治州文化、椰梦长廊与潜水胜地蜈支洲岛让这里成为东方夏威夷。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalong%20Bay%20Sanya.jpg?width=960",
+      "img": "data/cities/sanya/img/330px-_.jpg",
       "caption": "亚龙湾"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\sanya\\city.json"
+  }
 }

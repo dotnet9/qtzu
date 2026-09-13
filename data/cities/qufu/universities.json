@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/qufu/img/langzh-330px-Qufu_Normal_University_logo.png"
     },
     {
       "zh": "济宁学院",
@@ -26,6 +27,5 @@
       "history": "",
       "campusNote": null
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qufu\\universities.json"
+  ]
 }

@@ -14,11 +14,11 @@
       "caption": "洪崖洞夜景"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jialing%20River%20Chongqing.jpg?width=960",
+      "img": "data/cities/chongqing/img/_.jpg",
       "caption": "两江交汇"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ciqikou%20Ancient%20Town.jpg?width=960",
+      "img": "data/cities/chongqing/img/330px-_.jpg",
       "caption": "磁器口古镇"
     }
   ],
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chongqing\\city.json"
+  }
 }

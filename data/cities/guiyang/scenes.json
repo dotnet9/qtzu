@@ -13,14 +13,14 @@
       "name": "黔灵山公园",
       "en": "Qianling Park",
       "desc": "市区猕猴成群，弘福寺香火",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qianling%20Park.jpg?width=640",
+      "img": "data/cities/guiyang/img/330px-___.jpg",
       "bearing": "NW"
     },
     {
       "name": "青岩古镇",
       "en": "Qingyan Ancient Town",
       "desc": "明清军事古镇，石板巷背街",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingyan%20Ancient%20Town.jpg?width=640",
+      "img": "data/cities/guiyang/img/330px-Qingyan_Town.jpg",
       "bearing": "S"
     },
     {
@@ -34,21 +34,21 @@
       "name": "天河潭",
       "en": "Tianhetan",
       "desc": "喀斯特溶洞瀑布山水盆景",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianhetan.jpg?width=640",
+      "img": "data/cities/guiyang/img/330px-__-_Beauty_Waterfall_-_2015_07_-_panoramio.jpg",
       "bearing": "SW"
     },
     {
       "name": "文昌阁",
       "en": "Wenchang Pavilion",
       "desc": "独特九角三层宝塔式古建",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wenchang%20Pavilion%20Guiyang.jpg?width=640",
+      "img": "data/cities/guiyang/img/330px-1963-09_1963___.jpg",
       "bearing": "C"
     },
     {
       "name": "贵州省博物馆",
       "en": "Guizhou Museum",
       "desc": "夜郎文化与苗族银饰",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guizhou%20Museum.jpg?width=640",
+      "img": "data/cities/guiyang/img/330px-___.jpg",
       "bearing": "NW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Time%20Guizhou.jpg?width=640",
       "bearing": "W"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\scenes.json"
+  ]
 }

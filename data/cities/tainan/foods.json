@@ -6,21 +6,21 @@
       "name": "担仔面",
       "en": "Tan-tsai Noodles",
       "desc": "度小月 1895 年创始，肉燥油葱一勺入面，百年老灶火不熄。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Danzai%20noodles.jpg?width=640",
+      "img": "data/cities/tainan/img/330px-Tan_Tsai_Noodle_of_Tu_Hsiao_Yue_2015.jpg",
       "bearing": "W"
     },
     {
       "name": "棺材板",
       "en": "Coffin Bread",
       "desc": "1940 年沙卡里巴发明，厚片面包炸壳填海鲜浓汤，趣味之名响彻全台。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffin%20bread.jpg?width=640",
+      "img": "data/cities/tainan/img/330px-Coffin_sandwich__Dec_06.jpg",
       "bearing": "C"
     },
     {
       "name": "碗粿",
       "en": "Wagui Rice Cake",
       "desc": "在来米浆配肉燥蛋黄蒸碗而成，富盛号排队三十年。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wa gui.jpg?width=640",
+      "img": "data/cities/tainan/img/330px-Savory_rice_pudding_in_Tainan.jpg",
       "bearing": "C"
     },
     {
@@ -62,7 +62,7 @@
       "name": "鳝鱼意面",
       "en": "Eel Noodles",
       "desc": "大火快炒的酸甜鳝鱼意面，锅气十足是台南夜宵灵魂。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Eel%20noodles.jpg?width=640",
+      "img": "data/cities/tainan/img/330px-Food__27772132115_.jpg",
       "bearing": "C"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/tainan/img/Candied_fruit.jpg",
       "bearing": "W"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\foods.json"
+  ]
 }

@@ -20,7 +20,7 @@
       "name": "熏豆腐",
       "en": "Smoked Tofu",
       "desc": "孔府熏豆腐木质烟香",
-      "img": "data/cities/qufu/img/Tofu.jpg",
+      "img": "data/cities/qufu/img/330px-_.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/qufu/img/Carving.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qufu\\foods.json"
+  ]
 }

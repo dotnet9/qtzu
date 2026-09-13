@@ -6,7 +6,7 @@
       "name": "滕王阁",
       "en": "Tengwang Pavilion",
       "desc": "江南三大名楼之首，落霞孤鹜",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tengwang%20Pavilion.jpg?width=640",
+      "img": "data/cities/nanchang/img/330px-__2024-08-05_04.jpg",
       "bearing": "NW"
     },
     {
@@ -27,14 +27,14 @@
       "name": "绳金塔",
       "en": "Shengjin Tower",
       "desc": "千年古塔，美食街环绕",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shengjin%20Tower.jpg?width=640",
+      "img": "data/cities/nanchang/img/330px-Nanchang_Shengjin_Ta_20120608-01.jpg",
       "bearing": "S"
     },
     {
       "name": "鄱阳湖",
       "en": "Poyang Lake",
       "desc": "中国最大淡水湖，白鹤越冬",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Poyang%20Lake.jpg?width=640",
+      "img": "data/cities/nanchang/img/330px-Satelites_image_of_Lake_Poyang.png",
       "bearing": "N"
     },
     {
@@ -48,7 +48,7 @@
       "name": "秋水广场",
       "en": "Qiushui Square",
       "desc": "亚洲最大喷泉群对望滕王阁",
-      "img": "data/cities/nanchang/img/Qiushui_Square.jpg",
+      "img": "data/cities/nanchang/img/330px-Qiushui_Square.jpg",
       "bearing": "NW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/nanchang/img/Wanshou_Palace.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanchang\\scenes.json"
+  ]
 }

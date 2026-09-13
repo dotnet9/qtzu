@@ -6,7 +6,7 @@
       "name": "中山陵",
       "en": "Sun Yat-sen Mausoleum",
       "desc": "392 级台阶仰望博爱坊，紫金山庄严圣地",
-      "img": "data/cities/nanjing/img/Sun_Yat-sen_Mausoleum.jpg",
+      "img": "data/cities/nanjing/img/330px-Hall_of_Sun_Yat-sen_Mausoleum.jpg",
       "bearing": "E"
     },
     {
@@ -20,7 +20,7 @@
       "name": "明孝陵",
       "en": "Ming Xiaoling Mausoleum",
       "desc": "明太祖陵寝，世界文化遗产明清皇陵之首",
-      "img": "data/cities/nanjing/img/Ming_Xiaoling_Mausoleum.jpg",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Nanjing_Ming_Xiaoling_2017.11.11_08-10-27.jpg/330px-Nanjing_Ming_Xiaoling_2017.11.11_08-10-27.jpg",
       "bearing": "E"
     },
     {
@@ -34,14 +34,14 @@
       "name": "玄武湖",
       "en": "Xuanwu Lake",
       "desc": "江南三大名湖之一，明城墙下五洲相环",
-      "img": "data/cities/nanjing/img/Xuanwu_Lake.jpg",
+      "img": "data/cities/nanjing/img/330px-Xuanwuhu.jpg",
       "bearing": "N"
     },
     {
       "name": "鸡鸣寺",
       "en": "Jiming Temple",
       "desc": "「南朝四百八十寺」之首，樱花大道春日如雪",
-      "img": "data/cities/nanjing/img/Jiming_Temple.jpg",
+      "img": "data/cities/nanjing/img/330px-Jiming_Temple_Nanjing__2019__cropped_.jpg",
       "bearing": "C"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/nanjing/img/Laomendong.jpg",
       "bearing": "S"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanjing\\scenes.json"
+  ]
 }

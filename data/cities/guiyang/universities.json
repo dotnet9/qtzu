@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guiyang/img/Guizhou_University_Logo.png"
     },
     {
       "zh": "贵州师范大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guiyang/img/Guizhou_Normal_University_logo.png"
     },
     {
       "zh": "贵州医科大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guiyang/img/Guizhou_Medical_University_logo.png"
     },
     {
       "zh": "贵州财经大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guiyang/img/Guizhou_University_of_Finance_and_Economics_logo.png"
     },
     {
       "zh": "贵州中医药大学",
@@ -60,8 +64,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/guiyang/img/langzh-330px-GYCTCM.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\universities.json"
+  ]
 }

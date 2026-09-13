@@ -13,7 +13,7 @@
       "name": "桶子鸡",
       "en": "Barrel Chicken",
       "desc": "马豫兴桶子鸡咸香嫩脆",
-      "img": "data/cities/kaifeng/img/Chicken_dish.jpg",
+      "img": "data/cities/kaifeng/img/330px-20240806_Tong_Zi_Chicken_for_sale_at_Pang_Ji.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Stuffed%20duck.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaifeng\\foods.json"
+  ]
 }

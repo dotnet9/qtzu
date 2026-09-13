@@ -6,7 +6,7 @@
       "name": "大同刀削面",
       "en": "Datong Knife Noodles",
       "desc": "东方削面卤香浓郁，大同人的执念",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Knife%20cut%20noodles.jpg?width=640",
+      "img": "data/cities/datong/img/330px-Datong_Fideos.jpg",
       "bearing": "C"
     },
     {
@@ -20,7 +20,7 @@
       "name": "兔头",
       "en": "Braised Rabbit Head",
       "desc": "大同人夜宵必备麻辣兔头",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rabbit%20head.jpg?width=640",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/3/33/Lagocephalus_sceleratus.jpg",
       "bearing": "C"
     },
     {
@@ -48,16 +48,15 @@
       "name": "莜面窝窝",
       "en": "Oat Rolls",
       "desc": "蘸羊肉臊子的塞上面食",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Oat%20rolls.jpg?width=640",
+      "img": "data/cities/datong/img/330px-Oat_noodle_rolls_served_in_Beijing__20170406174236_.jpg",
       "bearing": "C"
     },
     {
       "name": "涮羊肉",
       "en": "Hot Pot Lamb",
       "desc": "铜锅涮广灵羊肉",
-      "img": "data/cities/datong/img/Hotpot.jpg",
+      "img": "data/cities/datong/img/330px-Instant-boiled_mutton_hot_pot_at_Yangfang_Shengli__20200111153612_.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\datong\\foods.json"
+  ]
 }

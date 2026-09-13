@@ -10,7 +10,7 @@
   "history": "大连古称青泥洼，1899 年沙俄建市，取名「达里尼」意为远方。日据时期城市格局基本奠定，广场城市、有轨电车延续至今。作为东北亚重要港口与旅游名城，星海广场是亚洲最大的城市广场。海滨风光与百年电车让大连有「浪漫之都」的美誉。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xinghai%20Square%20Dalian.jpg?width=960",
+      "img": "data/cities/dalian/img/960px-_1.jpg",
       "caption": "星海广场"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\city.json"
+  }
 }

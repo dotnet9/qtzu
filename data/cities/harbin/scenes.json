@@ -6,21 +6,21 @@
       "name": "圣索菲亚大教堂",
       "en": "Saint Sophia Cathedral",
       "desc": "1907 年拜占庭式建筑，绿顶红砖百年地标",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Sophia%20Cathedral%20Harbin.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Hagia_Sophia_-_Muhammad%27s_prophecy.jpg/960px-Hagia_Sophia_-_Muhammad%27s_prophecy.jpg",
       "bearing": "C"
     },
     {
       "name": "冰雪大世界",
       "en": "Ice and Snow World",
       "desc": "全球最大冰雪主题乐园，冰雕灯光夜景",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Harbin%20Ice%20and%20Snow%20World.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/%E4%BD%B3%E6%9C%A8%E6%96%AF%E5%86%B0%E9%9B%AA%E5%A4%A7%E4%B8%96%E7%95%8C%E6%AD%A3%E9%97%A8_Gate_of_the_Jiamusi_Ice_and_Snow_World%2C_Feb_2018.jpg/960px-%E4%BD%B3%E6%9C%A8%E6%96%AF%E5%86%B0%E9%9B%AA%E5%A4%A7%E4%B8%96%E7%95%8C%E6%AD%A3%E9%97%A8_Gate_of_the_Jiamusi_Ice_and_Snow_World%2C_Feb_2018.jpg",
       "bearing": "N"
     },
     {
       "name": "中央大街",
       "en": "Central Street",
       "desc": "百年步行街，面包石路两侧欧式建筑",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Central%20Street%20Harbin.jpg?width=640",
+      "img": "data/cities/harbin/img/330px-Central_Street_at_West_13th_St__20230721112501_.jpg",
       "bearing": "C"
     },
     {
@@ -34,7 +34,7 @@
       "name": "防洪纪念塔",
       "en": "Flood Control Memorial Tower",
       "desc": "松花江畔城市象征",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Flood%20Control%20Memorial%20Tower.jpg?width=640",
+      "img": "data/cities/harbin/img/330px-Harbin_Memorial_Tower.jpg",
       "bearing": "C"
     },
     {
@@ -48,7 +48,7 @@
       "name": "亚布力滑雪场",
       "en": "Yabuli Ski Resort",
       "desc": "中国滑雪旅游发源地",
-      "img": "data/cities/harbin/img/Yabuli_Ski_Resort.jpg",
+      "img": "data/cities/harbin/img/330px-Yabuli_Ski_Resort.jpg",
       "bearing": "SE"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Volga%20Manor.jpg?width=640",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\scenes.json"
+  ]
 }

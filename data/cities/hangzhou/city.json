@@ -10,7 +10,7 @@
   "history": "「上有天堂，下有苏杭」，南宋定都临安时杭州是世界最繁华的城市之一，马可·波罗称之为「世界上最美丽华贵之天城」。西湖十景自宋代流传至今，京杭大运河南端在此收官。白居易、苏东坡都曾在此筑堤修湖。今天的杭州是数字经济的弄潮儿，电商与云计算之都，也是龙井茶的故乡。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/West%20Lake%2C%20Hangzhou%20(2011).jpg?width=960",
+      "img": "data/cities/hangzhou/img/330px-West_Lake__Hangzhou_2025.jpg",
       "caption": "西湖"
     },
     {
@@ -18,7 +18,7 @@
       "caption": "灵隐寺"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Leifeng%20Pagoda.jpg?width=960",
+      "img": "data/cities/hangzhou/img/330px-Leifeng_Pagoda_at_Dusk.jpg",
       "caption": "雷峰塔"
     }
   ],
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hangzhou\\city.json"
+  }
 }

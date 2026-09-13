@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "泉州/厦门两地办学",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/quanzhou/img/Huaqiao_University_logo.png"
     },
     {
       "zh": "仰恩大学",
@@ -36,7 +37,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/quanzhou/img/langzh-330px-Quanzhou_Normal_University_Seal.png"
     },
     {
       "zh": "闽南理工学院",
@@ -50,6 +52,5 @@
       "history": "",
       "campusNote": null
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\quanzhou\\universities.json"
+  ]
 }

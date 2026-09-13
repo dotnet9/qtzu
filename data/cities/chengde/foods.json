@@ -34,7 +34,7 @@
       "name": "鲜花玫瑰饼",
       "en": "Rose Pastry",
       "desc": "山庄玫瑰入馅，乾隆贡点",
-      "img": "data/cities/chengde/img/Pastry.jpg",
+      "img": "data/cities/chengde/img/330px-_-2164122.jpg",
       "bearing": "C"
     },
     {
@@ -48,16 +48,15 @@
       "name": "蕨菜",
       "en": "Fern",
       "desc": "坝上山珍野蕨菜",
-      "img": "data/cities/chengde/img/Fern.jpg",
+      "img": "data/cities/chengde/img/330px-Fiddlehead_closeup.png",
       "bearing": "N"
     },
     {
       "name": "杏仁茶",
       "en": "Almond Tea",
       "desc": "山杏仁磨制甜香",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Almond%20tea.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Almond_meal_by_hand.jpg/960px-Almond_meal_by_hand.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengde\\foods.json"
+  ]
 }

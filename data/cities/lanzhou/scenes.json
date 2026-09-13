@@ -48,7 +48,7 @@
       "name": "五泉山公园",
       "en": "Wuquan Mountain",
       "desc": "霍去病传说与五眼名泉",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuquan%20Mountain.jpg?width=640",
+      "img": "data/cities/lanzhou/img/330px-__09_105____.jpg",
       "bearing": "S"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Night%20market.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lanzhou\\scenes.json"
+  ]
 }

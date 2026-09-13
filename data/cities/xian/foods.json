@@ -13,28 +13,28 @@
       "name": "羊肉泡馍",
       "en": "Yangrou Paomo",
       "desc": "自己掰馍的仪式感，羊肉汤浓谆味厚",
-      "img": "data/cities/xian/img/Paomo.jpg",
+      "img": "data/cities/xian/img/330px-Yangrou_Paomo.jpg",
       "bearing": "C"
     },
     {
       "name": "biangbiang面",
       "en": "Biangbiang Noodles",
       "desc": "裤带宽面油泼辣子，一个字 58 画的传奇",
-      "img": "data/cities/xian/img/Biangbiang_noodles.jpg",
+      "img": "data/cities/xian/img/330px-Bi_ng_Bi_ng_Mi_n_noodles_with_its_Hanzi.jpg",
       "bearing": "C"
     },
     {
       "name": "凉皮",
       "en": "Liangpi",
       "desc": "酸辣爽口的夏日限定，面筋是灵魂配件",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liangpi.jpg?width=640",
+      "img": "data/cities/xian/img/330px-_.jpg",
       "bearing": "C"
     },
     {
       "name": "葫芦头",
       "en": "Hulutou",
       "desc": "猪大肠泡馍，药王孙思邈的葫芦留下美名",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hulutou.jpg?width=640",
+      "img": "data/cities/xian/img/330px-Hulutou.jpeg",
       "bearing": "C"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/xian/img/Zongzi.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xian\\foods.json"
+  ]
 }

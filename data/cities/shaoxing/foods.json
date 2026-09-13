@@ -6,7 +6,7 @@
       "name": "黄酒",
       "en": "Shaoxing Wine",
       "desc": "女儿红状元红，温一壶配茴香豆",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20wine.jpg?width=640",
+      "img": "data/cities/shaoxing/img/330px-Shaoxing_wine_in_a_glass_by_udono_in_Tokyo.jpg",
       "bearing": "C"
     },
     {
@@ -27,14 +27,14 @@
       "name": "醉鸡",
       "en": "Drunken Chicken",
       "desc": "黄酒浸鸡酒香四溢",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Drunken%20chicken.jpg?width=640",
+      "img": "data/cities/shaoxing/img/960px-Fish_Ball_Hor_Fun_Rice_Noodle_Soup_Salt-Baked_Chicken_Rice_-_Hakka_Teahous.jpg",
       "bearing": "C"
     },
     {
       "name": "臭豆腐",
       "en": "Stinky Tofu",
       "desc": "绍兴油炸臭豆腐配甜面酱",
-      "img": "data/cities/shaoxing/img/Stinky_tofu.jpg",
+      "img": "data/cities/shaoxing/img/330px-_.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shrimp%20dish.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shaoxing\\foods.json"
+  ]
 }

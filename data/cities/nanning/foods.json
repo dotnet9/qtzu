@@ -13,7 +13,7 @@
       "name": "螺蛳粉",
       "en": "Luosifen",
       "desc": "闻着臭吃着香的柳州风味席卷全国",
-      "img": "data/cities/nanning/img/Luosifen.jpg",
+      "img": "data/cities/nanning/img/330px-Luosifen_at_Guangya__Liuzhou__20190420141814_.jpg",
       "bearing": "C"
     },
     {
@@ -27,7 +27,7 @@
       "name": "柠檬鸭",
       "en": "Lemon Duck",
       "desc": "武鸣柠檬鸭酸辣开胃",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lemon%20duck.jpg?width=640",
+      "img": "data/cities/nanning/img/330px-Guangxi_lemon_duck_on_Z5__20160323175957_.jpg",
       "bearing": "N"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/nanning/img/Sashimi.jpg",
       "bearing": "E"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanning\\foods.json"
+  ]
 }

@@ -6,21 +6,21 @@
       "name": "沈阳故宫",
       "en": "Shenyang Imperial Palace",
       "desc": "清朝入关前皇宫，大政殿八角重檐",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shenyang%20Imperial%20Palace.jpg?width=640",
+      "img": "data/cities/shenyang/img/330px-_.jpg",
       "bearing": "C"
     },
     {
       "name": "张氏帅府",
       "en": "Marshal Zhang Mansion",
       "desc": "张作霖张学良官邸，大青楼小青楼",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marshal%20Zhang%20Mansion.jpg?width=640",
+      "img": "data/cities/shenyang/img/330px-_2024_10__2_.jpg",
       "bearing": "C"
     },
     {
       "name": "九·一八历史博物馆",
       "en": "September 18th Museum",
       "desc": "残历碑警钟长鸣，铭记历史",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/918%20Museum%20Shenyang.jpg?width=640",
+      "img": "data/cities/shenyang/img/330px-Ji_-y_b__L_sh__B_w_gu_n_106997.jpg",
       "bearing": "NE"
     },
     {
@@ -34,7 +34,7 @@
       "name": "中街",
       "en": "Zhongjie Street",
       "desc": "四百年东北第一商业街",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhongjie%20Street.jpg?width=640",
+      "img": "data/cities/shenyang/img/330px-Shenyang-zhongjie.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Industrial%20Museum%20Shenyang.jpg?width=640",
       "bearing": "W"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\scenes.json"
+  ]
 }

@@ -6,7 +6,7 @@
       "name": "木瓜牛乳",
       "en": "Papaya Milk",
       "desc": "六合夜市招牌饮品，木瓜与鲜奶现打，浓稠香甜世界闻名。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Papaya%20milk.jpg?width=640",
+      "img": "data/cities/kaohsiung/img/330px-Food____________15747947605_.jpg",
       "bearing": "C"
     },
     {
@@ -41,7 +41,7 @@
       "name": "盐酥鸡",
       "en": "Salt & Pepper Chicken",
       "desc": "九层塔爆香的炸鸡块，夜市人手一袋，配蒜头更香。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taiwanese%20salt%20and%20pepper%20chicken.jpg?width=640",
+      "img": "data/cities/kaohsiung/img/330px-TWBC_Taiwanese_fried_chicken_20070303.jpg",
       "bearing": "C"
     },
     {
@@ -55,14 +55,14 @@
       "name": "蚵仔面线",
       "en": "Oyster Vermicelli",
       "desc": "细面线裹浓稠羹汤，肥美蚵仔加大肠，一碗满足。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Oyster%20vermicelli.jpg?width=640",
+      "img": "data/cities/kaohsiung/img/330px-Oyster_Vermicelli.jpg",
       "bearing": "C"
     },
     {
       "name": "棺材板",
       "en": "Coffin Bread",
       "desc": "厚片吐司炸壳填海鲜浓汤，名字趣味销量第一。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffin%20bread.jpg?width=640",
+      "img": "data/cities/kaohsiung/img/330px-Coffin_sandwich__Dec_06.jpg",
       "bearing": "C"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/kaohsiung/img/Pastry.jpg",
       "bearing": "W"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaohsiung\\foods.json"
+  ]
 }

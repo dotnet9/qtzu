@@ -6,7 +6,7 @@
       "name": "骑楼老街",
       "en": "Qilou Old Street",
       "desc": "南洋风格百年骑楼群",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qilou%20Old%20Street%20Haikou.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Bo%27ai_Road_area_-_01.jpg/960px-Bo%27ai_Road_area_-_01.jpg",
       "bearing": "C"
     },
     {
@@ -20,44 +20,43 @@
       "name": "火山口地质公园",
       "en": "Volcanic Park",
       "desc": "万年死火山口与熔岩隧道",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Volcanic%20Park%20Haikou.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Leiqiong_Global_Geopark_-_01.jpg/960px-Leiqiong_Global_Geopark_-_01.jpg",
       "bearing": "S"
     },
     {
       "name": "五公祠",
       "en": "Wugong Shrine",
       "desc": "李德裕李纲等五公纪念祠",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wugong%20Shrine.jpg?width=640",
+      "img": "data/cities/haikou/img/330px-P1110283__14188690007_.jpg",
       "bearing": "C"
     },
     {
       "name": "雷琼海口火山群",
       "en": "Haikou Volcanic Cluster",
       "desc": "世界地质公园",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Haikou%20Volcanic%20Cluster.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Leiqiong_Global_Geopark_-_01.jpg/960px-Leiqiong_Global_Geopark_-_01.jpg",
       "bearing": "S"
     },
     {
       "name": "海南省博物馆",
       "en": "Hainan Museum",
       "desc": "沉船「南海一号」相关文物",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hainan%20Museum.jpg?width=640",
+      "img": "data/cities/haikou/img/330px-Hainan_Museum_01.jpg",
       "bearing": "E"
     },
     {
       "name": "万绿园",
       "en": "Wanlv Park",
       "desc": "市中心海滨绿地",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wanlv%20Park.jpg?width=640",
+      "img": "data/cities/haikou/img/330px-Evergreen_Park__Haikou__-_map_-_01.png",
       "bearing": "N"
     },
     {
       "name": "冯小刚电影公社",
       "en": "Feng Xiaogang Film Commune",
       "desc": "1942 街与南洋街影城",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Film%20Commune%20Haikou.jpg?width=640",
+      "img": "data/cities/haikou/img/330px-Movie_Town_Haikou_front_entrance_-_01.jpg",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\haikou\\scenes.json"
+  ]
 }

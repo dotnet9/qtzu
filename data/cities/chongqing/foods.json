@@ -6,42 +6,42 @@
       "name": "重庆火锅",
       "en": "Chongqing Hotpot",
       "desc": "九宫格牛油锅，毛肚鸭肠七上八下",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongqing%20hotpot.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-_.jpg",
       "bearing": "C"
     },
     {
       "name": "重庆小面",
       "en": "Chongqing Noodles",
       "desc": "麻辣小面是山城人的一天开始",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongqing%20noodles.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-Chongqing_Xiaomian_with_fried_eggs.jpg",
       "bearing": "C"
     },
     {
       "name": "酸辣粉",
       "en": "Hot and Sour Noodles",
       "desc": "红薯粉Q弹酸辣，配花生碎最佳",
-      "img": "data/cities/chongqing/img/Suanlafen.jpg",
+      "img": "data/cities/chongqing/img/330px-Hot_and_sour_noodles_with_pork_intestines.jpg",
       "bearing": "C"
     },
     {
       "name": "毛血旺",
       "en": "Duck Blood in Spicy Soup",
       "desc": "磁器口的血旺里全是宝藏食材",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Maoxiewang.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-Mao_Xuewang_1.jpg",
       "bearing": "NW"
     },
     {
       "name": "辣子鸡",
       "en": "Lazi Chicken",
       "desc": "歌乐山的辣子鸡，在辣椒堆里找鸡丁",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laziji.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-Laziji_at_Beijing_Yibin_Hostel__20210625111300_.jpg",
       "bearing": "W"
     },
     {
       "name": "水煮鱼",
       "en": "Boiled Fish with Chili",
       "desc": "麻辣鲜香的川渝经典，油而不腻",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shuizhuyu.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-Shuizhuyu_at_Hamarkand_Silk_Road_Cuisine__Beiqinglu__20230121154615_.jpg",
       "bearing": "C"
     },
     {
@@ -62,7 +62,7 @@
       "name": "抄手",
       "en": "Chaoshou",
       "desc": "红油抄手是重庆馄饨的麻辣版本",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chaoshou.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-Pork_Steamed_Wontons.jpg",
       "bearing": "C"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/chongqing/img/Tangyuan.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chongqing\\foods.json"
+  ]
 }

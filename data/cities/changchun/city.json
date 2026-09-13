@@ -10,7 +10,7 @@
   "history": "长春曾是伪满洲国「首都」新京，伪满皇宫见证傀儡岁月。一汽集团 1953 年建厂，第一辆解放牌卡车和红旗轿车从这里驶出，长影是新中国电影摇篮。净月潭与雾凇让这座城市冰雪与工业交融。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/FAW%20Changchun.jpg?width=960",
+      "img": "data/cities/changchun/img/330px-FAW_Group_NBD_headquarters__20250924144423_.jpg",
       "caption": "一汽"
     },
     {
@@ -18,7 +18,7 @@
       "caption": "长影"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jingyuetan.jpg?width=960",
+      "img": "data/cities/changchun/img/330px-__jing_yue_tan_-_panoramio.jpg",
       "caption": "净月潭"
     }
   ],
@@ -75,6 +75,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changchun\\city.json"
+  }
 }

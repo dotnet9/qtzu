@@ -6,14 +6,14 @@
       "name": "赤崁楼",
       "en": "Chihkan Tower",
       "desc": "1653 年荷兰人建普罗民遮城，现在的海神庙与文昌阁见证四百年沧桑。",
-      "img": "data/cities/tainan/img/Chihkan_Tower_Tainan.jpg",
+      "img": "data/cities/tainan/img/330px-___.jpg",
       "bearing": "C"
     },
     {
       "name": "安平古堡",
       "en": "Fort Zeelandia",
       "desc": "1624 年荷兰人建热兰遮城，是台湾最早的城堡建筑，安平老街就在旁边。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fort%20Zeelandia%2C%20Tainan.jpg?width=640",
+      "img": "data/cities/tainan/img/330px-_.jpg",
       "bearing": "W"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sicao%20Green%20Tunnel.jpg?width=640",
       "bearing": "NW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\scenes.json"
+  ]
 }

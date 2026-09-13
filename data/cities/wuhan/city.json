@@ -10,7 +10,7 @@
   "history": "武汉由武昌、汉口、汉阳三镇合并，长江与汉江在此交汇。3500 年前的盘龙城开启城市史，三国时夏口城筑于蛇山，黄鹤楼上崔颢题诗李白搁笔。1911 年武昌起义打响了辛亥革命第一枪。今天的武汉是中国最大的科教重镇之一，百万大学生在此就读，光谷是中国光电子产业的心脏。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20Crane%20Tower%2C%20Wuhan.jpg?width=960",
+      "img": "data/cities/wuhan/img/330px-CN_-_Hubei_-_Wuhan_-_Kranichpagode.jpg",
       "caption": "黄鹤楼"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuhan\\city.json"
+  }
 }

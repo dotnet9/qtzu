@@ -6,21 +6,21 @@
       "name": "西夏陵",
       "en": "Western Xia Tombs",
       "desc": "「东方金字塔」九座帝陵",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Western%20Xia%20Tombs.jpg?width=640",
+      "img": "data/cities/yinchuan/img/330px-XiXia_Tomb_3_F.jpg",
       "bearing": "W"
     },
     {
       "name": "贺兰山岩画",
       "en": "Helan Mountain Rock Art",
       "desc": "史前太阳神岩画",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Helan%20Mountain%20rock%20art.jpg?width=640",
+      "img": "data/cities/yinchuan/img/330px-Helan_Mountain_s_rock_paintings.jpg",
       "bearing": "NW"
     },
     {
       "name": "镇北堡西部影城",
       "en": "Zhenbeipu Film Studio",
       "desc": "《大话西游》取景地",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhenbeipu%20Film%20Studio.jpg?width=640",
+      "img": "data/cities/yinchuan/img/330px-_.jpg",
       "bearing": "NW"
     },
     {
@@ -34,7 +34,7 @@
       "name": "南关清真大寺",
       "en": "Nanguan Mosque",
       "desc": "银川地标清真寺",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanguan%20Mosque.jpg?width=640",
+      "img": "data/cities/yinchuan/img/330px-Nanguan_Great_Mosque__Xingqing__Yinchuan_in_January_2020.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Helanshan%20Forest%20Park.jpg?width=640",
       "bearing": "NW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yinchuan\\scenes.json"
+  ]
 }

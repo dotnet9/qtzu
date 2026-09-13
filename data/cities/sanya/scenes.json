@@ -6,14 +6,14 @@
       "name": "亚龙湾",
       "en": "Yalong Bay",
       "desc": "「天下第一湾」白沙碧海",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalong%20Bay%20Sanya.jpg?width=640",
+      "img": "data/cities/sanya/img/330px-_.jpg",
       "bearing": "E"
     },
     {
       "name": "天涯海角",
       "en": "Tianya Haijiao",
       "desc": "南天一柱与海判南天石刻",
-      "img": "data/cities/sanya/img/Tianya_Haijiao.jpg",
+      "img": "data/cities/sanya/img/330px-Beach_of_Tianya-Haijiao_near_Tianya_Rock__20230325134441_.jpg",
       "bearing": "W"
     },
     {
@@ -27,7 +27,7 @@
       "name": "蜈支洲岛",
       "en": "Wuzhizhou Island",
       "desc": "中国潜水胜地，情人岛",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuzhizhou%20Island.jpg?width=640",
+      "img": "data/cities/sanya/img/330px-Haitang__Sanya__Hainan__China_-_panoramio__6_.jpg",
       "bearing": "NE"
     },
     {
@@ -41,7 +41,7 @@
       "name": "鹿回头",
       "en": "Luhuitou Park",
       "desc": "黎族爱情传说，俯瞰三亚湾",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luhuitou%20Park.jpg?width=640",
+      "img": "data/cities/sanya/img/330px-Luhuitou.jpg",
       "bearing": "SE"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/First%20Market%20Sanya.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\sanya\\scenes.json"
+  ]
 }

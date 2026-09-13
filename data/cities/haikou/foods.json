@@ -6,7 +6,7 @@
       "name": "海南鸡饭",
       "en": "Hainan Chicken Rice",
       "desc": "白切鸡配鸡油饭，起源地风味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hainan%20chicken%20rice.jpg?width=640",
+      "img": "data/cities/haikou/img/330px-Thai_and_hoi_nan_chicken_in_half.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/haikou/img/Crab.jpg",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\haikou\\foods.json"
+  ]
 }

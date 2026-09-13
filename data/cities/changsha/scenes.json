@@ -6,7 +6,7 @@
       "name": "橘子洲",
       "en": "Orange Isle",
       "desc": "湘江中的长岛，青年毛泽东艺术雕塑",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange%20Isle%20Mao%20Statue.jpg?width=640",
+      "img": "data/cities/changsha/img/330px-__1.jpg",
       "bearing": "C"
     },
     {
@@ -20,7 +20,7 @@
       "name": "湖南省博物馆",
       "en": "Hunan Museum",
       "desc": "马王堆汉墓与素纱襌衣",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hunan%20Museum.jpg?width=640",
+      "img": "data/cities/changsha/img/330px-Entrance_of_Hunan_Museum__2018-09-28.jpg",
       "bearing": "NW"
     },
     {
@@ -34,7 +34,7 @@
       "name": "天心阁",
       "en": "Tianxin Pavilion",
       "desc": "古城墙上的名楼，长沙城市原点",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianxin%20Pavilion.jpg?width=640",
+      "img": "data/cities/changsha/img/330px-Changsha_Tianxin_Pavilion.jpg",
       "bearing": "C"
     },
     {
@@ -48,7 +48,7 @@
       "name": "杜甫江阁",
       "en": "Du Fu Pavilion",
       "desc": "湘江畔诗圣纪念楼，焰火最佳观赏点",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Du%20Fu%20Pavilion.jpg?width=640",
+      "img": "data/cities/changsha/img/330px-Dufujiangge.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinggang%20Ancient%20Town.jpg?width=640",
       "bearing": "NW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changsha\\scenes.json"
+  ]
 }

@@ -6,14 +6,14 @@
       "name": "手把肉",
       "en": "Hand-grabbed Mutton",
       "desc": "清水煮羊肉原汁原味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Boiled%20lamb.jpg?width=640",
+      "img": "data/cities/hohhot/img/330px-Chanasan_makh.jpg",
       "bearing": "C"
     },
     {
       "name": "烤全羊",
       "en": "Roast Whole Lamb",
       "desc": "草原盛宴，仪式感拉满",
-      "img": "data/cities/hohhot/img/Roast_lamb.jpg",
+      "img": "data/cities/hohhot/img/330px-Roast_Whole_Lamb.jpg",
       "bearing": "C"
     },
     {
@@ -34,7 +34,7 @@
       "name": "焙子",
       "en": "Beizi",
       "desc": "回民焙子夹辣糊糊",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Flatbread.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Rhus_javanica_var_chinensis2.jpg/960px-Rhus_javanica_var_chinensis2.jpg",
       "bearing": "C"
     },
     {
@@ -48,7 +48,7 @@
       "name": "奶豆腐",
       "en": "Milk Tofu",
       "desc": "草原奶制品酸甜Q弹",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Milk%20tofu.jpg?width=640",
+      "img": "data/cities/hohhot/img/330px-Milk_tofu.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Milk%20tea%20pot.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\foods.json"
+  ]
 }

@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/fuzhou/img/Fuzhou_University_logo.png"
     },
     {
       "zh": "福建师范大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/fuzhou/img/langzh-330px-Fujian_Normal_University_logo.png"
     },
     {
       "zh": "福建农林大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/fuzhou/img/Fujian_Agriculture_and_Forestry_University_logo.png"
     },
     {
       "zh": "福建医科大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/fuzhou/img/langzh-330px-Fujian_Medical_University_logo.png"
     },
     {
       "zh": "福建中医药大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/fuzhou/img/Fujian_University_of_Traditional_Chinese_Medicine.jpg"
     },
     {
       "zh": "闽江学院",
@@ -72,8 +77,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/fuzhou/img/langzh-330px-Logo_of_Minjiang_University.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\fuzhou\\universities.json"
+  ]
 }

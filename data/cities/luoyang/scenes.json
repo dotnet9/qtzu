@@ -13,14 +13,14 @@
       "name": "白马寺",
       "en": "White Horse Temple",
       "desc": "中国第一古刹，佛教传入中国第一寺",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/White%20Horse%20Temple.jpg?width=640",
+      "img": "data/cities/luoyang/img/330px-27467-Luoyang__49085730123_.jpg",
       "bearing": "E"
     },
     {
       "name": "洛阳博物馆",
       "en": "Luoyang Museum",
       "desc": "十三朝文物荟萃，唐三彩珍品",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luoyang%20Museum.jpg?width=640",
+      "img": "data/cities/luoyang/img/960px-Old_Luoyang_Museum_-_Now_Replaced_by_New_Museum.jpg",
       "bearing": "C"
     },
     {
@@ -41,7 +41,7 @@
       "name": "老君山",
       "en": "Laojun Mountain",
       "desc": "道教圣地金顶云海，伏牛山主峰",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laojun%20Mountain.jpg?width=640",
+      "img": "data/cities/luoyang/img/330px-______-_panoramio.jpg",
       "bearing": "SW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/luoyang/img/Yingtian_Gate.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\luoyang\\scenes.json"
+  ]
 }

@@ -6,7 +6,7 @@
       "name": "都江堰",
       "en": "Dujiangyan",
       "desc": "公元前 256 年李冰父子修建的水利工程，让成都平原成为天府之国，世界文化遗产。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dujiangyan%20irrigation%20system.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-36661-Dujiangyan__44634340644_.jpg",
       "bearing": "NW"
     },
     {
@@ -27,35 +27,35 @@
       "name": "锦里古街",
       "en": "Jinli Ancient Street",
       "desc": "武侯祠旁的清代风格老街，灯笼高挂、小吃飘香，夜景尤其漂亮。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinli%20street%20in%20Chengdu.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Jinli_Street_35201-Chengdu__49068150581_.jpg",
       "bearing": "S"
     },
     {
       "name": "杜甫草堂",
       "en": "Du Fu Thatched Cottage",
       "desc": "诗圣杜甫流寓成都时的故居，「安得广厦千万间」就写在这里。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dufu%20Cottage%20Chengdu.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Du_Fu_cao_tang.jpg",
       "bearing": "W"
     },
     {
       "name": "宽窄巷子",
       "en": "Kuanzhai Alley",
       "desc": "清代满城留下的宽巷子、窄巷子、井巷子，老成都生活的活化石。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kuanzhai%20Alley%2C%20Chengdu.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Chengdu_travel_045__36150300546_.jpg",
       "bearing": "C"
     },
     {
       "name": "青城山",
       "en": "Mount Qingcheng",
       "desc": "道教发源地之一，「青城天下幽」，山中道观掩映在密林深处。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingcheng%20Shan%202005.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-__-_panoramio.jpg",
       "bearing": "NW"
     },
     {
       "name": "金沙遗址博物馆",
       "en": "Jinsha Site Museum",
       "desc": "古蜀王都遗址，太阳神鸟金饰出土于此，成都的城市标志。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinsha%20Site%20Museum.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-__Jinsha_Site_Museum_5.jpg",
       "bearing": "W"
     },
     {
@@ -69,9 +69,8 @@
       "name": "安顺廊桥",
       "en": "Anshun Bridge",
       "desc": "锦江上的明代廊桥，桥上开满餐厅酒吧，夜晚亮灯像一艘宝船。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Anshunbridge.jpg?width=640",
+      "img": "data/cities/chengdu/img/330px-Anshun_Bridge_20260512-5.jpg",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengdu\\scenes.json"
+  ]
 }

@@ -48,7 +48,7 @@
       "name": "烤鱼片",
       "en": "Grilled Fish Flakes",
       "desc": "马面鱼烤制片薄香脆，大连伴手礼",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fish%20snack.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Yuuanyaki.jpg/960px-Yuuanyaki.jpg",
       "bearing": "C"
     },
     {
@@ -62,16 +62,15 @@
       "name": "虾片",
       "en": "Prawn Crackers",
       "desc": "大连虾片真虾制作，越嚼越香",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Prawn%20crackers.jpg?width=640",
+      "img": "data/cities/dalian/img/330px-Prawn_Cracker_with_Black_Pepper.jpg",
       "bearing": "C"
     },
     {
       "name": "海蛎子",
       "en": "Oysters",
       "desc": "冬季海蛎子最肥美，清蒸原味就鲜掉眉毛",
-      "img": "data/cities/dalian/img/Oysters.jpg",
+      "img": "data/cities/dalian/img/330px-Crassostrea_gigas_p1040848.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\foods.json"
+  ]
 }

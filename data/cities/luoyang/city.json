@@ -14,7 +14,7 @@
       "caption": "龙门石窟"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/White%20Horse%20Temple.jpg?width=960",
+      "img": "data/cities/luoyang/img/330px-27467-Luoyang__49085730123_.jpg",
       "caption": "白马寺"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\luoyang\\city.json"
+  }
 }

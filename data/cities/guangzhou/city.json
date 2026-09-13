@@ -14,7 +14,7 @@
       "caption": "广州塔小蛮腰"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Canton%2C%20Cantonese%20Opera%20House.jpg?width=960",
+      "img": "data/cities/guangzhou/img/330px-Chen_Clan_Ancestral_Hall_2025_06_02.jpg",
       "caption": "陈家祠"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guangzhou\\city.json"
+  }
 }

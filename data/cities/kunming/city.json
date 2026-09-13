@@ -10,7 +10,7 @@
   "history": "昆明有 2400 多年建城史，古代南方丝绸之路与茶马古道的重要节点。因四季如春、鲜花常开而被称为「春城」。滇池碧波、西山睡美人、石林奇观构成昆明山水画卷。1938 年西南联大南迁至此，创造了教育史上的奇迹。今天它是「一带一路」面向南亚东南亚开放的门户城市。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dianchi%20Lake%20Kunming.jpg?width=960",
+      "img": "data/cities/kunming/img/330px-_.jpg",
       "caption": "滇池"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kunming\\city.json"
+  }
 }

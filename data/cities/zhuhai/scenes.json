@@ -27,21 +27,21 @@
       "name": "港珠澳大桥",
       "en": "HZM Bridge",
       "desc": "55 公里世界最长跨海大桥",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hong%20Kong-Zhuhai-Macau%20Bridge.jpg?width=640",
+      "img": "data/cities/zhuhai/img/330px-HZMB_Qinzhou_Birdge__20190517_.jpg",
       "bearing": "S"
     },
     {
       "name": "外伶仃岛",
       "en": "Wailingding Island",
       "desc": "文天祥「零丁洋里叹零丁」",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wailingding%20Island.jpg?width=640",
+      "img": "data/cities/zhuhai/img/330px-Wai_Lingding_Island_1.jpg",
       "bearing": "SE"
     },
     {
       "name": "东澳岛",
       "en": "Dongao Island",
       "desc": "南沙湾钻石沙滩",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dongao%20Island.jpg?width=640",
+      "img": "data/cities/zhuhai/img/330px-20260131_Dong_ao_Cun_Cunmin_Weiyuanhui.jpg",
       "bearing": "SE"
     },
     {
@@ -55,9 +55,8 @@
       "name": "淇澳岛",
       "en": "Qiao Island",
       "desc": "红树林湿地与白石街古巷",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qiao%20Island.jpg?width=640",
+      "img": "data/cities/zhuhai/img/330px-Qi_ao_Island2021.jpg",
       "bearing": "N"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhuhai\\scenes.json"
+  ]
 }

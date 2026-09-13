@@ -10,7 +10,7 @@
   "history": "呼和浩特意为「青色的城」，明代土默特部阿勒坦汗建城，大召寺的银佛沿用至今。这里是草原文明与农耕文明交汇处，昭君博物院传颂着胡汉和亲的佳话。牛奶与羊肉的味道、马头琴的旋律构成了城市底色。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dazhao%20Temple%20Hohhot.jpg?width=960",
+      "img": "data/cities/hohhot/img/330px-Dazhao__Wuliang__Temple_of_Hohhot2.jpg",
       "caption": "大召寺"
     },
     {
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\city.json"
+  }
 }

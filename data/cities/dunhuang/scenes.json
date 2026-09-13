@@ -6,35 +6,35 @@
       "name": "莫高窟",
       "en": "Mogao Caves",
       "desc": "735 窟 4.5 万平方米壁画，佛教艺术宝库",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mogao%20Caves%20Dunhuang.jpg?width=640",
+      "img": "data/cities/dunhuang/img/330px-Dunhuang_Mogao_Ku_2013_12_31_12-30-18.jpg",
       "bearing": "SE"
     },
     {
       "name": "鸣沙山月牙泉",
       "en": "Mingsha Shan & Crescent Lake",
       "desc": "沙泉共生千年不涸奇观",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Crescent%20Lake%20Dunhuang.jpg?width=640",
+      "img": "data/cities/dunhuang/img/330px-Crescent_Lake_from_the_Singing_Sand_Dunes__20230918101214_.jpg",
       "bearing": "S"
     },
     {
       "name": "玉门关",
       "en": "Yumen Pass",
       "desc": "春风不度玉门关的汉代关隘",
-      "img": "data/cities/dunhuang/img/Yumen_Pass.jpg",
+      "img": "data/cities/dunhuang/img/330px-Yumenguan.jpg",
       "bearing": "NW"
     },
     {
       "name": "阳关",
       "en": "Yangguan Pass",
       "desc": "西出阳关无故人的丝路古道",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yangguan%20Pass.jpg?width=640",
+      "img": "data/cities/dunhuang/img/330px-Yangguan.jpg",
       "bearing": "SW"
     },
     {
       "name": "雅丹魔鬼城",
       "en": "Yardang Landform",
       "desc": "风蚀地貌如魔域城堡",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yardang%20Dunhuang.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Dunhuang_Yardang_National_Geopark_2.JPG/960px-Dunhuang_Yardang_National_Geopark_2.JPG",
       "bearing": "NW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Leiyin%20Temple.jpg?width=640",
       "bearing": "S"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dunhuang\\scenes.json"
+  ]
 }

@@ -12,7 +12,8 @@
       "nationalRank": 5,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hefei/img/langzh-330px-USTC_logo_2008.png"
     },
     {
       "zh": "合肥工业大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hefei/img/langzh-330px-Hefei_University_of_Technology_logo.png"
     },
     {
       "zh": "安徽大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hefei/img/langzh-330px-Anhui_University_Logo.png"
     },
     {
       "zh": "安徽农业大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hefei/img/langzh-330px-Anhui_Agricultural_University_Emblem.png"
     },
     {
       "zh": "安徽医科大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hefei/img/Anhui_Medical_University_logo.jpg"
     },
     {
       "zh": "安徽中医药大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/5/58/Anhui_University_of_Chinese_Medicine_logo.png"
     },
     {
       "zh": "合肥大学",
@@ -84,8 +90,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hefei/img/langzh-330px-Emblem_of_Hefei_University.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hefei\\universities.json"
+  ]
 }

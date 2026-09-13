@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/suzhou/img/langzh-330px-Soochow_University1.png"
     },
     {
       "zh": "西交利物浦大学",
@@ -36,7 +37,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/suzhou/img/langzh-330px-USTS_Emblem.png"
     },
     {
       "zh": "昆山杜克大学",
@@ -48,7 +50,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/suzhou/img/Duke_Kunshan_University_logo.jpg"
     },
     {
       "zh": "常熟理工学院",
@@ -60,8 +63,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/suzhou/img/langzh-330px-Suzhou_University_of_Technology_Emblem.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\suzhou\\universities.json"
+  ]
 }

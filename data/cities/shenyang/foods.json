@@ -6,7 +6,7 @@
       "name": "老边饺子",
       "en": "Laobian Dumplings",
       "desc": "1829 年创始，煸馅饺子百年招牌",
-      "img": "data/cities/shenyang/img/Dumplings.jpg",
+      "img": "data/cities/shenyang/img/330px-Laobian_Dumpling_at_Beijing_South_Railway_Station_arrivals__20200828194351.jpg",
       "bearing": "C"
     },
     {
@@ -20,7 +20,7 @@
       "name": "锅包肉",
       "en": "Guobaorou",
       "desc": "老式糖醋锅包肉，东北菜酸甜担当",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guobaorou.jpg?width=640",
+      "img": "data/cities/shenyang/img/330px-Liaoning-style_Guobaorou_at_Handsome_Cooking_Guys__Hopson_One__20230306162.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/shenyang/img/Beer.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\foods.json"
+  ]
 }

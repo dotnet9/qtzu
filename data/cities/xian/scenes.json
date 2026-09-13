@@ -20,21 +20,21 @@
       "name": "大雁塔",
       "en": "Giant Wild Goose Pagoda",
       "desc": "玄奘主持修建的藏经塔，唐代佛教地标",
-      "img": "data/cities/xian/img/Giant_Wild_Goose_Pagoda_Xi_an.jpg",
+      "img": "data/cities/xian/img/330px-Giant_Wild_Goose_Pagoda.jpg",
       "bearing": "SE"
     },
     {
       "name": "回民街",
       "en": "Huimin Street",
       "desc": "千年回坊街区，小吃香气弥漫青石板路",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huimin%20Street%20Xi'an.jpg?width=640",
+      "img": "data/cities/xian/img/330px-Bei_Yuan_Men.jpg",
       "bearing": "C"
     },
     {
       "name": "华清池",
       "en": "Huaqing Pool",
       "desc": "杨贵妃赐浴的皇家温泉，骊山脚下",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huaqing%20Pool.jpg?width=640",
+      "img": "data/cities/xian/img/330px-_.jpg",
       "bearing": "E"
     },
     {
@@ -62,7 +62,7 @@
       "name": "陕西历史博物馆",
       "en": "Shaanxi History Museum",
       "desc": "「给我一天，还你万年」的华夏宝库",
-      "img": "data/cities/xian/img/Shaanxi_History_Museum.jpg",
+      "img": "data/cities/xian/img/330px-_.jpg",
       "bearing": "S"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Datang%20Everbright%20Town.jpg?width=640",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xian\\scenes.json"
+  ]
 }

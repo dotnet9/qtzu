@@ -6,7 +6,7 @@
       "name": "鼋头渚",
       "en": "Yuantouzhu",
       "desc": "太湖绝佳处，中华第一赏樱地",
-      "img": "data/cities/wuxi/img/Yuantouzhu.jpg",
+      "img": "data/cities/wuxi/img/330px-Wuxi_Taihu_lake_Changchun_bridge.jpg",
       "bearing": "S"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Three%20Kingdoms%20City.jpg?width=640",
       "bearing": "SW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuxi\\scenes.json"
+  ]
 }

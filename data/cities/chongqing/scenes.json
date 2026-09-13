@@ -6,28 +6,28 @@
       "name": "洪崖洞",
       "en": "Hongya Cave",
       "desc": "十一层吊脚楼亮灯时如《千与千寻》的童话世界",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hongya%20Cave%2C%20Chongqing.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg",
       "bearing": "C"
     },
     {
       "name": "磁器口古镇",
       "en": "Ciqikou",
       "desc": "千年水陆码头，石板路两侧茶馆小吃",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ciqikou%20Ancient%20Town.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-_.jpg",
       "bearing": "NW"
     },
     {
       "name": "长江索道",
       "en": "Yangtze River Cableway",
       "desc": "横跨长江的「空中巴士」，山城交通奇观",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yangtze%20River%20Cableway.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-___1_-_panoramio.jpg",
       "bearing": "S"
     },
     {
       "name": "朝天门码头",
       "en": "Chaotianmen",
       "desc": "两江交汇的重庆之门，来福士大楼造型奇特",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chaotianmen.jpg?width=640",
+      "img": "data/cities/chongqing/img/960px-__-_panoramio.jpg",
       "bearing": "C"
     },
     {
@@ -41,37 +41,36 @@
       "name": "大足石刻",
       "en": "Dazu Rock Carvings",
       "desc": "世界文化遗产，唐宋石刻艺术的巅峰",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dazu%20Rock%20Carvings.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-_.jpg",
       "bearing": "W"
     },
     {
       "name": "解放碑",
       "en": "Jiefangbei",
       "desc": "抗战胜利纪功碑，今日中国西部第一商圈",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiefangbei%20Chongqing.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-Jiefangbei_at_Night_20201024.jpg",
       "bearing": "C"
     },
     {
       "name": "南山一棵树",
       "en": "Nanshan Yikeshu",
       "desc": "重庆夜景最佳观景台，灯火如星河倾泻",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanshan%20Chongqing%20night.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/%E6%B0%B4%E7%9B%AE%E5%B1%B1-%E4%BA%91%E5%8D%97%E6%A8%9F_Cinnamomum_glanduliferum_2025-02-02.jpg/960px-%E6%B0%B4%E7%9B%AE%E5%B1%B1-%E4%BA%91%E5%8D%97%E6%A8%9F_Cinnamomum_glanduliferum_2025-02-02.jpg",
       "bearing": "S"
     },
     {
       "name": "白帝城",
       "en": "Baidicheng",
       "desc": "朝辞白帝彩云间的诗城，夔门天下雄",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baidicheng.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-20250523_Baidi_Miao.jpg",
       "bearing": "NE"
     },
     {
       "name": "金佛山",
       "en": "Jinfoshan",
       "desc": "世界自然遗产喀斯特台原，方竹林海",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinfoshan.jpg?width=640",
+      "img": "data/cities/chongqing/img/330px-Jinfoshan_-_0216.jpg",
       "bearing": "S"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chongqing\\scenes.json"
+  ]
 }

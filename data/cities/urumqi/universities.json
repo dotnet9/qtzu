@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/4/4a/Xinjiang_University_logo.png"
     },
     {
       "zh": "新疆医科大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/urumqi/img/XinJiang_Medical_University_logo.png"
     },
     {
       "zh": "新疆师范大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/8/88/Xinjiang_Normal_University_logo.jpg"
     },
     {
       "zh": "新疆农业大学",
@@ -48,8 +51,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/c/cc/Xinjiang_Agricultural_University.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\urumqi\\universities.json"
+  ]
 }

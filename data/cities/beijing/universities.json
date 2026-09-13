@@ -11,7 +11,8 @@
       "globalRank": 20,
       "nationalRank": 1,
       "bearing": "NW",
-      "history": "由庚子赔款留美预备学校发展而来，中国顶尖工科与综合研究型大学。"
+      "history": "由庚子赔款留美预备学校发展而来，中国顶尖工科与综合研究型大学。",
+      "img": "data/cities/beijing/img/langzh-330px-Tsinghua_University_Logo.png"
     },
     {
       "zh": "北京大学",
@@ -22,7 +23,8 @@
       "globalRank": 14,
       "nationalRank": 1,
       "bearing": "NW",
-      "history": "前身京师大学堂是中国近代第一所国立综合性大学，新文化运动中心。"
+      "history": "前身京师大学堂是中国近代第一所国立综合性大学，新文化运动中心。",
+      "img": "data/cities/beijing/img/langzh-330px-Peking_University_seal.png"
     },
     {
       "zh": "中国人民大学",
@@ -33,7 +35,8 @@
       "globalRank": 356,
       "nationalRank": 12,
       "bearing": "NW",
-      "history": "从陕北公学发展而来，人文社会科学领域首屈一指。"
+      "history": "从陕北公学发展而来，人文社会科学领域首屈一指。",
+      "img": "data/cities/beijing/img/langzh-330px-Renmin_University_of_China_logo.png"
     },
     {
       "zh": "北京师范大学",
@@ -44,7 +47,8 @@
       "globalRank": 250,
       "nationalRank": 15,
       "bearing": "NW",
-      "history": "中国历史上第一所师范大学，学为人师、行为世范。"
+      "history": "中国历史上第一所师范大学，学为人师、行为世范。",
+      "img": "data/cities/beijing/img/langzh-330px-Beijing_Normal_University_logo.png"
     },
     {
       "zh": "北京航空航天大学",
@@ -55,7 +59,8 @@
       "globalRank": 301,
       "nationalRank": 15,
       "bearing": "N",
-      "history": "新中国第一所航空航天高等学府，研制出国内第一架轻型旅客机。"
+      "history": "新中国第一所航空航天高等学府，研制出国内第一架轻型旅客机。",
+      "img": "data/cities/beijing/img/langzh-330px-Beihang_University_Logo.png"
     },
     {
       "zh": "北京理工大学",
@@ -66,7 +71,8 @@
       "globalRank": 301,
       "nationalRank": 16,
       "bearing": "NW",
-      "history": "诞生于延安，中国共产党创办的第一所理工科大学。"
+      "history": "诞生于延安，中国共产党创办的第一所理工科大学。",
+      "img": "data/cities/beijing/img/langzh-330px-Beijing_Institute_of_Technology_Logo.png"
     },
     {
       "zh": "中国农业大学",
@@ -77,7 +83,8 @@
       "globalRank": 401,
       "nationalRank": 30,
       "bearing": "N",
-      "history": "始于京师大学堂农科大学，农业科学全国第一。"
+      "history": "始于京师大学堂农科大学，农业科学全国第一。",
+      "img": "data/cities/beijing/img/langzh-330px-CAU_Logo.png"
     },
     {
       "zh": "中央民族大学",
@@ -88,7 +95,8 @@
       "globalRank": 801,
       "nationalRank": 80,
       "bearing": "W",
-      "history": "民族学科特色鲜明的综合性大学，民族博物馆馆藏丰富。"
+      "history": "民族学科特色鲜明的综合性大学，民族博物馆馆藏丰富。",
+      "img": "data/cities/beijing/img/langzh-330px-Minzu_University_of_China_Logo.png"
     },
     {
       "zh": "北京外国语大学",
@@ -99,7 +107,8 @@
       "globalRank": 801,
       "nationalRank": 90,
       "bearing": "W",
-      "history": "开设语种数量居全国之首，被誉为「共和国外交官摇篮」。"
+      "history": "开设语种数量居全国之首，被誉为「共和国外交官摇篮」。",
+      "img": "data/cities/beijing/img/langzh-330px-Beijing_Foreign_Studies_University_Logo.png"
     },
     {
       "zh": "对外经济贸易大学",
@@ -110,7 +119,8 @@
       "globalRank": 801,
       "nationalRank": 85,
       "bearing": "NE",
-      "history": "国际经贸领域的顶尖学府，经贸外语复合人才辈出。"
+      "history": "国际经贸领域的顶尖学府，经贸外语复合人才辈出。",
+      "img": "data/cities/beijing/img/langzh-330px-UIBE_Logo.png"
     },
     {
       "zh": "中央财经大学",
@@ -121,7 +131,8 @@
       "globalRank": 801,
       "nationalRank": 88,
       "bearing": "NW",
-      "history": "新中国创办的第一所财经院校，「财经黄埔」。"
+      "history": "新中国创办的第一所财经院校，「财经黄埔」。",
+      "img": "data/cities/beijing/img/langzh-330px-Central_University_of_Finance_and_Economics_logo.png"
     },
     {
       "zh": "北京邮电大学",
@@ -132,7 +143,8 @@
       "globalRank": 601,
       "nationalRank": 55,
       "bearing": "NW",
-      "history": "信息科技领域的强校，中国通信人才的摇篮。"
+      "history": "信息科技领域的强校，中国通信人才的摇篮。",
+      "img": "data/cities/beijing/img/langzh-330px-Emblem_of_Beijing_University_of_Posts_and_Telecommunications.png"
     },
     {
       "zh": "北京交通大学",
@@ -143,7 +155,8 @@
       "globalRank": 701,
       "nationalRank": 60,
       "bearing": "NW",
-      "history": "源于铁路管理传习所，中国近代铁路管理教育的发源地。"
+      "history": "源于铁路管理传习所，中国近代铁路管理教育的发源地。",
+      "img": "data/cities/beijing/img/langzh-330px-BJTU_emblem.png"
     },
     {
       "zh": "北京科技大学",
@@ -154,7 +167,8 @@
       "globalRank": 601,
       "nationalRank": 58,
       "bearing": "NW",
-      "history": "由六所名校矿冶系科组建，冶金材料学科全国领先。"
+      "history": "由六所名校矿冶系科组建，冶金材料学科全国领先。",
+      "img": "data/cities/beijing/img/langzh-330px-University_of_Science_and_Technology_Beijing_logo.png"
     },
     {
       "zh": "北京化工大学",
@@ -165,7 +179,8 @@
       "globalRank": 801,
       "nationalRank": 70,
       "bearing": "NE",
-      "history": "化学工程与材料科学特色鲜明的高水平大学。"
+      "history": "化学工程与材料科学特色鲜明的高水平大学。",
+      "img": "data/cities/beijing/img/langzh-330px-Beijing_University_of_Chemical_Technology_Logo.png"
     },
     {
       "zh": "北京林业大学",
@@ -176,7 +191,8 @@
       "globalRank": 801,
       "nationalRank": 75,
       "bearing": "NW",
-      "history": "林学与风景园林学科全国顶尖，「知山知水，树木树人」。"
+      "history": "林学与风景园林学科全国顶尖，「知山知水，树木树人」。",
+      "img": "data/cities/beijing/img/langzh-330px-Beijing_Forestry_University_logo_2021.png"
     },
     {
       "zh": "北京中医药大学",
@@ -187,7 +203,8 @@
       "globalRank": 801,
       "nationalRank": 85,
       "bearing": "NE",
-      "history": "新中国最早成立的高等中医药院校之一。"
+      "history": "新中国最早成立的高等中医药院校之一。",
+      "img": "data/cities/beijing/img/langzh-330px-Beijing_University_of_Chinese_Medicine_Logo.png"
     },
     {
       "zh": "华北电力大学",
@@ -198,7 +215,8 @@
       "globalRank": 701,
       "nationalRank": 62,
       "bearing": "N",
-      "history": "能源电力领域的领军高校，被誉为电力行业的黄埔军校。"
+      "history": "能源电力领域的领军高校，被誉为电力行业的黄埔军校。",
+      "img": "data/cities/beijing/img/langzh-330px-North_China_Electric_Power_Univ_Logo.png"
     },
     {
       "zh": "中国政法大学",
@@ -209,7 +227,8 @@
       "globalRank": 801,
       "nationalRank": 82,
       "bearing": "NW",
-      "history": "法学教育重镇，「厚德、明法、格物、致公」。"
+      "history": "法学教育重镇，「厚德、明法、格物、致公」。",
+      "img": "data/cities/beijing/img/langzh-330px-CUPL_Seal.png"
     },
     {
       "zh": "中国传媒大学",
@@ -220,7 +239,8 @@
       "globalRank": 801,
       "nationalRank": 90,
       "bearing": "E",
-      "history": "信息传播领域知名学府，央视主播的摇篮。"
+      "history": "信息传播领域知名学府，央视主播的摇篮。",
+      "img": "data/cities/beijing/img/langzh-330px-Communication_Univ_of_China_Logo.png"
     },
     {
       "zh": "中央音乐学院",
@@ -231,7 +251,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "W",
-      "history": "全国音乐教育、创作和研究的中心。"
+      "history": "全国音乐教育、创作和研究的中心。",
+      "img": "data/cities/beijing/img/330px-Central_Conservatory_of_Music_from_the_west__20221023154647_.jpg"
     },
     {
       "zh": "中央美术学院",
@@ -242,7 +263,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NE",
-      "history": "前身国立北京美术学校是中国历史上第一所国立美术教育学府。"
+      "history": "前身国立北京美术学校是中国历史上第一所国立美术教育学府。",
+      "img": "data/cities/beijing/img/330px-East_gate_of_CAFA__20231207160608_.jpg"
     },
     {
       "zh": "北京体育大学",
@@ -253,7 +275,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NW",
-      "history": "新中国建立的第一所体育高等学府，奥运冠军辈出。"
+      "history": "新中国建立的第一所体育高等学府，奥运冠军辈出。",
+      "img": "data/cities/beijing/img/langzh-330px-BSU_logo_Round.png"
     },
     {
       "zh": "北京工业大学",
@@ -264,7 +287,8 @@
       "globalRank": 801,
       "nationalRank": 75,
       "bearing": "E",
-      "history": "北京市属重点大学，服务首都城市建设发展。"
+      "history": "北京市属重点大学，服务首都城市建设发展。",
+      "img": "data/cities/beijing/img/langzh-330px-Beijing_University_of_Technology.png"
     },
     {
       "zh": "首都师范大学",
@@ -275,7 +299,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "W",
-      "history": "北京市基础教育师资培养的重要基地。"
+      "history": "北京市基础教育师资培养的重要基地。",
+      "img": "data/cities/beijing/img/langzh-330px-Capital_Normal_University_Emblem.png"
     },
     {
       "zh": "首都医科大学",
@@ -286,7 +311,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "SW",
-      "history": "临床医学实力雄厚，拥有多家著名附属医院。"
+      "history": "临床医学实力雄厚，拥有多家著名附属医院。",
+      "img": "data/cities/beijing/img/Capital_Medical_University_logo.png"
     },
     {
       "zh": "北京工商大学",
@@ -297,7 +323,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "SW",
-      "history": "商科与轻工食品学科特色鲜明。"
+      "history": "商科与轻工食品学科特色鲜明。",
+      "img": "data/cities/beijing/img/langzh-330px-BTBU_logo.png"
     },
     {
       "zh": "北京联合大学",
@@ -308,7 +335,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "N",
-      "history": "北京市属综合性大学，应用型人才培养规模居前列。"
+      "history": "北京市属综合性大学，应用型人才培养规模居前列。",
+      "img": "data/cities/beijing/img/Beijing_Union_University_logo.png"
     },
     {
       "zh": "北京建筑大学",
@@ -319,7 +347,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "W",
-      "history": "始于京师初等工业学堂，北京城市建设人才培养基地。"
+      "history": "始于京师初等工业学堂，北京城市建设人才培养基地。",
+      "img": "data/cities/beijing/img/langzh-330px-BUCEA_Emblem.png"
     },
     {
       "zh": "北京信息科技大学",
@@ -330,8 +359,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "N",
-      "history": "信息学科特色鲜明的市属重点大学。"
+      "history": "信息学科特色鲜明的市属重点大学。",
+      "img": "data/cities/beijing/img/langzh-330px-BISTU_Emblem.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\beijing\\universities.json"
+  ]
 }

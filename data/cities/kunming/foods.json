@@ -34,7 +34,7 @@
       "name": "饵块",
       "en": "Erkuai",
       "desc": "烧饵块刷酱卷油条，云南早点灵魂",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Erkuai.jpg?width=640",
+      "img": "data/cities/kunming/img/330px-_-__02.jpg",
       "bearing": "C"
     },
     {
@@ -62,7 +62,7 @@
       "name": "乳扇",
       "en": "Rushan Cheese",
       "desc": "大理乳扇烤软卷玫瑰酱，奶香四溢",
-      "img": "data/cities/kunming/img/Rushan.jpg",
+      "img": "data/cities/kunming/img/330px-Ru_shan.jpg",
       "bearing": "NW"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20cake%20dessert.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kunming\\foods.json"
+  ]
 }

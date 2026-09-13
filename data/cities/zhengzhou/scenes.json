@@ -6,7 +6,7 @@
       "name": "少林寺",
       "en": "Shaolin Temple",
       "desc": "禅宗祖庭功夫圣地，塔林诉说千年",
-      "img": "data/cities/zhengzhou/img/Shaolin_Temple.jpg",
+      "img": "data/cities/zhengzhou/img/330px-Shaolinsi.jpg",
       "bearing": "SW"
     },
     {
@@ -55,9 +55,8 @@
       "name": "德化街",
       "en": "Dehua Street",
       "desc": "百年商业老街，郑州的烟火气",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dehua%20Street.jpg?width=640",
+      "img": "data/cities/zhengzhou/img/330px-Dehua_Pedestrian_Street_20200918.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\scenes.json"
+  ]
 }

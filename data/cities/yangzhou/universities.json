@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/d/d7/Yangzhou_University_logo.png"
     },
     {
       "zh": "扬州工业职业技术学院",
@@ -26,6 +27,5 @@
       "history": "",
       "campusNote": null
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yangzhou\\universities.json"
+  ]
 }

@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "NE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/kaifeng/img/Henan_University_logo.png"
     },
     {
       "zh": "开封大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/kaifeng/img/Kaifeng_University_logo.jpg"
     },
     {
       "zh": "黄河水利职业技术学院",
@@ -36,8 +38,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/kaifeng/img/_.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaifeng\\universities.json"
+  ]
 }

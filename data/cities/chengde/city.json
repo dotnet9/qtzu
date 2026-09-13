@@ -10,7 +10,7 @@
   "history": "承德因清代避暑山庄而兴，康熙帝选此「自然天成地就势」的夏宫，占地 564 万平方米是现存最大皇家园林。周围十二座外八庙融合汉蒙藏建筑风格，「山庄奇幻外八庙」1994 年列入世界遗产。这里是清代民族团结的政治舞台。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chengde%20Mountain%20Resort.jpg?width=960",
+      "img": "data/cities/chengde/img/330px-Chengde_Mountain_Resort_22630-Chengde__42954495010_.jpg",
       "caption": "避暑山庄"
     },
     {
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengde\\city.json"
+  }
 }

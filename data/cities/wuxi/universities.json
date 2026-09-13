@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/wuxi/img/langzh-330px-Jiangnan_University_logo.png"
     },
     {
       "zh": "无锡学院",
@@ -36,7 +37,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/wuxi/img/330px-_.jpg"
     },
     {
       "zh": "太湖学院",
@@ -50,6 +52,5 @@
       "history": "",
       "campusNote": null
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuxi\\universities.json"
+  ]
 }

@@ -6,7 +6,7 @@
       "name": "瓦罐汤",
       "en": "Clay Pot Soup",
       "desc": "瓦罐煨汤千度炭火，肉饼蛋汤鲜",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Clay%20pot%20soup.jpg?width=640",
+      "img": "data/cities/nanchang/img/330px-Xiamen-Waguan_weitang-_.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/nanchang/img/Crab.jpg",
       "bearing": "N"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanchang\\foods.json"
+  ]
 }

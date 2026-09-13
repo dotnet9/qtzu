@@ -6,35 +6,35 @@
       "name": "佛跳墙",
       "en": "Buddha Jumps Over the Wall",
       "desc": "闽菜之王，鲍参翅肚煨足八小时",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20jumps%20over%20the%20wall.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-Buddha_soup2.jpg",
       "bearing": "C"
     },
     {
       "name": "鱼丸",
       "en": "Fish Balls",
       "desc": "永和鱼丸皮薄馅香，福州人的乡愁",
-      "img": "data/cities/fuzhou/img/Fish_balls.jpg",
+      "img": "data/cities/fuzhou/img/330px-Fish_ball_and_fish_meat_slice.jpg",
       "bearing": "C"
     },
     {
       "name": "肉燕",
       "en": "Rmeat Swallow",
       "desc": "燕皮是肉打成，太平燕是喜宴头道",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wonton%20soup.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-Rouyan.jpg",
       "bearing": "C"
     },
     {
       "name": "荔枝肉",
       "en": "Lychee Pork",
       "desc": "刀工开花似荔枝，酸甜弹嫩",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20pork.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-Litchi_Pork.jpg",
       "bearing": "C"
     },
     {
       "name": "锅边糊",
       "en": "Guobianhu",
       "desc": "米浆浇锅边成薄片，配虾油味",
-      "img": "data/cities/fuzhou/img/Rice_soup.jpg",
+      "img": "data/cities/fuzhou/img/330px-Di_ng-bi_ng-g__with_seafood_in_Fuzhou__20200927131715_.jpg",
       "bearing": "C"
     },
     {
@@ -48,7 +48,7 @@
       "name": "芋泥",
       "en": "Taro Paste",
       "desc": "猪油白糖蒸芋泥，闽菜甜点之王",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taro%20paste.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-Taro_pur_e.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Olive%20fruit.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\fuzhou\\foods.json"
+  ]
 }

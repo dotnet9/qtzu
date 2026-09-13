@@ -12,7 +12,8 @@
       "nationalRank": 10,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/langzh-330px-Harbin_Institute_of_Technology_logo.png"
     },
     {
       "zh": "哈尔滨工程大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/langzh-330px-Harbin_Engineering_University_logo.png"
     },
     {
       "zh": "东北林业大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/langzh-330px-Nefu_Logo.png"
     },
     {
       "zh": "东北农业大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/langzh-330px-Neau_Logo.png"
     },
     {
       "zh": "黑龙江大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/Heilongjiang_University_logo.png"
     },
     {
       "zh": "哈尔滨医科大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/Harbin_Medical_University_logo.jpg"
     },
     {
       "zh": "哈尔滨师范大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/Harbin_Normal_University_logo.png"
     },
     {
       "zh": "黑龙江中医药大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/Heilongjiang_University_of_Chinese_Medicine_logo.jpg"
     },
     {
       "zh": "哈尔滨理工大学",
@@ -108,8 +116,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/harbin/img/Harbin_University_of_Science_and_Technology_logo.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\universities.json"
+  ]
 }

@@ -6,7 +6,7 @@
       "name": "兰州牛肉面",
       "en": "Lanzhou Beef Noodles",
       "desc": "一清二白三红四绿五黄，中国面食之王",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beef%20noodle%20soup.jpg?width=640",
+      "img": "data/cities/lanzhou/img/330px-_.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kebabs.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lanzhou\\foods.json"
+  ]
 }

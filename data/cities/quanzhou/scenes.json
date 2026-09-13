@@ -27,21 +27,21 @@
       "name": "清净寺",
       "en": "Qingjing Mosque",
       "desc": "中国现存最古老伊斯兰教寺",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingjing%20Mosque.jpg?width=640",
+      "img": "data/cities/quanzhou/img/330px-20230130_Qingjing_Mosque_01.jpg",
       "bearing": "C"
     },
     {
       "name": "洛阳桥",
       "en": "Luoyang Bridge",
       "desc": "中国第一座跨海石桥，蔡襄主持",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luoyang%20Bridge%20Quanzhou.jpg?width=640",
+      "img": "data/cities/quanzhou/img/330px-Luoyang_Bridge__Quanzhou__20201001150149_.jpg",
       "bearing": "NE"
     },
     {
       "name": "崇武古城",
       "en": "Chongwu Ancient City",
       "desc": "明代抗倭石城，惠安女风情",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongwu%20Ancient%20City.jpg?width=640",
+      "img": "data/cities/quanzhou/img/330px-Chongwu_Ancient_City_20170727.jpg",
       "bearing": "SE"
     },
     {
@@ -55,9 +55,8 @@
       "name": "天后宫",
       "en": "Tianhou Palace",
       "desc": "妈祖信仰重要祖庭之一",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianhou%20Palace%20Quanzhou.jpg?width=640",
+      "img": "data/cities/quanzhou/img/330px-Penghu_Mazu_Temple_1919.jpg",
       "bearing": "S"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\quanzhou\\scenes.json"
+  ]
 }

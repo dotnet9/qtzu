@@ -14,11 +14,11 @@
       "caption": "云冈石窟"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hanging%20Temple%20Datong.jpg?width=960",
+      "img": "data/cities/datong/img/330px-Hangingtemple20190929.jpg",
       "caption": "悬空寺"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Dragon%20Wall%20Datong.jpg?width=960",
+      "img": "data/cities/datong/img/330px-_.jpg",
       "caption": "九龙壁"
     }
   ],
@@ -76,6 +76,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\datong\\city.json"
+  }
 }

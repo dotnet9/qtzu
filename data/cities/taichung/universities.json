@@ -23,7 +23,8 @@
       "globalRank": 500,
       "nationalRank": 8,
       "bearing": "N",
-      "history": "台湾第一所中医高等学府，中西医结合研究亚洲领先。"
+      "history": "台湾第一所中医高等学府，中西医结合研究亚洲领先。",
+      "img": "data/cities/taichung/img/langzh-330px-China_Medical_University__Taiwan__logo.png"
     },
     {
       "zh": "逢甲大学",
@@ -34,7 +35,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "W",
-      "history": "以纪念丘逢甲命名，商学工科俱佳，校外逢甲夜市全台闻名。"
+      "history": "以纪念丘逢甲命名，商学工科俱佳，校外逢甲夜市全台闻名。",
+      "img": "data/cities/taichung/img/langzh-330px-Feng_Chia_University_Logo.png"
     },
     {
       "zh": "东海大学",
@@ -67,7 +69,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "S",
-      "history": "牙医学系享誉全台，附设医院服务中台湾区。"
+      "history": "牙医学系享誉全台，附设医院服务中台湾区。",
+      "img": "data/cities/taichung/img/langzh-330px-Chung_Shan_Medical_University_seal.png"
     },
     {
       "zh": "静宜大学",
@@ -78,7 +81,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "W",
-      "history": "天主教大学，外语与观光学科著名，校园夹道树海优美。"
+      "history": "天主教大学，外语与观光学科著名，校园夹道树海优美。",
+      "img": "data/cities/taichung/img/langzh-330px-Providence_University_Emblem.png"
     },
     {
       "zh": "亚洲大学",
@@ -100,7 +104,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "W",
-      "history": "商管起家的科技大学，观光餐饮学科实习资源丰富。"
+      "history": "商管起家的科技大学，观光餐饮学科实习资源丰富。",
+      "img": "data/cities/taichung/img/langzh-330px-Overseas_Chinese_University_logo.png"
     },
     {
       "zh": "勤益科技大学",
@@ -122,7 +127,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "W",
-      "history": "医护起家，食品营养与美容造型学科知名。"
+      "history": "医护起家，食品营养与美容造型学科知名。",
+      "img": "data/cities/taichung/img/langzh-330px-Hungkuang_University_seal.png"
     },
     {
       "zh": "岭东科技大学",
@@ -133,8 +139,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "SW",
-      "history": "设计与财经学科并重，春安校区旁就是彩虹眷村。"
+      "history": "设计与财经学科并重，春安校区旁就是彩虹眷村。",
+      "img": "data/cities/taichung/img/langzh-330px-Ling_Tung_University_logo.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taichung\\universities.json"
+  ]
 }

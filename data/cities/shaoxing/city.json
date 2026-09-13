@@ -10,15 +10,15 @@
   "history": "绍兴有 2500 年建城史，古称越州，是越国故都。乌篷船摇过石桥水巷，黄酒温润千年。王羲之在兰亭写下天下第一行书，鲁迅的百草园与三味书屋、陆游唐婉的沈园、王阳明的阳明洞天，文脉绵延不绝。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lu%20Xun%20Former%20Residence.jpg?width=960",
+      "img": "data/cities/shaoxing/img/960px-_-__Lu_Xun-Nation_s_Backbone_-_panoramio.jpg",
       "caption": "鲁迅故里"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Orchid%20Pavilion%20Shaoxing.jpg?width=960",
+      "img": "data/cities/shaoxing/img/960px-__1.jpg",
       "caption": "兰亭"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shen%20Garden.jpg?width=960",
+      "img": "data/cities/shaoxing/img/330px-Shen_Garden_in_Shaoxing_2012-07.jpg",
       "caption": "沈园"
     }
   ],
@@ -75,6 +75,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shaoxing\\city.json"
+  }
 }

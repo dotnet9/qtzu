@@ -12,7 +12,7 @@
       "nationalRank": 1,
       "bearing": "SE",
       "history": "台湾历史最悠久、规模最大的综合性大学，前身台北帝国大学，椰林大道闻名。",
-      "img": null
+      "img": "data/cities/taipei/img/langzh-330px-National_Taiwan_University_logo.png"
     },
     {
       "zh": "台湾师范大学",
@@ -23,7 +23,8 @@
       "globalRank": 500,
       "nationalRank": 8,
       "bearing": "S",
-      "history": "台湾师资培养的最高学府，华语教学中心享誉世界。"
+      "history": "台湾师资培养的最高学府，华语教学中心享誉世界。",
+      "img": "data/cities/taipei/img/langzh-330px-National_Taiwan_Normal_University_logo.png"
     },
     {
       "zh": "台湾科技大学",
@@ -34,7 +35,8 @@
       "globalRank": 400,
       "nationalRank": 6,
       "bearing": "SE",
-      "history": "台湾第一所技术职业教育高等学府，工程学科实力强劲。"
+      "history": "台湾第一所技术职业教育高等学府，工程学科实力强劲。",
+      "img": "data/cities/taipei/img/langzh-330px-Taiwan_Tech_Logo.png"
     },
     {
       "zh": "政治大学",
@@ -45,7 +47,8 @@
       "globalRank": 600,
       "nationalRank": 10,
       "bearing": "SE",
-      "history": "源于南京中央党务学校，人文社科与传播政治学见长。"
+      "history": "源于南京中央党务学校，人文社科与传播政治学见长。",
+      "img": "data/cities/taipei/img/langzh-330px-National_Chengchi_University_logo.png"
     },
     {
       "zh": "阳明交通大学（台北校区）",
@@ -90,7 +93,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NW",
-      "history": "1925 年创于北京、1961 年在台复校的天主教大学，外语与传播著名。"
+      "history": "1925 年创于北京、1961 年在台复校的天主教大学，外语与传播著名。",
+      "img": "data/cities/taipei/img/langzh-330px-Fu_Jen_Catholic_University_Seal__Since_1971_.png"
     },
     {
       "zh": "淡江大学",
@@ -101,7 +105,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NW",
-      "history": "台湾第一所私立大学，淡水校园可眺望台湾海峡落日。"
+      "history": "台湾第一所私立大学，淡水校园可眺望台湾海峡落日。",
+      "img": "data/cities/taipei/img/langzh-330px-Tamkang_University_logo.png"
     },
     {
       "zh": "东吴大学",
@@ -112,7 +117,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "S",
-      "history": "源于苏州东吴大学，法学教育在台湾名列前茅。"
+      "history": "源于苏州东吴大学，法学教育在台湾名列前茅。",
+      "img": "data/cities/taipei/img/langzh-330px-Soochow_University_logo.png"
     },
     {
       "zh": "世新大学",
@@ -123,7 +129,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "S",
-      "history": "新闻传播名校，台湾媒体人的重要摇篮。"
+      "history": "新闻传播名校，台湾媒体人的重要摇篮。",
+      "img": "data/cities/taipei/img/330px-Shih_Hsin_University_logo.png"
     },
     {
       "zh": "实践大学",
@@ -134,7 +141,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "N",
-      "history": "设计学科享誉国际，服装设计系毕业秀是年度盛事。"
+      "history": "设计学科享誉国际，服装设计系毕业秀是年度盛事。",
+      "img": "data/cities/taipei/img/langzh-330px-Shih_Chien_University_logo.png"
     },
     {
       "zh": "铭传大学",
@@ -145,7 +153,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "N",
-      "history": "亚洲第一所获美国 MSCHE 认证的大学，国际化程度高。"
+      "history": "亚洲第一所获美国 MSCHE 认证的大学，国际化程度高。",
+      "img": "data/cities/taipei/img/langzh-330px-Ming_Chuan_University_Embem.png"
     },
     {
       "zh": "中国文化大学",
@@ -156,8 +165,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "N",
-      "history": "阳明山上的大学，系所数量一度居全台之冠。"
+      "history": "阳明山上的大学，系所数量一度居全台之冠。",
+      "img": "data/cities/taipei/img/langzh-330px-PCCU_LOGO.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taipei\\universities.json"
+  ]
 }

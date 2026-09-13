@@ -6,28 +6,28 @@
       "name": "沙茶面",
       "en": "Shacha Noodles",
       "desc": "沙茶汤头浓香微辣，加料随心配",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shacha%20noodles.jpg?width=640",
+      "img": "data/cities/xiamen/img/330px-Shachamian.jpg",
       "bearing": "C"
     },
     {
       "name": "海蛎煎",
       "en": "Oyster Omelette",
       "desc": "闽南蚵仔煎配甜辣酱，海味十足",
-      "img": "data/cities/xiamen/img/Oyster_omelette.jpg",
+      "img": "data/cities/xiamen/img/330px-Billyfoodoysteromelette.jpg",
       "bearing": "C"
     },
     {
       "name": "土笋冻",
       "en": "Sea Worm Jelly",
       "desc": "海边沙虫熬冻晶莹剔透，闽南勇气美食",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tusundong.jpg?width=640",
+      "img": "data/cities/xiamen/img/330px-Sipunculid_worm_jelly.jpg",
       "bearing": "C"
     },
     {
       "name": "姜母鸭",
       "en": "Ginger Duck",
       "desc": "老姜砂锅焖鸭，药膳香气暖身",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger%20duck.jpg?width=640",
+      "img": "data/cities/xiamen/img/330px-Quanzhou-style_Kiu_-b_-ah__Ginger_Duck__at_Yipin_Xiangqing_Restaurant__Bei.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/xiamen/img/Mooncake.jpg",
       "bearing": "SW"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xiamen\\foods.json"
+  ]
 }

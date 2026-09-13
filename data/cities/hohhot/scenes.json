@@ -6,7 +6,7 @@
       "name": "大召寺",
       "en": "Dazhao Temple",
       "desc": "明代藏传名寺，银佛龙雕壁画三绝",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dazhao%20Temple%20Hohhot.jpg?width=640",
+      "img": "data/cities/hohhot/img/330px-Dazhao__Wuliang__Temple_of_Hohhot2.jpg",
       "bearing": "C"
     },
     {
@@ -20,21 +20,21 @@
       "name": "内蒙古博物院",
       "en": "Inner Mongolia Museum",
       "desc": "恐龙化石与草原文明",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Inner%20Mongolia%20Museum.jpg?width=640",
+      "img": "data/cities/hohhot/img/960px-Exit_C_of_Inner_Mongolia_Museum_Station.jpg",
       "bearing": "E"
     },
     {
       "name": "塞上老街",
       "en": "Saishang Old Street",
       "desc": "明清古街与大召相邻",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Saishang%20Old%20Street.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E5%A1%9E%E4%B8%8A%E8%80%81%E8%A1%97%E7%89%8C%E5%9D%8A%EF%BC%882025%E8%9B%87%E5%B9%B4%E8%A3%85%E9%A5%B0%EF%BC%89.jpg/960px-%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E5%A1%9E%E4%B8%8A%E8%80%81%E8%A1%97%E7%89%8C%E5%9D%8A%EF%BC%882025%E8%9B%87%E5%B9%B4%E8%A3%85%E9%A5%B0%EF%BC%89.jpg",
       "bearing": "C"
     },
     {
       "name": "希拉穆仁草原",
       "en": "Xilamuren Grassland",
       "desc": "最近城市的草原，蒙古包体验",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grassland%20Hohhot.jpg?width=640",
+      "img": "data/cities/hohhot/img/960px-_-__-_panoramio.jpg",
       "bearing": "NW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ulanhu%20Memorial.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\scenes.json"
+  ]
 }

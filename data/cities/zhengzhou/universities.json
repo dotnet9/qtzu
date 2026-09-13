@@ -12,7 +12,8 @@
       "nationalRank": 35,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/zhengzhou/img/langzh-330px-Zhengzhou_University.png"
     },
     {
       "zh": "河南农业大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/zhengzhou/img/Henannydx.png"
     },
     {
       "zh": "河南工业大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/zhengzhou/img/langzh-330px-Henan_University_of_Technology_Emblem.png"
     },
     {
       "zh": "郑州轻工业大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/zhengzhou/img/langzh-330px-Zzuli_seal.png"
     },
     {
       "zh": "河南中医药大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/zhengzhou/img/Henan_University_of_Chinese_Medicine.png"
     },
     {
       "zh": "华北水利水电大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/zhengzhou/img/_.jpg"
     },
     {
       "zh": "郑州航空工业管理学院",
@@ -84,8 +90,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/zhengzhou/img/langzh-330px-Zhengzhou_University_of_Aeronautics_seal.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\universities.json"
+  ]
 }

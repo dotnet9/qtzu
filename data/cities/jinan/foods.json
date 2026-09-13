@@ -27,7 +27,7 @@
       "name": "把子肉",
       "en": "Bazi Pork",
       "desc": "草绳捆扎酱油炖肉，配米饭绝了",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20pork.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/%E6%B5%8E%E5%8D%97%E6%8A%8A%E5%AD%90%E8%82%89%E5%92%8C%E8%82%89%E4%B8%B8%E5%AD%90.jpg/960px-%E6%B5%8E%E5%8D%97%E6%8A%8A%E5%AD%90%E8%82%89%E5%92%8C%E8%82%89%E4%B8%B8%E5%AD%90.jpg",
       "bearing": "C"
     },
     {
@@ -48,7 +48,7 @@
       "name": "锅贴",
       "en": "Pot Stickers",
       "desc": "草包包子铺的灌汤锅贴",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potsticker.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Fish_Cakes_with_Singapore_Laksa_Ramen_Soup_%26_Grilled_Pork_Dumplings_-_Noodles_Soup%2C_Brighton.jpg/960px-Fish_Cakes_with_Singapore_Laksa_Ramen_Soup_%26_Grilled_Pork_Dumplings_-_Noodles_Soup%2C_Brighton.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/jinan/img/Lotus_root.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\jinan\\foods.json"
+  ]
 }

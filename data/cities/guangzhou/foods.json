@@ -13,21 +13,21 @@
       "name": "白切鸡",
       "en": "White Cut Chicken",
       "desc": "清远鸡白灼配姜葱蓉，粤菜「有鸡有鲜」之本",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baiqieji.jpg?width=640",
+      "img": "data/cities/guangzhou/img/330px-Whitecutchicken.jpg",
       "bearing": "C"
     },
     {
       "name": "烧鹅",
       "en": "Cantonese Roast Goose",
       "desc": "深井烧鹅皮脆油亮，配酸梅酱解腻",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Roast%20goose.jpg?width=640",
+      "img": "data/cities/guangzhou/img/330px-Roastedgoose.jpg",
       "bearing": "W"
     },
     {
       "name": "肠粉",
       "en": "Rice Noodle Roll",
       "desc": "布拉肠粉滑嫩如绸，豉油是灵魂",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20noodle%20roll.jpg?width=640",
+      "img": "data/cities/guangzhou/img/330px-Cha_siu_choeng.jpg",
       "bearing": "C"
     },
     {
@@ -41,37 +41,36 @@
       "name": "云吞面",
       "en": "Wonton Noodles",
       "desc": "竹升面碱水香配鲜虾云吞，一碗正宗西关味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wonton%20noodles.jpg?width=640",
+      "img": "data/cities/guangzhou/img/330px-CantoneseWontonnoodle.jpg",
       "bearing": "C"
     },
     {
       "name": "双皮奶",
       "en": "Double-skin Milk",
       "desc": "顺德传来的甜品，奶皮两层滑嫩如脂",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shuangpinai.jpg?width=640",
+      "img": "data/cities/guangzhou/img/330px-Shuangpi_Nai.jpeg",
       "bearing": "C"
     },
     {
       "name": "艇仔粥",
       "en": "Sampan Congee",
       "desc": "荔枝湾水上人家的杂锦鱼生粥，料足绵滑",
-      "img": "data/cities/guangzhou/img/Congee.jpg",
+      "img": "data/cities/guangzhou/img/330px-Cantonese_Sampan_Congee__Boat_Congee_.jpeg",
       "bearing": "C"
     },
     {
       "name": "叉烧包",
       "en": "Char Siu Bao",
       "desc": "广式点心「四大天王」之一，蜜汁叉烧馅爆汁",
-      "img": "data/cities/guangzhou/img/Char_siu_bao.jpg",
+      "img": "data/cities/guangzhou/img/330px-Char_siu_bao.jpg",
       "bearing": "C"
     },
     {
       "name": "糯米鸡",
       "en": "Sticky Rice Chicken",
       "desc": "荷叶包糯米蒸鸡，揭开荷叶香气扑鼻",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lo%20mai%20gai.jpg?width=640",
+      "img": "data/cities/guangzhou/img/330px-Food_____Dimdimsum_____24035045712_.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guangzhou\\foods.json"
+  ]
 }

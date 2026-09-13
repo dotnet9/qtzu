@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenzhen/img/langzh-330px-Southern_University_of_Science_and_Technology_logo.png"
     },
     {
       "zh": "深圳大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenzhen/img/langzh-330px-Shenzhen_University_Logo.png"
     },
     {
       "zh": "香港中文大学（深圳）",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenzhen/img/330px-Emblem_of_CU.png"
     },
     {
       "zh": "深圳技术大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenzhen/img/langzh-330px-Shenzhen_Technology_University_emblem.png"
     },
     {
       "zh": "哈尔滨工业大学（深圳）",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenzhen/img/langzh-330px-Harbin_Institute_of_Technology_logo.png"
     },
     {
       "zh": "中山大学深圳校区",
@@ -72,8 +77,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenzhen/img/330px-SYSU_Shenzhen_Main_Entrance_20221208.jpg"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenzhen\\universities.json"
+  ]
 }

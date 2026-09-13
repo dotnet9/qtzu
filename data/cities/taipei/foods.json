@@ -6,21 +6,21 @@
       "name": "珍珠奶茶",
       "en": "Bubble Tea",
       "desc": "1980 年代台中春水堂/翰林发明，台北街头人手一杯，Q 弹珍珠配香浓奶茶。",
-      "img": "data/cities/taipei/img/Bubble_Tea.jpg",
+      "img": "data/cities/taipei/img/330px-Classic_bubble_tea.jpg",
       "bearing": "C"
     },
     {
       "name": "蚵仔煎",
       "en": "Oyster Omelette",
       "desc": "夜市之王！鲜蚵配地瓜粉浆和青菜煎成，淋上酸甜酱汁。",
-      "img": "data/cities/taipei/img/Oyster_omelette.jpg",
+      "img": "data/cities/taipei/img/330px-Billyfoodoysteromelette.jpg",
       "bearing": "N"
     },
     {
       "name": "牛肉面",
       "en": "Beef Noodle Soup",
       "desc": "台北国际牛肉面节孕育出无数名店，红烧清炖各有粉丝。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taiwanese%20beef%20noodle%20soup.jpg?width=640",
+      "img": "data/cities/taipei/img/330px-Xiangyang_beef_noodles_02.jpg",
       "bearing": "C"
     },
     {
@@ -55,7 +55,7 @@
       "name": "棺材板",
       "en": "Coffin Bread",
       "desc": "厚片面包挖空炸酥，填入鸡肝海鲜浓汤，名字惊悚味道惊人。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffin%20bread.jpg?width=640",
+      "img": "data/cities/taipei/img/330px-Coffin_sandwich__Dec_06.jpg",
       "bearing": "S"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/taipei/img/Mango_shaved_ice.jpg",
       "bearing": "S"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taipei\\foods.json"
+  ]
 }

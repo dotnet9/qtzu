@@ -6,7 +6,7 @@
       "name": "黄鹤楼",
       "en": "Yellow Crane Tower",
       "desc": "「天下江山第一楼」，崔颢题诗李白搁笔",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20Crane%20Tower%2C%20Wuhan.jpg?width=640",
+      "img": "data/cities/wuhan/img/330px-CN_-_Hubei_-_Wuhan_-_Kranichpagode.jpg",
       "bearing": "W"
     },
     {
@@ -34,7 +34,7 @@
       "name": "户部巷",
       "en": "Hubu Alley",
       "desc": "「过早户部巷」，武汉小吃一条街",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubu%20Alley.jpg?width=640",
+      "img": "data/cities/wuhan/img/330px-Hubu_Xiang_Entrance.jpg",
       "bearing": "W"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mulan%20Tianchi.jpg?width=640",
       "bearing": "N"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuhan\\scenes.json"
+  ]
 }

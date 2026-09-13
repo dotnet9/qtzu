@@ -41,7 +41,7 @@
       "name": "锅贴",
       "en": "Pot Stickers",
       "desc": "小街锅贴底焦馅嫩，配蒜汁",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potsticker.jpg?width=640",
+      "img": "data/cities/luoyang/img/330px-Guotie_in_Ningxia_Night_Market_20070923.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/luoyang/img/Pastry.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\luoyang\\foods.json"
+  ]
 }

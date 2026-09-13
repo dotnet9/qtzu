@@ -12,7 +12,8 @@
       "nationalRank": 11,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/langzh-330px-Seal_of_Nankai_University.png"
     },
     {
       "zh": "天津大学",
@@ -24,7 +25,8 @@
       "nationalRank": 14,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/langzh-330px-Tianjin_University_logo.png"
     },
     {
       "zh": "天津医科大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/langzh-330px-Tianjin_Medical_University_Logo.png"
     },
     {
       "zh": "河北工业大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/langzh-330px-Hebei_University_of_Technology_Badge.png"
     },
     {
       "zh": "天津师范大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/8/80/Tianjin_Normal_University_logo.jpg"
     },
     {
       "zh": "天津工业大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/langzh-330px-Tiangong_University_Emblem.png"
     },
     {
       "zh": "天津科技大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/Tianjin_University_Of_Science___Technology.jpg"
     },
     {
       "zh": "天津理工大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/TIANJIN_UNIVERSITY_OF_TECHNOLOGY.jpg"
     },
     {
       "zh": "中国民航大学",
@@ -108,7 +116,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/langzh-330px-Civil_Aviation_University_of_China__CAUC__badge.png"
     },
     {
       "zh": "天津财经大学",
@@ -120,7 +129,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/_logo.jpg"
     },
     {
       "zh": "天津中医药大学",
@@ -132,7 +142,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/Tianjin_University_of_Traditional_Chinese_Medicine_logo.png"
     },
     {
       "zh": "天津外国语大学",
@@ -144,8 +155,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/tianjin/img/Tianjin_Foreign_Studies_University__TJFSU__badge.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tianjin\\universities.json"
+  ]
 }

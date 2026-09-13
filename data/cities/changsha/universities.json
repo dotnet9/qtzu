@@ -12,7 +12,8 @@
       "nationalRank": 17,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/langzh-330px-_.png"
     },
     {
       "zh": "湖南大学",
@@ -24,7 +25,8 @@
       "nationalRank": 25,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/langzh-330px-Hunan_University_Logo_2020.png"
     },
     {
       "zh": "湖南师范大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/_.png"
     },
     {
       "zh": "长沙理工大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/Changsha_University_of_Science_and_Technology_logo.png"
     },
     {
       "zh": "湖南农业大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/langzh-330px-Hunan_Agricultural_University_logo.png"
     },
     {
       "zh": "湖南中医药大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/_.jpg"
     },
     {
       "zh": "湖南工商大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/HNUC_seal.jpeg"
     },
     {
       "zh": "中南林业科技大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/Central_South_University_of_Forestry_and_Technology_logo.png"
     },
     {
       "zh": "湖南第一师范学院",
@@ -108,8 +116,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changsha/img/langzh-330px-Hunan_First_Normal_University_Emblem.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changsha\\universities.json"
+  ]
 }

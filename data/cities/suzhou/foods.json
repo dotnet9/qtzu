@@ -6,35 +6,35 @@
       "name": "松鼠桂鱼",
       "en": "Squirrel Mandarin Fish",
       "desc": "形如松鼠浇糖醋汁，苏帮菜之王",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20fish.jpg?width=640",
+      "img": "data/cities/suzhou/img/330px-_.jpg",
       "bearing": "C"
     },
     {
       "name": "阳澄湖大闸蟹",
       "en": "Hairy Crab",
       "desc": "秋风起蟹脚痒，蟹黄如金",
-      "img": "data/cities/suzhou/img/Hairy_crab.jpg",
+      "img": "data/cities/suzhou/img/330px--2020_9_21_____1_webm.jpg",
       "bearing": "NE"
     },
     {
       "name": "苏式面",
       "en": "Suzhou Noodles",
       "desc": "枫镇大肉面焖肉浇头，汤清面白",
-      "img": "data/cities/suzhou/img/Noodle_soup.jpg",
+      "img": "data/cities/suzhou/img/330px-20240205_Set-meal_served_at_Songhelou.jpg",
       "bearing": "C"
     },
     {
       "name": "碧螺春",
       "en": "Biluochun Tea",
       "desc": "洞庭山卷曲绿茶，吓煞人香",
-      "img": "data/cities/suzhou/img/Green_tea.jpg",
+      "img": "data/cities/suzhou/img/330px-Bihuochun_green_tea.jpg",
       "bearing": "SE"
     },
     {
       "name": "生煎馒头",
       "en": "Pan-fried Buns",
       "desc": "哑巴生煎皮薄汁多",
-      "img": "data/cities/suzhou/img/Shengjian_mantou.jpg",
+      "img": "data/cities/suzhou/img/330px-Shengjianbao_by_buncheduptv_in_San_Mateo__CA.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20pork.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\suzhou\\foods.json"
+  ]
 }

@@ -24,7 +24,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenyang/img/Liaoning_University_logo.png"
     },
     {
       "zh": "中国医科大学",
@@ -36,7 +37,8 @@
       "nationalRank": null,
       "bearing": "N",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "https://upload.wikimedia.org/wikipedia/zh/9/96/China_Medical_University_Logo.png"
     },
     {
       "zh": "沈阳农业大学",
@@ -48,7 +50,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenyang/img/langzh-330px-Shenyang_Agricultural_University_Emblem.png"
     },
     {
       "zh": "沈阳工业大学",
@@ -60,7 +63,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenyang/img/Shenyang_University_of_Technology_logo.jpg"
     },
     {
       "zh": "沈阳师范大学",
@@ -72,7 +76,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenyang/img/Shenyang_Normal_University_logo.jpg"
     },
     {
       "zh": "沈阳航空航天大学",
@@ -96,7 +101,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenyang/img/_logo.jpg"
     },
     {
       "zh": "鲁迅美术学院",
@@ -108,7 +114,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenyang/img/Lu_Xun_Academy_of_Fine_Arts.png"
     },
     {
       "zh": "沈阳大学",
@@ -120,8 +127,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/shenyang/img/Shenyang_University.jpg"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\universities.json"
+  ]
 }

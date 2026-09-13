@@ -20,7 +20,7 @@
       "name": "红烧肉",
       "en": "Braised Pork",
       "desc": "浓油赤酱的本帮菜灵魂，肥而不腻入口即化",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hongshaorou.jpg?width=640",
+      "img": "data/cities/shanghai/img/330px-Food_______________Shanghai__People_s_Republic_of_China__PRC__China__30166.jpg",
       "bearing": "C"
     },
     {
@@ -34,7 +34,7 @@
       "name": "白斩鸡",
       "en": "White Cut Chicken",
       "desc": "小绍兴三黄鸡皮黄肉嫩，蘸酱油原汁原味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baiqieji.jpg?width=640",
+      "img": "data/cities/shanghai/img/330px-Whitecutchicken.jpg",
       "bearing": "C"
     },
     {
@@ -69,9 +69,8 @@
       "name": "蝴蝶酥",
       "en": "Palmier",
       "desc": "国际饭店西点房排队百米的传奇，黄油起酥掉渣香",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Palmier%20pastry.jpg?width=640",
+      "img": "data/cities/shanghai/img/330px-Schweinsohr__Geb_ck_-1.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shanghai\\foods.json"
+  ]
 }

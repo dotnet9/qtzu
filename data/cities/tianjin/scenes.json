@@ -6,7 +6,7 @@
       "name": "天津之眼",
       "en": "Tianjin Eye",
       "desc": "建在桥上的摩天轮，旋转一周看海河两岸",
-      "img": "data/cities/tianjin/img/Tianjin_Eye.jpg",
+      "img": "data/cities/tianjin/img/330px-_1.jpg",
       "bearing": "N"
     },
     {
@@ -55,14 +55,14 @@
       "name": "西开教堂",
       "en": "Xikai Cathedral",
       "desc": "1916 年法国罗曼式教堂，穹顶彩窗庄严",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xikai%20Cathedral.jpg?width=640",
+      "img": "data/cities/tianjin/img/330px-XikaiCathedral.jpg",
       "bearing": "SW"
     },
     {
       "name": "大沽口炮台",
       "en": "Dagu Fort",
       "desc": "近代海防遗迹，见证晚清风云",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dagu%20Fort.jpg?width=640",
+      "img": "data/cities/tianjin/img/330px-_1.jpg",
       "bearing": "SE"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huangyaguan%20Great%20Wall.jpg?width=640",
       "bearing": "N"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tianjin\\scenes.json"
+  ]
 }

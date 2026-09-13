@@ -10,11 +10,11 @@
   "history": "福州建城于公元前 202 年，因城内榕树如盖称「榕城」。三坊七巷被誉为「里坊制度活化石」，走出了林则徐、严复、林觉民等近代群星。马尾船政是中国近代海军的摇篮，脱胎漆器与寿山石雕是闽都瑰宝。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanfang%20Qixiang.jpg?width=960",
+      "img": "data/cities/fuzhou/img/330px-_A_10_.jpg",
       "caption": "三坊七巷"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gushan%20Fuzhou.jpg?width=960",
+      "img": "data/cities/fuzhou/img/330px-Fuzhou_Gushan_Moya_Shike_2019_03_12_11-49-10.jpg",
       "caption": "鼓山"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\fuzhou\\city.json"
+  }
 }

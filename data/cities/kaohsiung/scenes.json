@@ -6,7 +6,7 @@
       "name": "驳二艺术特区",
       "en": "Pier-2 Art Center",
       "desc": "旧仓库变身文创园区，巨型公仔和涂鸦墙随处可见。",
-      "img": "data/cities/kaohsiung/img/Pier-2_Art_Center.jpg",
+      "img": "data/cities/kaohsiung/img/330px-LiveWarehouse_Kaohsiung.jpg",
       "bearing": "W"
     },
     {
@@ -41,14 +41,14 @@
       "name": "六合夜市",
       "en": "Liuhe Night Market",
       "desc": "走过一甲子的观光夜市，海鲜粥和木瓜牛乳是招牌。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liuhe%20Night%20Market.jpg?width=640",
+      "img": "data/cities/kaohsiung/img/330px-Liouho-Night-Market-Kaohsiung.jpg",
       "bearing": "C"
     },
     {
       "name": "西子湾",
       "en": "Sizihwan",
       "desc": "落日余晖洒满海湾，中山大学校园就嵌在山海之间。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sizihwan%20sunset.jpg?width=640",
+      "img": "data/cities/kaohsiung/img/330px-Port_of_Kaohsiung_20141010-1.jpg",
       "bearing": "W"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shoushan%20Kaohsiung.jpg?width=640",
       "bearing": "W"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaohsiung\\scenes.json"
+  ]
 }

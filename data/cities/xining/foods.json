@@ -27,7 +27,7 @@
       "name": "酸奶",
       "en": "Tibetan Yogurt",
       "desc": "老酸奶表面结黄皮奶皮",
-      "img": "data/cities/xining/img/Yogurt.jpg",
+      "img": "data/cities/xining/img/330px-Turkish_strained_yogurt.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/xining/img/Hotpot.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xining\\foods.json"
+  ]
 }

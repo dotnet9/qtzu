@@ -14,7 +14,7 @@
       "caption": "赤崁楼"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fort%20Zeelandia%2C%20Tainan.jpg?width=960",
+      "img": "data/cities/tainan/img/330px-_.jpg",
       "caption": "安平古堡"
     },
     {
@@ -77,6 +77,5 @@
       }
     ],
     "eggsOnSigns": 5
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\city.json"
+  }
 }

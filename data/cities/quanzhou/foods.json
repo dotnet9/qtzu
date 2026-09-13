@@ -6,21 +6,21 @@
       "name": "面线糊",
       "en": "Mee Sua Paste",
       "desc": "水门国仔面线糊配油条，古早味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mee%20sua.jpg?width=640",
+      "img": "data/cities/quanzhou/img/330px-Food__________22679078472_.jpg",
       "bearing": "C"
     },
     {
       "name": "土笋冻",
       "en": "Sea Worm Jelly",
       "desc": "安海土笋冻晶莹，蒜蓉醋提味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tusundong.jpg?width=640",
+      "img": "data/cities/quanzhou/img/330px-Sipunculid_worm_jelly.jpg",
       "bearing": "S"
     },
     {
       "name": "姜母鸭",
       "en": "Ginger Duck",
       "desc": "斯丹姜母鸭砂锅喷香",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger%20duck.jpg?width=640",
+      "img": "data/cities/quanzhou/img/330px-Quanzhou-style_Kiu_-b_-ah__Ginger_Duck__at_Yipin_Xiangqing_Restaurant__Bei.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/quanzhou/img/Pancake.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\quanzhou\\foods.json"
+  ]
 }

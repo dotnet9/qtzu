@@ -13,28 +13,28 @@
       "name": "大梅沙海滨公园",
       "en": "Dameisha Beach",
       "desc": "免费海滩与愿望塔",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dameisha%20Beach.jpg?width=640",
+      "img": "data/cities/shenzhen/img/330px-_.jpg",
       "bearing": "E"
     },
     {
       "name": "深圳湾公园",
       "en": "Shenzhen Bay Park",
       "desc": "滨海骑行与候鸟滩涂",
-      "img": "data/cities/shenzhen/img/Shenzhen_Bay.jpg",
+      "img": "data/cities/shenzhen/img/330px-20201112_The_skyline_at_Shenzhen_Bay.jpg",
       "bearing": "SW"
     },
     {
       "name": "莲花山公园",
       "en": "Lianhuashan Park",
       "desc": "山顶邓小平雕像俯瞰福田",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lianhuashan%20Park.jpg?width=640",
+      "img": "data/cities/shenzhen/img/330px-Shenzhen_Lianhuashan_Park_South_East.jpg",
       "bearing": "C"
     },
     {
       "name": "东部华侨城",
       "en": "OCT East",
       "desc": "茶溪谷大侠谷生态度假区",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/OCT%20East.jpg?width=640",
+      "img": "data/cities/shenzhen/img/330px-OCT_East.jpg",
       "bearing": "E"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiaochangwei.jpg?width=640",
       "bearing": "E"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenzhen\\scenes.json"
+  ]
 }

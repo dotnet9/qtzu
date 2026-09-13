@@ -6,7 +6,7 @@
       "name": "青岛啤酒",
       "en": "Tsingtao Beer",
       "desc": "1903 年德式酿造，袋装散啤配塑料袋是奇观",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tsingtao%20beer.jpg?width=640",
+      "img": "data/cities/qingdao/img/langzh-330px-Tsingtao_Beer_logo.png",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20with%20ribs.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qingdao\\foods.json"
+  ]
 }

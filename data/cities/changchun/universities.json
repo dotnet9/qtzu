@@ -12,7 +12,8 @@
       "nationalRank": 23,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changchun/img/langzh-330px-Jilin_University_Logo.png"
     },
     {
       "zh": "东北师范大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changchun/img/langzh-330px-Northeast_Normal_University_logo.png"
     },
     {
       "zh": "长春理工大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changchun/img/langzh-330px-Changchun_University_of_Science_and_Technology_Emblem.png"
     },
     {
       "zh": "吉林农业大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changchun/img/Jilin_Agricultural_University_logo.jpg"
     },
     {
       "zh": "长春中医药大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "SE",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changchun/img/Changchun_University_of_Chinese_Medicine_logo.jpg"
     },
     {
       "zh": "长春工业大学",
@@ -72,8 +77,8 @@
       "nationalRank": null,
       "bearing": "SW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/changchun/img/Logo_of_Changchun_University_of_Technology.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changchun\\universities.json"
+  ]
 }

@@ -6,14 +6,14 @@
       "name": "三坊七巷",
       "en": "Sanfang Qixiang",
       "desc": "「半部中国近代史」，林觉民故居",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanfang%20Qixiang.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-_A_10_.jpg",
       "bearing": "C"
     },
     {
       "name": "鼓山",
       "en": "Gushan Mountain",
       "desc": "涌泉寺与摩崖石刻，登山望江",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gushan%20Fuzhou.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-Fuzhou_Gushan_Moya_Shike_2019_03_12_11-49-10.jpg",
       "bearing": "E"
     },
     {
@@ -41,23 +41,22 @@
       "name": "上下杭",
       "en": "Shangxiahang",
       "desc": "商贾老街区，夜色如画",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shangxiahang.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-___-2025.jpg",
       "bearing": "SW"
     },
     {
       "name": "福道",
       "en": "Fudao Forest Walkway",
       "desc": "森林里的钢架步道穿行树冠",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fudao%20Fuzhou.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-20181221__05.jpg",
       "bearing": "W"
     },
     {
       "name": "平潭岛",
       "en": "Pingtan Island",
       "desc": "蓝眼泪奇观与石头厝村落",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pingtan%20Island.jpg?width=640",
+      "img": "data/cities/fuzhou/img/330px-__8.jpg",
       "bearing": "E"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\fuzhou\\scenes.json"
+  ]
 }

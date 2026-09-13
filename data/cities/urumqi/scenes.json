@@ -27,7 +27,7 @@
       "name": "新疆博物馆",
       "en": "Xinjiang Museum",
       "desc": "楼兰美女干尸与五星出东方利中国锦",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xinjiang%20Museum.jpg?width=640",
+      "img": "data/cities/urumqi/img/330px-___2021_.jpg",
       "bearing": "N"
     },
     {
@@ -41,7 +41,7 @@
       "name": "水磨沟公园",
       "en": "Shuimogou Park",
       "desc": "清泉寺与水磨坊",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shuimogou.jpg?width=640",
+      "img": "data/cities/urumqi/img/330px-_.jpg",
       "bearing": "E"
     },
     {
@@ -55,9 +55,8 @@
       "name": "达坂城",
       "en": "Dabancheng",
       "desc": "歌曲里的风车之城",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dabancheng.jpg?width=640",
+      "img": "data/cities/urumqi/img/330px-__Dabancheng_District__Urumqi__Xinjiang_-_panoramio__3_.jpg",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\urumqi\\scenes.json"
+  ]
 }

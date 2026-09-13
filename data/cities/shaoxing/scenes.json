@@ -13,7 +13,7 @@
       "name": "沈园",
       "en": "Shen Garden",
       "desc": "陆游唐婉《钗头凤》爱情名园",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shen%20Garden.jpg?width=640",
+      "img": "data/cities/shaoxing/img/330px-Shen_Garden_in_Shaoxing_2012-07.jpg",
       "bearing": "E"
     },
     {
@@ -34,7 +34,7 @@
       "name": "安昌古镇",
       "en": "Angchang Ancient Town",
       "desc": "腊肠飘香的师爷故里",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Angchang%20Ancient%20Town.jpg?width=640",
+      "img": "data/cities/shaoxing/img/330px-Anchang.jpg",
       "bearing": "NW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kuaiji%20Mountain.jpg?width=640",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shaoxing\\scenes.json"
+  ]
 }

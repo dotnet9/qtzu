@@ -20,14 +20,14 @@
       "name": "酸汤鱼",
       "en": "Sour Soup Fish",
       "desc": "凯里红酸汤配稻田鱼，酸鲜开胃",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sour%20soup%20fish.jpg?width=640",
+      "img": "data/cities/guiyang/img/960px-Yanjing_No_9_Bar_at_Phoenix_New_World-20250830.jpg",
       "bearing": "C"
     },
     {
       "name": "花溪牛肉粉",
       "en": "Huaxi Beef Noodles",
       "desc": "清汤牛肉粉米粉爽滑",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beef%20noodles.jpg?width=640",
+      "img": "data/cities/guiyang/img/960px-thumbnail.jpg",
       "bearing": "S"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig%20trotters.jpg?width=640",
       "bearing": "S"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\foods.json"
+  ]
 }

@@ -64,6 +64,7 @@ for (const city of fs.readdirSync(ROOT)) {
     const fix = async (obj, field) => {
       const url = obj[field];
       if (!url || typeof url !== 'string' || !/^https?:\/\//.test(url)) { skip++; return; }
+      if (/commons\.wikimedia\.org\/wiki\/Special:FilePath/.test(url)) { skip++; return; } // 历史死链：直接跳过（emoji 兜底）
       const local = await download(url, imgDir);
       if (local) obj[field] = 'data/cities/' + city + '/img/' + path.basename(local);
     };

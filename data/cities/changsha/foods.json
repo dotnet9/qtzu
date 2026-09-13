@@ -6,14 +6,14 @@
       "name": "臭豆腐",
       "en": "Stinky Tofu",
       "desc": "黑色经典臭豆腐闻着臭吃着香，火宫殿最正宗",
-      "img": "data/cities/changsha/img/Stinky_tofu.jpg",
+      "img": "data/cities/changsha/img/330px-_.jpg",
       "bearing": "C"
     },
     {
       "name": "茶颜悦色",
       "en": "Sexy Tea",
       "desc": "中式奶茶首创，幽兰拿铁排队三小时",
-      "img": "data/cities/changsha/img/Milk_tea.jpg",
+      "img": "data/cities/changsha/img/330px-Cha_Yan_Yue_Se__Changsha__China__21_May_2021H.jpg",
       "bearing": "C"
     },
     {
@@ -34,14 +34,14 @@
       "name": "剁椒鱼头",
       "en": "Fish Head with Chili",
       "desc": "湘菜代表，红剁椒蒸大鱼头鲜辣",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Duo%20jiao%20yu%20tou.jpg?width=640",
+      "img": "data/cities/changsha/img/330px-Steamed_Fish_Head_with_Diced_Chili__20150726122046_.jpg",
       "bearing": "C"
     },
     {
       "name": "米粉",
       "en": "Rice Noodles",
       "desc": "扁粉圆粉浇码子，嗦粉是长沙早晨",
-      "img": "data/cities/changsha/img/Rice_noodles.jpg",
+      "img": "data/cities/changsha/img/330px-Picture_286_w.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/changsha/img/Pancake.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changsha\\foods.json"
+  ]
 }

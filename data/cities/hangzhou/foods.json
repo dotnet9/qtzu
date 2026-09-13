@@ -6,35 +6,35 @@
       "name": "西湖醋鱼",
       "en": "West Lake Fish",
       "desc": "草鱼浇糖醋芡汁，传说是叔嫂惜别的滋味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/West%20Lake%20Fish.jpg?width=640",
+      "img": "data/cities/hangzhou/img/330px-West_Lake_Fish_in_Vinegar_Gravy_Feb_2026.jpg",
       "bearing": "C"
     },
     {
       "name": "东坡肉",
       "en": "Dongpo Pork",
       "desc": "苏东坡「慢著火少著水」的红烧肉，酥烂入味",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dongpo%20rou.jpg?width=640",
+      "img": "data/cities/hangzhou/img/330px-BCfood12.jpg",
       "bearing": "C"
     },
     {
       "name": "龙井虾仁",
       "en": "Longjing Shrimp",
       "desc": "明前龙井茶香入虾仁，江南清雅之最",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Longjing%20shrimp.jpg?width=640",
+      "img": "data/cities/hangzhou/img/330px-Longjing_prawns_in_Hangzhou_Restaurant_2015-07.jpg",
       "bearing": "SW"
     },
     {
       "name": "叫花鸡",
       "en": "Beggar's Chicken",
       "desc": "荷叶泥团包裹烤制，敲开泥土香气四溢",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beggar%20chicken.jpg?width=640",
+      "img": "data/cities/hangzhou/img/330px-Chicken_packed_with_lotus_leaf.jpg",
       "bearing": "C"
     },
     {
       "name": "片儿川",
       "en": "Pian'er Chuan",
       "desc": "雪菜笋片瘦肉浇头，奎元馆百年招牌面",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pian%20er%20chuan.jpg?width=640",
+      "img": "data/cities/hangzhou/img/330px-Pian_erchuan_noodles_at_Kuiyuanguan__20190807110615_.jpg",
       "bearing": "C"
     },
     {
@@ -72,6 +72,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Youdonger.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hangzhou\\foods.json"
+  ]
 }

@@ -41,7 +41,7 @@
       "name": "枸杞",
       "en": "Goji Berries",
       "desc": "中宁枸杞全国之最",
-      "img": "data/cities/yinchuan/img/Goji_berries.jpg",
+      "img": "data/cities/yinchuan/img/330px-Lycium_chinense_siamak_sabet___2_.jpg",
       "bearing": "S"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/yinchuan/img/Hotpot.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yinchuan\\foods.json"
+  ]
 }

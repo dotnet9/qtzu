@@ -10,7 +10,7 @@
   "history": "南昌有 2200 年建城史，「落霞与孤鹜齐飞」的滕王阁名扬千古。1927 年八一南昌起义在此打响，人民军队由此诞生，故称英雄城。鄱阳湖候鸟、海昏侯墓出土的万两黄金震惊考古界。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tengwang%20Pavilion.jpg?width=960",
+      "img": "data/cities/nanchang/img/330px-__2024-08-05_04.jpg",
       "caption": "滕王阁"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanchang\\city.json"
+  }
 }

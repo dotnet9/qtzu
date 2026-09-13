@@ -23,7 +23,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "C",
-      "history": "始于台南师范学校，百年师范传统，教育学科著名。"
+      "history": "始于台南师范学校，百年师范传统，教育学科著名。",
+      "img": "data/cities/tainan/img/langzh-330px-National_University_of_Tainan_Seal.png"
     },
     {
       "zh": "南台科技大学",
@@ -45,7 +46,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NW",
-      "history": "长老教会创办的基督教大学，铁道旁的绿色校园。"
+      "history": "长老教会创办的基督教大学，铁道旁的绿色校园。",
+      "img": "https://thumb.wikimedia.org/wikipedia/zh/thumb/b/b2/Chang_Jung_Christian_University_logo.svg/langzh-330px-Chang_Jung_Christian_University_logo.svg.png"
     },
     {
       "zh": "嘉南药理大学",
@@ -56,7 +58,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "SW",
-      "history": "药学起家，化妆品应用学科在全台高校中独树一帜。"
+      "history": "药学起家，化妆品应用学科在全台高校中独树一帜。",
+      "img": "data/cities/tainan/img/langzh-330px-Chia_Nan_University_of_Pharmacy_and_Science_logo.png"
     },
     {
       "zh": "昆山科技大学",
@@ -67,7 +70,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "NE",
-      "history": "视讯动画设计学科多次获国际影展奖项。"
+      "history": "视讯动画设计学科多次获国际影展奖项。",
+      "img": "data/cities/tainan/img/langzh-330px-Ksutlogo.png"
     },
     {
       "zh": "台南应用科技大学",
@@ -78,7 +82,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "E",
-      "history": "音乐美术设计等艺术学科齐全，体育馆曾是奥运训练场地。"
+      "history": "音乐美术设计等艺术学科齐全，体育馆曾是奥运训练场地。",
+      "img": "https://thumb.wikimedia.org/wikipedia/zh/thumb/8/86/Tainan_University_of_Technology_logo.svg/langzh-330px-Tainan_University_of_Technology_logo.svg.png"
     },
     {
       "zh": "中华医事科技大学",
@@ -89,7 +94,8 @@
       "globalRank": null,
       "nationalRank": null,
       "bearing": "N",
-      "history": "医事检验与食品营养学科特色鲜明。"
+      "history": "医事检验与食品营养学科特色鲜明。",
+      "img": "data/cities/tainan/img/330px-_.jpg"
     },
     {
       "zh": "真理大学（麻豆校区）",
@@ -103,6 +109,5 @@
       "history": "源于淡水牛津学堂的百年教会大学。",
       "campusNote": "校本部在新北淡水"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\universities.json"
+  ]
 }

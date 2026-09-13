@@ -12,7 +12,8 @@
       "nationalRank": 3,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/langzh-330px-Zhejiang_University_Logo.png"
     },
     {
       "zh": "中国美术学院",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/330px-CAA_Gate.jpg"
     },
     {
       "zh": "浙江工业大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/langzh-330px-ZJUT_seal.png"
     },
     {
       "zh": "杭州电子科技大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/langzh-330px-HDU_seal.png"
     },
     {
       "zh": "浙江理工大学",
@@ -60,7 +64,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/langzh-330px-Zhejiang_Sci-Tech_University_Emblem.png"
     },
     {
       "zh": "浙江工商大学",
@@ -72,7 +77,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/langzh-330px-Zhejiang_Gongshang_University_Emblem.png"
     },
     {
       "zh": "浙江中医药大学",
@@ -84,7 +90,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/Zhejiang_Chinese_Medical_University_logo.jpg"
     },
     {
       "zh": "杭州师范大学",
@@ -96,7 +103,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/Hangzhou_Normal_University_logo.jpg"
     },
     {
       "zh": "中国计量大学",
@@ -108,7 +116,8 @@
       "nationalRank": null,
       "bearing": "E",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/_.jpg"
     },
     {
       "zh": "浙江财经大学",
@@ -132,7 +141,8 @@
       "nationalRank": null,
       "bearing": "W",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/330px-20250403_Zhejiang_Nonglin_Daxue.jpg"
     },
     {
       "zh": "杭州医学院",
@@ -144,8 +154,8 @@
       "nationalRank": null,
       "bearing": "NW",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hangzhou/img/Hangzhou_Medical_College_logo.png"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hangzhou\\universities.json"
+  ]
 }

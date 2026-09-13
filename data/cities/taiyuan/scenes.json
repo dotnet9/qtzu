@@ -6,28 +6,28 @@
       "name": "晋祠",
       "en": "Jinci Temple",
       "desc": "圣母殿侍女像与难老泉，三晋之胜境",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinci%20Temple.jpg?width=640",
+      "img": "data/cities/taiyuan/img/330px-_.jpg",
       "bearing": "SW"
     },
     {
       "name": "天龙山石窟",
       "en": "Tianlongshan Grottoes",
       "desc": "东魏至唐的佛教石窟艺术",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianlongshan%20Grottoes.jpg?width=640",
+      "img": "data/cities/taiyuan/img/330px-Taiyuan_tianlongshanshiku.jpg",
       "bearing": "SW"
     },
     {
       "name": "山西博物院",
       "en": "Shanxi Museum",
       "desc": "晋侯鸟尊镇馆，青铜文明",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shanxi%20Museum.jpg?width=640",
+      "img": "data/cities/taiyuan/img/330px-Shanxi_Museum_2025.jpg",
       "bearing": "W"
     },
     {
       "name": "迎泽公园",
       "en": "Yingze Park",
       "desc": "市中心的百花与藏经楼",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yingze%20Park.jpg?width=640",
+      "img": "data/cities/taiyuan/img/330px-Yingze_Park.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qinglong%20Ancient%20Town.jpg?width=640",
       "bearing": "N"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taiyuan\\scenes.json"
+  ]
 }

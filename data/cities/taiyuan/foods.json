@@ -34,7 +34,7 @@
       "name": "头脑",
       "en": "Tounao",
       "desc": "傅山发明的药膳早餐，黄芪煨面糊",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Breakfast%20soup.jpg?width=640",
+      "img": "data/cities/taiyuan/img/330px-Chimp_Brain_in_a_jar.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/taiyuan/img/Pastry.jpg",
       "bearing": "SE"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taiyuan\\foods.json"
+  ]
 }

@@ -6,7 +6,7 @@
       "name": "滇池",
       "en": "Dianchi Lake",
       "desc": "高原明珠五百里滇池，红嘴鸥冬季如约而至",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dianchi%20Lake%20Kunming.jpg?width=640",
+      "img": "data/cities/kunming/img/330px-_.jpg",
       "bearing": "SW"
     },
     {
@@ -20,7 +20,7 @@
       "name": "西山龙门",
       "en": "Xishan Dragon Gate",
       "desc": "悬崖石窟道观，俯瞰滇池如镜",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xishan%20Kunming.jpg?width=640",
+      "img": "data/cities/kunming/img/330px-__-_panoramio_-__1961.jpg",
       "bearing": "SW"
     },
     {
@@ -72,6 +72,5 @@
       "img": "data/cities/kunming/img/Yunnan_Military_Academy.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kunming\\scenes.json"
+  ]
 }

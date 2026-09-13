@@ -12,7 +12,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hohhot/img/langzh-330px-Inner_Mongolia_University_logo.png"
     },
     {
       "zh": "内蒙古师范大学",
@@ -24,7 +25,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hohhot/img/langzh-330px-Inner_Mongolia_Normal_University_emblem.png"
     },
     {
       "zh": "内蒙古农业大学",
@@ -36,7 +38,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hohhot/img/Inner_Mongolia_Agricultural_University_logo.png"
     },
     {
       "zh": "内蒙古医科大学",
@@ -48,7 +51,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hohhot/img/Inner_Mongolia_Medical_University_logo.png"
     },
     {
       "zh": "内蒙古工业大学",
@@ -60,8 +64,8 @@
       "nationalRank": null,
       "bearing": "S",
       "history": "",
-      "campusNote": null
+      "campusNote": null,
+      "img": "data/cities/hohhot/img/Inner_Mongolia_University_of_Technology_logo.jpg"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\universities.json"
+  ]
 }

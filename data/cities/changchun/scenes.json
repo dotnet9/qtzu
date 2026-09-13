@@ -6,35 +6,35 @@
       "name": "伪满皇宫博物院",
       "en": "Puppet Palace Museum",
       "desc": "溥仪「皇宫」，末代皇帝十四年傀儡岁月",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Puppet%20Palace%20Museum.jpg?width=640",
+      "img": "data/cities/changchun/img/330px-Imperial_Household_Office_of_Manchukuo.jpg",
       "bearing": "SE"
     },
     {
       "name": "净月潭",
       "en": "Jingyuetan",
       "desc": "亚洲最大人工林海，瓦萨滑雪节",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jingyuetan.jpg?width=640",
+      "img": "data/cities/changchun/img/330px-__jing_yue_tan_-_panoramio.jpg",
       "bearing": "SE"
     },
     {
       "name": "长影旧址博物馆",
       "en": "Changchun Film Studio Museum",
       "desc": "新中国电影摇篮",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Changchun%20Film%20Studio%20Museum.jpg?width=640",
+      "img": "data/cities/changchun/img/960px-Mao_Statue_at_Former_Site_Museum_Of_Changchun_Film_Studio__.jpg",
       "bearing": "SW"
     },
     {
       "name": "世界雕塑公园",
       "en": "Sculpture Park",
       "desc": "五大洲雕塑艺术荟萃",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sculpture%20Park%20Changchun.jpg?width=640",
+      "img": "data/cities/changchun/img/330px-Changchun_World_Sculpture_Park.jpg",
       "bearing": "S"
     },
     {
       "name": "南湖公园",
       "en": "Nanhu Park",
       "desc": "市区大湖，冬季冰上项目",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanhu%20Park%20Changchun.jpg?width=640",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/%E5%8D%97%E6%B9%96%E5%85%AC%E5%9B%AD%C2%B7%E4%BA%AD%E5%AD%90.jpg/960px-%E5%8D%97%E6%B9%96%E5%85%AC%E5%9B%AD%C2%B7%E4%BA%AD%E5%AD%90.jpg",
       "bearing": "SW"
     },
     {
@@ -58,6 +58,5 @@
       "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zheyoushan.jpg?width=640",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changchun\\scenes.json"
+  ]
 }

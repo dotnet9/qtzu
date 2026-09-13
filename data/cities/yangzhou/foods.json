@@ -6,14 +6,14 @@
       "name": "扬州炒饭",
       "en": "Yangzhou Fried Rice",
       "desc": "颗粒分明配火腿虾仁，国宴出身",
-      "img": "data/cities/yangzhou/img/Fried_rice.jpg",
+      "img": "data/cities/yangzhou/img/330px-Chinese_fried_rice_by_stu_spivack_in_Cleveland__OH.jpg",
       "bearing": "C"
     },
     {
       "name": "蟹粉狮子头",
       "en": "Lion Head Meatball",
       "desc": "肥瘦肉圆炖蟹粉，入口即化",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Meatball%20soup.jpg?width=640",
+      "img": "data/cities/yangzhou/img/330px-_01__5935161191_.jpg",
       "bearing": "C"
     },
     {
@@ -58,6 +58,5 @@
       "img": "data/cities/yangzhou/img/Dumplings.jpg",
       "bearing": "C"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yangzhou\\foods.json"
+  ]
 }

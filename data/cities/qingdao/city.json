@@ -10,11 +10,11 @@
   "history": "青岛 1891 年建置，德占时期留下的红瓦绿树、欧式建筑让它成为「万国建筑博览会」。八大关的梧桐、栈桥的海鸥、崂山的道教仙境，红瓦绿树碧海蓝天是城市底色。青岛啤酒 1903 年诞生于此，走向世界。今天它是海洋科研城与帆船之都。",
   "gallery": [
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhanqiao%20Pier%20Qingdao.jpg?width=960",
+      "img": "data/cities/qingdao/img/330px-Seebr_cke_Swakopmund__Namibia.jpg",
       "caption": "栈桥"
     },
     {
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Badaguan%20Qingdao.jpg?width=960",
+      "img": "data/cities/qingdao/img/330px-_.jpg",
       "caption": "八大关"
     },
     {
@@ -77,6 +77,5 @@
     ],
     "eggsOnSigns": 5,
     "shape": null
-  },
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qingdao\\city.json"
+  }
 }

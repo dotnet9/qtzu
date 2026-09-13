@@ -6,14 +6,14 @@
       "name": "珍珠奶茶",
       "en": "Bubble Tea",
       "desc": "1987 年春水堂发明「粉圆奶茶」，全世界的手摇茶饮都从这里开始。",
-      "img": "data/cities/taichung/img/Bubble_Tea.jpg",
+      "img": "data/cities/taichung/img/330px-Classic_bubble_tea.jpg",
       "bearing": "C"
     },
     {
       "name": "太阳饼",
       "en": "Sun Cake",
       "desc": "麦芽糖酥饼皮薄如纸，是台中超过六十年历史的城市名片。",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sun%20Cakes.jpg?width=640",
+      "img": "data/cities/taichung/img/330px-Suncake.jpg",
       "bearing": "C"
     },
     {
@@ -27,7 +27,7 @@
       "name": "肉圆",
       "en": "Bawan",
       "desc": "透明地瓜粉皮包笋丁肉块，蒸好再炸，蘸甜辣酱。",
-      "img": "data/cities/taichung/img/Bawan.jpg",
+      "img": "data/cities/taichung/img/330px-Dry-fried_meatballs.jpg",
       "bearing": "C"
     },
     {
@@ -69,9 +69,8 @@
       "name": "牛轧糖",
       "en": "Nougat",
       "desc": "东海大学旁的糖村牛轧糖，奶香浓郁成为国际旅客必买。",
-      "img": "data/cities/taichung/img/Nougat.jpg",
+      "img": "data/cities/taichung/img/330px-Nougat.jpg",
       "bearing": "W"
     }
-  ],
-  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taichung\\foods.json"
+  ]
 }
