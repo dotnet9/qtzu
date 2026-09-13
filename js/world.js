@@ -1,4 +1,4 @@
-﻿// 农场岛屿世界搭建：地形彩绘、河流、果园、风车田、谷仓、菜园、天空岛、阳光海滩、神秘森林、环形群岛
+// 农场岛屿世界搭建：地形彩绘、河流、果园、风车田、谷仓、菜园、天空岛、阳光海滩、神秘森林、环形群岛
 import * as THREE from 'three';
 import { PROPS, badge, letterTexture } from './models.js';
 import { ISLANDS } from './words.js';
@@ -899,7 +899,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       // 沿边浪花：白色小圆点贴着轮廓边外侧撒一圈（合并成单 mesh，随 islandSurf 呼吸闪烁）
       {
         const unit = Math.max(0.55, r * 0.02);          // 尺度随城市大小走
-        const step = unit * 2.1, off = unit * 1.3, dotR = unit * 0.8;
+        const step = unit * 1.5, off = unit * 1.3, dotR = unit * 0.85;
         const fPos = [], fIdx = [];
         for (let i = 0; i < pts.length - 1; i++) {
           const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
@@ -910,14 +910,17 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             const mx = ax + (bx - ax) * t, mz = az + (bz - az) * t;
             let nx = -(bz - az) / el, nz = (bx - ax) / el;
             if (mx * mx + mz * mz > (mx + nx) ** 2 + (mz + nz) ** 2) { nx = -nx; nz = -nz; }  // 选朝外那侧
-            const fx = mx + nx * off, fz = mz + nz * off;
-            const k = fPos.length / 3;
-            for (let s = 0; s < 7; s++) {
-              const a1 = (s / 7) * Math.PI * 2, a2 = ((s + 1) / 7) * Math.PI * 2;
-              fPos.push(fx, 0.035, fz,
-                fx + Math.cos(a1) * dotR, 0.035, fz + Math.sin(a1) * dotR,
-                fx + Math.cos(a2) * dotR, 0.035, fz + Math.sin(a2) * dotR);
-              fIdx.push(k, k + 1, k + 2);
+            // 两排浪花：近排大点 + 远排小点错位，更接近真实碎浪
+            for (const [o, dr, jit] of [[off, dotR, 0], [off * 2.1, dotR * 0.7, step * 0.5]]) {
+              const fx = mx + nx * o + jit, fz = mz + nz * o + jit;
+              const k = fPos.length / 3;
+              for (let s = 0; s < 7; s++) {
+                const a1 = (s / 7) * Math.PI * 2, a2 = ((s + 1) / 7) * Math.PI * 2;
+                fPos.push(fx, 0.035, fz,
+                  fx + Math.cos(a1) * dr, 0.035, fz + Math.sin(a1) * dr,
+                  fx + Math.cos(a2) * dr, 0.035, fz + Math.sin(a2) * dr);
+                fIdx.push(k, k + 1, k + 2);
+              }
             }
           }
         }
@@ -1187,20 +1190,41 @@ function bigMushroom(s = 1) {
 }
 
 // ============ 城市地标原型：9 种程序化低模拼装（cities.js 按 landmark 类型选用） ============
-export function cityLandmark(type, color) {
+export function cityLandmark(type, color, seedStr) {
   const g = new THREE.Group();
   const glow = () => M(color, { emissive: color, ei: 0.35 });
+  // 校名 seed：同一校门样式固定，不同大学各不相同（柱色/横梁色/高度/附属装饰）
+  let s = 5381;
+  for (const ch of String(seedStr || '')) s = (Math.imul(s, 33) ^ ch.charCodeAt(0)) >>> 0;
+  const rnd = () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  const pick = arr => arr[Math.floor(rnd() * arr.length)];
     // uni-gate：大学校门（双柱+横梁+门楣校牌），牌子系统用于大学，真实感拉满
     if (type === 'uni-gate') {
-      box(g, 0.55, 3.2, 0.55, '#F5F1E8', -1.5, 1.6, 0);
-      box(g, 0.55, 3.2, 0.55, '#F5F1E8', 1.5, 1.6, 0);
-      box(g, 0.62, 0.35, 0.62, '#3E7CB1', -1.5, 3.35, 0);
-      box(g, 0.62, 0.35, 0.62, '#3E7CB1', 1.5, 3.35, 0);
-      box(g, 4.2, 0.5, 0.5, '#3E7CB1', 0, 3.6, 0);
-      box(g, 4.2, 0.16, 0.56, '#FFFDF4', 0, 3.15, 0);
+      const beamCol = pick(['#3E7CB1', '#B0483A', '#4E8E4E', '#D98A2B', '#7A5FB5', '#C4577E']);
+      const hL = 3.2 + rnd() * 0.5, hR = 3.2 + rnd() * 0.5;
+      const span = 3.6 + rnd() * 0.9;
+      const px = span / 2;
+      box(g, 0.55, hL, 0.55, '#F5F1E8', -px, hL / 2, 0);
+      box(g, 0.55, hR, 0.55, '#F5F1E8', px, hR / 2, 0);
+      box(g, 0.62, 0.35, 0.62, beamCol, -px, hL + 0.15, 0);
+      box(g, 0.62, 0.35, 0.62, beamCol, px, hR + 0.15, 0);
+      box(g, span + 1.1, 0.5, 0.5, beamCol, 0, Math.max(hL, hR) + 0.4, 0);
+      box(g, span + 1.1, 0.16, 0.56, '#FFFDF4', 0, Math.max(hL, hR) - 0.05, 0);
       box(g, 0.16, 0.9, 0.4, '#8A8A8A', -0.5, 0.45, 0);
       box(g, 0.16, 0.9, 0.4, '#8A8A8A', 0.5, 0.45, 0);
       box(g, 2.4, 0.1, 1.2, '#D8CCA8', 0, 0.05, 0.4);
+      // 附属装饰：旗杆/校徽球/绿树（按 seed 随机，避免千篇一律）
+      const deco = Math.floor(rnd() * 3);
+      if (deco === 0) {
+        cyl(g, 0.05, 0.06, 2.6, '#C8C8C8', px + 0.7, 1.3, 0.3, 6);
+        box(g, 0.5, 0.3, 0.04, '#E05A4E', px + 0.95, 2.35, 0.3);
+      } else if (deco === 1) {
+        sph(g, 0.34, glow(), -px - 0.7, 1.1, 0.3);
+        box(g, 0.3, 0.7, 0.3, '#D8CCA8', -px - 0.7, 0.35, 0.3);
+      } else {
+        cyl(g, 0.12, 0.16, 0.9, '#8A6844', px + 0.8, 0.45, -0.5, 6);
+        sph(g, 0.62, M('#5FA05F'), px + 0.8, 1.3, -0.5);
+      }
     }
   if (type === 'gate') {
     // 城楼：城墙台 + 门洞 + 两层飞檐（北京/西安）

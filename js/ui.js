@@ -497,6 +497,8 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
   const unis = (city.unis || []).map(u => {
     const a = age(u.founded);
     return `<div class="uni-card">
+      ${u.img ? `<img class="uni-img" src="${u.img}" alt="${u.zh}" loading="lazy"
+           onerror="this.style.display='none'">` : ''}
       <button type="button" class="uni-name" data-site="${u.site || ''}" data-en="${u.en}">
         <i class="tag ${tagCls(u.tag)}">${u.tag || '🎓'}</i>${u.zh}
       </button>

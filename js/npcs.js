@@ -69,8 +69,8 @@ function buildNPC(role, shirt) {
   nc.fillText(role.zh, 128, 42);
   const ntex = new THREE.CanvasTexture(nv);
   ntex.colorSpace = THREE.SRGBColorSpace;
-  const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false }));
-  tag.scale.set(1.55, 0.48, 1); tag.position.y = 1.86; g.add(tag);
+  const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false, fog: false }));
+  tag.scale.set(1.9, 0.6, 1); tag.position.y = 1.95; g.add(tag);
   const legGeo = new THREE.CapsuleGeometry(0.07, 0.18, 3, 6);
   const legM = new THREE.MeshStandardMaterial({ color: 0x5B4632, roughness: 0.9 });
   const legL = new THREE.Mesh(legGeo, legM); legL.position.set(-0.1, 0.16, 0);

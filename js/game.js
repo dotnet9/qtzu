@@ -97,7 +97,7 @@ export class Game {
       const a = (i / route.length) * Math.PI * 2 + 0.35;
       const dist = 88 + (i % 3) * 18;                      // 全尺寸岛外推
       const v0 = cityVariant(c, 0);
-      const rr = Math.round((lv.radius || 28) * 3);   // 大地图：面积约放大10倍，牌子/街道真正铺开
+      const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)));   // 大地图：面积约放大10倍，牌子/街道真正铺开
       const shape = getCityShape(cid, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);   // 局部多边形
       return {
         key: cid, uid: cid + '#' + i, name: c.name, en: c.en, emoji: v0.emoji, color: c.color,
@@ -1650,13 +1650,14 @@ export class Game {
         this._clampCityPos(clampP, stage);                     // 有机轮廓下确保牌子在陆地内
         x = clampP.x; z = clampP.z;
         if (it.type === 'uni') {
-          const gate = cityLandmark('uni-gate', colorOf.uni);
+          const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name);
           gate.position.set(x, 0, z);
           gate.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);
           const nm = new THREE.Sprite(new THREE.SpriteMaterial({
             map: this._signNameTexture(it.name || it.zh || ''), transparent: true, depthWrite: false,
           }));
           nm.scale.set(4.2, 0.94, 1); nm.position.set(0, 4.6, 0); gate.add(nm);
+          gate.traverse(o => { o.userData.sign = it; });   // 缺这个：点校门会 fallthrough 成走过去，玩家卡进碰撞体来回晃
           grp.add(gate);
           this._signList.push({ ...it, x, z });
           const es = { x: x - dx * 2.2 + dz * 1.6, z: z - dz * 2.2 - dx * 1.6 };
@@ -3036,7 +3037,7 @@ export class Game {
         const a = (i / this.islands.length) * Math.PI * 2 + 1.1;
         const dist = 132;
         const v0 = cityVariant(c, 0);
-        const rr = Math.round((lv.radius || 28) * 3);
+        const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)));
         const shape = getCityShape(id, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);
         this.islands.push({
           key: id, uid: id + '#' + i, name: c.name, en: c.en, emoji: v0.emoji, color: c.color,

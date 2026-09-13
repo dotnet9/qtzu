@@ -359,6 +359,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .cc-imp { font-size: 12px; font-weight: bold; color: #C4577E; background: rgba(255, 159, 190, .14); border-radius: 10px; padding: 5px 8px; margin-top: 8px; }
 .uni-list { display: flex; flex-direction: column; gap: 8px; }
 .uni-card { background: #FFFDF8; border: 2px solid #D8E8F8; border-radius: 14px; padding: 8px 10px; text-align: left; }
+.uni-card .uni-img { display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 7px; background: #EFF6FD; }
 .uni-card .uni-name {
   display: block; width: 100%; text-align: left; cursor: pointer; font-family: inherit;
   font-size: 14px; font-weight: 900; color: #3E7CB1; background: none; border: none; padding: 0;
