@@ -1317,13 +1317,14 @@ export function showProfile(onDone, profile = {}, options = {}) {
     logout.classList.toggle('hidden', !editing);
   };
   paint();
+  if (options.kickMsg) error.textContent = options.kickMsg;   // 被顶下线后的提示
   let submitted = false;
   const busy = () => { start.disabled = true; start.textContent = '稍等…'; };
   const resume = () => { if (!editing) start.textContent = mode === 'login' ? '登录' : '出发去Q淘族'; };
-  const done = (semKey, password, serverScore) => {
+  const done = (semKey, password, serverScore, token) => {
     const citySel = document.getElementById('profile-city');
     if (citySel && citySel.value) setHomeCity(citySel.value);   // 档案里选的城市=巡游起点
-    ov.classList.add('hidden'); onDone && onDone(input.value.trim(), semKey, gender, password, serverScore);
+    ov.classList.add('hidden'); onDone && onDone(input.value.trim(), semKey, gender, password, serverScore, token);
   };
   const fail = msg => {
     error.textContent = msg; submitted = false; start.disabled = false; resume();
@@ -1356,13 +1357,13 @@ export function showProfile(onDone, profile = {}, options = {}) {
       }
       if (mode === 'register') {
         const r = await apiPost('/api/register', { username: name, password, gender });
-        if (r.ok || noBackend(r)) return done(semKey, password, 0);
+        if (r.ok || noBackend(r)) return done(semKey, password, 0, r.data && r.data.token);
         return fail((r.data && r.data.error) || '注册失败，换一个名字试试');
       }
       const r = await apiPost('/api/login', { username: name, password });
       if (r.ok) {
         if (r.data && r.data.gender) gender = r.data.gender === 'girl' ? 'girl' : 'boy';
-        return done(semKey, password, r.data && r.data.score);   // 带回账号里的分数
+        return done(semKey, password, r.data && r.data.score, r.data && r.data.token);   // 带回账号里的分数
       }
       if (noBackend(r)) return done(semKey, password);   // 离线也放行，本地存档继续用
       if (r.status === 404) {                            // 没这个名字 → 直接转注册，少点来回

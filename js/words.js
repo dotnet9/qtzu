@@ -719,7 +719,7 @@ export const PER_CHAPTER = 6;
 export const PROLOGUE = BASE_WORDS;
 export const PROLOGUE_CHAPTERS = Math.ceil(BASE_WORDS.length / PER_CHAPTER);
 export const SEM_KEYS = Object.keys(CURRICULUM);
-export const BOOK_LABEL = sem => BOOK_LABELS[sem] || sem;
+export const BOOK_LABEL = sem => (CURRICULUM[sem] && CURRICULUM[sem].name) || BOOK_LABELS[sem] || sem;   // 全称：如「四年级上册」（界面不用简写）
 // 区域中文名（主岛 + 海岛一起查）
 export const ZONE_NAMES = {
   meadow: '出生草甸', orchard: '阳光果园', windmill: '风车田',

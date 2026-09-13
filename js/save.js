@@ -26,7 +26,7 @@ function fresh() {
     book: { sem: null, units: {} }, // 课本：选中学期 + 单元成绩 {'3a#0': {scores:[..], done:true}}
     intro: false,
     playSeconds: 0,
-    profile: { username: '', password: '', registered: false, score: 0, sessionScore: 0, gender: 'boy', stars: 0, city: 'beijing',
+    profile: { username: '', password: '', registered: false, score: 0, sessionScore: 0, gender: 'boy', stars: 0, city: 'beijing', token: '',
       wear: { hat: '', hatOwned: [], balloon: false, balloonOwned: false, wand: false, wandOwned: false } },
     daily: { day: '', idx: 0, n: 0, done: false },
     milestones: {},    // 已领取的里程碑（collect1=孵满10只、enrolled3b=换过这册）
@@ -55,6 +55,7 @@ function load() {
     if (typeof merged.profile.stars !== 'number') merged.profile.stars = 0;
     // 老存档没有密码字段：留空即可（密码允许为空）
     if (typeof merged.profile.password !== 'string') merged.profile.password = '';
+    if (typeof merged.profile.token !== 'string') merged.profile.token = '';   // 在线会话令牌（单点登录）
     // 是否已建过档案（用来决定是否直接续玩）；老存档默认 false，下次填一次名字即可
     if (typeof merged.profile.registered !== 'boolean') merged.profile.registered = false;
     merged.milestones = d.milestones || {};
@@ -90,7 +91,7 @@ export function pushSaveNow() {
   try {
     fetch('/api/push-save', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
-      body: JSON.stringify({ username: p.username, password: p.password, save: data }),
+      body: JSON.stringify({ username: p.username, password: p.password, token: p.token, save: data }),
     }).catch(() => {});
   } catch (e) { /* ignore */ }
 }
@@ -101,8 +102,9 @@ export async function pullSave() {
   try {
     const res = await fetch('/api/pull-save', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: p.username, password: p.password }),
+      body: JSON.stringify({ username: p.username, password: p.password, token: p.token }),
     });
+    if (res.status === 401) { _kicked(); return false; }   // 已被同名新登录顶下线
     if (!res.ok) return false;
     const out = await res.json();
     if (!out.save || typeof out.save !== 'object') return false;
@@ -450,3 +452,40 @@ export function bumpDaily(id, n = 1) {
 }
 
 export function resetSave() { data = fresh(); save(); }
+
+// ---------- 单点登录：同账号只允许一处在线，后登录顶掉先登录 ----------
+let kickCb = null;
+let hbTimer = null;
+
+export function setToken(t) {
+  data.profile.token = typeof t === 'string' ? t : '';
+  save();
+}
+export function getToken() { return data.profile.token || ''; }
+
+// 被顶下线：清会话 → 存档保留但视为未登录 → 通知 main 弹注册/登录对话框
+function _kicked() {
+  stopHeartbeat();
+  data.profile.token = '';
+  data.profile.registered = false;
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* ignore */ }
+  if (kickCb) kickCb();
+}
+export function onKick(cb) { kickCb = typeof cb === 'function' ? cb : null; }
+
+// 游戏开始后开启心跳（10 秒/次）；同名账号在别处登录 → 服务端 401 → 弹登录框
+export function startHeartbeat() {
+  const p = data.profile;
+  if (!p.registered || !p.username || !p.token) return;   // 没令牌（老存档/离线）不心跳
+  if (hbTimer) return;
+  hbTimer = setInterval(async () => {
+    try {
+      const res = await fetch('/api/heartbeat', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: p.username, token: p.token }),
+      });
+      if (res.status === 401) _kicked();
+    } catch (e) { /* 离线：心跳失败不下线，下次再试 */ }
+  }, 10000);
+}
+export function stopHeartbeat() { clearInterval(hbTimer); hbTimer = null; }

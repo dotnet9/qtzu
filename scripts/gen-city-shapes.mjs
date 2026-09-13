@@ -83,21 +83,21 @@ function simplify(pts, tol) {
 }
 
 function toShape(ring) {
-  // 环 → 简化 → 居中归一化
+  // 环 → 高保真简化（≤3600 点，边缘顺滑）→ 居中归一化，附带真实经纬度中心与尺度
   let pts = ring.map(([x, y]) => [x, y]);
   if (pts.length > 1) {
     const [x0, y0] = pts[0];
     if (Math.hypot(pts[pts.length - 1][0] - x0, pts[pts.length - 1][1] - y0) < 1e-9) pts.pop();
   }
   const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
-  const diag = Math.hypot(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys));
-  pts = simplify(pts, diag * 0.012);
-  if (pts.length < 6) return null;
-  // 控制点数上限：逐步放大容差
-  for (const mul of [0.02, 0.035, 0.055]) {
-    if (pts.length <= 36) break;
+  const diag = Math.hypot(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) || 1;
+  // 高细节：极小容差起步，超出 3600 点上限再逐步放大容差（边缘点数 ≈ 原始数据，视觉顺滑）
+  pts = simplify(pts, diag * 0.0002);
+  for (const mul of [0.0005, 0.001, 0.002, 0.004]) {
+    if (pts.length <= 3600) break;
     pts = simplify(ring.map(([x, y]) => [x, y]).slice(0, -1), diag * mul);
   }
+  if (pts.length < 6) return null;
   const xs2 = pts.map(p => p[0]), ys2 = pts.map(p => p[1]);
   const cx = (Math.min(...xs2) + Math.max(...xs2)) / 2;
   const cz = (Math.min(...ys2) + Math.max(...ys2)) / 2;
@@ -108,21 +108,18 @@ function toShape(ring) {
     Math.round((-(y - cz) / half) * 1000) / 1000,
   ]);
   out.push([out[0][0], out[0][1]]);          // 闭合
-  return out;
+  return { pts: out, ctr: [Math.round(cx * 1000) / 1000, Math.round(cz * 1000) / 1000], halfDeg: Math.round(half * 10000) / 10000 };
 }
 
 (async () => {
-  const prev = existsSync(OUT)
-    ? (() => { try { return JSON.parse(readFileSync(OUT, 'utf8').match(/CITY_SHAPES = (\{[\s\S]*\});/)[1]); } catch { return {}; } })()
-    : {};
-  const shapes = { ...prev };
+  // 全量重生成（高细节版）：不读旧文件做增量，直接覆盖
+  const shapes = {};
   const failed = [], missing = [];
   const entries = Object.entries(ADCODES);
   let done = 0;
   const CONC = 6;
   for (let i = 0; i < entries.length; i += CONC) {
     await Promise.all(entries.slice(i, i + CONC).map(async ([cid, ad]) => {
-      if (shapes[cid]) { done++; return; }         // 已有，跳过（增量）
       try {
         const gj = await fetchBound(ad);
         if (!gj) { missing.push(cid); return; }
@@ -143,18 +140,27 @@ function toShape(ring) {
     process.stdout.write(`\r${done}/${entries.length}`);
   }
   console.log('');
+  // CITY_SHAPES 保持纯数组（city-shape.js/2D 地图兼容）；CITY_GEO 附真实经纬度中心与尺度（全国地图背景用）
   const body = Object.entries(shapes)
-    .map(([k, v]) => `  ${k}: ${JSON.stringify(v)}`)
+    .map(([k, v]) => `  ${k}: ${JSON.stringify(v.pts)}`)
+    .join(',\n');
+  const geo = Object.entries(shapes)
+    .map(([k, v]) => `  ${k}: ${JSON.stringify({ ctr: v.ctr, halfDeg: v.halfDeg })}`)
     .join(',\n');
   const src = `// 城市真实轮廓数据（脚本生成，勿手改）：scripts/gen-city-shapes.mjs
-// 来源：阿里 DataV GeoAtlas 行政边界（简化 ≤36 点，bbox 居中，最长半轴归一 [-1,1]）
+// 来源：阿里 DataV GeoAtlas 行政边界（高保真 ≤3600 点，bbox 居中，最长半轴归一 [-1,1]）
 // 经度 → x，纬度北 → -z。缺失城市由 city-shape.js 回退（SHAPES/blob）。
 export const CITY_SHAPES = {
 ${body},
 };
+// 各城真实地理：ctr=[经度,纬度]（度），halfDeg=最长半轴（度）——全国地图背景按真实位置摆放用
+export const CITY_GEO = {
+${geo},
+};
 `;
   writeFileSync(OUT, src);
-  console.log(`写入 ${OUT}：${Object.keys(shapes).length} 城`);
+  const nPts = Object.values(shapes).reduce((a, v) => a + v.pts.length, 0);
+  console.log(`写入 ${OUT}：${Object.keys(shapes).length} 城，共 ${nPts} 个边缘点（平均 ${Math.round(nPts / Math.max(1, Object.keys(shapes).length))}/城）`);
   if (missing.length) console.log('无边界（走回退）:', missing.join(', '));
   if (failed.length) console.log('拉取失败（可重跑补）:', failed.join(', '));
 })();

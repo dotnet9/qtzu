@@ -13,6 +13,35 @@ const ROOT = path.resolve(__dirname, '..');
 const BOARD_FILE = path.join(__dirname, 'leaderboard.json');
 const ACCOUNTS_FILE = path.join(__dirname, 'accounts.json');
 const SAVES_FILE = path.join(__dirname, 'saves.json');   // 跨设备存档（push-save/pull-save）
+const SESSIONS_FILE = path.join(__dirname, 'sessions.json'); // 在线会话：同账号只允许一处在线
+
+// ---------- 在线会话（单点登录：后登录的顶掉先登录的） ----------
+// sessions.json 持久化，服务重启不误踢；新登录覆盖旧令牌，旧会话心跳即失效
+const SESSIONS = (() => {
+  try {
+    const obj = JSON.parse(fs.readFileSync(SESSIONS_FILE, 'utf8'));
+    return obj && typeof obj === 'object' && !Array.isArray(obj) ? obj : {};
+  } catch (e) { return {}; }
+})();
+function saveSessions() {
+  try {
+    const tmp = SESSIONS_FILE + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(SESSIONS), 'utf8');
+    fs.renameSync(tmp, SESSIONS_FILE);
+  } catch (e) { /* 写失败不阻断登录 */ }
+}
+function newSession(username) {
+  const token = crypto.randomBytes(16).toString('hex');
+  SESSIONS[username] = { token, t: Date.now() };
+  saveSessions();
+  return token;
+}
+// token 存在且与当前会话不符 = 已被顶下线
+function isKicked(username, token) {
+  if (!token) return false;                       // 老客户端没令牌：不误伤
+  const s = SESSIONS[username];
+  return !!(s && s.token !== token);
+}
 // 老账号（功能上线前就存在排行榜里、没设过密码的）按“空密码”处理
 const LEGACY_PASSWORD = '';
 
@@ -257,7 +286,8 @@ const server = http.createServer(async (req, res) => {
       const gender = body.gender === 'girl' ? 'girl' : 'boy';
       accounts[username] = { pwd: hashPwd(username, password), gender, createdAt: Date.now() };
       writeAccounts(accounts);
-      sendJson(res, 201, { username, gender, score: 0 });
+      const token = newSession(username);   // 单点登录：新会话顶掉旧会话
+      sendJson(res, 201, { username, gender, score: 0, token });
       log(req, 201, 'registered');
       return;
     }
@@ -289,7 +319,8 @@ const server = http.createServer(async (req, res) => {
         log(req, 401, 'bad pwd');
         return;
       }
-      sendJson(res, 200, { username, gender: acc.gender === 'girl' ? 'girl' : genderOf(username), score: scoreOf(username) });
+      const token = newSession(username);   // 单点登录：本次登录顶掉该账号其他设备
+      sendJson(res, 200, { username, gender: acc.gender === 'girl' ? 'girl' : genderOf(username), score: scoreOf(username), token });
       log(req, 200, 'login ok');
       return;
     }
@@ -348,6 +379,11 @@ const server = http.createServer(async (req, res) => {
         log(req, 400, 'invalid score');
         return;
       }
+      if (isKicked(username, body.token)) {
+        sendJson(res, 401, { error: 'kicked' });
+        log(req, 401, 'kicked (score)');
+        return;
+      }
       // 记账必须带对密码，否则别人用同名就能改你的分数
       const accounts = readAccounts();
       const acc = accounts[username];
@@ -368,9 +404,22 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // 心跳：每 10 秒一次，令牌被顶（同名新登录）时立即回 401，客户端弹登录框
+    if (pathname === '/api/heartbeat' && req.method === 'POST') {
+      const body = await parseBody(req, res); if (!body) return;
+      const username = String((body && body.username) != null ? body.username : '').trim().slice(0, 20);
+      if (!username) { sendJson(res, 400, { error: 'invalid' }); return; }
+      if (isKicked(username, body.token)) { sendJson(res, 401, { error: 'kicked' }); log(req, 401, `${username} kicked`); return; }
+      sendJson(res, 200, { ok: true });
+      return;
+    }
+
     // 上传完整存档（登录状态下静默双写；换设备登录后 pull-save 拉回）
     if (pathname === '/api/push-save' && req.method === 'POST') {
       const body = await parseBody(req, res); if (!body) return;
+      if (isKicked(String((body && body.username) != null ? body.username : '').trim().slice(0, 20), body && body.token)) {
+        sendJson(res, 401, { error: 'kicked' }); log(req, 401, 'kicked (push-save)'); return;
+      }
       const username = authSave(body);
       if (!username) { sendJson(res, 401, { error: '请先登录' }); log(req, 401, 'unauthorized save'); return; }
       const save = body.save;
@@ -388,6 +437,9 @@ const server = http.createServer(async (req, res) => {
     // 拉取服务器存档（登录后立即调，与本地合并）
     if (pathname === '/api/pull-save' && req.method === 'POST') {
       const body = await parseBody(req, res); if (!body) return;
+      if (isKicked(String((body && body.username) != null ? body.username : '').trim().slice(0, 20), body && body.token)) {
+        sendJson(res, 401, { error: 'kicked' }); log(req, 401, 'kicked (pull-save)'); return;
+      }
       const username = authSave(body);
       if (!username) { sendJson(res, 401, { error: '请先登录' }); log(req, 401, 'unauthorized save'); return; }
       const rec = readSaves()[username];

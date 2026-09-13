@@ -21,3 +21,4 @@ Thumbs.db
 
 # AI 助手工作区（本地数据）
 .codebuddy/
+scripts/sessions.json

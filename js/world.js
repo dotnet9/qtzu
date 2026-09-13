@@ -375,7 +375,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   // ---- 大海（全岛外圈 + 群岛） ----
   const seaMat = M('#4A9ED9', { rough: 0.32 });
   const sea = new THREE.Mesh(new THREE.PlaneGeometry(420, 420).rotateX(-Math.PI / 2), seaMat);
-  sea.position.y = -0.14;
+  sea.position.y = -0.5;   // 压到全国地图底图之下：城市巡游时外围显示的是地图纸面，不是海
   scene.add(sea);
   world.anim.sea = sea;
   // 岛边的白色浪花圈
@@ -876,11 +876,61 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       for (let i = 0; i < uv.count; i++) {
         uv.setXY(i, (pos.getX(i) - minX) / (maxX - minX), 1 - (pos.getY(i) - minZ) / (maxZ - minZ));
       }
-      const top0 = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: cityIslandTexture(color, isl.level, pts), roughness: 0.95 }));
+      const top0 = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: cityIslandTexture(color, isl.level, pts), roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }));
       top0.rotation.x = -Math.PI / 2;
       top0.position.y = 0.02;
       top0.receiveShadow = true;
       grp.add(top0);
+      // CITY_FRAME
+      {
+        const bw = Math.max(0.8, r * 0.012);
+        const fpts = [];
+        for (let i = 0; i < pts.length - 1; i++) fpts.push(new THREE.Vector3(pts[i][0], 0.12, pts[i][1]));
+        const curve = new THREE.CatmullRomCurve3(fpts, true);
+        const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, Math.min(1500, fpts.length * 3), bw, 6, true), new THREE.MeshStandardMaterial({ color: 0xFFF3D9, roughness: 0.8 }));
+        grp.add(tube);
+        // 边内侧随机种树（两排）：树干+球冠，合并画法简单化——逐棵小 Group 太重，用 InstancedMesh 也不必要，直接撒低模树
+        const trunkM = new THREE.MeshStandardMaterial({ color: 0x8A6B4A, roughness: 1 });
+        const leafM = new THREE.MeshStandardMaterial({ color: 0x5FA05A, roughness: 1 });
+        const trunkG = new THREE.CylinderGeometry(0.12, 0.18, 1.6, 5);
+        const leafG = new THREE.SphereGeometry(0.9, 7, 6);
+        const N = Math.min(220, Math.round(pts.length * 0.8));
+        const trunks = new THREE.InstancedMesh(trunkG, trunkM, N), leaves = new THREE.InstancedMesh(leafG, leafM, N);
+        const m4 = new THREE.Matrix4();
+        let ti = 0;
+        const inPoly = (px, pz) => {
+          let inside = false;
+          for (let i = 0, j = pts.length - 2; i < pts.length - 1; j = i++) {
+            const xi = pts[i][0], zi = pts[i][1], xj = pts[j][0], zj = pts[j][1];
+            if (((zi > pz) !== (zj > pz)) && (px < (xj - xi) * (pz - zi) / (zj - zi) + xi)) inside = !inside;
+          } return inside; };
+        let seedN = r;
+        const rnd = () => (seedN = (seedN * 9301 + 49297) % 233280) / 233280;
+        for (let i = 0; i < pts.length - 1 && ti < N; i++) {
+          const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
+          const el = Math.hypot(bx - ax, bz - az) || 1;
+          let nx = -(bz - az) / el, nz = (bx - ax) / el;
+          if (ax * ax + az * az > (ax + nx) ** 2 + (az + nz) ** 2) { nx = -nx; nz = -nz; }
+          const cnt = Math.max(1, Math.round(el / (r * 0.06)));
+          for (let j2 = 0; j2 < cnt && ti < N; j2++) {
+            const t2 = (j2 + 0.5) / cnt, d2 = bw * 2.5 + rnd() * r * 0.05;
+            const px2 = ax + (bx - ax) * t2 - nx * d2, pz2 = az + (bz - az) * t2 - nz * d2;
+
+            if (!inPoly(px2, pz2)) continue;
+            const sc = 0.8 + rnd() * 0.9;
+            m4.makeScale(sc, sc, sc);
+            m4.setPosition(px2, 0.8 * sc, pz2);
+            trunks.setMatrixAt(ti, m4);
+            m4.makeScale(sc, sc, sc);
+            m4.setPosition(px2, 1.6 * sc + 0.5 * sc, pz2);
+            leaves.setMatrixAt(ti, m4);
+            ti++;
+          }
+        }
+        trunks.count = ti; leaves.count = ti;
+        trunks.instanceMatrix.needsUpdate = true; leaves.instanceMatrix.needsUpdate = true;
+        grp.add(trunks); grp.add(leaves);
+      }
       // 岩裙：沿轮廓边垂直下垂到 -7，再收到中心形成倒锥岩底
       const skirtPos = [], skirtIdx = [];
       const sink = -3.2;
@@ -968,7 +1018,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       // 圆形兜底地面：有轮廓时顶面已由 ShapeGeometry 承担，不再叠加圆面
       if (!isl.shape) {
       const top0 = new THREE.Mesh(new THREE.CircleGeometry(r - 0.35, 40).rotateX(-Math.PI / 2),
-        new THREE.MeshStandardMaterial({ map: cityIslandTexture(color, isl.level), roughness: 0.95 }));
+        new THREE.MeshStandardMaterial({ map: cityIslandTexture(color, isl.level), roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }));
       top0.position.y = 0.02;
       top0.receiveShadow = true;
       grp.add(top0);

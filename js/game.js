@@ -5,7 +5,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
 import { WORD_MAP, ZONE_NAMES, PER_CHAPTER, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
-import { CITY_MAP, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
+import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { getCityShape } from './city-shape.js';
 import { NPCManager } from './npcs.js';
 import { cityLandmark } from './world.js';
@@ -17,9 +17,11 @@ import * as ui from './ui.js';
 import { startListening, stopListening, matchAlt, voiceSupported, isVoiceBroken, markVoiceBroken } from './speech.js';
 import { speak, sfx, stopSpeaking, setBgmMood, isSpeaking } from './audio.js';
 import { ensureWhisper, recognizeBlob, preloadWhisper, loadPercent } from './whisper.js';
+import { buildChinaMap } from './china-map.js';
 import { CURRICULUM } from './curriculum.js';
 
-const PLAYER_SPEED = 4.4;
+const PLAYER_SPEED = 7.3;  // 城市地图 ×5 后回调：按用户反馈地图缩为 1/3，移速同步 1/3
+const CITY_SCALE = 1.67;   // 城市地图尺度倍率（×5 后按反馈缩为 1/3 ≈ ×1.67）
 // 情景单词点：词与场景实物绑定记忆（走近弹气泡并念一遍；只启用词库里真实存在的词）
 const SCENE_WORDS = [
   { x: -20, z: -14, en: 'apple', emoji: '🍎' },
@@ -95,9 +97,9 @@ export class Game {
       const c = CITY_MAP[cid];
       const lv = c.level || {};
       const a = (i / route.length) * Math.PI * 2 + 0.35;
-      const dist = 88 + (i % 3) * 18;                      // 全尺寸岛外推
+      const dist = 147 + (i % 3) * 30;                     // 岛间距 ÷3 跟随城市尺度（×5 后回调 1/3）
       const v0 = cityVariant(c, 0);
-      const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)));   // 大地图：面积约放大10倍，牌子/街道真正铺开
+      const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)) * CITY_SCALE);   // 大地图：×5 尺度，牌子/街道真正铺开
       const shape = getCityShape(cid, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);   // 局部多边形
       return {
         key: cid, uid: cid + '#' + i, name: c.name, en: c.en, emoji: v0.emoji, color: c.color,
@@ -162,8 +164,15 @@ export class Game {
 
   _initScene() {
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 0.1, 260);
+    this.camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 0.5, 6000);   // near 0.5 提升远距深度精度（防大平面 z-fighting），远平面 6000 见全国地图
     this.world = buildWorld(this.scene, this.islands, { focus: Math.max(0, this.chapterIndex(this.hatchedInScope())) });   // 只精建当前关±1 的城市，其余轻量占位
+    // 全国地图背景：其他城市按真实位置平铺（边界+名称），当前城锚定到舞台中心
+    if (this.cityTour) {
+      const names = Object.fromEntries(CITIES.map(c => [c.id, c.name]));
+      const st0 = this._currentStage();
+      this.chinaMap = buildChinaMap(this.scene, st0 && st0.key, names);
+      if (st0) this.chinaMap.anchor(st0.key, st0.cx, st0.cz);
+    }
     // 各向异性过滤按显卡实际上限收口：手机一般只支持 4~8，写死 16 会被驱动忽略导致远景摩尔条纹
     const maxAniso = this.renderer.capabilities.getMaxAnisotropy();
     this.scene.traverse(o => {
@@ -312,7 +321,13 @@ export class Game {
         else if (this.cityTour && this._signEggSpots && this._signEggSpots.length && w.zone !== 'sky') {
           // 一部分蛋按 seed 放到牌子旁边：找牌子=找蛋，探索感更强
           const st = this._currentStage();
-          const spot = this._signEggSpots[this._hashStr(this.sem + ':' + st.key + ':' + w.id) % this._signEggSpots.length];
+          // 同一位子不重复放蛋（分散）：从 seed 位起找第一个空闲点
+          const spots = this._signEggSpots;
+          const used = (this._usedEggSpots = this._usedEggSpots || new Set());
+          let si = this._hashStr(this.sem + ':' + st.key + ':' + w.id) % spots.length;
+          for (let k = 0; k < spots.length && used.has(si); k++) si = (si + 1) % spots.length;
+          used.add(si);
+          const spot = spots[si];
           egg.group.position.set(spot.x, 0, spot.z);
           egg.baseY = 0;
         }
@@ -410,8 +425,8 @@ export class Game {
       if (/^Key[WASD]$|^Arrow/.test(e.code)) this._clearMoveTarget(); // 手动方向一按，自动走路让位
       if (e.code === 'KeyE') this._interact();
       // 键盘缩放视角：+/= 拉近，-/_ 拉远（滚轮之外的第二种手感）
-      if (e.code === 'Equal' || e.code === 'NumpadAdd') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget - 3.5, 2.8, 110);
-      if (e.code === 'Minus' || e.code === 'NumpadSubtract') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + 3.5, 2.8, 110);
+      if (e.code === 'Equal' || e.code === 'NumpadAdd') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget - 17.5, 2.8, 550);
+      if (e.code === 'Minus' || e.code === 'NumpadSubtract') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + 17.5, 2.8, 550);
       if (e.code === 'Tab') { e.preventDefault(); this._openSummon(); }
       if (e.code === 'Space') {
         e.preventDefault();
@@ -458,7 +473,7 @@ export class Game {
         if (this.touchCam.size === 2) {
           const [a, b] = [...this.touchCam.values()];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (this.pinchDist > 0) this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * this.pinchDist / d, 2.8, 110);
+          if (this.pinchDist > 0) this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * this.pinchDist / d, 2.8, 550);
           this.pinchDist = d;
         }
       }
@@ -482,7 +497,7 @@ export class Game {
     addEventListener('pointercancel', endPointer);
     this.canvas.addEventListener('wheel', e => {
       if (this.lockInput) return;
-      this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + e.deltaY * 0.018, 2.8, 110);
+      this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + e.deltaY * 0.09, 2.8, 550);
     }, { passive: true });
 
     // ---- 虚拟摇杆 ----
@@ -595,11 +610,11 @@ export class Game {
       const dc = Math.hypot(pt.x, pt.z);
       if (dc > 48) { pt.x *= 48 / dc; pt.z *= 48 / dc; }   // 别点到世界外面去
     }
-    // 点一下走一步：目标点最远只取距玩家 2.2 米处，走完这步再点下一步（孩子自己探索）
+    // 点一下走一步：目标点最远只取距玩家 11 米处（×5 跟随地图放大），走完这步再点下一步（孩子自己探索）
     const pp = this.player.position;
     const ddx = pt.x - pp.x, ddz = pt.z - pp.z;
     const dd = Math.hypot(ddx, ddz);
-    const STEP = 2.2;
+    const STEP = 3.7;
     if (dd > STEP) { pt.x = pp.x + ddx / dd * STEP; pt.z = pp.z + ddz / dd * STEP; }
     this.moveTarget = { x: pt.x, z: pt.z };
     this.moveMarker.position.set(pt.x, groundY + 0.06, pt.z);
@@ -1608,6 +1623,7 @@ export class Game {
     this.player.position.set(cur.cx, 0, cur.cz - cur.r * 0.35);
     this._clampCityPos(this.player.position, cur);   // 有机轮廓下出生点也可能在海上
     this._collide();   // 同上：出生点撞进牌子/校门碰撞体就立即推出
+    if (this.chinaMap) this.chinaMap.anchor(cur.key, cur.cx, cur.cz);   // 全国地图跟随当前城锚定
     this.onIsle = false;
     this._clearMoveTarget();
   }
@@ -1625,6 +1641,7 @@ export class Game {
     const grp = this.signGroup;
     while (grp.children.length) grp.remove(grp.children[0]);
     this._signEggSpots = [];
+    this._usedEggSpots = null;   // 换城重置蛋位占用
     this._signList = [];
     if (!this.cityTour || !stage || !stage.city) return;
     const city = stage.city;
@@ -2252,7 +2269,27 @@ export class Game {
     this._occT = (this._occT || 0) - dt;
     if (this._occT <= 0) {
       this._occT = 0.15;   // 每 0.15 秒检测一次就够，别每帧射
-      this._occK = this._occlusionK(target, v);
+      // 关键：用"未受遮挡修正"的全距理想机位做检测。若用带 _occSmooth 的机位，
+      // 修正量会改变射线 → 命中状态随之翻转 → 修正量再变……自激振荡（画面不断晃动）。
+      const cp0 = Math.cos(this.camPitch);
+      const vo = this._occVo = (this._occVo || new THREE.Vector3());
+      vo.set(
+        target.x + Math.sin(this.camYaw) * cp0 * this.camDist,
+        target.y + Math.sin(this.camPitch) * this.camDist + 1.6,
+        target.z + Math.cos(this.camYaw) * cp0 * this.camDist
+      );
+      if (!this.onIsle && vo.y < 1.2) vo.y = 1.2;
+      // 抗抖滞回：射线擦着建筑边/路过的小宠会瞬时命中又脱靶，镜头因此反复抽动。
+      // 瞬时变低忽略，连续两次读到低值才拉近；变清晰立即松开（慢速恢复由下方 occSmooth 插值负责）。
+      const raw = this._occlusionK(target, vo) ?? 1;
+      const cur = this._occK === undefined ? 1 : this._occK;
+      if (raw < cur - 0.04) {
+        this._occLowN = (this._occLowN || 0) + 1;
+        if (this._occLowN >= 2) this._occK = raw;
+      } else {
+        this._occLowN = 0;
+        if (raw > cur) this._occK = raw;
+      }
     }
     if (this._occK === undefined) this._occK = 1;
     // 拉近要快（立刻不被挡），放远要慢（走开后再缓缓回到正常距离）
@@ -2266,10 +2303,10 @@ export class Game {
       target.z + Math.cos(this.camYaw) * cp * dist
     );
     if (!this.onIsle && v.y < 1.2) v.y = 1.2;
-    // 雾距离跟着镜头远近走：拉远镜头后若雾的起点不变，整张地图会被雾刷成灰白色
+    // 雾距离跟着镜头远近走（×2/×4 斜率：拉远到 550 也能看清 2000+ 单位外的全国地图背景）
     if (this.scene.fog) {
-      this.scene.fog.near = 34 + dist;
-      this.scene.fog.far = 142 + dist;
+      this.scene.fog.near = 34 + dist * 2;
+      this.scene.fog.far = 142 + dist * 4;
     }
     this.camera.position.lerp(v, Math.min(1, dt * 7));
     this.camera.lookAt(target.x, target.y + 1.0, target.z);
@@ -3052,9 +3089,9 @@ export class Game {
         const c = CITY_MAP[id];
         const lv = c.level || {};
         const a = (i / this.islands.length) * Math.PI * 2 + 1.1;
-        const dist = 132;
+        const dist = 220;   // ÷3 跟随城市尺度：追加城市放到巡游圈外一层
         const v0 = cityVariant(c, 0);
-        const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)));
+        const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)) * CITY_SCALE);
         const shape = getCityShape(id, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);
         this.islands.push({
           key: id, uid: id + '#' + i, name: c.name, en: c.en, emoji: v0.emoji, color: c.color,

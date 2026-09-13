@@ -59,7 +59,7 @@ if (SHARE.city) {
     if (SHARE.semKey) save.setBookSem(SHARE.semKey);
   }
 } else SHARE.city = '';
-async function begin(name, semKey, gender, password, serverScore) {
+async function begin(name, semKey, gender, password, serverScore, token) {
   if (started) return;
   started = true;
   try {
@@ -70,6 +70,17 @@ async function begin(name, semKey, gender, password, serverScore) {
       save.setUsername(name);
       save.setPassword(password || '');   // 密码允许为空
       save.setRegistered(true);
+      if (token) save.setToken(token);    // 单点登录会话令牌
+    }
+    // 老存档没有令牌：静默补一次登录拿令牌（失败不影响进游戏，只是不参与单点登录）
+    if (save.isRegistered() && save.getUsername() && !save.getToken()) {
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: save.getUsername(), password: save.getPassword() }),
+        });
+        if (res.ok) { const d = await res.json(); if (d.token) save.setToken(d.token); }
+      } catch (e) { /* 离线：跳过 */ }
     }
     if (serverScore != null) save.syncScore(serverScore);   // 换设备登录时补上账号里的分数
     // 换设备/重新登录：拉取服务器存档合并本地（词宠/星星/进度），失败静默走本地
@@ -87,6 +98,7 @@ async function begin(name, semKey, gender, password, serverScore) {
     const game = new Game(canvas);
     game.start();
     window.__game = game; // 调试句柄
+    save.startHeartbeat();   // 单点登录心跳：被同名新登录顶下线时弹登录框
     if (SHARE.city) setTimeout(() => game._handleShareCity && game._handleShareCity(SHARE.city, SHARE.debug), 1600);
   } catch (err) {
     console.error(err);
@@ -124,9 +136,19 @@ autoLocateCity();
 // 启动即预热城市索引（档案卡的城市选择器要用）；begin() 里会按确切参数再初始化一次
 initCities({ homeId: save.getHomeCity(), semKey: save.getBookSem() || '3a', count: 10, username: save.getUsername() }).catch(() => {});
 
+// 单点登录被顶：清会话 → 刷新页面 → 档案卡以登录模式弹出并提示
+save.onKick(() => {
+  try { sessionStorage.setItem('qtzu_kicked', '1'); } catch (e) { /* ignore */ }
+  location.reload();
+});
+let kickMsg = '';
+try {
+  if (sessionStorage.getItem('qtzu_kicked')) { kickMsg = '你的账号在别处登录啦，这里已下线。重新登录就能继续玩～'; sessionStorage.removeItem('qtzu_kicked'); }
+} catch (e) { /* ignore */ }
+
 // 建过档案（有昵称、选好课本）就直接续玩；否则弹窗：有昵称的走登录，没有的走注册
 if (save.getUsername() && save.isRegistered() && CURRICULUM[save.getBookSem()]) begin();
 else ui.showProfile(begin, {
   username: save.getUsername(), password: save.getPassword(), registered: save.isRegistered(),
   semKey: save.getBookSem(), gender: save.getGender(), city: save.getHomeCity(),
-}, { mode: save.getUsername() ? 'login' : 'register' });
+}, { mode: save.getUsername() ? 'login' : 'register', kickMsg });
