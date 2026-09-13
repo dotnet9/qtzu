@@ -33,7 +33,7 @@ const unitFor = (vol, kind, arr) => {
   return `    U('${label}', [${arr.map(e => `'${esc(e)}'`).join(', ')}]),`;
 };
 
-let out = `// 词宠岛 · 课程库（参考人教版 PEP 3-6 年级核心词汇与常用表达，可在本文件直接增删）
+let out = `// Q淘族 · 课程库（参考人教版 PEP 3-6 年级核心词汇与常用表达，可在本文件直接增删）
 // 格式：'单词或短语|中文'，单词/短语都会生成语音并支持跟读评分
 
 const U = (name, words) => ({ name, words });

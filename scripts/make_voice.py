@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-生成词宠岛发音语音，输出到 game/audio/ 并生成 manifest.json：
+生成 Q淘族 发音语音，输出到 audio/ 并生成 manifest.json：
   word/<id>.mp3        单词（正常语速）
   word/<id>_slow.mp3   单词（慢速，保持原音高）
   syl/<syllable>.mp3   音节（慢速，兼容旧功能保留）
@@ -34,7 +34,7 @@ VOICE = "en-US-JennyNeural"
 BASE = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "game", "audio"))
 CONCURRENCY = 4
 SLOW_TEMPO = 0.72           # 慢速倍率（atempo 保音高）
-UA = "WordPetIsland/1.0 (kids edu game; contact: local)"
+UA = "QTZu/1.0 (kids edu game; contact: local)"
 FFMPEG = shutil.which("ffmpeg")
 
 if not FFMPEG:

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-生成词宠岛 favicon：粉紫渐变圆角底 + 超简 Q 版词宠蛋
-保留用户 logo 的配色基因（粉→紫渐变、橙色点点），主体换成游戏核心符号"词宠蛋"。
-输出: game/favicon.ico (16/32/48/64) + game/favicon.png (192, 兼作 apple-touch-icon)
+生成 Q淘族 favicon：粉紫渐变圆角底 + Q 版词宠蛋 + 橙色 Q 徽章
+保留配色基因（粉→紫渐变、橙点），主体为游戏核心符号"词宠蛋"（淘了个蛋）。
+输出: favicon.ico (16/32/48/64) + favicon.png (512 母版) + apple-touch-icon.png (192)
 """
 import os
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 SIZE = 512
 img = Image.new("RGBA", (SIZE, SIZE), (0, 0, 0, 0))
@@ -58,8 +58,20 @@ dot_r = SIZE * 0.038
 d.ellipse([SIZE * 0.78 - dot_r, SIZE * 0.16 - dot_r,
            SIZE * 0.78 + dot_r, SIZE * 0.16 + dot_r], fill=(255, 183, 77, 255))
 
+# ---- 右下角橙色 Q 徽章（品牌字母） ----
+badge_r = SIZE * 0.115
+bx, by = SIZE * 0.76, SIZE * 0.76
+d.ellipse([bx - badge_r, by - badge_r, bx + badge_r, by + badge_r],
+          fill=(255, 152, 0, 255), outline=(255, 255, 255, 255), width=int(SIZE * 0.018))
+try:
+    font = ImageFont.truetype("C:/Windows/Fonts/arialbd.ttf", int(SIZE * 0.13))
+    d.text((bx, by - SIZE * 0.004), "Q", font=font,
+           fill=(255, 255, 255, 255), anchor="mm")
+except OSError:
+    pass  # 字体缺失时徽章保持纯色
+
 # ---- 输出 ----
-out_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "game"))
+out_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 img.save(os.path.join(out_dir, "favicon.png"))                       # 512 母版
 img.resize((192, 192), Image.LANCZOS).save(os.path.join(out_dir, "apple-touch-icon.png"))
 ico_path = os.path.join(out_dir, "favicon.ico")

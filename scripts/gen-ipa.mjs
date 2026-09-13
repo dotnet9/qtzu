@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 词宠岛 · 音标生成（零依赖，数据源 = CMU Pronouncing Dictionary）
+// Q淘族 · 音标生成（零依赖，数据源 = CMU Pronouncing Dictionary）
 //
 // 为什么重写：原 tools/gen_ipa.py 依赖 Python + eng_to_ipa，本机跑不了；而且 eng_to_ipa
 // 的重音位置有个别偏差（如 umbrella 生成 ˈəmˌbrɛlə）。本脚本直接读 CMUdict 的

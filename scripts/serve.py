@@ -106,13 +106,13 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
                 "top": sorted(rows, key=lambda x: -int(x.get("score", 0)))[:10],
             })
         if path == "/admin":
-            html = """<!DOCTYPE html><html lang="zh-CN"><meta charset="utf-8"><title>词宠岛 · 运营看板</title>
+            html = """<!DOCTYPE html><html lang="zh-CN"><meta charset="utf-8"><title>Q淘族 · 运营看板</title>
 <style>body{font-family:"Microsoft YaHei",sans-serif;background:#FFF7E8;margin:24px;color:#5C4A38}
 h2{color:#C4577E}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
 .cell{background:#fff;border:2px solid #FFE0B8;border-radius:14px;padding:14px;text-align:center}
 .cell b{display:block;font-size:26px;color:#C4577E}table{width:100%;border-collapse:collapse;background:#fff}
 td,th{border:1px solid #FFE0B8;padding:8px 12px;text-align:left}</style>
-<h2>🏝️ 词宠岛 · 运营看板</h2><div class="grid" id="g"></div>
+<h2>🧺 Q淘族 · 运营看板</h2><div class="grid" id="g"></div>
 <h3>排行榜 Top 10</h3><table id="t"></table>
 <script>fetch('/api/stats').then(r=>r.json()).then(d=>{
 document.getElementById('g').innerHTML=[['注册账号',d.registered],['已云同步存档',d.syncedSaves],['上榜玩家',d.players],['累计积分',d.totalScore]]

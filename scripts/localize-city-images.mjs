@@ -26,7 +26,7 @@ async function download(url, dir) {
     const ctl = new AbortController();
     const t = setTimeout(() => ctl.abort(), 25000);
     try {
-      const res = await fetch(url, { signal: ctl.signal, headers: { 'User-Agent': 'WordPetIslandBot/1.0 (kids edu game)' } });
+      const res = await fetch(url, { signal: ctl.signal, headers: { 'User-Agent': 'QTZuBot/1.0 (kids edu game)' } });
       if (res.status === 429) throw Object.assign(new Error('429'), { rate: true });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const buf = Buffer.from(await res.arrayBuffer());

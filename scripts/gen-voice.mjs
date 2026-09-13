@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 词宠岛 · 语音批量生成（零依赖，直连 Edge TTS WebSocket）
+// Q淘族 · 语音批量生成（零依赖，直连 Edge TTS WebSocket）
 //
 // 背景：仓库自带的 tools/make_voice.py 需要 Python + edge-tts + ffmpeg；在没有 Python
 // 的机器上无法为新词补发音。本脚本用 Node 内置 tls 走 Edge 神经语音，输出就是 mp3，

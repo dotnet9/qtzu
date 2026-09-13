@@ -1,4 +1,4 @@
-// 词宠岛后端：静态文件 + 排行榜接口（纯 Node，无需任何依赖）
+// Q淘族后端：静态文件 + 排行榜接口（纯 Node，无需任何依赖）
 // 用法: node scripts/serve.js [端口]      端口默认 6000
 // 接口: GET /api/leaderboard   POST /api/score   POST /api/register   POST /api/login   POST /api/update   OPTIONS /api/*
 // 账号: 昵称唯一，密码可以为空；设了密码后换账号登录就要验证。服务端 MD5 迭代 3 次（带昵称加盐）后保存，不存明文
@@ -354,7 +354,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`词宠岛后端已启动: http://127.0.0.1:${PORT}`);
+  console.log(`Q淘族后端已启动: http://127.0.0.1:${PORT}`);
   console.log(`  静态目录 : ${ROOT}`);
   console.log(`  排行榜   : ${BOARD_FILE}`);
   console.log(`  账号     : ${ACCOUNTS_FILE}（密码 MD5×3 加盐保存，不存明文）`);
