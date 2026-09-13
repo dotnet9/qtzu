@@ -1,0 +1,55 @@
+{
+  "city": "urumqi",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "新疆大学",
+      "en": "Xinjiang University",
+      "tag": "211",
+      "founded": 1924,
+      "site": "https://www.xju.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "新疆医科大学",
+      "en": "Xinjiang Medical University",
+      "tag": null,
+      "founded": 1954,
+      "site": "https://www.xjmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "新疆师范大学",
+      "en": "Xinjiang Normal University",
+      "tag": null,
+      "founded": 1978,
+      "site": "https://www.xjnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "新疆农业大学",
+      "en": "Xinjiang Agricultural University",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.xjau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\urumqi\\universities.json"
+}

@@ -1,0 +1,82 @@
+{
+  "id": "guiyang",
+  "name": "贵阳",
+  "en": "Guiyang",
+  "color": "#5AB88A",
+  "landmark": "mountain",
+  "region": "西南",
+  "importance": "贵州省会 · 大数据中心之城",
+  "isCoastal": false,
+  "history": "贵阳因古时盛产竹子筑城得名，喀斯特山水造就「山中有城，城中有山」。甲秀楼立于南明河上四百年，青岩古镇明清风貌保存完好。凉爽气候让贵阳成为中国大数据产业的先行地，被称为「中国数谷」。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiaxiu%20Tower%20Guiyang.jpg?width=960",
+      "caption": "甲秀楼"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingyan%20Ancient%20Town.jpg?width=960",
+      "caption": "青岩古镇"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qianling%20Park.jpg?width=960",
+      "caption": "黔灵山"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "💻",
+      "intro": "中国数谷：大数据中心藏在凉快的山谷里",
+      "introEn": "Guiyang is China's big data valley.",
+      "words": [
+        "computer"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🍲",
+      "intro": "酸汤鱼酸得开胃，丝娃娃包得可爱",
+      "introEn": "Sour soup fish opens your appetite!",
+      "words": [
+        "fish",
+        "food"
+      ],
+      "deco": "chili"
+    },
+    {
+      "emoji": "⛰️",
+      "intro": "甲秀楼立在河中央四百年",
+      "introEn": "Jiaxiu Tower stands in the river.",
+      "words": [
+        "tower",
+        "water"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "mountain",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\city.json"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "lhasa",
+  "name": "拉萨",
+  "en": "Lhasa",
+  "color": "#C05A5A",
+  "landmark": "mountain",
+  "region": "西南",
+  "importance": "西藏首府 · 日光城 · 圣地",
+  "isCoastal": false,
+  "history": "拉萨 1300 多年前因大昭寺而兴，「先有大昭寺，后有拉萨城」。布达拉宫是世界上海拔最高的宫堡建筑群，1994 年列入世界遗产。全年日照 3000 小时以上，人称「日光城」。转经筒、酥油茶与磕长头的朝圣者构成世界屋脊的精神图景。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potala%20Palace%20Lhasa.jpg?width=960",
+      "caption": "布达拉宫"
+    },
+    {
+      "img": "data/cities/lhasa/img/Jokhang_Temple.jpg",
+      "caption": "大昭寺"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Namtso%20Lake.jpg?width=960",
+      "caption": "纳木错"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏔️",
+      "intro": "布达拉宫立在红山上 1300 年",
+      "introEn": "The Potala Palace stood for 1300 years.",
+      "words": [
+        "palace",
+        "mountain"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "☀️",
+      "intro": "日光城：一年有 3000 小时阳光",
+      "introEn": "The Sunlight City shines 3000 hours a year.",
+      "words": [
+        "sun"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🙏",
+      "intro": "八廓街上转经的人们绕着大昭寺走",
+      "introEn": "Pilgrims circle the Jokhang Temple.",
+      "words": [
+        "temple"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "mountain",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lhasa\\city.json"
+}

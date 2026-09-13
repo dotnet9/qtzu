@@ -1,0 +1,77 @@
+{
+  "city": "xiamen",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "鼓浪屿",
+      "en": "Gulangyu",
+      "desc": "世界文化遗产，钢琴之岛与万国建筑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gulangyu%2C%20Xiamen.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "厦门大学",
+      "en": "Xiamen University",
+      "desc": "中国最美大学，芙蓉隧道涂鸦与上弦场",
+      "img": "data/cities/xiamen/img/Xiamen_University.jpg",
+      "bearing": "S"
+    },
+    {
+      "name": "南普陀寺",
+      "en": "Nanputuo Temple",
+      "desc": "千年名刹，紧邻厦大素饼闻名",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanputuo%20Temple.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "环岛路",
+      "en": "Island Ring Road",
+      "desc": "海边骑行大道，椰风寨看日落",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xiamen%20Island%20Ring%20Road.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "曾厝垵",
+      "en": "Zengcuoan",
+      "desc": "「中国最文艺渔村」，民宿小吃街",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zengcuoan.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "中山路步行街",
+      "en": "Zhongshan Road",
+      "desc": "南洋骑楼建筑群，闽南商业老街",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhongshan%20Road%20Xiamen.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "胡里山炮台",
+      "en": "Hulishan Fortress",
+      "desc": "1894 年建，克虏伯大炮是世界之最",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hulishan%20Fortress.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "沙坡尾",
+      "en": "Shapowei",
+      "desc": "老渔港变身艺术街区，猫街与市集",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shapowei.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "集美学村",
+      "en": "Jimei School Village",
+      "desc": "嘉庚建筑红砖燕尾脊，龙舟池畔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jimei%20School%20Village.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "五缘湾湿地公园",
+      "en": "Wuyuan Bay Wetland",
+      "desc": "城市绿肺，黑天鹅游弋红树林",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuyuan%20Bay.jpg?width=640",
+      "bearing": "NE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xiamen\\scenes.json"
+}

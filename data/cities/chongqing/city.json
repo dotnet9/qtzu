@@ -1,0 +1,82 @@
+{
+  "id": "chongqing",
+  "name": "重庆",
+  "en": "Chongqing",
+  "color": "#B4533A",
+  "landmark": "mountain",
+  "region": "西南",
+  "importance": "直辖市 · 国家中心城市 · 山城江城",
+  "isCoastal": false,
+  "history": "重庆有三千年历史，因嘉陵江古称渝水简称「渝」。南宋置重庆府取「双重喜庆」之意，得名八百年。抗战时期作为陪都见证了民族危亡与坚守。长江与嘉陵江在朝天门交汇，轻轨穿楼、立体魔幻的 8D 城市地形让它成为网红之都。作为中西部唯一的直辖市，它是长江上游的经济金融中心。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hongya%20Cave%2C%20Chongqing.jpg?width=960",
+      "caption": "洪崖洞夜景"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jialing%20River%20Chongqing.jpg?width=960",
+      "caption": "两江交汇"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ciqikou%20Ancient%20Town.jpg?width=960",
+      "caption": "磁器口古镇"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🌶️",
+      "intro": "火锅之都！红油咕嘟咕嘟冒着泡",
+      "introEn": "Chongqing hotpot is super spicy!",
+      "words": [
+        "hot",
+        "spicy"
+      ],
+      "deco": "chili"
+    },
+    {
+      "emoji": "🌉",
+      "intro": "山城夜景像星星落进了江里",
+      "introEn": "The mountain city glows at night.",
+      "words": [
+        "night",
+        "light"
+      ],
+      "deco": "chili"
+    },
+    {
+      "emoji": "🚟",
+      "intro": "轻轨从楼房里穿过去！8D 魔幻城市",
+      "introEn": "The train goes through a building!",
+      "words": [
+        "train"
+      ],
+      "deco": "chili"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "mountain",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chongqing\\city.json"
+}

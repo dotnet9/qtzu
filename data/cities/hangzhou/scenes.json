@@ -1,0 +1,77 @@
+{
+  "city": "hangzhou",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "西湖",
+      "en": "West Lake",
+      "desc": "世界文化遗产，苏堤春晓断桥残雪十景闻名",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/West%20Lake%2C%20Hangzhou%20(2011).jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "灵隐寺",
+      "en": "Lingyin Temple",
+      "desc": "东晋古刹，飞来峰石刻佛教艺术宝库",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lingyin%20Temple%2C%20Hangzhou.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "雷峰塔",
+      "en": "Leifeng Pagoda",
+      "desc": "白娘子传说的落日宝塔，西湖十景之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Leifeng%20Pagoda.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "千岛湖",
+      "en": "Qiandao Lake",
+      "desc": "1078 座岛屿的人间仙境，农夫山泉水源地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qiandao%20Lake.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "京杭大运河",
+      "en": "Grand Canal",
+      "desc": "世界最长运河，拱宸桥见证漕运千年",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Canal%20Hangzhou.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "宋城",
+      "en": "Songcheng",
+      "desc": "「给我一天，还你千年」的宋文化主题公园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Songcheng.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "西溪湿地",
+      "en": "Xixi Wetland",
+      "desc": "城市中的湿地秘境，芦苇摇曳水道纵横",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xixi%20Wetland.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "六和塔",
+      "en": "Liuhe Pagoda",
+      "desc": "钱塘江畔的镇潮古塔，观潮胜地",
+      "img": "data/cities/hangzhou/img/Liuhe_Pagoda.jpg",
+      "bearing": "SE"
+    },
+    {
+      "name": "龙井村",
+      "en": "Longjing Village",
+      "desc": "狮峰龙井原产地，茶山云雾缭绕",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Longjing%20tea%20village.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "河坊街",
+      "en": "Hefang Street",
+      "desc": "清河坊历史街区，胡庆余堂药香百年",
+      "img": "data/cities/hangzhou/img/Hefang_Street.jpg",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hangzhou\\scenes.json"
+}

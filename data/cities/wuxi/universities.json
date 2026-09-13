@@ -1,0 +1,55 @@
+{
+  "city": "wuxi",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "江南大学",
+      "en": "Jiangnan University",
+      "tag": "211",
+      "founded": 1902,
+      "site": "https://www.jiangnan.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "无锡学院",
+      "en": "Wuxi University",
+      "tag": null,
+      "founded": 2002,
+      "site": "https://www.wxu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "无锡职业技术学院",
+      "en": "Wuxi Institute of Technology",
+      "tag": null,
+      "founded": 1959,
+      "site": "https://www.wxit.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "太湖学院",
+      "en": "Taihu College",
+      "tag": null,
+      "founded": 2002,
+      "site": "https://www.thu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuxi\\universities.json"
+}

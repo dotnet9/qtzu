@@ -1,0 +1,77 @@
+{
+  "city": "dalian",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "星海广场",
+      "en": "Xinghai Square",
+      "desc": "亚洲最大城市广场，百年城雕面向大海",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xinghai%20Square%20Dalian.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "滨海路",
+      "en": "Binhai Road",
+      "desc": "30 公里山海景观路，北大桥到棒棰岛步步是景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Binhai%20Road%20Dalian.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "老虎滩海洋公园",
+      "en": "Laohutan Ocean Park",
+      "desc": "极地馆海豚表演，国家 5A 景区",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laohutan%20Ocean%20Park.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "金石滩",
+      "en": "Golden Pebble Beach",
+      "desc": "「神力雕塑公园」海蚀奇石，地质博物馆",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinshitan%20Beach.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "旅顺口",
+      "en": "Lüshunkou",
+      "desc": "半部近代史，日俄战争遗迹与军港公园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lushun%20Port.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "棒棰岛",
+      "en": "Bangchui Island",
+      "desc": "国宾馆海滨，细沙碧水礁石如棒槌",
+      "img": "data/cities/dalian/img/Bangchui_Island.jpg",
+      "bearing": "SE"
+    },
+    {
+      "name": "渔人码头",
+      "en": "Fisherman Wharf",
+      "desc": "欧式渔港风情，老虎滩旁的海边小镇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dalian%20Fisherman%20Wharf.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "俄罗斯风情街",
+      "en": "Russian Street",
+      "desc": "百年俄式建筑，异国风情街区",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Street%20Dalian.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "白云雁水莲花山",
+      "en": "Lianhua Mountain",
+      "desc": "城市观景台，俯瞰南部海岸线",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dalian%20view.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "东港音乐喷泉",
+      "en": "Donggang Fountain",
+      "desc": "亚洲最大城市广场喷泉，夜色水舞",
+      "img": "data/cities/dalian/img/Donggang_Dalian.jpg",
+      "bearing": "E"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\scenes.json"
+}

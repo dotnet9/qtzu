@@ -1,0 +1,63 @@
+{
+  "city": "yinchuan",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "手抓羊肉",
+      "en": "Hand-grabbed Lamb",
+      "desc": "滩羊肉质细嫩无膻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Boiled%20lamb.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "辣糊糊",
+      "en": "Spicy Hotpot",
+      "desc": "银川人从小吃到大的串串锅",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Spicy%20hotpot.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "羊杂碎",
+      "en": "Lamb Offal Soup",
+      "desc": "红辣油配面肺子，早味浓烈",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Offal%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "烩羊肉",
+      "en": "Braised Lamb",
+      "desc": "粉条蘑菇烩滩羊肉",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20lamb.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "酿皮",
+      "en": "Niangpi",
+      "desc": "西北酿皮酸辣爽口",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liangpi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "枸杞",
+      "en": "Goji Berries",
+      "desc": "中宁枸杞全国之最",
+      "img": "data/cities/yinchuan/img/Goji_berries.jpg",
+      "bearing": "S"
+    },
+    {
+      "name": "八宝茶",
+      "en": "Eight Treasure Tea",
+      "desc": "盖碗八宝茶香甜回甘",
+      "img": "data/cities/yinchuan/img/Tea.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "滩羊火锅",
+      "en": "Tan Lamb Hotpot",
+      "desc": "清汤涮滩羊鲜嫩无比",
+      "img": "data/cities/yinchuan/img/Hotpot.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yinchuan\\foods.json"
+}

@@ -1,0 +1,43 @@
+{
+  "city": "xining",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "青海大学",
+      "en": "Qinghai University",
+      "tag": "211",
+      "founded": 1958,
+      "site": "https://www.qhu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "青海师范大学",
+      "en": "Qinghai Normal University",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.qhnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "青海民族大学",
+      "en": "Qinghai Minzu University",
+      "tag": null,
+      "founded": 1949,
+      "site": "https://www.qhmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xining\\universities.json"
+}

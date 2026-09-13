@@ -1,0 +1,77 @@
+{
+  "city": "dalian",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "海鲜焖子",
+      "en": "Seafood Menzi",
+      "desc": "地瓜煎焖子配虾爬子肉，大连独有小吃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Menzi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "铁板鱿鱼",
+      "en": "Teppanyaki Squid",
+      "desc": "整只鱿鱼铁板压烤，刷酱撒芝麻",
+      "img": "data/cities/dalian/img/Grilled_squid.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "海胆蒸蛋",
+      "en": "Sea Urchin Steamed Egg",
+      "desc": "长海县马粪海胆鲜甜，蒸蛋嫩滑",
+      "img": "data/cities/dalian/img/Sea_urchin.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "咸鱼饼子",
+      "en": "Salted Fish with Corn Cake",
+      "desc": "渔家传统，咸鱼配玉米饼子粗粮香",
+      "img": "data/cities/dalian/img/Salted_fish.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "鲅鱼水饺",
+      "en": "Spanish Mackerel Dumplings",
+      "desc": "鲅鱼肉馅水饺鲜嫩多汁，胶东风味",
+      "img": "data/cities/dalian/img/Dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "海凉粉",
+      "en": "Sea Jelly Noodles",
+      "desc": "海藻熬制的凉粉配蒜泥醋，夏日清凉",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jelly%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "烤鱼片",
+      "en": "Grilled Fish Flakes",
+      "desc": "马面鱼烤制片薄香脆，大连伴手礼",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fish%20snack.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大连老菜",
+      "en": "Dalian Classics",
+      "desc": "苏扬大烤溜肝尖，老馆子的老味道",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "虾片",
+      "en": "Prawn Crackers",
+      "desc": "大连虾片真虾制作，越嚼越香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Prawn%20crackers.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "海蛎子",
+      "en": "Oysters",
+      "desc": "冬季海蛎子最肥美，清蒸原味就鲜掉眉毛",
+      "img": "data/cities/dalian/img/Oysters.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\foods.json"
+}

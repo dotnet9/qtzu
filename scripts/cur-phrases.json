@@ -1,0 +1,814 @@
+[
+ {
+  "gk": "3a",
+  "grade": "三年级上册",
+  "unit": "Unit 1 Hello!",
+  "en": "bye bye",
+  "zh": "拜拜"
+ },
+ {
+  "gk": "3a",
+  "grade": "三年级上册",
+  "unit": "Unit 1 Hello!",
+  "en": "good morning",
+  "zh": "早上好"
+ },
+ {
+  "gk": "3a",
+  "grade": "三年级上册",
+  "unit": "Unit 1 Hello!",
+  "en": "good afternoon",
+  "zh": "下午好"
+ },
+ {
+  "gk": "3a",
+  "grade": "三年级上册",
+  "unit": "Unit 1 Hello!",
+  "en": "nice to meet you",
+  "zh": "很高兴认识你"
+ },
+ {
+  "gk": "3a",
+  "grade": "三年级上册",
+  "unit": "Unit 1 Hello!",
+  "en": "my name is...",
+  "zh": "我的名字是……"
+ },
+ {
+  "gk": "3a",
+  "grade": "三年级上册",
+  "unit": "Unit 6 Happy birthday",
+  "en": "happy birthday",
+  "zh": "生日快乐"
+ },
+ {
+  "gk": "3a",
+  "grade": "三年级上册",
+  "unit": "Unit 6 Happy birthday",
+  "en": "how old are you",
+  "zh": "你几岁了"
+ },
+ {
+  "gk": "3b",
+  "grade": "三年级下册",
+  "unit": "Unit 1 Welcome back to school!",
+  "en": "new friend",
+  "zh": "新朋友"
+ },
+ {
+  "gk": "3b",
+  "grade": "三年级下册",
+  "unit": "Unit 5 Do you like pears?",
+  "en": "do you like pears",
+  "zh": "你喜欢梨吗"
+ },
+ {
+  "gk": "3b",
+  "grade": "三年级下册",
+  "unit": "Unit 6 How many?",
+  "en": "how many",
+  "zh": "多少"
+ },
+ {
+  "gk": "4a",
+  "grade": "四年级上册",
+  "unit": "Unit 2 My schoolbag",
+  "en": "pencil box",
+  "zh": "铅笔盒"
+ },
+ {
+  "gk": "4a",
+  "grade": "四年级上册",
+  "unit": "Unit 4 My home",
+  "en": "living room",
+  "zh": "客厅"
+ },
+ {
+  "gk": "4a",
+  "grade": "四年级上册",
+  "unit": "Unit 6 Meet my family!",
+  "en": "baby brother",
+  "zh": "弟弟"
+ },
+ {
+  "gk": "4a",
+  "grade": "四年级上册",
+  "unit": "Unit 6 Meet my family!",
+  "en": "football player",
+  "zh": "足球运动员"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 1 My school",
+  "en": "art room",
+  "zh": "美术教室"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 1 My school",
+  "en": "computer room",
+  "zh": "计算机教室"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 1 My school",
+  "en": "music room",
+  "zh": "音乐教室"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 1 My school",
+  "en": "next to",
+  "zh": "紧邻"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "English class",
+  "zh": "英语课"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "music class",
+  "zh": "音乐课"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "PE class",
+  "zh": "体育课"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "get up",
+  "zh": "起床"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "go to school",
+  "zh": "去上学"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "go home",
+  "zh": "回家"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "go to bed",
+  "zh": "上床睡觉"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 2 What time is it?",
+  "en": "just a minute",
+  "zh": "稍等一会儿"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 4 At the farm",
+  "en": "green beans",
+  "zh": "青豆"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 6 Shopping",
+  "en": "try on",
+  "zh": "试穿"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 6 Shopping",
+  "en": "how much",
+  "zh": "多少钱"
+ },
+ {
+  "gk": "4b",
+  "grade": "四年级下册",
+  "unit": "Unit 6 Shopping",
+  "en": "all right",
+  "zh": "好吧"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 2 My week",
+  "en": "wash my clothes",
+  "zh": "洗衣服"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 2 My week",
+  "en": "watch TV",
+  "zh": "看电视"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 2 My week",
+  "en": "do homework",
+  "zh": "做作业"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 2 My week",
+  "en": "read books",
+  "zh": "读书"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 3 What would you like?",
+  "en": "ice cream",
+  "zh": "冰激凌"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 3 What would you like?",
+  "en": "would like",
+  "zh": "想要"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 4 What can you do?",
+  "en": "sing English songs",
+  "zh": "唱英文歌"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 4 What can you do?",
+  "en": "play the pipa",
+  "zh": "弹琵琶"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 4 What can you do?",
+  "en": "do kung fu",
+  "zh": "练武术"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 4 What can you do?",
+  "en": "draw cartoons",
+  "zh": "画漫画"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 4 What can you do?",
+  "en": "play basketball",
+  "zh": "打篮球"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 4 What can you do?",
+  "en": "play ping-pong",
+  "zh": "打乒乓球"
+ },
+ {
+  "gk": "5a",
+  "grade": "五年级上册",
+  "unit": "Unit 4 What can you do?",
+  "en": "speak English",
+  "zh": "说英语"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "do morning exercises",
+  "zh": "做早操"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "eat breakfast",
+  "zh": "吃早饭"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "have class",
+  "zh": "上课"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "play sports",
+  "zh": "进行体育运动"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "eat dinner",
+  "zh": "吃晚饭"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "clean my room",
+  "zh": "打扫房间"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "go for a walk",
+  "zh": "散步"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "go shopping",
+  "zh": "去购物"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 1 My day",
+  "en": "take a dancing class",
+  "zh": "上舞蹈课"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 2 My favourite season",
+  "en": "pick apples",
+  "zh": "摘苹果"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 2 My favourite season",
+  "en": "make a snowman",
+  "zh": "堆雪人"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 2 My favourite season",
+  "en": "go swimming",
+  "zh": "去游泳"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 4 When is the art show?",
+  "en": "April Fool's Day",
+  "zh": "愚人节"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 4 When is the art show?",
+  "en": "Mother's Day",
+  "zh": "母亲节"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 4 When is the art show?",
+  "en": "Father's Day",
+  "zh": "父亲节"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 4 When is the art show?",
+  "en": "Children's Day",
+  "zh": "儿童节"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 4 When is the art show?",
+  "en": "Teachers' Day",
+  "zh": "教师节"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 4 When is the art show?",
+  "en": "National Day",
+  "zh": "国庆节"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 5 Whose dog is it?",
+  "en": "playing with each other",
+  "zh": "互相玩耍"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 6 Work quickly!",
+  "en": "doing the dishes",
+  "zh": "正在洗碗"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 6 Work quickly!",
+  "en": "cleaning the room",
+  "zh": "正在打扫房间"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 6 Work quickly!",
+  "en": "reading a book",
+  "zh": "正在读书"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 6 Work quickly!",
+  "en": "having a class",
+  "zh": "正在上课"
+ },
+ {
+  "gk": "5b",
+  "grade": "五年级下册",
+  "unit": "Unit 6 Work quickly!",
+  "en": "eating lunch",
+  "zh": "正在吃午饭"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 1 How can I get there?",
+  "en": "science museum",
+  "zh": "科学博物馆"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 1 How can I get there?",
+  "en": "post office",
+  "zh": "邮局"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 1 How can I get there?",
+  "en": "turn left",
+  "zh": "向左转"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 1 How can I get there?",
+  "en": "turn right",
+  "zh": "向右转"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 1 How can I get there?",
+  "en": "go straight",
+  "zh": "直走"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "on foot",
+  "zh": "步行"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "by bus",
+  "zh": "乘公交车"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "by plane",
+  "zh": "乘飞机"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "by taxi",
+  "zh": "乘出租车"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "by ship",
+  "zh": "乘轮船"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "by subway",
+  "zh": "乘地铁"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "by train",
+  "zh": "乘火车"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "slow down",
+  "zh": "减速"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 2 Ways to go to school",
+  "en": "traffic lights",
+  "zh": "交通信号灯"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 3 My weekend plan",
+  "en": "visit my grandparents",
+  "zh": "看望祖父母"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 3 My weekend plan",
+  "en": "see a film",
+  "zh": "看电影"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 3 My weekend plan",
+  "en": "take a trip",
+  "zh": "去旅行"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 3 My weekend plan",
+  "en": "next week",
+  "zh": "下周"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 3 My weekend plan",
+  "en": "comic book",
+  "zh": "漫画书"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 4 I have a pen pal",
+  "en": "pen pal",
+  "zh": "笔友"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 4 I have a pen pal",
+  "en": "doing kung fu",
+  "zh": "练武术"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 4 I have a pen pal",
+  "en": "reading stories",
+  "zh": "读故事"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 4 I have a pen pal",
+  "en": "studies Chinese",
+  "zh": "学中文"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 4 I have a pen pal",
+  "en": "goes hiking",
+  "zh": "去远足"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 5 What does he do?",
+  "en": "factory worker",
+  "zh": "工厂工人"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 5 What does he do?",
+  "en": "police officer",
+  "zh": "警察"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 5 What does he do?",
+  "en": "head teacher",
+  "zh": "校长"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 6 How do you feel?",
+  "en": "see a doctor",
+  "zh": "看病"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 6 How do you feel?",
+  "en": "wear warm clothes",
+  "zh": "穿暖和的衣服"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 6 How do you feel?",
+  "en": "take a deep breath",
+  "zh": "深吸一口气"
+ },
+ {
+  "gk": "6a",
+  "grade": "六年级上册",
+  "unit": "Unit 6 How do you feel?",
+  "en": "count to ten",
+  "zh": "数到十"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "cleaned my room",
+  "zh": "打扫了房间"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "washed my clothes",
+  "zh": "洗了衣服"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "stayed at home",
+  "zh": "待在家里"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "watched TV",
+  "zh": "看了电视"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "read a book",
+  "zh": "读了书"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "saw a film",
+  "zh": "看了电影"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "had a cold",
+  "zh": "感冒了"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 2 Last weekend",
+  "en": "last weekend",
+  "zh": "上周末"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "went fishing",
+  "zh": "去钓鱼"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "went camping",
+  "zh": "去野营"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "went swimming",
+  "zh": "去游泳"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "rode a bike",
+  "zh": "骑自行车"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "rode a horse",
+  "zh": "骑马"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "hurt my foot",
+  "zh": "伤了我的脚"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "took pictures",
+  "zh": "拍照"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 3 Where did you go?",
+  "en": "bought gifts",
+  "zh": "买礼物"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 4 Then and now",
+  "en": "dining hall",
+  "zh": "餐厅"
+ },
+ {
+  "gk": "6b",
+  "grade": "六年级下册",
+  "unit": "Unit 4 Then and now",
+  "en": "look up",
+  "zh": "查阅"
+ }
+]

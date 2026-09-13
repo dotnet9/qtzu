@@ -1,0 +1,82 @@
+{
+  "id": "harbin",
+  "name": "哈尔滨",
+  "en": "Harbin",
+  "color": "#7EA8D8",
+  "landmark": "ice",
+  "region": "东北",
+  "importance": "黑龙江省会 · 冰雪之城 · 东方莫斯科",
+  "isCoastal": false,
+  "history": "哈尔滨因中东铁路于 1898 年兴起，俄国人、犹太人等数十国侨民聚居，留下圣索菲亚教堂等众多欧陆建筑，被誉为「东方莫斯科」。冰雪大世界的冰雕艺术世界闻名，中央大街的面包石路走过百年。这里的冬天是童话，啤酒与红肠是城市味觉记忆。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Sophia%20Cathedral%20Harbin.jpg?width=960",
+      "caption": "圣索菲亚教堂"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Harbin%20Ice%20and%20Snow%20World.jpg?width=960",
+      "caption": "冰雪大世界"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Central%20Street%20Harbin.jpg?width=960",
+      "caption": "中央大街"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "❄️",
+      "intro": "冰雪大世界的冰雕城堡会发光！",
+      "introEn": "Ice castles glow at Harbin Ice World!",
+      "words": [
+        "ice",
+        "cold"
+      ],
+      "deco": "iceflake"
+    },
+    {
+      "emoji": "⛪",
+      "intro": "东方莫斯科：满街都是洋葱顶教堂",
+      "introEn": "Harbin is called 'Moscow of the East'.",
+      "words": [
+        "church",
+        "old"
+      ],
+      "deco": "iceflake"
+    },
+    {
+      "emoji": "🌭",
+      "intro": "红肠配大列巴，俄式风味满嘴香",
+      "introEn": "Russian sausage and bread taste great.",
+      "words": [
+        "food"
+      ],
+      "deco": "iceflake"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "ice",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\city.json"
+}

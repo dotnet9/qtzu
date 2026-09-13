@@ -1,0 +1,63 @@
+{
+  "city": "qingdao",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "青岛啤酒",
+      "en": "Tsingtao Beer",
+      "desc": "1903 年德式酿造，袋装散啤配塑料袋是奇观",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tsingtao%20beer.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "海鲜大咖",
+      "en": "Seafood Platter",
+      "desc": "蛤蜊海螺大虾一锅端，配啤酒绝了",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Seafood%20platter.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "辣炒蛤蜊",
+      "en": "Spicy Clams",
+      "desc": "红岛蛤蜊肥美，「哈啤酒吃嘎啦」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Clams.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "鲅鱼水饺",
+      "en": "Mackerel Dumplings",
+      "desc": "鲅鱼馅饺子鲜嫩，青岛人待客头牌",
+      "img": "data/cities/qingdao/img/Dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "烤鱿鱼",
+      "en": "Grilled Squid",
+      "desc": "整只鱿鱼铁板烤制刷甜辣酱",
+      "img": "data/cities/qingdao/img/Grilled_squid.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "王哥庄大馒头",
+      "en": "Wanggezhuang Steamed Bread",
+      "desc": "崂山脚下的手工大馒头，麦香浓郁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Steamed%20bread.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "石花菜凉粉",
+      "en": "Agar Jelly",
+      "desc": "海藻凉粉配醋蒜，消夏解腻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jelly%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "排骨米饭",
+      "en": "Pork Rib Rice",
+      "desc": "万和春排骨砂锅米饭，青岛快餐之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20with%20ribs.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qingdao\\foods.json"
+}

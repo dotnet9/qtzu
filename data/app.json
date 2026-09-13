@@ -1,0 +1,14 @@
+{
+  "note": "应用品牌与来源信息配置：fork 本项目后只需改这个文件即可完成换皮，无需动任何代码。MIT License。",
+  "appName": "Q淘族",
+  "appNameEn": "QTZu",
+  "tagline": "越淘越有词 · 永无失败惩罚",
+  "slogan": "跟着词宠淘中国，淘出 900+ 小学英语词",
+  "emoji": "🧺",
+  "parentTagline": "QT = Quality Time，把背单词变成亲子好时光",
+  "site": { "label": "qtzu.com", "url": "https://qtzu.com/" },
+  "repo": { "label": "github.com/dotnet9/qtzu", "url": "https://github.com/dotnet9/qtzu" },
+  "author": "沙漠尽头的狼",
+  "authorSite": { "label": "codewf.com", "url": "https://codewf.com/zh-CN" },
+  "license": "MIT"
+}

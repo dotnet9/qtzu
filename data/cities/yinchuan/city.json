@@ -1,0 +1,82 @@
+{
+  "id": "yinchuan",
+  "name": "银川",
+  "en": "Yinchuan",
+  "color": "#C0A860",
+  "landmark": "gate",
+  "region": "西北",
+  "importance": "宁夏首府 · 塞上江南",
+  "isCoastal": false,
+  "history": "银川古称兴庆府，西夏王朝在此建都 189 年。贺兰山下西夏王陵的夯土巨冢被称为「东方金字塔」，岩画记录着游牧先民的生活。「天下黄河富宁夏」，引黄灌溉两千年的银川平原有塞上江南之称。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Western%20Xia%20Tombs.jpg?width=960",
+      "caption": "西夏王陵"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Helan%20Mountain%20rock%20art.jpg?width=960",
+      "caption": "贺兰山岩画"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yuehai%20Wetland.jpg?width=960",
+      "caption": "阅海湿地"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏜️",
+      "intro": "西夏王陵：东方金字塔蹲在贺兰山下",
+      "introEn": "Xixia pyramids sit by Helan Mountain.",
+      "words": [
+        "tomb",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🖼️",
+      "intro": "贺兰山岩画里藏着史前太阳神",
+      "introEn": "Prehistoric sun gods hide in rock art.",
+      "words": [
+        "art",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🍇",
+      "intro": "塞上江南：贺兰山下的葡萄园酿美酒",
+      "introEn": "Ningxia grapes make great wine.",
+      "words": [
+        "grape"
+      ],
+      "deco": "grape"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yinchuan\\city.json"
+}

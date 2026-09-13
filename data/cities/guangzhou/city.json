@@ -1,0 +1,82 @@
+{
+  "id": "guangzhou",
+  "name": "广州",
+  "en": "Guangzhou",
+  "color": "#C9803E",
+  "landmark": "tower",
+  "region": "华南",
+  "importance": "广东省会 · 国家中心城市 · 千年商都",
+  "isCoastal": true,
+  "history": "广州建城于公元前 214 年，两千多年来一直是海上丝绸之路的重要起点，明清「一口通商」让十三行名扬世界。粤菜是中国四大菜系之一，「食在广州」金漆招牌高悬。五羊传说、陈家祠的砖雕、沙面的欧陆风情与珠江新城的小蛮腰交相辉映。今天的广州是粤港澳大湾区的核心引擎，华南门户与国际商贸中心。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Canton%20Tower%202013.jpg?width=960",
+      "caption": "广州塔小蛮腰"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Canton%2C%20Cantonese%20Opera%20House.jpg?width=960",
+      "caption": "陈家祠"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shamian%20Island%20Guangzhou.jpg?width=960",
+      "caption": "沙面"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🍵",
+      "intro": "「食在广州」！早茶点心精美又丰盛",
+      "introEn": "Guangzhou is famous for morning tea.",
+      "words": [
+        "tea",
+        "food"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🗼",
+      "intro": "小蛮腰广州塔会变七彩灯光",
+      "introEn": "Canton Tower changes colors at night.",
+      "words": [
+        "tower",
+        "light"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🐑",
+      "intro": "五只仙羊衔着稻穗来到这里，所以叫羊城",
+      "introEn": "Five rams founded the city of Guangzhou.",
+      "words": [
+        "sheep"
+      ],
+      "deco": "flower"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "tower",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guangzhou\\city.json"
+}

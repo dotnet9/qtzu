@@ -1,0 +1,81 @@
+{
+  "id": "nanjing",
+  "name": "南京",
+  "en": "Nanjing",
+  "color": "#7B6BA8",
+  "landmark": "wall",
+  "region": "华东",
+  "importance": "江苏省会 · 六朝古都 · 首批国家历史文化名城",
+  "isCoastal": false,
+  "history": "「江南佳丽地，金陵帝王州」，南京有 2500 年建城史，六朝、南唐、明、太平天国与民国都定都于此，故称六朝古都、十朝都会。明城墙现存 25 公里是世界最长的砖石城墙，明孝陵是明清皇家陵寝的鼻祖。秦淮河畔的夫子庙灯影桨声延续千年，总统府记录着近代风云。梧桐大道是这座城市最温柔的名片。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing%20City%20Wall.jpg?width=960",
+      "caption": "明城墙"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fuzimiao%2C%20Nanjing.jpg?width=960",
+      "caption": "夫子庙"
+    },
+    {
+      "img": "data/cities/nanjing/img/Sun_Yat-sen_Mausoleum.jpg",
+      "caption": "中山陵"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🧱",
+      "intro": "明城墙有 35 公里长，是世界上最长的砖城墙",
+      "introEn": "The Ming wall is the longest ever built.",
+      "words": [
+        "wall"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🦆",
+      "intro": "盐水鸭是南京人的心头好",
+      "introEn": "Salted duck is a local favorite.",
+      "words": [
+        "duck"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🏮",
+      "intro": "秦淮河的灯影桨声亮了一千年",
+      "introEn": "Qinhuai River glows with lanterns.",
+      "words": [
+        "light",
+        "night"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "wall",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanjing\\city.json"
+}

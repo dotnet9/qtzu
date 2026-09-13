@@ -1,0 +1,81 @@
+{
+  "id": "chengde",
+  "name": "承德",
+  "en": "Chengde",
+  "color": "#7A9E5A",
+  "landmark": "pavilion",
+  "region": "华北",
+  "importance": "避暑山庄 · 清代夏宫",
+  "isCoastal": false,
+  "history": "承德因清代避暑山庄而兴，康熙帝选此「自然天成地就势」的夏宫，占地 564 万平方米是现存最大皇家园林。周围十二座外八庙融合汉蒙藏建筑风格，「山庄奇幻外八庙」1994 年列入世界遗产。这里是清代民族团结的政治舞台。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chengde%20Mountain%20Resort.jpg?width=960",
+      "caption": "避暑山庄"
+    },
+    {
+      "img": "data/cities/chengde/img/Putuo_Zongcheng_Temple.jpg",
+      "caption": "普陀宗乘之庙"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Puning%20Temple.jpg?width=960",
+      "caption": "普宁寺"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "⛰️",
+      "intro": "避暑山庄是皇帝的避暑别墅群",
+      "introEn": "Emperors summered in the Mountain Resort.",
+      "words": [
+        "palace",
+        "mountain"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🛕",
+      "intro": "小布达拉宫金顶闪闪发光",
+      "introEn": "The mini Potala glitters with gold.",
+      "words": [
+        "temple"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🌲",
+      "intro": "塞罕坝：沙漠变成的世界最大人造森林",
+      "introEn": "Saihanba turned desert into forest!",
+      "words": [
+        "tree"
+      ],
+      "deco": "bamboo"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengde\\city.json"
+}

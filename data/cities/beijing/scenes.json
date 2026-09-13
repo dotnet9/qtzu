@@ -1,0 +1,77 @@
+{
+  "city": "beijing",
+  "source": "联合国教科文组织世界遗产名录（故宫/长城/天坛/颐和园/十三陵/周口店/大运河）与北京市政府门户",
+  "items": [
+    {
+      "name": "故宫博物院",
+      "en": "The Forbidden City",
+      "desc": "明清两代 24 位皇帝的家，9371 间房屋组成的世界最大木结构宫殿群，1987 年列入世界遗产。",
+      "img": "data/cities/beijing/img/Forbidden_City_Beijing_Shenwumen_Gate.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "八达岭长城",
+      "en": "Badaling Great Wall",
+      "desc": "「不到长城非好汉」，明代长城精华段，蜿蜒于军都山脊的世界奇迹。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Great%20Wall%20of%20China%2C%20Jiayuguan.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "天坛",
+      "en": "Temple of Heaven",
+      "desc": "明清皇帝祭天祈谷之处，祈年殿三重蓝色琉璃檐是北京的标志，回音壁会传声。",
+      "img": "data/cities/beijing/img/Temple_of_Heaven_Beijing.jpg",
+      "bearing": "S"
+    },
+    {
+      "name": "颐和园",
+      "en": "Summer Palace",
+      "desc": "皇家园林博物馆，昆明湖、万寿山与十七孔桥，1998 年列入世界遗产。",
+      "img": "data/cities/beijing/img/Summer_Palace_Beijing.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "天安门广场",
+      "en": "Tiananmen Square",
+      "desc": "世界最大的城市广场之一，每天清晨的升国旗仪式庄严动人。",
+      "img": "data/cities/beijing/img/Tiananmen_Gate.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "南锣鼓巷",
+      "en": "Nanluoguxiang",
+      "desc": "元代形成的胡同街区，八百米长巷两侧胡同如蜈蚣足，文青与小吃的天堂。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanluoguxiang%20Beijing.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "北海公园",
+      "en": "Beihai Park",
+      "desc": "辽金元明清五朝皇家园林，白塔映碧波，「让我们荡起双桨」就唱的这里。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beihai%20Park%20White%20Pagoda.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "国家体育场（鸟巢）",
+      "en": "Bird's Nest Stadium",
+      "desc": "2008 与 2022 双奥运开幕式主场馆，钢结构编织出的建筑奇迹。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing%20national%20stadium%202014.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "明十三陵",
+      "en": "Ming Tombs",
+      "desc": "明朝十三位皇帝的陵墓群，神道石像生仪仗严整，2003 年列入世界遗产。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ming%20Tombs%2C%20Beijing.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "雍和宫",
+      "en": "Yonghe Temple",
+      "desc": "雍正帝的旧邸改为藏传佛教寺院，金瓦红墙香火鼎盛，18 米白檀木大佛惊人。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yonghe%20Temple%2C%20Beijing.jpg?width=640",
+      "bearing": "NE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\beijing\\scenes.json"
+}

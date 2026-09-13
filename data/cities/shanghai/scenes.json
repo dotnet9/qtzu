@@ -1,0 +1,77 @@
+{
+  "city": "shanghai",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "外滩",
+      "en": "The Bund",
+      "desc": "万国建筑博览群对望陆家嘴摩天楼，百年光影一线江景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Bund%2C%20Shanghai%20(December%202015)%20-%20panoramio.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "豫园",
+      "en": "Yu Garden",
+      "desc": "明代江南园林，九曲桥湖心亭茶楼",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yuyuan%20Garden%2C%20Shanghai.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "东方明珠",
+      "en": "Oriental Pearl Tower",
+      "desc": "468 米电视塔是上海最经典地标",
+      "img": "data/cities/shanghai/img/Oriental_Pearl_Tower.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "南京路步行街",
+      "en": "Nanjing Road",
+      "desc": "中华商业第一街，百年商业繁华延续至今",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing%20Road%20Shanghai.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "上海迪士尼乐园",
+      "en": "Shanghai Disneyland",
+      "desc": "中国大陆首座迪士尼乐园，创极速光轮全球独有",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shanghai%20Disneyland.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "朱家角古镇",
+      "en": "Zhujiajiao",
+      "desc": "1700 年水乡古镇，放生桥横跨漕港河",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhujiajiao.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "上海博物馆",
+      "en": "Shanghai Museum",
+      "desc": "青铜器陶瓷书画馆藏丰富，大鼎造型建筑",
+      "img": "data/cities/shanghai/img/Shanghai_Museum.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "田子坊",
+      "en": "Tianzifang",
+      "desc": "石库门弄堂里的文创天地",
+      "img": "data/cities/shanghai/img/Tianzifang.jpg",
+      "bearing": "SW"
+    },
+    {
+      "name": "武康路",
+      "en": "Wukang Road",
+      "desc": "梧桐树下的百年洋房与武康大楼",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wukang%20Building.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "崇明岛东滩",
+      "en": "Dongtan Wetland",
+      "desc": "候鸟迁徙驿站，长江口生态明珠",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongming%20Dongtan.jpg?width=640",
+      "bearing": "NE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shanghai\\scenes.json"
+}

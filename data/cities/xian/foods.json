@@ -1,0 +1,77 @@
+{
+  "city": "xian",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "肉夹馍",
+      "en": "Roujiamo",
+      "desc": "白吉馍夹腊汁肉，被誉为「中式汉堡」的祖先",
+      "img": "data/cities/xian/img/Roujiamo.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "羊肉泡馍",
+      "en": "Yangrou Paomo",
+      "desc": "自己掰馍的仪式感，羊肉汤浓谆味厚",
+      "img": "data/cities/xian/img/Paomo.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "biangbiang面",
+      "en": "Biangbiang Noodles",
+      "desc": "裤带宽面油泼辣子，一个字 58 画的传奇",
+      "img": "data/cities/xian/img/Biangbiang_noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "凉皮",
+      "en": "Liangpi",
+      "desc": "酸辣爽口的夏日限定，面筋是灵魂配件",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liangpi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "葫芦头",
+      "en": "Hulutou",
+      "desc": "猪大肠泡馍，药王孙思邈的葫芦留下美名",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hulutou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "甑糕",
+      "en": "Zenggao",
+      "desc": "红枣糯米蒸得软糯黏甜，回民街的清晨香气",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zenggao.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "肉丸胡辣汤",
+      "en": "Spicy Soup",
+      "desc": "牛肉丸蔬菜浓汤配坨坨馍，西安人的早餐硬核担当",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hutang.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "柿子饼",
+      "en": "Persimmon Cake",
+      "desc": "临潼火晶柿子做的黄桂柿子饼，外酥内软",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shibing.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "油泼面",
+      "en": "Youpo Noodles",
+      "desc": "一勺热油「刺啦」泼在辣子面上，香气扑鼻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Youpo%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "蜂蜜凉粽子",
+      "en": "Cold Zongzi with Honey",
+      "desc": "唐代宫廷冷食，淋蜂蜜与桂花酱最消夏",
+      "img": "data/cities/xian/img/Zongzi.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xian\\foods.json"
+}

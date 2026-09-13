@@ -1,0 +1,63 @@
+{
+  "city": "lhasa",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "布达拉宫",
+      "en": "Potala Palace",
+      "desc": "世界海拔最高宫殿，红白宫宇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potala%20Palace%20Lhasa.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大昭寺",
+      "en": "Jokhang Temple",
+      "desc": "藏传佛教中心，释迦牟尼十二岁等身像",
+      "img": "data/cities/lhasa/img/Jokhang_Temple.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "八廓街",
+      "en": "Barkhor Street",
+      "desc": "转经道环形老街，古城市井",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Barkhor%20Street.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "色拉寺",
+      "en": "Sera Monastery",
+      "desc": "辩经场的拍掌声如雷",
+      "img": "data/cities/lhasa/img/Sera_Monastery.jpg",
+      "bearing": "NE"
+    },
+    {
+      "name": "罗布林卡",
+      "en": "Norbulingka",
+      "desc": "达赖夏宫，宝贝园林",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Norbulingka.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "哲蚌寺",
+      "en": "Drepung Monastery",
+      "desc": "世界最大寺院之一，雪顿节展佛",
+      "img": "data/cities/lhasa/img/Drepung_Monastery.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "纳木错",
+      "en": "Namtso Lake",
+      "desc": "天湖圣湖，念青唐古拉雪山",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Namtso%20Lake.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "药王山",
+      "en": "Chakpori Hill",
+      "desc": "拍布达拉宫倒影最佳机位",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chakpori%20Hill.jpg?width=640",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lhasa\\scenes.json"
+}

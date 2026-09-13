@@ -1,0 +1,6798 @@
+{
+ "single": [
+  {
+   "en": "hello",
+   "zh": "你好",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "hi",
+   "zh": "嗨",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "goodbye",
+   "zh": "再见",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "red",
+   "zh": "红色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "yellow",
+   "zh": "黄色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "green",
+   "zh": "绿色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "blue",
+   "zh": "蓝色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "black",
+   "zh": "黑色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "white",
+   "zh": "白色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "orange",
+   "zh": "橙色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "brown",
+   "zh": "棕色",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "face",
+   "zh": "脸",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "ear",
+   "zh": "耳朵",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "eye",
+   "zh": "眼睛",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "nose",
+   "zh": "鼻子",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "mouth",
+   "zh": "嘴",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "arm",
+   "zh": "手臂",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "hand",
+   "zh": "手",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "head",
+   "zh": "头",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "body",
+   "zh": "身体",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "leg",
+   "zh": "腿",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "cat",
+   "zh": "猫",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "dog",
+   "zh": "狗",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "duck",
+   "zh": "鸭子",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "panda",
+   "zh": "熊猫",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "monkey",
+   "zh": "猴子",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "bird",
+   "zh": "鸟",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "tiger",
+   "zh": "老虎",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "elephant",
+   "zh": "大象",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "zoo",
+   "zh": "动物园",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "funny",
+   "zh": "有趣的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "bread",
+   "zh": "面包",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "juice",
+   "zh": "果汁",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "egg",
+   "zh": "鸡蛋",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "milk",
+   "zh": "牛奶",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "water",
+   "zh": "水",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "fish",
+   "zh": "鱼",
+   "vols": [
+    "cur",
+    "3a",
+    "6b"
+   ]
+  },
+  {
+   "en": "rice",
+   "zh": "米饭",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "cake",
+   "zh": "蛋糕",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "hamburger",
+   "zh": "汉堡",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "one",
+   "zh": "一",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "two",
+   "zh": "二",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "three",
+   "zh": "三",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "four",
+   "zh": "四",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "five",
+   "zh": "五",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "six",
+   "zh": "六",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "seven",
+   "zh": "七",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "eight",
+   "zh": "八",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "nine",
+   "zh": "九",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "ten",
+   "zh": "十",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "UK",
+   "zh": "英国",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "Canada",
+   "zh": "加拿大",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "USA",
+   "zh": "美国",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "China",
+   "zh": "中国",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "student",
+   "zh": "学生",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "teacher",
+   "zh": "老师",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "boy",
+   "zh": "男孩",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "girl",
+   "zh": "女孩",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "father",
+   "zh": "爸爸",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "mother",
+   "zh": "妈妈",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "man",
+   "zh": "男人",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "woman",
+   "zh": "女人",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "grandmother",
+   "zh": "奶奶",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "grandfather",
+   "zh": "爷爷",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "sister",
+   "zh": "姐妹",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "brother",
+   "zh": "兄弟",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "family",
+   "zh": "家庭",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "giraffe",
+   "zh": "长颈鹿",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "tall",
+   "zh": "高的",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "short",
+   "zh": "矮的",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "fat",
+   "zh": "胖的",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "thin",
+   "zh": "瘦的",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "long",
+   "zh": "长的",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "small",
+   "zh": "小的",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "big",
+   "zh": "大的",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "animal",
+   "zh": "动物",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "on",
+   "zh": "在……上",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "in",
+   "zh": "在……里",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "under",
+   "zh": "在……下面",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "desk",
+   "zh": "书桌",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "chair",
+   "zh": "椅子",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "cap",
+   "zh": "帽子",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "ball",
+   "zh": "球",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "car",
+   "zh": "汽车",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "toy",
+   "zh": "玩具",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "pear",
+   "zh": "梨",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "apple",
+   "zh": "苹果",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "banana",
+   "zh": "香蕉",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "watermelon",
+   "zh": "西瓜",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "grape",
+   "zh": "葡萄",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "fruit",
+   "zh": "水果",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "eleven",
+   "zh": "十一",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "twelve",
+   "zh": "十二",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "thirteen",
+   "zh": "十三",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "fourteen",
+   "zh": "十四",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "fifteen",
+   "zh": "十五",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "sixteen",
+   "zh": "十六",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "seventeen",
+   "zh": "十七",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "eighteen",
+   "zh": "十八",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "nineteen",
+   "zh": "十九",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "twenty",
+   "zh": "二十",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "classroom",
+   "zh": "教室",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "window",
+   "zh": "窗户",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "blackboard",
+   "zh": "黑板",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "light",
+   "zh": "灯",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "picture",
+   "zh": "图画",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "door",
+   "zh": "门",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "computer",
+   "zh": "计算机",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "wall",
+   "zh": "墙壁",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "floor",
+   "zh": "地板",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "schoolbag",
+   "zh": "书包",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "book",
+   "zh": "书",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "pencil",
+   "zh": "铅笔",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "pen",
+   "zh": "钢笔",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "ruler",
+   "zh": "尺子",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "eraser",
+   "zh": "橡皮",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "candy",
+   "zh": "糖果",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "notebook",
+   "zh": "笔记本",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "friend",
+   "zh": "朋友",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "hair",
+   "zh": "头发",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "strong",
+   "zh": "强壮的",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "quiet",
+   "zh": "安静的",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "glasses",
+   "zh": "眼镜",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "shoe",
+   "zh": "鞋",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "his",
+   "zh": "他的",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "her",
+   "zh": "她的",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "bedroom",
+   "zh": "卧室",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "study",
+   "zh": "书房",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "kitchen",
+   "zh": "厨房",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "bathroom",
+   "zh": "浴室",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "bed",
+   "zh": "床",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "phone",
+   "zh": "电话",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "table",
+   "zh": "桌子",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "sofa",
+   "zh": "沙发",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "fridge",
+   "zh": "冰箱",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "beef",
+   "zh": "牛肉",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "chicken",
+   "zh": "鸡肉",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "noodles",
+   "zh": "面条",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "soup",
+   "zh": "汤",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "vegetable",
+   "zh": "蔬菜",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "chopsticks",
+   "zh": "筷子",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "bowl",
+   "zh": "碗",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "fork",
+   "zh": "叉子",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "knife",
+   "zh": "刀",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "spoon",
+   "zh": "勺子",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "parents",
+   "zh": "父母",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "uncle",
+   "zh": "叔叔",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "aunt",
+   "zh": "姑姑",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "doctor",
+   "zh": "医生",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "driver",
+   "zh": "司机",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "farmer",
+   "zh": "农民",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "nurse",
+   "zh": "护士",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "job",
+   "zh": "工作",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "playground",
+   "zh": "操场",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "garden",
+   "zh": "花园",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "library",
+   "zh": "图书馆",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "homework",
+   "zh": "作业",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "class",
+   "zh": "班级",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "forty",
+   "zh": "四十",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "breakfast",
+   "zh": "早餐",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "lunch",
+   "zh": "午餐",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "dinner",
+   "zh": "晚餐",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "cold",
+   "zh": "寒冷的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "cool",
+   "zh": "凉爽的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "warm",
+   "zh": "温暖的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "hot",
+   "zh": "辣的",
+   "vols": [
+    "cur",
+    "4b",
+    "5a"
+   ]
+  },
+  {
+   "en": "sunny",
+   "zh": "晴朗的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "windy",
+   "zh": "有风的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "cloudy",
+   "zh": "多云的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "snowy",
+   "zh": "下雪的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "rainy",
+   "zh": "下雨的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "weather",
+   "zh": "天气",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "tomato",
+   "zh": "西红柿",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "potato",
+   "zh": "土豆",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "carrot",
+   "zh": "胡萝卜",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "horse",
+   "zh": "马",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "cow",
+   "zh": "奶牛",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "sheep",
+   "zh": "绵羊",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "hen",
+   "zh": "母鸡",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "farm",
+   "zh": "农场",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "these",
+   "zh": "这些",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "hat",
+   "zh": "帽子",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "sunglasses",
+   "zh": "太阳镜",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "scarf",
+   "zh": "围巾",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "gloves",
+   "zh": "手套",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "umbrella",
+   "zh": "雨伞",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "coat",
+   "zh": "外套",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "sweater",
+   "zh": "毛衣",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "jacket",
+   "zh": "夹克",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "shirt",
+   "zh": "衬衫",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "whose",
+   "zh": "谁的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "expensive",
+   "zh": "昂贵的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "cheap",
+   "zh": "便宜的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "nice",
+   "zh": "好看的",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "pretty",
+   "zh": "美观的",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "size",
+   "zh": "尺码",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "sale",
+   "zh": "特价",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "old",
+   "zh": "旧的",
+   "vols": [
+    "cur",
+    "3a",
+    "5a"
+   ]
+  },
+  {
+   "en": "young",
+   "zh": "年轻的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "kind",
+   "zh": "和蔼的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "strict",
+   "zh": "严格的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "polite",
+   "zh": "有礼貌的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "hard-working",
+   "zh": "勤奋的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "helpful",
+   "zh": "乐于助人的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "clever",
+   "zh": "聪明的",
+   "vols": [
+    "cur",
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "shy",
+   "zh": "害羞的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "Monday",
+   "zh": "星期一",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "Tuesday",
+   "zh": "星期二",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "Wednesday",
+   "zh": "星期三",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "Thursday",
+   "zh": "星期四",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "Friday",
+   "zh": "星期五",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "Saturday",
+   "zh": "星期六",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "Sunday",
+   "zh": "星期日",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "weekend",
+   "zh": "周末",
+   "vols": [
+    "cur",
+    "5a",
+    "6b"
+   ]
+  },
+  {
+   "en": "sandwich",
+   "zh": "三明治",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "salad",
+   "zh": "沙拉",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "tea",
+   "zh": "茶",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "fresh",
+   "zh": "新鲜的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "healthy",
+   "zh": "健康的",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "delicious",
+   "zh": "美味的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "sweet",
+   "zh": "甜的",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "dance",
+   "zh": "跳舞",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "cook",
+   "zh": "烹饪",
+   "vols": [
+    "cur",
+    "4a",
+    "5a"
+   ]
+  },
+  {
+   "en": "swim",
+   "zh": "游泳",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "clock",
+   "zh": "时钟",
+   "vols": [
+    "cur",
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "plant",
+   "zh": "植物",
+   "vols": [
+    "cur",
+    "3a",
+    "5a"
+   ]
+  },
+  {
+   "en": "bottle",
+   "zh": "瓶子",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "bike",
+   "zh": "自行车",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "photo",
+   "zh": "照片",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "front",
+   "zh": "前面",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "above",
+   "zh": "上方",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "beside",
+   "zh": "旁边",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "between",
+   "zh": "之间",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "behind",
+   "zh": "后面",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "forest",
+   "zh": "森林",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "river",
+   "zh": "河流",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "lake",
+   "zh": "湖泊",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "mountain",
+   "zh": "高山",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "hill",
+   "zh": "小山",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "tree",
+   "zh": "树",
+   "vols": [
+    "cur",
+    "3a",
+    "5a"
+   ]
+  },
+  {
+   "en": "village",
+   "zh": "村庄",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "house",
+   "zh": "房屋",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "bridge",
+   "zh": "桥",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "building",
+   "zh": "楼房",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "when",
+   "zh": "什么时候",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "spring",
+   "zh": "春天",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "summer",
+   "zh": "夏天",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "autumn",
+   "zh": "秋天",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "winter",
+   "zh": "冬天",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "season",
+   "zh": "季节",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "picnic",
+   "zh": "野餐",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "which",
+   "zh": "哪一个",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "best",
+   "zh": "最",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "January",
+   "zh": "一月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "February",
+   "zh": "二月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "March",
+   "zh": "三月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "April",
+   "zh": "四月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "May",
+   "zh": "五月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "June",
+   "zh": "六月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "July",
+   "zh": "七月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "August",
+   "zh": "八月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "September",
+   "zh": "九月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "October",
+   "zh": "十月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "November",
+   "zh": "十一月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "December",
+   "zh": "十二月",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "Easter",
+   "zh": "复活节",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "Christmas",
+   "zh": "圣诞节",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "term",
+   "zh": "学期",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "special",
+   "zh": "特别的",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "playing",
+   "zh": "正在玩",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "jumping",
+   "zh": "正在跳",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "eating",
+   "zh": "正在吃",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "drinking",
+   "zh": "正在喝",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "sleeping",
+   "zh": "正在睡觉",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "running",
+   "zh": "正在跑",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "climbing",
+   "zh": "正在攀爬",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "quietly",
+   "zh": "安静地",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "loudly",
+   "zh": "大声地",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "bookstore",
+   "zh": "书店",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "cinema",
+   "zh": "电影院",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "hospital",
+   "zh": "医院",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "crossing",
+   "zh": "十字路口",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "near",
+   "zh": "在附近",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "stop",
+   "zh": "停下",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "tomorrow",
+   "zh": "明天",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "tonight",
+   "zh": "今晚",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "dictionary",
+   "zh": "词典",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "supermarket",
+   "zh": "超市",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "hobby",
+   "zh": "爱好",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "singing",
+   "zh": "唱歌",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "dancing",
+   "zh": "跳舞",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "cooking",
+   "zh": "做饭",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "postman",
+   "zh": "邮递员",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "businessman",
+   "zh": "商人",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "fisherman",
+   "zh": "渔民",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "scientist",
+   "zh": "科学家",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "pilot",
+   "zh": "飞行员",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "coach",
+   "zh": "教练",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "reporter",
+   "zh": "记者",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "angry",
+   "zh": "生气的",
+   "vols": [
+    "cur",
+    "3b",
+    "6a"
+   ]
+  },
+  {
+   "en": "afraid",
+   "zh": "害怕",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "sad",
+   "zh": "难过的",
+   "vols": [
+    "cur",
+    "3b",
+    "6a"
+   ]
+  },
+  {
+   "en": "worried",
+   "zh": "担心的",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "happy",
+   "zh": "高兴的",
+   "vols": [
+    "cur",
+    "3b",
+    "6a"
+   ]
+  },
+  {
+   "en": "taller",
+   "zh": "更高的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "shorter",
+   "zh": "更矮的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "stronger",
+   "zh": "更强壮的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "older",
+   "zh": "更年长的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "younger",
+   "zh": "更年轻的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "bigger",
+   "zh": "更大的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "heavier",
+   "zh": "更重的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "longer",
+   "zh": "更长的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "thinner",
+   "zh": "更瘦的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "smaller",
+   "zh": "更小的",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "slept",
+   "zh": "睡觉",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "yesterday",
+   "zh": "昨天",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "over",
+   "zh": "结束",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "mule",
+   "zh": "骡子",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "grass",
+   "zh": "草",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "gym",
+   "zh": "体育馆",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "ago",
+   "zh": "以前",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "cycling",
+   "zh": "骑自行车",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "ice-skate",
+   "zh": "滑冰",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "badminton",
+   "zh": "羽毛球",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "star",
+   "zh": "明星",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "Internet",
+   "zh": "互联网",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "can",
+   "zh": "可以",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "share",
+   "zh": "分享",
+   "vols": [
+    "3a",
+    "6a"
+   ]
+  },
+  {
+   "en": "smile",
+   "zh": "微笑",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "listen",
+   "zh": "听",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "help",
+   "zh": "帮助",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "say",
+   "zh": "说",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "and",
+   "zh": "和",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "good",
+   "zh": "好的",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "mum",
+   "zh": "妈妈",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "dad",
+   "zh": "爸爸",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "grandma",
+   "zh": "奶奶",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "grandpa",
+   "zh": "爷爷",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "me",
+   "zh": "我",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "have",
+   "zh": "有",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "cousin",
+   "zh": "堂表兄妹",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "baby",
+   "zh": "婴儿",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "some",
+   "zh": "一些",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "like",
+   "zh": "喜欢",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "pet",
+   "zh": "宠物",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "rabbit",
+   "zh": "兔子",
+   "vols": [
+    "3a",
+    "5a"
+   ]
+  },
+  {
+   "en": "go",
+   "zh": "去",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "fox",
+   "zh": "狐狸",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "Miss",
+   "zh": "女士",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "cute",
+   "zh": "可爱的",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "lion",
+   "zh": "狮子",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "fast",
+   "zh": "快的",
+   "vols": [
+    "3a",
+    "6a"
+   ]
+  },
+  {
+   "en": "air",
+   "zh": "空气",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "school",
+   "zh": "学校",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "need",
+   "zh": "需要",
+   "vols": [
+    "3a",
+    "5b"
+   ]
+  },
+  {
+   "en": "flower",
+   "zh": "花",
+   "vols": [
+    "3a",
+    "5a"
+   ]
+  },
+  {
+   "en": "new",
+   "zh": "新的",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "sun",
+   "zh": "太阳",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "give",
+   "zh": "给",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "us",
+   "zh": "我们",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "them",
+   "zh": "他们",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "colour",
+   "zh": "颜色",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "make",
+   "zh": "制作",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "purple",
+   "zh": "紫色",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "bear",
+   "zh": "熊",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "sea",
+   "zh": "海洋",
+   "vols": [
+    "3a",
+    "6a"
+   ]
+  },
+  {
+   "en": "pink",
+   "zh": "粉色",
+   "vols": [
+    "3a",
+    "5b"
+   ]
+  },
+  {
+   "en": "draw",
+   "zh": "画",
+   "vols": [
+    "3a",
+    "5a"
+   ]
+  },
+  {
+   "en": "year",
+   "zh": "年",
+   "vols": [
+    "3a",
+    "5b"
+   ]
+  },
+  {
+   "en": "o'clock",
+   "zh": "点钟",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "cut",
+   "zh": "切",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "piece",
+   "zh": "块",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "eat",
+   "zh": "吃",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "she",
+   "zh": "她",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "he",
+   "zh": "他",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "welcome",
+   "zh": "欢迎",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "today",
+   "zh": "今天",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "from",
+   "zh": "来自",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "pupil",
+   "zh": "小学生",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "tired",
+   "zh": "累的",
+   "vols": [
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "feel",
+   "zh": "感觉",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "love",
+   "zh": "爱",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "want",
+   "zh": "要",
+   "vols": [
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "drink",
+   "zh": "喝",
+   "vols": [
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "sleep",
+   "zh": "睡觉",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "play",
+   "zh": "玩",
+   "vols": [
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "bag",
+   "zh": "书包",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "read",
+   "zh": "读",
+   "vols": [
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "write",
+   "zh": "写",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "storybook",
+   "zh": "故事书",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "speak",
+   "zh": "说",
+   "vols": [
+    "3b",
+    "5a"
+   ]
+  },
+  {
+   "en": "hungry",
+   "zh": "饿的",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "boat",
+   "zh": "小船",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "kite",
+   "zh": "风筝",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "doll",
+   "zh": "洋娃娃",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "box",
+   "zh": "盒子",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "plane",
+   "zh": "飞机",
+   "vols": [
+    "3b",
+    "6a"
+   ]
+  },
+  {
+   "en": "train",
+   "zh": "火车",
+   "vols": [
+    "3b",
+    "6a"
+   ]
+  },
+  {
+   "en": "time",
+   "zh": "时间",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "yuan",
+   "zh": "元",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "many",
+   "zh": "许多",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "people",
+   "zh": "人",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "fan",
+   "zh": "风扇",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "really",
+   "zh": "真的",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "clean",
+   "zh": "打扫",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "TV",
+   "zh": "电视",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "key",
+   "zh": "钥匙",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "wow",
+   "zh": "哇",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "lost",
+   "zh": "丢失",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "friendly",
+   "zh": "友好的",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "or",
+   "zh": "或者",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "right",
+   "zh": "右边",
+   "vols": [
+    "4a",
+    "6a"
+   ]
+  },
+  {
+   "en": "find",
+   "zh": "找到",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "ready",
+   "zh": "准备好",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "pass",
+   "zh": "递",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "try",
+   "zh": "尝试",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "but",
+   "zh": "但是",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "little",
+   "zh": "小的",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "puppy",
+   "zh": "小狗",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "basketball",
+   "zh": "篮球",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "way",
+   "zh": "方向",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "now",
+   "zh": "现在",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "kid",
+   "zh": "小孩",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "thirty",
+   "zh": "三十",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "hurry",
+   "zh": "快点",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "outside",
+   "zh": "在户外",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "degree",
+   "zh": "度",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "world",
+   "zh": "世界",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "London",
+   "zh": "伦敦",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "Moscow",
+   "zh": "莫斯科",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "Singapore",
+   "zh": "新加坡",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "Sydney",
+   "zh": "悉尼",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "fly",
+   "zh": "放风筝",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "yum",
+   "zh": "味道好",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "those",
+   "zh": "那些",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "goat",
+   "zh": "山羊",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "clothes",
+   "zh": "衣服",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "pants",
+   "zh": "裤子",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "dress",
+   "zh": "连衣裙",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "skirt",
+   "zh": "裙子",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "sock",
+   "zh": "短袜",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "shorts",
+   "zh": "短裤",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "yours",
+   "zh": "你的",
+   "vols": [
+    "4b",
+    "5b"
+   ]
+  },
+  {
+   "en": "mine",
+   "zh": "我的",
+   "vols": [
+    "4b",
+    "5b"
+   ]
+  },
+  {
+   "en": "pack",
+   "zh": "收拾行李",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "wait",
+   "zh": "等待",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "glove",
+   "zh": "手套",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "too",
+   "zh": "太",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "know",
+   "zh": "知道",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "our",
+   "zh": "我们的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "Ms",
+   "zh": "女士",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "will",
+   "zh": "将要",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "sometime",
+   "zh": "有时",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "robot",
+   "zh": "机器人",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "him",
+   "zh": "他",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "finish",
+   "zh": "完成",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "wash",
+   "zh": "洗",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "watch",
+   "zh": "看",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "often",
+   "zh": "经常",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "park",
+   "zh": "公园",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "sport",
+   "zh": "运动",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "should",
+   "zh": "应该",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "every",
+   "zh": "每个",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "day",
+   "zh": "天",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "schedule",
+   "zh": "日程",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "thirsty",
+   "zh": "渴的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "favourite",
+   "zh": "最喜爱的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "food",
+   "zh": "食物",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "dear",
+   "zh": "亲爱的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "onion",
+   "zh": "洋葱",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "sing",
+   "zh": "唱歌",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "song",
+   "zh": "歌曲",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "cartoon",
+   "zh": "漫画",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "ping-pong",
+   "zh": "乒乓球",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "party",
+   "zh": "聚会",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "next",
+   "zh": "下一个",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "wonderful",
+   "zh": "极好的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "learn",
+   "zh": "学习",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "any",
+   "zh": "任何",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "problem",
+   "zh": "问题",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "send",
+   "zh": "发送",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "email",
+   "zh": "电子邮件",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "we'll",
+   "zh": "将会",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "there",
+   "zh": "那里",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "grandparent",
+   "zh": "祖父母",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "their",
+   "zh": "他们的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "lot",
+   "zh": "大量",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "move",
+   "zh": "搬家",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "dirty",
+   "zh": "脏的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "everywhere",
+   "zh": "到处",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "mouse",
+   "zh": "老鼠",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "live",
+   "zh": "居住",
+   "vols": [
+    "5a",
+    "5b"
+   ]
+  },
+  {
+   "en": "nature",
+   "zh": "自然",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "boating",
+   "zh": "划船",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "high",
+   "zh": "高的",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "after",
+   "zh": "在……之后",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "start",
+   "zh": "开始",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "usually",
+   "zh": "通常",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "Spain",
+   "zh": "西班牙",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "late",
+   "zh": "迟到",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "why",
+   "zh": "为什么",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "shop",
+   "zh": "购物",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "work",
+   "zh": "工作",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "last",
+   "zh": "上一个",
+   "vols": [
+    "5b",
+    "6b"
+   ]
+  },
+  {
+   "en": "sound",
+   "zh": "听起来",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "also",
+   "zh": "也",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "busy",
+   "zh": "忙的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "letter",
+   "zh": "信",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "for",
+   "zh": "为了",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "island",
+   "zh": "岛",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "always",
+   "zh": "总是",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "cave",
+   "zh": "山洞",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "win",
+   "zh": "获胜",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "exercise",
+   "zh": "运动",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "take",
+   "zh": "上（课）",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "pick",
+   "zh": "摘",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "snowman",
+   "zh": "雪人",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "snow",
+   "zh": "雪",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "because",
+   "zh": "因为",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "vacation",
+   "zh": "假期",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "all",
+   "zh": "全部",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "lovely",
+   "zh": "可爱的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "leaf",
+   "zh": "叶子",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "fall",
+   "zh": "落下",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "paint",
+   "zh": "绘画",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "contest",
+   "zh": "比赛",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "few",
+   "zh": "一些",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "thing",
+   "zh": "事情",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "meet",
+   "zh": "集会",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "trip",
+   "zh": "旅行",
+   "vols": [
+    "5b",
+    "6a"
+   ]
+  },
+  {
+   "en": "national",
+   "zh": "国家的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "American",
+   "zh": "美国的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "Thanksgiving",
+   "zh": "感恩节",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "fool",
+   "zh": "傻瓜",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "kitten",
+   "zh": "小猫",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "diary",
+   "zh": "日记",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "still",
+   "zh": "仍然",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "noise",
+   "zh": "噪音",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "fur",
+   "zh": "软毛",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "open",
+   "zh": "开着的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "walk",
+   "zh": "行走",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "first",
+   "zh": "第一",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "second",
+   "zh": "第二",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "third",
+   "zh": "第三",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "fourth",
+   "zh": "第四",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "fifth",
+   "zh": "第五",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "twelfth",
+   "zh": "第十二",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "twentieth",
+   "zh": "第二十",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "twenty-first",
+   "zh": "第二十一",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "hers",
+   "zh": "她的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "theirs",
+   "zh": "他们的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "ours",
+   "zh": "我们的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "each",
+   "zh": "每个",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "other",
+   "zh": "其他的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "excited",
+   "zh": "兴奋的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "its",
+   "zh": "它的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "show",
+   "zh": "指引",
+   "vols": [
+    "5b",
+    "6b"
+   ]
+  },
+  {
+   "en": "anything",
+   "zh": "任何事物",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "else",
+   "zh": "其他",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "exhibition",
+   "zh": "展览",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "sushi",
+   "zh": "寿司",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "teach",
+   "zh": "教",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "Canadian",
+   "zh": "加拿大的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "Spanish",
+   "zh": "西班牙的",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "keep",
+   "zh": "保持",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "turn",
+   "zh": "顺序",
+   "vols": [
+    "5b",
+    "6a"
+   ]
+  },
+  {
+   "en": "bamboo",
+   "zh": "竹子",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "science",
+   "zh": "科学",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "museum",
+   "zh": "博物馆",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "left",
+   "zh": "左边",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "straight",
+   "zh": "笔直地",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "ask",
+   "zh": "问",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "sir",
+   "zh": "先生",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "interesting",
+   "zh": "有趣的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "italian",
+   "zh": "意大利的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "restaurant",
+   "zh": "餐馆",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "pizza",
+   "zh": "比萨",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "street",
+   "zh": "街道",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "get",
+   "zh": "到达",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "GPS",
+   "zh": "定位系统",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "gave",
+   "zh": "给（过去式）",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "feature",
+   "zh": "特点",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "follow",
+   "zh": "跟随",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "far",
+   "zh": "远的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "tell",
+   "zh": "告诉",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "by",
+   "zh": "乘",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "bus",
+   "zh": "公交车",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "taxi",
+   "zh": "出租车",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "ship",
+   "zh": "轮船",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "subway",
+   "zh": "地铁",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "slow",
+   "zh": "慢的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "down",
+   "zh": "向下",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Mrs",
+   "zh": "夫人",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "early",
+   "zh": "早的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "helmet",
+   "zh": "头盔",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "must",
+   "zh": "必须",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "wear",
+   "zh": "穿戴",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "attention",
+   "zh": "注意",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "traffic",
+   "zh": "交通",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Munich",
+   "zh": "慕尼黑",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Germany",
+   "zh": "德国",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Alaska",
+   "zh": "阿拉斯加",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "sled",
+   "zh": "雪橇",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "ferry",
+   "zh": "轮渡",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Scotland",
+   "zh": "苏格兰",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "visit",
+   "zh": "拜访",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "film",
+   "zh": "电影",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "evening",
+   "zh": "晚上",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "comic",
+   "zh": "滑稽的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "word",
+   "zh": "单词",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "postcard",
+   "zh": "明信片",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "lesson",
+   "zh": "课",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "space",
+   "zh": "太空",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "travel",
+   "zh": "旅行",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "half",
+   "zh": "一半",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "price",
+   "zh": "价格",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "together",
+   "zh": "一起",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "mooncake",
+   "zh": "月饼",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "poem",
+   "zh": "诗",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "moon",
+   "zh": "月亮",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "studies",
+   "zh": "学习",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "puzzle",
+   "zh": "谜",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "hiking",
+   "zh": "远足",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "jasmine",
+   "zh": "茉莉",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "idea",
+   "zh": "主意",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Canberra",
+   "zh": "堪培拉",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "amazing",
+   "zh": "惊奇的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "shall",
+   "zh": "将要",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "goal",
+   "zh": "射门",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "join",
+   "zh": "加入",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "club",
+   "zh": "俱乐部",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "factory",
+   "zh": "工厂",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "worker",
+   "zh": "工人",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "country",
+   "zh": "国家",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "stay",
+   "zh": "保持",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "university",
+   "zh": "大学",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "if",
+   "zh": "如果",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "use",
+   "zh": "使用",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "type",
+   "zh": "打字",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "quickly",
+   "zh": "快速地",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "secretary",
+   "zh": "秘书",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "more",
+   "zh": "更多的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "deep",
+   "zh": "深的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "breath",
+   "zh": "呼吸",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "count",
+   "zh": "数数",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "chase",
+   "zh": "追赶",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "mice",
+   "zh": "老鼠（复数）",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "bad",
+   "zh": "坏的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "hurt",
+   "zh": "受伤",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "ill",
+   "zh": "生病的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "wrong",
+   "zh": "有毛病",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "well",
+   "zh": "健康的",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "sit",
+   "zh": "坐",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "hear",
+   "zh": "听见",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "ant",
+   "zh": "蚂蚁",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "worry",
+   "zh": "担心",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "stuck",
+   "zh": "陷住",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "mud",
+   "zh": "泥",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "pull",
+   "zh": "拉",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "dinosaur",
+   "zh": "恐龙",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "hall",
+   "zh": "大厅",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "metre",
+   "zh": "米",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "than",
+   "zh": "比",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "both",
+   "zh": "两个都",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "kilogram",
+   "zh": "千克",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "countryside",
+   "zh": "乡村",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "lower",
+   "zh": "更低的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "shadow",
+   "zh": "影子",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "smarter",
+   "zh": "更聪明的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "become",
+   "zh": "变成",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "cleaned",
+   "zh": "打扫（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "stayed",
+   "zh": "停留（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "washed",
+   "zh": "洗（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "watched",
+   "zh": "看（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "had",
+   "zh": "有（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "saw",
+   "zh": "看见（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "before",
+   "zh": "在……之前",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "drank",
+   "zh": "喝（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "magazine",
+   "zh": "杂志",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "better",
+   "zh": "更好的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "faster",
+   "zh": "更快的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "hotel",
+   "zh": "旅馆",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "fixed",
+   "zh": "修理（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "broken",
+   "zh": "破损的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "lamp",
+   "zh": "台灯",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "loud",
+   "zh": "大声的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "enjoy",
+   "zh": "享受",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "went",
+   "zh": "去（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "camp",
+   "zh": "野营",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "fishing",
+   "zh": "钓鱼",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "rode",
+   "zh": "骑（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "ate",
+   "zh": "吃（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "took",
+   "zh": "拍（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "bought",
+   "zh": "买（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "gift",
+   "zh": "礼物",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "fell",
+   "zh": "摔倒（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "off",
+   "zh": "落下",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "Turpan",
+   "zh": "吐鲁番",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "could",
+   "zh": "能（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "till",
+   "zh": "直到",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "beach",
+   "zh": "海滩",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "basket",
+   "zh": "篮子",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "part",
+   "zh": "角色",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "licked",
+   "zh": "舔（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "laughed",
+   "zh": "笑（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "easy",
+   "zh": "容易的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "different",
+   "zh": "不同的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "active",
+   "zh": "积极的",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "race",
+   "zh": "赛跑",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "nothing",
+   "zh": "没有什么",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "thought",
+   "zh": "想（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "felt",
+   "zh": "感觉（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "woke",
+   "zh": "醒（过去式）",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "cheetah",
+   "zh": "猎豹",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "dream",
+   "zh": "梦",
+   "vols": [
+    "6b"
+   ]
+  }
+ ],
+ "phrase": [
+  {
+   "en": "bye bye",
+   "zh": "拜拜",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "good morning",
+   "zh": "早上好",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "good afternoon",
+   "zh": "下午好",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "nice to meet you",
+   "zh": "很高兴认识你",
+   "vols": [
+    "cur",
+    "3a"
+   ]
+  },
+  {
+   "en": "my name is...",
+   "zh": "我的名字是……",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "happy birthday",
+   "zh": "生日快乐",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "how old are you",
+   "zh": "你几岁了",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "new friend",
+   "zh": "新朋友",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "do you like pears",
+   "zh": "你喜欢梨吗",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "how many",
+   "zh": "多少",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "pencil box",
+   "zh": "铅笔盒",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "living room",
+   "zh": "客厅",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "baby brother",
+   "zh": "弟弟",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "football player",
+   "zh": "足球运动员",
+   "vols": [
+    "cur",
+    "4a"
+   ]
+  },
+  {
+   "en": "art room",
+   "zh": "美术教室",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "computer room",
+   "zh": "计算机教室",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "music room",
+   "zh": "音乐教室",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "next to",
+   "zh": "紧邻",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "English class",
+   "zh": "英语课",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "music class",
+   "zh": "音乐课",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "PE class",
+   "zh": "体育课",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "get up",
+   "zh": "起床",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "go to school",
+   "zh": "去上学",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "go home",
+   "zh": "回家",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "go to bed",
+   "zh": "上床睡觉",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "just a minute",
+   "zh": "稍等一会儿",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "green beans",
+   "zh": "青豆",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "try on",
+   "zh": "试穿",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "how much",
+   "zh": "多少钱",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "all right",
+   "zh": "好吧",
+   "vols": [
+    "cur",
+    "4b"
+   ]
+  },
+  {
+   "en": "wash my clothes",
+   "zh": "洗衣服",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "watch TV",
+   "zh": "看电视",
+   "vols": [
+    "cur",
+    "4a",
+    "5a"
+   ]
+  },
+  {
+   "en": "do homework",
+   "zh": "做作业",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "read books",
+   "zh": "读书",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "ice cream",
+   "zh": "冰激凌",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "would like",
+   "zh": "想要",
+   "vols": [
+    "cur",
+    "3b"
+   ]
+  },
+  {
+   "en": "sing English songs",
+   "zh": "唱英文歌",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "play the pipa",
+   "zh": "弹琵琶",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "do kung fu",
+   "zh": "练武术",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "draw cartoons",
+   "zh": "画漫画",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "play basketball",
+   "zh": "打篮球",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "play ping-pong",
+   "zh": "打乒乓球",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "speak English",
+   "zh": "说英语",
+   "vols": [
+    "cur",
+    "5a"
+   ]
+  },
+  {
+   "en": "do morning exercises",
+   "zh": "做早操",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "eat breakfast",
+   "zh": "吃早饭",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "have class",
+   "zh": "上课",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "play sports",
+   "zh": "做运动",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "eat dinner",
+   "zh": "吃晚饭",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "clean my room",
+   "zh": "打扫房间",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "go for a walk",
+   "zh": "散步",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "go shopping",
+   "zh": "购物",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "take a dancing class",
+   "zh": "上舞蹈课",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "pick apples",
+   "zh": "摘苹果",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "make a snowman",
+   "zh": "堆雪人",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "go swimming",
+   "zh": "去游泳",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "April Fool's Day",
+   "zh": "愚人节",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "Mother's Day",
+   "zh": "母亲节",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "Father's Day",
+   "zh": "父亲节",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "Children's Day",
+   "zh": "儿童节",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "Teachers' Day",
+   "zh": "教师节",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "National Day",
+   "zh": "国庆节",
+   "vols": [
+    "cur",
+    "5b"
+   ]
+  },
+  {
+   "en": "playing with each other",
+   "zh": "互相玩耍",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "doing the dishes",
+   "zh": "正在洗碗",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "cleaning the room",
+   "zh": "正在打扫房间",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "reading a book",
+   "zh": "正在读书",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "having a class",
+   "zh": "正在上课",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "eating lunch",
+   "zh": "正在吃午饭",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "science museum",
+   "zh": "科学博物馆",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "post office",
+   "zh": "邮局",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "turn left",
+   "zh": "向左转",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "turn right",
+   "zh": "向右转",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "go straight",
+   "zh": "直走",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "on foot",
+   "zh": "步行",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "by bus",
+   "zh": "乘公交车",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "by plane",
+   "zh": "乘飞机",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "by taxi",
+   "zh": "乘出租车",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "by ship",
+   "zh": "乘轮船",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "by subway",
+   "zh": "乘地铁",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "by train",
+   "zh": "乘火车",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "slow down",
+   "zh": "减速",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "traffic lights",
+   "zh": "交通灯",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "visit my grandparents",
+   "zh": "看望祖父母",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "see a film",
+   "zh": "看电影",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "take a trip",
+   "zh": "去旅行",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "next week",
+   "zh": "下周",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "comic book",
+   "zh": "漫画书",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "pen pal",
+   "zh": "笔友",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "doing kung fu",
+   "zh": "练武术",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "reading stories",
+   "zh": "读故事",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "studies Chinese",
+   "zh": "学中文",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "goes hiking",
+   "zh": "去远足",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "factory worker",
+   "zh": "工厂工人",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "police officer",
+   "zh": "警察",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "head teacher",
+   "zh": "校长",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "see a doctor",
+   "zh": "看病",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "wear warm clothes",
+   "zh": "穿暖和衣服",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "take a deep breath",
+   "zh": "深呼吸",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "count to ten",
+   "zh": "数到十",
+   "vols": [
+    "cur",
+    "6a"
+   ]
+  },
+  {
+   "en": "cleaned my room",
+   "zh": "打扫房间",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "washed my clothes",
+   "zh": "洗衣服",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "stayed at home",
+   "zh": "待在家里",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "watched TV",
+   "zh": "看电视",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "read a book",
+   "zh": "读书",
+   "vols": [
+    "cur",
+    "3b",
+    "6b"
+   ]
+  },
+  {
+   "en": "saw a film",
+   "zh": "看电影",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "had a cold",
+   "zh": "感冒",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "last weekend",
+   "zh": "上周末",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "went fishing",
+   "zh": "去钓鱼",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "went camping",
+   "zh": "去野营",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "went swimming",
+   "zh": "去游泳",
+   "vols": [
+    "cur"
+   ]
+  },
+  {
+   "en": "rode a bike",
+   "zh": "骑自行车",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "rode a horse",
+   "zh": "骑马",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "hurt my foot",
+   "zh": "脚受伤",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "took pictures",
+   "zh": "拍照",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "bought gifts",
+   "zh": "买礼物",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "dining hall",
+   "zh": "餐厅",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "look up",
+   "zh": "查阅",
+   "vols": [
+    "cur",
+    "6b"
+   ]
+  },
+  {
+   "en": "red panda",
+   "zh": "小熊猫",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "point to your ear",
+   "zh": "指你的耳朵",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "wave your hand",
+   "zh": "挥挥手",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "what's your name",
+   "zh": "你叫什么名字",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "my name's",
+   "zh": "我叫……",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "show me your pencil",
+   "zh": "给我看看你的铅笔",
+   "vols": [
+    "3a"
+   ]
+  },
+  {
+   "en": "be from",
+   "zh": "来自",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "a new student",
+   "zh": "一名新学生",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "feel happy",
+   "zh": "感到开心",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "like dogs",
+   "zh": "喜欢狗",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "write a word",
+   "zh": "写字",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "healthy food",
+   "zh": "健康食物",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "toy box",
+   "zh": "玩具盒",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "on the desk",
+   "zh": "在书桌上",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "what time",
+   "zh": "几点",
+   "vols": [
+    "3b"
+   ]
+  },
+  {
+   "en": "teacher's desk",
+   "zh": "讲台",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "maths book",
+   "zh": "数学书",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "English book",
+   "zh": "英语书",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "Chinese book",
+   "zh": "语文书",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "so much",
+   "zh": "非常",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "help yourself",
+   "zh": "请自便",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "open the door",
+   "zh": "开门",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "sweep the floor",
+   "zh": "扫地",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "turn on the light",
+   "zh": "开灯",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "put up the picture",
+   "zh": "张贴图画",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "clean the board",
+   "zh": "擦黑板",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "close the window",
+   "zh": "关窗户",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "have a snack",
+   "zh": "吃零食",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "have a nap",
+   "zh": "打个盹",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "make a salad",
+   "zh": "做沙拉",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "pass me the bowl",
+   "zh": "把碗递给我",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "pass me the knife",
+   "zh": "把刀递给我",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "cut the vegetables",
+   "zh": "切蔬菜",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "use the spoon",
+   "zh": "用勺子",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "use the fork",
+   "zh": "用叉子",
+   "vols": [
+    "4a"
+   ]
+  },
+  {
+   "en": "first floor",
+   "zh": "一楼",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "second floor",
+   "zh": "二楼",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "teacher's office",
+   "zh": "教师办公室",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "hurry up",
+   "zh": "快点",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "come on",
+   "zh": "加油",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "be careful",
+   "zh": "小心",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "how about",
+   "zh": "怎么样",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "New York",
+   "zh": "纽约",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "of course",
+   "zh": "当然",
+   "vols": [
+    "4b"
+   ]
+  },
+  {
+   "en": "play football",
+   "zh": "踢足球",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "play sport",
+   "zh": "做运动",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "kung fu",
+   "zh": "功夫",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "no problem",
+   "zh": "没问题",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "water bottle",
+   "zh": "水瓶",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "in front of",
+   "zh": "在……前面",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "lots of",
+   "zh": "大量",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "go boating",
+   "zh": "去划船",
+   "vols": [
+    "5a"
+   ]
+  },
+  {
+   "en": "go on a picnic",
+   "zh": "去野餐",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "good job",
+   "zh": "做得好",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "a few",
+   "zh": "一些",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "sports meet",
+   "zh": "运动会",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "Tree Planting Day",
+   "zh": "植树节",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "the Great Wall",
+   "zh": "长城",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "each other",
+   "zh": "互相",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "have a look",
+   "zh": "看一看",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "keep to the right",
+   "zh": "靠右",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "keep your desk clean",
+   "zh": "保持课桌整洁",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "talk quietly",
+   "zh": "小声说话",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "take turns",
+   "zh": "按顺序来",
+   "vols": [
+    "5b"
+   ]
+  },
+  {
+   "en": "pay attention to",
+   "zh": "注意",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "word book",
+   "zh": "单词书",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Mid-autumn Festival",
+   "zh": "中秋节",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "get together",
+   "zh": "聚会",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "have an art lesson",
+   "zh": "上美术课",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "go to the cinema",
+   "zh": "去看电影",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "do more exercise",
+   "zh": "多做运动",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "Papa Westray",
+   "zh": "帕帕韦斯特雷岛",
+   "vols": [
+    "6a"
+   ]
+  },
+  {
+   "en": "fell off",
+   "zh": "摔倒",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "ate fresh food",
+   "zh": "吃新鲜食物",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "Labour Day",
+   "zh": "劳动节",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "go cycling",
+   "zh": "去骑车",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "play badminton",
+   "zh": "打羽毛球",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "last month",
+   "zh": "上个月",
+   "vols": [
+    "6b"
+   ]
+  },
+  {
+   "en": "last year",
+   "zh": "去年",
+   "vols": [
+    "6b"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+  "city": "zhengzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "郑州大学",
+      "en": "Zhengzhou University",
+      "tag": "211",
+      "founded": 1956,
+      "site": "https://www.zzu.edu.cn",
+      "globalRank": 385,
+      "nationalRank": 35,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "河南农业大学",
+      "en": "Henan Agricultural University",
+      "tag": null,
+      "founded": 1902,
+      "site": "https://www.henau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "河南工业大学",
+      "en": "Henan University of Technology",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.haut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "郑州轻工业大学",
+      "en": "Zhengzhou University of Light Industry",
+      "tag": null,
+      "founded": 1977,
+      "site": "https://www.zzuli.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "河南中医药大学",
+      "en": "Henan University of Chinese Medicine",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.hactcm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华北水利水电大学",
+      "en": "North China University of Water Resources and Electric Power",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.ncwu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "郑州航空工业管理学院",
+      "en": "Zhengzhou University of Aeronautics",
+      "tag": null,
+      "founded": 1949,
+      "site": "https://www.zua.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\universities.json"
+}

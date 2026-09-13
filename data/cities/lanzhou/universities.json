@@ -1,0 +1,91 @@
+{
+  "city": "lanzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "兰州大学",
+      "en": "Lanzhou University",
+      "tag": "985",
+      "founded": 1909,
+      "site": "https://www.lzu.edu.cn",
+      "globalRank": 350,
+      "nationalRank": 33,
+      "bearing": "C",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "西北师范大学",
+      "en": "Northwest Normal University",
+      "tag": null,
+      "founded": 1902,
+      "site": "https://www.nwnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "兰州理工大学",
+      "en": "Lanzhou University of Technology",
+      "tag": null,
+      "founded": 1919,
+      "site": "https://www.lut.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "兰州交通大学",
+      "en": "Lanzhou Jiaotong University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.lzjtu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "甘肃农业大学",
+      "en": "Gansu Agricultural University",
+      "tag": null,
+      "founded": 1946,
+      "site": "https://www.gsau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "兰州财经大学",
+      "en": "Lanzhou University of Finance and Economics",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.lzufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "甘肃中医药大学",
+      "en": "Gansu University of Chinese Medicine",
+      "tag": null,
+      "founded": 1978,
+      "site": "https://www.gszy.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lanzhou\\universities.json"
+}

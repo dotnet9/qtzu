@@ -1,0 +1,63 @@
+{
+  "city": "shaoxing",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "鲁迅故里",
+      "en": "Lu Xun Former Residence",
+      "desc": "百草园三味书屋，课本里的绍兴",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lu%20Xun%20Former%20Residence.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "沈园",
+      "en": "Shen Garden",
+      "desc": "陆游唐婉《钗头凤》爱情名园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shen%20Garden.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "兰亭",
+      "en": "Orchid Pavilion",
+      "desc": "王羲之曲水流觞写兰亭集序",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Orchid%20Pavilion%20Shaoxing.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "东湖",
+      "en": "East Lake Shaoxing",
+      "desc": "崖壁水石大盆景，乌篷船穿洞",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/East%20Lake%20Shaoxing.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "安昌古镇",
+      "en": "Angchang Ancient Town",
+      "desc": "腊肠飘香的师爷故里",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Angchang%20Ancient%20Town.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "大禹陵",
+      "en": "Yu Mausoleum",
+      "desc": "治水英雄大禹归葬地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yu%20Mausoleum.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "八字桥",
+      "en": "Bazi Bridge",
+      "desc": "南宋古桥「古代立交桥」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bazi%20Bridge.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "会稽山",
+      "en": "Kuaiji Mountain",
+      "desc": "大禹会诸侯之地，黄酒发源",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kuaiji%20Mountain.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shaoxing\\scenes.json"
+}

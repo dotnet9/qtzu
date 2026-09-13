@@ -1,0 +1,63 @@
+{
+  "city": "zhengzhou",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "少林寺",
+      "en": "Shaolin Temple",
+      "desc": "禅宗祖庭功夫圣地，塔林诉说千年",
+      "img": "data/cities/zhengzhou/img/Shaolin_Temple.jpg",
+      "bearing": "SW"
+    },
+    {
+      "name": "二七纪念塔",
+      "en": "Erqi Memorial Tower",
+      "desc": "双塔并立的郑州地标，京汉铁路大罢工纪念",
+      "img": "data/cities/zhengzhou/img/Erqi_Memorial_Tower.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "黄河风景名胜区",
+      "en": "Yellow River Scenic Area",
+      "desc": "炎黄二帝巨型塑像，黄河中下游分界",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20River%20Zhengzhou.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "河南博物院",
+      "en": "Henan Museum",
+      "desc": "莲鹤方壶与贾湖骨笛，华夏九千年底蕴",
+      "img": "data/cities/zhengzhou/img/Henan_Museum.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "嵩阳书院",
+      "en": "Songyang Academy",
+      "desc": "四大书院之一，大将军柏四千岁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Songyang%20Academy.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "黄帝故里",
+      "en": "Yellow Emperor's Hometown",
+      "desc": "全球华人拜祖圣地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20Emperor's%20Hometown.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "只有河南·戏剧幻城",
+      "en": "Only Henan Theater Town",
+      "desc": "沉浸式戏剧王国，麦田里的幻城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Only%20Henan.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "德化街",
+      "en": "Dehua Street",
+      "desc": "百年商业老街，郑州的烟火气",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dehua%20Street.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\scenes.json"
+}

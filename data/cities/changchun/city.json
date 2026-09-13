@@ -1,0 +1,80 @@
+{
+  "id": "changchun",
+  "name": "长春",
+  "en": "Changchun",
+  "color": "#8A9E5A",
+  "landmark": "gate",
+  "region": "东北",
+  "importance": "吉林省会 · 汽车城 · 电影城",
+  "isCoastal": false,
+  "history": "长春曾是伪满洲国「首都」新京，伪满皇宫见证傀儡岁月。一汽集团 1953 年建厂，第一辆解放牌卡车和红旗轿车从这里驶出，长影是新中国电影摇篮。净月潭与雾凇让这座城市冰雪与工业交融。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/FAW%20Changchun.jpg?width=960",
+      "caption": "一汽"
+    },
+    {
+      "img": "data/cities/changchun/img/Changchun_Film_Studio.jpg",
+      "caption": "长影"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jingyuetan.jpg?width=960",
+      "caption": "净月潭"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🚗",
+      "intro": "一汽解放卡车和红旗轿车从这里驶出",
+      "introEn": "China's first trucks were made in Changchun.",
+      "words": [
+        "car"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🎬",
+      "intro": "长影是新中国电影的摇篮",
+      "introEn": "Changchun is the cradle of Chinese film.",
+      "words": [
+        "movie"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🏔️",
+      "intro": "净月潭的林海四季都美",
+      "introEn": "Jingyuetan forest changes with seasons.",
+      "words": [
+        "forest"
+      ],
+      "deco": "iceflake"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changchun\\city.json"
+}

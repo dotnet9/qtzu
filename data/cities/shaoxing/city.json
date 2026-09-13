@@ -1,0 +1,80 @@
+{
+  "id": "shaoxing",
+  "name": "绍兴",
+  "en": "Shaoxing",
+  "color": "#7A9E7A",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "鲁迅故里 · 水乡酒城",
+  "isCoastal": false,
+  "history": "绍兴有 2500 年建城史，古称越州，是越国故都。乌篷船摇过石桥水巷，黄酒温润千年。王羲之在兰亭写下天下第一行书，鲁迅的百草园与三味书屋、陆游唐婉的沈园、王阳明的阳明洞天，文脉绵延不绝。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lu%20Xun%20Former%20Residence.jpg?width=960",
+      "caption": "鲁迅故里"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Orchid%20Pavilion%20Shaoxing.jpg?width=960",
+      "caption": "兰亭"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shen%20Garden.jpg?width=960",
+      "caption": "沈园"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🍶",
+      "intro": "黄酒要温着喝，配茴香豆看乌篷船",
+      "introEn": "Warm yellow wine with fennel beans.",
+      "words": [
+        "wine"
+      ],
+      "deco": "tea"
+    },
+    {
+      "emoji": "📖",
+      "intro": "鲁迅的百草园和三味书屋都在这",
+      "introEn": "Lu Xun's garden is from your textbook!",
+      "words": [
+        "book"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🛶",
+      "intro": "乌篷船摇过石桥水巷，像在画里",
+      "introEn": "Black-awning boats rock through canals.",
+      "words": [
+        "boat"
+      ],
+      "deco": "boat"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shaoxing\\city.json"
+}

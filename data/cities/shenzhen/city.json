@@ -1,0 +1,81 @@
+{
+  "id": "shenzhen",
+  "name": "深圳",
+  "en": "Shenzhen",
+  "color": "#3EA89E",
+  "landmark": "tower",
+  "region": "华南",
+  "importance": "经济特区 · 创新之都",
+  "isCoastal": true,
+  "history": "深圳从 1979 年的边陲小渔村起步，1980 年成为首批经济特区，四十余年长成两千万人的一线都市，「深圳速度」是改革开放的代名词。腾讯、华为、大疆从这里的园区走向世界。大梅沙的浪花与科技园的代码，都在诠释这座城市的年轻与速度。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shenzhen%20skyline.jpg?width=960",
+      "caption": "深圳天际线"
+    },
+    {
+      "img": "data/cities/shenzhen/img/Shenzhen_Bay.jpg",
+      "caption": "深圳湾"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dameisha%20Beach.jpg?width=960",
+      "caption": "大梅沙"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🚀",
+      "intro": "从小渔村到大都市，四十年跑出深圳速度",
+      "introEn": "Shenzhen speed: village to metropolis!",
+      "words": [
+        "fast",
+        "city"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🤖",
+      "intro": "腾讯华为大疆，科技大厂都住在这里",
+      "introEn": "Tech giants live in Shenzhen.",
+      "words": [
+        "robot"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🏖️",
+      "intro": "大梅沙的海浪和栈道免费玩",
+      "introEn": "Dameisha beach is free and fun.",
+      "words": [
+        "sea"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "tower",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenzhen\\city.json"
+}

@@ -1,0 +1,686 @@
+[
+ {
+  "key": "greet",
+  "name": "口语问候岛",
+  "emoji": "👋",
+  "color": "#FBE4D8",
+  "style": "mixed",
+  "cx": -82,
+  "cz": -77.8,
+  "r": 11.31,
+  "rows": [
+   {
+    "en": "bye bye",
+    "zh": "拜拜",
+    "unit": "Unit 1 Hello!"
+   },
+   {
+    "en": "good morning",
+    "zh": "早上好",
+    "unit": "Unit 1 Hello!"
+   },
+   {
+    "en": "good afternoon",
+    "zh": "下午好",
+    "unit": "Unit 1 Hello!"
+   },
+   {
+    "en": "nice to meet you",
+    "zh": "很高兴认识你",
+    "unit": "Unit 1 Hello!"
+   },
+   {
+    "en": "my name is...",
+    "zh": "我的名字是……",
+    "unit": "Unit 1 Hello!"
+   },
+   {
+    "en": "happy birthday",
+    "zh": "生日快乐",
+    "unit": "Unit 6 Happy birthday"
+   },
+   {
+    "en": "how old are you",
+    "zh": "你几岁了",
+    "unit": "Unit 6 Happy birthday"
+   }
+  ],
+  "startIndex": null
+ },
+ {
+  "key": "campus",
+  "name": "校园短语岛",
+  "emoji": "🎒",
+  "color": "#DCEAF5",
+  "style": "pine",
+  "cx": -113.7,
+  "cz": -23.1,
+  "r": 11,
+  "rows": [
+   {
+    "en": "new friend",
+    "zh": "新朋友",
+    "unit": "Unit 1 Welcome back to school!"
+   },
+   {
+    "en": "do you like pears",
+    "zh": "你喜欢梨吗",
+    "unit": "Unit 5 Do you like pears?"
+   },
+   {
+    "en": "how many",
+    "zh": "多少",
+    "unit": "Unit 6 How many?"
+   }
+  ],
+  "startIndex": null
+ },
+ {
+  "key": "houseph",
+  "name": "居家短语岛",
+  "emoji": "🛋️",
+  "color": "#F0E4EC",
+  "style": "house",
+  "cx": 33.2,
+  "cz": 112.2,
+  "r": 11,
+  "rows": [
+   {
+    "en": "pencil box",
+    "zh": "铅笔盒",
+    "unit": "Unit 2 My schoolbag"
+   },
+   {
+    "en": "living room",
+    "zh": "客厅",
+    "unit": "Unit 4 My home"
+   },
+   {
+    "en": "baby brother",
+    "zh": "弟弟",
+    "unit": "Unit 6 Meet my family!"
+   },
+   {
+    "en": "football player",
+    "zh": "足球运动员",
+    "unit": "Unit 6 Meet my family!"
+   }
+  ],
+  "startIndex": null
+ },
+ {
+  "key": "schoolph",
+  "name": "时刻短语岛",
+  "emoji": "🕒",
+  "color": "#E4F0E4",
+  "style": "mixed",
+  "cx": 39.4,
+  "cz": -114.4,
+  "r": 14.280000000000001,
+  "rows": [
+   {
+    "en": "art room",
+    "zh": "美术教室",
+    "unit": "Unit 1 My school"
+   },
+   {
+    "en": "computer room",
+    "zh": "计算机教室",
+    "unit": "Unit 1 My school"
+   },
+   {
+    "en": "music room",
+    "zh": "音乐教室",
+    "unit": "Unit 1 My school"
+   },
+   {
+    "en": "next to",
+    "zh": "紧邻",
+    "unit": "Unit 1 My school"
+   },
+   {
+    "en": "English class",
+    "zh": "英语课",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "music class",
+    "zh": "音乐课",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "PE class",
+    "zh": "体育课",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "get up",
+    "zh": "起床",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "go to school",
+    "zh": "去上学",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "go home",
+    "zh": "回家",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "go to bed",
+    "zh": "上床睡觉",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "just a minute",
+    "zh": "稍等一会儿",
+    "unit": "Unit 2 What time is it?"
+   },
+   {
+    "en": "green beans",
+    "zh": "青豆",
+    "unit": "Unit 4 At the farm"
+   },
+   {
+    "en": "try on",
+    "zh": "试穿",
+    "unit": "Unit 6 Shopping"
+   },
+   {
+    "en": "how much",
+    "zh": "多少钱",
+    "unit": "Unit 6 Shopping"
+   },
+   {
+    "en": "all right",
+    "zh": "好吧",
+    "unit": "Unit 6 Shopping"
+   }
+  ],
+  "startIndex": null
+ },
+ {
+  "key": "weekph",
+  "name": "星期短语岛",
+  "emoji": "📅",
+  "color": "#F5EEDC",
+  "style": "house",
+  "cx": -15.8,
+  "cz": 120,
+  "r": 13.29,
+  "rows": [
+   {
+    "en": "wash my clothes",
+    "zh": "洗衣服",
+    "unit": "Unit 2 My week"
+   },
+   {
+    "en": "watch TV",
+    "zh": "看电视",
+    "unit": "Unit 2 My week"
+   },
+   {
+    "en": "do homework",
+    "zh": "做作业",
+    "unit": "Unit 2 My week"
+   },
+   {
+    "en": "read books",
+    "zh": "读书",
+    "unit": "Unit 2 My week"
+   },
+   {
+    "en": "ice cream",
+    "zh": "冰激凌",
+    "unit": "Unit 3 What would you like?"
+   },
+   {
+    "en": "would like",
+    "zh": "想要",
+    "unit": "Unit 3 What would you like?"
+   },
+   {
+    "en": "sing English songs",
+    "zh": "唱英文歌",
+    "unit": "Unit 4 What can you do?"
+   },
+   {
+    "en": "play the pipa",
+    "zh": "弹琵琶",
+    "unit": "Unit 4 What can you do?"
+   },
+   {
+    "en": "do kung fu",
+    "zh": "练武术",
+    "unit": "Unit 4 What can you do?"
+   },
+   {
+    "en": "draw cartoons",
+    "zh": "画漫画",
+    "unit": "Unit 4 What can you do?"
+   },
+   {
+    "en": "play basketball",
+    "zh": "打篮球",
+    "unit": "Unit 4 What can you do?"
+   },
+   {
+    "en": "play ping-pong",
+    "zh": "打乒乓球",
+    "unit": "Unit 4 What can you do?"
+   },
+   {
+    "en": "speak English",
+    "zh": "说英语",
+    "unit": "Unit 4 What can you do?"
+   }
+  ],
+  "startIndex": null
+ },
+ {
+  "key": "actph",
+  "name": "活动短语岛",
+  "emoji": "🎪",
+  "color": "#F5E0E8",
+  "style": "mixed",
+  "cx": -28.3,
+  "cz": -122.8,
+  "r": 16.92,
+  "rows": [
+   {
+    "en": "do morning exercises",
+    "zh": "做早操",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "eat breakfast",
+    "zh": "吃早饭",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "have class",
+    "zh": "上课",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "play sports",
+    "zh": "进行体育运动",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "eat dinner",
+    "zh": "吃晚饭",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "clean my room",
+    "zh": "打扫房间",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "go for a walk",
+    "zh": "散步",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "go shopping",
+    "zh": "去购物",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "take a dancing class",
+    "zh": "上舞蹈课",
+    "unit": "Unit 1 My day"
+   },
+   {
+    "en": "pick apples",
+    "zh": "摘苹果",
+    "unit": "Unit 2 My favourite season"
+   },
+   {
+    "en": "make a snowman",
+    "zh": "堆雪人",
+    "unit": "Unit 2 My favourite season"
+   },
+   {
+    "en": "go swimming",
+    "zh": "去游泳",
+    "unit": "Unit 2 My favourite season"
+   },
+   {
+    "en": "April Fool's Day",
+    "zh": "愚人节",
+    "unit": "Unit 4 When is the art show?"
+   },
+   {
+    "en": "Mother's Day",
+    "zh": "母亲节",
+    "unit": "Unit 4 When is the art show?"
+   },
+   {
+    "en": "Father's Day",
+    "zh": "父亲节",
+    "unit": "Unit 4 When is the art show?"
+   },
+   {
+    "en": "Children's Day",
+    "zh": "儿童节",
+    "unit": "Unit 4 When is the art show?"
+   },
+   {
+    "en": "Teachers' Day",
+    "zh": "教师节",
+    "unit": "Unit 4 When is the art show?"
+   },
+   {
+    "en": "National Day",
+    "zh": "国庆节",
+    "unit": "Unit 4 When is the art show?"
+   },
+   {
+    "en": "playing with each other",
+    "zh": "互相玩耍",
+    "unit": "Unit 5 Whose dog is it?"
+   },
+   {
+    "en": "doing the dishes",
+    "zh": "正在洗碗",
+    "unit": "Unit 6 Work quickly!"
+   },
+   {
+    "en": "cleaning the room",
+    "zh": "正在打扫房间",
+    "unit": "Unit 6 Work quickly!"
+   },
+   {
+    "en": "reading a book",
+    "zh": "正在读书",
+    "unit": "Unit 6 Work quickly!"
+   },
+   {
+    "en": "having a class",
+    "zh": "正在上课",
+    "unit": "Unit 6 Work quickly!"
+   },
+   {
+    "en": "eating lunch",
+    "zh": "正在吃午饭",
+    "unit": "Unit 6 Work quickly!"
+   }
+  ],
+  "startIndex": null
+ },
+ {
+  "key": "travelph",
+  "name": "出行短语岛",
+  "emoji": "🧭",
+  "color": "#DCE8F5",
+  "style": "house",
+  "cx": 84.8,
+  "cz": -95.9,
+  "r": 19,
+  "rows": [
+   {
+    "en": "science museum",
+    "zh": "科学博物馆",
+    "unit": "Unit 1 How can I get there?"
+   },
+   {
+    "en": "post office",
+    "zh": "邮局",
+    "unit": "Unit 1 How can I get there?"
+   },
+   {
+    "en": "turn left",
+    "zh": "向左转",
+    "unit": "Unit 1 How can I get there?"
+   },
+   {
+    "en": "turn right",
+    "zh": "向右转",
+    "unit": "Unit 1 How can I get there?"
+   },
+   {
+    "en": "go straight",
+    "zh": "直走",
+    "unit": "Unit 1 How can I get there?"
+   },
+   {
+    "en": "on foot",
+    "zh": "步行",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "by bus",
+    "zh": "乘公交车",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "by plane",
+    "zh": "乘飞机",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "by taxi",
+    "zh": "乘出租车",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "by ship",
+    "zh": "乘轮船",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "by subway",
+    "zh": "乘地铁",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "by train",
+    "zh": "乘火车",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "slow down",
+    "zh": "减速",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "traffic lights",
+    "zh": "交通信号灯",
+    "unit": "Unit 2 Ways to go to school"
+   },
+   {
+    "en": "visit my grandparents",
+    "zh": "看望祖父母",
+    "unit": "Unit 3 My weekend plan"
+   },
+   {
+    "en": "see a film",
+    "zh": "看电影",
+    "unit": "Unit 3 My weekend plan"
+   },
+   {
+    "en": "take a trip",
+    "zh": "去旅行",
+    "unit": "Unit 3 My weekend plan"
+   },
+   {
+    "en": "next week",
+    "zh": "下周",
+    "unit": "Unit 3 My weekend plan"
+   },
+   {
+    "en": "comic book",
+    "zh": "漫画书",
+    "unit": "Unit 3 My weekend plan"
+   },
+   {
+    "en": "pen pal",
+    "zh": "笔友",
+    "unit": "Unit 4 I have a pen pal"
+   },
+   {
+    "en": "doing kung fu",
+    "zh": "练武术",
+    "unit": "Unit 4 I have a pen pal"
+   },
+   {
+    "en": "reading stories",
+    "zh": "读故事",
+    "unit": "Unit 4 I have a pen pal"
+   },
+   {
+    "en": "studies Chinese",
+    "zh": "学中文",
+    "unit": "Unit 4 I have a pen pal"
+   },
+   {
+    "en": "goes hiking",
+    "zh": "去远足",
+    "unit": "Unit 4 I have a pen pal"
+   },
+   {
+    "en": "factory worker",
+    "zh": "工厂工人",
+    "unit": "Unit 5 What does he do?"
+   },
+   {
+    "en": "police officer",
+    "zh": "警察",
+    "unit": "Unit 5 What does he do?"
+   },
+   {
+    "en": "head teacher",
+    "zh": "校长",
+    "unit": "Unit 5 What does he do?"
+   },
+   {
+    "en": "see a doctor",
+    "zh": "看病",
+    "unit": "Unit 6 How do you feel?"
+   },
+   {
+    "en": "wear warm clothes",
+    "zh": "穿暖和的衣服",
+    "unit": "Unit 6 How do you feel?"
+   },
+   {
+    "en": "take a deep breath",
+    "zh": "深吸一口气",
+    "unit": "Unit 6 How do you feel?"
+   },
+   {
+    "en": "count to ten",
+    "zh": "数到十",
+    "unit": "Unit 6 How do you feel?"
+   }
+  ],
+  "startIndex": null
+ },
+ {
+  "key": "pastph",
+  "name": "往事短语岛",
+  "emoji": "🕰️",
+  "color": "#E8E0F0",
+  "style": "house",
+  "cx": 123.8,
+  "cz": -7.6,
+  "r": 14.940000000000001,
+  "rows": [
+   {
+    "en": "cleaned my room",
+    "zh": "打扫了房间",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "washed my clothes",
+    "zh": "洗了衣服",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "stayed at home",
+    "zh": "待在家里",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "watched TV",
+    "zh": "看了电视",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "read a book",
+    "zh": "读了书",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "saw a film",
+    "zh": "看了电影",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "had a cold",
+    "zh": "感冒了",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "last weekend",
+    "zh": "上周末",
+    "unit": "Unit 2 Last weekend"
+   },
+   {
+    "en": "went fishing",
+    "zh": "去钓鱼",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "went camping",
+    "zh": "去野营",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "went swimming",
+    "zh": "去游泳",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "rode a bike",
+    "zh": "骑自行车",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "rode a horse",
+    "zh": "骑马",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "hurt my foot",
+    "zh": "伤了我的脚",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "took pictures",
+    "zh": "拍照",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "bought gifts",
+    "zh": "买礼物",
+    "unit": "Unit 3 Where did you go?"
+   },
+   {
+    "en": "dining hall",
+    "zh": "餐厅",
+    "unit": "Unit 4 Then and now"
+   },
+   {
+    "en": "look up",
+    "zh": "查阅",
+    "unit": "Unit 4 Then and now"
+   }
+  ],
+  "startIndex": null
+ }
+]

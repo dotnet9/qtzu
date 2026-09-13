@@ -1,0 +1,91 @@
+{
+  "id": "beijing",
+  "name": "北京",
+  "en": "Beijing",
+  "color": "#C8402F",
+  "landmark": "gate",
+  "region": "华北",
+  "importance": "中华人民共和国首都 · 国家中心城市 · 世界文化遗产最多的城市之一",
+  "isFinal": true,
+  "isCoastal": false,
+  "history": "北京有三千多年建城史、八百七十多年建都史。燕国蓟城在此发端，金代建中都，元代建成举世闻名的大都，明清两代营造了紫禁城与天坛，梁思成称赞它是「都市计划的无比杰作」。长城蜿蜒于北郊群山，颐和园的湖光山色、胡同里的鸽哨与叫卖声，构成古都的气韵。1949 年起北京成为新中国的首都，是全国政治中心、文化中心、国际交往中心和科技创新中心。故宫、天坛、颐和园、周口店、明十三陵、长城和大运河七处世界遗产坐落于此，中轴线已于 2024 年列入《世界遗产名录》。",
+  "gallery": [
+    {
+      "img": "data/cities/beijing/img/Tiananmen_Gate.jpg",
+      "caption": "天安门"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Great%20Wall%20of%20China%2C%20Jiayuguan.jpg?width=960",
+      "caption": "长城"
+    },
+    {
+      "img": "data/cities/beijing/img/Temple_of_Heaven_Beijing.jpg",
+      "caption": "天坛"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing%20national%20stadium%202014.jpg?width=960",
+      "caption": "鸟巢"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏛️",
+      "intro": "我们的首都！天安门和雄伟的长城都在这里",
+      "introEn": "Beijing is the capital of China.",
+      "words": [
+        "capital",
+        "wall"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🦆",
+      "intro": "北京烤鸭皮脆肉嫩，闻名全世界",
+      "introEn": "Beijing roast duck is famous around the world.",
+      "words": [
+        "duck"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🏮",
+      "intro": "胡同里藏着老北京的叫卖声和糖葫芦",
+      "introEn": "Old hutongs are full of stories.",
+      "words": [
+        "story"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 34,
+    "eggCount": 15,
+    "landmarks": [
+      "gate",
+      "wall",
+      "temple",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "hutong",
+      "food-street",
+      "imperial-park",
+      "olympic-park"
+    ],
+    "highlands": [
+      {
+        "x": -0.55,
+        "z": -0.55,
+        "h": 2
+      },
+      {
+        "x": 0.6,
+        "z": 0.45,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 6
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\beijing\\city.json"
+}

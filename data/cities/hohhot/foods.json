@@ -1,0 +1,63 @@
+{
+  "city": "hohhot",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "手把肉",
+      "en": "Hand-grabbed Mutton",
+      "desc": "清水煮羊肉原汁原味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Boiled%20lamb.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "烤全羊",
+      "en": "Roast Whole Lamb",
+      "desc": "草原盛宴，仪式感拉满",
+      "img": "data/cities/hohhot/img/Roast_lamb.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "奶茶",
+      "en": "Milk Tea",
+      "desc": "咸奶茶配炒米奶皮子",
+      "img": "data/cities/hohhot/img/Milk_tea.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "烧麦",
+      "en": "Hohhot Shaomai",
+      "desc": "羊肉大葱烧麦配砖茶，早点之王",
+      "img": "data/cities/hohhot/img/Shaomai.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "焙子",
+      "en": "Beizi",
+      "desc": "回民焙子夹辣糊糊",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Flatbread.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "羊杂碎",
+      "en": "Lamb Offal",
+      "desc": "红墙羊杂配油焙子",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Offal%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "奶豆腐",
+      "en": "Milk Tofu",
+      "desc": "草原奶制品酸甜Q弹",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Milk%20tofu.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "锅茶",
+      "en": "Pot Milk Tea",
+      "desc": "铜锅奶茶煮牛肉干奶皮",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Milk%20tea%20pot.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\foods.json"
+}

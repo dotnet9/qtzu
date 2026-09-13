@@ -1,0 +1,82 @@
+{
+  "id": "taipei",
+  "name": "台北",
+  "en": "Taipei",
+  "color": "#3E7CB1",
+  "landmark": "tower",
+  "region": "台湾",
+  "importance": "台湾省省会 · 台湾政治经济文化中心",
+  "isCoastal": false,
+  "history": "台北盆地原为凯达格兰族的家园，清代设台北府后建起城墙，1884 年台北城落成，逐渐取代台南成为台湾政治中心。日据时期按巴洛克式规划拓宽街道，1945 年后成为台湾省省会。101 大楼曾长期是世界第一高楼，故宫博物院收藏着来自北京故宫的六十九万余件文物，士林夜市的蚵仔煎和珍珠奶茶香飘全世界。淡水河畔的夕阳、北投的温泉、阳明山的樱花，让这座山环水绕的城市充满温情。",
+  "gallery": [
+    {
+      "img": "data/cities/taipei/img/Taipei_101_from_afar.jpg",
+      "caption": "台北 101"
+    },
+    {
+      "img": "data/cities/taipei/img/Chiang_Kai-shek_Memorial_Hall.jpg",
+      "caption": "中正纪念堂"
+    },
+    {
+      "img": "data/cities/taipei/img/National_Palace_Museum_Taipei.jpg",
+      "caption": "台北故宫博物院"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏙️",
+      "intro": "101 大楼像一根竹节节高升，是台北的天际线",
+      "introEn": "Taipei 101 defines the skyline.",
+      "words": [
+        "tower",
+        "high"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🧋",
+      "intro": "珍珠奶茶的故乡！士林夜市从头吃到尾",
+      "introEn": "Bubble tea was born in Taiwan.",
+      "words": [
+        "tea",
+        "sweet"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🏛️",
+      "intro": "台北故宫博物院藏着 69 万件中华瑰宝",
+      "introEn": "The National Palace Museum holds treasures.",
+      "words": [
+        "museum",
+        "old"
+      ],
+      "deco": "flower"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "tower",
+      "pavilion",
+      "harbor"
+    ],
+    "paths": true,
+    "districts": [
+      "night-market",
+      "hotspring",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": 0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taipei\\city.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "qufu",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "孔府菜",
+      "en": "Kongfu Cuisine",
+      "desc": "食不厌精脍不厌细，官府菜之祖",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese%20banquet.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "孔府煎饼",
+      "en": "Confucius Pancake",
+      "desc": "粗粮煎饼卷大葱，山东味",
+      "img": "data/cities/qufu/img/Pancake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "熏豆腐",
+      "en": "Smoked Tofu",
+      "desc": "孔府熏豆腐木质烟香",
+      "img": "data/cities/qufu/img/Tofu.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "神仙鸭子",
+      "en": "Divine Duck",
+      "desc": "文火慢蒸酥烂脱骨",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20duck.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "诗礼银杏",
+      "en": "Ginkgo Dish",
+      "desc": "孔府名菜白果甜菜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginkgo%20dessert.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "带子上朝",
+      "en": "Duck and Quail",
+      "desc": "一鸭一鸽寓意典故名菜",
+      "img": "data/cities/qufu/img/Roast_duck.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "碑帖拓片",
+      "en": "Stone Rubbings",
+      "desc": "曲阜三宝汉碑拓片",
+      "img": "data/cities/qufu/img/Artwork.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "楷雕如意",
+      "en": "Boxwood Carving",
+      "desc": "楷木雕如意，圣人家手艺",
+      "img": "data/cities/qufu/img/Carving.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qufu\\foods.json"
+}

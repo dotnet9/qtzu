@@ -1,0 +1,77 @@
+{
+  "city": "wuhan",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "黄鹤楼",
+      "en": "Yellow Crane Tower",
+      "desc": "「天下江山第一楼」，崔颢题诗李白搁笔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20Crane%20Tower%2C%20Wuhan.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "东湖",
+      "en": "East Lake Wuhan",
+      "desc": "中国最大城中湖之一，樱园梅园四季如画",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/East%20Lake%2C%20Wuhan.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "武汉大学",
+      "en": "Wuhan University Campus",
+      "desc": "樱花城堡与老斋舍，最美大学校园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan%20University%20cherry%20blossom.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "武汉长江大桥",
+      "en": "Wuhan Yangtze River Bridge",
+      "desc": "1957 年建成的「万里长江第一桥」",
+      "img": "data/cities/wuhan/img/Wuhan_Yangtze_River_Bridge.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "户部巷",
+      "en": "Hubu Alley",
+      "desc": "「过早户部巷」，武汉小吃一条街",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubu%20Alley.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "湖北省博物馆",
+      "en": "Hubei Provincial Museum",
+      "desc": "越王勾践剑与曾侯乙编钟的故乡",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubei%20Provincial%20Museum.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "昙华林",
+      "en": "Tanhualin",
+      "desc": "六百年历史街区，老教堂与文创小店并存",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tanhualin.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "江汉路步行街",
+      "en": "Jianghan Road",
+      "desc": "百年商业老街，汉口租界建筑博览",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jianghan%20Road.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "知音号",
+      "en": "Zhiyin Cruise",
+      "desc": "民国风游轮戏剧体验，长江夜色如梦",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhiyin%20Cruise.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "木兰天池",
+      "en": "Mulan Tianchi",
+      "desc": "花木兰传说故里，峡谷瀑布清凉世界",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mulan%20Tianchi.jpg?width=640",
+      "bearing": "N"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuhan\\scenes.json"
+}

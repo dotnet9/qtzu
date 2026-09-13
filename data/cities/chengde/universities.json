@@ -1,0 +1,31 @@
+{
+  "city": "chengde",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "河北旅游职业学院",
+      "en": "Chengde Tourism College",
+      "tag": null,
+      "founded": 2006,
+      "site": "https://www.cdtvc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "承德医学院",
+      "en": "Chengde Medical College",
+      "tag": null,
+      "founded": 1945,
+      "site": "https://www.cdmc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengde\\universities.json"
+}

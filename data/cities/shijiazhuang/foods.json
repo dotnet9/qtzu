@@ -1,0 +1,63 @@
+{
+  "city": "shijiazhuang",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "金凤扒鸡",
+      "en": "Jinfeng Chicken",
+      "desc": "百年老字号扒鸡酥烂脱骨",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Roast%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "正定八大碗",
+      "en": "Eight Bowls",
+      "desc": "正定传统宴席四荤四素",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese%20banquet.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "藁城宫面",
+      "en": "Gong Noodles",
+      "desc": "空心贡面细如发丝",
+      "img": "data/cities/shijiazhuang/img/Noodles.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "缸炉烧饼",
+      "en": "Cylinder Oven Shaobing",
+      "desc": "火燎缸炉烤出酥脆",
+      "img": "data/cities/shijiazhuang/img/Shaobing.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "抓炒全鱼",
+      "en": "Stir-fried Fish",
+      "desc": "石家庄名菜酸甜酥嫩",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fish%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "行唐大枣",
+      "en": "Xingtang Dates",
+      "desc": "红枣甘甜滋补",
+      "img": "data/cities/shijiazhuang/img/Dates.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "赵州雪花梨",
+      "en": "Zhaozhou Pear",
+      "desc": "雪花梨汁多清甜",
+      "img": "data/cities/shijiazhuang/img/Pear.jpg",
+      "bearing": "SE"
+    },
+    {
+      "name": "驴肉火烧",
+      "en": "Donkey Burger",
+      "desc": "河间保定之外石家庄也地道",
+      "img": "data/cities/shijiazhuang/img/Donkey_burger.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shijiazhuang\\foods.json"
+}

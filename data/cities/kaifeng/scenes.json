@@ -1,0 +1,63 @@
+{
+  "city": "kaifeng",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "清明上河园",
+      "en": "Millennium City Park",
+      "desc": "《清明上河图》实景主题园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Millennium%20City%20Park.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "龙亭公园",
+      "en": "Dragon Pavilion",
+      "desc": "宋都御街尽头的皇家建筑群",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dragon%20Pavilion%20Kaifeng.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "铁塔",
+      "en": "Iron Pagoda",
+      "desc": "949 年琉璃砖塔，开封地标",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Iron%20Pagoda%20Kaifeng.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "大相国寺",
+      "en": "Daxiangguo Temple",
+      "desc": "北宋皇家寺院，鲁智深倒拔垂杨柳",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Daxiangguo%20Temple.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "开封府",
+      "en": "Kaifu Government",
+      "desc": "包公断案演出，府衙文化",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaifeng%20Government.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "鼓楼夜市",
+      "en": "Gulou Night Market",
+      "desc": "千年夜市传统，鼓楼广场",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Night%20market.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "山陕甘会馆",
+      "en": "Shanshangan Guild Hall",
+      "desc": "清代砖雕木雕石雕三绝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guild%20Hall%20Kaifeng.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "繁塔",
+      "en": "Fan Pagoda",
+      "desc": "北宋六角砖塔，万佛朝宗",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fan%20Pagoda.jpg?width=640",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaifeng\\scenes.json"
+}

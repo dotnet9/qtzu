@@ -1,0 +1,63 @@
+{
+  "city": "nanning",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "青秀山",
+      "en": "Qingxiu Mountain",
+      "desc": "邕江畔城市绿肺，龙象塔登高",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingxiu%20Mountain%20Nanning.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "南湖公园",
+      "en": "Nanhu Park Nanning",
+      "desc": "环湖夜景与名树博览园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanhu%20Park%20Nanning.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "广西民族博物馆",
+      "en": "Guangxi Museum",
+      "desc": "铜鼓文化壮锦展示",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guangxi%20Museum.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "三街两巷",
+      "en": "Sanjie Liangxiang",
+      "desc": "骑楼老街历史街区",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Old%20streets%20Nanning.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "扬美古镇",
+      "en": "Yangmei Ancient Town",
+      "desc": "明清商埠，梅菜与沙糕",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yangmei%20Ancient%20Town.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "大明山",
+      "en": "Damingshan",
+      "desc": "北回归线上的绿色明珠",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Damingshan.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "德天跨国瀑布",
+      "en": "Detian Waterfall",
+      "desc": "亚洲第一跨国瀑布（广西境内）",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Detian%20Waterfall.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "中山路夜市",
+      "en": "Zhongshan Road Night Market",
+      "desc": "百年夜市，酸嘢与卷筒粉",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Night%20market.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanning\\scenes.json"
+}

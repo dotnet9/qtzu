@@ -1,0 +1,79 @@
+{
+  "city": "shenzhen",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "南方科技大学",
+      "en": "Southern University of Science and Technology",
+      "tag": "双一流",
+      "founded": 2011,
+      "site": "https://www.sustech.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "深圳大学",
+      "en": "Shenzhen University",
+      "tag": null,
+      "founded": 1983,
+      "site": "https://www.szu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "香港中文大学（深圳）",
+      "en": "CUHK-Shenzhen",
+      "tag": null,
+      "founded": 2014,
+      "site": "https://www.cuhk.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "深圳技术大学",
+      "en": "Shenzhen Technology University",
+      "tag": null,
+      "founded": 2018,
+      "site": "https://www.sztu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "哈尔滨工业大学（深圳）",
+      "en": "HIT Shenzhen",
+      "tag": null,
+      "founded": 2002,
+      "site": "https://www.hitsz.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中山大学深圳校区",
+      "en": "SYSU Shenzhen",
+      "tag": null,
+      "founded": 2018,
+      "site": "https://www.sysu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenzhen\\universities.json"
+}

@@ -1,0 +1,82 @@
+{
+  "id": "dunhuang",
+  "name": "敦煌",
+  "en": "Dunhuang",
+  "color": "#C09858",
+  "landmark": "gate",
+  "region": "西北",
+  "importance": "丝绸之路明珠 · 世界艺术宝库",
+  "isCoastal": false,
+  "history": "敦煌是丝绸之路的咽喉，「敦，大也；煌，盛也」。莫高窟 735 个洞窟、45000 平方米壁画跨越千年，1987 年中国首批世界遗产。鸣沙山月牙泉「沙水共生」千年不涸，玉门关与阳关见证「西出阳关无故人」的边塞诗情。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mogao%20Caves%20Dunhuang.jpg?width=960",
+      "caption": "莫高窟"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Crescent%20Lake%20Dunhuang.jpg?width=960",
+      "caption": "月牙泉"
+    },
+    {
+      "img": "data/cities/dunhuang/img/Yumen_Pass.jpg",
+      "caption": "玉门关"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏜️",
+      "intro": "莫高窟的壁画飞了一千年还在飞",
+      "introEn": "Flying apsaras have flown for 1000 years.",
+      "words": [
+        "art",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🌵",
+      "intro": "月牙泉：沙漠中的一弯清水不干涸",
+      "introEn": "A crescent spring survives in the desert.",
+      "words": [
+        "spring",
+        "sand"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🐫",
+      "intro": "驼队从玉门关出发走向西方",
+      "introEn": "Camels left Yumen Pass for the west.",
+      "words": [
+        "camel"
+      ],
+      "deco": "horse"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dunhuang\\city.json"
+}

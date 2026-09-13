@@ -1,0 +1,67 @@
+{
+  "city": "hohhot",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "内蒙古大学",
+      "en": "Inner Mongolia University",
+      "tag": "211",
+      "founded": 1957,
+      "site": "https://www.imu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "内蒙古师范大学",
+      "en": "Inner Mongolia Normal University",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.imnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "内蒙古农业大学",
+      "en": "Inner Mongolia Agricultural University",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.imau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "内蒙古医科大学",
+      "en": "Inner Mongolia Medical University",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.immu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "内蒙古工业大学",
+      "en": "Inner Mongolia University of Technology",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.imut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\universities.json"
+}

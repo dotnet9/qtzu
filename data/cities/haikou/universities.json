@@ -1,0 +1,43 @@
+{
+  "city": "haikou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "海南大学",
+      "en": "Hainan University",
+      "tag": "211",
+      "founded": 1958,
+      "site": "https://www.hainanu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "海南师范大学",
+      "en": "Hainan Normal University",
+      "tag": null,
+      "founded": 1949,
+      "site": "https://www.hainnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "海南医学院",
+      "en": "Hainan Medical College",
+      "tag": null,
+      "founded": 1947,
+      "site": "https://www.hainmc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\haikou\\universities.json"
+}

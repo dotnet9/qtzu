@@ -1,0 +1,80 @@
+{
+  "id": "xining",
+  "name": "西宁",
+  "en": "Xining",
+  "color": "#8AB0C0",
+  "landmark": "mountain",
+  "region": "西北",
+  "importance": "青海省会 · 高原门户",
+  "isCoastal": false,
+  "history": "西宁古称青唐城，两千年来是丝绸之路南线与唐蕃古道的重镇。藏传佛教格鲁派创始人宗喀巴诞生于此，塔尔寺的酥油花、壁画与堆绣「艺术三绝」名扬藏区。夏季均温 18 度，是中国最佳避暑城市之一。",
+  "gallery": [
+    {
+      "img": "data/cities/xining/img/Kumbum_Monastery.jpg",
+      "caption": "塔尔寺"
+    },
+    {
+      "img": "data/cities/xining/img/Qinghai_Lake.jpg",
+      "caption": "青海湖"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dongguan%20Mosque.jpg?width=960",
+      "caption": "东关清真大寺"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🛕",
+      "intro": "塔尔寺的酥油花是用黄油雕的花",
+      "introEn": "Butter sculptures bloom at Kumbum Temple.",
+      "words": [
+        "art"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🌊",
+      "intro": "青海湖像一块蓝宝石镶在高原上",
+      "introEn": "Qinghai Lake is a blue gem on the plateau.",
+      "words": [
+        "lake"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "🏔️",
+      "intro": "夏季均温 18 度，避暑天堂",
+      "introEn": "Summer here is only 18°C!",
+      "words": [
+        "cool"
+      ],
+      "deco": "iceflake"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "mountain",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xining\\city.json"
+}

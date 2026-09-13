@@ -1,0 +1,77 @@
+{
+  "city": "chengdu",
+  "source": "成都市政府门户与联合国教科文组织世界遗产名录（都江堰·青城山 2000 年列入）",
+  "items": [
+    {
+      "name": "都江堰",
+      "en": "Dujiangyan",
+      "desc": "公元前 256 年李冰父子修建的水利工程，让成都平原成为天府之国，世界文化遗产。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dujiangyan%20irrigation%20system.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "大熊猫繁育研究基地",
+      "en": "Chengdu Panda Base",
+      "desc": "滚滚的老家，看熊猫幼崽爬树打滚，全世界的熊猫迷都来这里打卡。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu%20panda%20-%20 panoramio.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "武侯祠",
+      "en": "Wuhou Shrine",
+      "desc": "中国唯一的君臣合祀祠庙，刘备与诸葛亮在此相伴，三国迷的圣地。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhou%20Shrine%20Chengdu.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "锦里古街",
+      "en": "Jinli Ancient Street",
+      "desc": "武侯祠旁的清代风格老街，灯笼高挂、小吃飘香，夜景尤其漂亮。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinli%20street%20in%20Chengdu.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "杜甫草堂",
+      "en": "Du Fu Thatched Cottage",
+      "desc": "诗圣杜甫流寓成都时的故居，「安得广厦千万间」就写在这里。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dufu%20Cottage%20Chengdu.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "宽窄巷子",
+      "en": "Kuanzhai Alley",
+      "desc": "清代满城留下的宽巷子、窄巷子、井巷子，老成都生活的活化石。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kuanzhai%20Alley%2C%20Chengdu.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "青城山",
+      "en": "Mount Qingcheng",
+      "desc": "道教发源地之一，「青城天下幽」，山中道观掩映在密林深处。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingcheng%20Shan%202005.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "金沙遗址博物馆",
+      "en": "Jinsha Site Museum",
+      "desc": "古蜀王都遗址，太阳神鸟金饰出土于此，成都的城市标志。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinsha%20Site%20Museum.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "人民公园",
+      "en": "People's Park",
+      "desc": "鹤鸣茶社百年茶香，掏耳朵、摆龙门阵，最成都的下午就在这里。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/People's%20Park%20Chengdu.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "安顺廊桥",
+      "en": "Anshun Bridge",
+      "desc": "锦江上的明代廊桥，桥上开满餐厅酒吧，夜晚亮灯像一艘宝船。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Anshunbridge.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengdu\\scenes.json"
+}

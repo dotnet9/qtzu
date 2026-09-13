@@ -1,0 +1,519 @@
+# 人教版PEP 小学英语 5-6年级 4册 词汇原始数据（调研汇总）
+
+[5a]
+W old|老的
+W young|年轻的
+W funny|滑稽的
+W kind|体贴的
+W strict|严格的
+W polite|有礼貌的
+W hard-working|勤奋的
+W helpful|乐于助人的
+W clever|聪明的
+W shy|害羞的
+W know|知道
+W our|我们的
+W Ms|女士
+W will|将要
+W sometime|有时
+W robot|机器人
+W him|他
+W speak|会说
+W finish|完成
+W Monday|星期一
+W Tuesday|星期二
+W Wednesday|星期三
+W Thursday|星期四
+W Friday|星期五
+W Saturday|星期六
+W Sunday|星期天
+W weekend|周末
+W wash|洗
+W watch|看
+W read|读
+W play|玩
+W cooking|烹饪
+W often|经常
+W park|公园
+W tired|疲倦的
+W sport|运动
+W should|应该
+W every|每个
+W day|天
+W schedule|日程
+W sandwich|三明治
+W salad|沙拉
+W hamburger|汉堡
+W tea|茶
+W fresh|新鲜的
+W delicious|美味的
+W hot|辣的
+W sweet|甜的
+W drink|喝
+W thirsty|渴的
+W favourite|最喜爱的
+W food|食物
+W dear|亲爱的
+W onion|洋葱
+W sing|唱歌
+W song|歌曲
+W dance|跳舞
+W draw|画
+W cartoon|漫画
+W cook|烹饪
+W swim|游泳
+W ping-pong|乒乓球
+W party|聚会
+W next|下一个
+W wonderful|极好的
+W learn|学习
+W any|任何
+W problem|问题
+W want|要
+W send|发送
+W email|电子邮件
+W we'll|将会
+W clock|时钟
+W plant|植物
+W bottle|瓶子
+W bike|自行车
+W photo|照片
+W front|正面
+W between|在……中间
+W above|在……上面
+W beside|在旁边
+W behind|在……后面
+W there|那里
+W grandparent|祖父母
+W their|他们的
+W house|房子
+W lot|大量
+W flower|花
+W move|搬家
+W dirty|脏的
+W everywhere|到处
+W mouse|老鼠
+W live|居住
+W nature|自然
+W forest|森林
+W river|河流
+W lake|湖泊
+W mountain|高山
+W hill|山丘
+W tree|树
+W bridge|桥
+W building|楼房
+W village|村庄
+W boating|划船
+W rabbit|兔子
+W high|高的
+P wash my clothes|洗衣服
+P watch TV|看电视
+P do homework|做作业
+P read books|看书
+P play football|踢足球
+P play sport|做运动
+P ice cream|冰淇淋
+P sing English songs|唱英文歌
+P play the pipa|弹琵琶
+P kung fu|功夫
+P do kung fu|练武术
+P draw cartoons|画漫画
+P play basketball|打篮球
+P play ping-pong|打乒乓球
+P speak English|说英语
+P no problem|没问题
+P water bottle|水瓶
+P in front of|在……前面
+P lots of|大量
+P go boating|去划船
+
+[5b]
+W when|什么时候
+W after|在……之后
+W start|开始
+W usually|通常
+W Spain|西班牙
+W late|迟到
+W why|为什么
+W shop|购物
+W work|工作
+W last|上一个
+W sound|听起来
+W also|也
+W busy|忙的
+W need|需要
+W letter|信
+W for|为了
+W live|居住
+W island|岛
+W always|总是
+W cave|山洞
+W win|获胜
+W exercise|运动
+W take|上（课）
+W spring|春天
+W summer|夏天
+W autumn|秋天
+W winter|冬天
+W season|季节
+W picnic|野餐
+W pick|摘
+W snowman|雪人
+W which|哪一个
+W best|最好
+W snow|雪
+W because|因为
+W vacation|假期
+W all|全部
+W pink|粉色
+W lovely|可爱的
+W leaf|叶子
+W fall|落下
+W paint|绘画
+W January|一月
+W February|二月
+W March|三月
+W April|四月
+W May|五月
+W June|六月
+W July|七月
+W August|八月
+W September|九月
+W October|十月
+W November|十一月
+W December|十二月
+W contest|比赛
+W year|年
+W few|一些
+W thing|事情
+W meet|集会
+W Easter|复活节
+W trip|旅行
+W national|国家的
+W American|美国的
+W Thanksgiving|感恩节
+W Christmas|圣诞节
+W fool|傻瓜
+W special|特别的
+W kitten|小猫
+W diary|日记
+W still|仍然
+W noise|噪音
+W fur|软毛
+W open|开着的
+W walk|行走
+W first|第一
+W second|第二
+W third|第三
+W fourth|第四
+W fifth|第五
+W twelfth|第十二
+W twentieth|第二十
+W twenty-first|第二十一
+W mine|我的
+W yours|你的
+W hers|她的
+W theirs|他们的
+W ours|我们的
+W climbing|正在攀爬
+W eating|正在吃
+W playing|正在玩
+W jumping|正在跳
+W drinking|正在喝
+W sleeping|正在睡觉
+W each|每个
+W other|其他的
+W excited|兴奋的
+W its|它的
+W show|指引
+W anything|任何事物
+W else|其他
+W exhibition|展览
+W sushi|寿司
+W teach|教
+W Canadian|加拿大的
+W Spanish|西班牙的
+W keep|保持
+W turn|顺序
+W bamboo|竹子
+P do morning exercises|做早操
+P eat breakfast|吃早饭
+P have class|上课
+P play sports|做运动
+P eat dinner|吃晚饭
+P clean my room|打扫房间
+P go for a walk|散步
+P go shopping|购物
+P take a dancing class|上舞蹈课
+P go swimming|去游泳
+P go on a picnic|去野餐
+P pick apples|摘苹果
+P make a snowman|堆雪人
+P good job|做得好
+P a few|一些
+P sports meet|运动会
+P National Day|国庆日
+P Tree Planting Day|植树节
+P the Great Wall|长城
+P April Fool's Day|愚人节
+P each other|互相
+P have a look|看一看
+P keep to the right|靠右
+P keep your desk clean|保持课桌整洁
+P talk quietly|小声说话
+P take turns|按顺序来
+
+[6a]
+W science|科学
+W museum|博物馆
+W bookstore|书店
+W cinema|电影院
+W hospital|医院
+W crossing|十字路口
+W turn|转弯
+W left|左边
+W straight|笔直地
+W right|右边
+W ask|问
+W sir|先生
+W interesting|有趣的
+W italian|意大利的
+W restaurant|餐馆
+W pizza|比萨
+W street|街道
+W get|到达
+W GPS|定位系统
+W gave|给（过去式）
+W feature|特点
+W follow|跟随
+W far|远的
+W tell|告诉
+W by|乘
+W bus|公交车
+W plane|飞机
+W taxi|出租车
+W ship|轮船
+W subway|地铁
+W train|火车
+W slow|慢的
+W down|向下
+W stop|停下
+W Mrs|夫人
+W early|早的
+W helmet|头盔
+W must|必须
+W wear|穿戴
+W attention|注意
+W traffic|交通
+W Munich|慕尼黑
+W Germany|德国
+W Alaska|阿拉斯加
+W sled|雪橇
+W fast|快的
+W ferry|轮渡
+W Scotland|苏格兰
+W visit|拜访
+W film|电影
+W trip|旅行
+W supermarket|超市
+W evening|晚上
+W tonight|今晚
+W tomorrow|明天
+W dictionary|词典
+W comic|滑稽的
+W word|单词
+W postcard|明信片
+W lesson|课
+W space|太空
+W travel|旅行
+W half|一半
+W price|价格
+W together|一起
+W mooncake|月饼
+W poem|诗
+W moon|月亮
+W studies|学习
+W puzzle|谜
+W hiking|远足
+W hobby|爱好
+W jasmine|茉莉
+W idea|主意
+W Canberra|堪培拉
+W amazing|惊奇的
+W shall|将要
+W goal|射门
+W join|加入
+W club|俱乐部
+W share|分享
+W factory|工厂
+W worker|工人
+W postman|邮递员
+W businessman|商人
+W fisherman|渔民
+W scientist|科学家
+W pilot|飞行员
+W coach|教练
+W country|国家
+W sea|大海
+W stay|保持
+W university|大学
+W gym|体育馆
+W if|如果
+W reporter|记者
+W use|使用
+W type|打字
+W quickly|快速地
+W secretary|秘书
+W angry|生气的
+W afraid|害怕
+W sad|难过的
+W worried|担心的
+W happy|高兴的
+W more|更多的
+W deep|深的
+W breath|呼吸
+W count|数数
+W chase|追赶
+W mice|老鼠（复数）
+W bad|坏的
+W hurt|受伤
+W ill|生病的
+W wrong|有毛病
+W well|健康的
+W sit|坐
+W hear|听见
+W ant|蚂蚁
+W worry|担心
+W stuck|陷住
+W mud|泥
+W pull|拉
+P post office|邮局
+P science museum|科学博物馆
+P see a film|看电影
+P on foot|步行
+P slow down|慢下来
+P pay attention to|注意
+P traffic lights|交通灯
+P take a trip|去旅行
+P next week|下周
+P comic book|漫画书
+P word book|单词书
+P Mid-autumn Festival|中秋节
+P get together|聚会
+P see a doctor|看病
+P take a deep breath|深呼吸
+P count to ten|数到十
+P pen pal|笔友
+P police officer|警察
+P head teacher|校长
+P turn left|向左转
+P have an art lesson|上美术课
+P go to the cinema|去看电影
+P do more exercise|多做运动
+P wear warm clothes|穿暖和衣服
+P Papa Westray|帕帕韦斯特雷岛
+
+[6b]
+W younger|更年轻的
+W older|更年长的
+W taller|更高的
+W shorter|更矮的
+W longer|更长的
+W thinner|更瘦的
+W heavier|更重的
+W bigger|更大的
+W smaller|更小的
+W stronger|更强壮的
+W dinosaur|恐龙
+W hall|大厅
+W metre|米
+W than|比
+W both|两个都
+W kilogram|千克
+W countryside|乡村
+W lower|更低的
+W shadow|影子
+W smarter|更聪明的
+W become|变成
+W cleaned|打扫（过去式）
+W stayed|停留（过去式）
+W washed|洗（过去式）
+W watched|看（过去式）
+W had|有（过去式）
+W slept|睡觉（过去式）
+W saw|看见（过去式）
+W last|上一个
+W weekend|周末
+W yesterday|昨天
+W before|在……之前
+W drank|喝（过去式）
+W show|表演
+W magazine|杂志
+W better|更好的
+W faster|更快的
+W hotel|旅馆
+W fixed|修理（过去式）
+W broken|破损的
+W lamp|台灯
+W loud|大声的
+W enjoy|享受
+W went|去（过去式）
+W camp|野营
+W fish|钓鱼
+W fishing|钓鱼
+W rode|骑（过去式）
+W ate|吃（过去式）
+W took|拍（过去式）
+W bought|买（过去式）
+W gift|礼物
+W fell|摔倒（过去式）
+W off|落下
+W mule|骡子
+W Turpan|吐鲁番
+W could|能（过去式）
+W till|直到
+W beach|海滩
+W basket|篮子
+W part|角色
+W licked|舔（过去式）
+W laughed|笑（过去式）
+W ago|以前
+W cycling|骑自行车
+W ice-skate|滑冰
+W badminton|羽毛球
+W star|星星
+W easy|容易的
+W Internet|互联网
+W different|不同的
+W active|积极的
+W race|赛跑
+W nothing|没有什么
+W thought|想（过去式）
+W felt|感觉（过去式）
+W woke|醒（过去式）
+W cheetah|猎豹
+W dream|梦
+P had a cold|感冒
+P cleaned my room|打扫房间
+P washed my clothes|洗衣服
+P stayed at home|待在家里
+P watched TV|看电视
+P read a book|读书
+P saw a film|看电影
+P went camping|去野营
+P went fishing|去钓鱼
+P took pictures|拍照
+P bought gifts|买礼物
+P rode a horse|骑马
+P rode a bike|骑自行车
+P fell off|摔倒
+P hurt my foot|脚受伤
+P ate fresh food|吃新鲜食物
+P Labour Day|劳动节
+P dining hall|餐厅
+P go cycling|去骑车
+P play badminton|打羽毛球
+P look up|查阅
+P last month|上个月
+P last year|去年

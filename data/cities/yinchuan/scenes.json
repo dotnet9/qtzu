@@ -1,0 +1,63 @@
+{
+  "city": "yinchuan",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "西夏陵",
+      "en": "Western Xia Tombs",
+      "desc": "「东方金字塔」九座帝陵",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Western%20Xia%20Tombs.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "贺兰山岩画",
+      "en": "Helan Mountain Rock Art",
+      "desc": "史前太阳神岩画",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Helan%20Mountain%20rock%20art.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "镇北堡西部影城",
+      "en": "Zhenbeipu Film Studio",
+      "desc": "《大话西游》取景地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhenbeipu%20Film%20Studio.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "水洞沟",
+      "en": "Shuidonggou",
+      "desc": "四万年前史前遗址与明代长城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shuidonggou.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "南关清真大寺",
+      "en": "Nanguan Mosque",
+      "desc": "银川地标清真寺",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanguan%20Mosque.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "黄沙古渡",
+      "en": "Huangsha Gudu",
+      "desc": "黄河渡口与沙漠湿地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huangsha%20Gudu.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "阅海国家湿地公园",
+      "en": "Yuehai Wetland",
+      "desc": "塞上西湖观鸟胜地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yuehai%20Wetland.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "贺兰山国家森林公园",
+      "en": "Helanshan Forest Park",
+      "desc": "苏峪口松林与岩羊",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Helanshan%20Forest%20Park.jpg?width=640",
+      "bearing": "NW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yinchuan\\scenes.json"
+}

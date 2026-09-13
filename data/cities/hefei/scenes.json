@@ -1,0 +1,63 @@
+{
+  "city": "hefei",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "逍遥津公园",
+      "en": "Xiaoyaojin Park",
+      "desc": "张辽威震逍遥津的古战场",
+      "img": "data/cities/hefei/img/Xiaoyaojin_Park.jpg",
+      "bearing": "NE"
+    },
+    {
+      "name": "包公园",
+      "en": "Bao Gong Park",
+      "desc": "包拯祠堂与清风阁，铁面无私",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bao%20Gong%20Temple.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "中国科学技术大学",
+      "en": "USTC Campus",
+      "desc": "科学岛的「人造太阳」与樱花大道",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/USTC%20Hefei.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "三河古镇",
+      "en": "Sanhe Ancient Town",
+      "desc": "2500 年水乡古镇，八古景观",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanhe%20Ancient%20Town.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "安徽博物院",
+      "en": "Anhui Museum",
+      "desc": "楚大鼎与云纹铜五柄",
+      "img": "data/cities/hefei/img/Anhui_Museum.jpg",
+      "bearing": "SW"
+    },
+    {
+      "name": "天鹅湖",
+      "en": "Swan Lake",
+      "desc": "政务区城市湖景，日落剪影",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Swan%20Lake%20Hefei.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "罍街",
+      "en": "Lei Street",
+      "desc": "「炸罍子」酒文化美食街",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Food%20street.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "大蜀山",
+      "en": "Dashu Mountain",
+      "desc": "市区死火山森林公园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dashu%20Mountain.jpg?width=640",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hefei\\scenes.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "sanya",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "文昌鸡",
+      "en": "Wenchang Chicken",
+      "desc": "四大名菜之首白切最佳",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/White%20cut%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "和乐蟹粥",
+      "en": "Crab Congee",
+      "desc": "膏蟹熬粥鲜甜浓稠",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Crab%20congee.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "椰子饭",
+      "en": "Coconut Rice",
+      "desc": "椰香糯米饭配椰肉",
+      "img": "data/cities/sanya/img/Coconut_rice.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "清补凉",
+      "en": "Qingbuliang",
+      "desc": "第一市场夜市必点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coconut%20dessert.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "海鲜加工",
+      "en": "Fresh Seafood",
+      "desc": "第一市场买海鲜现场加工",
+      "img": "data/cities/sanya/img/Seafood.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "黎家竹筒饭",
+      "en": "Bamboo Rice",
+      "desc": "黎族竹筒香饭",
+      "img": "data/cities/sanya/img/Bamboo_rice.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "山兰酒",
+      "en": "Shanlan Wine",
+      "desc": "黎族山兰糯米酒",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20wine.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "疍家海鲜粥",
+      "en": "Tanka Seafood Congee",
+      "desc": "疍家渔排现捞现熬",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Seafood%20congee.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\sanya\\foods.json"
+}

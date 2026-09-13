@@ -1,0 +1,63 @@
+{
+  "city": "jinan",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "趵突泉",
+      "en": "Baotu Spring",
+      "desc": "天下第一泉，三窟并发腾空",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baotu%20Spring%20Jinan.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大明湖",
+      "en": "Daming Lake",
+      "desc": "「四面荷花三面柳」，夏雨荷的故事",
+      "img": "data/cities/jinan/img/Daming_Lake.jpg",
+      "bearing": "NE"
+    },
+    {
+      "name": "千佛山",
+      "en": "Qianfo Mountain",
+      "desc": "隋代摩崖佛像，登顶望泉城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qianfo%20Mountain.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "芙蓉街",
+      "en": "Furong Street",
+      "desc": "泉城老街小吃飘香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Furong%20Street.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "黑虎泉",
+      "en": "Heihu Spring",
+      "desc": "三只石虎头喷涌，市民打水盛景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Heihu%20Spring.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "灵岩寺",
+      "en": "Lingyan Temple",
+      "desc": "千年古刹泥塑罗汉「海内第一名塑」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lingyan%20Temple.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "曲水亭街",
+      "en": "Qushuiting Street",
+      "desc": "家家泉水户户垂杨",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qushuiting%20Street.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "山东博物馆",
+      "en": "Shandong Museum",
+      "desc": "蛋壳黑陶杯与银雀山汉简",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shandong%20Museum.jpg?width=640",
+      "bearing": "E"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\jinan\\scenes.json"
+}

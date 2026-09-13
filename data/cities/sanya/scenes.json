@@ -1,0 +1,63 @@
+{
+  "city": "sanya",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "亚龙湾",
+      "en": "Yalong Bay",
+      "desc": "「天下第一湾」白沙碧海",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalong%20Bay%20Sanya.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "天涯海角",
+      "en": "Tianya Haijiao",
+      "desc": "南天一柱与海判南天石刻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianya%20Haijiao.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "南山文化旅游区",
+      "en": "Nanshan Cultural Zone",
+      "desc": "108 米海上观音",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanshan%20Buddha%20Sanya.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "蜈支洲岛",
+      "en": "Wuzhizhou Island",
+      "desc": "中国潜水胜地，情人岛",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuzhizhou%20Island.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "大小洞天",
+      "en": "Daxiaodongtian",
+      "desc": "南海龙文化道教景区",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Daxiaodongtian.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "鹿回头",
+      "en": "Luhuitou Park",
+      "desc": "黎族爱情传说，俯瞰三亚湾",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luhuitou%20Park.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "三亚湾椰梦长廊",
+      "en": "Sanya Bay",
+      "desc": "22 公里椰林日落大道",
+      "img": "data/cities/sanya/img/Sanya_Bay.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "第一市场",
+      "en": "First Market",
+      "desc": "海鲜加工夜市烟火气",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/First%20Market%20Sanya.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\sanya\\scenes.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "lanzhou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "兰州牛肉面",
+      "en": "Lanzhou Beef Noodles",
+      "desc": "一清二白三红四绿五黄，中国面食之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beef%20noodle%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "手抓羊肉",
+      "en": "Hand-grabbed Lamb",
+      "desc": "靖远羊羔肉鲜嫩无膻，蘸椒盐吃",
+      "img": "data/cities/lanzhou/img/Lamb.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "酿皮",
+      "en": "Niangpi",
+      "desc": "厚实酿皮配油泼辣子，西北凉皮表亲",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liangpi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "甜醅子",
+      "en": "Sweet Fermented Oats",
+      "desc": "青稞发酵微醺清甜，夏日消暑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fermented%20grain.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "灰豆子",
+      "en": "Grey Beans",
+      "desc": "蓬灰炖麻豌豆配枣香，兰州甜食三绝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20beans.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "浆水面",
+      "en": "Jiangshui Noodles",
+      "desc": "酸菜浆水清凉开胃，消夏圣品",
+      "img": "data/cities/lanzhou/img/Noodle_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "百合",
+      "en": "Lily Bulb",
+      "desc": "兰州甜百合全国独有，清炒蜜蒸皆宜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lily%20bulb.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "烤羊肉串",
+      "en": "Lamb Kebabs",
+      "desc": "西北红柳枝烤串孜然飘香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kebabs.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lanzhou\\foods.json"
+}

@@ -1,0 +1,77 @@
+{
+  "city": "taichung",
+  "source": "台中市政府观光旅游局官方资料",
+  "items": [
+    {
+      "name": "珍珠奶茶",
+      "en": "Bubble Tea",
+      "desc": "1987 年春水堂发明「粉圆奶茶」，全世界的手摇茶饮都从这里开始。",
+      "img": "data/cities/taichung/img/Bubble_Tea.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "太阳饼",
+      "en": "Sun Cake",
+      "desc": "麦芽糖酥饼皮薄如纸，是台中超过六十年历史的城市名片。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sun%20Cakes.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "逢甲夜市大肠包小肠",
+      "en": "Sausage Rice Roll",
+      "desc": "逢甲夜市的碳烤香肠糯米包，官芝霖大排队名不虚传。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taiwan%20small%20sausage%20in%20large%20sausage.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "肉圆",
+      "en": "Bawan",
+      "desc": "透明地瓜粉皮包笋丁肉块，蒸好再炸，蘸甜辣酱。",
+      "img": "data/cities/taichung/img/Bawan.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "凤梨酥",
+      "en": "Pineapple Cake",
+      "desc": "台中是凤梨酥的原乡，日出集团把土凤梨酥做成了精品。",
+      "img": "data/cities/taichung/img/Pineapple_cakes.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "蜜豆冰",
+      "en": "Mixed Bean Ice",
+      "desc": "幸发亭蜜豆冰传承九十年，十几样蜜渍豆果堆成小山。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shaved%20ice.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "炒面面包",
+      "en": "Yakisoba Pan",
+      "desc": "一中街夜市的猎奇美食，炒面夹进热面包，碳水炸弹快乐加倍。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yakisoba%20pan.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "芋头酥",
+      "en": "Taro Pastry",
+      "desc": "大甲芋头做的紫色千层酥，内馅芋泥绵密，香气逼人。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taro%20pastry.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "蚵仔煎",
+      "en": "Oyster Omelette",
+      "desc": "中部夜市经典，忠孝夜市老店铁铲翻飞三十秒出锅。",
+      "img": "data/cities/taichung/img/Oyster_omelette.jpg",
+      "bearing": "S"
+    },
+    {
+      "name": "牛轧糖",
+      "en": "Nougat",
+      "desc": "东海大学旁的糖村牛轧糖，奶香浓郁成为国际旅客必买。",
+      "img": "data/cities/taichung/img/Nougat.jpg",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taichung\\foods.json"
+}

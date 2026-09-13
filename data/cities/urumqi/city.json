@@ -1,0 +1,81 @@
+{
+  "id": "urumqi",
+  "name": "乌鲁木齐",
+  "en": "Urumqi",
+  "color": "#C08A60",
+  "landmark": "mountain",
+  "region": "西北",
+  "importance": "新疆首府 · 亚洲大陆地理中心",
+  "isCoastal": false,
+  "history": "乌鲁木齐意为「优美的牧场」，清代筑城设迪化府，1954 年恢复原名。它是世界上离海洋最远的大城市之一，天山天池如明镜悬于雪峰之间。国际大巴扎的香料、干果与音乐汇成中亚风情，烤包子与手抓饭是城市的日常。",
+  "gallery": [
+    {
+      "img": "data/cities/urumqi/img/Tianshan_Tianchi.jpg",
+      "caption": "天山天池"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Bazaar%20Urumqi.jpg?width=960",
+      "caption": "国际大巴扎"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hongshan%20Park%20Urumqi.jpg?width=960",
+      "caption": "红山"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏔️",
+      "intro": "天山天池是西王母的瑶池传说",
+      "introEn": "Tianshan Tianchi is a fairy lake.",
+      "words": [
+        "lake",
+        "mountain"
+      ],
+      "deco": "iceflake"
+    },
+    {
+      "emoji": "🛍️",
+      "intro": "大巴扎的香料味飘满整条街",
+      "introEn": "The Grand Bazaar smells of spices.",
+      "words": [
+        "market"
+      ],
+      "deco": "grape"
+    },
+    {
+      "emoji": "🍖",
+      "intro": "烤包子和手抓饭，新疆胃的快乐",
+      "introEn": "Baked buns and pilaf are so tasty!",
+      "words": [
+        "food"
+      ],
+      "deco": "grape"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "mountain",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\urumqi\\city.json"
+}

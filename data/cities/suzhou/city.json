@@ -1,0 +1,81 @@
+{
+  "id": "suzhou",
+  "name": "苏州",
+  "en": "Suzhou",
+  "color": "#6B9EA8",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "园林之城 · 人间天堂",
+  "isCoastal": false,
+  "history": "苏州建城于公元前 514 年，2500 年城址未变。拙政园、留园等九座园林列入世界文化遗产，「江南园林甲天下，苏州园林甲江南」。评弹昆曲吴侬软语，丝绸刺绣巧夺天工，寒山寺的钟声因《枫桥夜泊》传诵千年。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Humble%20Administrator%20Garden.jpg?width=960",
+      "caption": "拙政园"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Master%20of%20Nets%20Garden.jpg?width=960",
+      "caption": "网师园"
+    },
+    {
+      "img": "data/cities/suzhou/img/Hanshan_Temple.jpg",
+      "caption": "寒山寺"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏡",
+      "intro": "苏州园林甲天下，一步一景像走画里",
+      "introEn": "Suzhou gardens are like paintings.",
+      "words": [
+        "garden"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🧵",
+      "intro": "苏州刺绣细得能在丝线上开花",
+      "introEn": "Suzhou silk embroidery blooms on thread.",
+      "words": [
+        "silk"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🔔",
+      "intro": "寒山寺的钟声敲了一千二百年",
+      "introEn": "Hanshan Temple bell rings for 1200 years.",
+      "words": [
+        "bell",
+        "old"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\suzhou\\city.json"
+}

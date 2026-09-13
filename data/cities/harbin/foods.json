@@ -1,0 +1,63 @@
+{
+  "city": "harbin",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "红肠",
+      "en": "Smoked Sausage",
+      "desc": "里道斯果木熏制，百年俄式风味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sausage.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "锅包肉",
+      "en": "Guobaorou",
+      "desc": "糖醋汁挂糊炸肉片，东北菜头牌",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guobaorou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大列巴",
+      "en": "Bolshoi Bread",
+      "desc": "秋林公司俄式大面包，重达四斤",
+      "img": "data/cities/harbin/img/Rye_bread.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "马迭尔冰棍",
+      "en": "Modern Ice Cream",
+      "desc": "中央大街百年冰棍，奶香浓郁不怕冬天吃",
+      "img": "data/cities/harbin/img/Ice_cream.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "杀猪菜",
+      "en": "Pork Stew",
+      "desc": "酸菜白肉血肠一锅炖，东北年味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sauerkraut%20stew.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "小鸡炖蘑菇",
+      "en": "Chicken Mushroom Stew",
+      "desc": "榛蘑炖笨鸡，东北铁锅炖代表",
+      "img": "data/cities/harbin/img/Chicken_stew.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "格瓦斯",
+      "en": "Kvass",
+      "desc": "俄式面包发酵饮料，微醺麦香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kvass.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "冻梨",
+      "en": "Frozen Pear",
+      "desc": "冰冻花盖梨化开爆汁，冬日限定",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Frozen%20pear.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\foods.json"
+}

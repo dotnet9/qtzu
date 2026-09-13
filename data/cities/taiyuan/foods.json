@@ -1,0 +1,63 @@
+{
+  "city": "taiyuan",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "刀削面",
+      "en": "Knife-cut Noodles",
+      "desc": "面叶中厚边薄如柳叶，山西面食之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Knife%20cut%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "过油肉",
+      "en": "Fried Pork",
+      "desc": "山西第一名菜，醋香扑鼻",
+      "img": "data/cities/taiyuan/img/Fried_pork.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "羊杂割",
+      "en": "Lamb Offal Soup",
+      "desc": "一碗热羊杂配烧饼，冬晨标配",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamb%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "老陈醋",
+      "en": "Mature Vinegar",
+      "desc": "东湖醋园古法陈酿，酸香醇厚",
+      "img": "data/cities/taiyuan/img/Vinegar.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "头脑",
+      "en": "Tounao",
+      "desc": "傅山发明的药膳早餐，黄芪煨面糊",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Breakfast%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "莜面栲栳栳",
+      "en": "Oat Noodle Rolls",
+      "desc": "莜面卷蒸笼蘸羊肉臊子",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Oat%20rolls.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "剔尖",
+      "en": "Tijian Noodles",
+      "desc": "两头尖的面鱼儿弹滑",
+      "img": "data/cities/taiyuan/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "太谷饼",
+      "en": "Taigu Cake",
+      "desc": "「糕点之王」甜而不腻",
+      "img": "data/cities/taiyuan/img/Pastry.jpg",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taiyuan\\foods.json"
+}

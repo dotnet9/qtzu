@@ -1,0 +1,63 @@
+{
+  "city": "qufu",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "孔庙",
+      "en": "Temple of Confucius",
+      "desc": "祭祀孔子的世界文化遗产核心",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20Confucius%20Qufu.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "孔府",
+      "en": "Kong Family Mansion",
+      "desc": "「天下第一家」，衍圣公府邸",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kong%20Family%20Mansion.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "孔林",
+      "en": "Cemetery of Confucius",
+      "desc": "延续 2400 年的家族墓地园林",
+      "img": "data/cities/qufu/img/Cemetery_of_Confucius.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "尼山圣境",
+      "en": "Nishan Sacred Land",
+      "desc": "72 米孔子巨像与大学堂",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nishan%20Sacred%20Land.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "周公庙",
+      "en": "Zhou Gong Temple",
+      "desc": "元圣周公庙，鲁国故城旁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhou%20Gong%20Temple.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "颜庙",
+      "en": "Yan Temple",
+      "desc": "祭祀复圣颜回",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yan%20Temple.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "石门山",
+      "en": "Shimen Mountain",
+      "desc": "孔尚任隐居著《桃花扇》处",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shimen%20Mountain.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "六艺城",
+      "en": "Six Arts City",
+      "desc": "礼乐射御书数体验园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Six%20Arts%20City.jpg?width=640",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qufu\\scenes.json"
+}

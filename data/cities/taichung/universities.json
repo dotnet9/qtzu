@@ -1,0 +1,140 @@
+{
+  "city": "taichung",
+  "source": "各校官网（www.nchu.edu.tw 等）",
+  "unis": [
+    {
+      "zh": "中兴大学",
+      "en": "National Chung Hsing University",
+      "tag": "重点",
+      "founded": 1919,
+      "site": "https://www.nchu.edu.tw",
+      "globalRank": 600,
+      "nationalRank": 12,
+      "bearing": "E",
+      "history": "始于台中农林专门学校，农业生命科学领域台湾顶尖。",
+      "img": null
+    },
+    {
+      "zh": "中国医药大学",
+      "en": "China Medical University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.cmu.edu.tw",
+      "globalRank": 500,
+      "nationalRank": 8,
+      "bearing": "N",
+      "history": "台湾第一所中医高等学府，中西医结合研究亚洲领先。"
+    },
+    {
+      "zh": "逢甲大学",
+      "en": "Feng Chia University",
+      "tag": null,
+      "founded": 1961,
+      "site": "https://www.fcu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "以纪念丘逢甲命名，商学工科俱佳，校外逢甲夜市全台闻名。"
+    },
+    {
+      "zh": "东海大学",
+      "en": "Tunghai University",
+      "tag": null,
+      "founded": 1955,
+      "site": "https://www.thu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "台湾第一所私立大学，贝聿铭参与设计的路思义教堂是地标。"
+    },
+    {
+      "zh": "台中教育大学",
+      "en": "National Taichung University of Education",
+      "tag": null,
+      "founded": 1899,
+      "site": "https://www.ntcu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "始于台中师范学校，百年师范教育传承。"
+    },
+    {
+      "zh": "中山医学大学",
+      "en": "Chung Shan Medical University",
+      "tag": null,
+      "founded": 1960,
+      "site": "https://www.csmu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "牙医学系享誉全台，附设医院服务中台湾区。"
+    },
+    {
+      "zh": "静宜大学",
+      "en": "Providence University",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.pu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "天主教大学，外语与观光学科著名，校园夹道树海优美。"
+    },
+    {
+      "zh": "亚洲大学",
+      "en": "Asia University",
+      "tag": null,
+      "founded": 2001,
+      "site": "https://www.asia.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "现代主义建筑校园，附设亚洲大学美术馆藏安藤忠雄三角建筑。"
+    },
+    {
+      "zh": "侨光科技大学",
+      "en": "Overseas Chinese University",
+      "tag": null,
+      "founded": 1964,
+      "site": "https://www.ocu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "商管起家的科技大学，观光餐饮学科实习资源丰富。"
+    },
+    {
+      "zh": "勤益科技大学",
+      "en": "National Chin-Yi University of Technology",
+      "tag": null,
+      "founded": 1971,
+      "site": "https://www.ncut.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "私立捐校为公的首例，机械工程传统深厚。"
+    },
+    {
+      "zh": "弘光科技大学",
+      "en": "Hungkuang University",
+      "tag": null,
+      "founded": 1967,
+      "site": "https://www.hk.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "医护起家，食品营养与美容造型学科知名。"
+    },
+    {
+      "zh": "岭东科技大学",
+      "en": "Ling Tung University",
+      "tag": null,
+      "founded": 1964,
+      "site": "https://www.ltu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "设计与财经学科并重，春安校区旁就是彩虹眷村。"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taichung\\universities.json"
+}

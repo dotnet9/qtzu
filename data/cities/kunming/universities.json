@@ -1,0 +1,115 @@
+{
+  "city": "kunming",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "云南大学",
+      "en": "Yunnan University",
+      "tag": "211",
+      "founded": 1922,
+      "site": "https://www.ynu.edu.cn",
+      "globalRank": null,
+      "nationalRank": 70,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "昆明理工大学",
+      "en": "Kunming University of Science and Technology",
+      "tag": null,
+      "founded": 1954,
+      "site": "https://www.kmust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "云南师范大学",
+      "en": "Yunnan Normal University",
+      "tag": null,
+      "founded": 1938,
+      "site": "https://www.ynnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "昆明医科大学",
+      "en": "Kunming Medical University",
+      "tag": null,
+      "founded": 1933,
+      "site": "https://www.kmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "云南农业大学",
+      "en": "Yunnan Agricultural University",
+      "tag": null,
+      "founded": 1938,
+      "site": "https://www.ynau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "西南林业大学",
+      "en": "Southwest Forestry University",
+      "tag": null,
+      "founded": 1939,
+      "site": "https://www.swfu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "云南民族大学",
+      "en": "Yunnan Minzu University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.ynni.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "云南财经大学",
+      "en": "Yunnan University of Finance and Economics",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.ynufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "昆明学院",
+      "en": "Kunming University",
+      "tag": null,
+      "founded": 2004,
+      "site": "https://www.kmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kunming\\universities.json"
+}

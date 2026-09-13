@@ -1,0 +1,103 @@
+{
+  "city": "qingdao",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "中国海洋大学",
+      "en": "Ocean University of China",
+      "tag": "985",
+      "founded": 1924,
+      "site": "https://www.ouc.edu.cn",
+      "globalRank": 381,
+      "nationalRank": 32,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "山东大学（青岛校区）",
+      "en": "Shandong University Qingdao",
+      "tag": "985",
+      "founded": 1901,
+      "site": "https://www.sdu.edu.cn",
+      "globalRank": 300,
+      "nationalRank": 22,
+      "bearing": "W",
+      "history": "主校区在济南",
+      "campusNote": null
+    },
+    {
+      "zh": "中国石油大学（华东）",
+      "en": "China University of Petroleum (East China)",
+      "tag": "211",
+      "founded": 1953,
+      "site": "https://www.upc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "青岛大学",
+      "en": "Qingdao University",
+      "tag": null,
+      "founded": 1909,
+      "site": "https://www.qdu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "山东科技大学",
+      "en": "Shandong University of Science and Technology",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.sdust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "青岛科技大学",
+      "en": "Qingdao University of Science and Technology",
+      "tag": null,
+      "founded": 1950,
+      "site": "https://www.qust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "青岛理工大学",
+      "en": "Qingdao University of Technology",
+      "tag": null,
+      "founded": 1953,
+      "site": "https://www.qut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "青岛农业大学",
+      "en": "Qingdao Agricultural University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.qau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qingdao\\universities.json"
+}

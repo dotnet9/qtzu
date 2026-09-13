@@ -1,0 +1,63 @@
+{
+  "city": "lanzhou",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "中山铁桥",
+      "en": "Zhongshan Bridge",
+      "desc": "1909 年建成的「天下黄河第一桥」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhongshan%20Bridge%20Lanzhou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "白塔山公园",
+      "en": "Baita Mountain",
+      "desc": "俯瞰黄河穿城的最佳机位，元代白塔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baita%20Mountain%20Lanzhou.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "水车博览园",
+      "en": "Waterwheel Park",
+      "desc": "明代水车技艺，黄河岸边吱呀转动",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterwheel%20Lanzhou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "黄河母亲雕塑",
+      "en": "Yellow River Mother Statue",
+      "desc": "城市地标，慈母怀抱婴儿的象征",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20River%20Mother.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "甘肃省博物馆",
+      "en": "Gansu Provincial Museum",
+      "desc": "铜奔马「马踏飞燕」的故乡",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gansu%20Provincial%20Museum.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "兴隆山",
+      "en": "Xinglong Mountain",
+      "desc": "陇右第一名山，云龙桥横卧山涧",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xinglong%20Mountain.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "五泉山公园",
+      "en": "Wuquan Mountain",
+      "desc": "霍去病传说与五眼名泉",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuquan%20Mountain.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "正宁路夜市",
+      "en": "Zhengning Road Night Market",
+      "desc": "牛奶鸡蛋醪糟的传奇夜市",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Night%20market.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lanzhou\\scenes.json"
+}

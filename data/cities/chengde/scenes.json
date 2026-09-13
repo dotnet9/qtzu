@@ -1,0 +1,63 @@
+{
+  "city": "chengde",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "避暑山庄",
+      "en": "Mountain Resort",
+      "desc": "世界最大皇家园林，七十二景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chengde%20Mountain%20Resort.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "普陀宗乘之庙",
+      "en": "Putuo Zongcheng Temple",
+      "desc": "「小布达拉宫」，外八庙之首",
+      "img": "data/cities/chengde/img/Putuo_Zongcheng_Temple.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "普宁寺",
+      "en": "Puning Temple",
+      "desc": "千手千眼观音木雕高 27 米",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Puning%20Temple.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "磬锤峰",
+      "en": "Qingchui Peak",
+      "desc": "棒槌山奇石，丹霞地貌",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingchui%20Peak.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "须弥福寿之庙",
+      "en": "Xumifushou Temple",
+      "desc": "六世班禅行宫，金顶辉煌",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xumifushou%20Temple.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "金山岭长城",
+      "en": "Jinshanling Great Wall",
+      "desc": "万里长城最壮美的一段",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinshanling%20Great%20Wall.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "塞罕坝",
+      "en": "Saihanba",
+      "desc": "世界最大人工林海，绿洲奇迹",
+      "img": "data/cities/chengde/img/Saihanba.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "普乐寺",
+      "en": "Pule Temple",
+      "desc": "旭光阁重檐圆顶仿天坛",
+      "img": "data/cities/chengde/img/Pule_Temple.jpg",
+      "bearing": "E"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengde\\scenes.json"
+}

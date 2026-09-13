@@ -1,0 +1,79 @@
+{
+  "city": "nanning",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "广西大学",
+      "en": "Guangxi University",
+      "tag": "211",
+      "founded": 1928,
+      "site": "https://www.gxu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广西医科大学",
+      "en": "Guangxi Medical University",
+      "tag": null,
+      "founded": 1934,
+      "site": "https://www.gxmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广西民族大学",
+      "en": "Guangxi Minzu University",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.gxun.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广西师范大学",
+      "en": "Guangxi Normal University",
+      "tag": null,
+      "founded": 1932,
+      "site": "https://www.gxnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "主校区在桂林",
+      "campusNote": null
+    },
+    {
+      "zh": "南宁师范大学",
+      "en": "Nanning Normal University",
+      "tag": null,
+      "founded": 1953,
+      "site": "https://www.nnnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广西中医药大学",
+      "en": "Guangxi University of Chinese Medicine",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.gxtcmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanning\\universities.json"
+}

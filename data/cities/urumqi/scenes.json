@@ -1,0 +1,63 @@
+{
+  "city": "urumqi",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "天山天池",
+      "en": "Tianshan Tianchi",
+      "desc": "雪峰映碧潭的瑶池传说",
+      "img": "data/cities/urumqi/img/Tianshan_Tianchi.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "国际大巴扎",
+      "en": "Grand Bazaar",
+      "desc": "世界规模最大巴扎建筑群",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Bazaar%20Urumqi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "红山公园",
+      "en": "Hongshan Park",
+      "desc": "城市标志红山塔俯瞰全市",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hongshan%20Park%20Urumqi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "新疆博物馆",
+      "en": "Xinjiang Museum",
+      "desc": "楼兰美女干尸与五星出东方利中国锦",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xinjiang%20Museum.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "南山风景区",
+      "en": "Nanshan Scenic Area",
+      "desc": "天山雪岭云杉草原",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanshan%20Urumqi.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "水磨沟公园",
+      "en": "Shuimogou Park",
+      "desc": "清泉寺与水磨坊",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shuimogou.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "新疆古生态园",
+      "en": "Xinjiang Fossil Park",
+      "desc": "硅化木与汗血宝马",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xinjiang%20Fossil%20Park.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "达坂城",
+      "en": "Dabancheng",
+      "desc": "歌曲里的风车之城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dabancheng.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\urumqi\\scenes.json"
+}

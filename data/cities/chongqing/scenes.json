@@ -1,0 +1,77 @@
+{
+  "city": "chongqing",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "洪崖洞",
+      "en": "Hongya Cave",
+      "desc": "十一层吊脚楼亮灯时如《千与千寻》的童话世界",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hongya%20Cave%2C%20Chongqing.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "磁器口古镇",
+      "en": "Ciqikou",
+      "desc": "千年水陆码头，石板路两侧茶馆小吃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ciqikou%20Ancient%20Town.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "长江索道",
+      "en": "Yangtze River Cableway",
+      "desc": "横跨长江的「空中巴士」，山城交通奇观",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yangtze%20River%20Cableway.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "朝天门码头",
+      "en": "Chaotianmen",
+      "desc": "两江交汇的重庆之门，来福士大楼造型奇特",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chaotianmen.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "武隆天生三桥",
+      "en": "Wulong Karst",
+      "desc": "世界自然遗产，天龙桥气势磅礴可通汽车",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wulong%20Karst.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "大足石刻",
+      "en": "Dazu Rock Carvings",
+      "desc": "世界文化遗产，唐宋石刻艺术的巅峰",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dazu%20Rock%20Carvings.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "解放碑",
+      "en": "Jiefangbei",
+      "desc": "抗战胜利纪功碑，今日中国西部第一商圈",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiefangbei%20Chongqing.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "南山一棵树",
+      "en": "Nanshan Yikeshu",
+      "desc": "重庆夜景最佳观景台，灯火如星河倾泻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanshan%20Chongqing%20night.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "白帝城",
+      "en": "Baidicheng",
+      "desc": "朝辞白帝彩云间的诗城，夔门天下雄",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baidicheng.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "金佛山",
+      "en": "Jinfoshan",
+      "desc": "世界自然遗产喀斯特台原，方竹林海",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinfoshan.jpg?width=640",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chongqing\\scenes.json"
+}

@@ -1,0 +1,77 @@
+{
+  "city": "tianjin",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "狗不理包子",
+      "en": "Goubuli Baozi",
+      "desc": "1858 年创立的津门三绝之首，十八褶水馅包",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baozi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "十八街麻花",
+      "en": "Fried Dough Twist",
+      "desc": "桂发祥什锦夹馅麻花，酥脆香甜久放不绵",
+      "img": "data/cities/tianjin/img/Mahua.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "耳朵眼炸糕",
+      "en": "Erduoyan Fried Cake",
+      "desc": "豆沙馅糯米炸糕外焦里嫩，津门三绝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20cake.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "煎饼馃子",
+      "en": "Jianbing Guozi",
+      "desc": "绿豆面摊煎饼加馃子馃篦儿，天津人的早点信仰",
+      "img": "data/cities/tianjin/img/Jianbing.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "锅巴菜",
+      "en": "Guobacai",
+      "desc": "绿豆煎饼切条卤汁拌，「嘎巴菜」津味早点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guobacai.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "罾蹦鲤鱼",
+      "en": "Deep-fried Carp",
+      "desc": "带鳞鲤鱼炸得骨酥肉嫩，浇糖醋汁滋滋作响",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Carp%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "八大碗",
+      "en": "Eight Bowls",
+      "desc": "传统宴席八大碗，粗料细做津菜代表",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese%20banquet.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "面茶",
+      "en": "Miancha",
+      "desc": "糜子面糊淋麻酱，讲究沿碗边转着喝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Miancha.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "独面筋",
+      "en": "Braised Gluten",
+      "desc": "天津独面筋咸鲜浓郁，家常下饭",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gluten%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "糖炒栗子",
+      "en": "Roasted Chestnuts",
+      "desc": "小宝栗子甘甜绵糯，秋冬街头香气",
+      "img": "data/cities/tianjin/img/Roasted_chestnuts.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tianjin\\foods.json"
+}

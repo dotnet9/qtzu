@@ -1,0 +1,43 @@
+{
+  "city": "yinchuan",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "宁夏大学",
+      "en": "Ningxia University",
+      "tag": "211",
+      "founded": 1958,
+      "site": "https://www.nxu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "北方民族大学",
+      "en": "North Minzu University",
+      "tag": null,
+      "founded": 1984,
+      "site": "https://www.nmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "宁夏医科大学",
+      "en": "Ningxia Medical University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.nxmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yinchuan\\universities.json"
+}

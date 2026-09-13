@@ -1,0 +1,77 @@
+{
+  "city": "xian",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "秦始皇兵马俑",
+      "en": "Terracotta Warriors",
+      "desc": "世界第八大奇迹，两千年前的地下军团",
+      "img": "data/cities/xian/img/Terracotta_Army-China2.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "西安明城墙",
+      "en": "Xi'an City Wall",
+      "desc": "保存最完整的古代城垣，可骑行一圈 13.7 公里",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xi'an%20City%20Wall.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大雁塔",
+      "en": "Giant Wild Goose Pagoda",
+      "desc": "玄奘主持修建的藏经塔，唐代佛教地标",
+      "img": "data/cities/xian/img/Giant_Wild_Goose_Pagoda_Xi_an.jpg",
+      "bearing": "SE"
+    },
+    {
+      "name": "回民街",
+      "en": "Huimin Street",
+      "desc": "千年回坊街区，小吃香气弥漫青石板路",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huimin%20Street%20Xi'an.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "华清池",
+      "en": "Huaqing Pool",
+      "desc": "杨贵妃赐浴的皇家温泉，骊山脚下",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huaqing%20Pool.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "钟楼与鼓楼",
+      "en": "Bell and Drum Towers",
+      "desc": "明代城市中心，暮鼓晨钟的古城记忆",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bell%20Tower%20Xi'an.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大明宫国家遗址公园",
+      "en": "Daming Palace",
+      "desc": "盛唐宫殿遗址，面积是故宫的四倍",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Daming%20Palace.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "小雁塔",
+      "en": "Small Wild Goose Pagoda",
+      "desc": "唐代荐福寺塔，「雁塔晨钟」关中八景之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Small%20Wild%20Goose%20Pagoda.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "陕西历史博物馆",
+      "en": "Shaanxi History Museum",
+      "desc": "「给我一天，还你万年」的华夏宝库",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shaanxi%20History%20Museum.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "大唐不夜城",
+      "en": "Great Tang All Day Mall",
+      "desc": "不倒翁小姐姐走红网络的盛唐夜景街区",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Datang%20Everbright%20Town.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xian\\scenes.json"
+}

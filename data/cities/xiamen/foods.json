@@ -1,0 +1,63 @@
+{
+  "city": "xiamen",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "沙茶面",
+      "en": "Shacha Noodles",
+      "desc": "沙茶汤头浓香微辣，加料随心配",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shacha%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "海蛎煎",
+      "en": "Oyster Omelette",
+      "desc": "闽南蚵仔煎配甜辣酱，海味十足",
+      "img": "data/cities/xiamen/img/Oyster_omelette.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "土笋冻",
+      "en": "Sea Worm Jelly",
+      "desc": "海边沙虫熬冻晶莹剔透，闽南勇气美食",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tusundong.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "姜母鸭",
+      "en": "Ginger Duck",
+      "desc": "老姜砂锅焖鸭，药膳香气暖身",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger%20duck.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "花生汤",
+      "en": "Peanut Soup",
+      "desc": "黄则和花生汤绵密香甜，配油条绝配",
+      "img": "data/cities/xiamen/img/Peanut_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "面线糊",
+      "en": "Mee Sua Paste",
+      "desc": "细面线熬糊加海鲜，闽南人的早餐",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mee%20sua.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "烧肉粽",
+      "en": "Rice Dumpling",
+      "desc": "卤肉香菇蛋黄裹糯米，古早味肉粽",
+      "img": "data/cities/xiamen/img/Zongzi.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "馅饼",
+      "en": "Pastry Pie",
+      "desc": "鼓浪屿馅饼绿豆馅酥松，伴手礼首选",
+      "img": "data/cities/xiamen/img/Mooncake.jpg",
+      "bearing": "SW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xiamen\\foods.json"
+}

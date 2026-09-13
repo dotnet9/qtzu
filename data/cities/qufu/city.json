@@ -1,0 +1,82 @@
+{
+  "id": "qufu",
+  "name": "曲阜",
+  "en": "Qufu",
+  "color": "#8A6B4A",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "孔子故里 · 东方圣城",
+  "isCoastal": false,
+  "history": "曲阜是孔子故里，「东方耶路撒冷」。孔庙、孔府、孔林「三孔」1994 年列入世界文化遗产，大成殿与故宫太和殿、岱庙天贶殿并称东方三大殿。祭孔大典延续两千余年，儒学从这里影响东亚两千年。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20Confucius%20Qufu.jpg?width=960",
+      "caption": "孔庙"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kong%20Family%20Mansion.jpg?width=960",
+      "caption": "孔府"
+    },
+    {
+      "img": "data/cities/qufu/img/Cemetery_of_Confucius.jpg",
+      "caption": "孔林"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "📚",
+      "intro": "孔子的家乡，「东方耶路撒冷」",
+      "introEn": "Confucius was born in Qufu.",
+      "words": [
+        "book",
+        "school"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🏛️",
+      "intro": "三孔：孔庙孔府孔林，都是世界遗产",
+      "introEn": "The Three Kong sites are world heritage.",
+      "words": [
+        "temple",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "📜",
+      "intro": "祭孔大典演了两千多年",
+      "introEn": "The Confucius ceremony runs 2000+ years.",
+      "words": [
+        "ceremony"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qufu\\city.json"
+}

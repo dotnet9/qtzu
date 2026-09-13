@@ -1,0 +1,31 @@
+{
+  "city": "yangzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "扬州大学",
+      "en": "Yangzhou University",
+      "tag": null,
+      "founded": 1902,
+      "site": "https://www.yzu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "扬州工业职业技术学院",
+      "en": "Yangzhou Polytechnic Institute",
+      "tag": null,
+      "founded": 1978,
+      "site": "https://www.ypi.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yangzhou\\universities.json"
+}

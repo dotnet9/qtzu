@@ -1,0 +1,63 @@
+{
+  "city": "nanning",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "老友粉",
+      "en": "Laoyou Noodles",
+      "desc": "酸笋豆豉爆香，南宁人的乡愁",
+      "img": "data/cities/nanning/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "螺蛳粉",
+      "en": "Luosifen",
+      "desc": "闻着臭吃着香的柳州风味席卷全国",
+      "img": "data/cities/nanning/img/Luosifen.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "卷筒粉",
+      "en": "Rice Rolls",
+      "desc": "米浆蒸皮卷肉末，配黄皮酱",
+      "img": "data/cities/nanning/img/Rice_rolls.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "柠檬鸭",
+      "en": "Lemon Duck",
+      "desc": "武鸣柠檬鸭酸辣开胃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lemon%20duck.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "粉饺",
+      "en": "Rice Flour Dumpling",
+      "desc": "米粉皮包马蹄肉馅，蒸制透明",
+      "img": "data/cities/nanning/img/Dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "酸嘢",
+      "en": "Suan Ye",
+      "desc": "芒果萝卜腌酸，街头酸爽小吃",
+      "img": "data/cities/nanning/img/Pickles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "八宝饭",
+      "en": "Eight Treasure Rice",
+      "desc": "壮乡节庆甜点糯香",
+      "img": "data/cities/nanning/img/Rice_cake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "横州鱼生",
+      "en": "Hengzhou Sashimi",
+      "desc": "淡水鱼生薄片，配料二十余种",
+      "img": "data/cities/nanning/img/Sashimi.jpg",
+      "bearing": "E"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanning\\foods.json"
+}

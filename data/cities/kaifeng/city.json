@@ -1,0 +1,83 @@
+{
+  "id": "kaifeng",
+  "name": "开封",
+  "en": "Kaifeng",
+  "color": "#B08A3E",
+  "landmark": "gate",
+  "region": "华中",
+  "importance": "八朝古都 · 清明上河图的原型城市",
+  "isCoastal": false,
+  "history": "开封古称汴梁，八朝建都，北宋东京城是当时世界最大城市，《清明上河图》描绘的正是它的繁华。「城摞城」奇观：六座古城上下叠压。铁塔、龙亭、大相国寺诉说着千年往事，开封小吃夜市自宋代延续至今。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dragon%20Pavilion%20Kaifeng.jpg?width=960",
+      "caption": "龙亭"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Iron%20Pagoda%20Kaifeng.jpg?width=960",
+      "caption": "铁塔"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Millennium%20City%20Park.jpg?width=960",
+      "caption": "清明上河园"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🖼️",
+      "intro": "清明上河图画的就是这里！",
+      "introEn": "The famous scroll painted Kaifeng!",
+      "words": [
+        "art",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🏯",
+      "intro": "城摞城：六座古城上下叠压",
+      "introEn": "Six ancient cities stack under the ground!",
+      "words": [
+        "city",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🍢",
+      "intro": "开封夜市从宋朝一直热闹到今天",
+      "introEn": "Night markets ran since the Song dynasty.",
+      "words": [
+        "food",
+        "night"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaifeng\\city.json"
+}

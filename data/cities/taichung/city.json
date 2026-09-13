@@ -1,0 +1,82 @@
+{
+  "id": "taichung",
+  "name": "台中",
+  "en": "Taichung",
+  "color": "#4E9E7F",
+  "landmark": "pavilion",
+  "region": "台湾",
+  "importance": "台湾中部枢纽城市 · 气候宜人的宜居之城",
+  "isCoastal": true,
+  "history": "台中旧称「大墩」，清光绪年间台湾建省时刘铭传选定此地筑城，本拟作台湾省会，故名「台湾府」。日据时期以棋盘式城市规划建设，是台湾第一座计画性建市的城市。台中气候温和全年如春，有「最宜居城市」之称。这里诞生了珍珠奶茶（春水堂 1987），逢甲夜市是全台夜市文化的风向标，高美湿地的夕阳、彩虹眷村的彩绘、路思义教堂的曲面建筑都让游客流连忘返。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gaomei%20wetlands.jpg?width=960",
+      "caption": "高美湿地"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luce%20Memorial%20Chapel.jpg?width=960",
+      "caption": "路思义教堂"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rainbow%20Village%2C%20Taichung.jpg?width=960",
+      "caption": "彩虹眷村"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🧋",
+      "intro": "珍珠奶茶在春水堂诞生，来台中喝最正宗的一杯",
+      "introEn": "Bubble tea was born in Taichung.",
+      "words": [
+        "tea",
+        "sweet"
+      ],
+      "deco": "tea"
+    },
+    {
+      "emoji": "🌅",
+      "intro": "高美湿地的夕阳，把整片海染成金色",
+      "introEn": "Gaomei Wetlands has golden sunsets.",
+      "words": [
+        "sea",
+        "sunset"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "🎨",
+      "intro": "彩虹爷爷把眷村画成了童话世界",
+      "introEn": "Rainbow Village is a fairytale.",
+      "words": [
+        "color",
+        "art"
+      ],
+      "deco": "flower"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "bridge",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "night-market",
+      "wetland-park",
+      "art-zone",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taichung\\city.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "nanchang",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "瓦罐汤",
+      "en": "Clay Pot Soup",
+      "desc": "瓦罐煨汤千度炭火，肉饼蛋汤鲜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Clay%20pot%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "拌粉",
+      "en": "Mixed Rice Noodles",
+      "desc": "南昌拌粉配瓦罐汤，早餐黄金搭档",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mixed%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "藜蒿炒腊肉",
+      "en": "Cress with Bacon",
+      "desc": "鄱阳湖藜蒿脆嫩，赣菜名作",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Stir%20fried%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "白糖糕",
+      "en": "Sugar Rice Cake",
+      "desc": "炸得金黄裹糖粉，糯叽叽",
+      "img": "data/cities/nanchang/img/Fried_rice_cake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "三杯鸡",
+      "en": "Three Cup Chicken",
+      "desc": "一杯油一杯酱油一杯酒",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Three%20cup%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "石头街麻花",
+      "en": "Stone Street Mahua",
+      "desc": "细如发丝的酥脆麻花",
+      "img": "data/cities/nanchang/img/Mahua.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "赣味炒粉",
+      "en": "Stir-fried Rice Noodles",
+      "desc": "夜宵摊的锅气炒粉",
+      "img": "data/cities/nanchang/img/Fried_noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "鄱阳湖大闸蟹",
+      "en": "Poyang Crab",
+      "desc": "湖蟹膏肥，秋日限定",
+      "img": "data/cities/nanchang/img/Crab.jpg",
+      "bearing": "N"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanchang\\foods.json"
+}

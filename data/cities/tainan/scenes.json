@@ -1,0 +1,77 @@
+{
+  "city": "tainan",
+  "source": "台南市政府观光旅游局与国定古迹名录",
+  "items": [
+    {
+      "name": "赤崁楼",
+      "en": "Chihkan Tower",
+      "desc": "1653 年荷兰人建普罗民遮城，现在的海神庙与文昌阁见证四百年沧桑。",
+      "img": "data/cities/tainan/img/Chihkan_Tower_Tainan.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "安平古堡",
+      "en": "Fort Zeelandia",
+      "desc": "1624 年荷兰人建热兰遮城，是台湾最早的城堡建筑，安平老街就在旁边。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fort%20Zeelandia%2C%20Tainan.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "台南孔庙",
+      "en": "Tainan Confucius Temple",
+      "desc": "1665 年建，台湾第一座孔庙与最高学府，「全台首学」匾额高悬。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tainan%20Confucius%20Temple.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "亿载金城",
+      "en": "Eternal Golden Castle",
+      "desc": "1876 年沈葆桢建的二鲲鯓炮台，法国造阿姆斯特朗大炮仍在。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Eternal%20Golden%20Castle.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "神农街",
+      "en": "Shennong Street",
+      "desc": "清代五条港区的老街，窄巷老屋改成文创小店，夜晚灯笼亮起最迷人。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shennong%20Street%2C%20Tainan.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "花园夜市",
+      "en": "Tainan Flower Night Market",
+      "desc": "全台规模最大的夜市之一，周四六日开市，千摊流水席。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tainan%20Flower%20Night%20Market.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "祀典武庙",
+      "en": "Sacrificial Rites Wu Temple",
+      "desc": "祭祀关公的国家级古迹，红色山墙连绵如波浪。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wu%20Temple%2C%20Tainan.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "七股盐山",
+      "en": "Qigu Salt Mountain",
+      "desc": "六层楼高的盐堆如雪山，瓦盘盐田映出天空之镜。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qigu%20Salt%20Mountain.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "安平树屋",
+      "en": "Anping Tree House",
+      "desc": "榕树气根把废弃仓库包成了绿色迷宫，光影如奇幻电影。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Anping%20Tree%20House.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "四草绿色隧道",
+      "en": "Sicao Green Tunnel",
+      "desc": "红树林夹道的「台湾亚马逊河」，竹筏港运河游船穿行绿廊。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sicao%20Green%20Tunnel.jpg?width=640",
+      "bearing": "NW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\scenes.json"
+}

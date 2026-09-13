@@ -1,0 +1,63 @@
+{
+  "city": "suzhou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "松鼠桂鱼",
+      "en": "Squirrel Mandarin Fish",
+      "desc": "形如松鼠浇糖醋汁，苏帮菜之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20fish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "阳澄湖大闸蟹",
+      "en": "Hairy Crab",
+      "desc": "秋风起蟹脚痒，蟹黄如金",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hairy%20crab.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "苏式面",
+      "en": "Suzhou Noodles",
+      "desc": "枫镇大肉面焖肉浇头，汤清面白",
+      "img": "data/cities/suzhou/img/Noodle_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "碧螺春",
+      "en": "Biluochun Tea",
+      "desc": "洞庭山卷曲绿茶，吓煞人香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Green%20tea.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "生煎馒头",
+      "en": "Pan-fried Buns",
+      "desc": "哑巴生煎皮薄汁多",
+      "img": "data/cities/suzhou/img/Shengjian_mantou.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "糖粥",
+      "en": "Sweet Porridge",
+      "desc": "潘玉麟糖粥红豆糯米，童年味道",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20porridge.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "苏式糕团",
+      "en": "Suzhou Rice Cakes",
+      "desc": "黄天源糕团五彩缤纷",
+      "img": "data/cities/suzhou/img/Rice_cake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "樱桃肉",
+      "en": "Cherry Pork",
+      "desc": "酥烂红烧肉红如樱桃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20pork.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\suzhou\\foods.json"
+}

@@ -1,0 +1,79 @@
+{
+  "city": "changchun",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "吉林大学",
+      "en": "Jilin University",
+      "tag": "985",
+      "founded": 1946,
+      "site": "https://www.jlu.edu.cn",
+      "globalRank": 291,
+      "nationalRank": 23,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "东北师范大学",
+      "en": "Northeast Normal University",
+      "tag": "211",
+      "founded": 1946,
+      "site": "https://www.nenu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "长春理工大学",
+      "en": "Changchun University of Science and Technology",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.cust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "吉林农业大学",
+      "en": "Jilin Agricultural University",
+      "tag": null,
+      "founded": 1948,
+      "site": "https://www.jlau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "长春中医药大学",
+      "en": "Changchun University of Chinese Medicine",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.ccucm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "长春工业大学",
+      "en": "Changchun University of Technology",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.ccut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changchun\\universities.json"
+}

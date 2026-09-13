@@ -1,0 +1,63 @@
+{
+  "city": "quanzhou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "面线糊",
+      "en": "Mee Sua Paste",
+      "desc": "水门国仔面线糊配油条，古早味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mee%20sua.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "土笋冻",
+      "en": "Sea Worm Jelly",
+      "desc": "安海土笋冻晶莹，蒜蓉醋提味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tusundong.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "姜母鸭",
+      "en": "Ginger Duck",
+      "desc": "斯丹姜母鸭砂锅喷香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger%20duck.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "肉粽",
+      "en": "Meat Zongzi",
+      "desc": "侯阿婆肉粽配花生酱",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zongzi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "石花膏",
+      "en": "Jelly Dessert",
+      "desc": "四果汤石花膏清暑神器",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jelly%20dessert.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "润饼",
+      "en": "Popiah",
+      "desc": "清明薄饼卷菜丝",
+      "img": "data/cities/quanzhou/img/Spring_rolls.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "牛排",
+      "en": "Beef Ribs",
+      "desc": "闽南咖喱牛排配咸饭",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beef%20ribs.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "满煎糕",
+      "en": "Pancake with Peanut",
+      "desc": "花生糖馅松软煎糕，配茶一绝",
+      "img": "data/cities/quanzhou/img/Pancake.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\quanzhou\\foods.json"
+}

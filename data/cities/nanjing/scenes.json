@@ -1,0 +1,77 @@
+{
+  "city": "nanjing",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "中山陵",
+      "en": "Sun Yat-sen Mausoleum",
+      "desc": "392 级台阶仰望博爱坊，紫金山庄严圣地",
+      "img": "data/cities/nanjing/img/Sun_Yat-sen_Mausoleum.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "夫子庙与秦淮河",
+      "en": "Fuzimiao & Qinhuai River",
+      "desc": "桨声灯影里的秦淮河，天下文枢牌坊",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fuzimiao%2C%20Nanjing.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "明孝陵",
+      "en": "Ming Xiaoling Mausoleum",
+      "desc": "明太祖陵寝，世界文化遗产明清皇陵之首",
+      "img": "data/cities/nanjing/img/Ming_Xiaoling_Mausoleum.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "总统府",
+      "en": "Presidential Palace",
+      "desc": "600 年历史，从清两江总督署到民国中枢",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Presidential%20Palace%20Nanjing.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "玄武湖",
+      "en": "Xuanwu Lake",
+      "desc": "江南三大名湖之一，明城墙下五洲相环",
+      "img": "data/cities/nanjing/img/Xuanwu_Lake.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "鸡鸣寺",
+      "en": "Jiming Temple",
+      "desc": "「南朝四百八十寺」之首，樱花大道春日如雪",
+      "img": "data/cities/nanjing/img/Jiming_Temple.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "南京博物院",
+      "en": "Nanjing Museum",
+      "desc": "中国三大博物馆之一，民国馆穿越百年",
+      "img": "data/cities/nanjing/img/Nanjing_Museum.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "侵华日军南京大屠杀遇难同胞纪念馆",
+      "en": "Nanjing Massacre Memorial",
+      "desc": "铭记历史、珍爱和平的国家公祭地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing%20Massacre%20Memorial%20Hall.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "栖霞山",
+      "en": "Qixia Mountain",
+      "desc": "「春牛首秋栖霞」，红枫与千佛岩石窟",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qixia%20Mountain.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "老门东",
+      "en": "Laomendong",
+      "desc": "城南老街巷，青砖黛瓦里的金陵烟火",
+      "img": "data/cities/nanjing/img/Laomendong.jpg",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanjing\\scenes.json"
+}

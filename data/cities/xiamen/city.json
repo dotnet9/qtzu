@@ -1,0 +1,83 @@
+{
+  "id": "xiamen",
+  "name": "厦门",
+  "en": "Xiamen",
+  "color": "#4EB8B0",
+  "landmark": "harbor",
+  "region": "华东",
+  "importance": "经济特区 · 国际花园城市",
+  "isCoastal": true,
+  "history": "厦门古称嘉禾屿，明代筑城，郑成功曾以此为抗清复台基地。1980 年成为中国首批经济特区之一。鼓浪屿的万国建筑与琴声、环岛路的椰风海韵、厦大的芙蓉隧道涂鸦，构成「海上花园」的诗意。鹭岛白鹭翱翔，闽南红砖古厝与现代都市在这里和谐共存。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gulangyu%2C%20Xiamen.jpg?width=960",
+      "caption": "鼓浪屿"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xiamen%20University.jpg?width=960",
+      "caption": "厦门大学"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xiamen%20skyline.jpg?width=960",
+      "caption": "鹭岛天际线"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏝️",
+      "intro": "鼓浪屿的琴声飘在海上，钢琴之岛",
+      "introEn": "Gulangyu is the piano island.",
+      "words": [
+        "music",
+        "sea"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "🌺",
+      "intro": "厦门大学是中国最美的大学",
+      "introEn": "Xiamen University is the prettiest campus.",
+      "words": [
+        "school",
+        "flower"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🧋",
+      "intro": "沙茶面和海蛎煎，闽南味满街飘香",
+      "introEn": "Shacha noodles smell so good.",
+      "words": [
+        "food",
+        "sea"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xiamen\\city.json"
+}

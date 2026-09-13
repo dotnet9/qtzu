@@ -1,0 +1,77 @@
+{
+  "city": "shanghai",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "小笼包",
+      "en": "Xiaolongbao",
+      "desc": "南翔小笼皮薄汁多，「开窗喝汤」是标准吃法",
+      "img": "data/cities/shanghai/img/Xiaolongbao.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "生煎馒头",
+      "en": "Pan-fried Buns",
+      "desc": "底脆汁多芝麻葱花，上海早餐四大金刚之首",
+      "img": "data/cities/shanghai/img/Shengjian_mantou.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "红烧肉",
+      "en": "Braised Pork",
+      "desc": "浓油赤酱的本帮菜灵魂，肥而不腻入口即化",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hongshaorou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大闸蟹",
+      "en": "Hairy Crab",
+      "desc": "阳澄湖秋风起蟹脚痒，醋姜配蟹黄是秋日盛宴",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese%20mitten%20crab.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "白斩鸡",
+      "en": "White Cut Chicken",
+      "desc": "小绍兴三黄鸡皮黄肉嫩，蘸酱油原汁原味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baiqieji.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "排骨年糕",
+      "en": "Pork Chop Rice Cake",
+      "desc": "炸大排配软糯年糕，甜面酱是点睛之笔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Paigu%20niangao.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "蟹壳黄",
+      "en": "Crab-shell Pastry",
+      "desc": "层层起酥的芝麻烧饼形似蟹壳，咸甜两派常年论战",
+      "img": "data/cities/shanghai/img/Shaobing.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "腌笃鲜",
+      "en": "Yan Du Xian Soup",
+      "desc": "咸肉鲜肉春笋同炖，江南春天第一锅鲜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yanduxian.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "葱油拌面",
+      "en": "Scallion Oil Noodles",
+      "desc": "熬得焦香的葱油淋在劲道面上，上海人的乡愁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cong%20you%20ban%20mian.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "蝴蝶酥",
+      "en": "Palmier",
+      "desc": "国际饭店西点房排队百米的传奇，黄油起酥掉渣香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Palmier%20pastry.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shanghai\\foods.json"
+}

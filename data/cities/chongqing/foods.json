@@ -1,0 +1,77 @@
+{
+  "city": "chongqing",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "重庆火锅",
+      "en": "Chongqing Hotpot",
+      "desc": "九宫格牛油锅，毛肚鸭肠七上八下",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongqing%20hotpot.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "重庆小面",
+      "en": "Chongqing Noodles",
+      "desc": "麻辣小面是山城人的一天开始",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongqing%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "酸辣粉",
+      "en": "Hot and Sour Noodles",
+      "desc": "红薯粉Q弹酸辣，配花生碎最佳",
+      "img": "data/cities/chongqing/img/Suanlafen.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "毛血旺",
+      "en": "Duck Blood in Spicy Soup",
+      "desc": "磁器口的血旺里全是宝藏食材",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Maoxiewang.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "辣子鸡",
+      "en": "Lazi Chicken",
+      "desc": "歌乐山的辣子鸡，在辣椒堆里找鸡丁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laziji.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "水煮鱼",
+      "en": "Boiled Fish with Chili",
+      "desc": "麻辣鲜香的川渝经典，油而不腻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shuizhuyu.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "陈麻花",
+      "en": "Chen Mahua",
+      "desc": "磁器口陈麻花酥脆掉渣，咸甜口味排长队",
+      "img": "data/cities/chongqing/img/Mahua.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "万州烤鱼",
+      "en": "Wanzhou Grilled Fish",
+      "desc": "先烤后炖配麻辣底料，越煮越入味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wanzhou%20grilled%20fish.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "抄手",
+      "en": "Chaoshou",
+      "desc": "红油抄手是重庆馄饨的麻辣版本",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chaoshou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "山城汤圆",
+      "en": "Shancheng Tangyuan",
+      "desc": "百年甜汤圆，猪油玫瑰馅一咬流心",
+      "img": "data/cities/chongqing/img/Tangyuan.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chongqing\\foods.json"
+}

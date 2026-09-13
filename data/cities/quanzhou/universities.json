@@ -1,0 +1,55 @@
+{
+  "city": "quanzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "华侨大学",
+      "en": "Huaqiao University",
+      "tag": null,
+      "founded": 1960,
+      "site": "https://www.hqu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "泉州/厦门两地办学",
+      "campusNote": null
+    },
+    {
+      "zh": "仰恩大学",
+      "en": "Yang'en University",
+      "tag": null,
+      "founded": 1987,
+      "site": "https://www.yeu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "泉州师范学院",
+      "en": "Quanzhou Normal University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.qztc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "闽南理工学院",
+      "en": "Minnan University of Science and Technology",
+      "tag": null,
+      "founded": 2001,
+      "site": "https://www.mnust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\quanzhou\\universities.json"
+}

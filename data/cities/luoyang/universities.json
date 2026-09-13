@@ -1,0 +1,43 @@
+{
+  "city": "luoyang",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "河南科技大学",
+      "en": "Henan University of Science and Technology",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.haust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "洛阳师范学院",
+      "en": "Luoyang Normal University",
+      "tag": null,
+      "founded": 1916,
+      "site": "https://www.lynu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "洛阳理工学院",
+      "en": "Luoyang Institute of Science and Technology",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.lyit.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\luoyang\\universities.json"
+}

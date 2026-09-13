@@ -1,0 +1,63 @@
+{
+  "city": "shenzhen",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "椰子鸡",
+      "en": "Coconut Chicken",
+      "desc": "海南椰青汤底涮文昌鸡，清甜暖心",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coconut%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "沙井蚝",
+      "en": "Shajing Oyster",
+      "desc": "千年蚝乡，炭烧生蚝肥美",
+      "img": "data/cities/shenzhen/img/Oysters.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "肠粉",
+      "en": "Rice Noodle Roll",
+      "desc": "广式布拉肠配豉油，早茶起步",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20noodle%20roll.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "光明乳鸽",
+      "en": "Guangming Pigeon",
+      "desc": "皮脆肉嫩的红烧乳鸽三宝之首",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Roast%20pigeon.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "公明烧鹅",
+      "en": "Gongming Goose",
+      "desc": "荔枝木烧制皮脆汁多",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Roast%20goose.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "猪肚鸡",
+      "en": "Pork Tripe Chicken",
+      "desc": "白胡椒猪肚汤底，冬日暖锅",
+      "img": "data/cities/shenzhen/img/Chicken_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "深圳煎堆",
+      "en": "Fried Sesame Balls",
+      "desc": "客家煎堆酥糯香甜",
+      "img": "data/cities/shenzhen/img/Sesame_balls.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "松岗腊鸭",
+      "en": "Songgang Duck",
+      "desc": "古法腊味，蒸饭香四溢",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cured%20duck.jpg?width=640",
+      "bearing": "NW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenzhen\\foods.json"
+}

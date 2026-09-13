@@ -1,0 +1,589 @@
+[
+ {
+  "id": "cat",
+  "en": "cat",
+  "zh": "小猫",
+  "syl": [
+   "cat"
+  ],
+  "hint": "喵喵叫，最爱晒太阳",
+  "pet": "cat",
+  "pos": [
+   -5,
+   24
+  ],
+  "zone": "meadow",
+  "story": "它总在谷仓顶上打盹，呼噜声像一台小小的拖拉机。"
+ },
+ {
+  "id": "dog",
+  "en": "dog",
+  "zh": "小狗",
+  "syl": [
+   "dog"
+  ],
+  "hint": "人类最好的朋友，会握手",
+  "pet": "dog",
+  "pos": [
+   5,
+   26
+  ],
+  "zone": "meadow",
+  "story": "每天早上绕着农场跑三圈，尾巴摇得像一架小风车。"
+ },
+ {
+  "id": "duck",
+  "en": "duck",
+  "zh": "鸭子",
+  "syl": [
+   "duck"
+  ],
+  "hint": "走路摇摇摆摆，嘎嘎叫",
+  "pet": "duck",
+  "pos": [
+   -11,
+   17
+  ],
+  "zone": "meadow",
+  "story": "走路摇摇摆摆，一下河却是人人佩服的游泳冠军。"
+ },
+ {
+  "id": "rabbit",
+  "en": "rabbit",
+  "zh": "兔子",
+  "syl": [
+   "rab",
+   "bit"
+  ],
+  "hint": "长耳朵，爱吃萝卜",
+  "pet": "rabbit",
+  "pos": [
+   9,
+   14
+  ],
+  "zone": "meadow",
+  "story": "它的长耳朵特别灵，能听到三块田外萝卜发芽的声音。"
+ },
+ {
+  "id": "mouse",
+  "en": "mouse",
+  "zh": "老鼠",
+  "syl": [
+   "mouse"
+  ],
+  "hint": "小小只，最爱奶酪",
+  "pet": "mouse",
+  "pos": [
+   -3,
+   11
+  ],
+  "zone": "meadow",
+  "story": "口袋里永远装着一小块饼干屑，说是留给远方的朋友。"
+ },
+ {
+  "id": "frog",
+  "en": "frog",
+  "zh": "青蛙",
+  "syl": [
+   "frog"
+  ],
+  "hint": "绿色的跳跃健将，呱呱",
+  "pet": "frog",
+  "pos": [
+   13,
+   21
+  ],
+  "zone": "meadow",
+  "story": "每场雨停之后，它都会在荷叶上开一场个人演唱会。"
+ },
+ {
+  "id": "flower",
+  "en": "flower",
+  "zh": "花",
+  "syl": [
+   "flow",
+   "er"
+  ],
+  "hint": "花园里香香的颜色",
+  "pet": "flower",
+  "pos": [
+   -13,
+   25
+  ],
+  "zone": "meadow",
+  "story": "会对着太阳点头问好，还把香味借给路过的蜜蜂。"
+ },
+ {
+  "id": "grass",
+  "en": "grass",
+  "zh": "草",
+  "syl": [
+   "grass"
+  ],
+  "hint": "软软的绿地毯",
+  "pet": "grass",
+  "pos": [
+   -8,
+   31
+  ],
+  "zone": "meadow",
+  "story": "一大片软软的绿地毯，光脚踩上去它会咯咯地笑。"
+ },
+ {
+  "id": "boat",
+  "en": "boat",
+  "zh": "小船",
+  "syl": [
+   "boat"
+  ],
+  "hint": "水上代步的小交通工具",
+  "pet": "boat",
+  "pos": [
+   -2.5,
+   6.5
+  ],
+  "zone": "meadow",
+  "story": "涨水的日子它最勇敢，驮着所有朋友稳稳地过河。"
+ },
+ {
+  "id": "light",
+  "en": "light",
+  "zh": "灯",
+  "syl": [
+   "light"
+  ],
+  "hint": "黑暗里最需要它",
+  "pet": "light",
+  "pos": [
+   9,
+   31
+  ],
+  "zone": "meadow",
+  "story": "一盏不肯睡觉的小灯笼，专门照亮怕黑的小伙伴。"
+ },
+ {
+  "id": "seed",
+  "en": "seed",
+  "zh": "种子",
+  "syl": [
+   "seed"
+  ],
+  "hint": "种进土里就会发芽",
+  "pet": "seed",
+  "pos": [
+   -14,
+   16
+  ],
+  "zone": "meadow",
+  "story": "睡在泥土里做一个长长的梦，梦里自己长成了大树。"
+ },
+ {
+  "id": "apple",
+  "en": "apple",
+  "zh": "苹果",
+  "syl": [
+   "ap",
+   "ple"
+  ],
+  "hint": "红色的水果，保持健康靠它",
+  "pet": "apple",
+  "pos": [
+   -18,
+   -13
+  ],
+  "zone": "orchard",
+  "story": "它的红脸蛋不是害羞，是因为天天被夸甜。"
+ },
+ {
+  "id": "banana",
+  "en": "banana",
+  "zh": "香蕉",
+  "syl": [
+   "ba",
+   "na",
+   "na"
+  ],
+  "hint": "黄色的，猴子最爱",
+  "pet": "banana",
+  "pos": [
+   -27,
+   -10
+  ],
+  "zone": "orchard",
+  "story": "弯弯的身体，是它特意为小猴子准备的小月牙。"
+ },
+ {
+  "id": "carrot",
+  "en": "carrot",
+  "zh": "胡萝卜",
+  "syl": [
+   "car",
+   "rot"
+  ],
+  "hint": "橙色，兔子的最爱",
+  "pet": "carrot",
+  "pos": [
+   -13,
+   -21
+  ],
+  "zone": "orchard",
+  "story": "越是把身体藏进土里，越是盼着被小兔子发现。"
+ },
+ {
+  "id": "tomato",
+  "en": "tomato",
+  "zh": "西红柿",
+  "syl": [
+   "to",
+   "ma",
+   "to"
+  ],
+  "hint": "红色蔬果，做菜生吃都行",
+  "pet": "tomato",
+  "pos": [
+   -23,
+   -19
+  ],
+  "zone": "orchard",
+  "story": "酸酸甜甜脾气最好，从来不红脸吵架——它本来就红。"
+ },
+ {
+  "id": "potato",
+  "en": "potato",
+  "zh": "土豆",
+  "syl": [
+   "po",
+   "ta",
+   "to"
+  ],
+  "hint": "土里的圆宝宝，薯条的前身",
+  "pet": "potato",
+  "pos": [
+   -9,
+   -11
+  ],
+  "zone": "orchard",
+  "story": "圆滚滚的地里小球，全农场捉迷藏年年第一名。"
+ },
+ {
+  "id": "corn",
+  "en": "corn",
+  "zh": "玉米",
+  "syl": [
+   "corn"
+  ],
+  "hint": "金黄的颗粒排排队",
+  "pet": "corn",
+  "pos": [
+   -29,
+   -23
+  ],
+  "zone": "orchard",
+  "story": "穿着绿色小外套，头顶留着一撮金黄色的流苏。"
+ },
+ {
+  "id": "goat",
+  "en": "goat",
+  "zh": "山羊",
+  "syl": [
+   "goat"
+  ],
+  "hint": "下巴有胡子的爬山高手",
+  "pet": "goat",
+  "pos": [
+   -19,
+   -7
+  ],
+  "zone": "orchard",
+  "story": "山羊爷爷的胡子白白的，最爱站在小山坡顶上看云。"
+ },
+ {
+  "id": "wind",
+  "en": "wind",
+  "zh": "风",
+  "syl": [
+   "wind"
+  ],
+  "hint": "摸不到，但能吹动风车",
+  "pet": "wind",
+  "pos": [
+   11,
+   -6
+  ],
+  "zone": "windmill",
+  "story": "一位看不见的朋友，路过时会顺手替你接住帽子。"
+ },
+ {
+  "id": "pig",
+  "en": "pig",
+  "zh": "小猪",
+  "syl": [
+   "pig"
+  ],
+  "hint": "粉色，爱在泥坑里打滚",
+  "pet": "pig",
+  "pos": [
+   21,
+   -15
+  ],
+  "zone": "windmill",
+  "story": "在泥坑里痛痛快快打完滚，再自豪地抖一抖全身。"
+ },
+ {
+  "id": "cow",
+  "en": "cow",
+  "zh": "奶牛",
+  "syl": [
+   "cow"
+  ],
+  "hint": "给我们牛奶的大家伙",
+  "pet": "cow",
+  "pos": [
+   28,
+   -22
+  ],
+  "zone": "windmill",
+  "story": "慢性子嚼着草看云，一眼就能认出云朵的形状。"
+ },
+ {
+  "id": "bird",
+  "en": "bird",
+  "zh": "小鸟",
+  "syl": [
+   "bird"
+  ],
+  "hint": "天上飞的小可爱",
+  "pet": "bird",
+  "pos": [
+   17,
+   -25
+  ],
+  "zone": "windmill",
+  "story": "农场的晨间广播员，每天负责叫醒第一缕阳光。"
+ },
+ {
+  "id": "bee",
+  "en": "bee",
+  "zh": "蜜蜂",
+  "syl": [
+   "bee"
+  ],
+  "hint": "嗡嗡嗡，酿蜜的小工人",
+  "pet": "bee",
+  "pos": [
+   25,
+   -11
+  ],
+  "zone": "windmill",
+  "story": "提着小小花蜜桶，嗡嗡嗡地在花丛里送外卖。"
+ },
+ {
+  "id": "horse",
+  "en": "horse",
+  "zh": "马",
+  "syl": [
+   "horse"
+  ],
+  "hint": "嗒嗒嗒奔跑的大动物",
+  "pet": "horse",
+  "pos": [
+   31,
+   15
+  ],
+  "zone": "barnyard",
+  "story": "鬃毛像流动的火焰，跑起来蹄声嗒嗒嗒像打鼓。"
+ },
+ {
+  "id": "sheep",
+  "en": "sheep",
+  "zh": "绵羊",
+  "syl": [
+   "sheep"
+  ],
+  "hint": "白白卷卷，像一朵云",
+  "pet": "sheep",
+  "pos": [
+   17,
+   27
+  ],
+  "zone": "barnyard",
+  "story": "一朵会走路的云，剪了毛也不生气，还夸新发型凉快。"
+ },
+ {
+  "id": "hen",
+  "en": "hen",
+  "zh": "母鸡",
+  "syl": [
+   "hen"
+  ],
+  "hint": "咯咯哒，会下蛋",
+  "pet": "hen",
+  "pos": [
+   22.5,
+   20.8
+  ],
+  "zone": "barn",
+  "story": "每天下一个蛋，然后骄傲地咯咯哒宣传一整天。"
+ },
+ {
+  "id": "milk",
+  "en": "milk",
+  "zh": "牛奶",
+  "syl": [
+   "milk"
+  ],
+  "hint": "白色的饮品，喝了长高高",
+  "pet": "milk",
+  "pos": [
+   25.5,
+   20.5
+  ],
+  "zone": "barn",
+  "story": "装在纸盒里的小白云，喝一口就浑身是力气。"
+ },
+ {
+  "id": "bread",
+  "en": "bread",
+  "zh": "面包",
+  "syl": [
+   "bread"
+  ],
+  "hint": "烤得香喷喷的主食",
+  "pet": "bread",
+  "pos": [
+   26,
+   23.5
+  ],
+  "zone": "barn",
+  "story": "刚出炉时最神气，香味能飘过农场的三条小街。"
+ },
+ {
+  "id": "egg",
+  "en": "egg",
+  "zh": "鸡蛋",
+  "syl": [
+   "egg"
+  ],
+  "hint": "椭圆的，鸡妈妈的礼物",
+  "pet": "egg",
+  "pos": [
+   22.5,
+   23.5
+  ],
+  "zone": "barn",
+  "story": "一枚椭圆的小太阳，敲开就是早餐时间的惊喜。"
+ },
+ {
+  "id": "cake",
+  "en": "cake",
+  "zh": "蛋糕",
+  "syl": [
+   "cake"
+  ],
+  "hint": "生日那天必备的甜品",
+  "pet": "cake",
+  "pos": [
+   24,
+   22.5
+  ],
+  "zone": "barn",
+  "story": "生日当天它最闪亮，蜡烛是它的小王冠。"
+ },
+ {
+  "id": "tractor",
+  "en": "tractor",
+  "zh": "拖拉机",
+  "syl": [
+   "trac",
+   "tor"
+  ],
+  "hint": "农场里轰隆隆的大车",
+  "pet": "tractor",
+  "pos": [
+   21.8,
+   22
+  ],
+  "zone": "barn",
+  "story": "农场的钢铁大牛，轰隆隆地翻出春天松软的泥土。"
+ },
+ {
+  "id": "rain",
+  "en": "rain",
+  "zh": "雨",
+  "syl": [
+   "rain"
+  ],
+  "hint": "从云朵里落下的水",
+  "pet": "rain",
+  "pos": [
+   -26,
+   27
+  ],
+  "zone": "garden",
+  "story": "是云朵在打喷嚏，花草们一个个张着嘴接住。"
+ },
+ {
+  "id": "tree",
+  "en": "tree",
+  "zh": "大树",
+  "syl": [
+   "tree"
+  ],
+  "hint": "高高的绿色大伞",
+  "pet": "tree",
+  "pos": [
+   -30,
+   20
+  ],
+  "zone": "garden",
+  "story": "举着一把绿色大伞，为野餐的大家挡住晒人的太阳。"
+ },
+ {
+  "id": "sun",
+  "en": "sun",
+  "zh": "太阳",
+  "syl": [
+   "sun"
+  ],
+  "hint": "天上的金色球球",
+  "pet": "sun",
+  "pos": [
+   -19,
+   31
+  ],
+  "zone": "garden",
+  "story": "每天准时上班的金色球球，下班时会换成橘色。"
+ },
+ {
+  "id": "star",
+  "en": "star",
+  "zh": "星星",
+  "syl": [
+   "star"
+  ],
+  "hint": "夜晚一闪一闪的",
+  "pet": "star",
+  "pos": [
+   -20.5,
+   24.5
+  ],
+  "zone": "sky",
+  "story": "夜空里的萤火虫，一眨一眨，是在跟大家说晚安。"
+ },
+ {
+  "id": "moon",
+  "en": "moon",
+  "zh": "月亮",
+  "syl": [
+   "moon"
+  ],
+  "hint": "弯弯的银色小船",
+  "pet": "moon",
+  "pos": [
+   -23.5,
+   25.5
+  ],
+  "zone": "sky",
+  "story": "弯弯的银色小船，每天夜里载着全世界的梦。"
+ }
+]

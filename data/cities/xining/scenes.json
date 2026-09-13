@@ -1,0 +1,63 @@
+{
+  "city": "xining",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "塔尔寺",
+      "en": "Kumbum Monastery",
+      "desc": "格鲁派六大寺院之一，艺术三绝",
+      "img": "data/cities/xining/img/Kumbum_Monastery.jpg",
+      "bearing": "SW"
+    },
+    {
+      "name": "青海湖",
+      "en": "Qinghai Lake",
+      "desc": "中国最大咸水湖，油菜花海环湖",
+      "img": "data/cities/xining/img/Qinghai_Lake.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "东关清真大寺",
+      "en": "Dongguan Mosque",
+      "desc": "西北四大清真寺之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dongguan%20Mosque.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "日月山",
+      "en": "Riyue Mountain",
+      "desc": "文成公主进藏的农耕游牧分界",
+      "img": "data/cities/xining/img/Riyue_Mountain.jpg",
+      "bearing": "SW"
+    },
+    {
+      "name": "青藏高原自然博物馆",
+      "en": "Qinghai-Tibet Museum",
+      "desc": "高原生态全景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qinghai-Tibet%20Museum.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "老爷山",
+      "en": "Laoye Mountain",
+      "desc": "北武当道教圣地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laoye%20Mountain.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "丹噶尔古城",
+      "en": "Dangaer Ancient City",
+      "desc": "茶马商都湟源古城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dangaer%20Ancient%20City.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "北山寺",
+      "en": "Beishan Temple",
+      "desc": "土楼观悬崖石窟",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beishan%20Temple%20Xining.jpg?width=640",
+      "bearing": "N"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xining\\scenes.json"
+}

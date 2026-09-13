@@ -1,0 +1,457 @@
+WORDS=376
+can|可以
+share|分享
+smile|微笑
+listen|听
+help|帮助
+say|说
+and|和
+good|好的
+mum|妈妈
+dad|爸爸
+grandma|奶奶
+grandpa|爷爷
+me|我
+have|有
+cousin|堂表兄妹
+baby|婴儿
+some|一些
+like|喜欢
+pet|宠物
+go|去
+Miss|女士
+cute|可爱的
+lion|狮子
+fast|快的
+air|空气
+school|学校
+need|需要
+new|新的
+give|给
+us|我们
+them|他们
+colour|颜色
+make|制作
+purple|紫色
+pink|粉色
+draw|画
+year|年
+o'clock|点钟
+cut|切
+piece|块
+eat|吃
+she|她
+he|他
+welcome|欢迎
+today|今天
+from|来自
+pupil|小学生
+tired|累的
+feel|感觉
+love|爱
+want|要
+drink|喝
+sleep|睡觉
+play|玩
+bag|书包
+read|读
+write|写
+storybook|故事书
+speak|说
+hungry|饿的
+doll|洋娃娃
+box|盒子
+plane|飞机
+train|火车
+time|时间
+yuan|元
+many|许多
+people|人
+fan|风扇
+really|真的
+clean|打扫
+TV|电视
+key|钥匙
+wow|哇
+lost|丢失
+friendly|友好的
+or|或者
+right|右边
+find|找到
+ready|准备好
+pass|递
+try|尝试
+but|但是
+little|小的
+puppy|小狗
+basketball|篮球
+way|方向
+now|现在
+kid|小孩
+thirty|三十
+hurry|快点
+outside|在户外
+degree|度
+world|世界
+London|伦敦
+Moscow|莫斯科
+Singapore|新加坡
+Sydney|悉尼
+fly|放风筝
+yum|味道好
+those|那些
+clothes|衣服
+pants|裤子
+dress|连衣裙
+skirt|裙子
+sock|短袜
+shorts|短裤
+yours|你的
+mine|我的
+pack|收拾行李
+wait|等待
+glove|手套
+too|太
+know|知道
+our|我们的
+Ms|女士
+will|将要
+sometime|有时
+robot|机器人
+him|他
+finish|完成
+wash|洗
+watch|看
+often|经常
+park|公园
+sport|运动
+should|应该
+every|每个
+day|天
+schedule|日程
+thirsty|渴的
+favourite|最喜爱的
+food|食物
+dear|亲爱的
+onion|洋葱
+sing|唱歌
+song|歌曲
+cartoon|漫画
+ping-pong|乒乓球
+party|聚会
+next|下一个
+wonderful|极好的
+learn|学习
+any|任何
+problem|问题
+send|发送
+email|电子邮件
+we'll|将会
+there|那里
+grandparent|祖父母
+their|他们的
+lot|大量
+move|搬家
+dirty|脏的
+everywhere|到处
+live|居住
+nature|自然
+boating|划船
+high|高的
+after|在……之后
+start|开始
+usually|通常
+Spain|西班牙
+late|迟到
+why|为什么
+shop|购物
+work|工作
+last|上一个
+sound|听起来
+also|也
+busy|忙的
+letter|信
+for|为了
+island|岛
+always|总是
+cave|山洞
+win|获胜
+exercise|运动
+take|上（课）
+pick|摘
+snowman|雪人
+snow|雪
+because|因为
+vacation|假期
+all|全部
+lovely|可爱的
+fall|落下
+paint|绘画
+contest|比赛
+few|一些
+thing|事情
+meet|集会
+trip|旅行
+national|国家的
+American|美国的
+Thanksgiving|感恩节
+fool|傻瓜
+kitten|小猫
+diary|日记
+still|仍然
+noise|噪音
+fur|软毛
+open|开着的
+walk|行走
+first|第一
+second|第二
+third|第三
+fourth|第四
+fifth|第五
+twelfth|第十二
+twentieth|第二十
+twenty-first|第二十一
+hers|她的
+theirs|他们的
+ours|我们的
+each|每个
+other|其他的
+excited|兴奋的
+its|它的
+show|指引
+anything|任何事物
+else|其他
+exhibition|展览
+sushi|寿司
+teach|教
+Canadian|加拿大的
+Spanish|西班牙的
+keep|保持
+turn|顺序
+bamboo|竹子
+science|科学
+museum|博物馆
+left|左边
+straight|笔直地
+ask|问
+sir|先生
+interesting|有趣的
+italian|意大利的
+restaurant|餐馆
+pizza|比萨
+street|街道
+get|到达
+GPS|定位系统
+gave|给（过去式）
+feature|特点
+follow|跟随
+far|远的
+tell|告诉
+by|乘
+bus|公交车
+taxi|出租车
+subway|地铁
+slow|慢的
+down|向下
+Mrs|夫人
+early|早的
+helmet|头盔
+must|必须
+wear|穿戴
+attention|注意
+traffic|交通
+Munich|慕尼黑
+Germany|德国
+Alaska|阿拉斯加
+sled|雪橇
+ferry|轮渡
+Scotland|苏格兰
+visit|拜访
+film|电影
+evening|晚上
+comic|滑稽的
+word|单词
+postcard|明信片
+lesson|课
+space|太空
+travel|旅行
+half|一半
+price|价格
+together|一起
+mooncake|月饼
+poem|诗
+studies|学习
+puzzle|谜
+hiking|远足
+jasmine|茉莉
+idea|主意
+Canberra|堪培拉
+amazing|惊奇的
+shall|将要
+goal|射门
+join|加入
+club|俱乐部
+factory|工厂
+worker|工人
+country|国家
+stay|保持
+university|大学
+if|如果
+use|使用
+type|打字
+quickly|快速地
+secretary|秘书
+more|更多的
+deep|深的
+breath|呼吸
+count|数数
+chase|追赶
+mice|老鼠（复数）
+bad|坏的
+hurt|受伤
+ill|生病的
+wrong|有毛病
+well|健康的
+sit|坐
+hear|听见
+ant|蚂蚁
+worry|担心
+stuck|陷住
+mud|泥
+pull|拉
+dinosaur|恐龙
+hall|大厅
+metre|米
+than|比
+both|两个都
+kilogram|千克
+countryside|乡村
+lower|更低的
+shadow|影子
+smarter|更聪明的
+become|变成
+cleaned|打扫（过去式）
+stayed|停留（过去式）
+washed|洗（过去式）
+watched|看（过去式）
+had|有（过去式）
+saw|看见（过去式）
+before|在……之前
+drank|喝（过去式）
+magazine|杂志
+better|更好的
+faster|更快的
+hotel|旅馆
+fixed|修理（过去式）
+broken|破损的
+lamp|台灯
+loud|大声的
+enjoy|享受
+went|去（过去式）
+camp|野营
+fishing|钓鱼
+rode|骑（过去式）
+ate|吃（过去式）
+took|拍（过去式）
+bought|买（过去式）
+gift|礼物
+fell|摔倒（过去式）
+off|落下
+Turpan|吐鲁番
+could|能（过去式）
+till|直到
+beach|海滩
+basket|篮子
+part|角色
+licked|舔（过去式）
+laughed|笑（过去式）
+easy|容易的
+different|不同的
+active|积极的
+race|赛跑
+nothing|没有什么
+thought|想（过去式）
+felt|感觉（过去式）
+woke|醒（过去式）
+cheetah|猎豹
+dream|梦
+PHRASES=79
+red panda|小熊猫
+point to your ear|指你的耳朵
+wave your hand|挥挥手
+what's your name|你叫什么名字
+my name's|我叫……
+show me your pencil|给我看看你的铅笔
+be from|来自
+a new student|一名新学生
+feel happy|感到开心
+like dogs|喜欢狗
+write a word|写字
+healthy food|健康食物
+toy box|玩具盒
+on the desk|在书桌上
+what time|几点
+teacher's desk|讲台
+maths book|数学书
+English book|英语书
+Chinese book|语文书
+so much|非常
+help yourself|请自便
+open the door|开门
+sweep the floor|扫地
+turn on the light|开灯
+put up the picture|张贴图画
+clean the board|擦黑板
+close the window|关窗户
+have a snack|吃零食
+have a nap|打个盹
+make a salad|做沙拉
+pass me the bowl|把碗递给我
+pass me the knife|把刀递给我
+cut the vegetables|切蔬菜
+use the spoon|用勺子
+use the fork|用叉子
+first floor|一楼
+second floor|二楼
+teacher's office|教师办公室
+hurry up|快点
+come on|加油
+be careful|小心
+how about|怎么样
+New York|纽约
+of course|当然
+play football|踢足球
+play sport|做运动
+kung fu|功夫
+no problem|没问题
+water bottle|水瓶
+in front of|在……前面
+lots of|大量
+go boating|去划船
+go on a picnic|去野餐
+good job|做得好
+a few|一些
+sports meet|运动会
+Tree Planting Day|植树节
+the Great Wall|长城
+each other|互相
+have a look|看一看
+keep to the right|靠右
+keep your desk clean|保持课桌整洁
+talk quietly|小声说话
+take turns|按顺序来
+pay attention to|注意
+word book|单词书
+Mid-autumn Festival|中秋节
+get together|聚会
+have an art lesson|上美术课
+go to the cinema|去看电影
+do more exercise|多做运动
+Papa Westray|帕帕韦斯特雷岛
+fell off|摔倒
+ate fresh food|吃新鲜食物
+Labour Day|劳动节
+go cycling|去骑车
+play badminton|打羽毛球
+last month|上个月
+last year|去年

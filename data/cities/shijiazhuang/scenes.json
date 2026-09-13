@@ -1,0 +1,63 @@
+{
+  "city": "shijiazhuang",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "正定隆兴寺",
+      "en": "Longxing Temple",
+      "desc": "始建于隋，「京外名刹之首」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhengding%20Longxing%20Temple.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "赵州桥",
+      "en": "Zhaozhou Bridge",
+      "desc": "隋代李春建造，世界最古老敞肩石桥",
+      "img": "data/cities/shijiazhuang/img/Zhaozhou_Bridge.jpg",
+      "bearing": "SE"
+    },
+    {
+      "name": "西柏坡",
+      "en": "Xibaipo",
+      "desc": "「新中国从这里走来」的红色圣地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xibaipo.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "正定古城",
+      "en": "Zhengding Ancient City",
+      "desc": "九楼四塔八大寺，夜色流光",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhengding%20Ancient%20City.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "河北博物院",
+      "en": "Hebei Museum",
+      "desc": "长信宫灯与金缕玉衣",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hebei%20Museum.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "抱犊寨",
+      "en": "Baoduzhai",
+      "desc": "山顶平坦如砚的军事古寨",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baoduzhai.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "荣国府",
+      "en": "Rongguo Mansion",
+      "desc": "87 版红楼梦取景地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rongguo%20Mansion.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "驼梁",
+      "en": "Tuoliang",
+      "desc": "云顶草原与冰瀑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tuoliang.jpg?width=640",
+      "bearing": "NW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shijiazhuang\\scenes.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "shenzhen",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "世界之窗",
+      "en": "Windows of the World",
+      "desc": "世界奇观微缩主题公园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Windows%20of%20the%20World%20Shenzhen.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "大梅沙海滨公园",
+      "en": "Dameisha Beach",
+      "desc": "免费海滩与愿望塔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dameisha%20Beach.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "深圳湾公园",
+      "en": "Shenzhen Bay Park",
+      "desc": "滨海骑行与候鸟滩涂",
+      "img": "data/cities/shenzhen/img/Shenzhen_Bay.jpg",
+      "bearing": "SW"
+    },
+    {
+      "name": "莲花山公园",
+      "en": "Lianhuashan Park",
+      "desc": "山顶邓小平雕像俯瞰福田",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lianhuashan%20Park.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "东部华侨城",
+      "en": "OCT East",
+      "desc": "茶溪谷大侠谷生态度假区",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/OCT%20East.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "平安金融中心云际观光层",
+      "en": "Ping An Finance Center",
+      "desc": "600 米深圳第一高楼观光",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ping%20An%20Finance%20Center.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "甘坑客家小镇",
+      "en": "Gankeng Town",
+      "desc": "客家围屋文旅小镇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gankeng%20Town.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "较场尾",
+      "en": "Jiaochangwei",
+      "desc": "大鹏民宿海滩，深圳鼓浪屿",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiaochangwei.jpg?width=640",
+      "bearing": "E"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenzhen\\scenes.json"
+}

@@ -1,0 +1,82 @@
+{
+  "id": "quanzhou",
+  "name": "泉州",
+  "en": "Quanzhou",
+  "color": "#C08040",
+  "landmark": "harbor",
+  "region": "华东",
+  "importance": "世界遗产城市 · 宋元中国的世界海洋商贸中心",
+  "isCoastal": true,
+  "history": "泉州古称刺桐，宋元时期是「东方第一大港」，马可·波罗笔下的光明之城。2021 年「泉州：宋元中国的世界海洋商贸中心」22 处遗产点列入世界遗产名录。开元寺东西塔、清净寺、关帝庙比邻而居，多元宗教在此和谐共存，南音提线木偶传唱千年。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaiyuan%20Temple%20Quanzhou.jpg?width=960",
+      "caption": "开元寺"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingjing%20Mosque.jpg?width=960",
+      "caption": "清净寺"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/East%20and%20West%20Towers.jpg?width=960",
+      "caption": "东西塔"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "⛵",
+      "intro": "宋元东方第一大港，马可·波罗的光明之城",
+      "introEn": "Quanzhou was the biggest port in the world!",
+      "words": [
+        "ship",
+        "old"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🛕",
+      "intro": "开元寺东西塔站了七百年",
+      "introEn": "The twin pagodas stand for 700 years.",
+      "words": [
+        "pagoda",
+        "stone"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🎎",
+      "intro": "佛教道教伊斯兰教比邻而居，和谐千年",
+      "introEn": "Different religions live in peace here.",
+      "words": [
+        "temple"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\quanzhou\\city.json"
+}

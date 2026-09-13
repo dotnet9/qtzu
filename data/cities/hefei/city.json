@@ -1,0 +1,83 @@
+{
+  "id": "hefei",
+  "name": "合肥",
+  "en": "Hefei",
+  "color": "#5A8FBF",
+  "landmark": "tower",
+  "region": "华东",
+  "importance": "安徽省会 · 综合性国家科学中心",
+  "isCoastal": false,
+  "history": "合肥古称庐州，三国故地，逍遥津之战张辽威震江东。包拯故里，包公祠清名传世。今天的合肥是中国综合性国家科学中心，中科大人造太阳、量子通信从这里走向世界，被称为「最强风投城市」。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/USTC%20Hefei.jpg?width=960",
+      "caption": "中国科大"
+    },
+    {
+      "img": "data/cities/hefei/img/Xiaoyaojin_Park.jpg",
+      "caption": "逍遥津"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bao%20Gong%20Temple.jpg?width=960",
+      "caption": "包公园"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "⚛️",
+      "intro": "人造太阳和量子通信都从合肥出发",
+      "introEn": "Fusion and quantum tech come from Hefei!",
+      "words": [
+        "science",
+        "hot"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "⚖️",
+      "intro": "包拯故里，清官文化代代相传",
+      "introEn": "Justice Bao was born here.",
+      "words": [
+        "judge",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🌿",
+      "intro": "逍遥津：张辽八百人吓退孙权十万",
+      "introEn": "The famous battle at Xiaoyaojin!",
+      "words": [
+        "war",
+        "old"
+      ],
+      "deco": "horse"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "tower",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hefei\\city.json"
+}

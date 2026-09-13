@@ -1,0 +1,77 @@
+{
+  "city": "taichung",
+  "source": "台中市政府观光旅游局官方资料",
+  "items": [
+    {
+      "name": "高美湿地",
+      "en": "Gaomei Wetlands",
+      "desc": "风口上的木栈道伸向海面，夕阳时分整片湿地变成金色镜面。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gaomei%20wetlands.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "彩虹眷村",
+      "en": "Rainbow Village",
+      "desc": "百岁老兵黄爷爷的童话彩绘救下整座眷村，世界游客慕名而来。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rainbow%20Village%2C%20Taichung.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "路思义教堂",
+      "en": "Luce Chapel",
+      "desc": "贝聿铭与陈其宽合作的曲面双壳建筑，东海大学的精神象征。",
+      "img": "data/cities/taichung/img/Luce_Memorial_Chapel.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "台中公园",
+      "en": "Taichung Park",
+      "desc": "1903 年开园的百年公园，湖心亭是日据时代的地标古迹。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taichung%20Park.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "国家歌剧院",
+      "en": "National Taichung Theater",
+      "desc": "伊东丰雄设计的「美声涵洞」，全球最难建的建筑之一。",
+      "img": "data/cities/taichung/img/National_Taichung_Theater.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "逢甲夜市",
+      "en": "Fengjia Night Market",
+      "desc": "全台人气第一的夜市，创新小吃从这里走向全台湾。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fengjia%20Night%20Market.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "武陵农场",
+      "en": "Wuling Farm",
+      "desc": "雪山脚下的世外桃源，二月樱花季配雪山全景如明信片。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuling%20Farm.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "谷关温泉",
+      "en": "Guguan Hot Spring",
+      "desc": "中横公路上的温泉乡，碳酸泉滑润皮肤，山谷风景绝佳。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guguan%20hot%20spring.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "台中国家歌剧院对面的草悟道",
+      "en": "Caowu Greenway",
+      "desc": "3.6 公里的城市绿带串起美术馆与商圈，骑行散步最惬意。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Caowu%20Greenway.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大坑风景区",
+      "en": "Dakeng Scenic Area",
+      "desc": "十二条圆木栈道步道爬遍十二座山头，被称为台中阳台。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dakeng%20Taichung.jpg?width=640",
+      "bearing": "NE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taichung\\scenes.json"
+}

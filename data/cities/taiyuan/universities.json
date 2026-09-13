@@ -1,0 +1,79 @@
+{
+  "city": "taiyuan",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "山西大学",
+      "en": "Shanxi University",
+      "tag": "双一流",
+      "founded": 1902,
+      "site": "https://www.sxu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "太原理工大学",
+      "en": "Taiyuan University of Technology",
+      "tag": "211",
+      "founded": 1902,
+      "site": "https://www.tyut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中北大学",
+      "en": "North University of China",
+      "tag": null,
+      "founded": 1941,
+      "site": "https://www.nuc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "山西医科大学",
+      "en": "Shanxi Medical University",
+      "tag": null,
+      "founded": 1919,
+      "site": "https://www.sxmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "山西财经大学",
+      "en": "Shanxi University of Finance and Economics",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.sxufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "太原科技大学",
+      "en": "Taiyuan University of Science and Technology",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.tyust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taiyuan\\universities.json"
+}

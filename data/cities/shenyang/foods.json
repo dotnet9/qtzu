@@ -1,0 +1,63 @@
+{
+  "city": "shenyang",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "老边饺子",
+      "en": "Laobian Dumplings",
+      "desc": "1829 年创始，煸馅饺子百年招牌",
+      "img": "data/cities/shenyang/img/Dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "鸡架",
+      "en": "Chicken Frame",
+      "desc": "沈阳人的一天离不开鸡架，熏拌烤炸全都会",
+      "img": "data/cities/shenyang/img/Chicken_dish.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "锅包肉",
+      "en": "Guobaorou",
+      "desc": "老式糖醋锅包肉，东北菜酸甜担当",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guobaorou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "马家烧麦",
+      "en": "Majia Shaomai",
+      "desc": "1806 年回民烧麦老号，皮薄如纸",
+      "img": "data/cities/shenyang/img/Shaomai.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "西塔大冷面",
+      "en": "Xita Cold Noodles",
+      "desc": "朝鲜族冷面配狗肉锅，西塔街百年风味",
+      "img": "data/cities/shenyang/img/Cold_noodles.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "李连贵熏肉大饼",
+      "en": "Liluangui Smoked Meat Pancake",
+      "desc": "熏肉卷饼配面酱，四平老字号",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pancake%20with%20meat.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "不老林糖",
+      "en": "Bulolin Candy",
+      "desc": "沈阳特产花生牛轧糖，童年味道",
+      "img": "data/cities/shenyang/img/Candy.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "雪花啤酒",
+      "en": "Snow Beer",
+      "desc": "沈阳产世界销量第一的啤酒",
+      "img": "data/cities/shenyang/img/Beer.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\foods.json"
+}

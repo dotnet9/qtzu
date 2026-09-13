@@ -1,0 +1,63 @@
+{
+  "city": "changchun",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "伪满皇宫博物院",
+      "en": "Puppet Palace Museum",
+      "desc": "溥仪「皇宫」，末代皇帝十四年傀儡岁月",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Puppet%20Palace%20Museum.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "净月潭",
+      "en": "Jingyuetan",
+      "desc": "亚洲最大人工林海，瓦萨滑雪节",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jingyuetan.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "长影旧址博物馆",
+      "en": "Changchun Film Studio Museum",
+      "desc": "新中国电影摇篮",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Changchun%20Film%20Studio%20Museum.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "世界雕塑公园",
+      "en": "Sculpture Park",
+      "desc": "五大洲雕塑艺术荟萃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sculpture%20Park%20Changchun.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "南湖公园",
+      "en": "Nanhu Park",
+      "desc": "市区大湖，冬季冰上项目",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanhu%20Park%20Changchun.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "文化广场",
+      "en": "Culture Square",
+      "desc": "地质宫与鸽群，城市客厅",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Culture%20Square%20Changchun.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "莲花山滑雪场",
+      "en": "Lianhuashan Ski",
+      "desc": "城市近郊滑雪度假区",
+      "img": "data/cities/changchun/img/Ski_resort.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "这有山",
+      "en": "Zheyoushan",
+      "desc": "室内山丘文旅小镇，网红打卡",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zheyoushan.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changchun\\scenes.json"
+}

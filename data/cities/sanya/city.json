@@ -1,0 +1,82 @@
+{
+  "id": "sanya",
+  "name": "三亚",
+  "en": "Sanya",
+  "color": "#40B8B0",
+  "landmark": "harbor",
+  "region": "华南",
+  "importance": "热带滨海旅游城市 · 天涯海角",
+  "isCoastal": true,
+  "history": "三亚古称崖州，古时是谪臣流放的「天涯海角」，如今是中国最著名的热带滨海度假胜地。亚龙湾号称「天下第一湾」，南山海上观音高达 108 米。黎族苗族自治州文化、椰梦长廊与潜水胜地蜈支洲岛让这里成为东方夏威夷。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalong%20Bay%20Sanya.jpg?width=960",
+      "caption": "亚龙湾"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanshan%20Buddha%20Sanya.jpg?width=960",
+      "caption": "南山观音"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianya%20Haijiao.jpg?width=960",
+      "caption": "天涯海角"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏖️",
+      "intro": "天下第一湾亚龙湾，沙子细得像面粉",
+      "introEn": "Yalong Bay has powder-soft sand.",
+      "words": [
+        "beach",
+        "sea"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "🌴",
+      "intro": "天涯海角：古时候的「世界尽头」",
+      "introEn": "Tianya Haijiao was the \"end of the world\".",
+      "words": [
+        "stone",
+        "sea"
+      ],
+      "deco": "palm"
+    },
+    {
+      "emoji": "🤿",
+      "intro": "蜈支洲岛潜水看珊瑚和小鱼",
+      "introEn": "Dive with fish at Wuzhizhou Island!",
+      "words": [
+        "fish"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\sanya\\city.json"
+}

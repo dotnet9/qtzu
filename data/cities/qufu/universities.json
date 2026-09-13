@@ -1,0 +1,31 @@
+{
+  "city": "qufu",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "曲阜师范大学",
+      "en": "Qufu Normal University",
+      "tag": null,
+      "founded": 1955,
+      "site": "https://www.qfnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "济宁学院",
+      "en": "Jining University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.jnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qufu\\universities.json"
+}

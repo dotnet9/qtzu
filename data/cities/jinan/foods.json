@@ -1,0 +1,63 @@
+{
+  "city": "jinan",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "九转大肠",
+      "en": "Braised Intestines",
+      "desc": "鲁菜经典，酸甜苦辣咸五味俱全",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "糖醋鲤鱼",
+      "en": "Sweet & Sour Carp",
+      "desc": "黄河鲤鱼翘头摆尾，造型喜庆",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Carp%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "爆炒腰花",
+      "en": "Stir-fried Kidney",
+      "desc": "鲁菜火候菜，脆嫩不腥",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Stir%20fried%20kidney.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "把子肉",
+      "en": "Bazi Pork",
+      "desc": "草绳捆扎酱油炖肉，配米饭绝了",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20pork.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "甜沫",
+      "en": "Tianmo",
+      "desc": "咸味小米糊配花生菠菜，济南早点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Salty%20porridge.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "油旋",
+      "en": "Youxuan",
+      "desc": "螺旋葱油酥饼，外酥内葱香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pastry%20swirl.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "锅贴",
+      "en": "Pot Stickers",
+      "desc": "草包包子铺的灌汤锅贴",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potsticker.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "明湖藕",
+      "en": "Daming Lotus Root",
+      "desc": "大明湖藕脆嫩无丝",
+      "img": "data/cities/jinan/img/Lotus_root.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\jinan\\foods.json"
+}

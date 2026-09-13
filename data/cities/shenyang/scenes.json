@@ -1,0 +1,63 @@
+{
+  "city": "shenyang",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "沈阳故宫",
+      "en": "Shenyang Imperial Palace",
+      "desc": "清朝入关前皇宫，大政殿八角重檐",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shenyang%20Imperial%20Palace.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "张氏帅府",
+      "en": "Marshal Zhang Mansion",
+      "desc": "张作霖张学良官邸，大青楼小青楼",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marshal%20Zhang%20Mansion.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "九·一八历史博物馆",
+      "en": "September 18th Museum",
+      "desc": "残历碑警钟长鸣，铭记历史",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/918%20Museum%20Shenyang.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "北陵公园（昭陵）",
+      "en": "Zhaoling Mausoleum",
+      "desc": "清太宗皇太极陵墓，世界文化遗产",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhaoling%20Mausoleum.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "中街",
+      "en": "Zhongjie Street",
+      "desc": "四百年东北第一商业街",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhongjie%20Street.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "沈阳天主教堂",
+      "en": "Shenyang Cathedral",
+      "desc": "百年哥特式教堂，南关天主堂",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shenyang%20Cathedral.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "棋盘山",
+      "en": "Qipanshan",
+      "desc": "城市绿肺，冰雪大世界分场",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qipanshan.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "工业博物馆",
+      "en": "Shenyang Industrial Museum",
+      "desc": "共和国工业长子记忆，老机床车间",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Industrial%20Museum%20Shenyang.jpg?width=640",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\scenes.json"
+}

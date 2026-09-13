@@ -1,0 +1,63 @@
+{
+  "city": "dunhuang",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "莫高窟",
+      "en": "Mogao Caves",
+      "desc": "735 窟 4.5 万平方米壁画，佛教艺术宝库",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mogao%20Caves%20Dunhuang.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "鸣沙山月牙泉",
+      "en": "Mingsha Shan & Crescent Lake",
+      "desc": "沙泉共生千年不涸奇观",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Crescent%20Lake%20Dunhuang.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "玉门关",
+      "en": "Yumen Pass",
+      "desc": "春风不度玉门关的汉代关隘",
+      "img": "data/cities/dunhuang/img/Yumen_Pass.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "阳关",
+      "en": "Yangguan Pass",
+      "desc": "西出阳关无故人的丝路古道",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yangguan%20Pass.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "雅丹魔鬼城",
+      "en": "Yardang Landform",
+      "desc": "风蚀地貌如魔域城堡",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yardang%20Dunhuang.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "敦煌博物馆",
+      "en": "Dunhuang Museum",
+      "desc": "丝路文物与汉简",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dunhuang%20Museum.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "沙洲夜市",
+      "en": "Shazhou Night Market",
+      "desc": "丝路风情夜市",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Night%20market.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "雷音寺",
+      "en": "Leiyin Temple",
+      "desc": "月牙泉旁佛教名刹",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Leiyin%20Temple.jpg?width=640",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dunhuang\\scenes.json"
+}

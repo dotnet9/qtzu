@@ -1,0 +1,82 @@
+{
+  "id": "wuhan",
+  "name": "武汉",
+  "en": "Wuhan",
+  "color": "#5B8C5A",
+  "landmark": "tower",
+  "region": "华中",
+  "importance": "湖北省会 · 国家中心城市 · 九省通衢",
+  "isCoastal": false,
+  "history": "武汉由武昌、汉口、汉阳三镇合并，长江与汉江在此交汇。3500 年前的盘龙城开启城市史，三国时夏口城筑于蛇山，黄鹤楼上崔颢题诗李白搁笔。1911 年武昌起义打响了辛亥革命第一枪。今天的武汉是中国最大的科教重镇之一，百万大学生在此就读，光谷是中国光电子产业的心脏。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20Crane%20Tower%2C%20Wuhan.jpg?width=960",
+      "caption": "黄鹤楼"
+    },
+    {
+      "img": "data/cities/wuhan/img/Wuhan_Yangtze_River_Bridge.jpg",
+      "caption": "万里长江第一桥"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/East%20Lake%2C%20Wuhan.jpg?width=960",
+      "caption": "东湖"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏙️",
+      "intro": "黄鹤楼上望长江，崔颢题诗李白搁笔",
+      "introEn": "The Yellow Crane Tower overlooks the river.",
+      "words": [
+        "river",
+        "bird"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🌸",
+      "intro": "武大樱花开了，整座城市都粉了",
+      "introEn": "Cherry blossoms bloom at Wuhan University.",
+      "words": [
+        "flower",
+        "spring"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🍜",
+      "intro": "热干面是武汉人过早的头牌",
+      "introEn": "Hot dry noodles start the day.",
+      "words": [
+        "noodle"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "tower",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuhan\\city.json"
+}

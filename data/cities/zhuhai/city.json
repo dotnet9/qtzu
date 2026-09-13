@@ -1,0 +1,81 @@
+{
+  "id": "zhuhai",
+  "name": "珠海",
+  "en": "Zhuhai",
+  "color": "#50A8B8",
+  "landmark": "harbor",
+  "region": "华南",
+  "importance": "经济特区 · 浪漫之城",
+  "isCoastal": true,
+  "history": "珠海 1980 年设经济特区，以城市景观闻名，渔女雕像「珠生于贝，贝生于海」是城市象征。港珠澳大桥 2018 年通车，55 公里跨海大桥是世界最长跨海大桥。情侣路的日落、长隆海洋王国的鲸鲨馆让珠海被称为「浪漫之城」。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fisher%20Girl%20Zhuhai.jpg?width=960",
+      "caption": "渔女雕像"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hong%20Kong-Zhuhai-Macau%20Bridge.jpg?width=960",
+      "caption": "港珠澳大桥"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lovers%20Road%20Zhuhai.jpg?width=960",
+      "caption": "情侣路"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🐠",
+      "intro": "渔女雕像捧着明珠站在海边",
+      "introEn": "The Fisher Girl holds a pearl by the sea.",
+      "words": [
+        "statue",
+        "sea"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "🌉",
+      "intro": "港珠澳大桥 55 公里，世界最长跨海大桥",
+      "introEn": "The longest sea bridge starts here!",
+      "words": [
+        "bridge"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🎡",
+      "intro": "浪漫之城：情侣路骑单车看日落",
+      "introEn": "Cycle the Lovers Road at sunset.",
+      "words": [
+        "sunset"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhuhai\\city.json"
+}

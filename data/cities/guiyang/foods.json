@@ -1,0 +1,63 @@
+{
+  "city": "guiyang",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "肠旺面",
+      "en": "Changwang Noodles",
+      "desc": "血旺脆哨红油面，贵阳早餐之王",
+      "img": "data/cities/guiyang/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "丝娃娃",
+      "en": "Si Wawa",
+      "desc": "薄饼卷十余样素丝，蘸酸汤一口闷",
+      "img": "data/cities/guiyang/img/Spring_rolls.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "酸汤鱼",
+      "en": "Sour Soup Fish",
+      "desc": "凯里红酸汤配稻田鱼，酸鲜开胃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sour%20soup%20fish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "花溪牛肉粉",
+      "en": "Huaxi Beef Noodles",
+      "desc": "清汤牛肉粉米粉爽滑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beef%20noodles.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "豆腐圆子",
+      "en": "Tofu Balls",
+      "desc": "雷家豆腐圆子外酥内空，蘸折耳根水",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tofu%20balls.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "恋爱豆腐果",
+      "en": "Love Tofu",
+      "desc": "炭烤豆腐爆浆配辣椒水，名字浪漫",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grilled%20tofu.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "折耳根",
+      "en": "Houttuynia",
+      "desc": "贵州人的灵魂凉拌菜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Herb%20salad.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "青岩猪脚",
+      "en": "Qingyan Pig Trotters",
+      "desc": "状元蹄卤香软糯",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig%20trotters.jpg?width=640",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\foods.json"
+}

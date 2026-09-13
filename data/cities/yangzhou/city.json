@@ -1,0 +1,81 @@
+{
+  "id": "yangzhou",
+  "name": "扬州",
+  "en": "Yangzhou",
+  "color": "#9EB07A",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "运河长子 · 淮左名都",
+  "isCoastal": false,
+  "history": "扬州因运河而兴，「烟花三月下扬州」是李白给这座城市的邀约。隋炀帝开凿大运河后扬州成为唐代世界级都市，「扬一益二」。瘦西湖的五亭桥白塔如画，个园的四季假山独步天下，扬州炒饭与早茶文化名扬四海。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Slender%20West%20Lake.jpg?width=960",
+      "caption": "瘦西湖"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ge%20Garden.jpg?width=960",
+      "caption": "个园"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Daming%20Temple.jpg?width=960",
+      "caption": "大明寺"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🌸",
+      "intro": "烟花三月下扬州，李白的邀约",
+      "introEn": "\"Come to Yangzhou in March,\" said Li Bai.",
+      "words": [
+        "flower"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🍚",
+      "intro": "扬州炒饭从这里出发征服世界",
+      "introEn": "Yangzhou fried rice conquered the world.",
+      "words": [
+        "rice",
+        "food"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🛶",
+      "intro": "瘦西湖瘦得像一条绿丝带",
+      "introEn": "The Slender West Lake is a green ribbon.",
+      "words": [
+        "lake"
+      ],
+      "deco": "flower"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yangzhou\\city.json"
+}

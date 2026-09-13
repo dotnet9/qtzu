@@ -1,0 +1,79 @@
+{
+  "city": "fuzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "福州大学",
+      "en": "Fuzhou University",
+      "tag": "211",
+      "founded": 1958,
+      "site": "https://www.fzu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "福建师范大学",
+      "en": "Fujian Normal University",
+      "tag": null,
+      "founded": 1907,
+      "site": "https://www.fjnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "福建农林大学",
+      "en": "Fujian Agriculture and Forestry University",
+      "tag": null,
+      "founded": 1940,
+      "site": "https://www.fafu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "福建医科大学",
+      "en": "Fujian Medical University",
+      "tag": null,
+      "founded": 1937,
+      "site": "https://www.fjmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "福建中医药大学",
+      "en": "Fujian University of Traditional Chinese Medicine",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.fjtcm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "闽江学院",
+      "en": "Minjiang University",
+      "tag": null,
+      "founded": 2002,
+      "site": "https://www.mju.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\fuzhou\\universities.json"
+}

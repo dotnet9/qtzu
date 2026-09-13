@@ -1,0 +1,82 @@
+{
+  "id": "qingdao",
+  "name": "青岛",
+  "en": "Qingdao",
+  "color": "#4E9EE8",
+  "landmark": "harbor",
+  "region": "华东",
+  "importance": "计划单列市 · 品牌之都 · 帆船之都",
+  "isCoastal": true,
+  "history": "青岛 1891 年建置，德占时期留下的红瓦绿树、欧式建筑让它成为「万国建筑博览会」。八大关的梧桐、栈桥的海鸥、崂山的道教仙境，红瓦绿树碧海蓝天是城市底色。青岛啤酒 1903 年诞生于此，走向世界。今天它是海洋科研城与帆船之都。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhanqiao%20Pier%20Qingdao.jpg?width=960",
+      "caption": "栈桥"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Badaguan%20Qingdao.jpg?width=960",
+      "caption": "八大关"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mount%20Lao%20Qingdao.jpg?width=960",
+      "caption": "崂山"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🍺",
+      "intro": "青岛啤酒 1903 年诞生，用袋子装着喝",
+      "introEn": "Tsingtao beer is sold in plastic bags!",
+      "words": [
+        "drink"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🏠",
+      "intro": "红瓦绿树碧海蓝天，万国建筑博览会",
+      "introEn": "Red roofs, green trees, blue sea and sky.",
+      "words": [
+        "house",
+        "sea"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "⛰️",
+      "intro": "崂山是海上第一名山",
+      "introEn": "Mount Lao rises from the sea.",
+      "words": [
+        "mountain",
+        "sea"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\qingdao\\city.json"
+}

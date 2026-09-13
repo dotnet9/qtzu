@@ -1,0 +1,83 @@
+{
+  "id": "jinan",
+  "name": "济南",
+  "en": "Jinan",
+  "color": "#5A9EC0",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "山东省会 · 泉城",
+  "isCoastal": false,
+  "history": "济南因泉水众多称「泉城」，七十二名泉中趵突泉号称天下第一泉。「四面荷花三面柳，一城山色半城湖」是大明湖的写照，李清照、辛弃疾皆出于此。齐鲁文化在此交汇，龙山文化四千五百年。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baotu%20Spring%20Jinan.jpg?width=960",
+      "caption": "趵突泉"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Daming%20Lake.jpg?width=960",
+      "caption": "大明湖"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qianfo%20Mountain.jpg?width=960",
+      "caption": "千佛山"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "⛲",
+      "intro": "泉城！七十二名泉咕嘟咕嘟往上冒",
+      "introEn": "Jinan has 72 springs bubbling up!",
+      "words": [
+        "water",
+        "spring"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "🪷",
+      "intro": "「四面荷花三面柳，一城山色半城湖」",
+      "introEn": "Lotus and willows fill the city.",
+      "words": [
+        "flower",
+        "lake"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "📜",
+      "intro": "李清照和辛弃疾都是济南人",
+      "introEn": "Two great poets were born here.",
+      "words": [
+        "poem",
+        "old"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\jinan\\city.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "chengde",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "御土荷叶鸡",
+      "en": "Lotus Leaf Chicken",
+      "desc": "荷叶包裹的叫花鸡，山庄御膳",
+      "img": "data/cities/chengde/img/Chicken_dish.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "汽锅野味八仙",
+      "en": "Steam Pot Game",
+      "desc": "八种山珍同蒸，围猎遗风",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Steam%20pot.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "碗坨",
+      "en": "Bowl Jelly",
+      "desc": "荞麦碗坨配醋蒜辣油",
+      "img": "data/cities/chengde/img/Jelly.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "拨御面",
+      "en": "Bo Noodles",
+      "desc": "荞麦拨面进贡康熙",
+      "img": "data/cities/chengde/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "鲜花玫瑰饼",
+      "en": "Rose Pastry",
+      "desc": "山庄玫瑰入馅，乾隆贡点",
+      "img": "data/cities/chengde/img/Pastry.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "平泉羊汤",
+      "en": "Pingquan Mutton Soup",
+      "desc": "八沟羊汤鲜而不膻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mutton%20soup.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "蕨菜",
+      "en": "Fern",
+      "desc": "坝上山珍野蕨菜",
+      "img": "data/cities/chengde/img/Fern.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "杏仁茶",
+      "en": "Almond Tea",
+      "desc": "山杏仁磨制甜香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Almond%20tea.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengde\\foods.json"
+}

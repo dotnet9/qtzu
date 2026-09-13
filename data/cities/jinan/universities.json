@@ -1,0 +1,79 @@
+{
+  "city": "jinan",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "山东大学",
+      "en": "Shandong University",
+      "tag": "985",
+      "founded": 1901,
+      "site": "https://www.sdu.edu.cn",
+      "globalRank": 300,
+      "nationalRank": 22,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "山东师范大学",
+      "en": "Shandong Normal University",
+      "tag": null,
+      "founded": 1950,
+      "site": "https://www.sdnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "济南大学",
+      "en": "University of Jinan",
+      "tag": null,
+      "founded": 1948,
+      "site": "https://www.ujn.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "山东财经大学",
+      "en": "Shandong University of Finance and Economics",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.sdufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "山东中医药大学",
+      "en": "Shandong University of Traditional Chinese Medicine",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.sdutcm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "齐鲁工业大学",
+      "en": "Qilu University of Technology",
+      "tag": null,
+      "founded": 1948,
+      "site": "https://www.qlu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\jinan\\universities.json"
+}

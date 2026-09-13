@@ -1,0 +1,63 @@
+{
+  "city": "lhasa",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "酥油茶",
+      "en": "Butter Tea",
+      "desc": "咸香酥油茶配糌粑，高原能量",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Butter%20tea.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "糌粑",
+      "en": "Tsampa",
+      "desc": "青稞炒面捏团吃，藏餐主食",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tsampa.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "藏面",
+      "en": "Tibetan Noodles",
+      "desc": "甜茶馆里的牦牛肉汤面",
+      "img": "data/cities/lhasa/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "甜茶",
+      "en": "Sweet Milk Tea",
+      "desc": "拉萨甜茶馆的红茶奶粉味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20tea.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "牦牛肉火锅",
+      "en": "Yak Hotpot",
+      "desc": "高原牦牛清汤涮肉",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yak%20hotpot.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "青稞酒",
+      "en": "Barley Wine",
+      "desc": "藏家青稞酒微甜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Barley%20wine.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "风干肉",
+      "en": "Dried Yak Meat",
+      "desc": "冬季风干牦牛肉条",
+      "img": "data/cities/lhasa/img/Dried_meat.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "拉萨凉粉",
+      "en": "Lhasa Jelly",
+      "desc": "藏式凉粉配辣椒面",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jelly%20noodles.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lhasa\\foods.json"
+}

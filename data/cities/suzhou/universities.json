@@ -1,0 +1,67 @@
+{
+  "city": "suzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "苏州大学",
+      "en": "Soochow University",
+      "tag": "211",
+      "founded": 1900,
+      "site": "https://www.suda.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "西交利物浦大学",
+      "en": "Xi'an Jiaotong-Liverpool University",
+      "tag": null,
+      "founded": 2006,
+      "site": "https://www.xjtlu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "苏州科技大学",
+      "en": "Suzhou University of Science and Technology",
+      "tag": null,
+      "founded": 1932,
+      "site": "https://www.usts.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "昆山杜克大学",
+      "en": "Duke Kunshan University",
+      "tag": null,
+      "founded": 2013,
+      "site": "https://www.dukekunshan.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "常熟理工学院",
+      "en": "Changshu Institute of Technology",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.cslg.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\suzhou\\universities.json"
+}

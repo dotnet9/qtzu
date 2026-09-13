@@ -1,0 +1,63 @@
+{
+  "city": "nanchang",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "滕王阁",
+      "en": "Tengwang Pavilion",
+      "desc": "江南三大名楼之首，落霞孤鹜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tengwang%20Pavilion.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "八一广场",
+      "en": "Bayi Square",
+      "desc": "军旗升起的地方纪念塔",
+      "img": "data/cities/nanchang/img/Bayi_Square.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "海昏侯国遗址",
+      "en": "Haihunhou Site",
+      "desc": "万件文物黄金满墓",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Haihunhou%20Site.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "绳金塔",
+      "en": "Shengjin Tower",
+      "desc": "千年古塔，美食街环绕",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shengjin%20Tower.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "鄱阳湖",
+      "en": "Poyang Lake",
+      "desc": "中国最大淡水湖，白鹤越冬",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Poyang%20Lake.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "梅岭",
+      "en": "Meiling Mountain",
+      "desc": "南昌后花园，洗药湖避暑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Meiling%20Mountain.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "秋水广场",
+      "en": "Qiushui Square",
+      "desc": "亚洲最大喷泉群对望滕王阁",
+      "img": "data/cities/nanchang/img/Qiushui_Square.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "万寿宫",
+      "en": "Wanshou Palace",
+      "desc": "许真君道场，历史文化街区",
+      "img": "data/cities/nanchang/img/Wanshou_Palace.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanchang\\scenes.json"
+}

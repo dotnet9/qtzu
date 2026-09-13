@@ -1,0 +1,43 @@
+{
+  "city": "kaifeng",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "河南大学",
+      "en": "Henan University",
+      "tag": "双一流",
+      "founded": 1912,
+      "site": "https://www.henu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "开封大学",
+      "en": "Kaifeng University",
+      "tag": null,
+      "founded": 1980,
+      "site": "https://www.kfu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "黄河水利职业技术学院",
+      "en": "Yellow River Conservancy Technical Institute",
+      "tag": null,
+      "founded": 1929,
+      "site": "https://www.yrci.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaifeng\\universities.json"
+}

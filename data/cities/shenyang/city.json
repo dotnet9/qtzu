@@ -1,0 +1,81 @@
+{
+  "id": "shenyang",
+  "name": "沈阳",
+  "en": "Shenyang",
+  "color": "#8A7A5A",
+  "landmark": "gate",
+  "region": "东北",
+  "importance": "辽宁省会 · 清朝发祥地 · 东北工业重镇",
+  "isCoastal": false,
+  "history": "沈阳古称盛京、奉天，1625 年努尔哈赤迁都于此，沈阳故宫是除北京故宫外保存最完整的皇家宫殿群。张氏帅府见证近代风云，「九·一八」历史博物馆警钟长鸣。作为共和国工业长子，第一枚国徽、第一台机床都诞生在这里。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shenyang%20Imperial%20Palace.jpg?width=960",
+      "caption": "沈阳故宫"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marshal%20Zhang%20Mansion.jpg?width=960",
+      "caption": "张氏帅府"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/918%20Museum%20Shenyang.jpg?width=960",
+      "caption": "九一八历史博物馆"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏯",
+      "intro": "沈阳故宫：清朝就是从这里出发入关的",
+      "introEn": "The Qing dynasty started at Shenyang Palace.",
+      "words": [
+        "palace",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "⚙️",
+      "intro": "共和国工业长子：第一枚国徽在这诞生",
+      "introEn": "China's first national emblem was made here.",
+      "words": [
+        "machine"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🍗",
+      "intro": "沈阳人吃鸡架的花样全国第一",
+      "introEn": "Shenyang cooks chicken frames best!",
+      "words": [
+        "food"
+      ],
+      "deco": "chili"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\city.json"
+}

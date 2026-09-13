@@ -1,0 +1,63 @@
+{
+  "city": "zhengzhou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "烩面",
+      "en": "Henan Braised Noodles",
+      "desc": "羊肉汤拉面烩，中原面食代表",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "胡辣汤",
+      "en": "Hu La Tang",
+      "desc": "方中山胡辣汤配水煎包，河南早餐之魂",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hu%20La%20Tang.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "葛记焖饼",
+      "en": "Geji Braised Cake",
+      "desc": "坛子肉焖饼百年老号，软糯咸香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20cake.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "蔡记蒸饺",
+      "en": "Caiji Dumplings",
+      "desc": "松针垫笼蒸饺汁水充盈",
+      "img": "data/cities/zhengzhou/img/Steamed_dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "铁锅蛋",
+      "en": "Iron Pot Egg",
+      "desc": "铁锅烤蛋外焦里嫩，豫菜功夫菜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Egg%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "水煎包",
+      "en": "Pan-fried Buns",
+      "desc": "底脆面软配胡辣汤绝了",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20buns.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "鲤鱼焙面",
+      "en": "Carp with Fried Noodles",
+      "desc": "糖醋软熘鲤鱼盖拉面，豫菜名菜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Carp%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "大隗牛肉",
+      "en": "Dawei Beef",
+      "desc": "新密五香牛肉老汤卤制",
+      "img": "data/cities/zhengzhou/img/Beef.jpg",
+      "bearing": "SW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\foods.json"
+}

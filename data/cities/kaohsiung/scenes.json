@@ -1,0 +1,77 @@
+{
+  "city": "kaohsiung",
+  "source": "高雄市政府观光局官方资料",
+  "items": [
+    {
+      "name": "驳二艺术特区",
+      "en": "Pier-2 Art Center",
+      "desc": "旧仓库变身文创园区，巨型公仔和涂鸦墙随处可见。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pier-2%20Art%20Center.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "旗津半岛",
+      "en": "Cijin Island",
+      "desc": "五分钟渡轮登岛，海鲜街、灯塔、黑色沙湾一步一景。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cijin%20Island%2C%20Kaohsiung.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "美丽岛站光之穹顶",
+      "en": "Dome of Light",
+      "desc": "世界最大单件玻璃艺术，四千五百片彩绘玻璃讲述生命轮回。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Formosa%20Boulevard%20Station%20Dome%20of%20Light.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "打狗英国领事馆",
+      "en": "Former British Consulate",
+      "desc": "1865 年建于寿山山腰，眺望西子湾落日的最佳位置。",
+      "img": "data/cities/kaohsiung/img/Former_British_Consulate_at_Takao.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "莲池潭",
+      "en": "Lotus Pond",
+      "desc": "龙虎塔从龙口进虎口出，春秋阁倒映潭水，庙宇密度惊人。",
+      "img": "data/cities/kaohsiung/img/Lotus_Pond_Kaohsiung.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "六合夜市",
+      "en": "Liuhe Night Market",
+      "desc": "走过一甲子的观光夜市，海鲜粥和木瓜牛乳是招牌。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liuhe%20Night%20Market.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "西子湾",
+      "en": "Sizihwan",
+      "desc": "落日余晖洒满海湾，中山大学校园就嵌在山海之间。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sizihwan%20sunset.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "佛光山佛陀纪念馆",
+      "en": "Fo Guang Shan Buddha Museum",
+      "desc": "巨大的青铜坐佛与八座宝塔，佛教艺术殿堂免门票开放。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fo%20Guang%20Shan%20Buddha%20Museum.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "高雄流行音乐中心",
+      "en": "Kaohsiung Music Center",
+      "desc": "海浪与海豚造型的地标建筑，夜晚灯光秀美轮美奂。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaohsiung%20Music%20Center.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "寿山国家自然公园",
+      "en": "Shoushan",
+      "desc": "城市里的珊瑚礁石灰岩山，台湾猕猴在步道旁自然生活。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shoushan%20Kaohsiung.jpg?width=640",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaohsiung\\scenes.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "luoyang",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "龙门石窟",
+      "en": "Longmen Grottoes",
+      "desc": "世界文化遗产，卢舍那大佛微笑千年",
+      "img": "data/cities/luoyang/img/Longmen_Grottoes.jpg",
+      "bearing": "S"
+    },
+    {
+      "name": "白马寺",
+      "en": "White Horse Temple",
+      "desc": "中国第一古刹，佛教传入中国第一寺",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/White%20Horse%20Temple.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "洛阳博物馆",
+      "en": "Luoyang Museum",
+      "desc": "十三朝文物荟萃，唐三彩珍品",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luoyang%20Museum.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "关林",
+      "en": "Guanlin Temple",
+      "desc": "关羽首级埋葬地，关公文化圣地",
+      "img": "data/cities/luoyang/img/Guanlin_Temple.jpg",
+      "bearing": "S"
+    },
+    {
+      "name": "丽景门",
+      "en": "Lijing Gate",
+      "desc": "「不到丽景门，枉来洛阳城」，夜市古城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lijing%20Gate.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "老君山",
+      "en": "Laojun Mountain",
+      "desc": "道教圣地金顶云海，伏牛山主峰",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laojun%20Mountain.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "白云山",
+      "en": "Baiyun Mountain Luoyang",
+      "desc": "中原名山，瀑布云海",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baiyun%20Mountain%20Luoyang.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "隋唐洛阳城应天门",
+      "en": "Yingtian Gate",
+      "desc": "隋唐城门遗址复原，灯光秀震撼",
+      "img": "data/cities/luoyang/img/Yingtian_Gate.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\luoyang\\scenes.json"
+}

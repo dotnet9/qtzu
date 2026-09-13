@@ -1,0 +1,31 @@
+{
+  "city": "sanya",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "海南热带海洋学院",
+      "en": "Hainan Tropical Ocean University",
+      "tag": null,
+      "founded": 1954,
+      "site": "https://www.hntou.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "三亚学院",
+      "en": "Sanya University",
+      "tag": null,
+      "founded": 2005,
+      "site": "https://www.sanyau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\sanya\\universities.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "kaifeng",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "灌汤包",
+      "en": "Soup Dumplings",
+      "desc": "第一楼灌汤包「先开窗后喝汤」",
+      "img": "data/cities/kaifeng/img/Soup_dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "桶子鸡",
+      "en": "Barrel Chicken",
+      "desc": "马豫兴桶子鸡咸香嫩脆",
+      "img": "data/cities/kaifeng/img/Chicken_dish.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "鲤鱼焙面",
+      "en": "Carp with Noodles",
+      "desc": "糖醋鲤鱼盖拉面，「先食龙肉后食龙须」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Carp%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "花生糕",
+      "en": "Peanut Cake",
+      "desc": "鼓楼夜市花生糕入口即化",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Peanut%20candy.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "杏仁茶",
+      "en": "Almond Tea",
+      "desc": "宫廷杏仁茶甜香暖胃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Almond%20tea.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "炒凉粉",
+      "en": "Fried Jelly",
+      "desc": "焦香蒜香的炒凉粉",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20jelly.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "红薯泥",
+      "en": "Mashed Sweet Potato",
+      "desc": "杞县红薯泥香甜细腻",
+      "img": "data/cities/kaifeng/img/Sweet_potato.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "套四宝",
+      "en": "Nested Stuffed Fowl",
+      "desc": "鸭套鸡鸽鹌四层套制，豫菜绝活",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Stuffed%20duck.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaifeng\\foods.json"
+}

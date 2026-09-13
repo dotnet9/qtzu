@@ -1,0 +1,63 @@
+{
+  "city": "haikou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "海南鸡饭",
+      "en": "Hainan Chicken Rice",
+      "desc": "白切鸡配鸡油饭，起源地风味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hainan%20chicken%20rice.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "清补凉",
+      "en": "Qingbuliang",
+      "desc": "椰奶清补凉，夜市消暑之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coconut%20dessert.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "海南粉",
+      "en": "Hainan Rice Noodles",
+      "desc": "腌制细粉配牛肉干花生",
+      "img": "data/cities/haikou/img/Rice_noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "椰子鸡",
+      "en": "Coconut Chicken",
+      "desc": "现开椰青汤底清甜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coconut%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "糟粕醋",
+      "en": "Zaopo Vinegar",
+      "desc": "铺前糟粕醋酸辣海鲜锅",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vinegar%20hotpot.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "抱罗粉",
+      "en": "Baoluo Noodles",
+      "desc": "粗粉甜口卤汁",
+      "img": "data/cities/haikou/img/Noodles.jpg",
+      "bearing": "NE"
+    },
+    {
+      "name": "椰子饭",
+      "en": "Coconut Rice",
+      "desc": "椰壳蒸糯米，椰香入饭",
+      "img": "data/cities/haikou/img/Coconut_rice.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "和乐蟹",
+      "en": "Hele Crab",
+      "desc": "膏满黄肥清蒸原味",
+      "img": "data/cities/haikou/img/Crab.jpg",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\haikou\\foods.json"
+}

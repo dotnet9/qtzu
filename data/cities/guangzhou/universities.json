@@ -1,0 +1,151 @@
+{
+  "city": "guangzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "中山大学",
+      "en": "Sun Yat-sen University",
+      "tag": "985",
+      "founded": 1924,
+      "site": "https://www.sysu.edu.cn",
+      "globalRank": 96,
+      "nationalRank": 8,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华南理工大学",
+      "en": "South China University of Technology",
+      "tag": "985",
+      "founded": 1952,
+      "site": "https://www.scut.edu.cn",
+      "globalRank": null,
+      "nationalRank": 20,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "暨南大学",
+      "en": "Jinan University",
+      "tag": "211",
+      "founded": 1906,
+      "site": "https://www.jnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": 40,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华南师范大学",
+      "en": "South China Normal University",
+      "tag": "211",
+      "founded": 1933,
+      "site": "https://www.scnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": 55,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广东工业大学",
+      "en": "Guangdong University of Technology",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.gdut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华南农业大学",
+      "en": "South China Agricultural University",
+      "tag": "双一流",
+      "founded": 1909,
+      "site": "https://www.scau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广州大学",
+      "en": "Guangzhou University",
+      "tag": null,
+      "founded": 2000,
+      "site": "https://www.gzhu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "南方医科大学",
+      "en": "Southern Medical University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.smu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广州中医药大学",
+      "en": "Guangzhou University of Chinese Medicine",
+      "tag": "双一流",
+      "founded": 1956,
+      "site": "https://www.gzucm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广东外语外贸大学",
+      "en": "Guangdong University of Foreign Studies",
+      "tag": null,
+      "founded": 1965,
+      "site": "https://www.gdufs.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "广州医科大学",
+      "en": "Guangzhou Medical University",
+      "tag": "双一流",
+      "founded": 1958,
+      "site": "https://www.gzhmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "星海音乐学院",
+      "en": "Xinghai Conservatory of Music",
+      "tag": null,
+      "founded": 1957,
+      "site": "https://www.xhcom.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guangzhou\\universities.json"
+}

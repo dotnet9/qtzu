@@ -1,0 +1,205 @@
+{
+  "city": "chengdu",
+  "source": "各高校官网与教育部全国高等学校名单；排名为 QS 2025 / 软科 2024 公开榜单参考值",
+  "unis": [
+    {
+      "zh": "四川大学",
+      "en": "Sichuan University",
+      "tag": "985",
+      "founded": 1896,
+      "site": "https://www.scu.edu.cn",
+      "globalRank": 194,
+      "nationalRank": 12,
+      "bearing": "S",
+      "history": "由四川中西学堂发展而来，西南地区历史最悠久的综合性大学。"
+    },
+    {
+      "zh": "电子科技大学",
+      "en": "University of Electronic Science and Technology of China",
+      "tag": "985",
+      "founded": 1956,
+      "site": "https://www.uestc.edu.cn",
+      "globalRank": 313,
+      "nationalRank": 30,
+      "bearing": "NW",
+      "history": "由交大、南工等校电讯工程系合并创建，电子信息学科全国顶尖。"
+    },
+    {
+      "zh": "西南交通大学",
+      "en": "Southwest Jiaotong University",
+      "tag": "985平台",
+      "founded": 1896,
+      "site": "https://www.swjtu.edu.cn",
+      "globalRank": 601,
+      "nationalRank": 60,
+      "bearing": "NW",
+      "history": "源于山海关北洋铁路官学堂，中国土木工程、交通工程高等教育的发祥地。"
+    },
+    {
+      "zh": "西南财经大学",
+      "en": "Southwestern University of Finance and Economics",
+      "tag": "211",
+      "founded": 1925,
+      "site": "https://www.swufe.edu.cn",
+      "globalRank": 801,
+      "nationalRank": 80,
+      "bearing": "W",
+      "history": "始于上海光华大学，金融学科全国领先，被誉为中国金融人才库。"
+    },
+    {
+      "zh": "四川师范大学",
+      "en": "Sichuan Normal University",
+      "tag": null,
+      "founded": 1946,
+      "site": "https://www.sicnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "四川省属重点师范院校，川内基础教育师资的摇篮。"
+    },
+    {
+      "zh": "成都理工大学",
+      "en": "Chengdu University of Technology",
+      "tag": "双一流",
+      "founded": 1956,
+      "site": "https://www.cdut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "以地质能源起家，地质灾害防治国家重点实验室闻名。"
+    },
+    {
+      "zh": "西南民族大学",
+      "en": "Southwest Minzu University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.swun.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "民族学科特色，多民族学子共同学习的民族团结大家庭。"
+    },
+    {
+      "zh": "成都中医药大学",
+      "en": "Chengdu University of Traditional Chinese Medicine",
+      "tag": "双一流",
+      "founded": 1956,
+      "site": "https://www.cdutcm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "新中国最早的四所中医药高等院校之一。"
+    },
+    {
+      "zh": "西华大学",
+      "en": "Xihua University",
+      "tag": null,
+      "founded": 1960,
+      "site": "https://www.xhu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "工学为主多学科协调发展的省属重点综合大学。"
+    },
+    {
+      "zh": "成都信息工程大学",
+      "en": "Chengdu University of Information Technology",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.cuit.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "始于空军气象干部训练大队，气象与信息技术特色鲜明。"
+    },
+    {
+      "zh": "成都大学",
+      "en": "Chengdu University",
+      "tag": null,
+      "founded": 1978,
+      "site": "https://www.cdu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "成都市属综合性大学，大运村所在地。"
+    },
+    {
+      "zh": "四川音乐学院",
+      "en": "Sichuan Conservatory of Music",
+      "tag": null,
+      "founded": 1940,
+      "site": "https://www.sccm.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "中国西南地区规模最大的高等音乐学府。"
+    },
+    {
+      "zh": "成都体育学院",
+      "en": "Chengdu Sport University",
+      "tag": null,
+      "founded": 1942,
+      "site": "https://www.cdsu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "新中国创建最早的体育院校之一，武学与运动医学研究重镇。"
+    },
+    {
+      "zh": "四川旅游学院",
+      "en": "Sichuan Tourism University",
+      "tag": null,
+      "founded": 1985,
+      "site": "https://www.sctu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "中国第一所独立设置的旅游本科院校，烹饪学科全国知名。"
+    },
+    {
+      "zh": "成都医学院",
+      "en": "Chengdu Medical College",
+      "tag": null,
+      "founded": 1947,
+      "site": "https://www.cmc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "前身为第三军医大学成都军医学院，医学教育特色突出。"
+    },
+    {
+      "zh": "成都师范学院",
+      "en": "Chengdu Normal University",
+      "tag": null,
+      "founded": 1955,
+      "site": "https://www.cdnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "四川省基础教育师资培养培训的重要基地。"
+    },
+    {
+      "zh": "四川电影电视学院",
+      "en": "Sichuan Film and Television University",
+      "tag": null,
+      "founded": 1992,
+      "site": "https://www.scdy.net",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "中国西部影视传媒人才培养的重要基地。"
+    },
+    {
+      "zh": "电子科技大学成都学院",
+      "en": "Chengdu College of UESTC",
+      "tag": null,
+      "founded": 2001,
+      "site": "https://www.cd.uestc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "依托电子科大的独立学院，电子信息应用型人才特色。"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengdu\\universities.json"
+}

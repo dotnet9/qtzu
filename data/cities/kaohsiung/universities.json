@@ -1,0 +1,118 @@
+{
+  "city": "kaohsiung",
+  "source": "各校官网（www.nsysu.edu.tw 等）",
+  "unis": [
+    {
+      "zh": "中山大学",
+      "en": "National Sun Yat-sen University",
+      "tag": "重点",
+      "founded": 1980,
+      "site": "https://www.nsysu.edu.tw",
+      "globalRank": 600,
+      "nationalRank": 10,
+      "bearing": "W",
+      "history": "复校于西子湾，依山面海，是台湾最漂亮的滨海校园之一。",
+      "img": null
+    },
+    {
+      "zh": "高雄医学大学",
+      "en": "Kaohsiung Medical University",
+      "tag": null,
+      "founded": 1954,
+      "site": "https://www.kmu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "台湾第一所私立医学院，南台湾医疗人才培养重镇。"
+    },
+    {
+      "zh": "高雄大学",
+      "en": "National University of Kaohsiung",
+      "tag": null,
+      "founded": 2000,
+      "site": "https://www.nuk.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "年轻的公立综合大学，法律与金融学科发展迅速。"
+    },
+    {
+      "zh": "高雄科技大学",
+      "en": "National Kaohsiung University of Science and Technology",
+      "tag": null,
+      "founded": 1995,
+      "site": "https://www.nkust.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "由三校合并的全台最大科技大学，海事工程与造船学科著名。"
+    },
+    {
+      "zh": "高雄师范大学",
+      "en": "National Kaohsiung Normal University",
+      "tag": null,
+      "founded": 1967,
+      "site": "https://www.nknu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "南台湾中学师资培育的重镇。"
+    },
+    {
+      "zh": "义守大学",
+      "en": "I-Shou University",
+      "tag": null,
+      "founded": 1990,
+      "site": "https://www.isu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "烨隆集团创办的私立大学，国际学生比例居台湾前列。"
+    },
+    {
+      "zh": "树德科技大学",
+      "en": "Shu-Te University",
+      "tag": null,
+      "founded": 1997,
+      "site": "https://www.stu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "设计学院在全台设计竞赛中屡获大奖。"
+    },
+    {
+      "zh": "辅英科技大学",
+      "en": "Fooyin University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.fy.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "从高级护理职业学校发展为医护养生特色科技大学。"
+    },
+    {
+      "zh": "文藻外语大学",
+      "en": "Wenzao Ursuline University of Languages",
+      "tag": null,
+      "founded": 1966,
+      "site": "https://www.wzu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "台湾唯一的外语大学，开设八种外语科系。"
+    },
+    {
+      "zh": "正修科技大学",
+      "en": "Cheng Shiu University",
+      "tag": null,
+      "founded": 1965,
+      "site": "https://www.csu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "工管并重，超微量研究科技中心检测能力获国际认证。"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaohsiung\\universities.json"
+}

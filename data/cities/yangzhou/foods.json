@@ -1,0 +1,63 @@
+{
+  "city": "yangzhou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "扬州炒饭",
+      "en": "Yangzhou Fried Rice",
+      "desc": "颗粒分明配火腿虾仁，国宴出身",
+      "img": "data/cities/yangzhou/img/Fried_rice.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "蟹粉狮子头",
+      "en": "Lion Head Meatball",
+      "desc": "肥瘦肉圆炖蟹粉，入口即化",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Meatball%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "扬州早茶",
+      "en": "Yangzhou Morning Tea",
+      "desc": "富春茶社三丁包配魁龙珠茶",
+      "img": "data/cities/yangzhou/img/Dim_sum.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "大煮干丝",
+      "en": "Braised Tofu Shreds",
+      "desc": "刀工干丝配鸡汤鲜",
+      "img": "data/cities/yangzhou/img/Tofu_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "文思豆腐",
+      "en": "Wensi Tofu",
+      "desc": "豆腐切丝如发，淮扬刀工绝技",
+      "img": "data/cities/yangzhou/img/Tofu_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "烫干丝",
+      "en": "Hot Tofu Shreds",
+      "desc": "早茶先上烫干丝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tofu%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "牛皮糖",
+      "en": "Cowhide Candy",
+      "desc": "软韧芝麻牛皮糖",
+      "img": "data/cities/yangzhou/img/Candy.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "藕粉圆子",
+      "en": "Lotus Root Dumplings",
+      "desc": "藕粉外皮果馅弹滑",
+      "img": "data/cities/yangzhou/img/Dumplings.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\yangzhou\\foods.json"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "haikou",
+  "name": "海口",
+  "en": "Haikou",
+  "color": "#4EA8C0",
+  "landmark": "harbor",
+  "region": "华南",
+  "importance": "海南省会 · 自贸港门户 · 椰城",
+  "isCoastal": true,
+  "history": "海口因「南渡江入海口」得名，宋代已为琼州重镇，明代海上丝绸之路从这里经过。骑楼老街的南洋风格建筑有近百年历史，火山口公园见证万年地质奇观。作为海南自贸港的核心城市，这里椰风海韵、四季如夏。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qilou%20Old%20Street%20Haikou.jpg?width=960",
+      "caption": "骑楼老街"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Haikou%20Bay.jpg?width=960",
+      "caption": "海口湾"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Volcanic%20Park%20Haikou.jpg?width=960",
+      "caption": "火山口公园"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🥥",
+      "intro": "椰城：满街椰子树和椰子冻",
+      "introEn": "Coconut trees line every street.",
+      "words": [
+        "coconut"
+      ],
+      "deco": "palm"
+    },
+    {
+      "emoji": "🏘️",
+      "intro": "骑楼老街：南洋风情的百年建筑",
+      "introEn": "Arcade streets show old Nanyang style.",
+      "words": [
+        "house",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🌊",
+      "intro": "自由贸易港：海南岛的大门",
+      "introEn": "Hainan Free Trade Port starts here.",
+      "words": [
+        "ship"
+      ],
+      "deco": "boat"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\haikou\\city.json"
+}

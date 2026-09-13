@@ -1,0 +1,151 @@
+{
+  "city": "wuhan",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "武汉大学",
+      "en": "Wuhan University",
+      "tag": "985",
+      "founded": 1893,
+      "site": "https://www.whu.edu.cn",
+      "globalRank": 94,
+      "nationalRank": 9,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华中科技大学",
+      "en": "Huazhong University of Science and Technology",
+      "tag": "985",
+      "founded": 1952,
+      "site": "https://www.hust.edu.cn",
+      "globalRank": null,
+      "nationalRank": 7,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "武汉理工大学",
+      "en": "Wuhan University of Technology",
+      "tag": "211",
+      "founded": 1898,
+      "site": "https://www.whut.edu.cn",
+      "globalRank": null,
+      "nationalRank": 35,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华中师范大学",
+      "en": "Central China Normal University",
+      "tag": "211",
+      "founded": 1903,
+      "site": "https://www.ccnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华中农业大学",
+      "en": "Huazhong Agricultural University",
+      "tag": "211",
+      "founded": 1898,
+      "site": "https://www.hzau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中国地质大学（武汉）",
+      "en": "China University of Geosciences",
+      "tag": "211",
+      "founded": 1952,
+      "site": "https://www.cug.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中南财经政法大学",
+      "en": "Zhongnan University of Economics and Law",
+      "tag": "211",
+      "founded": 1948,
+      "site": "https://www.zuel.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "湖北大学",
+      "en": "Hubei University",
+      "tag": null,
+      "founded": 1931,
+      "site": "https://www.hubu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "武汉科技大学",
+      "en": "Wuhan University of Science and Technology",
+      "tag": null,
+      "founded": 1898,
+      "site": "https://www.wust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中南民族大学",
+      "en": "South-Central Minzu University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.scuec.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "武汉纺织大学",
+      "en": "Wuhan Textile University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.wtu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "江汉大学",
+      "en": "Jianghan University",
+      "tag": null,
+      "founded": 2001,
+      "site": "https://www.jhun.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuhan\\universities.json"
+}

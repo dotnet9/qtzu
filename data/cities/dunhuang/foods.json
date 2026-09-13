@@ -1,0 +1,63 @@
+{
+  "city": "dunhuang",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "驴肉黄面",
+      "en": "Donkey Meat Noodles",
+      "desc": "顺张黄面馆「中华一绝」",
+      "img": "data/cities/dunhuang/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "胡羊焖饼",
+      "en": "Lamb with Flatbread",
+      "desc": "羊肉焖薄饼吸满汤汁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20lamb.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "杏皮水",
+      "en": "Apricot Drink",
+      "desc": "李广杏皮熬制酸甜饮品",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Apricot%20drink.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "烤羊肉",
+      "en": "Dunhuang Kebabs",
+      "desc": "沙漠边城的红柳烤肉",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kebabs.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "泡儿油糕",
+      "en": "Puffed Oil Cake",
+      "desc": "糯米油糕烫面空心泡",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20cake.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "酿皮",
+      "en": "Dunhuang Niangpi",
+      "desc": "敦煌酿皮厚糯酸辣",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liangpi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "沙葱",
+      "en": "Desert Onion",
+      "desc": "沙漠野葱炒鸡蛋",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vegetable%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "李广杏",
+      "en": "Li Guang Apricot",
+      "desc": "敦煌甜杏干鲜两宜",
+      "img": "data/cities/dunhuang/img/Apricot.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dunhuang\\foods.json"
+}

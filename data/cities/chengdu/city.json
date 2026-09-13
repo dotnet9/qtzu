@@ -1,0 +1,86 @@
+{
+  "id": "chengdu",
+  "name": "成都",
+  "en": "Chengdu",
+  "color": "#B85A7A",
+  "landmark": "panda",
+  "region": "西南",
+  "importance": "四川省会 · 首批国家历史文化名城 · 大熊猫故乡",
+  "isCoastal": false,
+  "history": "成都约有 4500 年城市文明史，古蜀文明在此发源，金沙遗址的太阳神鸟金饰是成都的城市标志。秦代张仪筑城，汉代织锦业兴盛得名「锦官城」，五代遍种芙蓉又称「蓉城」。都江堰水利工程让成都平原成为「天府之国」，两千多年来城名未改、城址未迁，这在中国城市中独一无二。三国时蜀汉定都于此，武侯祠里诸葛亮的传奇流传至今。今天的成都是西部科技、商贸、金融中心和交通枢纽，也是联合国教科文组织认定的「美食之都」，茶馆文化和大熊猫一样闻名世界。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chengdu%20panda%20-%20 panoramio.jpg?width=960",
+      "caption": "大熊猫"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Anshunbridge.jpg?width=960",
+      "caption": "安顺廊桥"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinli%20street%20in%20Chengdu.jpg?width=960",
+      "caption": "锦里古街"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhou%20Shrine%20Chengdu.jpg?width=960",
+      "caption": "武侯祠"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🐼",
+      "intro": "大熊猫的家乡，繁殖基地里滚滚在打滚",
+      "introEn": "Chengdu is home to giant pandas.",
+      "words": [
+        "panda",
+        "bamboo"
+      ],
+      "deco": "bamboo"
+    },
+    {
+      "emoji": "🌶️",
+      "intro": "美食之都！火锅麻辣鲜香，串串香满街飘",
+      "introEn": "Chengdu is a UNESCO city of gastronomy.",
+      "words": [
+        "hot",
+        "spicy"
+      ],
+      "deco": "chili"
+    },
+    {
+      "emoji": "🎭",
+      "intro": "茶馆里的变脸绝活，一张脸说变就变",
+      "introEn": "Sichuan opera face-changing amazes everyone.",
+      "words": [
+        "tea",
+        "face"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 30,
+    "eggCount": 12,
+    "landmarks": [
+      "panda",
+      "pavilion",
+      "bridge"
+    ],
+    "paths": true,
+    "districts": [
+      "tea-house",
+      "food-street",
+      "bamboo-grove",
+      "park"
+    ],
+    "highlands": [
+      {
+        "x": 0.62,
+        "z": -0.6,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\chengdu\\city.json"
+}

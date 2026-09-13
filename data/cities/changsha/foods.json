@@ -1,0 +1,63 @@
+{
+  "city": "changsha",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "臭豆腐",
+      "en": "Stinky Tofu",
+      "desc": "黑色经典臭豆腐闻着臭吃着香，火宫殿最正宗",
+      "img": "data/cities/changsha/img/Stinky_tofu.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "茶颜悦色",
+      "en": "Sexy Tea",
+      "desc": "中式奶茶首创，幽兰拿铁排队三小时",
+      "img": "data/cities/changsha/img/Milk_tea.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "糖油粑粑",
+      "en": "Sugar Rice Cake",
+      "desc": "糯米粑粑糖油煎制，街头甜蜜担当",
+      "img": "data/cities/changsha/img/Fried_rice_cake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "口味虾",
+      "en": "Spicy Crayfish",
+      "desc": "小龙虾麻辣过瘾，长沙夜宵之王",
+      "img": "data/cities/changsha/img/Crayfish.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "剁椒鱼头",
+      "en": "Fish Head with Chili",
+      "desc": "湘菜代表，红剁椒蒸大鱼头鲜辣",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Duo%20jiao%20yu%20tou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "米粉",
+      "en": "Rice Noodles",
+      "desc": "扁粉圆粉浇码子，嗦粉是长沙早晨",
+      "img": "data/cities/changsha/img/Rice_noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "口味蟹",
+      "en": "Spicy Crab",
+      "desc": "香辣蟹膏满黄肥，夜市爆点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Crab%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "梅菜扣肉饼",
+      "en": "Preserved Veg Pancake",
+      "desc": "网红烤饼梅干菜扣肉馅，酥脆掉渣",
+      "img": "data/cities/changsha/img/Pancake.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changsha\\foods.json"
+}

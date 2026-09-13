@@ -1,0 +1,63 @@
+{
+  "city": "haikou",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "骑楼老街",
+      "en": "Qilou Old Street",
+      "desc": "南洋风格百年骑楼群",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qilou%20Old%20Street%20Haikou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "假日海滩",
+      "en": "Holiday Beach",
+      "desc": "椰林大道碧海银滩",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Holiday%20Beach%20Haikou.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "火山口地质公园",
+      "en": "Volcanic Park",
+      "desc": "万年死火山口与熔岩隧道",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Volcanic%20Park%20Haikou.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "五公祠",
+      "en": "Wugong Shrine",
+      "desc": "李德裕李纲等五公纪念祠",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wugong%20Shrine.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "雷琼海口火山群",
+      "en": "Haikou Volcanic Cluster",
+      "desc": "世界地质公园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Haikou%20Volcanic%20Cluster.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "海南省博物馆",
+      "en": "Hainan Museum",
+      "desc": "沉船「南海一号」相关文物",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hainan%20Museum.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "万绿园",
+      "en": "Wanlv Park",
+      "desc": "市中心海滨绿地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wanlv%20Park.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "冯小刚电影公社",
+      "en": "Feng Xiaogang Film Commune",
+      "desc": "1942 街与南洋街影城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Film%20Commune%20Haikou.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\haikou\\scenes.json"
+}

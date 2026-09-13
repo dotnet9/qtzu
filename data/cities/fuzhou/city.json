@@ -1,0 +1,82 @@
+{
+  "id": "fuzhou",
+  "name": "福州",
+  "en": "Fuzhou",
+  "color": "#4E9E7F",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "福建省会 · 榕城 · 海上丝绸之路门户",
+  "isCoastal": true,
+  "history": "福州建城于公元前 202 年，因城内榕树如盖称「榕城」。三坊七巷被誉为「里坊制度活化石」，走出了林则徐、严复、林觉民等近代群星。马尾船政是中国近代海军的摇篮，脱胎漆器与寿山石雕是闽都瑰宝。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanfang%20Qixiang.jpg?width=960",
+      "caption": "三坊七巷"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Gushan%20Fuzhou.jpg?width=960",
+      "caption": "鼓山"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fuzhou%20West%20Lake.jpg?width=960",
+      "caption": "福州西湖"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏘️",
+      "intro": "三坊七巷藏着半部中国近代史",
+      "introEn": "Sanfang Qixiang holds modern history.",
+      "words": [
+        "house",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🌳",
+      "intro": "榕城：满城的榕树像绿色巨伞",
+      "introEn": "Banyan trees shade the whole city.",
+      "words": [
+        "tree"
+      ],
+      "deco": "bamboo"
+    },
+    {
+      "emoji": "🛕",
+      "intro": "佛跳墙是闽菜之王，煨足八小时",
+      "introEn": "Buddha jumps over the wall for it!",
+      "words": [
+        "soup",
+        "food"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\fuzhou\\city.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "taiyuan",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "晋祠",
+      "en": "Jinci Temple",
+      "desc": "圣母殿侍女像与难老泉，三晋之胜境",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinci%20Temple.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "天龙山石窟",
+      "en": "Tianlongshan Grottoes",
+      "desc": "东魏至唐的佛教石窟艺术",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianlongshan%20Grottoes.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "山西博物院",
+      "en": "Shanxi Museum",
+      "desc": "晋侯鸟尊镇馆，青铜文明",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shanxi%20Museum.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "迎泽公园",
+      "en": "Yingze Park",
+      "desc": "市中心的百花与藏经楼",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yingze%20Park.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "食品街",
+      "en": "Food Street Taiyuan",
+      "desc": "明清风格小吃街",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Food%20street.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "双塔寺",
+      "en": "Twin Pagoda Temple",
+      "desc": "太原城市标志永祚寺双塔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Twin%20Pagoda%20Temple.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "蒙山大佛",
+      "en": "Mengshan Buddha",
+      "desc": "开凿于北齐的世界最早大型摩崖大佛",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mengshan%20Buddha.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "青龙古镇",
+      "en": "Qinglong Ancient Town",
+      "desc": "明清晋商古道重镇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qinglong%20Ancient%20Town.jpg?width=640",
+      "bearing": "N"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taiyuan\\scenes.json"
+}

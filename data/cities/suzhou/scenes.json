@@ -1,0 +1,63 @@
+{
+  "city": "suzhou",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "拙政园",
+      "en": "Humble Administrator Garden",
+      "desc": "中国四大名园之首，世界遗产",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Humble%20Administrator%20Garden.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "虎丘",
+      "en": "Tiger Hill",
+      "desc": "「到苏州不游虎丘乃憾事」，斜塔云岩寺",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiger%20Hill%20Suzhou.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "平江路",
+      "en": "Pingjiang Road",
+      "desc": "800 年古巷水陆并行",
+      "img": "data/cities/suzhou/img/Pingjiang_Road.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "留园",
+      "en": "Lingering Garden",
+      "desc": "四大名园之一，冠云峰太湖石",
+      "img": "data/cities/suzhou/img/Lingering_Garden.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "寒山寺",
+      "en": "Hanshan Temple",
+      "desc": "夜半钟声到客船的诗意古寺",
+      "img": "data/cities/suzhou/img/Hanshan_Temple.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "周庄",
+      "en": "Zhouzhuang",
+      "desc": "「中国第一水乡」，双桥画境",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhouzhuang.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "金鸡湖",
+      "en": "Jinji Lake",
+      "desc": "现代化湖畔天际线与摩天轮",
+      "img": "data/cities/suzhou/img/Jinji_Lake.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "网师园",
+      "en": "Master of Nets Garden",
+      "desc": "小园极则，夜游评弹",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Master%20of%20Nets%20Garden.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\suzhou\\scenes.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "luoyang",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "洛阳水席",
+      "en": "Water Banquet",
+      "desc": "二十四道连汤带水的国宴级席面",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese%20banquet.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "牡丹燕菜",
+      "en": "Peony Yancai",
+      "desc": "萝卜丝雕出牡丹花，水席头牌",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Peony%20dish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "牛肉汤",
+      "en": "Beef Soup",
+      "desc": "洛阳人早起喝汤，甜咸自由加饼丝",
+      "img": "data/cities/luoyang/img/Beef_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "不翻汤",
+      "en": "Bufan Soup",
+      "desc": "绿豆薄饼不翻配酸辣汤，夜市传奇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sour%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "浆面条",
+      "en": "Fermented Noodles",
+      "desc": "酸浆面条豆香浓郁，豫西家常味",
+      "img": "data/cities/luoyang/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "锅贴",
+      "en": "Pot Stickers",
+      "desc": "小街锅贴底焦馅嫩，配蒜汁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potsticker.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "胡辣汤",
+      "en": "Hu La Tang",
+      "desc": "洛阳版胡辣汤加肉丸更浓",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hu%20La%20Tang.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "牡丹饼",
+      "en": "Peony Cake",
+      "desc": "牡丹花入馅酥饼，花香四溢",
+      "img": "data/cities/luoyang/img/Pastry.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\luoyang\\foods.json"
+}

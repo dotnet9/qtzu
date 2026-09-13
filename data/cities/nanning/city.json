@@ -1,0 +1,80 @@
+{
+  "id": "nanning",
+  "name": "南宁",
+  "en": "Nanning",
+  "color": "#4EA85A",
+  "landmark": "pavilion",
+  "region": "华南",
+  "importance": "广西首府 · 绿城 · 东盟博览会永久举办地",
+  "isCoastal": false,
+  "history": "南宁古称邕州，因邕江穿城得名，四季常绿称「绿城」。中国—东盟博览会永久落户于此，面向东南亚的门户枢纽城市。青秀山、伊岭岩与壮乡歌圩文化展现了八桂大地的风情。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingxiu%20Mountain%20Nanning.jpg?width=960",
+      "caption": "青秀山"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yong%20River%20Nanning.jpg?width=960",
+      "caption": "邕江"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Detian%20Waterfall.jpg?width=960",
+      "caption": "德天瀑布"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🌴",
+      "intro": "绿城四季常青，满街都是果树",
+      "introEn": "The Green City is lush all year.",
+      "words": [
+        "tree"
+      ],
+      "deco": "palm"
+    },
+    {
+      "emoji": "🤝",
+      "intro": "中国—东盟博览会的永久举办地",
+      "introEn": "The ASEAN Expo meets here every year.",
+      "words": [
+        "flag"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🍜",
+      "intro": "老友粉酸辣过瘾，闻着就走不动",
+      "introEn": "Laoyou noodles are sour and spicy!",
+      "words": [
+        "noodle"
+      ],
+      "deco": "chili"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanning\\city.json"
+}

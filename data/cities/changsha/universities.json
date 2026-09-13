@@ -1,0 +1,115 @@
+{
+  "city": "changsha",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "中南大学",
+      "en": "Central South University",
+      "tag": "985",
+      "founded": 1952,
+      "site": "https://www.csu.edu.cn",
+      "globalRank": 169,
+      "nationalRank": 17,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "湖南大学",
+      "en": "Hunan University",
+      "tag": "985",
+      "founded": 976,
+      "site": "https://www.hnu.edu.cn",
+      "globalRank": 338,
+      "nationalRank": 25,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "湖南师范大学",
+      "en": "Hunan Normal University",
+      "tag": "211",
+      "founded": 1938,
+      "site": "https://www.hunnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "长沙理工大学",
+      "en": "Changsha University of Science and Technology",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.csust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "湖南农业大学",
+      "en": "Hunan Agricultural University",
+      "tag": null,
+      "founded": 1903,
+      "site": "https://www.hunau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "湖南中医药大学",
+      "en": "Hunan University of Chinese Medicine",
+      "tag": null,
+      "founded": 1934,
+      "site": "https://www.hnucm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "湖南工商大学",
+      "en": "Hunan University of Technology and Business",
+      "tag": null,
+      "founded": 1949,
+      "site": "https://www.hutb.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中南林业科技大学",
+      "en": "Central South University of Forestry and Technology",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.csuft.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "湖南第一师范学院",
+      "en": "Hunan First Normal University",
+      "tag": null,
+      "founded": 1903,
+      "site": "https://www.hnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changsha\\universities.json"
+}

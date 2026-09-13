@@ -1,0 +1,151 @@
+{
+  "city": "hangzhou",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "浙江大学",
+      "en": "Zhejiang University",
+      "tag": "985",
+      "founded": 1897,
+      "site": "https://www.zju.edu.cn",
+      "globalRank": 44,
+      "nationalRank": 3,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中国美术学院",
+      "en": "China Academy of Art",
+      "tag": "双一流",
+      "founded": 1928,
+      "site": "https://www.caa.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "浙江工业大学",
+      "en": "Zhejiang University of Technology",
+      "tag": null,
+      "founded": 1953,
+      "site": "https://www.zjut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "杭州电子科技大学",
+      "en": "Hangzhou Dianzi University",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.hdu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "浙江理工大学",
+      "en": "Zhejiang Sci-Tech University",
+      "tag": null,
+      "founded": 1897,
+      "site": "https://www.zstu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "浙江工商大学",
+      "en": "Zhejiang Gongshang University",
+      "tag": null,
+      "founded": 1911,
+      "site": "https://www.zjgsu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "浙江中医药大学",
+      "en": "Zhejiang Chinese Medical University",
+      "tag": null,
+      "founded": 1953,
+      "site": "https://www.zcmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "杭州师范大学",
+      "en": "Hangzhou Normal University",
+      "tag": null,
+      "founded": 1908,
+      "site": "https://www.hznu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中国计量大学",
+      "en": "China Jiliang University",
+      "tag": null,
+      "founded": 1978,
+      "site": "https://www.cjlu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "浙江财经大学",
+      "en": "Zhejiang University of Finance and Economics",
+      "tag": null,
+      "founded": 1974,
+      "site": "https://www.zufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "浙江农林大学",
+      "en": "Zhejiang A&F University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.zafu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "杭州医学院",
+      "en": "Hangzhou Medical College",
+      "tag": null,
+      "founded": 1925,
+      "site": "https://www.hmc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hangzhou\\universities.json"
+}

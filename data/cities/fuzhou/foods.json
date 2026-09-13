@@ -1,0 +1,63 @@
+{
+  "city": "fuzhou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "佛跳墙",
+      "en": "Buddha Jumps Over the Wall",
+      "desc": "闽菜之王，鲍参翅肚煨足八小时",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20jumps%20over%20the%20wall.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "鱼丸",
+      "en": "Fish Balls",
+      "desc": "永和鱼丸皮薄馅香，福州人的乡愁",
+      "img": "data/cities/fuzhou/img/Fish_balls.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "肉燕",
+      "en": "Rmeat Swallow",
+      "desc": "燕皮是肉打成，太平燕是喜宴头道",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wonton%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "荔枝肉",
+      "en": "Lychee Pork",
+      "desc": "刀工开花似荔枝，酸甜弹嫩",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet%20pork.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "锅边糊",
+      "en": "Guobianhu",
+      "desc": "米浆浇锅边成薄片，配虾油味",
+      "img": "data/cities/fuzhou/img/Rice_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "花生汤",
+      "en": "Peanut Soup",
+      "desc": "没牙都能喝的花生汤配芋泥",
+      "img": "data/cities/fuzhou/img/Peanut_soup.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "芋泥",
+      "en": "Taro Paste",
+      "desc": "猪油白糖蒸芋泥，闽菜甜点之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taro%20paste.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "橄榄",
+      "en": "Chinese Olive",
+      "desc": "福州橄榄青果回甘，蜜饯清香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Olive%20fruit.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\fuzhou\\foods.json"
+}

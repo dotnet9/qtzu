@@ -1,0 +1,81 @@
+{
+  "id": "shanghai",
+  "name": "上海",
+  "en": "Shanghai",
+  "color": "#3E7CB1",
+  "landmark": "tower",
+  "region": "华东",
+  "importance": "国际经济金融贸易航运中心 · 国家中心城市",
+  "isCoastal": true,
+  "history": "上海从宋代的小渔村起步，1843 年开埠后黄浦江畔兴起万国建筑博览群，成为远东第一大都市。外滩的哥特式穹顶与陆家嘴的玻璃幕墙隔江相望，一百多年的光阴在此对视。中国共产党在此诞生，改革开放让浦东从农田变奇迹。今天的上海是全球金融中心和世界最大集装箱港口，江南的吴侬软语与来自世界的语言在这里交响。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Bund%2C%20Shanghai%20(December%202015)%20-%20panoramio.jpg?width=960",
+      "caption": "外滩万国建筑"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shanghai%20-%20Pudong.jpg?width=960",
+      "caption": "陆家嘴天际线"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yuyuan%20Garden%2C%20Shanghai.jpg?width=960",
+      "caption": "豫园"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🌆",
+      "intro": "东方明珠在黄浦江边闪闪发光",
+      "introEn": "The Oriental Pearl Tower shines by the river.",
+      "words": [
+        "tower",
+        "light"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🥟",
+      "intro": "小笼包要先开窗、再喝汤，小心烫！",
+      "introEn": "Xiaolongbao soup dumplings are so hot!",
+      "words": [
+        "soup"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🚢",
+      "intro": "大船在港口进进出出，上海是超级大港",
+      "introEn": "Shanghai has one of the biggest ports.",
+      "words": [
+        "ship"
+      ],
+      "deco": "boat"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "tower",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shanghai\\city.json"
+}

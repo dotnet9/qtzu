@@ -1,0 +1,31 @@
+{
+  "city": "lhasa",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "西藏大学",
+      "en": "Tibet University",
+      "tag": "211",
+      "founded": 1985,
+      "site": "https://www.utibet.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "西藏藏医药大学",
+      "en": "Tibetan Medical University",
+      "tag": null,
+      "founded": 1989,
+      "site": "https://www.ttmc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\lhasa\\universities.json"
+}

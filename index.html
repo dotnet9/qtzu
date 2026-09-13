@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#FF8FB0">
+<title>Q淘族 · 越淘越有词</title>
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="vignette"></div>
+
+<!-- 加载屏 -->
+<div id="loading">
+  <div class="loading-egg">🥚</div>
+  <div class="loading-text">Q淘族正在靠岸…</div>
+</div>
+
+<!-- 任务气泡：跟着小人走，箭头指向他 -->
+<div id="quest" class="hidden">🎯 <span id="quest-text">走近一颗发光的蛋，读出单词！</span><button id="quest-close" type="button" aria-label="关闭提示">✕</button></div>
+<!-- 每日任务小横幅 -->
+<div id="daily" class="hidden">📌 <span id="daily-text"></span></div>
+<!-- 词宠小知识气泡：摸摸头，它告诉你自己的小故事 -->
+<div id="pet-fact" class="hidden"><b id="pet-fact-title"></b><span id="pet-fact-text"></span></div>
+
+<!-- 城市巡游：顶部当前城市名（点击弹出分页介绍） -->
+<div id="city-pill" class="hidden">📍 <span id="city-pill-text"></span></div>
+
+<!-- HUD -->
+<div id="hud">
+  <div id="hud-left">
+    <div id="user-pill" class="pill hidden">👤</div>
+    <div id="pet-count" class="pill">🐾 第1关 · 词宠 0/6</div>
+    <div id="score-pill" class="pill">🏆 0 分</div>
+    <div id="star-pill" class="pill star-pill">⭐ 0</div>
+    <div id="hungry-pill" class="pill warn hidden">🍖 有词宠想你啦</div>
+  </div>
+  <div id="hud-right">
+    <button id="btn-summon" class="round-btn" title="召唤词宠帮忙">🪄</button>
+    <button id="btn-menu" class="round-btn" title="菜单">☰</button>
+    <div id="hud-menu" class="hidden">
+      <button id="btn-book" class="menu-item">📚 <span>课本朗读</span></button>
+      <button id="btn-map" class="menu-item">🗺️ <span>农场地图</span></button>
+      <button id="btn-catalog" class="menu-item">📖 <span>词宠图鉴</span></button>
+      <button id="btn-rank" class="menu-item">🏆 <span>小小排行</span></button>
+      <button id="btn-report" class="menu-item">📋 <span>学习周报</span></button>
+      <button id="btn-bgm" class="menu-item">🎵 <span>音乐：开</span></button>
+      <button id="btn-help" class="menu-item">❓ <span>怎么玩</span></button>
+      <button id="btn-about" class="menu-item">ℹ️ <span>关于Q淘族</span></button>
+      <button id="btn-account" class="menu-item">👤 <span>我的档案</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- 常驻排行榜：让目标始终在眼前 -->
+<aside id="leaderboard-widget" aria-live="polite">
+  <button id="leaderboard-toggle" type="button" title="展开排行榜" aria-label="展开排行榜">🏆</button>
+  <div class="leaderboard-body">
+    <div class="leaderboard-head"><span>🏆 排行榜</span><span class="leaderboard-actions"><button id="leaderboard-refresh" type="button" title="刷新排行榜" aria-label="刷新排行榜">↻</button><button id="leaderboard-fold" type="button" title="收起排行榜" aria-label="收起排行榜">✕</button></span></div>
+    <div id="leaderboard-list"><div class="rank-loading">正在看看谁是单词小明星…</div></div>
+  </div>
+</aside>
+
+<!-- 玩家名字（用于排行榜） -->
+<div id="profile" class="overlay">
+  <div id="profile-card">
+    <button id="profile-close" class="round-btn small profile-close hidden" type="button" aria-label="关闭">✕</button>
+    <div class="profile-emoji">🌟</div>
+    <h2>开始前先设置学习档案</h2>
+    <p>先选好年级，之后的单词和短语会跟着你的课本走。</p>
+    <input id="profile-name" maxlength="20" autocomplete="nickname" aria-label="用户名" placeholder="例如：小雨" />
+    <input id="profile-password" maxlength="64" type="password" autocomplete="current-password" aria-label="密码" placeholder="设置密码（至少 1 位）" />
+    <div id="profile-gender" role="radiogroup" aria-label="性别">
+      <button type="button" id="gender-boy" class="gender-btn">👦 男孩</button>
+      <button type="button" id="gender-girl" class="gender-btn">👧 女孩</button>
+    </div>
+    <div class="profile-selects">
+      <select id="profile-grade" aria-label="年级"><option value="" disabled selected>选择年级</option><option value="3">三年级</option><option value="4">四年级</option><option value="5">五年级</option><option value="6">六年级</option></select>
+      <select id="profile-term" aria-label="上下册"><option value="" disabled selected>选择上下册</option><option value="up">上册</option><option value="down">下册</option></select>
+      <select id="profile-city" aria-label="我的城市"><option value="" disabled selected>我的城市</option></select>
+    </div>
+    <div class="profile-tip">完成一个挑战得 1 分，和同学比比谁的词宠最多！</div>
+    <button id="profile-start">出发去Q淘族</button>
+    <button id="profile-switch" class="profile-switch" type="button">我已有账号，去登录</button>
+    <button id="profile-logout" class="profile-logout hidden" type="button">退出当前账号</button>
+    <div id="profile-error" role="alert"></div>
+  </div>
+</div>
+
+<!-- 触屏摇杆（手机上显示） -->
+<div id="joy" class="hidden">
+  <span class="joy-dir joy-up">▲</span>
+  <span class="joy-dir joy-down">▼</span>
+  <span class="joy-dir joy-left">◀</span>
+  <span class="joy-dir joy-right">▶</span>
+  <div id="joy-knob"></div>
+</div>
+<!-- 触屏跳跃按钮（手机上显示） -->
+<div id="btn-jump" class="hidden">跳</div>
+
+<!-- 交互提示 -->
+<div id="prompt" class="hidden"><span id="prompt-key">E</span><span id="prompt-text"></span></div>
+
+<!-- 挑战弹窗（孵化 / 喂养） -->
+<div id="modal" class="overlay hidden">
+  <div id="modal-card">
+    <div id="modal-head">
+      <span id="modal-title">遇见词宠蛋！</span>
+      <button id="btn-detail" class="mini-btn" type="button">📖 详细</button>
+      <button id="modal-close" class="round-btn small">✕</button>
+    </div>
+    <div id="word-display">
+      <div id="word-en">cat</div>
+      <div id="word-ipa" class="hidden"></div>
+      <div id="word-zh">小猫</div>
+      <div id="word-hint"></div>
+    </div>
+    <div id="voice-area">
+      <button id="btn-play">🔊 听一听</button>
+      <button id="btn-mic">🎤<span id="mic-label">点我开始读</span></button>
+      <button id="btn-replay" class="hidden" title="回放刚才的录音">🎧 听我读的</button>
+      <div id="voice-feedback"></div>
+    </div>
+    <!-- 发音评分 -->
+    <div id="score-panel" class="hidden">
+      <div id="score-ring"><div id="score-num">0</div><div id="score-unit">分</div></div>
+      <div id="score-stars"></div>
+      <div id="score-msg"></div>
+    </div>
+    <div id="spell-area" class="hidden">
+      <div id="spell-title">用字母块拼出它：</div>
+      <div id="spell-slots"></div>
+      <div id="spell-tiles"></div>
+      <div id="spell-actions">
+        <button id="btn-replay-letters">🔊 字母发音</button>
+        <button id="btn-show-help-word">💡 提示一下</button>
+      </div>
+    </div>
+    <div id="modal-foot">
+      <button id="btn-skip" class="hidden">下一个 →</button>
+      <button id="btn-switch-spell">🧩 换成拼字母块</button>
+    </div>
+  </div>
+</div>
+
+<!-- 召唤选择 -->
+<div id="picker" class="overlay hidden">
+  <div id="picker-card">
+    <div id="picker-title">召唤一只词宠来帮忙：</div>
+    <div id="picker-grid"></div>
+    <button id="picker-close" class="round-btn small">✕</button>
+  </div>
+</div>
+
+<!-- 图鉴 -->
+<div id="catalog" class="overlay hidden">
+  <div id="catalog-card">
+    <div id="catalog-head">
+      <span>📖 词宠图鉴</span>
+      <button id="catalog-close" class="round-btn small">✕</button>
+    </div>
+    <div id="catalog-grid"></div>
+  </div>
+</div>
+
+<!-- 农场地图 -->
+<div id="map" class="overlay hidden">
+  <div id="map-card">
+    <div id="map-head">
+      <span>🗺️ Q淘族地图</span>
+      <button id="map-close" class="round-btn small">✕</button>
+    </div>
+    <canvas id="map-canvas" width="420" height="420"></canvas>
+    <div id="map-legend">🔵 你在这里 · ⬤ 粉点=本关蛋 / 蓝点=🔑钥匙蛋 · 🔒 需要特殊词宠帮忙才能进入</div>
+  </div>
+</div>
+
+<!-- 开场引导 -->
+<div id="intro" class="overlay hidden">
+  <div id="intro-card">
+    <div id="intro-emoji">🥚</div>
+    <div id="intro-text"></div>
+    <button id="intro-next">好呀！</button>
+  </div>
+</div>
+
+<!-- 通关庆祝卡：星星结算 + 本关单词回顾 -->
+<div id="levelup" class="overlay hidden">
+  <div id="levelup-card">
+    <div id="levelup-burst">🎉</div>
+    <div id="levelup-title">第 1 关完成！</div>
+    <div id="levelup-sub"></div>
+    <div id="levelup-stars"><span>⭐</span><span>⭐</span><span>⭐</span></div>
+    <div id="levelup-words-tip">这一关你学会的单词：</div>
+    <div id="levelup-words"></div>
+    <button id="levelup-next">继续冒险 →</button>
+  </div>
+</div>
+
+<!-- 关卡开始大横幅 -->
+<div id="chapter-banner" class="hidden"><span id="chapter-banner-text"></span></div>
+
+<!-- 游戏有新版本：非模态提示条，不打断游戏 -->
+<div id="update-bar" class="hidden">
+  <span class="update-text">🎉 Q淘族更新了新内容！</span>
+  <button id="update-now" type="button">立即更新</button>
+  <button id="update-later" type="button" aria-label="稍后再说">✕</button>
+</div>
+
+<!-- 提示气泡 -->
+<div id="toast" class="hidden"></div>
+
+<!-- 词典详情卡：竖直滚动查看音标/释义/例句/小妙招 -->
+<div id="detail-card" class="hidden">
+  <div class="detail-head">
+    <span id="detail-title">📖 详细</span>
+    <button id="detail-close" class="round-btn small" type="button" aria-label="关闭">✕</button>
+  </div>
+  <div id="detail-body"></div>
+</div>
+
+<!-- 喝彩大字：弹窗之外的屏幕层，飘起后消失 -->
+<div id="cheer"><span id="cheer-emoji">🌟</span><span id="cheer-word">PERFECT!</span></div>
+
+<script>
+// 早期错误捕获：模块加载失败也能留下线索（调试用）
+window.__errLog = [];
+addEventListener('error', e => window.__errLog.push((e.message || 'error') + ' @ ' + (e.filename || '') + ':' + (e.lineno || 0)));
+addEventListener('unhandledrejection', e => window.__errLog.push('rejection: ' + String(e.reason && e.reason.message || e.reason)));
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

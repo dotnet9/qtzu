@@ -1,0 +1,67 @@
+{
+  "city": "guiyang",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "贵州大学",
+      "en": "Guizhou University",
+      "tag": "211",
+      "founded": 1902,
+      "site": "https://www.gzu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "贵州师范大学",
+      "en": "Guizhou Normal University",
+      "tag": null,
+      "founded": 1941,
+      "site": "https://www.gznu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "贵州医科大学",
+      "en": "Guizhou Medical University",
+      "tag": null,
+      "founded": 1938,
+      "site": "https://www.gmc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "贵州财经大学",
+      "en": "Guizhou University of Finance and Economics",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.gufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "贵州中医药大学",
+      "en": "Guizhou University of Traditional Chinese Medicine",
+      "tag": null,
+      "founded": 1965,
+      "site": "https://www.gzy.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\universities.json"
+}

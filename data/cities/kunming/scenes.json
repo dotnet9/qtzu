@@ -1,0 +1,77 @@
+{
+  "city": "kunming",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "滇池",
+      "en": "Dianchi Lake",
+      "desc": "高原明珠五百里滇池，红嘴鸥冬季如约而至",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dianchi%20Lake%20Kunming.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "石林",
+      "en": "Stone Forest",
+      "desc": "世界自然遗产，2.7 亿年海底石灰岩奇观",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Stone%20Forest%20Kunming.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "西山龙门",
+      "en": "Xishan Dragon Gate",
+      "desc": "悬崖石窟道观，俯瞰滇池如镜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xishan%20Kunming.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "翠湖",
+      "en": "Cuihu Lake",
+      "desc": "城中美湖，冬季海鸥翔集与红嘴鸥同框",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cuihu%20Park%20Kunming.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "金马碧鸡坊",
+      "en": "Jinma Biji Fang",
+      "desc": "昆明地标牌坊，金碧交奇的百年奇观",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinma%20Biji%20Archways.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "云南民族村",
+      "en": "Yunnan Ethnic Village",
+      "desc": "25 个少数民族村寨一日看尽云南",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yunnan%20Ethnic%20Village.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "官渡古镇",
+      "en": "Guandu Ancient Town",
+      "desc": "金刚塔与六寺七阁八庙，千年渡口",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guandu%20Ancient%20Town.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "圆通寺",
+      "en": "Yuantong Temple",
+      "desc": "1200 年古刹，倒坡寺观中樱花如霞",
+      "img": "data/cities/kunming/img/Yuantong_Temple.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "轿子雪山",
+      "en": "Jiaozi Snow Mountain",
+      "desc": "滇中第一雪山，杜鹃花海与冰瀑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiaozi%20Snow%20Mountain.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "云南陆军讲武堂",
+      "en": "Yunnan Military Academy",
+      "desc": "朱德叶剑英母校，黄色百年军校",
+      "img": "data/cities/kunming/img/Yunnan_Military_Academy.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kunming\\scenes.json"
+}

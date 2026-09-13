@@ -1,0 +1,163 @@
+{
+  "city": "taipei",
+  "source": "各校官网（www.ntu.edu.tw 等）；排名为 QS 2025 / THE 公开榜单参考值",
+  "unis": [
+    {
+      "zh": "台湾大学",
+      "en": "National Taiwan University",
+      "tag": "顶尖",
+      "founded": 1928,
+      "site": "https://www.ntu.edu.tw",
+      "globalRank": 68,
+      "nationalRank": 1,
+      "bearing": "SE",
+      "history": "台湾历史最悠久、规模最大的综合性大学，前身台北帝国大学，椰林大道闻名。",
+      "img": null
+    },
+    {
+      "zh": "台湾师范大学",
+      "en": "National Taiwan Normal University",
+      "tag": "重点",
+      "founded": 1946,
+      "site": "https://www.ntnu.edu.tw",
+      "globalRank": 500,
+      "nationalRank": 8,
+      "bearing": "S",
+      "history": "台湾师资培养的最高学府，华语教学中心享誉世界。"
+    },
+    {
+      "zh": "台湾科技大学",
+      "en": "National Taiwan University of Science and Technology",
+      "tag": "重点",
+      "founded": 1974,
+      "site": "https://www.ntust.edu.tw",
+      "globalRank": 400,
+      "nationalRank": 6,
+      "bearing": "SE",
+      "history": "台湾第一所技术职业教育高等学府，工程学科实力强劲。"
+    },
+    {
+      "zh": "政治大学",
+      "en": "National Chengchi University",
+      "tag": "重点",
+      "founded": 1927,
+      "site": "https://www.nccu.edu.tw",
+      "globalRank": 600,
+      "nationalRank": 10,
+      "bearing": "SE",
+      "history": "源于南京中央党务学校，人文社科与传播政治学见长。"
+    },
+    {
+      "zh": "阳明交通大学（台北校区）",
+      "en": "National Yang Ming Chiao Tung University",
+      "tag": "重点",
+      "founded": 1975,
+      "site": "https://www.nycu.edu.tw",
+      "globalRank": 200,
+      "nationalRank": 4,
+      "bearing": "N",
+      "history": "阳明校区以医学与生命科学著称，2021 年与交大合并。",
+      "campusNote": "主校区在新竹与台北北投"
+    },
+    {
+      "zh": "台北大学",
+      "en": "National Taipei University",
+      "tag": null,
+      "founded": 1949,
+      "site": "https://www.ntpu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "法商学科传统深厚的公立大学，前身为中兴大学法商学院。"
+    },
+    {
+      "zh": "台北科技大学",
+      "en": "National Taipei University of Technology",
+      "tag": null,
+      "founded": 1912,
+      "site": "https://www.ntut.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "百年工科名校，前身总督府工业学校，培养无数工程师。"
+    },
+    {
+      "zh": "辅仁大学",
+      "en": "Fu Jen Catholic University",
+      "tag": null,
+      "founded": 1925,
+      "site": "https://www.fju.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "1925 年创于北京、1961 年在台复校的天主教大学，外语与传播著名。"
+    },
+    {
+      "zh": "淡江大学",
+      "en": "Tamkang University",
+      "tag": null,
+      "founded": 1950,
+      "site": "https://www.tku.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "台湾第一所私立大学，淡水校园可眺望台湾海峡落日。"
+    },
+    {
+      "zh": "东吴大学",
+      "en": "Soochow University",
+      "tag": null,
+      "founded": 1900,
+      "site": "https://www.scu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "源于苏州东吴大学，法学教育在台湾名列前茅。"
+    },
+    {
+      "zh": "世新大学",
+      "en": "Shih Hsin University",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.shu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "新闻传播名校，台湾媒体人的重要摇篮。"
+    },
+    {
+      "zh": "实践大学",
+      "en": "Shih Chien University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.usc.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "设计学科享誉国际，服装设计系毕业秀是年度盛事。"
+    },
+    {
+      "zh": "铭传大学",
+      "en": "Ming Chuan University",
+      "tag": null,
+      "founded": 1957,
+      "site": "https://www.mcu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "亚洲第一所获美国 MSCHE 认证的大学，国际化程度高。"
+    },
+    {
+      "zh": "中国文化大学",
+      "en": "Chinese Culture University",
+      "tag": null,
+      "founded": 1962,
+      "site": "https://www.pccu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "阳明山上的大学，系所数量一度居全台之冠。"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taipei\\universities.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "changsha",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "橘子洲",
+      "en": "Orange Isle",
+      "desc": "湘江中的长岛，青年毛泽东艺术雕塑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange%20Isle%20Mao%20Statue.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "岳麓山与岳麓书院",
+      "en": "Yuelu Mountain & Academy",
+      "desc": "千年学府，「惟楚有材于斯为盛」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yuelu%20Academy.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "湖南省博物馆",
+      "en": "Hunan Museum",
+      "desc": "马王堆汉墓与素纱襌衣",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hunan%20Museum.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "太平老街",
+      "en": "Taiping Old Street",
+      "desc": "千年古街，贾谊故居与美食长廊",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taiping%20Old%20Street.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "天心阁",
+      "en": "Tianxin Pavilion",
+      "desc": "古城墙上的名楼，长沙城市原点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianxin%20Pavilion.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "世界之窗",
+      "en": "Windows of the World",
+      "desc": "微缩世界奇观主题公园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Windows%20of%20the%20World%20Changsha.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "杜甫江阁",
+      "en": "Du Fu Pavilion",
+      "desc": "湘江畔诗圣纪念楼，焰火最佳观赏点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Du%20Fu%20Pavilion.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "靖港古镇",
+      "en": "Jinggang Ancient Town",
+      "desc": "湘江古镇群，麻石街老铺",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jinggang%20Ancient%20Town.jpg?width=640",
+      "bearing": "NW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changsha\\scenes.json"
+}

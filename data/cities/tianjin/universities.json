@@ -1,0 +1,151 @@
+{
+  "city": "tianjin",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "南开大学",
+      "en": "Nankai University",
+      "tag": "985",
+      "founded": 1919,
+      "site": "https://www.nankai.edu.cn",
+      "globalRank": 146,
+      "nationalRank": 11,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津大学",
+      "en": "Tianjin University",
+      "tag": "985",
+      "founded": 1895,
+      "site": "https://www.tju.edu.cn",
+      "globalRank": null,
+      "nationalRank": 14,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津医科大学",
+      "en": "Tianjin Medical University",
+      "tag": "211",
+      "founded": 1951,
+      "site": "https://www.tmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "河北工业大学",
+      "en": "Hebei University of Technology",
+      "tag": "211",
+      "founded": 1903,
+      "site": "https://www.hebut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津师范大学",
+      "en": "Tianjin Normal University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.tjnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津工业大学",
+      "en": "Tiangong University",
+      "tag": "双一流",
+      "founded": 1912,
+      "site": "https://www.tiangong.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津科技大学",
+      "en": "Tianjin University of Science and Technology",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.tust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津理工大学",
+      "en": "Tianjin University of Technology",
+      "tag": null,
+      "founded": 1979,
+      "site": "https://www.tjut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中国民航大学",
+      "en": "Civil Aviation University of China",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.cauc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津财经大学",
+      "en": "Tianjin University of Finance and Economics",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.tjufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津中医药大学",
+      "en": "Tianjin University of Traditional Chinese Medicine",
+      "tag": "双一流",
+      "founded": 1958,
+      "site": "https://www.tjutcm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "天津外国语大学",
+      "en": "Tianjin Foreign Studies University",
+      "tag": null,
+      "founded": 1921,
+      "site": "https://www.tjfsu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tianjin\\universities.json"
+}

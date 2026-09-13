@@ -1,0 +1,63 @@
+{
+  "city": "zhuhai",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "情侣路",
+      "en": "Lovers Road",
+      "desc": "28 公里海滨浪漫大道",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lovers%20Road%20Zhuhai.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "珠海渔女",
+      "en": "Fisher Girl Statue",
+      "desc": "城市象征，香炉湾畔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fisher%20Girl%20Zhuhai.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "长隆海洋王国",
+      "en": "Chimelong Ocean Kingdom",
+      "desc": "全球最大海洋主题乐园之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chimelong%20Ocean%20Kingdom.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "港珠澳大桥",
+      "en": "HZM Bridge",
+      "desc": "55 公里世界最长跨海大桥",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hong%20Kong-Zhuhai-Macau%20Bridge.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "外伶仃岛",
+      "en": "Wailingding Island",
+      "desc": "文天祥「零丁洋里叹零丁」",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wailingding%20Island.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "东澳岛",
+      "en": "Dongao Island",
+      "desc": "南沙湾钻石沙滩",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dongao%20Island.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "圆明新园",
+      "en": "New Yuanming Palace",
+      "desc": "圆明园四十景按 1:1 复建",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/New%20Yuanming%20Palace.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "淇澳岛",
+      "en": "Qiao Island",
+      "desc": "红树林湿地与白石街古巷",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qiao%20Island.jpg?width=640",
+      "bearing": "N"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhuhai\\scenes.json"
+}

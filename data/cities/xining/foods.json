@@ -1,0 +1,63 @@
+{
+  "city": "xining",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "手抓羊肉",
+      "en": "Hand-grabbed Lamb",
+      "desc": "高原藏羊肉鲜嫩",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Boiled%20lamb.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "酿皮",
+      "en": "Xining Niangpi",
+      "desc": "厚实酿皮油泼辣子香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Liangpi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "甜醅",
+      "en": "Sweet Fermented Oats",
+      "desc": "燕麦甜醅消夏，微醺清甜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fermented%20oats.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "酸奶",
+      "en": "Tibetan Yogurt",
+      "desc": "老酸奶表面结黄皮奶皮",
+      "img": "data/cities/xining/img/Yogurt.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "牦牛肉干",
+      "en": "Yak Jerky",
+      "desc": "风干牦牛肉越嚼越香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beef%20jerky.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "尕面片",
+      "en": "Ga Noodle Pieces",
+      "desc": "指甲盖大小的青海面片",
+      "img": "data/cities/xining/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "熬茶",
+      "en": "Boiled Milk Tea",
+      "desc": "茯茶加盐牛奶，牧区喝法",
+      "img": "data/cities/xining/img/Milk_tea.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "青海土火锅",
+      "en": "Qinghai Hotpot",
+      "desc": "铜锅什锦暖冬",
+      "img": "data/cities/xining/img/Hotpot.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xining\\foods.json"
+}

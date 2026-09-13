@@ -1,0 +1,77 @@
+{
+  "city": "tainan",
+  "source": "台南市政府观光旅游局官方资料（台南 2015 年获选世界美食之都探讨城市）",
+  "items": [
+    {
+      "name": "担仔面",
+      "en": "Tan-tsai Noodles",
+      "desc": "度小月 1895 年创始，肉燥油葱一勺入面，百年老灶火不熄。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Danzai%20noodles.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "棺材板",
+      "en": "Coffin Bread",
+      "desc": "1940 年沙卡里巴发明，厚片面包炸壳填海鲜浓汤，趣味之名响彻全台。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffin%20bread.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "碗粿",
+      "en": "Wagui Rice Cake",
+      "desc": "在来米浆配肉燥蛋黄蒸碗而成，富盛号排队三十年。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wa gui.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "牛肉汤",
+      "en": "Beef Soup",
+      "desc": "凌晨现宰温体牛肉薄片，滚烫清汤一涮即熟，甜味来自新鲜。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tainan%20beef%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "虾卷",
+      "en": "Shrimp Roll",
+      "desc": "网纱包裹的火虾仁卷油炸金黄，周氏虾卷老店日售数千条。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shrimp%20roll.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "肉圆",
+      "en": "Tainan Bawan",
+      "desc": "台南肉圆以蒸制为主，皮Q馅香配酱油膏，与彰化炸法分庭抗礼。",
+      "img": "data/cities/tainan/img/Bawan.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "蚵仔煎",
+      "en": "Oyster Omelette",
+      "desc": "台南近海蚵仔肥美，古法煎制配私房酱。",
+      "img": "data/cities/tainan/img/Oyster_omelette.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "冬瓜茶",
+      "en": "Winter Melon Tea",
+      "desc": "百年老铺连得堂与冬瓜糖业交织的古早饮品，解暑神器。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Winter%20melon%20tea.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "鳝鱼意面",
+      "en": "Eel Noodles",
+      "desc": "大火快炒的酸甜鳝鱼意面，锅气十足是台南夜宵灵魂。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Eel%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "安平蜜饯",
+      "en": "Candied Fruit",
+      "desc": "安平老街话梅、李咸等蜜饯，古法腌渍传承百年。",
+      "img": "data/cities/tainan/img/Candied_fruit.jpg",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\foods.json"
+}

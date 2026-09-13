@@ -1,0 +1,82 @@
+{
+  "id": "xian",
+  "name": "西安",
+  "en": "Xi'an",
+  "color": "#A0522D",
+  "landmark": "gate",
+  "region": "西北",
+  "importance": "十三朝古都 · 首批国家历史文化名城",
+  "isCoastal": false,
+  "history": "古称长安，先后有西周、秦、西汉、隋、唐等十三个王朝建都于此，建都史逾千年，与雅典、罗马、开罗并称世界四大古都。丝绸之路从这里出发，驼铃直抵罗马。兵马俑被称为世界第八大奇迹，明城墙是保存最完整的古代城垣。今天它是国家中心城市与科教重镇，高校云集，军工航天实力雄厚。",
+  "gallery": [
+    {
+      "img": "data/cities/xian/img/Terracotta_Army-China2.jpg",
+      "caption": "兵马俑"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xi'an%20City%20Wall.jpg?width=960",
+      "caption": "明城墙"
+    },
+    {
+      "img": "data/cities/xian/img/Giant_Wild_Goose_Pagoda_Xi_an.jpg",
+      "caption": "大雁塔"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏯",
+      "intro": "十三朝古都！兵马俑是世界第八大奇迹",
+      "introEn": "Xi'an was capital for 13 dynasties!",
+      "words": [
+        "wall",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🍜",
+      "intro": "biangbiang 面像裤带一样宽",
+      "introEn": "Biangbiang noodles are super wide!",
+      "words": [
+        "noodle"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🐫",
+      "intro": "丝绸之路从长安出发，驼铃响了一千年",
+      "introEn": "The Silk Road started from Chang'an.",
+      "words": [
+        "camel",
+        "road"
+      ],
+      "deco": "horse"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xian\\city.json"
+}

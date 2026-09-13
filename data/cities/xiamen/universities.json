@@ -1,0 +1,79 @@
+{
+  "city": "xiamen",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "厦门大学",
+      "en": "Xiamen University",
+      "tag": "985",
+      "founded": 1921,
+      "site": "https://www.xmu.edu.cn",
+      "globalRank": 260,
+      "nationalRank": 20,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "集美大学",
+      "en": "Jimei University",
+      "tag": null,
+      "founded": 1918,
+      "site": "https://www.jmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "华侨大学",
+      "en": "Huaqiao University",
+      "tag": null,
+      "founded": 1960,
+      "site": "https://www.hqu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "泉州/厦门两地办学",
+      "campusNote": null
+    },
+    {
+      "zh": "厦门理工学院",
+      "en": "Xiamen University of Technology",
+      "tag": null,
+      "founded": 1981,
+      "site": "https://www.xmut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "厦门医学院",
+      "en": "Xiamen Medical College",
+      "tag": null,
+      "founded": 1898,
+      "site": "https://www.xmmc.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "集美大学诚毅学院",
+      "en": "Chengyi University College",
+      "tag": null,
+      "founded": 2003,
+      "site": "https://www.cyjmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\xiamen\\universities.json"
+}

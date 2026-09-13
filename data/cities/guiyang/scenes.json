@@ -1,0 +1,63 @@
+{
+  "city": "guiyang",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "甲秀楼",
+      "en": "Jiaxiu Tower",
+      "desc": "南明河鳌矶石上四百年名楼",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jiaxiu%20Tower%20Guiyang.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "黔灵山公园",
+      "en": "Qianling Park",
+      "desc": "市区猕猴成群，弘福寺香火",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qianling%20Park.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "青岩古镇",
+      "en": "Qingyan Ancient Town",
+      "desc": "明清军事古镇，石板巷背街",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingyan%20Ancient%20Town.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "花溪公园",
+      "en": "Huaxi Park",
+      "desc": "高原花海湿地，花溪河畔",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huaxi%20Park.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "天河潭",
+      "en": "Tianhetan",
+      "desc": "喀斯特溶洞瀑布山水盆景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianhetan.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "文昌阁",
+      "en": "Wenchang Pavilion",
+      "desc": "独特九角三层宝塔式古建",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wenchang%20Pavilion%20Guiyang.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "贵州省博物馆",
+      "en": "Guizhou Museum",
+      "desc": "夜郎文化与苗族银饰",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guizhou%20Museum.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "时光贵州",
+      "en": "Time Guizhou",
+      "desc": "民国风情文旅小镇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Time%20Guizhou.jpg?width=640",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guiyang\\scenes.json"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "wuxi",
+  "name": "无锡",
+  "en": "Wuxi",
+  "color": "#5A8FBF",
+  "landmark": "harbor",
+  "region": "华东",
+  "importance": "太湖明珠 · 鱼米之乡",
+  "isCoastal": false,
+  "history": "无锡有 3000 年历史，泰伯奔吴开创江南文明。太湖鼋头渚的樱花号称「中华第一赏樱地」，灵山大佛高达 88 米。近代民族工商业与乡镇企业在此发轫，「苏南模式」闻名全国，如今是物联网产业重镇。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taihu%20Lake%20Wuxi.jpg?width=960",
+      "caption": "太湖"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lingshan%20Buddha%20Wuxi.jpg?width=960",
+      "caption": "灵山大佛"
+    },
+    {
+      "img": "data/cities/wuxi/img/Yuantouzhu.jpg",
+      "caption": "鼋头渚"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🌸",
+      "intro": "鼋头渚樱花：中华第一赏樱地",
+      "introEn": "Yuantouzhu is China's best cherry spot.",
+      "words": [
+        "flower",
+        "spring"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🕯️",
+      "intro": "灵山大佛有 88 米高",
+      "introEn": "The Lingshan Buddha is 88 meters tall.",
+      "words": [
+        "buddha"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🦐",
+      "intro": "太湖三白：白鱼白虾银鱼，鲜掉眉毛",
+      "introEn": "Taihu three whites taste super fresh.",
+      "words": [
+        "fish"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuxi\\city.json"
+}

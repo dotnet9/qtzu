@@ -1,0 +1,67 @@
+{
+  "city": "shijiazhuang",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "河北师范大学",
+      "en": "Hebei Normal University",
+      "tag": null,
+      "founded": 1902,
+      "site": "https://www.hebtu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "河北医科大学",
+      "en": "Hebei Medical University",
+      "tag": null,
+      "founded": 1894,
+      "site": "https://www.hebmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "河北科技大学",
+      "en": "Hebei University of Science and Technology",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.hebust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "河北经贸大学",
+      "en": "Hebei University of Economics and Business",
+      "tag": null,
+      "founded": 1953,
+      "site": "https://www.heuet.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "石家庄铁道大学",
+      "en": "Shijiazhuang Tiedao University",
+      "tag": null,
+      "founded": 1950,
+      "site": "https://www.stdu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shijiazhuang\\universities.json"
+}

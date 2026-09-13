@@ -1,0 +1,77 @@
+{
+  "city": "nanjing",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "盐水鸭",
+      "en": "Salted Duck",
+      "desc": "桂花时节最肥美，皮白肉嫩咸鲜适口",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing%20salted%20duck.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "鸭血粉丝汤",
+      "en": "Duck Blood Vermicelli",
+      "desc": "鸭汤打底配鸭血鸭肝粉丝，南京小吃之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Duck%20blood%20vermicelli%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "小笼包",
+      "en": "Soup Dumplings",
+      "desc": "鸡鸣汤包倒扣上笼，汤汁充盈",
+      "img": "data/cities/nanjing/img/Soup_dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "牛肉锅贴",
+      "en": "Beef Pot Stickers",
+      "desc": "七家湾锅贴底脆汁多，咬开小心烫",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Potsticker.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "桂花糖芋苗",
+      "en": "Sweet Taro with Osmanthus",
+      "desc": "芋苗红糖桂花慢煨，金陵甜点头牌",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taro%20dessert.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "活珠子",
+      "en": "Balut-style Egg",
+      "desc": "十二天胚胎蛋，南京人的勇气美食",
+      "img": "data/cities/nanjing/img/Egg.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "皮肚面",
+      "en": "Pork Skin Noodles",
+      "desc": "大碗皮肚面料堆成山，南京人的豪华早餐",
+      "img": "data/cities/nanjing/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "赤豆元宵",
+      "en": "Red Bean Yuanxiao",
+      "desc": "莲湖糕团店的赤豆小元宵，甜糯暖心",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20bean%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "糕团",
+      "en": "Rice Cake",
+      "desc": "夫子庙糕团五彩缤纷，米香四溢",
+      "img": "data/cities/nanjing/img/Rice_cake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "雨花茶",
+      "en": "Yuhua Tea",
+      "desc": "针形绿茶形如松针，南京名茶",
+      "img": "data/cities/nanjing/img/Green_tea.jpg",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanjing\\foods.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "wuxi",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "鼋头渚",
+      "en": "Yuantouzhu",
+      "desc": "太湖绝佳处，中华第一赏樱地",
+      "img": "data/cities/wuxi/img/Yuantouzhu.jpg",
+      "bearing": "S"
+    },
+    {
+      "name": "灵山大佛",
+      "en": "Lingshan Buddha",
+      "desc": "88 米青铜大佛，梵宫艺术",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lingshan%20Buddha%20Wuxi.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "惠山古镇",
+      "en": "Huishan Ancient Town",
+      "desc": "祠堂群与泥人博物馆",
+      "img": "data/cities/wuxi/img/Huishan_Ancient_Town.jpg",
+      "bearing": "W"
+    },
+    {
+      "name": "南禅寺与清名桥",
+      "en": "Nanchan Temple",
+      "desc": "古运河水弄堂夜景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuxi%20canal.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "蠡园",
+      "en": "Li Garden",
+      "desc": "范蠡西施传说，湖石假山",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Li%20Garden%20Wuxi.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "梅园",
+      "en": "Mei Garden",
+      "desc": "荣氏梅园，早春赏梅",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mei%20Garden%20Wuxi.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "荡口古镇",
+      "en": "Dangkou Ancient Town",
+      "desc": "江南水乡古街与小桥",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dangkou%20Ancient%20Town.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "三国水浒城",
+      "en": "Three Kingdoms City",
+      "desc": "央视影视基地，表演再现",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Three%20Kingdoms%20City.jpg?width=640",
+      "bearing": "SW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuxi\\scenes.json"
+}

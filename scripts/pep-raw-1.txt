@@ -1,0 +1,391 @@
+# 人教版PEP 小学英语 3-6年级 8册 词汇原始数据（调研汇总）
+# 格式： [册] W=单词 P=短语；条目 en|zh
+# 说明：3a/3b 采用 2024 新版人教PEP；4a-6b 采用经典版(2013修订)。两版并集以获得最大覆盖。
+
+[3a]
+W nice|令人愉快的
+W ear|耳朵
+W hand|手
+W eye|眼睛
+W mouth|嘴
+W arm|胳膊
+W can|可以
+W share|分享
+W smile|微笑
+W listen|听
+W help|帮助
+W say|说
+W and|和
+W goodbye|再见
+W toy|玩具
+W friend|朋友
+W good|好的
+W mum|妈妈
+W dad|爸爸
+W grandma|奶奶
+W grandpa|爷爷
+W grandfather|祖父
+W grandmother|祖母
+W mother|母亲
+W father|父亲
+W me|我
+W sister|姐妹
+W family|家庭
+W have|有
+W big|大的
+W cousin|堂表兄妹
+W brother|兄弟
+W baby|婴儿
+W uncle|叔叔
+W aunt|姑姑
+W some|一些
+W small|小的
+W like|喜欢
+W dog|狗
+W pet|宠物
+W cat|猫
+W fish|鱼
+W bird|鸟
+W rabbit|兔子
+W go|去
+W zoo|动物园
+W fox|狐狸
+W Miss|女士
+W panda|熊猫
+W cute|可爱的
+W monkey|猴子
+W tiger|老虎
+W elephant|大象
+W lion|狮子
+W giraffe|长颈鹿
+W tall|高的
+W fast|快的
+W apple|苹果
+W banana|香蕉
+W farm|农场
+W air|空气
+W orange|橙子
+W grape|葡萄
+W school|学校
+W garden|花园
+W need|需要
+W water|水
+W flower|花
+W grass|草
+W plant|植物
+W new|新的
+W tree|树
+W sun|太阳
+W give|给
+W us|我们
+W them|他们
+W colour|颜色
+W green|绿色
+W red|红色
+W blue|蓝色
+W make|制作
+W purple|紫色
+W brown|棕色
+W bear|熊
+W yellow|黄色
+W duck|鸭子
+W sea|海洋
+W pink|粉色
+W draw|画
+W white|白色
+W black|黑色
+W old|旧的
+W five|五
+W year|年
+W one|一
+W two|二
+W three|三
+W four|四
+W ten|十
+W six|六
+W seven|七
+W eight|八
+W nine|九
+W o'clock|点钟
+W cut|切
+W piece|块
+W eat|吃
+W cake|蛋糕
+P red panda|小熊猫
+P nice to meet you|见到你很高兴
+P point to your ear|指你的耳朵
+P wave your hand|挥挥手
+P what's your name|你叫什么名字
+P my name's|我叫……
+P show me your pencil|给我看看你的铅笔
+
+[3b]
+W UK|英国
+W Canada|加拿大
+W USA|美国
+W China|中国
+W she|她
+W he|他
+W student|学生
+W teacher|教师
+W welcome|欢迎
+W today|今天
+W from|来自
+W boy|男孩
+W girl|女孩
+W pupil|小学生
+W happy|开心的
+W sad|难过的
+W angry|生气的
+W tired|累的
+W feel|感觉
+W love|爱
+W want|想要
+W drink|喝
+W sleep|睡觉
+W play|玩
+W book|书
+W pen|钢笔
+W pencil|铅笔
+W ruler|尺子
+W bag|书包
+W read|读
+W write|写
+W desk|书桌
+W chair|椅子
+W schoolbag|书包
+W notebook|笔记本
+W storybook|故事书
+W speak|说
+W clever|聪明的
+W rice|米饭
+W noodles|面条
+W bread|面包
+W milk|牛奶
+W egg|鸡蛋
+W healthy|健康的
+W vegetable|蔬菜
+W fruit|水果
+W chicken|鸡肉
+W beef|牛肉
+W juice|果汁
+W hungry|饿的
+W ball|球
+W car|汽车
+W boat|小船
+W kite|风筝
+W doll|洋娃娃
+W box|盒子
+W on|在……上面
+W under|在……下面
+W in|在……里面
+W plane|飞机
+W train|火车
+W eleven|十一
+W twelve|十二
+W thirteen|十三
+W fourteen|十四
+W fifteen|十五
+W sixteen|十六
+W seventeen|十七
+W eighteen|十八
+W nineteen|十九
+W twenty|二十
+W time|时间
+W clock|钟表
+W yuan|元
+W many|许多
+W people|人
+P be from|来自
+P a new student|一名新学生
+P feel happy|感到开心
+P like dogs|喜欢狗
+P read a book|读书
+P write a word|写字
+P healthy food|健康食物
+P would like|想要
+P toy box|玩具盒
+P on the desk|在书桌上
+P how much|多少钱
+P how many|多少
+P what time|几点
+
+[4a]
+W classroom|教室
+W window|窗户
+W blackboard|黑板
+W light|灯
+W picture|图画
+W door|门
+W computer|计算机
+W fan|风扇
+W wall|墙壁
+W floor|地板
+W really|真的
+W near|距离近
+W clean|打扫
+W TV|电视
+W candy|糖果
+W key|钥匙
+W wow|哇
+W lost|丢失
+W strong|强壮的
+W friendly|友好的
+W quiet|安静的
+W hair|头发
+W shoe|鞋
+W glasses|眼镜
+W his|他的
+W or|或者
+W right|正确的
+W hat|帽子
+W her|她的
+W bedroom|卧室
+W study|书房
+W kitchen|厨房
+W bathroom|浴室
+W bed|床
+W phone|电话
+W table|桌子
+W sofa|沙发
+W fridge|冰箱
+W find|找到
+W soup|汤
+W chopsticks|筷子
+W bowl|碗
+W fork|叉子
+W knife|刀
+W spoon|勺子
+W dinner|正餐
+W ready|准备好
+W pass|递
+W try|尝试
+W parents|父母
+W cook|厨师
+W driver|司机
+W farmer|农民
+W nurse|护士
+W but|但是
+W little|小的
+W puppy|小狗
+W job|工作
+W basketball|篮球
+P teacher's desk|讲台
+P maths book|数学书
+P English book|英语书
+P Chinese book|语文书
+P pencil box|铅笔盒
+P so much|非常
+P living room|客厅
+P help yourself|请自便
+P baby brother|弟弟
+P football player|足球运动员
+P open the door|开门
+P sweep the floor|扫地
+P turn on the light|开灯
+P put up the picture|张贴图画
+P clean the board|擦黑板
+P close the window|关窗户
+P watch TV|看电视
+P have a snack|吃零食
+P have a nap|打个盹
+P make a salad|做沙拉
+P pass me the bowl|把碗递给我
+P pass me the knife|把刀递给我
+P cut the vegetables|切蔬菜
+P use the spoon|用勺子
+P use the fork|用叉子
+
+[4b]
+W library|图书馆
+W playground|操场
+W homework|作业
+W class|班级
+W forty|四十
+W way|方向
+W breakfast|早餐
+W lunch|午餐
+W over|结束
+W now|现在
+W kid|小孩
+W thirty|三十
+W hurry|快点
+W cold|寒冷的
+W cool|凉爽的
+W warm|温暖的
+W hot|热的
+W sunny|晴朗的
+W windy|有风的
+W cloudy|多云的
+W snowy|下雪的
+W rainy|下雨的
+W outside|在户外
+W weather|天气
+W degree|度
+W world|世界
+W London|伦敦
+W Moscow|莫斯科
+W Singapore|新加坡
+W Sydney|悉尼
+W fly|放风筝
+W tomato|西红柿
+W potato|土豆
+W carrot|胡萝卜
+W horse|马
+W cow|奶牛
+W sheep|绵羊
+W hen|母鸡
+W these|这些
+W yum|味道好
+W animal|动物
+W those|那些
+W goat|山羊
+W clothes|衣服
+W pants|裤子
+W dress|连衣裙
+W skirt|裙子
+W coat|外套
+W sweater|毛衣
+W sock|短袜
+W shorts|短裤
+W jacket|夹克
+W shirt|衬衫
+W yours|你的
+W whose|谁的
+W mine|我的
+W pack|收拾行李
+W wait|等待
+W glove|手套
+W scarf|围巾
+W umbrella|雨伞
+W sunglasses|太阳镜
+W pretty|漂亮的
+W expensive|昂贵的
+W cheap|便宜的
+W size|尺码
+W too|太
+W sale|特价
+P first floor|一楼
+P second floor|二楼
+P teacher's office|教师办公室
+P computer room|计算机教室
+P art room|美术教室
+P music room|音乐教室
+P next to|紧邻
+P English class|英语课
+P music class|音乐课
+P PE class|体育课
+P get up|起床
+P go to school|去上学
+P go home|回家
+P go to bed|上床睡觉
+P just a minute|稍等一会儿
+P hurry up|快点
+P come on|加油
+P be careful|小心
+P how about|怎么样
+P New York|纽约
+P green beans|豆角
+P try on|试穿
+P of course|当然
+P all right|好吧

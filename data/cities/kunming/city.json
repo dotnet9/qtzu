@@ -1,0 +1,82 @@
+{
+  "id": "kunming",
+  "name": "昆明",
+  "en": "Kunming",
+  "color": "#8FBC5A",
+  "landmark": "pavilion",
+  "region": "西南",
+  "importance": "云南省会 · 春城 · 面向南亚东南亚的辐射中心",
+  "isCoastal": false,
+  "history": "昆明有 2400 多年建城史，古代南方丝绸之路与茶马古道的重要节点。因四季如春、鲜花常开而被称为「春城」。滇池碧波、西山睡美人、石林奇观构成昆明山水画卷。1938 年西南联大南迁至此，创造了教育史上的奇迹。今天它是「一带一路」面向南亚东南亚开放的门户城市。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dianchi%20Lake%20Kunming.jpg?width=960",
+      "caption": "滇池"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Stone%20Forest%20Kunming.jpg?width=960",
+      "caption": "石林"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cuihu%20Park%20Kunming.jpg?width=960",
+      "caption": "翠湖"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🌸",
+      "intro": "春城四季如春，冬天海鸥也来做客",
+      "introEn": "Kunming is the Spring City all year.",
+      "words": [
+        "flower",
+        "bird"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🗿",
+      "intro": "石林是两亿七千万年的海底石头森林",
+      "introEn": "The Stone Forest was under the sea!",
+      "words": [
+        "stone",
+        "old"
+      ],
+      "deco": "bamboo"
+    },
+    {
+      "emoji": "🍜",
+      "intro": "过桥米线要用滚汤把生片烫熟",
+      "introEn": "Crossing-bridge noodles cook in hot soup.",
+      "words": [
+        "soup"
+      ],
+      "deco": "tea"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kunming\\city.json"
+}

@@ -1,0 +1,115 @@
+{
+  "city": "harbin",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "哈尔滨工业大学",
+      "en": "Harbin Institute of Technology",
+      "tag": "985",
+      "founded": 1920,
+      "site": "https://www.hit.edu.cn",
+      "globalRank": 130,
+      "nationalRank": 10,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "哈尔滨工程大学",
+      "en": "Harbin Engineering University",
+      "tag": "211",
+      "founded": 1953,
+      "site": "https://www.hrbeu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "东北林业大学",
+      "en": "Northeast Forestry University",
+      "tag": "211",
+      "founded": 1952,
+      "site": "https://www.nefu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "东北农业大学",
+      "en": "Northeast Agricultural University",
+      "tag": "211",
+      "founded": 1948,
+      "site": "https://www.neau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "黑龙江大学",
+      "en": "Heilongjiang University",
+      "tag": null,
+      "founded": 1941,
+      "site": "https://www.hlju.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "哈尔滨医科大学",
+      "en": "Harbin Medical University",
+      "tag": null,
+      "founded": 1926,
+      "site": "https://www.hrbmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "哈尔滨师范大学",
+      "en": "Harbin Normal University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.hrbnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "黑龙江中医药大学",
+      "en": "Heilongjiang University of Chinese Medicine",
+      "tag": null,
+      "founded": 1954,
+      "site": "https://www.hljucm.net",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "哈尔滨理工大学",
+      "en": "Harbin University of Science and Technology",
+      "tag": null,
+      "founded": 1950,
+      "site": "https://www.hrbust.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\universities.json"
+}

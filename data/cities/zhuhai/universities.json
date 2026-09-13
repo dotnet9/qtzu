@@ -1,0 +1,43 @@
+{
+  "city": "zhuhai",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "北京师范大学珠海校区",
+      "en": "BNU Zhuhai",
+      "tag": null,
+      "founded": 2000,
+      "site": "https://www.bnuzhuhai.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "北京理工大学珠海学院",
+      "en": "BIT Zhuhai",
+      "tag": null,
+      "founded": 2004,
+      "site": "https://www.zh BIT edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "珠海科技学院",
+      "en": "Zhuhai College of Science and Technology",
+      "tag": null,
+      "founded": 2004,
+      "site": "https://www.zdfe.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhuhai\\universities.json"
+}

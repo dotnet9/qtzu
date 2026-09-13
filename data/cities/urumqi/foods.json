@@ -1,0 +1,63 @@
+{
+  "city": "urumqi",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "大盘鸡",
+      "en": "Big Plate Chicken",
+      "desc": "沙湾大盘鸡配皮带面",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Big%20plate%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "烤包子",
+      "en": "Baked Buns",
+      "desc": "馕坑烤包子皮脆肉香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baked%20buns.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "手抓饭",
+      "en": "Pilaf",
+      "desc": "黄萝卜羊肉抓饭油亮喷香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilaf.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "拉条子",
+      "en": "Lagtman Noodles",
+      "desc": "过油肉拌面筋道十足",
+      "img": "data/cities/urumqi/img/Noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "馕",
+      "en": "Naan",
+      "desc": "芝麻馕葱花馕，新疆人的行囊",
+      "img": "data/cities/urumqi/img/Naan.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "烤羊肉串",
+      "en": "Lamb Kebabs",
+      "desc": "红柳枝大串孜然辣面",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kebabs.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "酸奶粽子",
+      "en": "Yogurt Zongzi",
+      "desc": "新疆特色酸奶蜂蜜粽子",
+      "img": "data/cities/urumqi/img/Zongzi.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "马奶酒",
+      "en": "Kumis",
+      "desc": "草原发酵马奶酒",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Horse%20milk%20wine.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\urumqi\\foods.json"
+}

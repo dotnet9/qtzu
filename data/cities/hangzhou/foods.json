@@ -1,0 +1,77 @@
+{
+  "city": "hangzhou",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "西湖醋鱼",
+      "en": "West Lake Fish",
+      "desc": "草鱼浇糖醋芡汁，传说是叔嫂惜别的滋味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/West%20Lake%20Fish.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "东坡肉",
+      "en": "Dongpo Pork",
+      "desc": "苏东坡「慢著火少著水」的红烧肉，酥烂入味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dongpo%20rou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "龙井虾仁",
+      "en": "Longjing Shrimp",
+      "desc": "明前龙井茶香入虾仁，江南清雅之最",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Longjing%20shrimp.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "叫花鸡",
+      "en": "Beggar's Chicken",
+      "desc": "荷叶泥团包裹烤制，敲开泥土香气四溢",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beggar%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "片儿川",
+      "en": "Pian'er Chuan",
+      "desc": "雪菜笋片瘦肉浇头，奎元馆百年招牌面",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pian%20er%20chuan.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "葱包桧",
+      "en": "Congbaohui",
+      "desc": "薄饼卷油条压烤，蘸甜辣酱，纪念岳飞的民间小吃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Congbaohui.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "定胜糕",
+      "en": "Dingsheng Cake",
+      "desc": "粉色米糕印「定胜」二字，韩世忠出征的祝捷糕点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dingshenggao.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "知味小笼",
+      "en": "Zhiwei Xiaolong",
+      "desc": "知味观鲜肉小笼，百年老字号的杭州味道",
+      "img": "data/cities/hangzhou/img/Xiaolongbao.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "糖桂花藕",
+      "en": "Lotus Root with Osmanthus",
+      "desc": "糯米灌藕淋糖桂花，江南甜品之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Oufen.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "油冬儿",
+      "en": "Fried Radish Cake",
+      "desc": "萝卜丝油炸酥饼，杭州街头古早味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Youdonger.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hangzhou\\foods.json"
+}

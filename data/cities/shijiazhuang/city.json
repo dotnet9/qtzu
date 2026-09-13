@@ -1,0 +1,81 @@
+{
+  "id": "shijiazhuang",
+  "name": "石家庄",
+  "en": "Shijiazhuang",
+  "color": "#8A8A5A",
+  "landmark": "gate",
+  "region": "华北",
+  "importance": "河北省会 · 火车拉来的城市",
+  "isCoastal": false,
+  "history": "石家庄因正太铁路与京汉铁路交汇而兴起，被称为「火车拉来的城市」，1925 年建市。周边文化资源丰厚：正定古城的隆兴寺、赵县的赵州桥（世界现存最古老的敞肩石桥）都在辖区。西柏坡是新中国从这里走来的地方。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhengding%20Longxing%20Temple.jpg?width=960",
+      "caption": "隆兴寺"
+    },
+    {
+      "img": "data/cities/shijiazhuang/img/Zhaozhou_Bridge.jpg",
+      "caption": "赵州桥"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xibaipo.jpg?width=960",
+      "caption": "西柏坡"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🚂",
+      "intro": "火车拉来的城市：两条铁路相交成城",
+      "introEn": "Two railways built this city.",
+      "words": [
+        "train"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🌉",
+      "intro": "赵州桥 1400 岁了还在通车",
+      "introEn": "Zhaozhou Bridge is 1400 years old!",
+      "words": [
+        "bridge",
+        "old"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🚩",
+      "intro": "西柏坡：新中国从这里走来",
+      "introEn": "New China started from Xibaipo.",
+      "words": [
+        "flag"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shijiazhuang\\city.json"
+}

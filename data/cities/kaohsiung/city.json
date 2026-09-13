@@ -1,0 +1,82 @@
+{
+  "id": "kaohsiung",
+  "name": "高雄",
+  "en": "Kaohsiung",
+  "color": "#B4533A",
+  "landmark": "harbor",
+  "region": "台湾",
+  "importance": "台湾最大港口城市 · 国际海空双港都市",
+  "isCoastal": true,
+  "history": "旧称打狗（Takao），原为马卡道族竹林聚落，明代渔村渐起，1860 年开港通商。日据时期筑港扩建成为南台湾工业门户，战后高雄港长期位居世界集装箱大港前列。这里有台湾最大的造船与钢铁工业，也有爱河两岸的浪漫灯影、旗津岛的渔村海风、驳二艺术特区的文创活力。美丽岛站的「光之穹顶」被 CNN 评为世界最美地铁站之一，寿山可以俯瞰整座港湾城市。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaohsiung%20Harbor.jpg?width=960",
+      "caption": "高雄港"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Formosa%20Boulevard%20Station%20Dome%20of%20Light.jpg?width=960",
+      "caption": "美丽岛站光之穹顶"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Love%20River%2C%20Kaohsiung.jpg?width=960",
+      "caption": "爱河夜景"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🚢",
+      "intro": "高雄港的巨轮进进出出，是台湾最大的海港",
+      "introEn": "Kaohsiung is Taiwan's largest port.",
+      "words": [
+        "ship",
+        "harbor"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🌉",
+      "intro": "爱河两岸灯光倒映，浪漫得不像工业城市",
+      "introEn": "The Love River glows at night.",
+      "words": [
+        "river",
+        "light"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🐟",
+      "intro": "旗津的海鲜又肥又便宜，渡轮五分钟就到",
+      "introEn": "Cijin Island serves fresh seafood.",
+      "words": [
+        "fish",
+        "boat"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "tower",
+      "pavilion"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "fish-market",
+      "art-zone",
+      "park"
+    ],
+    "highlands": [
+      {
+        "x": -0.5,
+        "z": -0.6,
+        "h": 1.8
+      }
+    ],
+    "eggsOnSigns": 5
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kaohsiung\\city.json"
+}

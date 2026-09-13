@@ -1,0 +1,77 @@
+{
+  "city": "kunming",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "过桥米线",
+      "en": "Crossing Bridge Noodles",
+      "desc": "滚汤烫生的仪式感，云南美食之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Crossing%20the%20bridge%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "汽锅鸡",
+      "en": "Steam Pot Chicken",
+      "desc": "建水紫陶汽锅蒸出原汤，鲜美清醇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Steam%20pot%20chicken.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "鲜花饼",
+      "en": "Flower Cake",
+      "desc": "食用玫瑰入馅酥饼，春城的味道",
+      "img": "data/cities/kunming/img/Flower_cake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "菌子火锅",
+      "en": "Wild Mushroom Hotpot",
+      "desc": "雨季松茸牛肝菌一锅鲜，山珍盛宴",
+      "img": "data/cities/kunming/img/Mushroom_hotpot.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "饵块",
+      "en": "Erkuai",
+      "desc": "烧饵块刷酱卷油条，云南早点灵魂",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Erkuai.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "宜良烤鸭",
+      "en": "Yiliang Roast Duck",
+      "desc": "松毛结烤制皮酥脆，比北京烤鸭还早百年",
+      "img": "data/cities/kunming/img/Roast_duck.jpg",
+      "bearing": "SE"
+    },
+    {
+      "name": "豆花米线",
+      "en": "Tofu Rice Noodles",
+      "desc": "米线配豆花冬菜，麻辣鲜香滑嫩",
+      "img": "data/cities/kunming/img/Rice_noodles.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "木瓜水",
+      "en": "Papaya Jelly Drink",
+      "desc": "冰凉水晶冻配红糖，夏日解暑神器",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jelly%20drink.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "乳扇",
+      "en": "Rushan Cheese",
+      "desc": "大理乳扇烤软卷玫瑰酱，奶香四溢",
+      "img": "data/cities/kunming/img/Rushan.jpg",
+      "bearing": "NW"
+    },
+    {
+      "name": "玫瑰凉糕",
+      "en": "Rose Rice Cake",
+      "desc": "米糕淋玫瑰糖，甜糯清爽",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20cake%20dessert.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\kunming\\foods.json"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "zhengzhou",
+  "name": "郑州",
+  "en": "Zhengzhou",
+  "color": "#B08A5A",
+  "landmark": "gate",
+  "region": "华中",
+  "importance": "河南省会 · 商代古都 · 国家中心城市",
+  "isCoastal": false,
+  "history": "郑州是商代早期都城，3600 年城址不移，属最早的「天邑商」核心区。少林功夫从这里的名片嵩山少林寺走向世界，黄河从北侧奔流而过。这里是中国铁路心脏，京广与陇海两大动脉交汇。黄帝故里拜祖大典每年吸引全球华人寻根。",
+  "gallery": [
+    {
+      "img": "data/cities/zhengzhou/img/Shaolin_Temple.jpg",
+      "caption": "少林寺"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Erqi%20Memorial%20Tower.jpg?width=960",
+      "caption": "二七塔"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20River%20Zhengzhou.jpg?width=960",
+      "caption": "黄河"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🥋",
+      "intro": "少林功夫名扬天下，就在郑州边上",
+      "introEn": "Shaolin kung fu is from Zhengzhou!",
+      "words": [
+        "kungfu",
+        "strong"
+      ],
+      "deco": "horse"
+    },
+    {
+      "emoji": "🌊",
+      "intro": "黄河从北边流过，黄帝故里在这里",
+      "introEn": "The Yellow River flows by the city.",
+      "words": [
+        "river"
+      ],
+      "deco": "horse"
+    },
+    {
+      "emoji": "🚄",
+      "intro": "中国铁路心脏：京广和陇海在这交汇",
+      "introEn": "Two main railways cross at Zhengzhou.",
+      "words": [
+        "train"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\zhengzhou\\city.json"
+}

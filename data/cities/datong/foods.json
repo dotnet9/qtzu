@@ -1,0 +1,63 @@
+{
+  "city": "datong",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "大同刀削面",
+      "en": "Datong Knife Noodles",
+      "desc": "东方削面卤香浓郁，大同人的执念",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Knife%20cut%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "羊杂粉汤",
+      "en": "Lamb Offal Soup",
+      "desc": "羊杂配山药粉条，油辣子点睛",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamb%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "兔头",
+      "en": "Braised Rabbit Head",
+      "desc": "大同人夜宵必备麻辣兔头",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rabbit%20head.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "浑源凉粉",
+      "en": "Hunyuan Jelly",
+      "desc": "莲花豆豆腐干配凉粉，恒山名吃",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jelly%20noodles.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "百花烧麦",
+      "en": "Shaomai",
+      "desc": "凤临阁烧麦皮出花边",
+      "img": "data/cities/datong/img/Shaomai.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "黄糕",
+      "en": "Yellow Rice Cake",
+      "desc": "黍子面油炸糕软糯",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20cake.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "莜面窝窝",
+      "en": "Oat Rolls",
+      "desc": "蘸羊肉臊子的塞上面食",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Oat%20rolls.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "涮羊肉",
+      "en": "Hot Pot Lamb",
+      "desc": "铜锅涮广灵羊肉",
+      "img": "data/cities/datong/img/Hotpot.jpg",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\datong\\foods.json"
+}

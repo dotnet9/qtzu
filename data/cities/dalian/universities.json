@@ -1,0 +1,115 @@
+{
+  "city": "dalian",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "大连理工大学",
+      "en": "Dalian University of Technology",
+      "tag": "985",
+      "founded": 1949,
+      "site": "https://www.dlut.edu.cn",
+      "globalRank": null,
+      "nationalRank": 28,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "大连海事大学",
+      "en": "Dalian Maritime University",
+      "tag": "211",
+      "founded": 1909,
+      "site": "https://www.dlmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "东北财经大学",
+      "en": "Dongbei University of Finance and Economics",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.dufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "大连交通大学",
+      "en": "Dalian Jiaotong University",
+      "tag": null,
+      "founded": 1956,
+      "site": "https://www.djtu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "大连医科大学",
+      "en": "Dalian Medical University",
+      "tag": null,
+      "founded": 1947,
+      "site": "https://www.dmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "辽宁师范大学",
+      "en": "Liaoning Normal University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.lnnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "大连外国语大学",
+      "en": "Dalian University of Foreign Languages",
+      "tag": null,
+      "founded": 1964,
+      "site": "https://www.dlufl.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "大连工业大学",
+      "en": "Dalian Polytechnic University",
+      "tag": null,
+      "founded": 1958,
+      "site": "https://www.dlpu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "大连海洋大学",
+      "en": "Dalian Ocean University",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.dlou.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\universities.json"
+}

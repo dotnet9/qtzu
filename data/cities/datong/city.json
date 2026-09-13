@@ -1,0 +1,81 @@
+{
+  "id": "datong",
+  "name": "大同",
+  "en": "Datong",
+  "color": "#9A8A7A",
+  "landmark": "gate",
+  "region": "华北",
+  "importance": "九边重镇 · 云冈石窟",
+  "isCoastal": false,
+  "history": "大同古称平城，北魏在此建都近百年，辽金为西京。云冈石窟 51000 余尊造像是佛教艺术中国化的起点，2001 年列入世界遗产。悬空寺悬挂崖壁千年，九龙壁是全国最大。煤都转型之后古城墙完整重现。",
+  "gallery": [
+    {
+      "img": "data/cities/datong/img/Yungang_Grottoes.jpg",
+      "caption": "云冈石窟"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hanging%20Temple%20Datong.jpg?width=960",
+      "caption": "悬空寺"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Dragon%20Wall%20Datong.jpg?width=960",
+      "caption": "九龙壁"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🗿",
+      "intro": "云冈石窟五万一千尊大佛排队等你",
+      "introEn": "51000 Buddhas wait in Yungang Grottoes!",
+      "words": [
+        "stone",
+        "buddha"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "⛩️",
+      "intro": "悬空寺挂在悬崖上晃晃悠悠一千五百年",
+      "introEn": "The Hanging Temple dangles on a cliff!",
+      "words": [
+        "temple"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🐉",
+      "intro": "九龙壁上的龙会飞（不会，但你懂）",
+      "introEn": "Nine dragons dance on the wall.",
+      "words": [
+        "dragon"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "gate",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\datong\\city.json"
+}

@@ -1,0 +1,77 @@
+{
+  "city": "beijing",
+  "source": "北京市政府门户与中华老字号名录（全聚德 1864、东来顺 1903 等）",
+  "items": [
+    {
+      "name": "北京烤鸭",
+      "en": "Peking Duck",
+      "desc": "果木挂炉烤出枣红色脆皮，片 108 刀，荷叶饼卷葱丝甜面酱，国宴级美味。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Quanjude%20Peking%20Duck.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "炸酱面",
+      "en": "Zhajiang Noodles",
+      "desc": "六必居干黄酱小火慢炸，菜码八样讲究「锅挑儿」，老北京的家常头牌。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhajiangmian.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "豆汁儿配焦圈",
+      "en": "Douzhir & Jiaoquan",
+      "desc": "绿豆发酵的酸豆浆配酥脆焦圈，喝得惯才算真正的老北京。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Douzhi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "涮羊肉",
+      "en": "Mutton Hot Pot",
+      "desc": "铜锅炭火清汤锅底，手切鲜羊肉七上八下，蘸麻酱小料，东来顺百年招牌。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Instant-boiled%20mutton.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "糖葫芦",
+      "en": "Tanghulu",
+      "desc": "山楂串裹晶冰糖壳，酸酸甜甜，冬天胡同口的经典小吃。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tanghulu.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "驴打滚",
+      "en": "Lüdagun",
+      "desc": "黄豆面滚裹豆沙糯米卷，名字来自驴在黄土地上打滚的模样。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lvdagunr.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "爆肚",
+      "en": "Baodu",
+      "desc": "牛羊肚按部位分十三样，滚水几秒即涮，脆嫩蘸麻酱，火候见真章。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baodu.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "卤煮火烧",
+      "en": "Luzhu Huoshao",
+      "desc": "火烧豆腐猪下水一锅卤， origins 可追溯到宫廷苏造肉，平民美食的豪爽。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luzhu.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "豌豆黄",
+      "en": "Wandouhuang",
+      "desc": "豌豆磨泥熬制成糕，色如田黄、入口即化，慈禧太后点名要的甜点。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wandou%20huang.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "炙子烤肉",
+      "en": "Juzi Roast Meat",
+      "desc": "铁条钉成的炙子烤牛羊肉，果木香气渗进肉丝里，武吃站着烤才够劲。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Beijing%20roast%20meat.jpg?width=640",
+      "bearing": "N"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\beijing\\foods.json"
+}

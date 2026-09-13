@@ -1,0 +1,77 @@
+{
+  "city": "taipei",
+  "source": "台北市观光传播局与米其林指南台北版（夜市小吃多次摘星）",
+  "items": [
+    {
+      "name": "珍珠奶茶",
+      "en": "Bubble Tea",
+      "desc": "1980 年代台中春水堂/翰林发明，台北街头人手一杯，Q 弹珍珠配香浓奶茶。",
+      "img": "data/cities/taipei/img/Bubble_Tea.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "蚵仔煎",
+      "en": "Oyster Omelette",
+      "desc": "夜市之王！鲜蚵配地瓜粉浆和青菜煎成，淋上酸甜酱汁。",
+      "img": "data/cities/taipei/img/Oyster_omelette.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "牛肉面",
+      "en": "Beef Noodle Soup",
+      "desc": "台北国际牛肉面节孕育出无数名店，红烧清炖各有粉丝。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taiwanese%20beef%20noodle%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "小笼包",
+      "en": "Xiaolongbao",
+      "desc": "鼎泰丰把 18 褶小笼包卖成了世界品牌，开窗喝汤是标准吃法。",
+      "img": "data/cities/taipei/img/Xiaolongbao.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "大肠包小肠",
+      "en": "Sausage in Rice Sausage",
+      "desc": "糯米肠切开包台式香肠，夜市排队王，一口爆汁。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Taiwan%20small%20sausage%20in%20large%20sausage.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "卤肉饭",
+      "en": "Braised Pork Rice",
+      "desc": "五花肉丁卤得油亮，浇在热米饭上配卤蛋，台湾人的国民美食。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lu%20rou%20fan.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "胡椒饼",
+      "en": "Pepper Bun",
+      "desc": "饶河夜市福州胡椒饼，炭炉现烤，咬开肉馅滚烫带葱香。",
+      "img": "data/cities/taipei/img/Hujiaobing.jpg",
+      "bearing": "E"
+    },
+    {
+      "name": "棺材板",
+      "en": "Coffin Bread",
+      "desc": "厚片面包挖空炸酥，填入鸡肝海鲜浓汤，名字惊悚味道惊人。",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Coffin%20bread.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "凤梨酥",
+      "en": "Pineapple Cake",
+      "desc": "金砖般的小酥饼包着凤梨冬瓜馅，台北伴手礼首选。",
+      "img": "data/cities/taipei/img/Pineapple_cakes.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "芒果冰",
+      "en": "Mango Shaved Ice",
+      "desc": "永康街芒果冰店引发全台冰品大战，夏日限定甜蜜暴击。",
+      "img": "data/cities/taipei/img/Mango_shaved_ice.jpg",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\taipei\\foods.json"
+}

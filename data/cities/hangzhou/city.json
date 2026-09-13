@@ -1,0 +1,81 @@
+{
+  "id": "hangzhou",
+  "name": "杭州",
+  "en": "Hangzhou",
+  "color": "#4E9E7F",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "浙江省会 · 长三角中心城市 · 数字经济之城",
+  "isCoastal": false,
+  "history": "「上有天堂，下有苏杭」，南宋定都临安时杭州是世界最繁华的城市之一，马可·波罗称之为「世界上最美丽华贵之天城」。西湖十景自宋代流传至今，京杭大运河南端在此收官。白居易、苏东坡都曾在此筑堤修湖。今天的杭州是数字经济的弄潮儿，电商与云计算之都，也是龙井茶的故乡。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/West%20Lake%2C%20Hangzhou%20(2011).jpg?width=960",
+      "caption": "西湖"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lingyin%20Temple%2C%20Hangzhou.jpg?width=960",
+      "caption": "灵隐寺"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Leifeng%20Pagoda.jpg?width=960",
+      "caption": "雷峰塔"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🍵",
+      "intro": "西湖边采龙井茶，泡泡更香",
+      "introEn": "Longjing tea grows by West Lake.",
+      "words": [
+        "tea"
+      ],
+      "deco": "tea"
+    },
+    {
+      "emoji": "🌉",
+      "intro": "断桥上白娘子和许仙相遇的故事",
+      "introEn": "The Broken Bridge has a love story.",
+      "words": [
+        "bridge"
+      ],
+      "deco": "flower"
+    },
+    {
+      "emoji": "🌊",
+      "intro": "钱塘江大潮像万马奔腾",
+      "introEn": "The Qiantang tide thunders like horses.",
+      "words": [
+        "sea",
+        "wave"
+      ],
+      "deco": "boat"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hangzhou\\city.json"
+}

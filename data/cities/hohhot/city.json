@@ -1,0 +1,81 @@
+{
+  "id": "hohhot",
+  "name": "呼和浩特",
+  "en": "Hohhot",
+  "color": "#7AA8C0",
+  "landmark": "pavilion",
+  "region": "华北",
+  "importance": "内蒙古首府 · 青色之城",
+  "isCoastal": false,
+  "history": "呼和浩特意为「青色的城」，明代土默特部阿勒坦汗建城，大召寺的银佛沿用至今。这里是草原文明与农耕文明交汇处，昭君博物院传颂着胡汉和亲的佳话。牛奶与羊肉的味道、马头琴的旋律构成了城市底色。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dazhao%20Temple%20Hohhot.jpg?width=960",
+      "caption": "大召寺"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhaojun%20Tomb.jpg?width=960",
+      "caption": "昭君博物院"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grassland%20Hohhot.jpg?width=960",
+      "caption": "希拉穆仁草原"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🐎",
+      "intro": "青色的城：草原文明和农耕文明在这里握手",
+      "introEn": "Grassland meets farmland in Hohhot.",
+      "words": [
+        "horse"
+      ],
+      "deco": "horse"
+    },
+    {
+      "emoji": "🥛",
+      "intro": "奶茶是咸的！配炒米和奶皮子",
+      "introEn": "Milk tea here is salty!",
+      "words": [
+        "milk",
+        "food"
+      ],
+      "deco": "horse"
+    },
+    {
+      "emoji": "👑",
+      "intro": "昭君出塞的青冢就在城南",
+      "introEn": "Lady Zhaojun rests south of the city.",
+      "words": [
+        "history"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\city.json"
+}

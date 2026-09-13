@@ -1,0 +1,77 @@
+{
+  "city": "wuhan",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "热干面",
+      "en": "Hot Dry Noodles",
+      "desc": "碱水面拌芝麻酱，武汉人「过早」的头牌",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hot%20dry%20noodles.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "豆皮",
+      "en": "Doupi",
+      "desc": "老通城三鲜豆皮，糯米鸡蛋皮金黄焦香",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuhan%20doupi.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "鸭脖",
+      "en": "Duck Neck",
+      "desc": "精武鸭脖麻辣入骨，追剧标配零食之王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Duck%20neck.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "排骨藕汤",
+      "en": "Pork Rib & Lotus Root Soup",
+      "desc": "洪湖粉藕炖排骨，湖北伢的家乡味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Lotus%20root%20soup.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "糊汤粉",
+      "en": "Hutangfen",
+      "desc": "鲜鱼熬汤配油条，汉味早餐的鲜字担当",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hutangfen.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "面窝",
+      "en": "Mianwo",
+      "desc": "米浆炸圈四周厚中间脆，武汉过早必点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Mianwo.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "武昌鱼",
+      "en": "Wuchang Fish",
+      "desc": "「才饮长沙水，又食武昌鱼」清蒸最鲜",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wuchang%20fish.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "汤包",
+      "en": "Soup Dumplings",
+      "desc": "四季美汤包皮薄如纸，先开窗后喝汤",
+      "img": "data/cities/wuhan/img/Soup_dumplings.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "烧梅",
+      "en": "Shaomai",
+      "desc": "重油烧梅糯米胡椒香，严氏烧梅排队老字号",
+      "img": "data/cities/wuhan/img/Shaomai.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "米酒",
+      "en": "Rice Wine",
+      "desc": "孝感米酒清甜微醺，配糊汤粉绝了",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice%20wine.jpg?width=640",
+      "bearing": "NW"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\wuhan\\foods.json"
+}

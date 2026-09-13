@@ -1,0 +1,82 @@
+{
+  "id": "nanchang",
+  "name": "南昌",
+  "en": "Nanchang",
+  "color": "#C05A5A",
+  "landmark": "pavilion",
+  "region": "华东",
+  "importance": "江西省会 · 英雄城",
+  "isCoastal": false,
+  "history": "南昌有 2200 年建城史，「落霞与孤鹜齐飞」的滕王阁名扬千古。1927 年八一南昌起义在此打响，人民军队由此诞生，故称英雄城。鄱阳湖候鸟、海昏侯墓出土的万两黄金震惊考古界。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tengwang%20Pavilion.jpg?width=960",
+      "caption": "滕王阁"
+    },
+    {
+      "img": "data/cities/nanchang/img/Bayi_Square.jpg",
+      "caption": "八一广场"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Poyang%20Lake.jpg?width=960",
+      "caption": "鄱阳湖"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏯",
+      "intro": "滕王阁：「落霞与孤鹜齐飞」",
+      "introEn": "The Tengwang Pavilion is a poem itself.",
+      "words": [
+        "bird",
+        "tower"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🎖️",
+      "intro": "八一南昌起义，人民军队在这里诞生",
+      "introEn": "The PLA was born in Nanchang.",
+      "words": [
+        "army"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🦢",
+      "intro": "鄱阳湖是中国最大的淡水湖，白鹤越冬地",
+      "introEn": "Poyang Lake hosts white cranes in winter.",
+      "words": [
+        "lake",
+        "bird"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "food-street",
+      "park",
+      "old-street",
+      "plaza"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanchang\\city.json"
+}

@@ -1,0 +1,63 @@
+{
+  "city": "hohhot",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "大召寺",
+      "en": "Dazhao Temple",
+      "desc": "明代藏传名寺，银佛龙雕壁画三绝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dazhao%20Temple%20Hohhot.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "昭君博物院",
+      "en": "Zhaojun Museum",
+      "desc": "王昭君墓「青冢」，和亲文化",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zhaojun%20Tomb.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "内蒙古博物院",
+      "en": "Inner Mongolia Museum",
+      "desc": "恐龙化石与草原文明",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Inner%20Mongolia%20Museum.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "塞上老街",
+      "en": "Saishang Old Street",
+      "desc": "明清古街与大召相邻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Saishang%20Old%20Street.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "希拉穆仁草原",
+      "en": "Xilamuren Grassland",
+      "desc": "最近城市的草原，蒙古包体验",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grassland%20Hohhot.jpg?width=640",
+      "bearing": "NW"
+    },
+    {
+      "name": "哈达门高原牧场",
+      "en": "Hadamen Ranch",
+      "desc": "高山草甸骑马胜地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hadamen.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "五塔寺",
+      "en": "Five Pagoda Temple",
+      "desc": "金刚座舍利宝塔与蒙文天文图",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Five%20Pagoda%20Temple.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "乌兰夫纪念馆",
+      "en": "Ulanhu Memorial",
+      "desc": "红色教育纪念园",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ulanhu%20Memorial.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\hohhot\\scenes.json"
+}

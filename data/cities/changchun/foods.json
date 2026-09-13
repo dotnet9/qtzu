@@ -1,0 +1,63 @@
+{
+  "city": "changchun",
+  "source": "地方政府门户与权威美食名录",
+  "items": [
+    {
+      "name": "锅包肉",
+      "en": "Guobaorou",
+      "desc": "老式糖醋汁东北锅包肉发源地之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Guobaorou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "东北铁锅炖",
+      "en": "Iron Pot Stew",
+      "desc": "大铁锅炖排骨豆角贴饼子",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Iron%20pot%20stew.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "雪衣豆沙",
+      "en": "Snow Bean Paste",
+      "desc": "蛋清打发裹豆沙炸制，甜点云朵",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20dessert.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "杀猪菜",
+      "en": "Pork Stew",
+      "desc": "酸菜血肠白肉，年味担当",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sauerkraut%20stew.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "地三鲜",
+      "en": "Di San Xian",
+      "desc": "土豆茄子青椒素炒下饭王",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Di%20san%20xian.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "冻梨冻柿子",
+      "en": "Frozen Fruit",
+      "desc": "冬天街边的冰爽甜品",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Frozen%20pear.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "熏肉大饼",
+      "en": "Smoked Meat Pancake",
+      "desc": "李连贵熏肉配酥饼抹酱",
+      "img": "data/cities/changchun/img/Pancake.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "长春酱肉",
+      "en": "Changchun Soy Meat",
+      "desc": "老字号酱肉肥而不腻",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised%20meat.jpg?width=640",
+      "bearing": "C"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\changchun\\foods.json"
+}

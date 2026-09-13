@@ -1,0 +1,31 @@
+{
+  "city": "shaoxing",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "绍兴文理学院",
+      "en": "Shaoxing University",
+      "tag": null,
+      "founded": 1996,
+      "site": "https://www.usx.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "浙江工业大学之江学院",
+      "en": "Zhijiang College",
+      "tag": null,
+      "founded": 1999,
+      "site": "https://www.zjc.zjut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shaoxing\\universities.json"
+}

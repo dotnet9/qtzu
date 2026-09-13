@@ -1,0 +1,77 @@
+{
+  "city": "guangzhou",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "广州塔",
+      "en": "Canton Tower",
+      "desc": "600 米「小蛮腰」扭转塔身，珠江夜景绝佳",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Canton%20Tower%202013.jpg?width=640",
+      "bearing": "S"
+    },
+    {
+      "name": "陈家祠",
+      "en": "Chen Clan Ancestral Hall",
+      "desc": "1888 年建，岭南砖雕木雕石雕艺术集大成",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chen%20Clan%20Ancestral%20Hall.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "沙面岛",
+      "en": "Shamian Island",
+      "desc": "150 栋欧陆建筑的历史街区，梧桐掩映",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shamian%20Island%20Guangzhou.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "越秀公园",
+      "en": "Yuexiu Park",
+      "desc": "五羊石像与明代古城墙，广州城市原点",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Five%20Rams%20Statue.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "白云山",
+      "en": "Baiyun Mountain",
+      "desc": "羊城第一秀，摩星岭可俯瞰全城",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Baiyun%20Mountain%20Guangzhou.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "长隆野生动物世界",
+      "en": "Chimelong Safari Park",
+      "desc": "全球动物种群最多的野生动物园之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chimelong%20Safari%20Park.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "上下九步行街",
+      "en": "Shangxiajiu Pedestrian Street",
+      "desc": "骑楼老街美食天堂，西关风情浓郁",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shangxiajiu.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "珠江夜游",
+      "en": "Pearl River Cruise",
+      "desc": "船游珠江两岸灯光，广州塔倒映江面",
+      "img": "data/cities/guangzhou/img/Pearl_River_Guangzhou.jpg",
+      "bearing": "C"
+    },
+    {
+      "name": "南越王博物院",
+      "en": "Nanyue King Museum",
+      "desc": "两千年南越王墓原址，丝缕玉衣国宝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanyue%20King%20Museum.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "圣心大教堂",
+      "en": "Sacred Heart Cathedral",
+      "desc": "全球四座全石结构哥特式教堂之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sacred%20Heart%20Cathedral%20Guangzhou.jpg?width=640",
+      "bearing": "W"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\guangzhou\\scenes.json"
+}

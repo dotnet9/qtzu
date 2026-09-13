@@ -1,0 +1,108 @@
+{
+  "city": "tainan",
+  "source": "各校官网（www.ncku.edu.tw 等）",
+  "unis": [
+    {
+      "zh": "成功大学",
+      "en": "National Cheng Kung University",
+      "tag": "重点",
+      "founded": 1931,
+      "site": "https://www.ncku.edu.tw",
+      "globalRank": 336,
+      "nationalRank": 5,
+      "bearing": "E",
+      "history": "始于台南高等工业学校，纪念郑成功得名，工学院与医学并重的南台湾旗舰大学。",
+      "img": null
+    },
+    {
+      "zh": "台南大学",
+      "en": "National University of Tainan",
+      "tag": null,
+      "founded": 1899,
+      "site": "https://www.nutn.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "C",
+      "history": "始于台南师范学校，百年师范传统，教育学科著名。"
+    },
+    {
+      "zh": "南台科技大学",
+      "en": "Southern Taiwan University of Science and Technology",
+      "tag": null,
+      "founded": 1969,
+      "site": "https://www.stust.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "全台办学绩优的私立科大，工程与管理双强。"
+    },
+    {
+      "zh": "长荣大学",
+      "en": "Chang Jung Christian University",
+      "tag": null,
+      "founded": 1993,
+      "site": "https://www.cjcu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "长老教会创办的基督教大学，铁道旁的绿色校园。"
+    },
+    {
+      "zh": "嘉南药理大学",
+      "en": "Chia Nan University of Pharmacy and Science",
+      "tag": null,
+      "founded": 1964,
+      "site": "https://www.cnu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SW",
+      "history": "药学起家，化妆品应用学科在全台高校中独树一帜。"
+    },
+    {
+      "zh": "昆山科技大学",
+      "en": "Kun Shan University",
+      "tag": null,
+      "founded": 1965,
+      "site": "https://www.ksu.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "视讯动画设计学科多次获国际影展奖项。"
+    },
+    {
+      "zh": "台南应用科技大学",
+      "en": "Tainan University of Technology",
+      "tag": null,
+      "founded": 1964,
+      "site": "https://www.tut.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "音乐美术设计等艺术学科齐全，体育馆曾是奥运训练场地。"
+    },
+    {
+      "zh": "中华医事科技大学",
+      "en": "Chung Hwa University of Medical Technology",
+      "tag": null,
+      "founded": 1968,
+      "site": "https://www.hwai.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "医事检验与食品营养学科特色鲜明。"
+    },
+    {
+      "zh": "真理大学（麻豆校区）",
+      "en": "Aletheia University",
+      "tag": null,
+      "founded": 1872,
+      "site": "https://www.au.edu.tw",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "源于淡水牛津学堂的百年教会大学。",
+      "campusNote": "校本部在新北淡水"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\universities.json"
+}

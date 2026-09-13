@@ -1,0 +1,77 @@
+{
+  "city": "tianjin",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "天津之眼",
+      "en": "Tianjin Eye",
+      "desc": "建在桥上的摩天轮，旋转一周看海河两岸",
+      "img": "data/cities/tianjin/img/Tianjin_Eye.jpg",
+      "bearing": "N"
+    },
+    {
+      "name": "五大道",
+      "en": "Five Great Avenues",
+      "desc": "两千余栋洋房建筑博览会，马车载你穿越百年",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Five%20Great%20Avenues%20Tianjin.jpg?width=640",
+      "bearing": "W"
+    },
+    {
+      "name": "意式风情区",
+      "en": "Italian Style Town",
+      "desc": "亚洲唯一意大利租界，马可波罗广场",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Italian%20Style%20Town%20Tianjin.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "古文化街",
+      "en": "Ancient Culture Street",
+      "desc": "津门故里，泥人张杨柳青年画聚集地",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ancient%20Culture%20Street%20Tianjin.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "瓷房子",
+      "en": "Porcelain House",
+      "desc": "七亿多片古瓷片贴出的法式洋楼奇观",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Porcelain%20House.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "盘山",
+      "en": "Panshan Mountain",
+      "desc": "「早知有盘山，何必下江南」，京东第一山",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Panshan%20Mountain.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "海河夜游",
+      "en": "Haihe River Night Cruise",
+      "desc": "桥梁博物馆之称的海河，夜灯如虹",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Haihe%20River%20Tianjin.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "西开教堂",
+      "en": "Xikai Cathedral",
+      "desc": "1916 年法国罗曼式教堂，穹顶彩窗庄严",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xikai%20Cathedral.jpg?width=640",
+      "bearing": "SW"
+    },
+    {
+      "name": "大沽口炮台",
+      "en": "Dagu Fort",
+      "desc": "近代海防遗迹，见证晚清风云",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dagu%20Fort.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "黄崖关长城",
+      "en": "Huangyaguan Great Wall",
+      "desc": "蓟州险隘长城，天梯入云",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Huangyaguan%20Great%20Wall.jpg?width=640",
+      "bearing": "N"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tianjin\\scenes.json"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tianjin",
+  "name": "天津",
+  "en": "Tianjin",
+  "color": "#5B8C5A",
+  "landmark": "harbor",
+  "region": "华北",
+  "importance": "直辖市 · 北方最大港口城市",
+  "isCoastal": true,
+  "history": "天津意为「天子渡口」，1404 年明成祖朱棣赐名筑城，是中国唯一有确切建城时间记录的城市。1860 年开埠后九国租界留下了万国建筑，五大道被誉为世界建筑博览会。相声、泥人张、杨柳青年画让天津成为曲艺之乡。今天它是北方国际航运核心区，天津港是世界十大港口之一。",
+  "gallery": [
+    {
+      "img": "data/cities/tianjin/img/Tianjin_Eye.jpg",
+      "caption": "天津之眼"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Five%20Great%20Avenues%20Tianjin.jpg?width=960",
+      "caption": "五大道"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Haihe%20River%20Tianjin.jpg?width=960",
+      "caption": "海河"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🎡",
+      "intro": "天津之眼摩天轮就架在大桥上",
+      "introEn": "The Tianjin Eye sits on a bridge!",
+      "words": [
+        "wheel"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🥟",
+      "intro": "狗不理包子皮薄馅大十八个褶",
+      "introEn": "Goubuli baozi is a famous snack.",
+      "words": [
+        "baozi"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🎤",
+      "intro": "天津人人均相声演员，满城都是笑声",
+      "introEn": "Crosstalk comedy fills the city.",
+      "words": [
+        "story",
+        "funny"
+      ],
+      "deco": "lantern"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tianjin\\city.json"
+}

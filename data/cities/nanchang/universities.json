@@ -1,0 +1,79 @@
+{
+  "city": "nanchang",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "南昌大学",
+      "en": "Nanchang University",
+      "tag": "211",
+      "founded": 1921,
+      "site": "https://www.ncu.edu.cn",
+      "globalRank": null,
+      "nationalRank": 60,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "江西财经大学",
+      "en": "Jiangxi University of Finance and Economics",
+      "tag": null,
+      "founded": 1923,
+      "site": "https://www.jxufe.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "江西师范大学",
+      "en": "Jiangxi Normal University",
+      "tag": null,
+      "founded": 1940,
+      "site": "https://www.jxnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "南昌航空大学",
+      "en": "Nanchang Hangkong University",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.nchu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "江西农业大学",
+      "en": "Jiangxi Agricultural University",
+      "tag": null,
+      "founded": 1905,
+      "site": "https://www.jxau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "江西中医药大学",
+      "en": "Jiangxi University of Chinese Medicine",
+      "tag": null,
+      "founded": 1959,
+      "site": "https://www.jxutcm.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\nanchang\\universities.json"
+}

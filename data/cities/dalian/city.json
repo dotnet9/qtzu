@@ -1,0 +1,82 @@
+{
+  "id": "dalian",
+  "name": "大连",
+  "en": "Dalian",
+  "color": "#4E9EE8",
+  "landmark": "harbor",
+  "region": "东北",
+  "importance": "北方明珠 · 东北亚国际航运中心",
+  "isCoastal": true,
+  "history": "大连古称青泥洼，1899 年沙俄建市，取名「达里尼」意为远方。日据时期城市格局基本奠定，广场城市、有轨电车延续至今。作为东北亚重要港口与旅游名城，星海广场是亚洲最大的城市广场。海滨风光与百年电车让大连有「浪漫之都」的美誉。",
+  "gallery": [
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xinghai%20Square%20Dalian.jpg?width=960",
+      "caption": "星海广场"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dalian%20Binhai%20Road.jpg?width=960",
+      "caption": "滨海路"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dalian%20Trolleybus.jpg?width=960",
+      "caption": "百年电车"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🌊",
+      "intro": "浪漫之都！广场比星星还多",
+      "introEn": "Dalian is the city of romance and squares.",
+      "words": [
+        "sea",
+        "square"
+      ],
+      "deco": "shell"
+    },
+    {
+      "emoji": "🚋",
+      "intro": "百年有轨电车还在叮叮当当跑",
+      "introEn": "Century-old trams still run!",
+      "words": [
+        "train",
+        "old"
+      ],
+      "deco": "boat"
+    },
+    {
+      "emoji": "🦐",
+      "intro": "海鲜又肥又鲜，配啤酒绝了",
+      "introEn": "Seafood here is fresh and fat.",
+      "words": [
+        "fish"
+      ],
+      "deco": "shell"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "harbor",
+      "pavilion",
+      "tower"
+    ],
+    "paths": true,
+    "districts": [
+      "port",
+      "food-street",
+      "park",
+      "old-street"
+    ],
+    "highlands": [
+      {
+        "x": 0.55,
+        "z": -0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5,
+    "shape": null
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\dalian\\city.json"
+}

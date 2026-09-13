@@ -1,0 +1,63 @@
+{
+  "city": "quanzhou",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "开元寺",
+      "en": "Kaiyuan Temple",
+      "desc": "千年古刹，东西双塔为泉州地标",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaiyuan%20Temple%20Quanzhou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "清源山老君岩",
+      "en": "Qingyuan Mountain",
+      "desc": "中国最大道教石雕老君造像",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Laozi%20Statue%20Quanzhou.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "西街",
+      "en": "West Street Quanzhou",
+      "desc": "千年古街，钟楼与红砖古厝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/West%20Street%20Quanzhou.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "清净寺",
+      "en": "Qingjing Mosque",
+      "desc": "中国现存最古老伊斯兰教寺",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qingjing%20Mosque.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "洛阳桥",
+      "en": "Luoyang Bridge",
+      "desc": "中国第一座跨海石桥，蔡襄主持",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Luoyang%20Bridge%20Quanzhou.jpg?width=640",
+      "bearing": "NE"
+    },
+    {
+      "name": "崇武古城",
+      "en": "Chongwu Ancient City",
+      "desc": "明代抗倭石城，惠安女风情",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chongwu%20Ancient%20City.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "蟳埔村",
+      "en": "Xunpu Village",
+      "desc": "蟳埔女簪花围与蚵壳厝",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Xunpu%20Village.jpg?width=640",
+      "bearing": "SE"
+    },
+    {
+      "name": "天后宫",
+      "en": "Tianhou Palace",
+      "desc": "妈祖信仰重要祖庭之一",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianhou%20Palace%20Quanzhou.jpg?width=640",
+      "bearing": "S"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\quanzhou\\scenes.json"
+}

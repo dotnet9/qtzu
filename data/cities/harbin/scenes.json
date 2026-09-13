@@ -1,0 +1,63 @@
+{
+  "city": "harbin",
+  "source": "地方政府门户与世界遗产名录等官方资料",
+  "items": [
+    {
+      "name": "圣索菲亚大教堂",
+      "en": "Saint Sophia Cathedral",
+      "desc": "1907 年拜占庭式建筑，绿顶红砖百年地标",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Sophia%20Cathedral%20Harbin.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "冰雪大世界",
+      "en": "Ice and Snow World",
+      "desc": "全球最大冰雪主题乐园，冰雕灯光夜景",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Harbin%20Ice%20and%20Snow%20World.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "中央大街",
+      "en": "Central Street",
+      "desc": "百年步行街，面包石路两侧欧式建筑",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Central%20Street%20Harbin.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "太阳岛",
+      "en": "Sun Island",
+      "desc": "松花江北岸雪雕博览与俄式风情小镇",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Sun%20Island%20Harbin.jpg?width=640",
+      "bearing": "N"
+    },
+    {
+      "name": "防洪纪念塔",
+      "en": "Flood Control Memorial Tower",
+      "desc": "松花江畔城市象征",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Flood%20Control%20Memorial%20Tower.jpg?width=640",
+      "bearing": "C"
+    },
+    {
+      "name": "老道外中华巴洛克",
+      "en": "Chinese Baroque",
+      "desc": "国内最大中华巴洛克建筑群，老哈尔滨味",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese%20Baroque%20Harbin.jpg?width=640",
+      "bearing": "E"
+    },
+    {
+      "name": "亚布力滑雪场",
+      "en": "Yabuli Ski Resort",
+      "desc": "中国滑雪旅游发源地",
+      "img": "data/cities/harbin/img/Yabuli_Ski_Resort.jpg",
+      "bearing": "SE"
+    },
+    {
+      "name": "伏尔加庄园",
+      "en": "Volga Manor",
+      "desc": "俄式园林庄园，异国风情",
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Volga%20Manor.jpg?width=640",
+      "bearing": "SE"
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\harbin\\scenes.json"
+}

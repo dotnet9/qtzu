@@ -1,0 +1,82 @@
+{
+  "id": "tainan",
+  "name": "台南",
+  "en": "Tainan",
+  "color": "#C6A5F0",
+  "landmark": "pavilion",
+  "region": "台湾",
+  "importance": "台湾历史古都 · 文化首都",
+  "isCoastal": true,
+  "history": "台南是台湾最早开发的城市，荷据时期在此筑热兰遮城，郑成功 1662 年收复台湾后定都于此，此后两百余年台南一直是台湾首府，留下「一府二鹿三艋舺」的古谚。全台庙宇密度第一，孔庙（1665 年建）是台湾第一座高等学府，赤崁楼、安平古堡、亿载金城讲述着从大航海时代到近代的沧桑。台南美食被称作「台湾味の原点」，担仔面、棺材板、碗粿都诞生在这里。旧城街巷如迷宫，转角就是百年老店。",
+  "gallery": [
+    {
+      "img": "data/cities/tainan/img/Chihkan_Tower_Tainan.jpg",
+      "caption": "赤崁楼"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Fort%20Zeelandia%2C%20Tainan.jpg?width=960",
+      "caption": "安平古堡"
+    },
+    {
+      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tainan%20Confucius%20Temple.jpg?width=960",
+      "caption": "台南孔庙"
+    }
+  ],
+  "variants": [
+    {
+      "emoji": "🏯",
+      "intro": "台湾最古老的府城，赤崁楼和安平古堡有四百年故事",
+      "introEn": "Tainan is Taiwan's old capital.",
+      "words": [
+        "old",
+        "city"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🍜",
+      "intro": "担仔面的故乡！台南美食是「台湾味的原点」",
+      "introEn": "Tainan is the origin of Taiwan flavors.",
+      "words": [
+        "noodle",
+        "food"
+      ],
+      "deco": "lantern"
+    },
+    {
+      "emoji": "🛕",
+      "intro": "全台庙宇最多的城市，孔庙是台湾第一所学堂",
+      "introEn": "Tainan has the most temples in Taiwan.",
+      "words": [
+        "temple",
+        "school"
+      ],
+      "deco": "flower"
+    }
+  ],
+  "level": {
+    "radius": 28,
+    "eggCount": 12,
+    "landmarks": [
+      "pavilion",
+      "gate",
+      "harbor"
+    ],
+    "paths": true,
+    "districts": [
+      "old-street",
+      "temple-quarter",
+      "night-market",
+      "fort-park"
+    ],
+    "highlands": [
+      {
+        "x": -0.55,
+        "z": 0.55,
+        "h": 1.6
+      }
+    ],
+    "eggsOnSigns": 5
+  },
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\tainan\\city.json"
+}

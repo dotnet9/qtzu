@@ -1,0 +1,127 @@
+{
+  "city": "shenyang",
+  "source": "各高校官网与教育部全国高等学校名单",
+  "unis": [
+    {
+      "zh": "东北大学",
+      "en": "Northeastern University",
+      "tag": "985",
+      "founded": 1923,
+      "site": "https://www.neu.edu.cn",
+      "globalRank": 377,
+      "nationalRank": 31,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "辽宁大学",
+      "en": "Liaoning University",
+      "tag": "211",
+      "founded": 1948,
+      "site": "https://www.lnu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "中国医科大学",
+      "en": "China Medical University",
+      "tag": null,
+      "founded": 1931,
+      "site": "https://www.cmu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "沈阳农业大学",
+      "en": "Shenyang Agricultural University",
+      "tag": null,
+      "founded": 1909,
+      "site": "https://www.syau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "沈阳工业大学",
+      "en": "Shenyang University of Technology",
+      "tag": null,
+      "founded": 1949,
+      "site": "https://www.sut.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "W",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "沈阳师范大学",
+      "en": "Shenyang Normal University",
+      "tag": null,
+      "founded": 1951,
+      "site": "https://www.synu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "NW",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "沈阳航空航天大学",
+      "en": "Shenyang Aerospace University",
+      "tag": null,
+      "founded": 1952,
+      "site": "https://www.sau.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "N",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "沈阳药科大学",
+      "en": "Shenyang Pharmaceutical University",
+      "tag": null,
+      "founded": 1931,
+      "site": "https://www.syphu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "SE",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "鲁迅美术学院",
+      "en": "Luxun Academy of Fine Arts",
+      "tag": null,
+      "founded": 1938,
+      "site": "https://www.lumei.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "S",
+      "history": "",
+      "campusNote": null
+    },
+    {
+      "zh": "沈阳大学",
+      "en": "Shenyang University",
+      "tag": null,
+      "founded": 1906,
+      "site": "https://www.syu.edu.cn",
+      "globalRank": null,
+      "nationalRank": null,
+      "bearing": "E",
+      "history": "",
+      "campusNote": null
+    }
+  ],
+  "_fp": "D:\\github\\apps\\AIGame\\game\\data\\cities\\shenyang\\universities.json"
+}
