@@ -9,6 +9,27 @@ const M = (color, o = {}) => new THREE.MeshStandardMaterial({
   transparent: !!o.alpha, opacity: o.alpha ?? 1, side: o.side ?? THREE.FrontSide,
 });
 
+// 把点钳进城市轮廓多边形内（在外则投影到最近边并略向心收缩；与 game._clampCityPos 同逻辑，
+// 保证石台/地标与蛋/玩家用的是同一套边界）
+function clampToPoly(pts, x, z) {
+  let inside = false;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const [xi, zi] = pts[i], [xj, zj] = pts[j];
+    if ((zi > z) !== (zj > z) && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) inside = !inside;
+  }
+  if (inside) return [x, z];
+  let best = null, bd = 1e9;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
+    const ex = bx - ax, ez = bz - az;
+    const t = Math.max(0, Math.min(1, ((x - ax) * ex + (z - az) * ez) / (ex * ex + ez * ez || 1)));
+    const qx = ax + ex * t, qz = az + ez * t;
+    const d = (x - qx) ** 2 + (z - qz) ** 2;
+    if (d < bd) { bd = d; best = [qx, qz]; }
+  }
+  return best ? [best[0] * 0.97, best[1] * 0.97] : [x, z];
+}
+
 // 城市岛地面贴图：草底 + 城市色分区 + 环形大道 + 十字街 + 中心广场（地图式画法：路缘+路面+中心虚线）
 function cityIslandTexture(color, level) {
   const S = 512;
@@ -818,11 +839,12 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     const { cx, cz, r, color, key } = isl;
     const grp = new THREE.Group();
     if (!forceFull && focus >= 0 && Math.abs(si - focus) > 1) {
-      const lt = new THREE.Mesh(new THREE.CylinderGeometry(r, r * 0.92, 6, 20),
+      const vr = r * 0.45;   // 占位岛缩小一圈，避免邻岛在海上挤成绿大陆
+      const lt = new THREE.Mesh(new THREE.CylinderGeometry(vr, vr * 0.92, 6, 20),
         new THREE.MeshStandardMaterial({ color: new THREE.Color(color).lerp(new THREE.Color('#9CCF8C'), 0.55), roughness: 0.95 }));
       lt.position.y = -3; grp.add(lt);
-      const lr = new THREE.Mesh(new THREE.ConeGeometry(r * 0.92, r * 0.9, 20), M('#A8825B'));
-      lr.rotation.x = Math.PI; lr.position.y = -6 - r * 0.45; grp.add(lr);
+      const lr = new THREE.Mesh(new THREE.ConeGeometry(vr * 0.92, vr * 0.9, 20), M('#A8825B'));
+      lr.rotation.x = Math.PI; lr.position.y = -6 - vr * 0.45; grp.add(lr);
       const ln = new THREE.Sprite(letterTexture(isl.name || '', color, '#FFFDF4'));
       ln.scale.set(3.4, 0.95, 1); ln.position.set(0, 4.5, 0); grp.add(ln);
       grp.position.set(cx, 0, cz); scene.add(grp);
@@ -862,6 +884,44 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       sg.computeVertexNormals();
       const skirt = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: 0xA8825B, roughness: 1, side: THREE.DoubleSide }));
       grp.add(skirt);
+      // 沿边浪花：白色小圆点贴着轮廓边外侧撒一圈（合并成单 mesh，随 islandSurf 呼吸闪烁）
+      {
+        const unit = Math.max(0.55, r * 0.02);          // 尺度随城市大小走
+        const step = unit * 4.2, off = unit * 1.3, dotR = unit * 0.8;
+        const fPos = [], fIdx = [];
+        for (let i = 0; i < pts.length - 1; i++) {
+          const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
+          const el = Math.hypot(bx - ax, bz - az) || 1;
+          const n = Math.max(1, Math.round(el / step));
+          for (let j = 0; j < n; j++) {
+            const t = (j + 0.5) / n;
+            const mx = ax + (bx - ax) * t, mz = az + (bz - az) * t;
+            let nx = -(bz - az) / el, nz = (bx - ax) / el;
+            if (mx * mx + mz * mz > (mx + nx) ** 2 + (mz + nz) ** 2) { nx = -nx; nz = -nz; }  // 选朝外那侧
+            const fx = mx + nx * off, fz = mz + nz * off;
+            const k = fPos.length / 3;
+            for (let s = 0; s < 7; s++) {
+              const a1 = (s / 7) * Math.PI * 2, a2 = ((s + 1) / 7) * Math.PI * 2;
+              fPos.push(fx, 0.035, fz,
+                fx + Math.cos(a1) * dotR, 0.035, fz + Math.sin(a1) * dotR,
+                fx + Math.cos(a2) * dotR, 0.035, fz + Math.sin(a2) * dotR);
+              fIdx.push(k, k + 1, k + 2);
+            }
+          }
+        }
+        if (fPos.length) {
+          const fg = new THREE.BufferGeometry();
+          fg.setAttribute('position', new THREE.Float32BufferAttribute(fPos, 3));
+          fg.setIndex(fIdx);
+          const foam = new THREE.Mesh(fg, new THREE.MeshBasicMaterial({
+            color: 0xFFFFFF, transparent: true, opacity: 0.38, depthWrite: false,
+          }));
+          foam.position.y = 0.03;
+          grp.add(foam);
+          world.anim.islandSurf = world.anim.islandSurf || [];
+          world.anim.islandSurf.push(foam);
+        }
+      }
       world.cityBounds = world.cityBounds || {};
       world.cityBounds[key] = { pts, minX, maxX, minZ, maxZ, cx, cz };
     } else {
@@ -875,7 +935,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       rock.position.y = -6 - r * 0.45;
       grp.add(top, rock);
     }
-    // 岛边浪花：圆环兜底；多边形轮廓暂不撒环（沿边浪花后续做）
+    // 岛边浪花：无轮廓时圆环兜底；多边形轮廓已在上方沿边撒白点
     let surf2 = null;
     if (!isl.shape) {
       surf2 = new THREE.Mesh(new THREE.RingGeometry(r - 1.2, r + 0.7, 40).rotateX(-Math.PI / 2),
@@ -899,44 +959,56 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       grp.add(top0);
       }
       // 多地标组合：主地标居中，其余按角度分布（level.landmarks 配置）
+      // 真实轮廓下按半径摆可能伸进海里（细长/凹形城市）：统一钳回多边形内
+      const poly = isl.shape || null;
       const lms = (isl.level && isl.level.landmarks && isl.level.landmarks.length)
         ? isl.level.landmarks : [isl.landmark, 'pavilion'];
       lms.forEach((type, i) => {
         if (i > 0 && type === lms[0]) return;
         const a = (i / Math.max(1, lms.length)) * Math.PI * 2 + 1.1;
         const rr = i === 0 ? 0 : r * 0.56;
+        let lx = Math.cos(a) * rr, lz = Math.sin(a) * rr;
+        if (i > 0 && poly) [lx, lz] = clampToPoly(poly, lx, lz);
         const lm = cityLandmark(type, color);
-        lm.position.set(Math.cos(a) * rr, 0, Math.sin(a) * rr);
+        lm.position.set(lx, 0, lz);
         lm.scale.setScalar(i === 0 ? 1 : 0.78);
         lm.rotation.y = -a + Math.PI;
         lm.traverse(o => { if (o.isMesh) o.castShadow = true; });
         grp.add(lm);
-        colC(cx + Math.cos(a) * rr, cz + Math.sin(a) * rr, i === 0 ? 1.4 : 1.0);
+        colC(cx + lx, cz + lz, i === 0 ? 1.4 : 1.0);
       });
-      // 观景石台：天空词蛋放上面，跳上去够得着
-      box(grp, 1.6, 3.2, 1.6, '#C8B898', r * 0.3, 1.6, -r * 0.3);
-      box(grp, 2.1, 0.3, 2.1, '#D8CCA8', r * 0.3, 3.3, -r * 0.3);
-      colTop(cx + r * 0.3, cz - r * 0.3, 1.15, 3.45);
+      // 观景石台：天空词蛋放上面，跳上去够得着（钳制逻辑与 _cityPos 天空位一致，石台与蛋必重合）
+      let px = r * 0.3, pz = -r * 0.3;
+      if (poly) [px, pz] = clampToPoly(poly, px, pz);
+      box(grp, 1.6, 3.2, 1.6, '#C8B898', px, 1.6, pz);
+      box(grp, 2.1, 0.3, 2.1, '#D8CCA8', px, 3.3, pz);
+      colTop(cx + px, cz + pz, 1.15, 3.45);
       // 中英文城市名牌
+      let sx = 0, sz = r * 0.42;
+      if (poly) [sx, sz] = clampToPoly(poly, sx, sz);
       const sign = new THREE.Sprite(letterTexture(isl.name || '', color, '#FFFDF4'));
       sign.scale.set(3.4, 0.95, 1);
-      sign.position.set(0, 3.1, r * 0.42);
+      sign.position.set(sx, 3.1, sz);
       const signEn = new THREE.Sprite(letterTexture((isl.en || '').toUpperCase(), '#FFFDF4', '#6B5844'));
       signEn.scale.set(2.6, 0.55, 1);
-      signEn.position.set(0, 2.35, r * 0.42);
+      signEn.position.set(sx, 2.35, sz);
       grp.add(sign, signEn);
       // 特产装饰 emoji 撒一圈（随到访版本的城市特色）
       (isl.decos || ['🏮']).forEach((em, i) => {
         const a = Math.PI * 2 * i / Math.max(1, isl.decos.length) + 0.4;
+        let dx2 = Math.cos(a) * (r - 3), dz2 = Math.sin(a) * (r - 3);
+        if (poly) [dx2, dz2] = clampToPoly(poly, dx2, dz2);
         const s = new THREE.Sprite(letterTexture(em, '#FFFDF4', '#6B5844'));
         s.scale.setScalar(0.9);
-        s.position.set(Math.cos(a) * (r - 3), 0.6, Math.sin(a) * (r - 3));
+        s.position.set(dx2, 0.6, dz2);
         grp.add(s);
       });
       // 花丛点缀：环路四个象限
       if (PROPS.flowerpatch) for (const [dx, dz] of [[0.4, 0.4], [-0.4, 0.4], [0.4, -0.4], [-0.4, -0.4]]) {
+        let fx = dx * r, fz = dz * r;
+        if (poly) [fx, fz] = clampToPoly(poly, fx, fz);
         const fp = PROPS.flowerpatch();
-        fp.position.set(dx * r, 0, dz * r);
+        fp.position.set(fx, 0, fz);
         grp.add(fp);
       }
     }
@@ -974,7 +1046,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     colC(cx, cz - 2.5, 0.8);
     grp.position.set(cx, 0, cz);
     scene.add(grp);
-    world.islands.push({ ...isl, grp, pad: { x: cx, z: cz - 2.5 } });
+    world.islands.push({ ...isl, grp, full: true, pad: { x: cx, z: cz - 2.5 } });
   };
   for (let si = 0; si < semIslands.length; si++) buildOne(semIslands[si], si);
   // 供奖励城市运行时补建精建岛（复用同一套碰撞/装饰闭包）；返回带 grp 的岛对象

@@ -1,6 +1,8 @@
-// 城市轮廓：level.shape 优先（city.json 可配），否则用 SHAPES 内置简笔轮廓，
-// 都没有则按城市 id 生成有机多边形（带海湾/半岛起伏，绝不再是正圆）。
+// 城市轮廓：level.shape 优先（city.json 可配），其次真实边界（city-shape-data.js，
+// 由 scripts/gen-city-shapes.mjs 从阿里 DataV 行政边界生成），
+// 再退内置简笔轮廓，都没有则按城市 id 生成有机多边形（带海湾/半岛起伏，绝不再是正圆）。
 // 坐标为归一化 [-1,1]，world/game 层乘以 level.radius 还原为世界坐标。
+import { CITY_SHAPES } from './city-shape-data.js';
 
 // 重点城市简笔轮廓（示意化真实边界，顺时针闭合）
 const SHAPES = {
@@ -43,5 +45,5 @@ export function getCityShape(cityId, levelShape) {
     if (Math.hypot(p[0][0] - p[p.length - 1][0], p[0][1] - p[p.length - 1][1]) > 1e-4) p.push([p[0][0], p[0][1]]);
     return p;
   }
-  return SHAPES[cityId] || blob(cityId);
+  return CITY_SHAPES[cityId] || SHAPES[cityId] || blob(cityId);
 }

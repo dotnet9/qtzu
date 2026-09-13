@@ -1556,19 +1556,30 @@ export class Game {
     const [ox, oz] = word.pos;
     const a = Math.atan2(oz, ox);
     const rr = stage.r * (0.38 + 0.28 * Math.min(1, Math.hypot(ox, oz) / 52));
-    const x = stage.cx + Math.cos(a) * rr, z = stage.cz + Math.sin(a) * rr;
+    let x = stage.cx + Math.cos(a) * rr, z = stage.cz + Math.sin(a) * rr;
     // 天空词蛋放城市高台上（地标旁的石台，跳上去够得着）
-    return word.zone === 'sky'
-      ? { x: stage.cx + stage.r * 0.3, z: stage.cz - stage.r * 0.3, y: 3.2 }
-      : { x, z, y: 0 };
+    if (word.zone === 'sky') { x = stage.cx + stage.r * 0.3; z = stage.cz - stage.r * 0.3; }
+    // 真实轮廓下细长/凹形城市（兰州等）按半径摆放可能落海：统一钳回多边形内
+    const q = { x, z };
+    this._clampCityPos(q, stage);
+    return word.zone === 'sky' ? { x: q.x, z: q.z, y: 3.2 } : { x: q.x, z: q.z, y: 0 };
   }
   // 换城：切舞台显隐、词宠全家迁城、玩家落在新城
   _switchCity(stageIdx) {
     const cur = this.islands[stageIdx];
     if (!cur) return;
+    // 轻量占位岛（启动只精建当前关±1）：进城前先补建成精建岛
+    const wIsl = (this.world.islands || []).find(w => w.uid === cur.uid);
+    if (wIsl && (wIsl.light || !wIsl.full)) {
+      const built = this.world.buildIsland(cur);
+      if (built && built.grp) {
+        if (wIsl.grp) this.scene.remove(wIsl.grp);   // 移除占位岛
+        Object.assign(wIsl, built, { light: false, full: true });
+      }
+    }
     this._buildSigns(cur);
     if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st));                          // 每座城市重建自己的牌子
-    for (const isl of this.islands) if (isl.grp) isl.grp.visible = isl.uid === cur.uid;
+    for (const isl of this.world.islands || []) if (isl.grp) isl.grp.visible = isl.uid === cur.uid;
     for (const pt of this.pets.all()) {
       const c2 = this._cityPos(pt.word, cur);
       pt.group.position.set(c2.x, c2.y || 0, c2.z);
@@ -1630,7 +1641,9 @@ export class Game {
           nm.scale.set(4.2, 0.94, 1); nm.position.set(0, 4.6, 0); gate.add(nm);
           grp.add(gate);
           this._signList.push({ ...it, x, z });
-          this._signEggSpots.unshift({ x: x - dx * 2.2 + dz * 1.6, z: z - dz * 2.2 - dx * 1.6 });
+          const es = { x: x - dx * 2.2 + dz * 1.6, z: z - dz * 2.2 - dx * 1.6 };
+          this._clampCityPos(es, stage);                       // 牌旁蛋点也钳进陆地（细长轮廓防落海）
+          this._signEggSpots.unshift(es);
           return;
         }
         const sign = this._makeSign(it, colorOf[it.type]);
@@ -2953,8 +2966,12 @@ export class Game {
 
   // ---------- 好友分享链接跳转 ----------
   // ?city=chengdu：路线城=已解锁则跳过去继续玩（未解锁提示按顺序）；奖励城=通关后才能去
-  _handleShareCity(id) {
-    if (!id || !CITY_MAP[id]) return;
+  // debug=true（链接带 &debug）：调试模式，不受通关限制，任何城市立即进入玩耍
+  async _handleShareCity(id, debug = false) {
+    if (!id) return;
+    if (debug && !CITY_MAP[id]) await ensureCityData(id);
+    if (!CITY_MAP[id]) return;
+    if (debug) { this._enterBonusCity(id, true); return; }
     const routeIdx = this.cityRouteList.indexOf(id);
     const done = this.hatchedInScope() >= this.total;
     if (routeIdx < 0) {
@@ -2981,10 +2998,10 @@ export class Game {
 
   // ---------- 通关奖励城市 ----------
   // 北京通关后解锁：order=0 的城市可自由前往（组关=复习已学词+词池补充，重在巩固与探索）
-  async _enterBonusCity(id) {
+  async _enterBonusCity(id, debug = false) {
     if (this._bonusBusy) return;
-    // 奖励城市需通关本册（孵完全册词、抵达北京）才解锁
-    if (this.hatchedInScope() < this.total) {
+    // 奖励城市需通关本册（孵完全册词、抵达北京）才解锁；debug 直达不校验
+    if (!debug && this.hatchedInScope() < this.total) {
       ui.toast('🔒 请全部通关后才能玩该城市哦！', 3200);
       return;
     }

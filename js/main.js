@@ -49,7 +49,8 @@ function parseShareLink() {
   const g = parseInt(q.get('grade'), 10);
   const t = (q.get('term') || '').toLowerCase();
   const semKey = (g >= 3 && g <= 6 && (t === 's1' || t === 's2')) ? g + (t === 's1' ? 'a' : 'b') : '';
-  return { city, semKey };
+  const debug = q.has('debug');   // debug=调试模式：不受通关限制，立即进城玩
+  return { city, semKey, debug };
 }
 const SHARE = parseShareLink();
 if (SHARE.city) {
@@ -86,7 +87,7 @@ async function begin(name, semKey, gender, password, serverScore) {
     const game = new Game(canvas);
     game.start();
     window.__game = game; // 调试句柄
-    if (SHARE.city) setTimeout(() => game._handleShareCity && game._handleShareCity(SHARE.city), 1600);
+    if (SHARE.city) setTimeout(() => game._handleShareCity && game._handleShareCity(SHARE.city, SHARE.debug), 1600);
   } catch (err) {
     console.error(err);
     window.__bootErr = err && (err.stack || err.message);
