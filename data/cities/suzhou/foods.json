@@ -13,7 +13,7 @@
       "name": "阳澄湖大闸蟹",
       "en": "Hairy Crab",
       "desc": "秋风起蟹脚痒，蟹黄如金",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hairy%20crab.jpg?width=640",
+      "img": "data/cities/suzhou/img/Hairy_crab.jpg",
       "bearing": "NE"
     },
     {
@@ -27,7 +27,7 @@
       "name": "碧螺春",
       "en": "Biluochun Tea",
       "desc": "洞庭山卷曲绿茶，吓煞人香",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Green%20tea.jpg?width=640",
+      "img": "data/cities/suzhou/img/Green_tea.jpg",
       "bearing": "SE"
     },
     {

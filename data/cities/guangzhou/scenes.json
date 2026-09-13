@@ -13,7 +13,7 @@
       "name": "陈家祠",
       "en": "Chen Clan Ancestral Hall",
       "desc": "1888 年建，岭南砖雕木雕石雕艺术集大成",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Chen%20Clan%20Ancestral%20Hall.jpg?width=640",
+      "img": "data/cities/guangzhou/img/Chen_Clan_Ancestral_Hall.jpg",
       "bearing": "W"
     },
     {
@@ -27,7 +27,7 @@
       "name": "越秀公园",
       "en": "Yuexiu Park",
       "desc": "五羊石像与明代古城墙，广州城市原点",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Five%20Rams%20Statue.jpg?width=640",
+      "img": "data/cities/guangzhou/img/Five_Rams_Statue.jpg",
       "bearing": "N"
     },
     {

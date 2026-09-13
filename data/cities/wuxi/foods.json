@@ -55,7 +55,7 @@
       "name": "梅花糕",
       "en": "Plum Blossom Cake",
       "desc": "形如梅花豆沙馅糕点",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cake.jpg?width=640",
+      "img": "data/cities/wuxi/img/Cake.jpg",
       "bearing": "C"
     }
   ],

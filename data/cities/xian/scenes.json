@@ -55,14 +55,14 @@
       "name": "小雁塔",
       "en": "Small Wild Goose Pagoda",
       "desc": "唐代荐福寺塔，「雁塔晨钟」关中八景之一",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Small%20Wild%20Goose%20Pagoda.jpg?width=640",
+      "img": "data/cities/xian/img/Small_Wild_Goose_Pagoda.jpg",
       "bearing": "SW"
     },
     {
       "name": "陕西历史博物馆",
       "en": "Shaanxi History Museum",
       "desc": "「给我一天，还你万年」的华夏宝库",
-      "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shaanxi%20History%20Museum.jpg?width=640",
+      "img": "data/cities/xian/img/Shaanxi_History_Museum.jpg",
       "bearing": "S"
     },
     {
