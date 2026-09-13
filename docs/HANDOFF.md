@@ -1,6 +1,7 @@
 # 项目交接（Q淘族 · 城市链条版）
 
 > 交接时间：2026-09-13 · 状态：全部完成并通过 agent-browser 自动化验证
+> 仓库：D:\github\apps\qtzu（游戏文件在仓库根目录，index.html 在根；远程 dotnet9/qtzu）
 
 ## 本轮新增（在原计划之外）
 
@@ -17,7 +18,7 @@
 
 ### 已完成
 
-1. **数据全量外置**：`game/data/cities/` 下 52 城 × 4 个 JSON（city/universities/foods/scenes）+ `index.json` 城市索引（`defaultHome: chengdu`、`finalCity: beijing`、order 巡游顺序）。图片 Wikimedia Commons 外链，`<city>/img/` 预留。美食/风景每城 8+，大学含 985/211/双一流/官网/建校年/排名/bearing 方位。
+1. **数据全量外置**：`data/cities/` 下 52 城 × 4 个 JSON（city/universities/foods/scenes）+ `index.json` 城市索引（`defaultHome: chengdu`、`finalCity: beijing`、order 巡游顺序）。图片 Wikimedia Commons 外链，`<city>/img/` 预留（已本地化 272 张，外链 404 自动 emoji 回退）。美食/风景每城 8+，大学含 985/211/双一流/官网/建校年/排名/bearing 方位。
 2. **data.js 加载器**：fetch + 内存缓存 + 缺文件跳过 + 空数据兜底；cities.js 重写为纯配置驱动（无硬编码城市，**不兼容旧档**）。
 3. **关卡重构**：world.js 按 `city.json.level` 生成全屏城市地图（半径 28~32、路网、地标、装饰分区、高台）；农场岛/河/船已移除；小火车/飞机转场横幅 + cinematic；北京大地图 + 金色终点仪式（徽章/横幅/烟花）。
 4. **牌子系统**：universities/foods/scenes 各项自动生成低模立牌（大学蓝/美食橙/风景绿，木杆+圆角板+emoji+中文名 sprite，共享材质），按 bearing 方位绕城分布、同方位错开半径；点击弹详情卡（onerror 回退 emoji）；蛋约 12 颗（上限 15），约 5 颗依牌放置。
@@ -25,26 +26,24 @@
 6. **城市卡片**：ui.js 顶部 4 秒/张幻灯片轮播（圆点+箭头+懒加载+onerror 回退）；Tab 配置化（customTabs）；大学富卡（校名跳官网 noopener、建校 N 年实时计算、全球/全国排名）；北京终点徽章。
 7. **操作修复**：点击落点相对当前城市中心钳制；单击走固定步长（`_holdWalk` 已移除）；滚轮系数 0.0075 + 键盘 `=`/`-` 缩放 + camDist 每帧插值平滑。
 
-### 剩余待办（按序）
+### 剩余待办（按序）—— 已全部完成 ✅
 
-1. **agent-browser 自动化验证**（本地起服 `node tools/serve.js 6000` 后访问 `http://localhost:6000/game/`）：
-   - 城市卡：幻灯片轮播切换、大学/美食/风景各 Tab、大学官网链接、牌子点击弹详情卡
-   - 3D：点击落点在城内圈内、单击走一步、滚轮/键盘缩放、蛋分布（约 12 颗）与孵化、过关转场横幅
-   - 北京终点仪式全链路；控制台无报错
-2. **规范化中文提交**（本环境无 git CLI，需在有 git 的机器执行；`.codebuddy/` 不要提交）
+1. ~~agent-browser 自动化验证~~（本地起服 `node scripts/serve.js 6100` 后访问 `http://localhost:6100/`）：
+   城市卡 4 Tab / 大学跳官网 / 38 块立牌 / 蛋 12 颗 / 点击走一步 / 滚轮键盘缩放 / 转场横幅 / 北京终点仪式全链路，控制台 0 报错，全部通过。
+2. ~~规范化中文提交~~：已提交并推送远程（品牌迁移后仓库根平铺，`.codebuddy/` 不提交）。
 
 ### 关键文件
 
 | 文件 | 说明 |
 |---|---|
-| `game/data/cities/index.json` | 52 城索引（order=巡游顺序，0=不自动巡游，99+isFinal=北京） |
-| `game/data/cities/<city>/*.json` | 每城 4 个内容 JSON |
-| `game/js/data.js` / `cities.js` | 数据加载器 / 配置适配层（103 行） |
-| `game/js/world.js` (1202 行) | 城市地图 + 立牌 + 北京仪式生成 |
-| `game/js/game.js` (4089 行) | 主逻辑（转场/蛋/点击行走/缩放） |
-| `game/js/ui.js` (1996 行) | 城市卡 + 牌子详情弹卡 |
-| `game/js/words.js` (804 行) | 词库 + 动态组关 |
-| `game/js/save.js` (453 行) | 新结构存档（旧档不兼容） |
+| `data/cities/index.json` | 52 城索引（order=巡游顺序，0=不自动巡游，99+isFinal=北京） |
+| `data/cities/<city>/*.json` | 每城 4 个内容 JSON（`<city>/img/` 为本地化图片） |
+| `js/data.js` / `cities.js` | 数据加载器 / 配置适配层（103 行） |
+| `js/world.js` (1202 行) | 城市地图 + 立牌 + 北京仪式生成 |
+| `js/game.js` (4089 行) | 主逻辑（转场/蛋/点击行走/缩放） |
+| `js/ui.js` (1996 行) | 城市卡 + 牌子详情弹卡 |
+| `js/words.js` (804 行) | 词库 + 动态组关 |
+| `js/save.js` (453 行) | 新结构存档（旧档不兼容；key `wordpet_save_v1` 保持不变） |
 
 ### 约定
 
