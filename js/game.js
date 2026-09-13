@@ -409,8 +409,8 @@ export class Game {
       if (/^Key[WASD]$|^Arrow/.test(e.code)) this._clearMoveTarget(); // 手动方向一按，自动走路让位
       if (e.code === 'KeyE') this._interact();
       // 键盘缩放视角：+/= 拉近，-/_ 拉远（滚轮之外的第二种手感）
-      if (e.code === 'Equal' || e.code === 'NumpadAdd') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget - 2.2, 2.8, 60);
-      if (e.code === 'Minus' || e.code === 'NumpadSubtract') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + 2.2, 2.8, 60);
+      if (e.code === 'Equal' || e.code === 'NumpadAdd') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget - 3.5, 2.8, 110);
+      if (e.code === 'Minus' || e.code === 'NumpadSubtract') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + 3.5, 2.8, 110);
       if (e.code === 'Tab') { e.preventDefault(); this._openSummon(); }
       if (e.code === 'Space') {
         e.preventDefault();
@@ -457,7 +457,7 @@ export class Game {
         if (this.touchCam.size === 2) {
           const [a, b] = [...this.touchCam.values()];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (this.pinchDist > 0) this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * this.pinchDist / d, 2.8, 60);
+          if (this.pinchDist > 0) this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * this.pinchDist / d, 2.8, 110);
           this.pinchDist = d;
         }
       }
@@ -481,7 +481,7 @@ export class Game {
     addEventListener('pointercancel', endPointer);
     this.canvas.addEventListener('wheel', e => {
       if (this.lockInput) return;
-      this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + e.deltaY * 0.0075, 2.8, 60);
+      this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + e.deltaY * 0.018, 2.8, 110);
     }, { passive: true });
 
     // ---- 虚拟摇杆 ----

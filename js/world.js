@@ -899,7 +899,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       // 沿边浪花：白色小圆点贴着轮廓边外侧撒一圈（合并成单 mesh，随 islandSurf 呼吸闪烁）
       {
         const unit = Math.max(0.55, r * 0.02);          // 尺度随城市大小走
-        const step = unit * 4.2, off = unit * 1.3, dotR = unit * 0.8;
+        const step = unit * 2.1, off = unit * 1.3, dotR = unit * 0.8;
         const fPos = [], fIdx = [];
         for (let i = 0; i < pts.length - 1; i++) {
           const [ax, az] = pts[i], [bx, bz] = pts[i + 1];

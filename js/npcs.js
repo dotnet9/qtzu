@@ -54,6 +54,23 @@ function buildNPC(role, shirt) {
   tex.colorSpace = THREE.SRGBColorSpace;
   const hat = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
   hat.scale.setScalar(0.48); hat.position.y = 1.44; g.add(hat);
+  // 头顶角色名牌
+  const nv = document.createElement('canvas');
+  nv.width = 256; nv.height = 80;
+  const nc = nv.getContext('2d');
+  nc.fillStyle = 'rgba(255,253,246,.94)';
+  nc.strokeStyle = '#E3D4C2'; nc.lineWidth = 5;
+  nc.beginPath();
+  if (nc.roundRect) nc.roundRect(4, 4, 248, 72, 22); else nc.rect(4, 4, 248, 72);
+  nc.fill(); nc.stroke();
+  nc.fillStyle = '#4A3B2E';
+  nc.font = '900 40px "Microsoft YaHei", sans-serif';
+  nc.textAlign = 'center'; nc.textBaseline = 'middle';
+  nc.fillText(role.zh, 128, 42);
+  const ntex = new THREE.CanvasTexture(nv);
+  ntex.colorSpace = THREE.SRGBColorSpace;
+  const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false }));
+  tag.scale.set(1.55, 0.48, 1); tag.position.y = 1.86; g.add(tag);
   const legGeo = new THREE.CapsuleGeometry(0.07, 0.18, 3, 6);
   const legM = new THREE.MeshStandardMaterial({ color: 0x5B4632, roughness: 0.9 });
   const legL = new THREE.Mesh(legGeo, legM); legL.position.set(-0.1, 0.16, 0);

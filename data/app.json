@@ -9,6 +9,6 @@
   "site": { "label": "qtzu.com", "url": "https://qtzu.com/" },
   "repo": { "label": "github.com/dotnet9/qtzu", "url": "https://github.com/dotnet9/qtzu" },
   "author": "沙漠尽头的狼",
-  "authorSite": { "label": "codewf.com", "url": "https://codewf.com/zh-CN" },
+  "authorSite": { "label": "codewf.com", "url": "https://codewf.com" },
   "license": "MIT"
 }
