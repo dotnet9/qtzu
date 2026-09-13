@@ -12,6 +12,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 const ROOT = path.resolve(__dirname, '..');
 const BOARD_FILE = path.join(__dirname, 'leaderboard.json');
 const ACCOUNTS_FILE = path.join(__dirname, 'accounts.json');
+const SAVES_FILE = path.join(__dirname, 'saves.json');   // 跨设备存档（push-save/pull-save）
 // 老账号（功能上线前就存在排行榜里、没设过密码的）按“空密码”处理
 const LEGACY_PASSWORD = '';
 
@@ -83,6 +84,33 @@ function writeAccounts(obj) {
   const tmp = ACCOUNTS_FILE + '.tmp';
   fs.writeFileSync(tmp, JSON.stringify(obj, null, 2), 'utf8');
   fs.renameSync(tmp, ACCOUNTS_FILE);   // 原子替换
+}
+
+// ---------- 跨设备存档（云同步的"半个云"：本地文件存储） ----------
+function readSaves() {
+  try {
+    const obj = JSON.parse(fs.readFileSync(SAVES_FILE, 'utf8'));
+    return obj && typeof obj === 'object' && !Array.isArray(obj) ? obj : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function writeSaves(obj) {
+  const tmp = SAVES_FILE + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(obj), 'utf8');   // 存档含完整词宠/进度，体积大，不缩进
+  fs.renameSync(tmp, SAVES_FILE);
+}
+
+// 校验身份并返回账号名；失败返回 null（与 /api/score 同一套规则）
+function authSave(body) {
+  const username = String((body && body.username) != null ? body.username : '').trim().slice(0, 20);
+  if (!username) return null;
+  const accounts = readAccounts();
+  const acc = accounts[username];
+  const password = String((body && body.password) != null ? body.password : '');
+  if (!acc || acc.pwd !== hashPwd(username, password)) return null;
+  return username;
 }
 
 // 老账号：在排行榜里出现过、但还没在账号表里登记过
@@ -337,6 +365,34 @@ const server = http.createServer(async (req, res) => {
       writeBoard(rows);
       sendJson(res, 200, row);
       log(req, 200, `${username}=${row.score}`);
+      return;
+    }
+
+    // 上传完整存档（登录状态下静默双写；换设备登录后 pull-save 拉回）
+    if (pathname === '/api/push-save' && req.method === 'POST') {
+      const body = await parseBody(req, res); if (!body) return;
+      const username = authSave(body);
+      if (!username) { sendJson(res, 401, { error: '请先登录' }); log(req, 401, 'unauthorized save'); return; }
+      const save = body.save;
+      if (!save || typeof save !== 'object' || Array.isArray(save)) {
+        sendJson(res, 400, { error: 'invalid save' }); log(req, 400, 'invalid save'); return;
+      }
+      const saves = readSaves();
+      saves[username] = { save, updatedAt: Date.now() };
+      writeSaves(saves);
+      sendJson(res, 200, { ok: true });
+      log(req, 200, `${username} save pushed`);
+      return;
+    }
+
+    // 拉取服务器存档（登录后立即调，与本地合并）
+    if (pathname === '/api/pull-save' && req.method === 'POST') {
+      const body = await parseBody(req, res); if (!body) return;
+      const username = authSave(body);
+      if (!username) { sendJson(res, 401, { error: '请先登录' }); log(req, 401, 'unauthorized save'); return; }
+      const rec = readSaves()[username];
+      sendJson(res, 200, rec ? { save: rec.save } : {});
+      log(req, 200, rec ? `${username} save pulled` : `${username} no save`);
       return;
     }
 

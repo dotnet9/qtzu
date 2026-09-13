@@ -1,6 +1,7 @@
 # 运行时数据（服务端生成，勿提交）
 scripts/accounts.json
 scripts/leaderboard.json
+scripts/saves.json
 scripts/*.log
 
 # 图片本地化中间产物

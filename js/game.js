@@ -199,6 +199,7 @@ export class Game {
     if (this.cityTour) {
       const st = this._currentStage();
       this.player.position.set(st.cx, 0, st.cz - st.r * 0.35);
+      this._collide();   // 出生点若与牌子/校门碰撞体重叠，立即推出来（防进入就晃动）
     } else if (sp && typeof sp.x === 'number') {
       this.player.position.set(sp.x, sp.y || 0, sp.z);
       this.player.rotation.y = sp.yaw || Math.PI;
@@ -1606,6 +1607,7 @@ export class Game {
     }
     this.player.position.set(cur.cx, 0, cur.cz - cur.r * 0.35);
     this._clampCityPos(this.player.position, cur);   // 有机轮廓下出生点也可能在海上
+    this._collide();   // 同上：出生点撞进牌子/校门碰撞体就立即推出
     this.onIsle = false;
     this._clearMoveTarget();
   }
@@ -2186,6 +2188,7 @@ export class Game {
       }
     }
     // 圆形与矩形碰撞体
+    let hit = false;   // 本帧有推出动作（配合卡死逃逸：目标点在障碍里就走不进去）
     for (const c of this.world.colliders) {
       if (c.dead) continue;                                   // 机关已开，碰撞体作废
       if (c.top !== undefined) {
@@ -2196,9 +2199,15 @@ export class Game {
       if (c.t === 'c') {
         const dx = p.x - c.x, dz = p.z - c.z;
         const d = Math.hypot(dx, dz);
-        if (d < c.r + R && d > 0.001) {
-          p.x = c.x + dx / d * (c.r + R);
-          p.z = c.z + dz / d * (c.r + R);
+        if (d < c.r + R) {
+          if (d > 0.001) {
+            p.x = c.x + dx / d * (c.r + R);
+            p.z = c.z + dz / d * (c.r + R);
+          } else {
+            // 正好压在圆心（到达点与障碍重合）：径向无方向，往南推出来
+            p.x = c.x; p.z = c.z + c.r + R;
+          }
+          hit = true;
           if (trying && !(c.top !== undefined && p.y > c.top - 0.25)) bump = bump || (c.top !== undefined && c.top <= 0.9 ? 'rail' : c.r >= 1.5 ? 'wall' : null);
         }
       } else {
@@ -2209,9 +2218,17 @@ export class Game {
         if (d < R) {
           if (d > 0.001) { p.x = cx + dx / d * R; p.z = cz + dz / d * R; }
           else p.z = c.z2 + R; // 正好在矩形内，往南推
+          hit = true;
           if (trying) bump = bump || (c.top !== undefined && c.top <= 0.9 ? 'rail' : 'wall');
         }
       }
+    }
+    // 卡死逃逸：主动移动中被连续推出 0.8 秒 = 目标点在障碍里（老版点击校门的晃动根源），放弃这步
+    if (hit && trying) {
+      this._stuckN = (this._stuckN || 0) + 1;
+      if (this._stuckN > 48) { this._clearMoveTarget(); this._stuckN = 0; }
+    } else if (!hit) {
+      this._stuckN = 0;
     }
     if (bump) this._showBumpHint(bump);
   }
