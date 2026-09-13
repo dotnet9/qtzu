@@ -31,7 +31,7 @@ function clampToPoly(pts, x, z) {
 }
 
 // 城市岛地面贴图：草底 + 城市色分区 + 环形大道 + 十字街 + 中心广场（地图式画法：路缘+路面+中心虚线）
-function cityIslandTexture(color, level) {
+function cityIslandTexture(color, level, shape) {
   const S = 512;
   const cv = document.createElement('canvas');
   cv.width = cv.height = S;
@@ -68,11 +68,23 @@ function cityIslandTexture(color, level) {
     c.setLineDash([]);
   };
   // 环形大道（0.6 半径）+ 十字街 + 中心广场环
+  let safe = 0.3;
+  if (shape && shape.length > 2) {
+    let m = 1;
+    for (let i = 0; i < shape.length - 1; i++) {
+      const [ax, az] = shape[i], [bx, bz] = shape[i + 1];
+      const ex = bx - ax, ez = bz - az, L2 = ex * ex + ez * ez || 1;
+      const t = Math.max(0, Math.min(1, (-ax * ex - az * ez) / L2));
+      m = Math.min(m, Math.hypot(ax + ex * t, az + ez * t));
+    }
+    safe = Math.max(0.12, Math.min(0.3, m * 0.72));
+  }
   const ring = [];
-  for (let a = 0; a <= Math.PI * 2 + 0.01; a += Math.PI / 24) ring.push([C + Math.cos(a) * S * 0.3, C + Math.sin(a) * S * 0.3]);
+  for (let a = 0; a <= Math.PI * 2 + 0.01; a += Math.PI / 24) ring.push([C + Math.cos(a) * safe * S, C + Math.sin(a) * safe * S]);
   road(ring);
-  road([[C, S * 0.06], [C, S * 0.94]]);
-  road([[S * 0.06, C], [S * 0.94, C]]);
+  const e0 = C - safe * S, e1 = C + safe * S;
+  road([[C, e0], [C, e1]]);
+  road([[e0, C], [e1, C]]);
   // 中心广场
   c.strokeStyle = 'rgba(158,120,86,.6)'; c.lineWidth = S * 0.02;
   c.beginPath(); c.arc(C, C, S * 0.1, 0, Math.PI * 2); c.stroke();
@@ -864,7 +876,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       for (let i = 0; i < uv.count; i++) {
         uv.setXY(i, (pos.getX(i) - minX) / (maxX - minX), 1 - (pos.getY(i) - minZ) / (maxZ - minZ));
       }
-      const top0 = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: cityIslandTexture(color, isl.level), roughness: 0.95 }));
+      const top0 = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: cityIslandTexture(color, isl.level, pts), roughness: 0.95 }));
       top0.rotation.x = -Math.PI / 2;
       top0.position.y = 0.02;
       top0.receiveShadow = true;

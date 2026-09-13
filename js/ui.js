@@ -1724,6 +1724,54 @@ export function openMap(data) {
 }
 if (els.mapClose) els.mapClose.addEventListener('click', () => els.map.classList.add('hidden'));
 
+// ---------- 城市巡游地图：真实轮廓 + 立牌/蛋/玩家 ----------
+export function openCityMap(data) {
+  const cv = els.mapCanvas, c = cv.getContext('2d');
+  cv.width = cv.height = 840;
+  const W = cv.width, H = cv.height;
+  const k = W / 420;
+  // 比例：城市直径铺满画布的 82%
+  let minX = 1e9, maxX = -1e9, minZ = 1e9, maxZ = -1e9;
+  for (const [x, z] of data.pts) { minX = Math.min(minX, x); maxX = Math.max(maxX, x); minZ = Math.min(minZ, z); maxZ = Math.max(maxZ, z); }
+  const scale = (W * 0.82) / Math.max(maxX - minX, maxZ - minZ);
+  const X = x => W / 2 + x * scale, Z = z => H / 2 + z * scale;
+  // 海背景
+  const sea = c.createLinearGradient(0, 0, 0, H);
+  sea.addColorStop(0, '#93D6F0'); sea.addColorStop(1, '#6CB9E2');
+  c.fillStyle = sea; c.fillRect(0, 0, W, H);
+  // 城市多边形
+  const poly = data.pts;
+  const drawPoly = () => { c.beginPath(); poly.forEach(([x, z], i) => i ? c.lineTo(X(x), Z(z)) : c.moveTo(X(x), Z(z))); c.closePath(); };
+  drawPoly();
+  c.fillStyle = 'rgba(255,255,255,.5)'; c.fill();
+  if (data.color) { drawPoly(); c.fillStyle = data.color + '33'; c.fill(); }
+  drawPoly();
+  c.strokeStyle = 'rgba(110,158,94,.6)'; c.lineWidth = 3 * k; c.stroke();
+  // 立牌点：大学蓝/美食橙/风景绿
+  const COL = { uni: '#4A90D9', food: '#E8890C', scene: '#3E8E4E' };
+  for (const s of data.signs || []) {
+    c.beginPath(); c.arc(X(s.x), Z(s.z), 4.2 * k, 0, Math.PI * 2);
+    c.fillStyle = COL[s.type] || '#999'; c.fill();
+    c.strokeStyle = '#fff';
+  }
+  // 蛋点：粉=普通 金=天空 蓝=钥匙
+  for (const e of data.eggs || []) {
+    const g2 = e.golden ? '255,201,78' : e.key ? '74,144,217' : '255,159,182';
+    c.beginPath(); c.arc(X(e.x), Z(e.z), 5 * k, 0, Math.PI * 2);
+    c.fillStyle = `rgb(${g2})`; c.fill(); c.strokeStyle = '#fff'; c.stroke();
+  }
+  // 玩家
+  const px = X(data.player.x), pz = Z(data.player.z);
+  c.beginPath(); c.arc(px, pz, 6 * k, 0, Math.PI * 2);
+  c.fillStyle = '#4A90D9'; c.fill(); c.lineWidth = 2.4 * k; c.strokeStyle = '#fff'; c.stroke();
+  // 标题并显示
+  const headSpan = els.mapHead.querySelector('span');
+  if (headSpan) headSpan.textContent = `🗺️ ${data.label || data.name}`;
+  els.map.classList.remove('hidden');
+  const lg = document.getElementById('map-legend');
+  if (lg) lg.textContent = '🔵 你在这里 · 粉点=蛋 · 蓝/橙/绿=大学/美食/风景';
+}
+
 // ---------- 课本朗读练习 ----------
 let bookOv = null;
 

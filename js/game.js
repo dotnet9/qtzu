@@ -1534,12 +1534,30 @@ export class Game {
       total: this.scopeWords.filter(w => w.island === isl.key).length,
       hatched: this.scopeWords.filter(w => w.island === isl.key && save.isHatched(w.id)).length,
     }));
+    if (this.cityTour && this._openCityMap()) return;
     ui.openMap({
       player: { x: this.player.position.x, z: this.player.position.z },
       zones, eggs, islands,
       gates: { sandWall: save.hasGate('sandWall'), vines: save.hasGate('vines') },
       chapterLabel: `${BOOK_LABEL(this.sem)} · 第${chIdx + 1}关 · ${this.chapters[chIdx].name}`,
     });
+  }
+
+  // 城市巡游 2D 地图：真实轮廓 + 立牌/蛋/玩家
+  _openCityMap() {
+    const st = this._currentStage();
+    const b = this.world.cityBounds && this.world.cityBounds[st.key];
+    if (!b) return false;
+    const L = p => ({ x: p.x - st.cx, z: p.z - st.cz });
+    ui.openCityMap({
+      name: st.name, emoji: st.emoji, color: st.color, pts: b.pts, r: st.r,
+      signs: (this._signList || []).map(s => ({ x: s.x - st.cx, z: s.z - st.cz, type: s.type })),
+      eggs: [...this.eggs.eggs.values()].map(e => ({ ...L(e.group.position), golden: e.golden,       key: !!e.key })),
+
+  player: L(this.player.position),
+  label: `${st.name} ${st.emoji}`,
+  });
+  return true;
   }
 
   // ================= 玩家 =================
