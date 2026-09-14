@@ -1261,6 +1261,17 @@ function bigMushroom(s = 1) {
 }
 
 // ============ 城市地标原型：9 种程序化低模拼装（cities.js 按 landmark 类型选用） ============
+// 大学校门风格：按校名关键词分配专属门型（同校固定，不同大学不同模型）
+function gateStyleFor(zh) {
+  const s = String(zh || '');
+  if (/中医药/.test(s)) return 'eco';
+  if (/航空|航天|飞行|民航/.test(s)) return 'aero';
+  if (/医|药科/.test(s)) return 'medic';
+  if (/农业|农林|林业|海洋|水产|渔业|中医药|茶/.test(s)) return 'eco';
+  if (/理工|工业|科技|电子|邮电|交通|信息|地质|矿业|石油|钢铁|计量|电力|水利/.test(s)) return 'tech';
+  if (/师范|财经|政法|语言|外国语|民族|传媒|戏剧|音乐|美术|艺术|体育/.test(s)) return 'human';
+  return 'classic';   // 综合/未匹配 → 古典柱式（北大风）
+}
 export function cityLandmark(type, color, seedStr, img) {
   const g = new THREE.Group();
   const glow = () => M(color, { emissive: color, ei: 0.35 });
@@ -1269,19 +1280,96 @@ export function cityLandmark(type, color, seedStr, img) {
   for (const ch of String(seedStr || '')) s = (Math.imul(s, 33) ^ ch.charCodeAt(0)) >>> 0;
   const rnd = () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
   const pick = arr => arr[Math.floor(rnd() * arr.length)];
-    // uni-gate：大学校门（双柱+横梁+门楣校牌），牌子系统用于大学，真实感拉满
+    // uni-gate：大学校门——按校名风格各画各的（古典柱式/航空航天/科技/生态/医科/人文拱门）
     if (type === 'uni-gate') {
-      const beamCol = pick(['#3E7CB1', '#B0483A', '#4E8E4E', '#D98A2B', '#7A5FB5', '#C4577E']);
-      const hL = 3.2 + rnd() * 0.5, hR = 3.2 + rnd() * 0.5;
+      const style = gateStyleFor(seedStr);
       const span = 3.6 + rnd() * 0.9;
       const px = span / 2;
-      box(g, 0.55, hL, 0.55, '#F5F1E8', -px, hL / 2, 0);
-      box(g, 0.55, hR, 0.55, '#F5F1E8', px, hR / 2, 0);
-      box(g, 0.62, 0.35, 0.62, beamCol, -px, hL + 0.15, 0);
-      box(g, 0.62, 0.35, 0.62, beamCol, px, hR + 0.15, 0);
-      box(g, span + 1.1, 0.5, 0.5, beamCol, 0, Math.max(hL, hR) + 0.4, 0);
-      box(g, span + 1.1, 0.16, 0.56, '#FFFDF4', 0, Math.max(hL, hR) - 0.05, 0);
-      // 校徽/校门实拍贴到横梁正面（universities.json 的 img 本地图，contain 缩进白底匾内）
+      const h = 3.3 + rnd() * 0.4;
+      let beamY = h + 0.4, beamW = span + 1.1;   // 匾挂点：img 校徽统一贴横梁正面
+      if (style === 'classic') {
+        // 古典柱式（北大风）：双粗圆柱+双细柱+三层檐+门内石路
+        for (const sx of [-px, px]) {
+          cyl(g, 0.3, 0.36, h, '#F2EEE6', sx, h / 2, 0, 10);
+          box(g, 0.85, 0.22, 0.85, '#E4DECF', sx, h + 0.05, 0);
+        }
+        for (const sx of [-px + 0.7, px - 0.7]) cyl(g, 0.16, 0.2, h - 0.4, '#F2EEE6', sx, (h - 0.4) / 2, 0, 8);
+        box(g, beamW, 0.32, 0.6, '#F5F1E8', 0, beamY, 0);
+        box(g, beamW - 0.2, 0.14, 0.66, '#C9BFA9', 0, beamY - 0.2, 0);
+        box(g, beamW, 0.2, 0.5, '#E4DECF', 0, beamY + 0.32, 0);
+        box(g, 1.9, 0.08, 1.5, '#B9B2A2', 0, 0.04, 0.2);   // 门内石板路
+        for (const [sx, sz] of [[-px - 0.8, 0.7], [px + 0.8, 0.7]]) {
+          sph(g, 0.3, M('#5FA05F'), sx, 0.5, sz);
+          box(g, 0.14, 0.4, 0.14, '#8A6844', sx, 0.2, sz);
+        }
+      } else if (style === 'aero') {
+        // 航空航天（北航风）：白方柱+红双层横梁+门内火箭
+        const red = '#C24A50';
+        for (const sx of [-px, px]) {
+          box(g, 0.6, h, 0.6, '#F5F1E8', sx, h / 2, 0);
+          box(g, 0.72, 0.3, 0.72, red, sx, h + 0.1, 0);
+        }
+        box(g, beamW, 0.42, 0.55, red, 0, beamY, 0);
+        box(g, beamW - 0.6, 0.2, 0.6, '#FFFDF4', 0, beamY - 0.28, 0);
+        box(g, 0.9, 0.26, 0.6, red, -px + 0.9, beamY + 0.36, 0);   // 梁上红块装饰
+        box(g, 0.9, 0.26, 0.6, red, px - 0.9, beamY + 0.36, 0);
+        // 火箭：白身+红尖+红翼，立在门中央
+        cyl(g, 0.42, 0.42, 2.1, '#F5F1E8', 0, 1.05, 0, 12);
+        cone(g, 0.42, 0.85, red, 0, 2.5, 0, 0, 0, 0, 12);
+        sph(g, 0.16, M('#E8C86A'), 0, 1.5, 0.42);
+        for (const a2 of [0, Math.PI * 2 / 3, Math.PI * 4 / 3]) {
+          box(g, 0.08, 0.7, 0.5, red, Math.cos(a2) * 0.48, 0.5, Math.sin(a2) * 0.48, 0, -a2, 0);
+        }
+      } else if (style === 'tech') {
+        // 科技（理工/电子/邮电风）：蓝灰方柱+发光球+横梁"电路块"
+        const blue = '#4E7CA8';
+        for (const sx of [-px, px]) {
+          box(g, 0.62, h, 0.62, '#6E8CA8', sx, h / 2, 0);
+          sph(g, 0.3, glow(), sx, h + 0.32, 0);
+        }
+        box(g, beamW, 0.4, 0.55, blue, 0, beamY, 0);
+        for (let i = -2; i <= 2; i++) box(g, 0.3, 0.18, 0.6, '#BFE3FF', i * 0.85, beamY, 0.02);
+        box(g, beamW - 0.4, 0.16, 0.5, '#3D6288', 0, beamY + 0.28, 0);
+        sph(g, 0.34, glow(), 0, h - 0.7, 0);   // 门中悬浮光球
+      } else if (style === 'eco') {
+        // 生态（农林/海洋/中医药风）：绿圆柱+木横梁+树冠球
+        const wood = '#8A6844', green = '#5FA05F';
+        for (const sx of [-px, px]) {
+          cyl(g, 0.24, 0.3, h, '#8A6B4A', sx, h / 2, 0, 8);
+          sph(g, 0.62, M(green), sx, h + 0.4, 0);
+        }
+        box(g, beamW, 0.36, 0.5, wood, 0, beamY, 0);
+        box(g, beamW - 0.5, 0.14, 0.56, '#5FA05F', 0, beamY - 0.22, 0);
+        for (const sx of [-px + 0.5, px - 0.5]) {
+          cyl(g, 0.1, 0.14, 1.1, wood, sx, 0.55, 0.7, 6);
+          sph(g, 0.45, M(green), sx, 1.5, 0.7);
+        }
+      } else if (style === 'medic') {
+        // 医科：白方柱+白横梁+红十字徽
+        for (const sx of [-px, px]) {
+          box(g, 0.6, h, 0.6, '#FAF7F0', sx, h / 2, 0);
+          box(g, 0.72, 0.2, 0.72, '#D95555', sx, h + 0.08, 0);
+        }
+        box(g, beamW, 0.42, 0.55, '#FAF7F0', 0, beamY, 0);
+        box(g, 0.62, 0.18, 0.6, '#D95555', 0, beamY, 0.03);        // 红十字竖
+        box(g, 0.18, 0.62, 0.6, '#D95555', 0, beamY, 0.03);        // 红十字横
+        box(g, beamW - 0.5, 0.14, 0.56, '#E8E2D4', 0, beamY - 0.25, 0);
+      } else {
+        // 人文（师范/财经/政法/艺术风）：米白圆拱+柱座
+        const cream = '#F2EEE6';
+        for (const sx of [-px, px]) {
+          cyl(g, 0.3, 0.36, h - 0.6, cream, sx, (h - 0.6) / 2, 0, 10);
+          box(g, 0.9, 0.24, 0.9, '#E4DECF', sx, h - 0.5, 0);
+        }
+        const arc = new THREE.Mesh(new THREE.TorusGeometry(px, 0.26, 8, 20, Math.PI),
+          M(cream));
+        arc.position.set(0, h - 0.55, 0);
+        g.add(arc);
+        box(g, beamW - 0.4, 0.2, 0.5, '#E4DECF', 0, h + 0.1, 0);   // 拱顶压条
+        beamY = h + 0.1; beamW = span + 0.7;
+        box(g, 1.6, 0.06, 1.2, '#B9B2A2', 0, 0.03, 0.2);
+      }
+      // 校徽/校名匾贴横梁正面（universities.json 的 img 本地图，contain 缩进白底匾内）
       if (img) {
         const cv = document.createElement('canvas');
         cv.width = 512; cv.height = 128;
@@ -1297,27 +1385,13 @@ export function cityLandmark(type, color, seedStr, img) {
         };
         im.src = img;
         const board = new THREE.Mesh(
-          new THREE.PlaneGeometry(span + 0.9, 0.42),
+          new THREE.PlaneGeometry(beamW - 0.3, 0.4),
           new THREE.MeshBasicMaterial({ map: tex, toneMapped: false })
         );
-        board.position.set(0, Math.max(hL, hR) + 0.4, 0.26);   // 横梁深 0.5，正面 0.25 外贴 0.01 防 z-fighting
+        board.position.set(0, beamY, 0.3);   // 横梁正面外贴 0.01 防 z-fighting
         g.add(board);
       }
-      box(g, 0.16, 0.9, 0.4, '#8A8A8A', -0.5, 0.45, 0);
-      box(g, 0.16, 0.9, 0.4, '#8A8A8A', 0.5, 0.45, 0);
-      box(g, 2.4, 0.1, 1.2, '#D8CCA8', 0, 0.05, 0.4);
-      // 附属装饰：旗杆/校徽球/绿树（按 seed 随机，避免千篇一律）
-      const deco = Math.floor(rnd() * 3);
-      if (deco === 0) {
-        cyl(g, 0.05, 0.06, 2.6, '#C8C8C8', px + 0.7, 1.3, 0.3, 6);
-        box(g, 0.5, 0.3, 0.04, '#E05A4E', px + 0.95, 2.35, 0.3);
-      } else if (deco === 1) {
-        sph(g, 0.34, glow(), -px - 0.7, 1.1, 0.3);
-        box(g, 0.3, 0.7, 0.3, '#D8CCA8', -px - 0.7, 0.35, 0.3);
-      } else {
-        cyl(g, 0.12, 0.16, 0.9, '#8A6844', px + 0.8, 0.45, -0.5, 6);
-        sph(g, 0.62, M('#5FA05F'), px + 0.8, 1.3, -0.5);
-      }
+      box(g, 2.4, 0.1, 1.2, '#D8CCA8', 0, 0.05, 0.4);   // 门前空地
     }
   if (type === 'gate') {
     // 城楼：城墙台 + 门洞 + 两层飞檐（北京/西安）
