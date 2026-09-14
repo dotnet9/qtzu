@@ -1643,6 +1643,15 @@ export class Game {
     this.onIsle = false;
     this._clearMoveTarget();
   }
+
+  // 撞到城市边界的气泡提示（节流 5 秒，只有主动移动顶着边界才提示）
+  _cityEdgeHint() {
+    if (!this._mv || this._mv.lengthSq() <= 0.02) return;
+    const now = performance.now() / 1000;
+    if (this._edgeHintCd > now) return;
+    this._edgeHintCd = now + 5;
+    ui.toast('🧭 这就是这座城市的边界啦，先去城里孵蛋升级吧！');
+  }
   // ================= 城市牌子系统 =================
   // 大学/美食/风景按方位(bearing)立牌，一块城市几十块；点击牌子弹出详情卡。
   // 牌子与蛋解耦：只有一部分蛋按 seed 放在牌子旁，其余散布全城。
@@ -2149,17 +2158,17 @@ export class Game {
     return inside;
   }
 
-  // 把世界坐标点钳回当前城市多边形内（在外则投影到最近边上并略向心收缩）
+  // 把世界坐标点钳回当前城市多边形内（在外则投影到最近边上并略向心收缩）；返回是否发生了钳制
   _clampCityPos(p, st = this._currentStage()) {
     const b = this.world.cityBounds && this.world.cityBounds[st.key];
     if (!b) {   // 兜底：圆形钳制
       const dx = p.x - st.cx, dz = p.z - st.cz;
       const d = Math.hypot(dx, dz), max = st.r - 0.6;
-      if (d > max) { p.x = st.cx + dx / d * max; p.z = st.cz + dz / d * max; }
-      return;
+      if (d > max) { p.x = st.cx + dx / d * max; p.z = st.cz + dz / d * max; return true; }
+      return false;
     }
     const lx = p.x - st.cx, lz = p.z - st.cz;
-    if (this._inPoly(lx, lz, b.pts)) return;
+    if (this._inPoly(lx, lz, b.pts)) return false;
     let best = null, bd = 1e9;
     for (let i = 0; i < b.pts.length - 1; i++) {
       const [ax, az] = b.pts[i], [bx, bz] = b.pts[i + 1];
@@ -2169,13 +2178,14 @@ export class Game {
       const d = (lx - qx) ** 2 + (lz - qz) ** 2;
       if (d < bd) { bd = d; best = [qx, qz]; }
     }
-    if (best) { p.x = st.cx + best[0] * 0.97; p.z = st.cz + best[1] * 0.97; }
+    if (best) { p.x = st.cx + best[0] * 0.97; p.z = st.cz + best[1] * 0.97; return true; }
+    return false;
   }
 
   _collide() {
     // 纯城市链条：把玩家关在当前城市多边形内（岛外是大海，掉下去就坏了）
     if (this.cityTour) {
-      this._clampCityPos(this.player.position);
+      if (this._clampCityPos(this.player.position)) this._cityEdgeHint();
     }
     const p = this.player.position;
     const R = 0.42;
@@ -2331,6 +2341,14 @@ export class Game {
     // 天空穹顶水平跟随镜头（穹顶半径大于缩放上限，相机永远在球内，地平线不偏）
     const dnDome = this.world.anim.dayNight && this.world.anim.dayNight.dome;
     if (dnDome) dnDome.position.set(v.x, 0, v.z);
+    // 日月光晕随拉远渐隐：sprite 屏幕大小不随距离缩，拉远后会变成罩住地图的巨大光圈
+    const dn = this.world.anim.dayNight;
+    if (dn && (dn.sunCore || dn.moon)) {
+      const fade = Math.max(0, Math.min(1, (300 - dist) / 120));   // 180 开始渐隐，300 全隐
+      if (dn.sunCore) { dn.sunCore.material.opacity = fade; dn.sunCore.visible = fade > 0.01; }
+      if (dn.sunHalo) { dn.sunHalo.material.opacity = fade * 0.55; dn.sunHalo.visible = fade > 0.01; }
+      if (dn.moon) { dn.moon.material.opacity = fade; dn.moon.visible = fade > 0.01; }
+    }
   }
 
   // 从小人头顶向理想镜头位置打一条射线，返回允许的镜头距离系数（被挡=拉近）
