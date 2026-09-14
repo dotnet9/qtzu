@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { PROPS, badge, letterTexture } from './models.js';
 import { ISLANDS } from './words.js';
 import { buildUniGate } from './uni-gate-models.js';
+import { clampPoly } from './city-shape.js';
 
 const M = (color, o = {}) => new THREE.MeshStandardMaterial({
   color, roughness: o.rough ?? 0.9, metalness: 0,
@@ -10,26 +11,9 @@ const M = (color, o = {}) => new THREE.MeshStandardMaterial({
   transparent: !!o.alpha, opacity: o.alpha ?? 1, side: o.side ?? THREE.FrontSide,
 });
 
-// 把点钳进城市轮廓多边形内（在外则投影到最近边并略向心收缩；与 game._clampCityPos 同逻辑，
-// 保证石台/地标与蛋/玩家用的是同一套边界）
-function clampToPoly(pts, x, z) {
-  let inside = false;
-  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-    const [xi, zi] = pts[i], [xj, zj] = pts[j];
-    if ((zi > z) !== (zj > z) && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) inside = !inside;
-  }
-  if (inside) return [x, z];
-  let best = null, bd = 1e9;
-  for (let i = 0; i < pts.length - 1; i++) {
-    const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
-    const ex = bx - ax, ez = bz - az;
-    const t = Math.max(0, Math.min(1, ((x - ax) * ex + (z - az) * ez) / (ex * ex + ez * ez || 1)));
-    const qx = ax + ex * t, qz = az + ez * t;
-    const d = (x - qx) ** 2 + (z - qz) ** 2;
-    if (d < bd) { bd = d; best = [qx, qz]; }
-  }
-  return best ? [best[0] * 0.97, best[1] * 0.97] : [x, z];
-}
+// 城市院墙半径：CITY_FRAME 围墙管径（墙心在轮廓线上，向内也凸出 bw），
+// 元素摆放/玩家碰撞都要留出这份厚度，否则视觉上穿墙
+export const CITY_WALL_BW = r => Math.max(1.2, r * 0.035);
 
 // 城市岛地面贴图：草底 + 城市色分区（路网已按需求移除，绿化走 3D 树草）
 function cityIslandTexture(color, level, shape) {
@@ -817,6 +801,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   world.islands = [];
   const buildOne = (isl, si, forceFull) => {
     const { cx, cz, r, color, key } = isl;
+    const bw = CITY_WALL_BW(r);   // 院墙管径：所有贴边元素按它留出墙厚
     const grp = new THREE.Group();
     if (!forceFull && focus >= 0 && si !== focus) {
       // 只精建当前城：相邻精建岛在部分渲染器（IDE 预览/软渲染）上贴图会丢失显白块，且白岛叠在当前城边造成"能走过去"的错觉
@@ -848,7 +833,6 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       grp.add(top0);
       // CITY_FRAME：围墙——抬到 1.2 高、加粗像院墙
       {
-        const bw = Math.max(1.2, r * 0.035);
         const fpts = [];
         for (let i = 0; i < pts.length - 1; i++) fpts.push(new THREE.Vector3(pts[i][0], 1.2, pts[i][1]));
         const curve = new THREE.CatmullRomCurve3(fpts, true);
@@ -989,19 +973,23 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       grp.add(top0);
       }
       // 多地标组合：主地标居中，其余按角度分布（level.landmarks 配置）
-      // 真实轮廓下按半径摆可能伸进海里（细长/凹形城市）：统一钳回多边形内
+      // 真实轮廓下按半径摆可能伸进海里（细长/凹形城市）：统一钳回多边形内，
+      // 且按地标自身占地留出墙厚边距，不再让亭子/塔楼骑到院墙上
       const poly = isl.shape || null;
+      // 各地标原型的占地半径（未缩放；cityLandmark 里的最大外扩尺寸）
+      const LM_HALF = { gate: 3.6, tower: 1.7, wall: 7.2, panda: 3.2, ice: 2.4, palm: 3.6, dome: 2.8, mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4, 'uni-gate': 3.4 };
       const lms = (isl.level && isl.level.landmarks && isl.level.landmarks.length)
         ? isl.level.landmarks : [isl.landmark, 'pavilion'];
       lms.forEach((type, i) => {
         if (i > 0 && type === lms[0]) return;
         const a = (i / Math.max(1, lms.length)) * Math.PI * 2 + 1.1;
         const rr = i === 0 ? 0 : r * 0.56;
+        const sc = i === 0 ? 1 : 0.78;
         let lx = Math.cos(a) * rr, lz = Math.sin(a) * rr;
-        if (i > 0 && poly) [lx, lz] = clampToPoly(poly, lx, lz);
+        if (i > 0 && poly) [lx, lz] = clampPoly(poly, lx, lz, bw + (LM_HALF[type] || 2.8) * sc + 0.3);
         const lm = cityLandmark(type, color);
         lm.position.set(lx, 0, lz);
-        lm.scale.setScalar(i === 0 ? 1 : 0.78);
+        lm.scale.setScalar(sc);
         lm.rotation.y = -a + Math.PI;
         lm.traverse(o => { if (o.isMesh) o.castShadow = true; });
         grp.add(lm);
@@ -1009,7 +997,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       });
       // 观景石台：天空词蛋放上面，跳上去够得着（钳制逻辑与 _cityPos 天空位一致，石台与蛋必重合）
       let px = r * 0.3, pz = -r * 0.3;
-      if (poly) [px, pz] = clampToPoly(poly, px, pz);
+      if (poly) [px, pz] = clampPoly(poly, px, pz, bw + 1.2);   // 顶面 2.1 宽：边距=墙厚+半宽
       box(grp, 1.6, 3.2, 1.6, '#C8B898', px, 1.6, pz);
       box(grp, 2.1, 0.3, 2.1, '#D8CCA8', px, 3.3, pz);
       colTop(cx + px, cz + pz, 1.15, 3.45);
@@ -1018,7 +1006,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       (isl.decos || ['🏮']).forEach((em, i) => {
         const a = Math.PI * 2 * i / Math.max(1, isl.decos.length) + 0.4;
         let dx2 = Math.cos(a) * (r - 3), dz2 = Math.sin(a) * (r - 3);
-        if (poly) [dx2, dz2] = clampToPoly(poly, dx2, dz2);
+        if (poly) [dx2, dz2] = clampPoly(poly, dx2, dz2, bw + 0.5);
         const s = new THREE.Sprite(letterTexture(em, '#FFFDF4', '#6B5844'));
         s.scale.setScalar(0.9);
         s.position.set(dx2, 0.6, dz2);
@@ -1027,7 +1015,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       // 花丛点缀：环路四个象限
       if (PROPS.flowerpatch) for (const [dx, dz] of [[0.4, 0.4], [-0.4, 0.4], [0.4, -0.4], [-0.4, -0.4]]) {
         let fx = dx * r, fz = dz * r;
-        if (poly) [fx, fz] = clampToPoly(poly, fx, fz);
+        if (poly) [fx, fz] = clampPoly(poly, fx, fz, bw + 0.7);
         const fp = PROPS.flowerpatch();
         fp.position.set(fx, 0, fz);
         grp.add(fp);
@@ -1046,11 +1034,13 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           return ins;
         };
         const placed = [];
-        const spot = (dMin, dMax, gap) => {
+        // margin：采样点钳到离边界至少这么远（墙厚+自身半径），树丛/高楼不再嵌进院墙
+        const spot = (dMin, dMax, gap, margin) => {
           for (let k = 0; k < 40; k++) {
             const a2 = rn() * Math.PI * 2, d2 = dMin + rn() * (dMax - dMin);
-            const px = Math.cos(a2) * d2, pz = Math.sin(a2) * d2;
+            let px = Math.cos(a2) * d2, pz = Math.sin(a2) * d2;
             if (!inPt(px, pz)) continue;
+            if (poly) [px, pz] = clampPoly(poly, px, pz, margin);
             if (placed.some(q => Math.hypot(q[0] - px, q[1] - pz) < gap)) continue;
             placed.push([px, pz]);
             return [px, pz];
@@ -1060,7 +1050,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         // 绿化：树/松/灌木混撒，装饰不挡路
         const gN = Math.round(Math.min(180, r * 2.4));
         for (let i = 0; i < gN; i++) {
-          const sp = spot(r * 0.15, r * 0.9, r * 0.05);
+          const sp = spot(r * 0.15, r * 0.9, r * 0.05, bw + 1.7);
           if (!sp) continue;
           let obj = null;
           const t2 = rn();
@@ -1076,7 +1066,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         // 高楼：2-5 栋低模塔楼（城市感），带碰撞可绕行
         const bN = 8 + Math.floor(rn() * 9);
         for (let i = 0; i < bN; i++) {
-          const sp = spot(r * 0.2, r * 0.75, r * 0.09);
+          const sp = spot(r * 0.2, r * 0.75, r * 0.09, bw + 3.7);   // 塔身最宽 7：留出半宽不压墙
           if (!sp) continue;
           const w = 4 + rn() * 3, h = 14 + rn() * 12;
           const tower = new THREE.Group();
@@ -1095,7 +1085,10 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     const treeN = isCity ? 3 : 7;
     for (let i = 0; i < treeN; i++) {
       const a = Math.PI * 2 * i / treeN + (r % 3) + 0.8;
-      decoSpots.push([cx + Math.cos(a) * (r - 3), cz + Math.sin(a) * (r - 3)]);
+      let tx = Math.cos(a) * (r - 3), tz = Math.sin(a) * (r - 3);
+      // 装饰树钳进轮廓并留出墙厚+树冠：真实轮廓下 r-3 处多半已在院墙外甚至海里
+      if (isl.shape) [tx, tz] = clampPoly(isl.shape, tx, tz, bw + 1.3);
+      decoSpots.push([cx + tx, cz + tz]);
     }
     for (const [x, z] of decoSpots) {
       let obj = null;

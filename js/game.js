@@ -6,7 +6,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 
 import { WORD_MAP, ZONE_NAMES, PER_CHAPTER, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
-import { getCityShape } from './city-shape.js';
+import { getCityShape, clampPoly } from './city-shape.js';
 import { NPCManager } from './npcs.js';
 import { cityLandmark } from './world.js';
 import { buildWorld } from './world.js';
@@ -1610,8 +1610,9 @@ export class Game {
     // 天空词蛋放城市高台上（地标旁的石台，跳上去够得着）
     if (word.zone === 'sky') { x = stage.cx + stage.r * 0.3; z = stage.cz - stage.r * 0.3; }
     // 真实轮廓下细长/凹形城市（兰州等）按半径摆放可能落海：统一钳回多边形内
+    // 天空蛋边距=石台边距（world.js 同为 墙厚+1.2），同点同钳制，蛋才不会漂离台面
     const q = { x, z };
-    this._clampCityPos(q, stage);
+    this._clampCityPos(q, stage, word.zone === 'sky' ? this._cityWallMargin(stage, 1.2) : undefined);
     return word.zone === 'sky' ? { x: q.x, z: q.z, y: 3.2 } : { x: q.x, z: q.z, y: 0 };
   }
   // 换城：切舞台显隐、词宠全家迁城、玩家落在新城
@@ -1700,7 +1701,9 @@ export class Game {
           : stage.r * Math.min(0.92, 0.5 + i * (0.4 / Math.max(1, n - 1)));
         let x = stage.cx + ux * rr, z = stage.cz + uz * rr;
         const clampP = { x, z };
-        this._clampCityPos(clampP, stage);                     // 有机轮廓下确保牌子在陆地内
+        // 有机轮廓下确保牌子在陆地内，并按占地留出墙厚：校门宽（缩后半宽~2.2）比立牌宽，
+        // 只钳中心点的话门身会横骑在院墙上
+        this._clampCityPos(clampP, stage, this._cityWallMargin(stage, it.type === 'uni' ? 2.6 : 0.6));
         x = clampP.x; z = clampP.z;
         if (it.type === 'uni') {
           const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name, it.img);
@@ -1715,7 +1718,7 @@ export class Game {
           grp.add(gate);
           this._signList.push({ ...it, x, z });
           const es = { x: x - ux * 1.2 + uz * 0.9, z: z - uz * 1.2 - ux * 0.9 };   // 蛋点偏移随校门缩 1/2
-          this._clampCityPos(es, stage);                       // 牌旁蛋点也钳进陆地（细长轮廓防落海）
+          this._clampCityPos(es, stage, this._cityWallMargin(stage, 0.5));   // 牌旁蛋点也钳进陆地（细长轮廓防落海）
           this._signEggSpots.unshift(es);
           return;
         }
@@ -1726,7 +1729,9 @@ export class Game {
         sign.scale.setScalar(0.7);   // 立牌同步城市缩放微调
         this._signList.push({ ...it, x, z });
         if (this._signEggSpots.length < 26) {
-          this._signEggSpots.push({ x: x - dx * 0.9 + dz * 0.75, z: z - dz * 0.9 - dx * 0.75 });   // 牌子侧后方（偏移同步缩小）
+          const es2 = { x: x - dx * 0.9 + dz * 0.75, z: z - dz * 0.9 - dx * 0.75 };   // 牌子侧后方（偏移同步缩小）
+          this._clampCityPos(es2, stage, this._cityWallMargin(stage, 0.5));   // 蛋不许落在院墙外
+          this._signEggSpots.push(es2);
         }
       });
     }
@@ -2157,38 +2162,25 @@ export class Game {
     });
   }
 
-  // 点是否在多边形内（射线法）
-  _inPoly(x, z, pts) {
-    let inside = false;
-    for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
-      const [xi, zi] = pts[i], [xj, zj] = pts[j];
-      if (((zi > z) !== (zj > z)) && (x < (xj - xi) * (z - zi) / (zj - zi) + xi)) inside = !inside;
-    }
-    return inside;
+  // 城市院墙内缩量：墙管半径（与 world.js CITY_FRAME 同公式）+ 自身半径。
+  // 墙心在轮廓线上、向内凸出 bw，玩家/物件只钳到轮廓线会半个身子嵌进墙里（视觉穿墙）
+  _cityWallMargin(st, extra = 0.5) {
+    return Math.max(1.2, st.r * 0.035) + extra;
   }
-
-  // 把世界坐标点钳回当前城市多边形内（在外则投影到最近边上并略向心收缩）；返回是否发生了钳制
-  _clampCityPos(p, st = this._currentStage()) {
+  // 把世界坐标点钳回当前城市多边形内，并保证离院墙内壁至少 margin（默认=玩家半径）；
+  // 返回是否发生了钳制。城市边界的唯一裁判：玩家/NPC/蛋/立牌全走这里，边界永远一致
+  _clampCityPos(p, st = this._currentStage(), margin = this._cityWallMargin(st)) {
     const b = this.world.cityBounds && this.world.cityBounds[st.key];
     if (!b) {   // 兜底：圆形钳制
       const dx = p.x - st.cx, dz = p.z - st.cz;
-      const d = Math.hypot(dx, dz), max = st.r - 0.6;
+      const d = Math.hypot(dx, dz), max = Math.max(1, st.r - margin);
       if (d > max) { p.x = st.cx + dx / d * max; p.z = st.cz + dz / d * max; return true; }
       return false;
     }
     const lx = p.x - st.cx, lz = p.z - st.cz;
-    if (this._inPoly(lx, lz, b.pts)) return false;
-    let best = null, bd = 1e9;
-    for (let i = 0; i < b.pts.length - 1; i++) {
-      const [ax, az] = b.pts[i], [bx, bz] = b.pts[i + 1];
-      const ex = bx - ax, ez = bz - az;
-      const t = Math.max(0, Math.min(1, ((lx - ax) * ex + (lz - az) * ez) / (ex * ex + ez * ez || 1)));
-      const qx = ax + ex * t, qz = az + ez * t;
-      const d = (lx - qx) ** 2 + (lz - qz) ** 2;
-      if (d < bd) { bd = d; best = [qx, qz]; }
-    }
-    if (best) { p.x = st.cx + best[0] * 0.97; p.z = st.cz + best[1] * 0.97; return true; }
-    return false;
+    const [nx, nz] = clampPoly(b.pts, lx, lz, margin);
+    p.x = st.cx + nx; p.z = st.cz + nz;
+    return Math.abs(nx - lx) > 1e-6 || Math.abs(nz - lz) > 1e-6;
   }
 
   _collide() {

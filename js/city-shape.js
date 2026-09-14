@@ -55,3 +55,107 @@ export function getCityShape(cityId, levelShape) {
   }
   return CITY_SHAPES[cityId] || SHAPES[cityId] || TW_SHAPES[cityId] || blob(cityId);
 }
+
+// ===== 共享几何工具：world.js（摆放元素）与 game.js（玩家/NPC 碰撞）用同一套，
+// 保证院墙、石台、蛋、小人钳的是同一条边界 =====
+
+// 点是否在闭合多边形内（射线法；pts 末点=首点）
+export function polyInside(pts, x, z) {
+  let inside = false;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const [xi, zi] = pts[i], [xj, zj] = pts[j];
+    if ((zi > z) !== (zj > z) && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) inside = !inside;
+  }
+  return inside;
+}
+
+// 多边形边界上离点最近的位置：{ qx, qz, d, ax, az, bx, bz }（d 为欧氏距离，含所在线段）
+export function polyNearest(pts, x, z) {
+  let best = null, bd = 1e9;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
+    const ex = bx - ax, ez = bz - az;
+    const t = Math.max(0, Math.min(1, ((x - ax) * ex + (z - az) * ez) / (ex * ex + ez * ez || 1)));
+    const qx = ax + ex * t, qz = az + ez * t;
+    const d = (x - qx) ** 2 + (z - qz) ** 2;
+    if (d < bd) { bd = d; best = [qx, qz, ax, az, bx, bz]; }
+  }
+  if (!best) return { qx: x, qz: z, d: 0, ax: x, az: z, bx: x, bz: z };
+  const [qx, qz, ax, az, bx, bz] = best;
+  return { qx, qz, d: Math.sqrt(bd), ax, az, bx, bz };
+}
+
+// 线段的内法线（指向多边形内部那一侧）：在 q 点向法线方向探 0.5 判内外
+function inwardNormal(pts, q) {
+  let nx = -(q.bz - q.az), nz = q.bx - q.ax;
+  const l = Math.hypot(nx, nz) || 1;
+  nx /= l; nz /= l;
+  if (!polyInside(pts, q.qx + nx * 0.5, q.qz + nz * 0.5)) { nx = -nx; nz = -nz; }
+  return [nx, nz];
+}
+
+// 多边形的「内极点」：离边界最远的内部点（polylabel 的网格近似）。
+// 凹形/破碎轮廓（无锡的原点在城外、深圳的原点贴着海湾边）不能拿原点当"城心"，
+// 收缩/兜底都改朝这个点走。按 pts 数组引用缓存：同一城市只算一次。
+const _poleCache = new WeakMap();
+function polyPole(pts) {
+  let pole = _poleCache.get(pts);
+  if (pole) return pole;
+  const xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minZ = Math.min(...zs), maxZ = Math.max(...zs);
+  let best = [0, 0, 0];
+  const N = 32;
+  for (let i = 0; i <= N; i++) {
+    for (let j = 0; j <= N; j++) {
+      const x = minX + (maxX - minX) * i / N, z = minZ + (maxZ - minZ) * j / N;
+      if (!polyInside(pts, x, z)) continue;
+      const d = polyNearest(pts, x, z).d;
+      if (d > best[2]) best = [x, z, d];
+    }
+  }
+  _poleCache.set(pts, best);
+  return best;
+}
+
+// 把点钳进多边形，并保证离边界至少 margin（0 = 只保证在多边形内）。
+// 旧版「投影到边再 ×0.97」对凹多边形不可靠：0.97 是向原点收缩，窄处/凹湾处可能仍在墙外。
+// 现在：外部点先朝内极点逐级收缩进城（避免被投影到湖面小岛之类的细碎飞地上），再从
+// 内侧沿「最近边点 → 当前点」方向补足 margin；一侧推够另一侧可能变最近，多轮交替
+// 收敛，推过头（凹角/窄缝）就折半步长；窄域里实在放不下 margin 时，沿当前点→内极点
+// 方向找最近的可行位（内极点必在主城深处）。
+export function clampPoly(pts, x, z, margin = 0) {
+  const [poleX, poleZ] = polyPole(pts);
+  if (!polyInside(pts, x, z)) {
+    let f = 0.97, inside = false;
+    for (let i = 0; i < 64; i++, f *= 0.97) {
+      const tx = poleX + (x - poleX) * f, tz = poleZ + (z - poleZ) * f;
+      if (polyInside(pts, tx, tz)) { x = tx; z = tz; inside = true; break; }
+    }
+    if (!inside) { x = poleX; z = poleZ; }   // 畸形轮廓的兜底：内极点必在城里
+  }
+  if (margin > 0) {
+    let ok = false;
+    for (let k = 0; k < 10; k++) {
+      const q = polyNearest(pts, x, z);
+      if (q.d >= margin) { ok = true; break; }
+      let nx, nz;
+      if (q.d > 1e-5) { nx = (x - q.qx) / q.d; nz = (z - q.qz) / q.d; }
+      else { [nx, nz] = inwardNormal(pts, q); }
+      let step = margin - q.d, moved = false;
+      for (let s = 0; s < 4 && step > 1e-4; s++) {
+        const tx = x + nx * step, tz = z + nz * step;
+        if (polyInside(pts, tx, tz)) { x = tx; z = tz; moved = true; break; }
+        step *= 0.5;   // 前方是凹角/窄缝：减半步长，能推多少推多少
+      }
+      if (!moved) break;
+    }
+    if (!ok) {
+      // 窄域/离岛碎片里推不满边距：朝内极点方向找最近的可行位（离当前点越近越好）
+      for (let t = 0.05; t <= 0.95; t += 0.05) {
+        const fx = x + (poleX - x) * t, fz = z + (poleZ - z) * t;
+        if (polyInside(pts, fx, fz) && polyNearest(pts, fx, fz).d >= margin) { x = fx; z = fz; break; }
+      }
+    }
+  }
+  return [x, z];
+}
