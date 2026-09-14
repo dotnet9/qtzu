@@ -1024,6 +1024,10 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       const signEn = new THREE.Sprite(letterTexture((isl.en || '').toUpperCase(), '#FFFDF4', '#6B5844'));
       signEn.scale.set(1.7, 0.36, 1);
       signEn.position.set(sx, 2.55, sz);
+      sign.visible = signEn.visible = false;              // 常驻隐藏：进城时弹出 2.5s 后淡出（game._playCityName）
+      sign.userData.baseScale = sign.scale.clone();
+      signEn.userData.baseScale = signEn.scale.clone();
+      grp.userData.nameSigns = [sign, signEn];
       grp.add(sign, signEn);
       // 特产装饰 emoji 撒一圈（随到访版本的城市特色）
       (isl.decos || ['🏮']).forEach((em, i) => {
