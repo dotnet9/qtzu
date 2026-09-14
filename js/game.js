@@ -777,6 +777,8 @@ export class Game {
 
   // 任务气泡锚在小人头顶：3D 坐标投到屏幕，镜头外就先藏起来
   _placeQuestBubble() {
+    // 拉远看全图时小人已缩成一个点，固定像素的气泡还浮在原地很出戏：镜头远过玩法距离就藏掉
+    if (this.camDist > 50) { ui.placeQuest(null); return; }
     this._v3 = this._v3 || new THREE.Vector3();
     this._v3.set(this.player.position.x, this.player.position.y + 1.6, this.player.position.z).project(this.camera);
     if (this._v3.z < 1) ui.placeQuest((this._v3.x * 0.5 + 0.5) * innerWidth, (-this._v3.y * 0.5 + 0.5) * innerHeight);
