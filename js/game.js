@@ -148,10 +148,10 @@ export class Game {
     // 上下文可能因内存不足创建失败（手机后台应用多时常见）：先标准方式，失败后关抗锯齿降级重试
     const create = opts => new THREE.WebGLRenderer({ canvas: this.canvas, ...opts });
     try {
-      this.renderer = create({ antialias: true });
+      this.renderer = create({ antialias: true, logarithmicDepthBuffer: true });   // 对数深度：根治拉远后地面与地图纸面 z-fighting
     } catch (e) {
       console.warn('WebGL 标准初始化失败，降级重试：', e);
-      this.renderer = create({ antialias: false });
+      this.renderer = create({ antialias: false, logarithmicDepthBuffer: true });
     }
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     this.renderer.setSize(innerWidth, innerHeight);
@@ -164,7 +164,7 @@ export class Game {
 
   _initScene() {
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 0.5, 6000);   // near 0.5 提升远距深度精度（防大平面 z-fighting），远平面 6000 见全国地图
+    this.camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 1, 6000);   // near 1 提升远距深度精度（防大平面 z-fighting），远平面 6000 见全国地图
     this.world = buildWorld(this.scene, this.islands, { focus: Math.max(0, this.chapterIndex(this.hatchedInScope())) });   // 只精建当前关±1 的城市，其余轻量占位
     // 全国地图背景：其他城市按真实位置平铺（边界+名称），当前城锚定到舞台中心
     if (this.cityTour) {
