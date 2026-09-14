@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CITY_SHAPES } from '../js/city-shape-data.js';
-import { clampPoly } from '../js/city-shape.js';
+import { clampPoly, simplifyPoly } from '../js/city-shape.js';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CITY_SCALE = 0.84;
@@ -88,7 +88,7 @@ function edgeDist(pts, x, z) {
 const LM_HALF = { gate: 3.6, tower: 1.7, wall: 7.2, panda: 3.2, ice: 2.4, palm: 3.6, dome: 2.8, mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4 };
 const GATE_MARGIN = 2.6, SIGN_MARGIN = 0.6, TREE_MARGIN = 1.3, STONE_MARGIN = 1.2;
 const GREEN_MARGIN = 1.7, TOWER_MARGIN = 3.7;
-const EPS = 0.05;   // clampPoly 窄处收敛误差容限
+const EPS = 0.15;   // 容差：钳制用 0.1 简化轮廓（远小于 ≥1.2 的墙厚边距），放行简化误差
 
 function loadJson(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } }
 
@@ -106,6 +106,7 @@ for (const cid of cityIds) {
   const lv = c.level || {};
   const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, (unis.length + foods.length + scenes.length) * 0.012)) * CITY_SCALE);
   const pts = getCityShape(cid, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);
+  const sim = simplifyPoly(pts, 0.1);   // 与 world/game 同一份钳制低模
   const bw = wallBw(rr);
   const issues = [];
   const chk = (label, x, z, need) => {
@@ -118,7 +119,7 @@ for (const cid of cityIds) {
   for (let i = 0; i < treeN; i++) {
     const a = Math.PI * 2 * i / treeN + (rr % 3) + 0.8;
     let [x, z] = [Math.cos(a) * (rr - 3), Math.sin(a) * (rr - 3)];
-    [x, z] = clampPoly(pts, x, z, bw + TREE_MARGIN);
+    [x, z] = clampPoly(sim, x, z, bw + TREE_MARGIN);
     chk(`装饰树#${i}`, x, z, bw + TREE_MARGIN);
   }
 
@@ -128,6 +129,7 @@ for (const cid of cityIds) {
   const buckets = {};
   const push = (items, type) => { for (const it of items || []) { const b = DIRS[it.bearing] ? it.bearing : ['N','NE','E','SE','S','SW','W','NW'][hash(cid + (it.zh || it.name)) % 8]; (buckets[b] = buckets[b] || []).push({ ...it, type }); } };
   push(unis, 'uni'); push(foods, 'food'); push(scenes, 'scene');
+  const placedSigns = [];
   for (const [b, items] of Object.entries(buckets)) {
     const [dx, dz] = DIRS[b];
     const baseAng = Math.atan2(dx, dz);
@@ -136,18 +138,33 @@ for (const cid of cityIds) {
       const ang = it.type === 'uni'
         ? (n > 6 ? baseAng + i * (Math.PI * 2 / n) : baseAng + (n > 1 ? (i / (n - 1) - 0.5) * 0.5 : 0))
         : baseAng;
-      const ux = Math.sin(ang), uz = Math.cos(ang);
       const rr2 = it.type === 'uni' ? rr * (0.42 + (i % 2) * 0.18) : rr * Math.min(0.92, 0.5 + i * (0.4 / Math.max(1, n - 1)));
       const need = bw + (it.type === 'uni' ? GATE_MARGIN : SIGN_MARGIN);
-      const [x, z] = clampPoly(pts, ux * rr2, uz * rr2, need);
+      const gap = it.type === 'uni' ? 5 : 2.2;
+      let x = 0, z = 0;
+      for (let t = 0; t < 14; t++) {
+        const angT = ang + (t % 2 ? 1 : -1) * Math.ceil(t / 2) * 0.14;
+        const rrT = rr2 * (1 - Math.min(0.55, t * 0.055));
+        const ux = Math.sin(angT), uz = Math.cos(angT);
+        [x, z] = clampPoly(sim, ux * rrT, uz * rrT, need);
+        if (!placedSigns.some(q => Math.hypot(q.x - x, q.z - z) < gap)) break;
+      }
+      placedSigns.push({ x, z });
       const label = it.type === 'uni' ? `大学「${it.zh}」` : (it.type === 'food' ? `美食「${it.name}」` : `风景「${it.name}」`);
       chk(label, x, z, need);
+      // 与已摆牌子保持最小间距（钳到同一轮廓线时防互相叠住）
+      let nearest = 1e9;
+      for (const q of placedSigns) {
+        if (q.x === x && q.z === z) continue;
+        nearest = Math.min(nearest, Math.hypot(q.x - x, q.z - z));
+      }
+      if (nearest < gap - 2 * EPS) issues.push(`${label} 与最近牌子间距 ${nearest.toFixed(1)}（需≥${gap}）`);
     });
   }
 
   // 3) 观景石台（world.js 与 game._cityPos 同点位同边距）
   {
-    const [x, z] = clampPoly(pts, rr * 0.3, -rr * 0.3, bw + STONE_MARGIN);
+    const [x, z] = clampPoly(sim, rr * 0.3, -rr * 0.3, bw + STONE_MARGIN);
     chk('观景石台', x, z, bw + STONE_MARGIN);
   }
 
@@ -157,18 +174,18 @@ for (const cid of cityIds) {
     if (i === 0) return;
     const a = (i / Math.max(1, lms.length)) * Math.PI * 2 + 1.1;
     const need = bw + (LM_HALF[type] || 2.8) * 0.78 + 0.3;
-    const [x, z] = clampPoly(pts, Math.cos(a) * rr * 0.56, Math.sin(a) * rr * 0.56, need);
+    const [x, z] = clampPoly(sim, Math.cos(a) * rr * 0.56, Math.sin(a) * rr * 0.56, need);
     chk(`副地标${type}`, x, z, need);
   });
 
   // 5) 特产 emoji / 花丛（world.js）
   (c.variants || []).forEach((_, i) => {
     const a = Math.PI * 2 * i / Math.max(1, c.variants.length) + 0.4;
-    const [x, z] = clampPoly(pts, Math.cos(a) * (rr - 3), Math.sin(a) * (rr - 3), bw + 0.5);
+    const [x, z] = clampPoly(sim, Math.cos(a) * (rr - 3), Math.sin(a) * (rr - 3), bw + 0.5);
     chk(`特产emoji#${i}`, x, z, bw + 0.5);
   });
   for (const [dx, dz] of [[0.4, 0.4], [-0.4, 0.4], [0.4, -0.4], [-0.4, -0.4]]) {
-    const [x, z] = clampPoly(pts, dx * rr, dz * rr, bw + 0.7);
+    const [x, z] = clampPoly(sim, dx * rr, dz * rr, bw + 0.7);
     chk(`花丛(${dx},${dz})`, x, z, bw + 0.7);
   }
 
@@ -183,7 +200,7 @@ for (const cid of cityIds) {
         const a2 = rn() * Math.PI * 2, d2 = dMin + rn() * (dMax - dMin);
         let px = Math.cos(a2) * d2, pz = Math.sin(a2) * d2;
         if (!inPt(px, pz)) continue;
-        [px, pz] = clampPoly(pts, px, pz, margin);
+        [px, pz] = clampPoly(sim, px, pz, margin);
         if (placed.some(q => Math.hypot(q[0] - px, q[1] - pz) < gap)) continue;
         placed.push([px, pz]);
         return [px, pz];

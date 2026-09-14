@@ -117,6 +117,40 @@ function polyPole(pts) {
   return best;
 }
 
+// Douglas–Peucker 简化闭合多边形（末点=首点）：真实边界 1400~2100 个点，
+// 逐帧的边界钳制（玩家/词宠/NPC 每帧各一次）用全量点太贵，简化到几百点后
+// 误差 ≤ tol（远小于院墙边距 ≥1.2，肉眼不可见）；渲染仍用原精度。
+export function simplifyPoly(pts, tol = 0.1) {
+  const n = pts.length;
+  if (n <= 48) return pts;
+  const keep = new Uint8Array(n);
+  keep[0] = keep[n - 1] = 1;
+  const mid = n >> 1;
+  keep[mid] = 1;
+  // 显式栈跑 DP，避免最深 O(n) 递归
+  const stack = [[0, mid], [mid, n - 1]];
+  while (stack.length) {
+    const [i, j] = stack.pop();
+    if (j <= i + 1) continue;
+    const [ax, az] = pts[i], [bx, bz] = pts[j];
+    const ex = bx - ax, ez = bz - az;
+    const l2 = ex * ex + ez * ez || 1;
+    let maxi = -1, maxd = -1;
+    for (let k = i + 1; k < j; k++) {
+      const [px, pz] = pts[k];
+      const t = Math.max(0, Math.min(1, ((px - ax) * ex + (pz - az) * ez) / l2));
+      const dx = px - (ax + ex * t), dz = pz - (az + ez * t);
+      const d = dx * dx + dz * dz;
+      if (d > maxd) { maxd = d; maxi = k; }
+    }
+    if (maxd > tol * tol) { keep[maxi] = 1; stack.push([i, maxi], [maxi, j]); }
+  }
+  const out = pts.filter((_, i) => keep[i]);
+  const last = out[out.length - 1], first = out[0];
+  if (last[0] !== first[0] || last[1] !== first[1]) out.push([first[0], first[1]]);
+  return out;
+}
+
 // 把点钳进多边形，并保证离边界至少 margin（0 = 只保证在多边形内）。
 // 旧版「投影到边再 ×0.97」对凹多边形不可靠：0.97 是向原点收缩，窄处/凹湾处可能仍在墙外。
 // 现在：外部点先朝内极点逐级收缩进城（避免被投影到湖面小岛之类的细碎飞地上），再从

@@ -6,7 +6,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 
 import { WORD_MAP, ZONE_NAMES, PER_CHAPTER, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
-import { getCityShape, clampPoly } from './city-shape.js';
+import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
 import { NPCManager } from './npcs.js';
 import { cityLandmark } from './world.js';
 import { buildWorld } from './world.js';
@@ -1716,6 +1716,7 @@ export class Game {
     push(city.foods, 'food', '🍜');
     push(city.scenes, 'scene', '🏞️');
     const colorOf = { uni: '#7EC4F2', food: '#FFB46B', scene: '#8FD08F' };
+    const placedSigns = [];   // 已摆点位：窄方向上多点会钳到同一轮廓线，摆之前先查间距防重叠
     for (const [b, items] of Object.entries(buckets)) {
       const [dx, dz] = DIRS[b];
       const baseAng = Math.atan2(dx, dz);
@@ -1727,16 +1728,26 @@ export class Game {
           ? (n > 6 ? baseAng + i * (Math.PI * 2 / n)
                    : baseAng + (n > 1 ? (i / (n - 1) - 0.5) * 0.5 : 0))
           : baseAng;
-        const ux = Math.sin(ang), uz = Math.cos(ang);
         const rr = it.type === 'uni'
           ? stage.r * (0.42 + (i % 2) * 0.18)
           : stage.r * Math.min(0.92, 0.5 + i * (0.4 / Math.max(1, n - 1)));
-        let x = stage.cx + ux * rr, z = stage.cz + uz * rr;
-        const clampP = { x, z };
         // 有机轮廓下确保牌子在陆地内，并按占地留出墙厚：校门宽（缩后半宽~2.2）比立牌宽，
         // 只钳中心点的话门身会横骑在院墙上
-        this._clampCityPos(clampP, stage, this._cityWallMargin(stage, it.type === 'uni' ? 2.6 : 0.6));
-        x = clampP.x; z = clampP.z;
+        const margin = this._cityWallMargin(stage, it.type === 'uni' ? 2.6 : 0.6);
+        // 钳制后窄处会挤在同一轮廓线上（广州/成都出现过两校门完全重叠）：
+        // 逐次扰动方位角±缩半径重摆，直到与已摆的牌子拉开间距（校门 5 / 立牌 2.2）
+        const gap = it.type === 'uni' ? 5 : 2.2;
+        let x = stage.cx, z = stage.cz, ux = Math.sin(ang), uz = Math.cos(ang);
+        for (let t = 0; t < 14; t++) {
+          const angT = ang + (t % 2 ? 1 : -1) * Math.ceil(t / 2) * 0.14;
+          const rrT = rr * (1 - Math.min(0.55, t * 0.055));
+          ux = Math.sin(angT); uz = Math.cos(angT);
+          const clampP = { x: stage.cx + ux * rrT, z: stage.cz + uz * rrT };
+          this._clampCityPos(clampP, stage, margin);
+          x = clampP.x; z = clampP.z;
+          if (!placedSigns.some(q => Math.hypot(q.x - x, q.z - z) < gap)) break;
+        }
+        placedSigns.push({ x, z });
         if (it.type === 'uni') {
           const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name, it.img);
           gate.position.set(x, 0, z);
@@ -2211,7 +2222,15 @@ export class Game {
       return false;
     }
     const lx = p.x - st.cx, lz = p.z - st.cz;
-    const [nx, nz] = clampPoly(b.pts, lx, lz, margin);
+    // 快速通道：简化轮廓（DP 公差 2.5，Hausdorff 距离有界）离边界都还有
+    // margin+2.5 远的话，精确距离必然 ≥ margin，直接免钳——
+    // 每帧 玩家+词宠+NPC 数十次钳制，绝大多数都走这条 O(粗轮廓) 的近路
+    if (b.coarse) {
+      const q = polyNearest(b.coarse, lx, lz);
+      if (q.d >= margin + 2.5 && polyInside(b.sim || b.pts, lx, lz)) return false;
+    }
+    // 简化轮廓（≤0.1 误差，边距 ≥1.2 下无感）：贴边时的精确钳制
+    const [nx, nz] = clampPoly(b.sim || b.pts, lx, lz, margin);
     p.x = st.cx + nx; p.z = st.cz + nz;
     return Math.abs(nx - lx) > 1e-6 || Math.abs(nz - lz) > 1e-6;
   }
