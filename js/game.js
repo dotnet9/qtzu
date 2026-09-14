@@ -20,7 +20,7 @@ import { ensureWhisper, recognizeBlob, preloadWhisper, loadPercent } from './whi
 import { buildChinaMap } from './china-map.js';
 import { CURRICULUM } from './curriculum.js';
 
-const PLAYER_SPEED = 7.3;  // 城市地图 ×5 后回调：按用户反馈地图缩为 1/3，移速同步 1/3
+const PLAYER_SPEED = 3.65;  // 移速同步城市缩 1/2（7.3 的一半），穿城节奏不变
 const CITY_SCALE = 0.84;   // 城市地图尺度倍率（×5 后缩 1/3≈1.67，再按反馈缩 1/2）
 // 情景单词点：词与场景实物绑定记忆（走近弹气泡并念一遍；只启用词库里真实存在的词）
 const SCENE_WORDS = [
@@ -626,7 +626,7 @@ export class Game {
     const pp = this.player.position;
     const ddx = pt.x - pp.x, ddz = pt.z - pp.z;
     const dd = Math.hypot(ddx, ddz);
-    const STEP = 3.7;
+    const STEP = 1.85;   // 点击移动步长同步城市缩 1/2
     if (dd > STEP) { pt.x = pp.x + ddx / dd * STEP; pt.z = pp.z + ddz / dd * STEP; }
     this.moveTarget = { x: pt.x, z: pt.z };
     this.moveMarker.position.set(pt.x, groundY + 0.06, pt.z);
@@ -1684,6 +1684,7 @@ export class Game {
           const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name, it.img);
           gate.position.set(x, 0, z);
           gate.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);
+          gate.scale.setScalar(0.5);   // 校门同步城市缩 1/2（名牌 sprite 为子对象自动跟随）
           const nm = new THREE.Sprite(new THREE.SpriteMaterial({
             map: this._signNameTexture(it.name || it.zh || ''), transparent: true, depthWrite: false,
           }));
@@ -1691,7 +1692,7 @@ export class Game {
           gate.traverse(o => { o.userData.sign = it; });   // 缺这个：点校门会 fallthrough 成走过去，玩家卡进碰撞体来回晃
           grp.add(gate);
           this._signList.push({ ...it, x, z });
-          const es = { x: x - dx * 2.2 + dz * 1.6, z: z - dz * 2.2 - dx * 1.6 };
+          const es = { x: x - dx * 1.2 + dz * 0.9, z: z - dz * 1.2 - dx * 0.9 };   // 蛋点偏移随校门缩 1/2
           this._clampCityPos(es, stage);                       // 牌旁蛋点也钳进陆地（细长轮廓防落海）
           this._signEggSpots.unshift(es);
           return;
@@ -1700,9 +1701,10 @@ export class Game {
         sign.position.set(x, 0, z);
         sign.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);   // 牌面朝向城中心（纯Y旋转，lookAt会翻滚）
         grp.add(sign);
+        sign.scale.setScalar(0.7);   // 立牌同步城市缩放微调
         this._signList.push({ ...it, x, z });
         if (this._signEggSpots.length < 26) {
-          this._signEggSpots.push({ x: x - dx * 1.3 + dz * 1.1, z: z - dz * 1.3 - dx * 1.1 });   // 牌子侧后方
+          this._signEggSpots.push({ x: x - dx * 0.9 + dz * 0.75, z: z - dz * 0.9 - dx * 0.75 });   // 牌子侧后方（偏移同步缩小）
         }
       });
     }
