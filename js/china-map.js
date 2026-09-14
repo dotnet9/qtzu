@@ -7,6 +7,31 @@ const UPD = 420;                                  // 世界单位/度
 const LAT_K = Math.cos(35 * Math.PI / 180);       // 经度方向随纬度收缩（中国中纬度）
 const BASE_Y = -0.3;                              // 底图高度：海面(-0.5)之上、城市地面(0)之下（层间距拉开防 z-fighting）
 
+﻿// 城市状态浮牌：状态不同颜色不同（待闯关蓝/已攻克绿/奖励金/打造灰）
+function statusSprite(text) {
+  const cv = document.createElement('canvas');
+  cv.width = 256; cv.height = 72;
+  const c = cv.getContext('2d');
+  const pal = {
+    '待闯关': ['#E8F4FF', '#3E7CB1'], '已攻克': ['#E8F8E4', '#4E8E4E'],
+    '通关后再来哦': ['#FFF6DC', '#C08A2D'], '我们正在打造，敬请期待': ['#F0EEEA', '#8A8478'],
+  };
+  const [bg, fg] = pal[text] || ['#FFFFFF', '#666666'];
+  c.fillStyle = bg; c.strokeStyle = fg; c.lineWidth = 6;
+  c.beginPath();
+  if (c.roundRect) c.roundRect(6, 6, 244, 60, 18); else c.rect(6, 6, 244, 60);
+  c.fill(); c.stroke();
+  c.fillStyle = fg;
+  c.font = '900 34px "Microsoft YaHei", sans-serif';
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  c.fillText(text, 128, 38);
+  const tex = new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, fog: false }));
+  sp.scale.set(54, 15.2, 1);
+  return sp;
+}
+
 function nameSprite(name) {
   const cv = document.createElement('canvas');
   cv.width = 256; cv.height = 88;
@@ -22,13 +47,13 @@ function nameSprite(name) {
   c.fillText(name, 128, 46);
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
-  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, fog: false }));
   sp.scale.set(72, 24.75, 1);
   return sp;
 }
 
 // 建一次全国地图（含所有城市边界与名称），返回 { group, anchor }
-export function buildChinaMap(scene, currentKey, cityNames = {}) {
+export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, route = []) {
   const group = new THREE.Group();
   group.visible = false;   // anchor 定位后才显示
   // 底图：地图纸色，铺满整个可见范围（拉远到 550 也看不完）
@@ -61,15 +86,41 @@ export function buildChinaMap(scene, currentKey, cityNames = {}) {
     // 边界线
     const line = new THREE.LineLoop(
       new THREE.BufferGeometry().setFromPoints(pts.map(([nx, nz]) => new THREE.Vector3(nx * s, 0, nz * s))),
-      new THREE.LineBasicMaterial({ color: '#A89F8D', polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6 })
+      new THREE.LineBasicMaterial({ color: '#A89F8D', fog: false, polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6 })
     );
     line.position.set(wx, BASE_Y + 0.05, wz);
     group.add(line);
-    // 城市名（当前城由可玩场景命名，不重复放牌）
+    // 城市名 + 状态浮牌（当前城由可玩场景命名，不重复放牌）
     if (cityNames[cid]) {
       const sp = nameSprite(cityNames[cid]);
       sp.position.set(wx, BASE_Y + 14, wz);
       group.add(sp);
+      if (statuses[cid]) {
+        const st = statusSprite(statuses[cid]);
+        st.position.set(wx, BASE_Y + 5.5, wz);
+        group.add(st);
+      }
+    }
+  }
+
+﻿  // 巡游路线：按顺序串起路线城中心点（金色虚线）
+  {
+    const rp = [];
+    for (const cid of route) {
+      const g = CITY_GEO[cid];
+      if (!g) continue;
+      const [lo, la] = g.ctr;
+      rp.push(new THREE.Vector3(lo * UPD * LAT_K, BASE_Y + 0.12, -la * UPD));
+    }
+    if (rp.length > 1) {
+      const lg = new THREE.BufferGeometry().setFromPoints(rp);
+      const line = new THREE.Line(lg, new THREE.LineDashedMaterial({
+        color: '#C08A2D', dashSize: 70, gapSize: 45, fog: false, depthTest: false,
+        polygonOffset: true, polygonOffsetFactor: -7, polygonOffsetUnits: -7,
+      }));
+      line.computeLineDistances();
+      line.renderOrder = 5;
+      group.add(line);
     }
   }
 
@@ -78,6 +129,8 @@ export function buildChinaMap(scene, currentKey, cityNames = {}) {
     const geo = CITY_GEO[stageKey];
     if (!geo) { group.visible = false; return; }
     const [lon, lat] = geo.ctr;
+    // 底图跟着当前城走：原点在地图经纬原点，离当前城几万单位远，铺不满视野
+    base.position.set(lon * UPD * LAT_K, BASE_Y, -lat * UPD);
     group.position.set(cx - lon * UPD * LAT_K, 0, cz + lat * UPD);
     group.visible = true;
   }

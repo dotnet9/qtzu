@@ -168,9 +168,21 @@ export class Game {
     this.world = buildWorld(this.scene, this.islands, { focus: Math.max(0, this.chapterIndex(this.hatchedInScope())) });   // 只精建当前关±1 的城市，其余轻量占位
     // 全国地图背景：其他城市按真实位置平铺（边界+名称），当前城锚定到舞台中心
     if (this.cityTour) {
+      if (this.world.anim.sea) this.world.anim.sea.visible = false;   // 外围是地图纸面，藏掉主岛海面（防拉远后蓝方块 z-fighting）
       const names = Object.fromEntries(CITIES.map(c => [c.id, c.name]));
       const st0 = this._currentStage();
-      this.chinaMap = buildChinaMap(this.scene, st0 && st0.key, names);
+      const chIdx = this.chapterIndex(this.hatchedInScope());
+      const bonusIds = new Set(bonusCities().map(c => c.id));
+      const statuses = {};
+      for (const c of CITIES) {
+        const ri = this.cityRouteList.indexOf(c.id);
+        if (c.id === (st0 && st0.key)) continue;
+        else if (ri >= 0 && ri < chIdx) statuses[c.id] = '已攻克';
+        else if (ri >= 0) statuses[c.id] = '待闯关';
+        else if (bonusIds.has(c.id)) statuses[c.id] = '通关后再来哦';
+        else statuses[c.id] = '我们正在打造，敬请期待';
+      }
+      this.chinaMap = buildChinaMap(this.scene, st0 && st0.key, names, statuses, this.cityRouteList);
       if (st0) this.chinaMap.anchor(st0.key, st0.cx, st0.cz);
     }
     // 各向异性过滤按显卡实际上限收口：手机一般只支持 4~8，写死 16 会被驱动忽略导致远景摩尔条纹
@@ -1669,7 +1681,7 @@ export class Game {
         this._clampCityPos(clampP, stage);                     // 有机轮廓下确保牌子在陆地内
         x = clampP.x; z = clampP.z;
         if (it.type === 'uni') {
-          const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name);
+          const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name, it.img);
           gate.position.set(x, 0, z);
           gate.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);
           const nm = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -2310,6 +2322,9 @@ export class Game {
     }
     this.camera.position.lerp(v, Math.min(1, dt * 7));
     this.camera.lookAt(target.x, target.y + 1.0, target.z);
+    // 天空穹顶水平跟随镜头（穹顶半径大于缩放上限，相机永远在球内，地平线不偏）
+    const dnDome = this.world.anim.dayNight && this.world.anim.dayNight.dome;
+    if (dnDome) dnDome.position.set(v.x, 0, v.z);
   }
 
   // 从小人头顶向理想镜头位置打一条射线，返回允许的镜头距离系数（被挡=拉近）

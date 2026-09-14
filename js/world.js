@@ -30,7 +30,7 @@ function clampToPoly(pts, x, z) {
   return best ? [best[0] * 0.97, best[1] * 0.97] : [x, z];
 }
 
-// 城市岛地面贴图：草底 + 城市色分区 + 环形大道 + 十字街 + 中心广场（地图式画法：路缘+路面+中心虚线）
+// 城市岛地面贴图：草底 + 城市色分区（路网已按需求移除，绿化走 3D 树草）
 function cityIslandTexture(color, level, shape) {
   const S = 512;
   const cv = document.createElement('canvas');
@@ -56,40 +56,6 @@ function cityIslandTexture(color, level, shape) {
     c.ellipse(C + dx * S / 2, C + dz * S / 2, S * 0.16, S * 0.13, 0, 0, Math.PI * 2);
     c.fill();
   }
-  c.globalAlpha = 1;
-  // 画路工具：地图式三笔（路缘/路面/中心虚线）
-  const road = pts => {
-    const draw = () => { c.beginPath(); pts.forEach(([x, y], i) => i ? c.lineTo(x, y) : c.moveTo(x, y)); };
-    c.lineCap = 'round'; c.lineJoin = 'round';
-    c.strokeStyle = 'rgba(158,120,86,.8)'; c.lineWidth = S * 0.052; draw(); c.stroke();
-    c.strokeStyle = '#EBD3A9'; c.lineWidth = S * 0.042; draw(); c.stroke();
-    c.strokeStyle = 'rgba(255,255,255,.65)'; c.lineWidth = S * 0.006;
-    c.setLineDash([S * 0.022, S * 0.018]); draw(); c.stroke();
-    c.setLineDash([]);
-  };
-  // 环形大道（0.6 半径）+ 十字街 + 中心广场环
-  let safe = 0.3;
-  if (shape && shape.length > 2) {
-    let m = 1;
-    for (let i = 0; i < shape.length - 1; i++) {
-      const [ax, az] = shape[i], [bx, bz] = shape[i + 1];
-      const ex = bx - ax, ez = bz - az, L2 = ex * ex + ez * ez || 1;
-      const t = Math.max(0, Math.min(1, (-ax * ex - az * ez) / L2));
-      m = Math.min(m, Math.hypot(ax + ex * t, az + ez * t));
-    }
-    safe = Math.max(0.12, Math.min(0.3, m * 0.72));
-  }
-  const ring = [];
-  for (let a = 0; a <= Math.PI * 2 + 0.01; a += Math.PI / 24) ring.push([C + Math.cos(a) * safe * S, C + Math.sin(a) * safe * S]);
-  road(ring);
-  const e0 = C - safe * S, e1 = C + safe * S;
-  road([[C, e0], [C, e1]]);
-  road([[e0, C], [e1, C]]);
-  // 中心广场
-  c.strokeStyle = 'rgba(158,120,86,.6)'; c.lineWidth = S * 0.02;
-  c.beginPath(); c.arc(C, C, S * 0.1, 0, Math.PI * 2); c.stroke();
-  c.fillStyle = color; c.globalAlpha = 0.28;
-  c.beginPath(); c.arc(C, C, S * 0.088, 0, Math.PI * 2); c.fill();
   c.globalAlpha = 1;
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
@@ -304,7 +270,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   }
   const skyTex = new THREE.CanvasTexture(skyCv);
   skyTex.colorSpace = THREE.SRGBColorSpace;
-  const dome = new THREE.Mesh(new THREE.SphereGeometry(140, 24, 16),
+  // 半径必须大于相机最远缩放（550），否则镜头飞出穹顶后 BackSide 球面从外面不可见 → 天空变成纯色背景
+  const dome = new THREE.Mesh(new THREE.SphereGeometry(1000, 32, 20),
     new THREE.MeshBasicMaterial({ map: skyTex, side: THREE.BackSide, fog: false }));
   scene.add(dome);
   const cityOnly0 = !!semIslands.length && semIslands[0].level != null;
@@ -1076,6 +1043,60 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         fp.position.set(fx, 0, fz);
         grp.add(fp);
       }
+﻿      // 城市绿化+高楼：内部撒树丛/草丛（装饰不碰撞），中环带立低模高楼（带碰撞）
+      {
+        let sd = (r * 7919) | 0;
+        const rn = () => (sd = (Math.imul(sd, 48271) + 11) % 2147483647) / 2147483647;
+        const inPt = (px, pz) => {
+          if (!poly) return Math.hypot(px, pz) < r - 4;
+          let ins = false;
+          for (let i = 0, j = poly.length - 2; i < poly.length - 1; j = i++) {
+            const xi = poly[i][0], zi = poly[i][1], xj = poly[j][0], zj = poly[j][1];
+            if (((zi > pz) !== (zj > pz)) && (px < (xj - xi) * (pz - zi) / (zj - zi) + xi)) ins = !ins;
+          }
+          return ins;
+        };
+        const spot = (dMin, dMax) => {
+          for (let k = 0; k < 24; k++) {
+            const a2 = rn() * Math.PI * 2, d2 = dMin + rn() * (dMax - dMin);
+            const px = Math.cos(a2) * d2, pz = Math.sin(a2) * d2;
+            if (inPt(px, pz)) return [px, pz];
+          }
+          return null;
+        };
+        // 绿化：树/松/灌木混撒，装饰不挡路
+        const gN = Math.round(Math.min(90, r * 1.2));
+        for (let i = 0; i < gN; i++) {
+          const sp = spot(r * 0.15, r * 0.9);
+          if (!sp) continue;
+          let obj = null;
+          const t2 = rn();
+          if (isl.style === 'pine' || t2 < 0.3) obj = PROPS.pine(1 + rn() * 0.8);
+          else if (t2 < 0.55) obj = PROPS.bush(1.1 + rn() * 0.7);
+          else obj = PROPS.tree(false);
+          obj.scale.setScalar(1.1 + rn() * 0.7);
+          obj.position.set(sp[0], 0, sp[1]);
+          obj.rotation.y = rn() * 3;
+          obj.traverse(o => { if (o.isMesh) o.castShadow = true; });
+          grp.add(obj);
+        }
+        // 高楼：2-5 栋低模塔楼（城市感），带碰撞可绕行
+        const bN = 4 + Math.floor(rn() * 5);
+        for (let i = 0; i < bN; i++) {
+          const sp = spot(r * 0.35, r * 0.7);
+          if (!sp) continue;
+          const w = 4 + rn() * 3, h = 14 + rn() * 12;
+          const tower = new THREE.Group();
+          box(tower, w, h, w, ['#D8E3EC', '#E8DFD2', '#CFE0D8', '#E3D3C2'][i % 4], 0, h / 2, 0);
+          box(tower, w * 1.05, 0.5, w * 1.05, '#B9C8D4', 0, h, 0);
+          for (let fy = 1.2; fy < h - 0.6; fy += 1.4) box(tower, w * 0.86, 0.5, w * 0.86, 'rgba(160,200,230,1)', 0, fy, 0);
+          tower.position.set(sp[0], 0, sp[1]);
+          tower.rotation.y = rn() * 3;
+          tower.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+          grp.add(tower);
+          colC(cx + sp[0], cz + sp[1], Math.max(w, 1.6) * 0.75, h);
+        }
+      }
     }
     const decoSpots = [];
     const treeN = isCity ? 3 : 7;
@@ -1240,7 +1261,7 @@ function bigMushroom(s = 1) {
 }
 
 // ============ 城市地标原型：9 种程序化低模拼装（cities.js 按 landmark 类型选用） ============
-export function cityLandmark(type, color, seedStr) {
+export function cityLandmark(type, color, seedStr, img) {
   const g = new THREE.Group();
   const glow = () => M(color, { emissive: color, ei: 0.35 });
   // 校名 seed：同一校门样式固定，不同大学各不相同（柱色/横梁色/高度/附属装饰）
@@ -1260,6 +1281,28 @@ export function cityLandmark(type, color, seedStr) {
       box(g, 0.62, 0.35, 0.62, beamCol, px, hR + 0.15, 0);
       box(g, span + 1.1, 0.5, 0.5, beamCol, 0, Math.max(hL, hR) + 0.4, 0);
       box(g, span + 1.1, 0.16, 0.56, '#FFFDF4', 0, Math.max(hL, hR) - 0.05, 0);
+      // 校徽/校门实拍贴到横梁正面（universities.json 的 img 本地图，contain 缩进白底匾内）
+      if (img) {
+        const cv = document.createElement('canvas');
+        cv.width = 512; cv.height = 128;
+        const c2 = cv.getContext('2d');
+        c2.fillStyle = '#FFFDF4'; c2.fillRect(0, 0, 512, 128);
+        const tex = new THREE.CanvasTexture(cv);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const im = new Image();
+        im.onload = () => {
+          const k = Math.min(112 / im.height, 472 / im.width);
+          c2.drawImage(im, (512 - im.width * k) / 2, (128 - im.height * k) / 2, im.width * k, im.height * k);
+          tex.needsUpdate = true;
+        };
+        im.src = img;
+        const board = new THREE.Mesh(
+          new THREE.PlaneGeometry(span + 0.9, 0.42),
+          new THREE.MeshBasicMaterial({ map: tex, toneMapped: false })
+        );
+        board.position.set(0, Math.max(hL, hR) + 0.4, 0.26);   // 横梁深 0.5，正面 0.25 外贴 0.01 防 z-fighting
+        g.add(board);
+      }
       box(g, 0.16, 0.9, 0.4, '#8A8A8A', -0.5, 0.45, 0);
       box(g, 0.16, 0.9, 0.4, '#8A8A8A', 0.5, 0.45, 0);
       box(g, 2.4, 0.1, 1.2, '#D8CCA8', 0, 0.05, 0.4);
