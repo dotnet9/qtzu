@@ -21,7 +21,7 @@ import { buildChinaMap } from './china-map.js';
 import { CURRICULUM } from './curriculum.js';
 
 const PLAYER_SPEED = 7.3;  // 城市地图 ×5 后回调：按用户反馈地图缩为 1/3，移速同步 1/3
-const CITY_SCALE = 1.67;   // 城市地图尺度倍率（×5 后按反馈缩为 1/3 ≈ ×1.67）
+const CITY_SCALE = 0.84;   // 城市地图尺度倍率（×5 后缩 1/3≈1.67，再按反馈缩 1/2）
 // 情景单词点：词与场景实物绑定记忆（走近弹气泡并念一遍；只启用词库里真实存在的词）
 const SCENE_WORDS = [
   { x: -20, z: -14, en: 'apple', emoji: '🍎' },
@@ -97,7 +97,7 @@ export class Game {
       const c = CITY_MAP[cid];
       const lv = c.level || {};
       const a = (i / route.length) * Math.PI * 2 + 0.35;
-      const dist = 147 + (i % 3) * 30;                     // 岛间距 ÷3 跟随城市尺度（×5 后回调 1/3）
+      const dist = 74 + (i % 3) * 15;                      // 岛间距跟随城市尺度（缩 1/2 同步减半）
       const v0 = cityVariant(c, 0);
       const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)) * CITY_SCALE);   // 大地图：×5 尺度，牌子/街道真正铺开
       const shape = getCityShape(cid, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);   // 局部多边形
@@ -3104,7 +3104,7 @@ export class Game {
         const c = CITY_MAP[id];
         const lv = c.level || {};
         const a = (i / this.islands.length) * Math.PI * 2 + 1.1;
-        const dist = 220;   // ÷3 跟随城市尺度：追加城市放到巡游圈外一层
+        const dist = 110;   // 跟随城市尺度：追加城市放到巡游圈外一层
         const v0 = cityVariant(c, 0);
         const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)) * CITY_SCALE);
         const shape = getCityShape(id, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);
