@@ -1015,20 +1015,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       box(grp, 1.6, 3.2, 1.6, '#C8B898', px, 1.6, pz);
       box(grp, 2.1, 0.3, 2.1, '#D8CCA8', px, 3.3, pz);
       colTop(cx + px, cz + pz, 1.15, 3.45);
-      // 中英文城市名牌
-      let sx = 0, sz = r * 0.42;
-      if (poly) [sx, sz] = clampToPoly(poly, sx, sz);
-      const sign = new THREE.Sprite(letterTexture(isl.name || '', color, '#FFFDF4'));
-      sign.scale.set(2.2, 0.62, 1);
-      sign.position.set(sx, 3.1, sz);
-      const signEn = new THREE.Sprite(letterTexture((isl.en || '').toUpperCase(), '#FFFDF4', '#6B5844'));
-      signEn.scale.set(1.7, 0.36, 1);
-      signEn.position.set(sx, 2.55, sz);
-      sign.visible = signEn.visible = false;              // 常驻隐藏：进城时弹出 2.5s 后淡出（game._playCityName）
-      sign.userData.baseScale = sign.scale.clone();
-      signEn.userData.baseScale = signEn.scale.clone();
-      grp.userData.nameSigns = [sign, signEn];
-      grp.add(sign, signEn);
+      // 中英文城市名牌：已取消常驻 3D 名牌（城市名由顶栏胶囊与介绍卡表达，拉远后牌面过大不协调）
       // 特产装饰 emoji 撒一圈（随到访版本的城市特色）
       (isl.decos || ['🏮']).forEach((em, i) => {
         const a = Math.PI * 2 * i / Math.max(1, isl.decos.length) + 0.4;

@@ -1642,43 +1642,6 @@ export class Game {
     this.chinaMap && this.chinaMap.anchor(cur.key, cur.cx, cur.cz);   // 全国地图跟随当前城锚定
     this.onIsle = false;
     this._clearMoveTarget();
-    this._playCityName(cur);   // 城市名牌：进城弹出 2.5s 后淡出
-  }
-
-  // 城市名牌动画：弹入（0.35s 回弹）→ 停留 2.5s → 淡出消失，之后 3D 里无常驻城市名
-  _playCityName(cur) {
-    const wIsl = (this.world.islands || []).find(w => w.uid === cur.uid);
-    const signs = wIsl && wIsl.grp && wIsl.grp.userData.nameSigns;
-    if (!signs) return;
-    this.fx = (this.fx || []).filter(f => f.obj !== signs[0] && f.obj !== signs[1]);
-    for (const sp of signs) {
-      sp.visible = true;
-      sp.material.opacity = 0;
-      const b = sp.userData.baseScale;
-      sp.scale.set(b.x * 0.01, b.y * 0.01, 1);
-    }
-    const dur = 3.2;
-    for (const [sp, delay] of [[signs[0], 0], [signs[1], 0.08]]) {
-      this.fx.push({
-        obj: sp, t: -delay, dur: dur + delay,
-        update: tt => {
-          const b = sp.userData.baseScale;
-          let k, op;
-          if (tt <= 0) { k = 0.01; op = 0; }
-          else if (tt < 0.35) {                       // 弹入：back ease 过冲
-            const p = tt / 0.35, q = p - 1;
-            k = 1 + 2.2 * q * q * q + 1.2 * q * q; op = p;
-          } else if (tt < 2.5) { k = 1; op = 1; }     // 停留
-          else {                                       // 淡出
-            const p = Math.min(1, (tt - 2.5) / 0.7);
-            k = 1 - p * 0.25; op = 1 - p;
-          }
-          sp.scale.set(b.x * k, b.y * k, 1);
-          sp.material.opacity = op;
-          if (tt >= dur) sp.visible = false;
-        },
-      });
-    }
   }
   // ================= 城市牌子系统 =================
   // 大学/美食/风景按方位(bearing)立牌，一块城市几十块；点击牌子弹出详情卡。

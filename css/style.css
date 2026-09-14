@@ -186,7 +186,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 
 /* ---------- 顶部城市胶囊 ---------- */
 #city-pill {
-  position: fixed; top: calc(8px + var(--sat)); left: 50%; transform: translateX(-50%);
+  position: fixed; top: calc(56px + var(--sat)); left: 50%; transform: translateX(-50%);   /* 顶栏下一行，避免与关卡/分数块重叠 */
   z-index: 22; cursor: pointer;
   background: linear-gradient(90deg, rgba(255,159,190,.9), rgba(255,209,102,.9));
   border-radius: 999px; padding: 6px 18px; font-size: 14px; font-weight: 900; color: #FFF;
