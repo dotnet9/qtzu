@@ -80,7 +80,7 @@ docs/               设计文档（预留）
 assets/             品牌素材（logo）
 ```
 
-**js/ 主要模块**：`data` 数据加载（fetch+缓存+兜底）· `cities` 城市配置适配 · `words` 词库+动态组关 · `world` 城市地图+立牌生成 · `game` 主逻辑 · `ui` 城市卡+弹卡 · `save` 存档+遗忘曲线 · `pets` 蛋与词宠 · `speech`/`whisper` 语音识别 · `audio` 程序化 BGM。
+**js/ 主要模块**：`data` 数据加载（fetch+缓存+兜底）· `cities` 城市配置适配 · `words` 词库+动态组关 · `world` 城市地图+立牌生成 · `game` 主逻辑 · `ui` 城市卡+弹卡 · `save` 存档+遗忘曲线 · `pets` 蛋与词宠 · `models` 程序化低模库（`models/` 目录按域拆分：kit 几何工具箱 / pets-shapes 基础宠物形 / auto-templates 参数化词宠 / tags 徽章字母牌 / player 玩家换装 / props-nature+props-build 场景物 / build 词宠工厂）· `uni-gates`+`uni-gate-models` 一校一门校门（数据层+造型层）· `speech`/`whisper` 语音识别 · `audio` 程序化 BGM。
 
 ## 🧱 技术栈
 
