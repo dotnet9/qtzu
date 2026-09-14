@@ -387,8 +387,11 @@ export class Game {
   _putEggOnPerch(egg) {
     if (this.cityTour) {   // 城市巡游：高台蛋放城市舞台的观景石台上
       const st = this._currentStage();
+      const q = { x: st.cx + st.r * 0.3, z: st.cz - st.r * 0.3 };
+      // 与 _cityPos 天空蛋同点同边距同钳制：凹形城市下蛋也不会漂到墙外、离开台面
+      this._clampCityPos(q, st, this._cityWallMargin(st, 1.2));
       egg.baseY = 3.2;
-      egg.group.position.set(st.cx + st.r * 0.3, 3.2, st.cz - st.r * 0.3);
+      egg.group.position.set(q.x, 3.2, q.z);
       return;
     }
     const pf = this.world.perch;
@@ -1077,7 +1080,13 @@ export class Game {
         p.escape = true;
         p.wait = 0;
         const a = Math.random() * Math.PI * 2, r = 9 + Math.random() * 8;
-        p.target.set(p.home.x + Math.cos(a) * r, p.home.y + Math.sin(a) * r);
+        let tx = p.home.x + Math.cos(a) * r, tz = p.home.y + Math.sin(a) * r;
+        if (this.cityTour) {   // 逃走目标也钳在城内：词宠不往院墙外跑
+          const q = { x: tx, z: tz };
+          this._clampCityPos(q);
+          tx = q.x; tz = q.z;
+        }
+        p.target.set(tx, tz);
         const mark = new THREE.Sprite(new THREE.SpriteMaterial({ map: letterTexture('❗', '#E85A4B', '#FFF0E0'), transparent: true, depthWrite: false }));
         mark.position.set(0, 1.55, 0);
         mark.scale.setScalar(0.42);
@@ -1088,12 +1097,19 @@ export class Game {
     }
     if (id === 'merchant') {
       const cart = PROPS.merchantCart();
-      cart.position.set(0, 0, 20.8);
+      let cx = 0, cz = 20.8;   // 农场：村口老位置
+      if (this.cityTour) {     // 城市巡游：货郎进城，摆到城中心旁（钳回城内，别把摊子支到海上）
+        const st = this._currentStage();
+        const q = { x: st.cx, z: st.cz + 6 };
+        this._clampCityPos(q, st);
+        cx = q.x; cz = q.z;
+      }
+      cart.position.set(cx, 0, cz);
       this.scene.add(cart);
-      active.data.cart = { x: 0, z: 20.8 };
+      active.data.cart = { x: cx, z: cz };
       active.data.cartGroup = cart;
       const gift = new THREE.Sprite(new THREE.SpriteMaterial({ map: letterTexture('🎁', '#E85A4B', '#FFF0E0'), transparent: true, depthWrite: false }));
-      gift.position.set(0, 2.35, 20.8);
+      gift.position.set(cx, 2.35, cz);
       gift.scale.setScalar(0.55);
       this.scene.add(gift);
       active.data.gift = gift;
@@ -1203,7 +1219,12 @@ export class Game {
       if (!id) return;
       const w = WORD_MAP[id];
       const a = Math.random() * Math.PI * 2, r = 3.5 + Math.random() * 4.5;
-      const x = this.player.position.x + Math.cos(a) * r, z = this.player.position.z + Math.sin(a) * r;
+      let x = this.player.position.x + Math.cos(a) * r, z = this.player.position.z + Math.sin(a) * r;
+      if (this.cityTour) {   // 泡泡不许刷到院墙外：贴墙时钳回城内，顶得到才玩得成
+        const q = { x, z };
+        this._clampCityPos(q);
+        x = q.x; z = q.z;
+      }
       const yBase = 2.2 + Math.random() * 0.9;
       const group = new THREE.Group();
       const ball = new THREE.Mesh(new THREE.SphereGeometry(0.55, 18, 14), new THREE.MeshStandardMaterial({ color: '#A8D8F0', transparent: true, opacity: 0.4, roughness: 0.15 }));
@@ -1220,10 +1241,16 @@ export class Game {
     if (ev.items.length > 10) return;   // 场上够多了，先不刷
     let x, z, tries = 0;
     do {
-      if (ev.active.id === 'apple') { x = -30 + Math.random() * 24; z = -28 + Math.random() * 22; }
+      if (this.cityTour) {
+        // 城市舞台：掉落物围着玩家刷并钳在城内（城市在 640+ 外，绕原点刷的会落到海里看不见）
+        const a = Math.random() * Math.PI * 2, r = 6 + Math.random() * 14;
+        const q = { x: this.player.position.x + Math.cos(a) * r, z: this.player.position.z + Math.sin(a) * r };
+        this._clampCityPos(q);
+        x = q.x; z = q.z;
+      } else if (ev.active.id === 'apple') { x = -30 + Math.random() * 24; z = -28 + Math.random() * 22; }
       else { const a = Math.random() * Math.PI * 2, r = 6 + Math.random() * 36; x = Math.cos(a) * r; z = Math.sin(a) * r; }
       tries++;
-    } while (Math.abs(z) < 4.6 && tries < 8);
+    } while (!this.cityTour && Math.abs(z) < 4.6 && tries < 8);
     if (ev.active.id === 'meteor') {
       // 流星划落的小动画
       const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: letterTexture('✦', '#FFE97A', '#FFF7D0'), transparent: true, depthWrite: false }));
@@ -1258,12 +1285,17 @@ export class Game {
     }
     const isl = this._islandAt(pos);
     if (isl) {
-      const dc = Math.hypot(pos.x - isl.cx, pos.z - isl.cz);
-      if (dc > isl.r - 0.3) {
-        const k = (isl.r - 0.3) / dc;
-        pos.x = isl.cx + (pos.x - isl.cx) * k;
-        pos.z = isl.cz + (pos.z - isl.cz) * k;
-        pushed = true;
+      if (this.cityTour) {
+        // 城市舞台：词宠与小人同一条城市边界（圆形钳制在凹形城市会漏到墙外海上）
+        if (this._clampCityPos(pos)) pushed = true;
+      } else {
+        const dc = Math.hypot(pos.x - isl.cx, pos.z - isl.cz);
+        if (dc > isl.r - 0.3) {
+          const k = (isl.r - 0.3) / dc;
+          pos.x = isl.cx + (pos.x - isl.cx) * k;
+          pos.z = isl.cz + (pos.z - isl.cz) * k;
+          pushed = true;
+        }
       }
     } else {
       const dc = Math.hypot(pos.x, pos.z);
@@ -1793,6 +1825,7 @@ export class Game {
     const st = this._currentStage();
     const from = this.player.position.clone();
     const to = new THREE.Vector3(st.cx, 0, st.cz - st.r * 0.35);
+    this._clampCityPos(to, st);   // 凹形城市下落点也可能压墙/出城，钳进城内再发车
     this.riding = true;
     ui.hidePrompt();
     sfx.pop();
