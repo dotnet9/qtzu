@@ -97,7 +97,7 @@ export class Game {
       const c = CITY_MAP[cid];
       const lv = c.level || {};
       const a = (i / route.length) * Math.PI * 2 + 0.35;
-      const dist = 74 + (i % 3) * 15;                      // 岛间距跟随城市尺度（缩 1/2 同步减半）
+      const dist = 640 + (i % 3) * 80;                     // 岛间距：环上相邻城弦长必须 ≥ 两城半径和（r≈80×2），否则精建邻岛会与当前城重叠
       const v0 = cityVariant(c, 0);
       const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)) * CITY_SCALE);   // 大地图：×5 尺度，牌子/街道真正铺开
       const shape = getCityShape(cid, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);   // 局部多边形
@@ -3141,7 +3141,7 @@ export class Game {
         const c = CITY_MAP[id];
         const lv = c.level || {};
         const a = (i / this.islands.length) * Math.PI * 2 + 1.1;
-        const dist = 110;   // 跟随城市尺度：追加城市放到巡游圈外一层
+        const dist = 880;   // 追加城市放到巡游圈外一层（不与环上城市重叠）
         const v0 = cityVariant(c, 0);
         const rr = Math.round((lv.radius || 28) * (3 + Math.min(1.3, ((c.unis||[]).length + (c.foods||[]).length + (c.scenes||[]).length) * 0.012)) * CITY_SCALE);
         const shape = getCityShape(id, lv.shape).map(([sx, sz]) => [sx * rr, sz * rr]);
