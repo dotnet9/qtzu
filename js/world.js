@@ -1019,11 +1019,11 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       let sx = 0, sz = r * 0.42;
       if (poly) [sx, sz] = clampToPoly(poly, sx, sz);
       const sign = new THREE.Sprite(letterTexture(isl.name || '', color, '#FFFDF4'));
-      sign.scale.set(3.4, 0.95, 1);
+      sign.scale.set(2.2, 0.62, 1);
       sign.position.set(sx, 3.1, sz);
       const signEn = new THREE.Sprite(letterTexture((isl.en || '').toUpperCase(), '#FFFDF4', '#6B5844'));
-      signEn.scale.set(2.6, 0.55, 1);
-      signEn.position.set(sx, 2.35, sz);
+      signEn.scale.set(1.7, 0.36, 1);
+      signEn.position.set(sx, 2.55, sz);
       grp.add(sign, signEn);
       // 特产装饰 emoji 撒一圈（随到访版本的城市特色）
       (isl.decos || ['🏮']).forEach((em, i) => {
@@ -1056,18 +1056,22 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           }
           return ins;
         };
-        const spot = (dMin, dMax) => {
-          for (let k = 0; k < 24; k++) {
+        const placed = [];
+        const spot = (dMin, dMax, gap) => {
+          for (let k = 0; k < 40; k++) {
             const a2 = rn() * Math.PI * 2, d2 = dMin + rn() * (dMax - dMin);
             const px = Math.cos(a2) * d2, pz = Math.sin(a2) * d2;
-            if (inPt(px, pz)) return [px, pz];
+            if (!inPt(px, pz)) continue;
+            if (placed.some(q => Math.hypot(q[0] - px, q[1] - pz) < gap)) continue;
+            placed.push([px, pz]);
+            return [px, pz];
           }
           return null;
         };
         // 绿化：树/松/灌木混撒，装饰不挡路
-        const gN = Math.round(Math.min(90, r * 1.2));
+        const gN = Math.round(Math.min(180, r * 2.4));
         for (let i = 0; i < gN; i++) {
-          const sp = spot(r * 0.15, r * 0.9);
+          const sp = spot(r * 0.15, r * 0.9, r * 0.05);
           if (!sp) continue;
           let obj = null;
           const t2 = rn();
@@ -1081,9 +1085,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           grp.add(obj);
         }
         // 高楼：2-5 栋低模塔楼（城市感），带碰撞可绕行
-        const bN = 4 + Math.floor(rn() * 5);
+        const bN = 8 + Math.floor(rn() * 9);
         for (let i = 0; i < bN; i++) {
-          const sp = spot(r * 0.35, r * 0.7);
+          const sp = spot(r * 0.2, r * 0.75, r * 0.09);
           if (!sp) continue;
           const w = 4 + rn() * 3, h = 14 + rn() * 12;
           const tower = new THREE.Group();
