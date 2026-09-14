@@ -733,6 +733,7 @@ export class Game {
     }
     this._spawnNaughty();
     this._refreshCityPill();
+    this._syncShareUrl();
     setInterval(() => this._refreshHungry(), 1500);
     // 指一条路：最近的可孵蛋
     setTimeout(() => {
@@ -740,6 +741,23 @@ export class Game {
       const near = this._nearestEggHint();
       if (near) ui.toast(`🥚 ${ZONE_NAMES[near.word.zone]}那边有词宠蛋在发光，去瞧瞧！`, 3600);
     }, 8000);
+  }
+
+  // 地址栏同步：把当前城市/课本写成分享链接参数（replaceState，不产生历史记录）。
+  // 玩到哪，地址栏就是哪座城——复制链接发给朋友，对方打开直接落到这座城（好友分享）
+  _syncShareUrl() {
+    try {
+      const st = this._currentStage();
+      const sem = String(save.getBookSem() || this.sem || '');
+      const g = parseInt(sem, 10);
+      const next = new URLSearchParams();
+      if (st && st.key) next.set('city', st.key);
+      if (g >= 3 && g <= 6) { next.set('grade', String(g)); next.set('term', sem.endsWith('b') ? 's2' : 's1'); }
+      if (new URLSearchParams(location.search).has('debug')) next.set('debug', '1');
+      const qs = next.toString();
+      if (qs === new URLSearchParams(location.search).toString()) return;   // 没变化不动地址栏
+      history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+    } catch (e) { /* file:// 或隐私模式：地址栏同步失败不影响游戏 */ }
   }
 
   // ================= 主循环 =================
@@ -1677,6 +1695,7 @@ export class Game {
     this.chinaMap && this.chinaMap.anchor(cur.key, cur.cx, cur.cz);   // 全国地图跟随当前城锚定
     this.onIsle = false;
     this._clearMoveTarget();
+    this._syncShareUrl();   // 玩到哪座城，地址栏同步到哪座城
   }
 
   // 撞到城市边界的气泡提示（节流 5 秒，只有主动移动顶着边界才提示）
