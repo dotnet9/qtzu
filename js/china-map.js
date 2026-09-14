@@ -5,7 +5,7 @@ import { CITY_SHAPES, CITY_GEO } from './city-shape-data.js';
 
 const UPD = 420;                                  // 世界单位/度
 const LAT_K = Math.cos(35 * Math.PI / 180);       // 经度方向随纬度收缩（中国中纬度）
-const BASE_Y = -0.3;                              // 底图高度：海面(-0.5)之上、城市地面(0)之下（层间距拉开防 z-fighting）
+const BASE_Y = -2;                                // 底图高度：大幅低于城市地面(0)，层间距 2 个单位——任何渲染器（含 IDE 预览软渲染）都不会再 z-fighting
 
 ﻿// 城市状态浮牌：状态不同颜色不同（待闯关蓝/已攻克绿/奖励金/打造灰）
 function statusSprite(text) {

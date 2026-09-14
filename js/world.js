@@ -817,15 +817,12 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   const buildOne = (isl, si, forceFull) => {
     const { cx, cz, r, color, key } = isl;
     const grp = new THREE.Group();
-    if (!forceFull && focus >= 0 && Math.abs(si - focus) > 1) {
+    if (!forceFull && focus >= 0 && si !== focus) {
+      // 只精建当前城：相邻精建岛在部分渲染器（IDE 预览/软渲染）上贴图会丢失显白块，且白岛叠在当前城边造成"能走过去"的错觉
       const vr = r * 0.45;   // 占位岛缩小一圈，避免邻岛在海上挤成绿大陆
       const lt = new THREE.Mesh(new THREE.CylinderGeometry(vr, vr * 0.92, 6, 20),
         new THREE.MeshStandardMaterial({ color: new THREE.Color(color).lerp(new THREE.Color('#9CCF8C'), 0.55), roughness: 0.95 }));
       lt.position.y = -3; grp.add(lt);
-      const lr = new THREE.Mesh(new THREE.ConeGeometry(vr * 0.92, vr * 0.9, 20), M('#A8825B'));
-      lr.rotation.x = Math.PI; lr.position.y = -6 - vr * 0.45; grp.add(lr);
-      const ln = new THREE.Sprite(letterTexture(isl.name || '', color, '#FFFDF4'));
-      ln.scale.set(3.4, 0.95, 1); ln.position.set(0, 4.5, 0); grp.add(ln);
       grp.position.set(cx, 0, cz); scene.add(grp);
       world.islands.push({ ...isl, grp, light: true });
       return;
@@ -843,18 +840,18 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       for (let i = 0; i < uv.count; i++) {
         uv.setXY(i, (pos.getX(i) - minX) / (maxX - minX), 1 - (pos.getY(i) - minZ) / (maxZ - minZ));
       }
-      const top0 = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: cityIslandTexture(color, isl.level, pts), roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }));
+      const top0 = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: cityIslandTexture(color, isl.level, pts), side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }));
       top0.rotation.x = -Math.PI / 2;
       top0.position.y = 0.02;
       top0.receiveShadow = true;
       grp.add(top0);
-      // CITY_FRAME
+      // CITY_FRAME：围墙——抬到 1.2 高、加粗像院墙
       {
-        const bw = Math.max(0.8, r * 0.012);
+        const bw = Math.max(1.2, r * 0.035);
         const fpts = [];
-        for (let i = 0; i < pts.length - 1; i++) fpts.push(new THREE.Vector3(pts[i][0], 0.12, pts[i][1]));
+        for (let i = 0; i < pts.length - 1; i++) fpts.push(new THREE.Vector3(pts[i][0], 1.2, pts[i][1]));
         const curve = new THREE.CatmullRomCurve3(fpts, true);
-        const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, Math.min(1500, fpts.length * 3), bw, 6, true), new THREE.MeshStandardMaterial({ color: 0xFFF3D9, roughness: 0.8 }));
+        const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, Math.min(1500, fpts.length * 6), bw, 6, true), new THREE.MeshStandardMaterial({ color: 0xFFF3D9, roughness: 0.8 }));
         grp.add(tube);
         // 边内侧随机种树（两排）：树干+球冠，合并画法简单化——逐棵小 Group 太重，用 InstancedMesh 也不必要，直接撒低模树
         const trunkM = new THREE.MeshStandardMaterial({ color: 0x8A6B4A, roughness: 1 });
