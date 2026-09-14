@@ -299,7 +299,7 @@ export class Game {
   _initCityNPCs() {
     this._buildSigns(this._currentStage());
     this.npcs = new NPCManager(this.scene);
-    this.npcs.spawnForCity(this._currentStage(), (q, st) => this._clampCityPos(q, st));
+    this.npcs.spawnForCity(this._currentStage(), (q, st) => this._clampCityPos(q, st), this.world.colliders);
     import('./data.js').then(m => m.loadJson('knowledge.json')).then(k => {
       if (!k || !this.npcs) return;
       this.npcs.setKnowledge([...(k.hygiene || []), ...(k.world || [])]);
@@ -1624,7 +1624,7 @@ export class Game {
       }
     }
     this._buildSigns(cur);
-    if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st));                          // 每座城市重建自己的牌子
+    if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st), this.world.colliders);   // 每座城市重建自己的牌子
     for (const isl of this.world.islands || []) if (isl.grp) isl.grp.visible = isl.uid === cur.uid;
     for (const pt of this.pets.all()) {
       const c2 = this._cityPos(pt.word, cur);
@@ -2745,6 +2745,19 @@ export class Game {
     const ndc = new THREE.Vector2((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
     const ray = new THREE.Raycaster();
     ray.setFromCamera(ndc, this.camera);
+    // NPC：点小人聊天（气泡点击=翻页：左箭头上一页，其余下一页）
+    if (this.npcs && this.npcs.npcs.length) {
+      const nh = ray.intersectObjects(this.npcs.group.children, true);
+      if (nh.length) {
+        let o = nh[0].object;
+        if (o.userData.bubble) {                       // 点的是气泡 → 翻页
+          this.npcs.flipBubble(nh[0].uv && nh[0].uv.x < 0.15 ? -1 : 1);
+          return;
+        }
+        while (o && o.parent !== this.npcs.group) o = o.parent;
+        if (o && o.parent === this.npcs.group) { sfx.pop(); this.npcs.talkTo(o); return; }
+      }
+    }
     // 城市牌子优先：点牌看介绍（顺手读一遍英文名）
     if (this.cityTour && this.signGroup && this.signGroup.children.length) {
       const sh = ray.intersectObjects(this.signGroup.children, true);

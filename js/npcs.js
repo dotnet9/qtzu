@@ -10,6 +10,8 @@ const ROLES = {
   postman: { zh: '邮递员', emoji: '📮', shirts: ['#5A8A5A', '#4E7CB1'] },
 };
 const GREETINGS = ['Hello! 你好呀！', 'Welcome! 欢迎来到这座城市！', 'Hi! 祝你孵蛋顺利！', 'Nice to meet you!'];
+const PAGE_SEC = 2;      // 每页停留秒数，自动翻页
+const LINES_PER_PAGE = 3; // 每页行数：一次不多显示，文字多自动分页
 
 function wrap(text, n = 15) {
   const out = [];
@@ -17,8 +19,9 @@ function wrap(text, n = 15) {
   return out;
 }
 
-function bubbleTexture(lines) {
-  const W = 512, H = 56 + lines.length * 50;
+// 气泡纹理：当前页文字 + 底部分页条「< 1/3 >」（左右两端是可点的箭头热区）
+function bubbleTexture(lines, page, total) {
+  const W = 512, H = 56 + LINES_PER_PAGE * 50 + (total > 1 ? 46 : 0);
   const cv = document.createElement('canvas');
   cv.width = W; cv.height = H;
   const c = cv.getContext('2d');
@@ -32,10 +35,23 @@ function bubbleTexture(lines) {
   c.font = '900 32px "Segoe UI", "Microsoft YaHei", sans-serif';
   c.textAlign = 'left'; c.textBaseline = 'top';
   lines.forEach((ln, i) => c.fillText(ln, 22, 22 + i * 48));
+  if (total > 1) {
+    // 分页条：左右箭头 + 中间页码
+    c.font = '900 34px "Segoe UI", "Microsoft YaHei", sans-serif';
+    c.fillStyle = '#C08A2D';
+    c.fillText('‹', 22, 22 + LINES_PER_PAGE * 50);
+    c.textAlign = 'right';
+    c.fillText('›', W - 22, 22 + LINES_PER_PAGE * 50);
+    c.textAlign = 'center';
+    c.fillStyle = '#8A7A66';
+    c.font = '700 26px "Segoe UI", "Microsoft YaHei", sans-serif';
+    c.fillText(`${page + 1} / ${total}`, W / 2, 30 + LINES_PER_PAGE * 50);
+  }
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
   return { tex, w: 4.6, h: 4.6 * H / W };
 }
+
 function buildNPC(role, shirt) {
   const g = new THREE.Group();
   const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 0.42, 4, 8),
@@ -89,6 +105,9 @@ export class NPCManager {
     this._bubble = null;
     this._bubbleUntil = 0;
     this.knowledge = [];
+    this._colliders = [];
+    this._clampFn = null;
+    this._pages = null;   // { lines: [[..],[..]..], page, pos }
   }
   setKnowledge(list) { this.knowledge = list || []; }
   clear() {
@@ -96,22 +115,66 @@ export class NPCManager {
     this.npcs = [];
     this._hideBubble();
   }
+  // 碰撞推出：圆形碰撞体把 NPC 挤出去，城市边界把 NPC 钳回来（不再穿墙/出城）
+  _pushOut(p) {
+    for (const c of this._colliders) {
+      if (c.t !== 'c' || c.dead) continue;
+      const dx = p.x - c.x, dz = p.z - c.z;
+      const d = Math.hypot(dx, dz), min = (c.r || 0.5) + 0.3;
+      if (d < min && d > 1e-4) { p.x = c.x + dx / d * min; p.z = c.z + dz / d * min; }
+    }
+    if (this._clampFn) { const q = { x: p.x, z: p.z }; this._clampFn(q, this._stage); p.x = q.x; p.z = q.z; }
+    // 钳回城内可能又撞进边界碰撞体：再补一轮推出（顺序交替直到稳定）
+    for (const c of this._colliders) {
+      if (c.t !== 'c' || c.dead) continue;
+      const dx = p.x - c.x, dz = p.z - c.z;
+      const d = Math.hypot(dx, dz), min = (c.r || 0.5) + 0.3;
+      if (d < min && d > 1e-4) { p.x = c.x + dx / d * min; p.z = c.z + dz / d * min; }
+    }
+  }
   _showBubble(text, pos) {
     this._hideBubble();
     const lines = wrap(text, 15);
-    const { tex, w, h } = bubbleTexture(lines);
-    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+    const pages = [];
+    for (let i = 0; i < lines.length; i += LINES_PER_PAGE) pages.push(lines.slice(i, i + LINES_PER_PAGE));
+    this._pages = { pages, page: 0, pos: { x: pos.x, z: pos.z } };
+    this._renderPage();
+  }
+  _renderPage() {
+    const P = this._pages;
+    if (!P) return;
+    const { tex, w, h } = bubbleTexture(P.pages[P.page], P.page, P.pages.length);
+    if (this._bubble) {
+      this.group.remove(this._bubble);
+      this._bubble = null;
+    }
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, fog: false }));
     sp.scale.set(w, h, 1);
-    sp.position.set(pos.x, 2.35, pos.z);
+    sp.position.set(P.pos.x, 2.35, P.pos.z);
+    sp.userData.bubble = true;
     this.group.add(sp);
     this._bubble = sp;
-    this._bubbleUntil = performance.now() / 1000 + Math.min(9, 2.5 + text.length * 0.12);
+    this._bubbleUntil = performance.now() / 1000 + PAGE_SEC;
+  }
+  // 点击气泡翻页：uv.x < 0.15 上一页，其余下一页
+  flipBubble(dir) {
+    const P = this._pages;
+    if (!P) return false;
+    const to = P.page + dir;
+    if (to < 0 || to >= P.pages.length) { this._hideBubble(); return true; }
+    P.page = to;
+    this._renderPage();
+    return true;
   }
   _hideBubble() {
     if (this._bubble) { this.group.remove(this._bubble); this._bubble = null; }
+    this._pages = null;
   }
-  spawnForCity(stage, clampFn) {
+  spawnForCity(stage, clampFn, colliders) {
     this.clear();
+    this._colliders = colliders || [];
+    this._clampFn = clampFn || null;
+    this._stage = stage;
     const isTouch = matchMedia('(pointer: coarse)').matches;
     const count = isTouch ? 8 : 14;
     const roles = Object.keys(ROLES);
@@ -136,13 +199,21 @@ export class NPCManager {
   }
   update(dt, playerPos) {
     const now = performance.now() / 1000;
-    if (this._bubble && now > this._bubbleUntil) this._hideBubble();
+    // 分页气泡：每页停 2 秒自动翻下一页，最后一页播完隐藏
+    if (this._bubble && now > this._bubbleUntil) {
+      const P = this._pages;
+      if (P && P.page < P.pages.length - 1) { P.page++; this._renderPage(); }
+      else this._hideBubble();
+    }
     let nearest = null, nd = 1e9;
     for (const n of this.npcs) {
       n.idle -= dt;
       const dT = Math.hypot(n.target.x - n.group.position.x, n.target.y - n.group.position.z);
       if (n.idle <= 0 && dT < 0.3) {
         n.target.set(n.home.x + (Math.random() - 0.5) * 4, n.home.y + (Math.random() - 0.5) * 4);
+        const q = { x: n.target.x, z: n.target.y };
+        this._pushOut(q);                       // 目标点也推出墙外，防止"走进墙里出不来"
+        n.target.set(q.x, q.z);
         n.idle = 3 + Math.random() * 6;
       }
       if (dT > 0.25) {
@@ -154,6 +225,7 @@ export class NPCManager {
         n.legL.position.z = Math.sin(now * 8) * 0.09;
         n.legR.position.z = -Math.sin(now * 8) * 0.09;
       }
+      this._pushOut(n.group.position);          // 每帧无条件推出：静止时也不许待在墙里
       const d = Math.hypot(playerPos.x - n.group.position.x, playerPos.z - n.group.position.z);
       if (d < nd) { nd = d; nearest = n; }
     }
@@ -172,6 +244,16 @@ export class NPCManager {
       if (d < nd) { nd = d; nearest = n; }
     }
     return nearest;
+  }
+  // 点击 NPC：主动和它聊一句（打过招呼就讲小知识），返回是否命中
+  talkTo(group) {
+    const n = this.npcs.find(x => x.group === group);
+    if (!n) return false;
+    n.met = true;
+    const item = this.knowledge.length ? this.knowledge[Math.floor(Math.random() * this.knowledge.length)] : null;
+    const text = item ? `🤔 ${item[0]}  💡 ${item[1]}` : GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
+    this._showBubble(text, n.group.position);
+    return true;
   }
   // 讲一条小知识（问题+自答），优先还没讲过的
   tellKnowledge(playerPos) {
