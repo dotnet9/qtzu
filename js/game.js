@@ -1685,11 +1685,20 @@ export class Game {
     const colorOf = { uni: '#7EC4F2', food: '#FFB46B', scene: '#8FD08F' };
     for (const [b, items] of Object.entries(buckets)) {
       const [dx, dz] = DIRS[b];
+      const baseAng = Math.atan2(dx, dz);
+      const n = items.length;
       items.forEach((it, i) => {
+        // 同向大学多于 6 所时整圈均摊 + 内外双环交错，≤6 所沿方位 ±14° 扇形摊开；
+        // 旧公式 0.3+i*0.15 封顶 0.9，北京 30 校同向时第 5 所起会全部叠在同一点
+        const ang = it.type === 'uni'
+          ? (n > 6 ? baseAng + i * (Math.PI * 2 / n)
+                   : baseAng + (n > 1 ? (i / (n - 1) - 0.5) * 0.5 : 0))
+          : baseAng;
+        const ux = Math.sin(ang), uz = Math.cos(ang);
         const rr = it.type === 'uni'
-          ? stage.r * Math.min(0.9, 0.3 + i * 0.15)
-          : stage.r * Math.min(0.92, 0.5 + i * 0.06);
-        let x = stage.cx + dx * rr, z = stage.cz + dz * rr;
+          ? stage.r * (0.42 + (i % 2) * 0.18)
+          : stage.r * Math.min(0.92, 0.5 + i * (0.4 / Math.max(1, n - 1)));
+        let x = stage.cx + ux * rr, z = stage.cz + uz * rr;
         const clampP = { x, z };
         this._clampCityPos(clampP, stage);                     // 有机轮廓下确保牌子在陆地内
         x = clampP.x; z = clampP.z;
@@ -1705,7 +1714,7 @@ export class Game {
           gate.traverse(o => { o.userData.sign = it; });   // 缺这个：点校门会 fallthrough 成走过去，玩家卡进碰撞体来回晃
           grp.add(gate);
           this._signList.push({ ...it, x, z });
-          const es = { x: x - dx * 1.2 + dz * 0.9, z: z - dz * 1.2 - dx * 0.9 };   // 蛋点偏移随校门缩 1/2
+          const es = { x: x - ux * 1.2 + uz * 0.9, z: z - uz * 1.2 - ux * 0.9 };   // 蛋点偏移随校门缩 1/2
           this._clampCityPos(es, stage);                       // 牌旁蛋点也钳进陆地（细长轮廓防落海）
           this._signEggSpots.unshift(es);
           return;
