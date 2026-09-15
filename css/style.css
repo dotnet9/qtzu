@@ -387,6 +387,40 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #word-game .wg-rs { min-height: 20px; margin-top: 10px; text-align: center; font-size: 13px; font-weight: 900; color: #9C8C7A; }
 #word-game .wg-rs.good { color: #4E7A46; }
 
+/* 🎬 小小配音演员 */
+#dub-card {
+  position: relative; width: min(94vw, 480px); max-height: calc(100dvh - 40px); overflow-y: auto;
+  background: #FFFDF8; border: 3px solid #FFD3E0; border-radius: 20px; padding: 16px;
+  box-shadow: 0 18px 50px rgba(150,90,110,.25);
+}
+#dub-card .dub-t { font-size: 17px; font-weight: 900; color: #C4577E; text-align: center; }
+#dub-card .dub-sub { margin: 6px 0 12px; font-size: 12px; font-weight: bold; color: #9C8C7A; text-align: center; line-height: 1.5; }
+#dub-card .dub-scenes { display: flex; flex-direction: column; gap: 9px; }
+#dub-card .dub-scene {
+  display: flex; align-items: center; gap: 10px; padding: 11px 14px; font-family: inherit;
+  background: #FFF4F8; border: 2px solid #FFD3E0; border-radius: 14px; cursor: pointer; text-align: left;
+}
+#dub-card .dub-scene:active { transform: scale(.97); }
+#dub-card .dub-scene span { font-size: 24px; }
+#dub-card .dub-scene b { flex: 1; font-size: 15px; color: #6B5844; }
+#dub-card .dub-scene i { font-style: normal; font-size: 11px; color: #B9A08E; }
+#dub-card .dub-lines { display: flex; flex-direction: column; gap: 7px; margin: 10px 0; }
+#dub-card .dub-line {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  background: #FFF6E8; border: 2px solid #F2C98C; border-radius: 12px;
+}
+#dub-card .dub-line i { font-style: normal; }
+#dub-card .dub-line b { flex: 1; font-size: 14px; color: #6B5844; }
+#dub-card .dub-line em { font-style: normal; font-size: 12px; font-weight: 900; color: #C4577E; }
+#dub-card .dub-rs { margin: 4px 0 12px; text-align: center; font-size: 13px; font-weight: 900; color: #934C64; }
+#dub-card .dub-again, #dub-card .dub-share {
+  margin-top: 8px; width: 100%; padding: 11px; font-size: 14px; font-weight: 900; font-family: inherit;
+  color: #FFF; border: none; border-radius: 999px; cursor: pointer;
+}
+#dub-card .dub-again { background: linear-gradient(180deg, #FF9FBE, #F76E9C); }
+#dub-card .dub-share { background: linear-gradient(180deg, #FFC94E, #F0A83E); }
+#dub-card .dub-again:active, #dub-card .dub-share:active { transform: scale(.96); }
+
 /* ---------- 北京终章成就卡 ---------- */
 #travel-card {
   width: min(420px, 92vw); max-height: calc(100dvh - 28px); overflow-y: auto;

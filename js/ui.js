@@ -320,11 +320,11 @@ const ch = {
   busy: false, listening: false, canVoice: false, replayUrl: null,
 };
 
-export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEnd, easy, noSpell }) {
+export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEnd, easy, noSpell, title }) {
   ch.open = true; ch.word = word; ch.mode = mode; ch.onSuccess = onSuccess; ch.onClose = onClose; ch.onSkip = onSkip; ch.onDemoEnd = onDemoEnd || null; ch.easy = !!easy;   // 复习蛋简单模式：读一遍就过
   ch.busy = false; ch.spellMode = false; ch.listening = false; ch.replayUrl = null;
   toggleHudMenu(false);   // 弹窗打开时收起菜单
-  els.modalTitle.textContent = mode === 'feed' ? '🍖 词宠饿啦，喊它的名字喂它'
+  els.modalTitle.textContent = title || (mode === 'feed' ? '🍖 词宠饿啦，喊它的名字喂它'
     : mode === 'practice' ? '📖 跟读练习 · 大声读给词宠听'
     : ch.easy ? '🔁 复习蛋 · 大声读一遍就唤醒'
     : '🥚 遇见词宠蛋！念出单词唤醒它';
@@ -2230,6 +2230,103 @@ export function openMap(data) {
 }
 if (els.mapClose) els.mapClose.addEventListener('click', () => els.map.classList.add('hidden'));
 
+// ---------- 🎬 小小配音演员：选情景 → 逐句跟读配音 → 总结 + 配音卡分享 ----------
+const DUB_SCENES = [
+  { emoji: '🥚', name: '蛋宝宝出生啦', lines: ['Hello, world!', 'I am so happy!', 'Welcome, my friend!'] },
+  { emoji: '🏙️', name: '欢迎来到我们的城市', lines: ['Welcome to our city!', 'So many yummy foods!', "Let's have fun together!"] },
+  { emoji: '🎂', name: '词宠过生日', lines: ['Happy birthday to me!', 'What a lovely cake!', 'Best day ever!'] },
+  { emoji: '🚂', name: '小火车出发啦', lines: ['All aboard!', 'Off we go!', 'What a beautiful country!'] },
+];
+export function showDubStudio() {
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '125';
+  ov.innerHTML = `<div id="dub-card">
+    <button class="round-btn small" id="dub-close" style="position:absolute;top:12px;right:12px">✕</button>
+    <div class="dub-t">🎬 小小配音演员</div>
+    <div class="dub-sub">选一个情景，把每句台词大声配出来！每句 80 分 +1⭐，整部完成再 +1⭐</div>
+    <div class="dub-scenes">${DUB_SCENES.map((s, i) =>
+      `<button type="button" class="dub-scene" data-i="${i}"><span>${s.emoji}</span><b>${s.name}</b><i>${s.lines.length} 句台词</i></button>`).join('')}
+    </div>
+  </div>`;
+  document.body.appendChild(ov);
+  ov.querySelector('#dub-close').onclick = () => { sfx.pop(); ov.remove(); };
+  ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
+  ov.querySelectorAll('.dub-scene').forEach(b => {
+    b.onclick = () => { sfx.pop(); ov.remove(); _dubFlow(DUB_SCENES[Number(b.dataset.i)], 0, []); };
+  });
+}
+function _dubFlow(scene, idx, scores) {
+  if (idx >= scene.lines.length) { _dubSummary(scene, scores); return; }
+  const line = scene.lines[idx];
+  let advanced = false;
+  openChallenge({
+    word: { en: line, zh: `台词 ${idx + 1}/${scene.lines.length}`, hint: '进入角色，大声把台词配出来！' },
+    mode: 'practice', noSpell: true,
+    title: `🎬 配音「${scene.name}」`,
+    onSuccess: res => {
+      advanced = true;
+      closeChallenge();
+      scores.push(res.score || 0);
+      if ((res.score || 0) >= 80) {
+        addStars(1); updateStars(getStars());
+        toast(`🎬 第 ${idx + 1} 句配音到位 +1⭐`, 2600);
+      } else {
+        toast('感情再充沛一点，80 分才过关哦', 2600);
+      }
+      setTimeout(() => _dubFlow(scene, idx + 1, scores), 500);
+    },
+    onSkip: () => {
+      advanced = true;
+      closeChallenge();
+      scores.push(0);
+      toast('这句先跳过，等会还能重新配～', 2600);
+      setTimeout(() => _dubFlow(scene, idx + 1, scores), 400);
+    },
+    onClose: () => {
+      // 中途退出（没读到结果就关了）：已配的句子给个总结，别让进度白费
+      if (!advanced) setTimeout(() => _dubSummary(scene, scores), 300);
+    },
+  });
+}
+function _dubSummary(scene, scores) {
+  if (!scores.length) return;   // 一句都没配：直接走人
+  const done = scores.length === scene.lines.length;
+  const allPass = done && scores.every(s => s >= 80);
+  if (allPass) {
+    addStars(1); updateStars(getStars());   // 整部完成奖励
+    sfx.great();
+  }
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '125';
+  ov.innerHTML = `<div id="dub-card">
+    <button class="round-btn small" id="dub-close" style="position:absolute;top:12px;right:12px">✕</button>
+    <div class="dub-t">${scene.emoji} 「${scene.name}」配音成绩单</div>
+    <div class="dub-lines">${scene.lines.map((l, i) =>
+      `<div class="dub-line">${scores[i] != null ? `<i>${scores[i] >= 80 ? '🌟' : '🎙️'}</i>` : '<i>⬜</i>'}<b>${l}</b><em>${scores[i] != null ? scores[i] + ' 分' : '还没配'}</em></div>`).join('')}
+    </div>
+    <div class="dub-rs">${allPass ? '🏆 整部配音完成！+1⭐' : done ? '配音完成！想拿满星就再配一次吧' : '已配 ' + scores.length + '/' + scene.lines.length + ' 句，下次接着来'}</div>
+    <button class="dub-again">🎬 再配一次</button>
+    <button class="dub-share">📸 生成配音卡分享</button>
+  </div>`;
+  document.body.appendChild(ov);
+  ov.querySelector('#dub-close').onclick = () => { sfx.pop(); ov.remove(); };
+  ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
+  ov.querySelector('.dub-again').onclick = () => { sfx.pop(); ov.remove(); _dubFlow(scene, 0, []); };
+  ov.querySelector('.dub-share').onclick = () => {
+    sfx.pop();
+    openShareCard({
+      title: scene.name, en: 'Dubbing Show', emoji: scene.emoji,
+      rows: [
+        `🎙️ 配音演员：${getUsername() || '小小淘气'}`,
+        ...scene.lines.map((l, i) => `"${l}" · ${scores[i] != null ? scores[i] + ' 分' : '未配'}`),
+        `⭐ 词宠已收集 ${hatchedCount()} 只 · 📅 ${new Date().toLocaleDateString('zh-CN')}`,
+      ],
+    });
+  };
+}
+
 // ---------- 课本朗读练习 ----------
 let bookOv = null;
 
@@ -2516,6 +2613,8 @@ export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, 
   if (mapBtn) mapBtn.addEventListener('click', onMap);
   const bookBtn = document.getElementById('btn-book');
   if (bookBtn) bookBtn.addEventListener('click', onBook);
+  const dubBtn = document.getElementById('btn-dub');
+  if (dubBtn) dubBtn.addEventListener('click', showDubStudio);
   // 菜单：点 ☰ 展开/收起；点菜单里的项执行完顺手收起
   if (els.btnMenu) els.btnMenu.addEventListener('click', e => { e.stopPropagation(); toggleHudMenu(); });
   if (els.hudMenu) {
