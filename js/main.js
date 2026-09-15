@@ -1,3 +1,4 @@
+import { t } from './i18n.js';
 // Q淘族 · 入口
 import './compat.js'; // 兼容垫片（roundRect 等），必须最先加载
 
@@ -52,7 +53,7 @@ const canvas = document.getElementById('scene');
 window.addEventListener('error', e => {
   const el = document.getElementById('loading');
   if (el && !el.classList.contains('done')) {
-    el.querySelector('.loading-text').textContent = '哎呀，加载出了点小问题，请刷新试试（需要联网加载 3D 引擎）';
+    el.querySelector('.loading-text').textContent = t('x.g500');
     console.error(e.error || e.message);
   }
 });
@@ -134,10 +135,10 @@ async function begin(name, semKey, gender, password, serverScore, token) {
     const el = document.getElementById('loading');
     if (el) {
       const esc = s => String(s).replace(/[<>&"]/g, ch => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[ch]));
-      const msg = esc((err && err.message) || err || '未知错误');
+      const msg = esc((err && err.message) || err || t('x.g501'));
       const log = (window.__errLog || []).slice(-2).map(esc).join('；');
       el.querySelector('.loading-text').innerHTML =
-        '哎呀，加载 3D 画面时出了点小问题，请关掉其他应用后刷新重试' +
+        t('x.g502') +
         `<small style="display:block;margin-top:10px;font-size:12px;opacity:.75;word-break:break-all">${msg}${log ? '<br>' + log : ''}</small>`;
     }
   }
@@ -170,7 +171,7 @@ save.onKick(() => {
 });
 let kickMsg = '';
 try {
-  if (sessionStorage.getItem('qtzu_kicked')) { kickMsg = '你的账号在别处登录啦，这里已下线。重新登录就能继续玩～'; sessionStorage.removeItem('qtzu_kicked'); }
+  if (sessionStorage.getItem('qtzu_kicked')) { kickMsg = t('x.g503'); sessionStorage.removeItem('qtzu_kicked'); }
 } catch (e) { /* ignore */ }
 
 // 建过档案（有昵称、选好课本）就直接续玩；否则弹窗：有昵称的走登录，没有的走注册

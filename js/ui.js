@@ -65,7 +65,7 @@ function renderUserPill() {
   const n = _userName;
   els.userPill.textContent = n ? (narrow ? '👤' : `👤 ${n}`) : '👤';
   els.userPill.classList.toggle('hidden', !n);
-  els.userPill.title = n ? `${n} 的学习档案` : '';
+  els.userPill.title = n ? t('x.g0', { a0: n }) : '';
 }
 export function updateUser(name) {
   if (!els.userPill) return;
@@ -112,7 +112,7 @@ export function updateHUD(count, total, hungryCount, chapterText = '') {
   renderPetCount();
   const hungry = hungryCount > 0;
   els.hungryPill.classList.toggle('hidden', !hungry);
-  els.hungryPill.textContent = isTouchMode ? `🍖 ${hungryCount} 只想你` : `🍖 有 ${hungryCount} 只词宠想你啦`;
+  els.hungryPill.textContent = isTouchMode ? t('x.g2', { a0: hungryCount }) : t('x.g3', { a0: hungryCount });
   document.body.classList.toggle('has-hungry', hungry);
 }
 
@@ -133,7 +133,7 @@ export function updateStars(n) {
   }
   lastStars = n;
   els.starPill.textContent = `⭐ ${n}`;
-  els.starPill.title = '星星：读单词、喂词宠、解谜题都能赚，去许愿井换装扮！';
+  els.starPill.title = t('x.g4');
 }
 // 手机端顶栏没有分数胶囊：点星星胶囊报一遍家底（桌面信息齐全不用点）
 els.starPill.addEventListener('click', () => {
@@ -234,8 +234,8 @@ export function openChinaMap({ cities, onPick }) {
   c.fillStyle = '#7A9A6E'; c.font = '700 20px "Microsoft YaHei", sans-serif';
   c.textAlign = 'center'; c.textBaseline = 'middle';
   const hc = CHINA_ISLANDS.hainan, tw = CHINA_ISLANDS.taiwan;
-  c.fillText('海南', X(hc.reduce((s, p) => s + p[0], 0) / hc.length), Y(hc.reduce((s, p) => s + p[1], 0) / hc.length));
-  c.fillText('台湾', X(tw.reduce((s, p) => s + p[0], 0) / tw.length), Y(tw.reduce((s, p) => s + p[1], 0) / tw.length));
+  c.fillText(t('x.g6'), X(hc.reduce((s, p) => s + p[0], 0) / hc.length), Y(hc.reduce((s, p) => s + p[1], 0) / hc.length));
+  c.fillText(t('x.g7'), X(tw.reduce((s, p) => s + p[0], 0) / tw.length), Y(tw.reduce((s, p) => s + p[1], 0) / tw.length));
   // 巡游路线（金色虚线按顺序串起来）
   const route = cities;
   if (route.length > 1) {
@@ -274,12 +274,12 @@ export function openChinaMap({ cities, onPick }) {
     if (best) onPick && onPick(best.key);
   };
   const headSpan = els.mapHead.querySelector('span');
-  if (headSpan) headSpan.textContent = '🗺️ 中国巡游地图';
+  if (headSpan) headSpan.textContent = t('x.g8');
   const wgBtn = document.getElementById('map-wordgame');
   if (wgBtn) wgBtn.onclick = () => { sfx.pop(); openWordMapGame(); };
   els.map.classList.remove('hidden');
   const lg = document.getElementById('map-legend');
-  if (lg) lg.textContent = '🟡 当前 · 🟢 已解锁 · ⚪ 未解锁 · 点城市看介绍';
+  if (lg) lg.textContent = t('x.g9');
   return true;
 }
 // npcs.js 负责分页与自动翻页，这里只管渲染与屏幕定位；翻页回调由 showNpcBubble 注入
@@ -337,16 +337,16 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   els.wordIpa.textContent = ipa ? `/${ipa}/` : '';
   els.wordIpa.classList.toggle('hidden', !ipa);
   els.wordZh.textContent = word.zh;
-  els.wordHint.textContent = '小提示：' + word.hint;
+  els.wordHint.textContent = t('x.g10') + word.hint;
   els.voiceFeedback.textContent = '';
   els.voiceFeedback.className = '';
   els.scorePanel.classList.add('hidden');
   els.btnReplay.classList.add('hidden');
-  els.micLabel.textContent = '点我开始读';
+  els.micLabel.textContent = t('x.g11');
   els.spellArea.classList.add('hidden');
   els.modalFoot.classList.remove('hidden');
   els.btnSkip.classList.toggle('hidden', mode !== 'practice' && !ch.easy);
-  els.btnSwitchSpell.classList.toggle('hidden', !!noSpell);   // 整句跟读没有"拼字母块"
+  els.btnSwitchSpell.classList.toggle('hidden', !!noSpell);   // 整句跟读没有t('x.g12')
   // 详细按钮只在喂养时显示：孵化/练习时孩子专注朗读拼块，词义详情留到喂养时专注看
   els.btnDetail.classList.toggle('hidden', mode !== 'feed');
   if (mode === 'feed') setTimeout(() => els.btnDetail.click(), 600);   // 喂养时自动弹出词义详情
@@ -362,7 +362,7 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   ch.engineWait = canVoice && !onlineVoice && whisperState() !== 'ready';
   let elapsed = 0;
   if (ch.engineWait) {
-    els.micLabel.textContent = '🚀 语音引擎准备中…';
+    els.micLabel.textContent = t('x.g14');
     ch.engineTick = setInterval(() => {
       if (!ch.open) { clearInterval(ch.engineTick); return; }
       elapsed += 0.5;
@@ -381,12 +381,12 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
     els.micLabel.textContent = t('ch.micGo');
   }
   if (voiceBlockedByInsecure) {
-    els.voiceFeedback.textContent = '🎤 要 https:// 网址才能语音，先拼字母块吧';
+    els.voiceFeedback.textContent = t('x.g15');
     setSpellMode(true);
   } else if (canRecord && !onlineVoice) {
-    els.voiceFeedback.textContent = ch.engineWait ? '🚀 第一次要先准备语音引擎，很快的～' : '🎤 用本地识别朗读，大声读出来吧';
+    els.voiceFeedback.textContent = ch.engineWait ? t('x.g16') : t('x.g17');
   } else if (!canVoice) {
-    els.voiceFeedback.textContent = '🎤 这台设备用不了语音，先拼字母块吧';
+    els.voiceFeedback.textContent = t('x.g18');
     setSpellMode(true);
   }
   els.modal.classList.remove('hidden');
@@ -499,7 +499,7 @@ export function openCityPicker({ current, onPick }) {
       ov.remove();
       const id = r.dataset.id;
       const c = CITIES.find(x => x.id === id);
-      toast(c ? `📍 家乡定为 ${c.name} ${c.emoji || ''}` : '📍 城市已更新', 2200);
+      toast(c ? `📍 家乡定为 ${c.name} ${c.emoji || ''}` : t('x.g21'), 2200);
       onPick && onPick(id, c);
     };
   });
@@ -509,7 +509,7 @@ export function openCityPicker({ current, onPick }) {
 // 词对资源在 data/i18n/game.zh.json / game.en.json 的 wordmap 字段
 export function openWordMapGame() {
   const pool = getGameRes().wordmap || [];
-  if (pool.length < 8) { toast('词对资源还没加载好，稍后再来～'); return; }
+  if (pool.length < 8) { toast(t('x.g22')); return; }
   const pairs = _shuffle(pool).slice(0, 8);
   const words = _shuffle(pairs);
   const cities = _shuffle(pairs);
@@ -541,13 +541,13 @@ export function openWordMapGame() {
       wordBtns.forEach(x => x.classList.remove('sel'));
       wb.classList.add('sel');
       sel = wb;
-      rs.textContent = '它属于哪座城？点点右边～';
+      rs.textContent = t('x.g23');
     };
   });
   cityBtns.forEach(cb => {
     cb.onclick = () => {
       if (cb.disabled) return;
-      if (!sel) { rs.textContent = '先点左边一个英文词哦'; return; }
+      if (!sel) { rs.textContent = t('x.g24'); return; }
       if (cb.dataset.city === sel.dataset.city) {
         sfx.good();
         sel.classList.remove('sel'); sel.classList.add('locked'); sel.disabled = true;
@@ -557,14 +557,14 @@ export function openWordMapGame() {
           sfx.great();
           addStars(2);
           updateStars(getStars());
-          rs.textContent = '🏆 全部配对完成！+2⭐ 你就是地理小达人！';
+          rs.textContent = t('x.g25');
           rs.classList.add('good');
         } else {
-          rs.textContent = '✅ 配对成功！继续～';
+          rs.textContent = t('x.g26');
         }
       } else {
         sfx.pop();
-        rs.textContent = '再想想——这个词最有名的地方是哪座城？';
+        rs.textContent = t('x.g27');
         cb.classList.add('shake');
         sel.classList.add('shake');
         const w = sel;
@@ -591,14 +591,14 @@ function setListening(on) {
   if (on) {
     // 10 秒倒计时：显示在麦克风按钮上，到时自动收音识别，不让小朋友干等
     let left = LISTEN_SECONDS;
-    els.micLabel.textContent = `读完点这里 ${left}s`;
+    els.micLabel.textContent = t('x.g28', { a0: left });
     countdownTimer = setInterval(() => {
       left--;
       if (left <= 0) {
         stopCountdown();
         if (ch.listening) {   // 到时自动结束并识别（和点一下结束等价）
           setListening(false);
-          els.voiceFeedback.textContent = '识别中…';
+          els.voiceFeedback.textContent = t('x.g29');
           if (ch.onMicEnd) ch.onMicEnd();
         }
         return;
@@ -615,7 +615,7 @@ export function voiceStatus(text) {
 }
 export function voiceRecording() {
   if (!ch.open) return;
-  els.voiceFeedback.textContent = '● 正在录音，读完再点一下';
+  els.voiceFeedback.textContent = t('x.g30');
   els.voiceFeedback.className = 'good';
 }
 export function voiceUnavailable() {
@@ -623,7 +623,7 @@ export function voiceUnavailable() {
   setListening(false);
   els.btnMic.classList.add('hidden');
   ch.canVoice = false;
-  els.voiceFeedback.textContent = '🎤 语音用不了，改用字母块拼吧';
+  els.voiceFeedback.textContent = t('x.g31');
   setSpellMode(true);
   sfx.miss();
 }
@@ -635,8 +635,8 @@ els.btnMic.addEventListener('click', () => {
     sfx.pop();
     const pct = loadPercent();
     els.voiceFeedback.textContent = pct > 0
-      ? `⏳ 引擎正在热身（${pct}%），几秒后就能开读啦～也可以先点「换成拼字母块」`
-      : '⏳ 语音引擎正在初始化，稍等几秒再点～';
+      ? t('x.g32', { a0: pct })
+      : t('x.g33');
     els.voiceFeedback.className = '';
     return;
   }
@@ -668,7 +668,7 @@ export function voiceResult(res) {
   if (res.error) {
     els.voiceFeedback.textContent = res.error === 'no-result'
       ? t('ch.reRead')
-      : '再读一次试试～';
+      : t('x.g34');
     els.voiceFeedback.className = 'bad';
     sfx.miss();
     return;
@@ -688,7 +688,7 @@ export function showReplay(url) {
 els.btnReplay.addEventListener('click', () => {
   if (!ch.replayUrl) return;
   sfx.pop();
-  els.voiceFeedback.textContent = '🎧 这是你刚才的读音，听听和标准音差在哪～';
+  els.voiceFeedback.textContent = t('x.g35');
   els.voiceFeedback.className = '';
   playRecording(ch.replayUrl);
 });
@@ -745,10 +745,10 @@ export function homeStars(x, y, n = 3) {
 export function levelUpOpen() { return els.levelup && !els.levelup.classList.contains('hidden'); }
 export function showLevelComplete({ index, name, words = [], last = false, onNext }) {
   els.levelupBurst.textContent = last ? '🏆' : '🎉';
-  els.levelupTitle.textContent = last ? '整册通关！' : `第 ${index} 关完成！`;
+  els.levelupTitle.textContent = last ? t('x.g36') : t('x.g37', { a0: index });
   els.levelupSub.textContent = last
-    ? `「${name}」${words.length} 只词宠全部唤醒，你就是Q淘族传奇！`
-    : `「${name}」全部唤醒 +3⭐`;
+    ? t('x.g38', { a0: name, a1: words.length })
+    : t('x.g39', { a0: name });
   // 星星逐颗弹入：重置动画
   const stars = els.levelupStars.querySelectorAll('span');
   stars.forEach((s, i) => {
@@ -762,7 +762,7 @@ export function showLevelComplete({ index, name, words = [], last = false, onNex
   els.levelupWords.querySelectorAll('.lvlup-chip').forEach(btn => {
     btn.onclick = () => { sfx.pop(); speak(btn.dataset.en); };
   });
-  els.levelupNext.textContent = last ? '再逛逛小岛 🏝️' : '继续冒险 →';
+  els.levelupNext.textContent = last ? t('x.g40') : t('x.g41');
   els.levelup.classList.remove('hidden');
   confettiBurst(120);
   vibrate([30, 60, 30, 60, 90]);
@@ -816,8 +816,8 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
         ${gallery.map((g, i) => `<img class="cc-slide${i === 0 ? ' on' : ''}" src="${g.img}" alt="${g.caption || city.name}"
             loading="${i === 0 ? 'eager' : 'lazy'}"
             onerror="this.dataset.err='1';this.classList.remove('on');if(![...this.parentElement.querySelectorAll('.cc-slide')].some(s=>!s.dataset.err))this.parentElement.classList.add('dead')">`).join('')}
-        <button type="button" class="cc-g-btn prev" aria-label="上一张">‹</button>
-        <button type="button" class="cc-g-btn next" aria-label="下一张">›</button>
+        <button type="button" class="cc-g-btn prev" aria-label=t('x.g42')>‹</button>
+        <button type="button" class="cc-g-btn next" aria-label=t('x.g43')>›</button>
         <div class="cc-dots">${gallery.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('')}</div>
         <div class="cc-cap">${gallery[0].caption || ''}</div>
         <div class="cc-g-fallback"><span>${variant.emoji}</span>${city.en}</div>
@@ -845,7 +845,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     <button class="cc-intro-en" data-en="${variant.introEn}">🔊 ${variant.introEn}</button>
     ${variant.introEn ? `<button type="button" class="cc-guide">🎤 当小导游 · 80分得徽章${hasBadge('guide:' + city.en) ? ' 🎖️' : ''}</button>` : ''}
     ${city.importance ? `<div class="cc-imp">⭐ ${city.importance}</div>` : ''}
-    ${cwords ? `<div class="cc-sec">🗣️ 城市英文词（点点读）</div><div class="cc-chips">${cwords}</div>` : ''}
+    ${cwords ? t('x.g46', { a0: cwords }) : ''}
     ${q}`;
 
   // 大学 Tab：富卡片（点校名跳官网 + 建校年份实时算年龄 + 排名参考值）
@@ -861,15 +861,15 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
       <div class="uni-grid">
         <span>📅 ${u.founded || '—'} 年创建</span>
         <span class="hot">🎉 建校 ${a != null ? a : '—'} 年</span>
-        <span>🌍 全球${u.globalRank != null ? '第 ' + u.globalRank : ' —'}</span>
-        <span>🇨🇳 全国${u.nationalRank != null ? '第 ' + u.nationalRank : ' —'}</span>
+        <span>🌍 全球${u.globalRank != null ? t('x.g47') + u.globalRank : ' —'}</span>
+        <span>🇨🇳 全国${u.nationalRank != null ? t('x.g47') + u.nationalRank : ' —'}</span>
       </div>
       ${u.history ? `<div class="uni-hist">${u.history}</div>` : ''}
     </div>`;
   }).join('');
   const uniHtml = unis
-    ? `<p class="cc-p">点大学名字，去它们的官网看看（排名为公开榜单参考值）：</p><div class="uni-list">${unis}</div>`
-    : `<p class="cc-p">这座城市更出名的是风景，去看看「风景」页吧！</p>`;
+    ? t('x.g48', { a0: unis })
+    : t('x.g49');
 
   // 图片卡片网格生成器（美食/风景共用）；风景页支持盖章收集
   const itemsHtml = (items, emoji, tip, stampable) => {
@@ -882,7 +882,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
         <div class="it-name">${it.name}<i>${it.en || ''}</i></div>
         ${it.desc ? `<div class="it-desc">${it.desc}</div>` : ''}
       </div>`).join('');
-    if (!cards) return `<p class="cc-p">这座城市的秘密等你亲自去发现！</p>`;
+    if (!cards) return t('x.g50');
     const line = stampable
       ? `<div class="cc-stamp-line">${isStampsDone(city.en)
           ? t('cc.stampDone', { n: got.length, total: (items || []).length })
@@ -898,16 +898,16 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
 
   // Tab 栏：配置数组驱动，city.customTabs 可无代码扩展
   const tabs = [
-    { id: 'home', name: '🏠 首页', html: homeHtml },
-    { id: 'uni', name: '🎓 大学', html: uniHtml },
-    { id: 'food', name: '🍜 美食', html: itemsHtml(city.foods, '🍜', isEn()
+    { id: 'home', name: t('x.g52'), html: homeHtml },
+    { id: 'uni', name: t('x.g53'), html: uniHtml },
+    { id: 'food', name: t('x.g54'), html: itemsHtml(city.foods, '🍜', isEn()
       ? `Must-try foods in ${city.name}:`
-      : `来到${city.name}，一定要尝尝这些特色美味：`) },
-    { id: 'scene', name: '🏞️ 风景', html: scenesHtml() },
+      : t('x.g55', { a0: city.name })) },
+    { id: 'scene', name: t('x.g56'), html: scenesHtml() },
     ...(city.customTabs || []).map(t => ({ id: t.name, name: t.name, html: t.html || '' })),
   ];
   ov.innerHTML = `<div id="city-card" class="${isFinal ? 'final' : ''}">
-    ${isFinal ? '<div class="cc-final-badge">🏁 终点站 · 首都</div>' : ''}
+    ${isFinal ? t('x.g57') : ''}
     ${slideHtml}
     <div class="cc-emoji">${variant.emoji}</div>
     <div class="cc-name">${city.name}</div>
@@ -915,7 +915,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     <div class="cc-tabs">${tabs.map((t, i) => `<button type="button" class="cc-tab${i === 0 ? ' on' : ''}" data-t="${i}">${t.name}</button>`).join('')}</div>
     <div class="cc-body">${tabs[0].html}</div>
     <div class="cc-actions">
-      <button id="cc-share" type="button" title="生成这张城市的分享卡">📸 分享卡</button>
+      <button id="cc-share" type="button" title=t('x.g58')>📸 分享卡</button>
       <button id="cc-go">出发探索 →</button>
     </div>
   </div>`;
@@ -967,7 +967,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
         sfx.pop();
         els.modal.style.zIndex = '130';   // 挑战弹窗要压在城市卡（120）之上
         openChallenge({
-          word: { en: variant.introEn, zh: `${city.name} · 小导游词`, hint: '当小导游，大声把这座城介绍给游客！' },
+          word: { en: variant.introEn, zh: t('x.g59', { a0: city.name }), hint: t('x.g60') },
           mode: 'practice', noSpell: true,
           onSuccess: res => {
             closeChallenge();
@@ -976,9 +976,9 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
               awardBadge('guide:' + city.en);
               sfx.great();
               onStar && onStar();
-              toast(first ? `🎖️ 小导游徽章到手！${city.name}介绍得真棒 +1⭐` : `🎖️ 又当了一次小导游，越说越溜 +1⭐`, 4200);
+              toast(first ? t('x.g61', { a0: city.name }) : t('x.g62'), 4200);
             } else {
-              toast('再多练一次，80 分就能拿到小导游徽章！', 3200);
+              toast(t('x.g63'), 3200);
             }
           },
           onClose: () => { els.modal.style.zIndex = ''; },
@@ -1001,9 +1001,9 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
           markStampsDone(city.en);
           sfx.great();
           onStar && onStar(); onStar && onStar();   // 集满一座城：+2⭐
-          toast(`🏅「${city.name}」景点集章全部完成！+2⭐`, 4200);
+          toast(t('x.g64', { a0: city.name }), 4200);
         } else {
-          toast(`🏅 盖上「${name}」纪念章！已集 ${count}/${total}`, 2600);
+          toast(t('x.g65', { a0: name, a1: count, a2: total }), 2600);
         }
         const line = body.querySelector('.cc-stamp-line');
         if (line) line.textContent = `🏅 景点集章 ${count}/${total}${isStampsDone(city.en) ? ' · 全部完成！' : ' · 点一点盖上纪念章'}`;
@@ -1076,7 +1076,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
       title: city.name, en: city.en, emoji: variant.emoji,
       rows: [
         `📍 ${getUsername() || '小小淘气'} · 第 ${visit + 1} 次到访`,
-        `🐾 词宠已收集 ${hatchedCount()} 只`,
+        t('x.g69', { a0: hatchedCount() }),
         `📅 ${new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}`,
       ],
     });
@@ -1085,25 +1085,25 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
 }
 // 地标类型中文名（风景 Tab 用）
 const LANDMARK_ZH = {
-  gate: '古老的城楼和城墙', tower: '高高的塔尖直插云霄', wall: '一眼望不到头的古城墙',
-  panda: '憨态可掬的大熊猫', ice: '闪闪发光的冰雕世界', palm: '椰林树影的海滩',
-  dome: '圆顶的草原帐篷', mountain: '连绵起伏的青山', pavilion: '飞檐翘角的亭台楼阁',
-  grotto: '千年石窟大佛', harbor: '船来船往的大港口',
+  gate: t('x.g70'), tower: t('x.g71'), wall: t('x.g72'),
+  panda: t('x.g73'), ice: t('x.g74'), palm: t('x.g75'),
+  dome: t('x.g76'), mountain: t('x.g77'), pavilion: t('x.g78'),
+  grotto: t('x.g79'), harbor: t('x.g80'),
 };
 
 // ---------- 牌子详情弹卡：点击城市里的大学/美食/风景立牌弹出 ----------
-const SIGN_TYPE_ZH = { uni: ['🎓', '大学'], food: ['🍜', '美食'], scene: ['🏞️', '风景名胜'] };
+const SIGN_TYPE_ZH = { uni: ['🎓', t('x.g81')], food: ['🍜', t('x.g82')], scene: ['🏞️', t('x.g83')] };
 export function showSignDetail(it, cityEn) {
   const ov = document.createElement('div');
   ov.className = 'overlay';
   ov.style.zIndex = '118';
-  const [emoji, typeName] = SIGN_TYPE_ZH[it.type] || ['📍', '城市名片'];
+  const [emoji, typeName] = SIGN_TYPE_ZH[it.type] || ['📍', t('x.g84')];
   const nm = it.name || it.zh || '';
   // 🏅 风景立牌打开即盖章（与城市卡风景页共用同一本集章册）
   let stampTip = '';
   if (cityEn && it.type === 'scene' && nm) {
     const count = addStamp(cityEn, nm);
-    stampTip = `<div class="sg-stamp">🏅 已盖上「${nm}」纪念章（第 ${count} 枚），集满一座城有惊喜！</div>`;
+    stampTip = t('x.g85', { a0: nm, a1: count });
     sfx.pat();
   }
   ov.innerHTML = `<div id="sign-card">
@@ -1111,11 +1111,11 @@ export function showSignDetail(it, cityEn) {
     <div class="sg-fb" style="display:flex"><span>${emoji}</span></div>
     <div class="sg-head"><i class="tag">${emoji} ${typeName}</i><b>${nm}</b></div>
     ${it.en ? `<div class="sg-en">${it.en}</div>` : ''}
-    ${it.founded ? `<div class="sg-meta">📅 创建于 ${it.founded} 年</div>` : ''}
+    ${it.founded ? t('x.g86', { a0: it.founded }) : ''}
     ${it.desc ? `<div class="sg-desc">${it.desc}</div>` : ''}
     ${it.history ? `<div class="sg-hist">${it.history}</div>` : ''}
     <div class="sg-wiki"></div>
-    ${it.site ? `<a class="sg-site" href="${it.site}" target="_blank" rel="noopener noreferrer">🌐 打开官网</a>` : ''}
+    ${it.site ? t('x.g87', { a0: it.site }) : ''}
     ${stampTip}
     <div class="sg-tip">🔊 点读英文名 · 照片来自维基百科</div>
   </div>`;
@@ -1174,7 +1174,7 @@ export function showTravelBadge(cities, onDone) {
   if (tbShare) tbShare.onclick = () => {
     sfx.pop();
     openShareCard({
-      title: '走遍祖国之旅', en: 'Journey Across China', emoji: '🏅',
+      title: t('x.g88'), en: 'Journey Across China', emoji: '🏅',
       rows: [
         `🧒 ${getUsername() || '小小淘气'} 完成了本册巡游`,
         `🏙️ ${cities.length} 座城市：${cities.map(c => c.emoji).join('')}`,
@@ -1194,7 +1194,7 @@ function _rrPath(c, x, y, w, h, r) {
   c.arcTo(x, y, x + w, y, r);
   c.closePath();
 }
-function drawShareCard({ title, en = '', emoji = '🏙️', rows = [], footer = 'Q淘族 · 越淘越有词' }) {
+function drawShareCard({ title, en = '', emoji = '🏙️', rows = [], footer = t('x.g92') }) {
   const cv = document.createElement('canvas');
   cv.width = 720; cv.height = 960;
   const c = cv.getContext('2d');
@@ -1239,13 +1239,13 @@ export function openShareCard(data) {
   ov.className = 'overlay';
   ov.style.zIndex = '135';
   ov.innerHTML = `<div class="share-pop">
-    <img class="share-pop-img" alt="分享卡片">
+    <img class="share-pop-img" alt=t('x.g93')>
     <div class="share-pop-btns">
       <button type="button" class="sp-share">📤 分享</button>
       <button type="button" class="sp-save">💾 保存图片</button>
     </div>
     <div class="share-pop-tip"></div>
-    <button type="button" class="round-btn small sp-close" aria-label="关闭">✕</button>
+    <button type="button" class="round-btn small sp-close" aria-label=t('x.g94')>✕</button>
   </div>`;
   ov.querySelector('.share-pop-img').src = cv.toDataURL('image/png');
   document.body.appendChild(ov);
@@ -1259,19 +1259,19 @@ export function openShareCard(data) {
       a.download = `qtzu-${data.title || '分享卡'}.png`;
       a.click();
       setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-      tip.textContent = '已保存到下载，快去发给家人看看吧！';
+      tip.textContent = t('x.g96');
     };
     ov.querySelector('.sp-share').onclick = async () => {
       sfx.pop();
       try {
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({ files: [file], title: data.title, text: `${data.title} · Q淘族` });
-          tip.textContent = '分享出去啦，谢谢帮 Q淘族告诉更多小伙伴！';
+          tip.textContent = t('x.g98');
         } else {
           savePng();
-          tip.textContent = '这个浏览器不支持直接分享，已帮你保存图片，去相册发吧！';
+          tip.textContent = t('x.g99');
         }
-      } catch (e) { if (e && e.name !== 'AbortError') tip.textContent = '分享没成功，可以试试「保存图片」哦'; }
+      } catch (e) { if (e && e.name !== 'AbortError') tip.textContent = t('x.g100'); }
     };
     ov.querySelector('.sp-save').onclick = () => { sfx.pop(); savePng(); };
   }, 'image/png');
@@ -1321,7 +1321,7 @@ export function playBookFlip(cb) {
   ov.className = 'overlay';
   ov.style.zIndex = '200';
   ov.style.background = '#FFF7E8';
-  ov.innerHTML = `<div class="book-flip"><span class="bf-page bf-l">📖</span><span class="bf-page bf-r">📗</span></div><div class="bf-text">翻开新的一册…</div>`;
+  ov.innerHTML = t('x.g103');
   document.body.appendChild(ov);
   setTimeout(cb, 780);
 }
@@ -1333,10 +1333,10 @@ export function showParentReport(rep, name = '') {
   ov.className = 'overlay';
   const dayRows = Object.entries(rep.days || {}).map(([d, v]) =>
     `<div class="rp-row"><span>${d}</span><span>${v.hatches ? `孵 ${v.hatches} 只` : ''}${v.hatches && v.reads ? ' · ' : ''}${v.reads ? `读 ${v.reads} 次` : ''}${v.reads ? ` · 均分 ${Math.round(v.sum / v.reads)}` : ''}</span></div>`).join('')
-    || '<div class="rp-row"><span>这周还没开始学习，快去孵一颗蛋吧！</span></div>';
+    || t('x.g107');
   ov.innerHTML = `<div id="report-card">
     <button class="round-btn small rp-close">✕</button>
-    <div class="rp-title">📋 ${name ? name + ' 的' : ''}学习周报（近 7 天）</div>
+    <div class="rp-title">📋 ${name ? name + t('x.g108') : ''}学习周报（近 7 天）</div>
     <div class="rp-grid">
       <div class="rp-cell"><b>${rep.hatches}</b><i>新孵词宠</i></div>
       <div class="rp-cell"><b>${rep.reads}</b><i>朗读次数</i></div>
@@ -1362,10 +1362,10 @@ export function showParentReport(rep, name = '') {
       ok = true;
     } catch (err) { /* 旧浏览器/非 https：走可全选文本兜底 */ }
     if (ok) {
-      btn.textContent = '✅ 已复制，快去粘贴给家人吧！';
+      btn.textContent = t('x.g110');
       btn.classList.add('copied');
       sfx.good();
-      setTimeout(() => { btn.textContent = '复制本周小结，分享给家人 👨‍👩‍👧'; btn.classList.remove('copied'); }, 2400);
+      setTimeout(() => { btn.textContent = t('x.g111'); btn.classList.remove('copied'); }, 2400);
     } else {
       const ta = document.createElement('textarea');
       ta.value = text;
@@ -1461,7 +1461,7 @@ function setFever(on) {
     sfx.magic();
     const b = document.createElement('div');
     b.id = 'fever-bar';
-    b.textContent = '🔥 FEVER x2 · 连续完美，星星翻倍！';
+    b.textContent = t('x.g112');
     document.body.appendChild(b);
     setTimeout(() => b.remove(), 2800);
   }
@@ -1509,13 +1509,13 @@ function showScore(score, heard, opts = {}) {
   // 评语 + 音效
   let msg;
   if (opts.msg) msg = opts.msg;
-  else if (score >= 95) msg = '🌟 完美发音！你就是单词小明星！';
-  else if (score >= 85) msg = '太棒了！发音非常标准！';
-  else if (score >= 80) msg = '合格啦！再练一次会更稳！';
-  else if (score >= 70) msg = '过关啦！勇敢开口就是最棒的！';
-  else if (score >= 60) msg = '很接近啦！达到 70 分就能过关哦！';
-  else if (heard) msg = `听到的是「${heard}」，勇敢再试一次！`;
-  else msg = '没听清呢，大声一点点再试！';
+  else if (score >= 95) msg = t('x.g113');
+  else if (score >= 85) msg = t('x.g114');
+  else if (score >= 80) msg = t('x.g115');
+  else if (score >= 70) msg = t('x.g116');
+  else if (score >= 60) msg = t('x.g117');
+  else if (heard) msg = t('x.g118', { a0: heard });
+  else msg = t('x.g119');
   els.scoreMsg.textContent = msg;
   els.scoreMsg.className = score >= 70 ? 'good' : 'bad';
   els.scoreMsg.style.color = score >= 70 ? '#4E9A46' : '#D06A9C';
@@ -1553,10 +1553,10 @@ function playFollowAlong() {
   const syl = word.syl && word.syl.length && !(word.syl.length === 1 && word.syl[0] === word.en)
     ? word.syl : null;
   if (syl) {
-    els.voiceFeedback.innerHTML = '跟我一起读：' + syl.map((s, i) =>
+    els.voiceFeedback.innerHTML = t('x.g120') + syl.map((s, i) =>
       `<span class="syl" data-i="${i}">${escapeHtml(s)}</span>`).join(' · ');
   } else {
-    els.voiceFeedback.textContent = '跟我一起读：慢速示范';
+    els.voiceFeedback.textContent = t('x.g121');
   }
   els.voiceFeedback.className = '';
   const marks = els.voiceFeedback.querySelectorAll('.syl');
@@ -1673,7 +1673,7 @@ function checkSpell() {
   if (attempt === ch.word.en) {
     // 真的自己拼出来了 —— 拼写满分演出
     speak(ch.word.en);
-    showScore(100, null, { msg: '🧩 拼写满分！会拼就会读！' });
+    showScore(100, null, { msg: t('x.g122') });
     return;
   }
   // 拼错了：不扣分也不收字母，点槽位取回改一改再来
@@ -1681,7 +1681,7 @@ function checkSpell() {
   void els.spellArea.offsetWidth;
   els.spellArea.classList.add('shake');
   sfx.miss();
-  els.voiceFeedback.textContent = `拼出来的是「${attempt}」，不对哦～点字母槽把块取回来再试试！`;
+  els.voiceFeedback.textContent = t('x.g123', { a0: attempt });
   els.voiceFeedback.className = 'bad';
   speak(ch.word.en, { rate: 0.6 });
 }
@@ -1692,13 +1692,13 @@ function setSpellMode(on) {
   els.spellArea.classList.toggle('hidden', !on);
   els.modalFoot.classList.toggle('hidden', on);
   els.wordEn.classList.toggle('spell-hidden', on);
-  if (on) els.voiceFeedback.textContent = '用字母块拼出英文单词吧！';
+  if (on) els.voiceFeedback.textContent = t('x.g124');
   if (on) buildSpell();
 }
 let _scoreInfo = { score: 0, session: 0 };
 export function updatePlayerScore(score, sessionScore = score) {
   _scoreInfo = { score: Number(score) || 0, session: Number(sessionScore) || 0 };
-  if (els.scorePill) els.scorePill.textContent = isTouchMode ? `🏆 ${score}` : `🏆 ${score} 分 · 本局 ${sessionScore}`;
+  if (els.scorePill) els.scorePill.textContent = isTouchMode ? `🏆 ${score}` : t('x.g125', { a0: score, a1: sessionScore });
   refreshMenuScore();
   leaderboardCurrent.score = Number(score) || 0;
   scheduleLeaderboardRefresh();
@@ -1707,7 +1707,7 @@ export function updatePlayerScore(score, sessionScore = score) {
 function refreshMenuScore() {
   if (!els.menuScore) return;
   if (innerWidth > 640) { els.menuScore.classList.add('hidden'); return; }
-  els.menuScore.textContent = `🏆 累计 ${_scoreInfo.score} 分 · 本局 ${_scoreInfo.session} 分`;
+  els.menuScore.textContent = t('x.g126', { a0: _scoreInfo.score, a1: _scoreInfo.session });
   els.menuScore.classList.remove('hidden');
 }
 
@@ -1719,10 +1719,10 @@ let leaderboardRequest = null;
 let lbRows = [];
 let lbTab = 'score';
 const LB_TABS = [
-  { id: 'score', icon: '🏆', name: '分数', field: 'score', fmt: v => `${v} 分` },
-  { id: 'pets', icon: '🐾', name: '词宠', field: 'pets', fmt: v => `${v} 只` },
-  { id: 'cities', icon: '🏙️', name: '城市', field: 'cities', fmt: v => `${v} 城` },
-  { id: 'stars', icon: '⭐', name: '星星', field: 'stars', fmt: v => `${v}⭐` },
+  { id: 'score', icon: '🏆', name: t('x.g127'), field: 'score', fmt: v => t('x.g128', { a0: v }) },
+  { id: 'pets', icon: '🐾', name: t('x.g129'), field: 'pets', fmt: v => t('x.g130', { a0: v }) },
+  { id: 'cities', icon: '🏙️', name: t('x.g131'), field: 'cities', fmt: v => t('x.g132', { a0: v }) },
+  { id: 'stars', icon: '⭐', name: t('x.g133'), field: 'stars', fmt: v => `${v}⭐` },
 ];
 function lbTabsHtml() {
   return `<div class="lb-tabs">${LB_TABS.map(t =>
@@ -1742,9 +1742,9 @@ function renderLbList(current = leaderboardCurrent) {
   const t = LB_TABS.find(x => x.id === lbTab) || LB_TABS[0];
   const medals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
   const sorted = [...lbRows].sort((a, b) => (Number(b[t.field]) || 0) - (Number(a[t.field]) || 0)).slice(0, 5);
-  if (!sorted.length) return lbTabsHtml() + '<div class="rank-loading">还没有记录，快来拿第一分吧！</div>';
+  if (!sorted.length) return lbTabsHtml() + t('x.g134');
   return lbTabsHtml() + sorted.map((x, i) => {
-    const name = String(x.username || '匿名小伙伴');
+    const name = String(x.username || t('x.g135'));
     const gIcon = x.gender === 'girl' ? '👧' : '👦';   // 没有性别记录的老数据默认男孩
     const title = x.title ? `<i class="rank-title">${escapeHtml(String(x.title))}</i>` : '';
     const active = current.username && name === current.username ? ' current' : '';
@@ -1767,12 +1767,12 @@ async function fetchLeaderboardRows() {
 
 // 排行榜接口不可用时，说清是“后端没部署”还是“网络不通”，并留住自己的分数
 function leaderboardOfflineReason(err) {
-  return err && err.status === 404 ? '排行榜暂未开通' : '排行榜连不上';
+  return err && err.status === 404 ? t('x.g136') : t('x.g137');
 }
 
 function renderLeaderboardOffline(err) {
   if (!els.leaderboardList) return;
-  const mine = leaderboardCurrent.username ? `<br>你已有 ${leaderboardCurrent.score} 分` : '';
+  const mine = leaderboardCurrent.username ? t('x.g138', { a0: leaderboardCurrent.score }) : '';
   els.leaderboardList.innerHTML = `<div class="rank-loading">${leaderboardOfflineReason(err)}${mine}</div>`;
 }
 
@@ -1808,7 +1808,7 @@ function setLeaderboardFolded(folded) {
   w.classList.toggle('collapsed', folded);
   const btn = els.leaderboardToggle;
   if (btn) {
-    btn.title = folded ? '展开排行榜' : '收起排行榜';
+    btn.title = folded ? t('x.g139') : t('x.g140');
     btn.setAttribute('aria-label', btn.title);
   }
   try { localStorage.setItem(LB_FOLD_KEY, folded ? '1' : '0'); } catch { /* 隐私模式忽略 */ }
@@ -1882,7 +1882,7 @@ export function showProfile(onDone, profile = {}, options = {}) {
   // 通讯录式弹层：按拼音首字母索引，点字母快速跳转
   // CITIES 由 cities.js 异步填充：若打开瞬间还没就绪，短轮询自愈
   const citySel = document.getElementById('profile-city');
-  let pickedCity = profile.city || (hasHomeCity() ? getHomeCity() : '');   // 真选过才回显，新同学保持"我的城市"占位
+  let pickedCity = profile.city || (hasHomeCity() ? getHomeCity() : '');   // 真选过才回显，新同学保持t('x.g141')占位
   const paintCity = () => {
     const c = CITIES.find(x => x.id === pickedCity);
     citySel.textContent = c ? `${c.name} ${c.en}` : t('prof.city');
@@ -1911,18 +1911,18 @@ export function showProfile(onDone, profile = {}, options = {}) {
   }
   const paint = () => {
     error.textContent = '';
-    title.textContent = editing ? '我的档案' : (mode === 'login' ? '欢迎回来' : '开始前先设置学习档案');
+    title.textContent = editing ? t('x.g142') : (mode === 'login' ? t('x.g143') : t('x.g144'));
     intro.textContent = editing
-      ? '可以改昵称、密码、形象和课本，保存后重新进入Q淘族。'
-      : (mode === 'login' ? '填昵称和密码就能接着玩，密码可以留空。' : '起个名字就能玩，密码可以留空。');
-    start.textContent = editing ? '保存' : (mode === 'login' ? '登录' : '出发去Q淘族');
-    pwd.placeholder = '密码（可以留空）';
+      ? t('x.g145')
+      : (mode === 'login' ? t('x.g146') : t('x.g147'));
+    start.textContent = editing ? t('x.g148') : (mode === 'login' ? t('x.g149') : t('x.g150'));
+    pwd.placeholder = t('x.g151');
     switchBtn.classList.toggle('hidden', editing);
-    switchBtn.textContent = mode === 'login' ? '我是新同学，去注册' : '我已有账号，去登录';
+    switchBtn.textContent = mode === 'login' ? t('x.g152') : t('x.g153');
     genderRow.classList.toggle('hidden', mode === 'login');   // 登录时性别由服务端定
     selects.classList.toggle('hidden', mode === 'login');     // 登录只要昵称+密码，课本沿用上次（或默认三上）
-    tip.textContent = editing ? '完成一个挑战得 1 分，和同学比比谁的词宠最多！'
-      : (mode === 'login' ? '忘了密码？换个名字重新注册一个就行。' : '同一个名字就是同一份学习记录哦。');
+    tip.textContent = editing ? t('x.g154')
+      : (mode === 'login' ? t('x.g155') : t('x.g156'));
     close.classList.toggle('hidden', !editing);
     logout.classList.toggle('hidden', !editing);
     // 文案语言：双语（默认）/ 纯英语，切换即存档并刷新生效
@@ -1942,8 +1942,8 @@ export function showProfile(onDone, profile = {}, options = {}) {
   paint();
   if (options.kickMsg) error.textContent = options.kickMsg;   // 被顶下线后的提示
   let submitted = false;
-  const busy = () => { start.disabled = true; start.textContent = '稍等…'; };
-  const resume = () => { if (!editing) start.textContent = mode === 'login' ? '登录' : '出发去Q淘族'; };
+  const busy = () => { start.disabled = true; start.textContent = t('x.g157'); };
+  const resume = () => { if (!editing) start.textContent = mode === 'login' ? t('x.g149') : t('x.g150'); };
   const done = (semKey, password, serverScore, token) => {
     if (pickedCity) setHomeCity(pickedCity);   // 档案里选的城市=巡游起点
     ov.classList.add('hidden'); onDone && onDone(input.value.trim(), semKey, gender, password, serverScore, token);
@@ -1956,12 +1956,12 @@ export function showProfile(onDone, profile = {}, options = {}) {
     if (submitted) return;
     const name = input.value.trim();
     const password = pwd.value;
-    if (!name) { error.textContent = '先写一个名字哦～'; input.focus(); return; }
+    if (!name) { error.textContent = t('x.g158'); input.focus(); return; }
     // 登录只要昵称+密码，课本沿用上次选的（没有就默认三上）；注册/改档案要选课本
     let semKey = '';
     if (mode !== 'login') {
-      if (!grade.value) { error.textContent = '请选择你的年级'; grade.focus(); return; }
-      if (!term.value) { error.textContent = '请选择上册或下册'; term.focus(); return; }
+      if (!grade.value) { error.textContent = t('x.g159'); grade.focus(); return; }
+      if (!term.value) { error.textContent = t('x.g160'); term.focus(); return; }
       semKey = gradeKey(grade.value, term.value);
       if (!CURRICULUM[semKey]) return;
     } else {
@@ -1975,12 +1975,12 @@ export function showProfile(onDone, profile = {}, options = {}) {
           newUsername: name, newPassword: password,
         });
         if (r.ok || noBackend(r)) return done(semKey, password, r.data && r.data.score);
-        return fail((r.data && r.data.error) || '保存失败，换个名字试试');
+        return fail((r.data && r.data.error) || t('x.g161'));
       }
       if (mode === 'register') {
         const r = await apiPost('/api/register', { username: name, password, gender });
         if (r.ok || noBackend(r)) return done(semKey, password, 0, r.data && r.data.token);
-        return fail((r.data && r.data.error) || '注册失败，换一个名字试试');
+        return fail((r.data && r.data.error) || t('x.g162'));
       }
       const r = await apiPost('/api/login', { username: name, password });
       if (r.ok) {
@@ -1990,10 +1990,10 @@ export function showProfile(onDone, profile = {}, options = {}) {
       if (noBackend(r)) return done(semKey, password);   // 离线也放行，本地存档继续用
       if (r.status === 404) {                            // 没这个名字 → 直接转注册，少点来回
         mode = 'register'; submitted = false; start.disabled = false;
-        paint(); error.textContent = '这个名字还没注册过，点「出发去Q淘族」就能建好啦';
+        paint(); error.textContent = t('x.g163');
         return;
       }
-      return fail((r.data && r.data.error) || '登录失败，检查一下昵称和密码');
+      return fail((r.data && r.data.error) || t('x.g164'));
     } catch (e) {
       done(semKey, password);   // 完全连不上后端：本地存档模式继续，不耽误小朋友玩
     }
@@ -2051,7 +2051,7 @@ els.btnDetail.addEventListener('click', () => {
 
 // ---------- 召唤面板 ----------
 export function openPicker(list, onPick, onClose, opts = {}) {
-  els.pickerTitle.textContent = opts.title || '召唤一只词宠来帮忙：';
+  els.pickerTitle.textContent = opts.title || t('x.g167');
   els.pickerGrid.innerHTML = '';
   const lazy = [];
   for (const p of list) {
@@ -2092,7 +2092,7 @@ function makeCatCard(e, lazyThumbs) {
   const d = document.createElement('div');
   d.className = 'cat-item ' + (e.hatched ? 'open' : 'locked') + (e.hungry ? ' hungry' : '');
   if (e.hatched) {
-    const badge = e.evo ? '<span class="cat-badge">🌟进化</span>' : (e.rare ? '<span class="cat-badge">✨稀有</span>' : '');
+    const badge = e.evo ? t('x.g168') : (e.rare ? t('x.g169') : '');
     d.innerHTML = `${badge}<div class="ico"><span class="ico-ph">🐾</span></div>
       <div class="en">${e.word.en}</div><div class="zh">${e.word.zh}</div>`;
     d.title = (typeof e.word.story === 'string' && e.word.story) ? e.word.story : (e.word.hint || '');
@@ -2102,8 +2102,8 @@ function makeCatCard(e, lazyThumbs) {
     });
     lazyThumbs.push({ d, w: e.word });
   } else {
-    d.innerHTML = `<div class="ico">❓</div><div class="en">？？？</div><div class="zh">还没发现</div>`;
-    d.title = '去岛上找找发光的词宠蛋吧！';
+    d.innerHTML = t('x.g170');
+    d.title = t('x.g171');
   }
   return d;
 }
@@ -2146,8 +2146,8 @@ export function openCatalog(entries, getThumb, meta = {}) {
   if (head) {
     const opened = entries.filter(e => e.hatched).length;
     head.textContent = meta.bookLabel
-      ? `📖 ${meta.bookLabel}图鉴 ${opened}/${entries.length}`
-      : `📖 词宠图鉴`;
+      ? t('x.g172', { a0: meta.bookLabel, a1: opened, a2: entries.length })
+      : t('x.g173');
   }
   renderCatalogPage(getThumb);
   els.catalog.classList.remove('hidden');
@@ -2157,7 +2157,7 @@ els.catalogNext.addEventListener('click', () => { if (_catPage < Math.ceil(_catE
 els.catalogClose.addEventListener('click', () => els.catalog.classList.add('hidden'));
 
 // ---------- 小火车站 ----------
-export function openStation(list, onPick, title = '🚂 小火车要开去哪座岛？') {
+export function openStation(list, onPick, title = t('x.g174')) {
   els.pickerTitle.textContent = title;
   els.pickerGrid.innerHTML = '';
   for (const isl of list) {
@@ -2169,7 +2169,7 @@ export function openStation(list, onPick, title = '🚂 小火车要开去哪座
     const n = document.createElement('span');
     n.className = 'n'; n.textContent = isl.name;
     const z = document.createElement('span');
-    z.className = 'z'; z.textContent = isl.unlocked ? '已开放' : `🔒 ${isl.need}`;
+    z.className = 'z'; z.textContent = isl.unlocked ? t('x.g175') : `🔒 ${isl.need}`;
     chip.append(img, n, z);
     if (isl.unlocked) chip.addEventListener('click', () => { sfx.pop(); els.picker.classList.add('hidden'); onPick(isl.key); });
     els.pickerGrid.appendChild(chip);
@@ -2290,7 +2290,7 @@ export function openMap(data) {
     c.textAlign = 'center';
     c.fillText(isl.emoji, ix, iz - ir + 14 * k);
     if (isl.name) islTexts.push({
-      txt: isl.name.replace('岛', '').replace('大陆', ''), x: ix, y: iz + ir - 3 * k,
+      txt: isl.name.replace(t('x.g176'), '').replace(t('x.g177'), ''), x: ix, y: iz + ir - 3 * k,
       col: isl.unlocked ? '#3E6B36' : '#8C8478', font: `bold ${11 * k}px "Microsoft YaHei"`,
     });
     if (isl.total) islTexts.push({
@@ -2364,7 +2364,7 @@ export function openMap(data) {
   c.fillText('N', W - 26 * k, 30 * k + 8.6 * k);
   // 标题带上当前关卡
   const headSpan = els.mapHead.querySelector('span');
-  if (headSpan) headSpan.textContent = '🗺️ Q淘族地图' + (data.chapterLabel ? ' · ' + data.chapterLabel : '');
+  if (headSpan) headSpan.textContent = t('x.g178') + (data.chapterLabel ? ' · ' + data.chapterLabel : '');
   els.map.classList.remove('hidden');
 }
 if (els.mapClose) els.mapClose.addEventListener('click', () => els.map.classList.add('hidden'));
@@ -2381,7 +2381,7 @@ export function showDubStudio() {
     <div class="dub-t">🎬 小小配音演员</div>
     <div class="dub-sub">选一个情景，把每句台词大声配出来！每句 80 分 +1⭐，整部完成再 +1⭐</div>
     <div class="dub-scenes">${scenes.map((s, i) =>
-      `<button type="button" class="dub-scene" data-i="${i}"><span>${s.emoji}</span><b>${s.name}</b><i>${s.lines.length} 句台词</i></button>`).join('')}
+      t('x.g179', { a0: i, a1: s.emoji, a2: s.name, a3: s.lines.length })).join('')}
     </div>
   </div>`;
   document.body.appendChild(ov);
@@ -2396,7 +2396,7 @@ function _dubFlow(scene, idx, scores) {
   const line = scene.lines[idx];
   let advanced = false;
   openChallenge({
-    word: { en: line, zh: `台词 ${idx + 1}/${scene.lines.length}`, hint: '进入角色，大声把台词配出来！' },
+    word: { en: line, zh: `台词 ${idx + 1}/${scene.lines.length}`, hint: t('x.g181') },
     mode: 'practice', noSpell: true,
     title: `🎬 配音「${scene.name}」`,
     onSuccess: res => {
@@ -2407,7 +2407,7 @@ function _dubFlow(scene, idx, scores) {
         addStars(1); updateStars(getStars());
         toast(`🎬 第 ${idx + 1} 句配音到位 +1⭐`, 2600);
       } else {
-        toast('感情再充沛一点，80 分才过关哦', 2600);
+        toast(t('x.g184'), 2600);
       }
       setTimeout(() => _dubFlow(scene, idx + 1, scores), 500);
     },
@@ -2415,7 +2415,7 @@ function _dubFlow(scene, idx, scores) {
       advanced = true;
       closeChallenge();
       scores.push(0);
-      toast('这句先跳过，等会还能重新配～', 2600);
+      toast(t('x.g185'), 2600);
       setTimeout(() => _dubFlow(scene, idx + 1, scores), 400);
     },
     onClose: () => {
@@ -2440,9 +2440,9 @@ function _dubSummary(scene, scores) {
     <button class="round-btn small" id="dub-close" style="position:absolute;top:12px;right:12px">✕</button>
     <div class="dub-t">${scene.emoji} 「${scene.name}」配音成绩单</div>
     <div class="dub-lines">${scene.lines.map((l, i) =>
-      `<div class="dub-line">${scores[i] != null ? `<i>${scores[i] >= 80 ? '🌟' : '🎙️'}</i>` : '<i>⬜</i>'}<b>${l}</b><em>${scores[i] != null ? scores[i] + ' 分' : '还没配'}</em></div>`).join('')}
+      `<div class="dub-line">${scores[i] != null ? `<i>${scores[i] >= 80 ? '🌟' : '🎙️'}</i>` : '<i>⬜</i>'}<b>${l}</b><em>${scores[i] != null ? scores[i] + t('x.g198') : '还没配'}</em></div>`).join('')}
     </div>
-    <div class="dub-rs">${allPass ? '🏆 整部配音完成！+1⭐' : done ? '配音完成！想拿满星就再配一次吧' : '已配 ' + scores.length + '/' + scene.lines.length + ' 句，下次接着来'}</div>
+    <div class="dub-rs">${allPass ? t('x.g187') : done ? t('x.g188') : t('x.g189') + scores.length + '/' + scene.lines.length + t('x.g190')}</div>
     <button class="dub-again">🎬 再配一次</button>
     <button class="dub-share">📸 生成配音卡分享</button>
   </div>`;
@@ -2456,7 +2456,7 @@ function _dubSummary(scene, scores) {
       title: scene.name, en: 'Dubbing Show', emoji: scene.emoji,
       rows: [
         `🎙️ 配音演员：${getUsername() || '小小淘气'}`,
-        ...scene.lines.map((l, i) => `"${l}" · ${scores[i] != null ? scores[i] + ' 分' : '未配'}`),
+        ...scene.lines.map((l, i) => `"${l}" · ${scores[i] != null ? scores[i] + t('x.g198') : '未配'}`),
         `⭐ 词宠已收集 ${hatchedCount()} 只 · 📅 ${new Date().toLocaleDateString('zh-CN')}`,
       ],
     });
@@ -2482,8 +2482,8 @@ export function showBookPanel(data) {
       ? Math.round(u.scores.reduce((a, b) => a + b, 0) / u.scores.length) : null;
     return `<div class="book-row">
       <div class="bi"><div class="bn">${u.name}</div>
-        <div class="bp">${done ? '✅ 已完成' : '📖 共 ' + u.total + ' 个词/短语'}${avg != null ? ' · 平均 ' + avg + ' 分' : ''}</div></div>
-      <button class="book-go" data-i="${i}">${done ? '再练一遍' : '开始朗读'}</button>
+        <div class="bp">${done ? '✅ 已完成' : t('x.g195') + u.total + t('x.g196')}${avg != null ? t('x.g197') + avg + t('x.g198') : ''}</div></div>
+      <button class="book-go" data-i="${i}">${done ? t('x.g199') : t('x.g200')}</button>
     </div>`;
   }).join('');
   bookOv.innerHTML = `
@@ -2522,10 +2522,10 @@ export function showShop({ stars, items, onBuy, onToggle }) {
   }
   const rows = items.map(it => {
     const state = !it.owned
-      ? `<button class="shop-buy" data-id="${it.id}">⭐ ${it.price} 换</button>`
+      ? t('x.g201', { a0: it.id, a1: it.price })
       : it.on
-        ? `<button class="shop-wear on" data-id="${it.id}">穿着中</button>`
-        : `<button class="shop-wear" data-id="${it.id}">穿上</button>`;
+        ? t('x.g202', { a0: it.id })
+        : t('x.g203', { a0: it.id });
     return `<div class="shop-row${it.owned ? ' owned' : ''}">
       <div class="shop-emoji">${it.emoji}</div>
       <div class="shop-info"><div class="shop-name">${it.name}</div><div class="shop-desc">${it.desc}</div></div>
@@ -2596,22 +2596,22 @@ export function showDailyBoard({ quest, stars, achievements = [] }) {
 // ---------- 开场引导 ----------
 export function playIntro(onDone, isTouch = false, bookLabel = '', total = 0) {
   const move = isTouch
-    ? '用左下角<b>摇杆</b>走路，<b>跳</b>按钮蹦一蹦，<br>屏幕上拖动转视角，双指缩放。'
-    : '用 <b>W A S D</b> 或方向键走路，按<b>空格</b>跳一跳，<br>方向键+空格能向前跳，右键拖动转视角。';
+    ? t('x.g204')
+    : t('x.g205');
   const steps = [
     ['🌼', `欢迎来到 <b>Q淘族</b>！<br>现在玩的是 <b>${bookLabel || '你的课本'}</b>，<br>你的家乡城市里住着 <b>${total || '好多'}</b> 只词宠，<br>它们只会为<b>会说英文的小朋友</b>孵化哦。`],
     ['🎮', move],
     ['🥚', isTouch
-      ? '走近<b>发光的蛋</b>，点一点它，<br>先听发音，再<b>点 🎤 大声读出来</b>，<br>10 秒内读完会自动打分，还能赚 <b>⭐星星</b>！'
-      : '走近<b>发光的蛋</b>，按 <b>E</b> 打开它，<br>先听发音，再<b>点 🎤 大声读出来</b>，<br>10 秒内读完会自动打分，还能赚 <b>⭐星星</b>！'],
-    ['🤔', '遇到<b>谜题</b>时，读懂谜面，<b>召唤对的那只词宠</b>来帮忙！<br>一次答对奖励 3⭐，攒够星星去<b>许愿井</b>换装扮～'],
-    ['🐾', '词宠饿了还会找你<b>复习</b>，<br>孵完一关就坐<b>小火车/飞机</b>去下一座城市，<br>路上点一点<b>大学/美食/风景牌子</b>长知识！<br>想玩别的年级？点「课本」换一册就行！'],
+      ? t('x.g208')
+      : t('x.g209')],
+    ['🤔', t('x.g210')],
+    ['🐾', t('x.g211')],
   ];
   let i = 0;
   const show = () => {
     els.introEmoji.textContent = steps[i][0];
     els.introText.innerHTML = steps[i][1];
-    els.introNext.textContent = i === steps.length - 1 ? '出发！' : '好呀！';
+    els.introNext.textContent = i === steps.length - 1 ? t('x.g212') : t('x.g213');
   };
   els.intro.classList.remove('hidden');
   show();
@@ -2630,7 +2630,7 @@ export function showHelp() {
   const ov = document.createElement('div');
   ov.className = 'overlay';
   const touchLines = matchMedia('(pointer: coarse)').matches
-    ? `<div>🕹️ 摇杆走路 · <b>跳</b>按钮蹦一蹦 · 手指转视角</div>`
+    ? t('x.g214')
     : `<div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 走路 · 鼠标右键转视角</div>
        <div><kbd>空格</kbd> 跳一跳 · <kbd>E</kbd> 或点一下：互动</div>`;
   ov.innerHTML = `
@@ -2689,10 +2689,10 @@ export async function showAbout() {
       <h3>${app.appName} ${app.appNameEn || ''}</h3>
       <div class="about-sub">${app.tagline || ''}</div>
       <div class="about-rows">
-        ${row('🎮', '游戏地址', link(app.site))}
-        ${row('🧩', '开源仓库', link(app.repo))}
-        ${row('✍️', '作者', app.author ? `<b>${app.author}</b>` : '')}
-        ${row('🌏', '官方网站', link(app.authorSite))}
+        ${row('🎮', t('x.g215'), link(app.site))}
+        ${row('🧩', t('x.g216'), link(app.repo))}
+        ${row('✍️', t('x.g217'), app.author ? `<b>${app.author}</b>` : '')}
+        ${row('🌏', t('x.g218'), link(app.authorSite))}
       </div>
       <div class="about-tip">${app.appName} · ${app.slogan || ''}${app.license ? ` · ${app.license} License` : ''}</div>
     </div>`;
@@ -2764,12 +2764,12 @@ export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, 
   const bgmBtn = document.getElementById('btn-bgm');
   if (bgmBtn) {
     const label = bgmBtn.querySelector('span');
-    const paint = () => { if (label) label.textContent = isBgmMuted() ? '音乐：关' : '音乐：开'; };
+    const paint = () => { if (label) label.textContent = isBgmMuted() ? t('x.g220') : t('x.g221'); };
     paint();
     bgmBtn.addEventListener('click', () => {
       setBgmMuted(!isBgmMuted());
       paint();
-      toast(isBgmMuted() ? '🎵 背景音乐已关' : '🎵 背景音乐已开');
+      toast(isBgmMuted() ? t('x.g222') : t('x.g223'));
     });
   }
   const summonBtn = document.getElementById('btn-summon');

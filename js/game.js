@@ -61,26 +61,26 @@ function softTexture() {
 
 // 区域范围（世界坐标），用于地图与探索提示
 const ZONE_RECTS = [
-  { key: 'orchard',  name: '阳光果园', x1: -34, z1: -30, x2: -5,  z2: -5 },
-  { key: 'windmill', name: '风车田',   x1: 8,   z1: -30, x2: 34,  z2: -7 },
-  { key: 'barnyard', name: '谷仓前院', x1: 14,  z1: 8,   x2: 34,  z2: 30 },
-  { key: 'garden',   name: '魔法菜园', x1: -34, z1: 10,  x2: -13, z2: 34 },
-  { key: 'meadow',   name: '出生草甸', x1: -18, z1: 5,   x2: 14,  z2: 34 },
-  { key: 'beach',    name: '阳光海滩', x1: -32, z1: 36,  x2: 32,  z2: 50 },
-  { key: 'forest',   name: '神秘森林', x1: -52, z1: -18, x2: -37, z2: 24 },
+  { key: 'orchard',  name: t('x.g224'), x1: -34, z1: -30, x2: -5,  z2: -5 },
+  { key: 'windmill', name: t('x.g225'),   x1: 8,   z1: -30, x2: 34,  z2: -7 },
+  { key: 'barnyard', name: t('x.g226'), x1: 14,  z1: 8,   x2: 34,  z2: 30 },
+  { key: 'garden',   name: t('x.g227'), x1: -34, z1: 10,  x2: -13, z2: 34 },
+  { key: 'meadow',   name: t('x.g228'), x1: -18, z1: 5,   x2: 14,  z2: 34 },
+  { key: 'beach',    name: t('x.g229'), x1: -32, z1: 36,  x2: 32,  z2: 50 },
+  { key: 'forest',   name: t('x.g230'), x1: -52, z1: -18, x2: -37, z2: 24 },
 ];
-const SKY_RECT = { key: 'sky', name: '天空岛', x1: -28, z1: 21, x2: -16, z2: 33 };
+const SKY_RECT = { key: 'sky', name: t('x.g231'), x1: -28, z1: 21, x2: -16, z2: 33 };
 
 // 许愿井商店货架
 const SHOP_ITEMS = [
-  { id: 'hat-wizard', type: 'hat', value: 'wizard', emoji: '🎩', name: '魔法师帽', desc: '神秘的紫色尖帽', price: 30 },
-  { id: 'hat-flower', type: 'hat', value: 'flower', emoji: '👑', name: '花朵王冠', desc: '香喷喷的小花环', price: 30 },
-  { id: 'balloon', type: 'balloon', emoji: '🎈', name: '红气球', desc: '蹦蹦跳跳跟着你', price: 40 },
-  { id: 'wand', type: 'wand', emoji: '🪄', name: '星星魔法棒', desc: '走路会撒下小星星', price: 50 },
+  { id: 'hat-wizard', type: 'hat', value: 'wizard', emoji: '🎩', name: t('x.g232'), desc: t('x.g233'), price: 30 },
+  { id: 'hat-flower', type: 'hat', value: 'flower', emoji: '👑', name: t('x.g234'), desc: t('x.g235'), price: 30 },
+  { id: 'balloon', type: 'balloon', emoji: '🎈', name: t('x.g236'), desc: t('x.g237'), price: 40 },
+  { id: 'wand', type: 'wand', emoji: '🪄', name: t('x.g238'), desc: t('x.g239'), price: 50 },
   // 称号：排行榜名字旁亮金字（星星的新消耗口）
-  { id: 'title-explorer', type: 'title', value: 'explorer', emoji: '🧭', name: '探险家称号', desc: '排行榜亮出「小小探险家」', price: 20 },
-  { id: 'title-star', type: 'title', value: 'star', emoji: '🌟', name: '朗读之星称号', desc: '排行榜亮出「朗读之星」', price: 35 },
-  { id: 'title-legend', type: 'title', value: 'legend', emoji: '🏆', name: '淘气传奇称号', desc: '排行榜亮出「淘气传奇」', price: 60 },
+  { id: 'title-explorer', type: 'title', value: 'explorer', emoji: '🧭', name: t('x.g240'), desc: t('x.g241'), price: 20 },
+  { id: 'title-star', type: 'title', value: 'star', emoji: '🌟', name: t('x.g242'), desc: t('x.g243'), price: 35 },
+  { id: 'title-legend', type: 'title', value: 'legend', emoji: '🏆', name: t('x.g244'), desc: t('x.g245'), price: 60 },
 ];
 
 export class Game {
@@ -151,14 +151,14 @@ export class Game {
     // 先探测 WebGL 是否可用，给出比"设备跑不起来"更准确的原因
     const probe = document.createElement('canvas');
     if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) {
-      throw new Error('此浏览器没有开启 WebGL（可在浏览器设置里开启硬件加速后刷新）');
+      throw new Error(t('x.g247'));
     }
     // 上下文可能因内存不足创建失败（手机后台应用多时常见）：先标准方式，失败后关抗锯齿降级重试
     const create = opts => new THREE.WebGLRenderer({ canvas: this.canvas, ...opts });
     try {
       this.renderer = create({ antialias: true, logarithmicDepthBuffer: true });   // 对数深度：根治拉远后地面与地图纸面 z-fighting
     } catch (e) {
-      console.warn('WebGL 标准初始化失败，降级重试：', e);
+      console.warn(t('x.g248'), e);
       this.renderer = create({ antialias: false, logarithmicDepthBuffer: true });
     }
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -185,10 +185,10 @@ export class Game {
       for (const c of CITIES) {
         const ri = this.cityRouteList.indexOf(c.id);
         if (c.id === (st0 && st0.key)) continue;
-        else if (ri >= 0 && ri < chIdx) statuses[c.id] = '已攻克';
-        else if (ri >= 0) statuses[c.id] = '待闯关';
-        else if (bonusIds.has(c.id)) statuses[c.id] = '通关后再来哦';
-        else statuses[c.id] = '我们正在打造，敬请期待';
+        else if (ri >= 0 && ri < chIdx) statuses[c.id] = t('x.g249');
+        else if (ri >= 0) statuses[c.id] = t('x.g250');
+        else if (bonusIds.has(c.id)) statuses[c.id] = t('x.g251');
+        else statuses[c.id] = t('x.g252');
       }
       this.chinaMap = buildChinaMap(this.scene, st0 && st0.key, names, statuses, this.cityRouteList);
       if (st0) this.chinaMap.anchor(st0.key, st0.cx, st0.cz);
@@ -286,7 +286,7 @@ export class Game {
   _initEntities() {
     this.eggs = new EggManager(this.scene);
     this.pets = new PetManager(this.scene);
-    if (this.cityTour) this._initCityNPCs();   // 城市牌子先立好，蛋才有"牌子旁"可依
+    if (this.cityTour) this._initCityNPCs();   // 城市牌子先立好，蛋才有t('x.g253')可依
     this._spawnProgress();
     this.planted = save.hasGate('planted');
     this._refreshHungry();
@@ -618,7 +618,7 @@ export class Game {
     this.moveThenEgg = id;
     this.moveMarker.position.set(ep.x, ep.y + 0.06, ep.z);
     this.moveMarker.visible = true;
-    if (ep.y - p.y > 1.2) ui.toast('⬆️ 这颗蛋在高台顶上，踩着石头跳上去！', 3000);
+    if (ep.y - p.y > 1.2) ui.toast(t('x.g255'), 3000);
   }
 
   _setMoveTarget(e) {
@@ -675,7 +675,7 @@ export class Game {
       }, {
         editing: true,
         onLogout: () => {
-          if (confirm('退出当前账号并清除本机进度吗？')) {
+          if (confirm(t('x.g257'))) {
             save.resetSave();
             location.reload();
           }
@@ -912,52 +912,52 @@ export class Game {
     }
     if (total >= this.total) {
       return {
-        text: `🎉 本册 ${this.total} 只词宠全部唤醒！去许愿井换套新装扮，或去「课本」换一册接着玩吧`,
+        text: t('x.g260', { a0: this.total }),
         target: null,
       };
     }
     if (!save.hasGate('boat')) {
       const ep = save.isHatched('boat') ? { x: 0, z: 4.6 } : this._eggById('boat');
       return save.isHatched('boat')
-        ? { text: '去码头，点 🪄 召唤能浮在水上的词宠搭桥！', target: ep }
-        : { text: '码头边有一颗蛋，先去孵化它！', target: ep };
+        ? { text: t('x.g261'), target: ep }
+        : { text: t('x.g262'), target: ep };
     }
     if (!save.hasGate('light')) {
       const ep = save.isHatched('light') ? { x: 24, z: 18.5 } : this._eggById('light');
       return save.isHatched('light')
-        ? { text: '谷仓里黑漆漆的，召唤会发光的词宠照亮它！', target: ep }
-        : { text: '南瓜地附近有一颗蛋，谷仓需要它！', target: ep };
+        ? { text: t('x.g263'), target: ep }
+        : { text: t('x.g264'), target: ep };
     }
     if (!save.hasGate('wind')) {
       const ep = save.isHatched('wind') ? { x: 13, z: -6 } : this._eggById('wind');
       return save.isHatched('wind')
-        ? { text: '风车田的干草球挡路了，召唤看不见摸不着的词宠吹走它！', target: ep }
-        : { text: '风车田门口有一颗蛋！', target: ep };
+        ? { text: t('x.g265'), target: ep }
+        : { text: t('x.g266'), target: ep };
     }
     if (!save.hasGate('beanstalk')) {
       if (!this.planted) {
         const ep = save.isHatched('seed') ? { x: -22, z: 25.5 } : this._eggById('seed');
         return save.isHatched('seed')
-          ? { text: '魔法菜园的泥土在等一颗种子！', target: ep }
-          : { text: '菜园旁边有一颗蛋，捡起来！', target: ep };
+          ? { text: t('x.g267'), target: ep }
+          : { text: t('x.g268'), target: ep };
       }
       const ep = save.isHatched('rain') ? { x: -22, z: 25.5 } : this._eggById('rain');
       return save.isHatched('rain')
-        ? { text: '豆苗种下啦！呼唤从天上落下来的词宠！', target: ep }
-        : { text: '豆苗需要一场从天上落下来的礼物！', target: ep };
+        ? { text: t('x.g269'), target: ep }
+        : { text: t('x.g270'), target: ep };
     }
     // 新大陆谜题：沙墙 → 阳光海滩；荆棘 → 神秘森林
     if (!save.hasGate('sandWall')) {
       return {
         text: save.hasGate('wind')
-          ? '南边有一堵金色沙墙！去墙边召唤词宠解开谜题吧'
-          : '听说南边的沙滩被沙墙封住了…先解锁前面的关吧',
+          ? t('x.g271')
+          : t('x.g272'),
         target: save.hasGate('wind') ? { x: 0, z: 36.5 } : null,
       };
     }
     if (!save.hasGate('vines')) {
       return {
-        text: '西边的荆棘丛挡住了神秘森林！去拨开它吧',
+        text: t('x.g273'),
         target: { x: -36.5, z: 11 },
       };
     }
@@ -969,7 +969,7 @@ export class Game {
       const bid = this._brickEggId();
       if (bid && !save.isHatched(bid)) {
         const b = (this.world.brickSpots || []).find(s => s.eggId === bid);
-        if (b) return { text: '🧱 还有一颗蛋藏在半空的砖块里——跳起来用头顶爆它！', target: { x: b.x, z: b.z } };
+        if (b) return { text: t('x.g274'), target: { x: b.x, z: b.z } };
       }
     }
     if (e) {
@@ -1041,7 +1041,7 @@ export class Game {
           save.markGuideDone();
           this._guide = null;
           sfx.great();
-          ui.toast('🎓 出师啦！词宠饿了自己会想你（头顶冒🍖时走近喂它），大胆去淘吧！', 5200);
+          ui.toast(t('x.g278'), 5200);
         }
       }
     }
@@ -1111,11 +1111,11 @@ export class Game {
   _initEvents() {
     this._event = { next: 40 + Math.random() * 40, active: null, items: [], bubbles: [] };
     this._eventKinds = {
-      meteor: { dur: 30, label: '🌠 流星雨！星星掉落在草地上了，限时去捡～' },
-      apple: { dur: 30, label: '🍎 苹果熟透掉了一地——限时去果园捡苹果！' },
-      escape: { dur: 75, label: '❗ 词宠大逃走！快去把它们找回来（跟着❗走）' },
-      merchant: { dur: 95, label: '🛒 神秘货郎来村里啦——5⭐ 一个神秘盲盒，限时开张！' },
-      bubbles: { dur: 45, label: '🎈 泡泡词球！跳起来顶破泡泡，念出里面的单词！' },
+      meteor: { dur: 30, label: t('x.g279') },
+      apple: { dur: 30, label: t('x.g280') },
+      escape: { dur: 75, label: t('x.g281') },
+      merchant: { dur: 95, label: t('x.g282') },
+      bubbles: { dur: 45, label: t('x.g283') },
     };
   }
 
@@ -1154,7 +1154,7 @@ export class Game {
     if (ev.active && ev.active.spawnT <= 0 && ev.active.id !== 'escape') this._eventSpawnTick();
     if (ev.active && ev.active.t <= 0) {
       this._endEvent();
-      ui.toast('这一波结束啦～过一会儿还有新节目！', 2400);
+      ui.toast(t('x.g284'), 2400);
     }
   }
 
@@ -1258,35 +1258,35 @@ export class Game {
         ui.updateStars(save.getStars());
         pet.jumping = true; pet.jt = 0;
         sfx.good();
-        ui.toast(`找回了「${pet.word.en}」！它开心地蹦了起来 +1⭐`, 2600);
+        ui.toast(t('x.g285', { a0: pet.word.en }), 2600);
         need.splice(need.indexOf(id), 1);
       }
     }
-    if (!need.length) { ui.toast('全部词宠都找回啦，你们真棒！', 2800); this._endEvent(); }
+    if (!need.length) { ui.toast(t('x.g286'), 2800); this._endEvent(); }
   }
 
   // 神秘盲盒：5⭐ 开一次，星星/稀有装扮随机
   _buyMysteryBox() {
     if (ui.challengeOpen()) return;
-    if (!save.spendStars(5)) { ui.toast('星星还不够哦——读单词就能赚星星！', 2600); return; }
+    if (!save.spendStars(5)) { ui.toast(t('x.g287'), 2600); return; }
     ui.updateStars(save.getStars());
     sfx.magic();
     const roll = Math.random();
     if (roll < 0.5) {
       const n = 3 + Math.floor(Math.random() * 3);
       save.addStars(n); ui.updateStars(save.getStars());
-      ui.toast(`🎁 拆开盲盒：+${n}⭐！`, 3000);
+      ui.toast(t('x.g288', { a0: n }), 3000);
     } else if (roll < 0.8) {
       const n = 5 + Math.floor(Math.random() * 4);
       save.addStars(n); ui.updateStars(save.getStars());
-      ui.toast(`🎁 拆开盲盒：+${n}⭐！发财啦！`, 3200);
+      ui.toast(t('x.g289', { a0: n }), 3200);
     } else {
       const wear = save.getWear();
       const pool = [];
-      if (!wear.hatOwned.includes('wizard')) pool.push({ patch: { hatOwned: [...wear.hatOwned, 'wizard'], hat: 'wizard' }, label: '魔法师帽' });
-      if (!wear.hatOwned.includes('flower')) pool.push({ patch: { hatOwned: [...wear.hatOwned, 'flower'], hat: 'flower' }, label: '花朵王冠' });
-      if (!wear.balloonOwned) pool.push({ patch: { balloonOwned: true, balloon: true }, label: '红气球' });
-      if (!wear.wandOwned) pool.push({ patch: { wandOwned: true, wand: true }, label: '星星魔法棒' });
+      if (!wear.hatOwned.includes('wizard')) pool.push({ patch: { hatOwned: [...wear.hatOwned, 'wizard'], hat: 'wizard' }, label: t('x.g232') });
+      if (!wear.hatOwned.includes('flower')) pool.push({ patch: { hatOwned: [...wear.hatOwned, 'flower'], hat: 'flower' }, label: t('x.g234') });
+      if (!wear.balloonOwned) pool.push({ patch: { balloonOwned: true, balloon: true }, label: t('x.g236') });
+      if (!wear.wandOwned) pool.push({ patch: { wandOwned: true, wand: true }, label: t('x.g238') });
       if (pool.length) {
         const pick = pool[Math.floor(Math.random() * pool.length)];
         save.updateWear(pick.patch);
@@ -1294,7 +1294,7 @@ export class Game {
         ui.toast(`🎁 稀有好礼！抽中了${pick.label}！马上给你戴上！`, 3800);
       } else {
         save.addStars(6); ui.updateStars(save.getStars());
-        ui.toast('🎁 拆开盲盒：+6⭐！（装扮都集齐了呢）', 3000);
+        ui.toast(t('x.g291'), 3000);
       }
     }
   }
@@ -1435,7 +1435,7 @@ export class Game {
     aura.name = 'evoAura';
     pet.group.add(aura);
     if (celebrate) {
-      ui.toast(`🌟「${pet.word.en}」进化了！变得又大又亮！+2⭐`, 4200);
+      ui.toast(t('x.g292', { a0: pet.word.en }), 4200);
       ui.confettiBurst(60);
       save.addStars(2);
       ui.updateStars(save.getStars());
@@ -1459,14 +1459,14 @@ export class Game {
   _openOwl() {
     if (ui.challengeOpen()) return;
     const chain = save.getChain();
-    const steps = ['孵化 1 只词宠蛋', '喂饱 1 只饿肚子的词宠', '召唤 1 次词宠帮忙'];
+    const steps = [t('x.g293'), t('x.g294'), t('x.g295')];
     if (chain.done) {
-      ui.toast('🦉 猫头鹰园丁：今天的活儿都干完啦，明天再来找我！', 3400);
+      ui.toast(t('x.g296'), 3400);
       return;
     }
     const cur = steps[chain.step];
-    const prog = chain.n > 0 ? `（进度 ${chain.n}/1）` : '';
-    ui.toast(`🦉 园丁：${cur}${prog}。做完我发星星！`, 4200);
+    const prog = chain.n > 0 ? t('x.g297', { a0: chain.n }) : '';
+    ui.toast(t('x.g298', { a0: cur, a1: prog }), 4200);
     sfx.pop();
   }
 
@@ -1476,13 +1476,13 @@ export class Game {
     if (res.done) {
       save.addStars(4);
       ui.updateStars(save.getStars());
-      ui.toast('🦉 猫头鹰园丁：三件活儿全干完啦！+4⭐ 额外奖励！', 3600);
+      ui.toast(t('x.g299'), 3600);
       ui.confettiBurst(50);
       sfx.evolve();
     } else if (res.step !== undefined) {
       save.addStars(2);
       ui.updateStars(save.getStars());
-      ui.toast('🦉 猫头鹰园丁：这一件干得漂亮！+2⭐', 3000);
+      ui.toast(t('x.g300'), 3000);
     }
   }
 
@@ -1526,25 +1526,25 @@ export class Game {
       if (window.__detailWord !== w.en) return;   // 已切到别的词就不追加
       const d = dict && dict[w.en.toLowerCase().trim()];
       if (!d) {
-        ui.detailAppendHTML('<div class="dt-note">📖 这是一个词组——按课本的中文意思和例句记就好啦</div>');
+        ui.detailAppendHTML(t('x.g306'));
         return;
       }
       const esc = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       let html = '';
       if (d.p) html += `<div class="dt-ipa"><span>📘 ${esc(d.p)}</span></div>`;
       if (d.t) {
-        html += '<div class="dt-sec">🀄 核心释义（开源词典 ECDICT）</div>';
+        html += t('x.g307');
         for (const line of d.t.split(/\\n|\n/).filter(Boolean)) html += `<div class="dt-row">${esc(line)}</div>`;
       }
       if (d.d) {
-        html += '<div class="dt-sec">📘 英文释义</div>';
+        html += t('x.g308');
         for (const line of d.d.split(/\\n|\n/).filter(Boolean).slice(0, 3)) html += `<div class="dt-row">${esc(line)}</div>`;
       }
       if (d.x) {
-        const NAMES = { s: '复数', p: '过去式', d: '过去分词', i: '现在分词', '3': '三单', r: '比较级', t: '最高级' };
+        const NAMES = { s: t('x.g309'), p: t('x.g310'), d: t('x.g311'), i: t('x.g312'), '3': t('x.g313'), r: t('x.g314'), t: t('x.g315') };
         const parts = d.x.split('/').map(kv => kv.split(':')).filter(kv => kv.length === 2 && NAMES[kv[0]]);
         if (parts.length) {
-          html += '<div class="dt-sec">🔁 词形变化</div><div class="dt-row">';
+          html += t('x.g316');
           for (const [k, v] of parts) html += `<span style="margin-right:12px">${NAMES[k]}：${esc(v)}</span>`;
           html += '</div>';
         }
@@ -1564,7 +1564,7 @@ export class Game {
       w.next = w.cur === 'clear' ? 120 + Math.random() * 120 : 50 + Math.random() * 40;
       if (rain) rain.visible = w.cur === 'rain';
       if (snow) snow.visible = w.cur === 'snow';
-      if (w.cur !== 'clear') ui.toast(w.cur === 'rain' ? '🌧️ 淅淅沥沥下雨啦～' : '❄️ 下雪啦！小岛白茫茫一片真好看～', 3000);
+      if (w.cur !== 'clear') ui.toast(w.cur === 'rain' ? t('x.g317') : t('x.g318'), 3000);
     }
     if (rain && rain.visible) {
       const pos = rain.geometry.attributes.position;
@@ -1595,9 +1595,9 @@ export class Game {
     if (now - (this._hintCd[kind] || 0) < 7000) return;
     this._hintCd[kind] = now;
     const texts = {
-      rail: '🚧 栏杆过不去哦——跳一下就能翻过去！',
-      wall: '🧱 这里过不去哦，换个方向走走～',
-      sea: '🌊 前面就是大海啦，小心别掉下去咯～',
+      rail: t('x.g319'),
+      wall: t('x.g320'),
+      sea: t('x.g321'),
     };
     ui.toast(texts[kind], 2400);
   }
@@ -1621,7 +1621,7 @@ export class Game {
       }
       if (hungryNear && (!this._hungrySaid || this._hungrySaid < performance.now())) {
         this._hungrySaid = performance.now() + 15000;
-        this._petSay(hungryNear, '小主人，我饿了', 2.2);
+        this._petSay(hungryNear, t('x.g322'), 2.2);
       }
       if (near && (!this._helloCd || this._helloCd < performance.now())) {
         this._helloCd = performance.now() + 30000;
@@ -1644,15 +1644,15 @@ export class Game {
       if (save.addVisited(z)) {
         sfx.zone();   // 新区域亮相音
       const names = {
-        meadow: '出生草甸 · 词宠蛋的家', orchard: '阳光果园 · 过河就能摘果子',
-        windmill: '风车田 · 大风车的秘密', barnyard: '谷仓前院 · 马和绵羊的家',
-        barn: '谷仓里 · 灯亮了才能看清哦', garden: '魔法菜园 · 种下种子会发生什么？',
-        sky: '天空岛 · 传说中的金色词宠蛋！',
-        beach: '阳光海滩 · 听！是海浪的声音', forest: '神秘森林 · 树后面好像有眼睛在眨',
+        meadow: t('x.g323'), orchard: t('x.g324'),
+        windmill: t('x.g325'), barnyard: t('x.g326'),
+        barn: t('x.g327'), garden: t('x.g328'),
+        sky: t('x.g329'),
+        beach: t('x.g330'), forest: t('x.g331'),
       };
         // 海岛区域不在 names 里，用小火车站点登记的名字
         const isl = this.islands.find(i => i.key === z);
-        ui.toast('📍 ' + (names[z] || (isl ? `${isl.name} · 跳跳云梯或小火车都能到` : z)), 3200);
+        ui.toast('📍 ' + (names[z] || (isl ? t('x.g332', { a0: isl.name }) : z)), 3200);
       }
     }
   }
@@ -1806,7 +1806,7 @@ export class Game {
     const now = performance.now() / 1000;
     if (this._edgeHintCd > now) return;
     this._edgeHintCd = now + 5;
-    ui.toast('🧭 这就是这座城市的边界啦，先去城里孵蛋升级吧！');
+    ui.toast(t('x.g334'));
   }
   // ================= 城市牌子系统 =================
   // 大学/美食/风景按方位(bearing)立牌，一块城市几十块；点击牌子弹出详情卡。
@@ -1976,7 +1976,7 @@ export class Game {
       this.riding = false;
       this.player.position.copy(to);
       ui.closeTrainQuiz();
-      ui.toast(`🚂 到站！欢迎来到 ${st.name} ${st.emoji}`, 3400);
+      ui.toast(t('x.g335', { a0: st.name, a1: st.emoji }), 3400);
     });
   }
 
@@ -2049,7 +2049,7 @@ export class Game {
           this._naughtyId = null;
           sfx.great();
           ui.confettiBurst(60);
-          ui.toast(`🎉 抓到淘气词宠「${word.en}」！+2⭐ 它乖乖回家复习去了`, 4200);
+          ui.toast(t('x.g338', { a0: word.en }), 4200);
           const pt = this.pets.get(id);
           if (pt) this.pets.celebrate(id);
         }
@@ -2107,7 +2107,7 @@ export class Game {
         if (egg) {
           const ep = egg.group.position;
           if (Math.hypot(ep.x - this.player.position.x, ep.z - this.player.position.z) <= 2.6 && ep.y - this.player.position.y <= 1.2) this._openEgg(eggId);
-          else ui.toast('⬆️ 蛋就在头顶的台子上，踩着石头跳上去！', 3200);
+          else ui.toast(t('x.g340'), 3200);
         }
       } else {
         cameraRelative = false;
@@ -2426,8 +2426,8 @@ export class Game {
           const across = !t || Math.abs(t.z) < 3.8 || Math.sign(t.z) !== Math.sign(p.z);
           const nearDock = Math.abs(p.x) < 8;   // 码头边的交互提示条已在引导，别用 toast 重复念叨
           if (across && !nearDock) {
-            if (save.isHatched('boat')) ui.toast('🌊 这条河挡住去路啦！回到码头，召唤词宠带你过河吧');
-            else ui.toast('🌊 这条河挡住去路啦！沿着岸边走到码头，那边的蛋能帮你过河');
+            if (save.isHatched('boat')) ui.toast(t('x.g349'));
+            else ui.toast(t('x.g350'));
           }
         }
       }
@@ -2877,7 +2877,7 @@ export class Game {
     flame.scale.setScalar(1.7);
     st.grp.add(flame);
     b.flame = flame;
-    ui.toast('🔥 烽火点燃啦！远处的人都看到你的信号～', 3000);
+    ui.toast(t('x.g353'), 3000);
   }
   _beaconPuff(b, st) {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -2918,12 +2918,12 @@ export class Game {
     // 蛋（高台顶上的蛋要跳上去，站在地面够不着）
     const egg = this.eggs.nearest(p, 2.6);
     if (egg && egg.group.position.y - p.y <= 1.2) {
-      ui.showPrompt('读出单词，唤醒词宠蛋', 'E'); this.promptAction = () => this._openEgg(egg.word.id); return;
+      ui.showPrompt(t('x.g354'), 'E'); this.promptAction = () => this._openEgg(egg.word.id); return;
     }
     // 饿了的词宠
     const hungry = this._nearHungryPet(p, 2.4);
     if (hungry) {
-      ui.showPrompt(`喊「${hungry.word.en}」喂饱它`, 'E');
+      ui.showPrompt(t('x.g355', { a0: hungry.word.en }), 'E');
       this.promptAction = () => this._feedPet(hungry.word.id);
       return;
     }
@@ -2931,12 +2931,12 @@ export class Game {
     if (save.hasGate('beanstalk')) {
       const nearBase = Math.hypot(p.x - CLIMB_BOTTOM.x, p.z - CLIMB_BOTTOM.z) < 1.8 && !this.onIsle;
       const nearTop = this.onIsle && Math.hypot(p.x - CLIMB_TOP.x, p.z - CLIMB_TOP.z) < 2.2;
-      if (nearBase) { ui.showPrompt('顺着豆藤爬上天空岛', 'E'); this.promptAction = () => this._climb(true); return; }
-      if (nearTop) { ui.showPrompt('顺着豆藤滑回农场', 'E'); this.promptAction = () => this._climb(false); return; }
+      if (nearBase) { ui.showPrompt(t('x.g356'), 'E'); this.promptAction = () => this._climb(true); return; }
+      if (nearTop) { ui.showPrompt(t('x.g357'), 'E'); this.promptAction = () => this._climb(false); return; }
     }
     // 骑乘中：最优先提示下骑（要喂词宠/坐船先下来）
     if (this.mount && this.mountPet) {
-      ui.showPrompt(`从「${this.mountPet.word.en}」背上下来`, this.isTouch ? '👆' : 'E');
+      ui.showPrompt(t('x.g358', { a0: this.mountPet.word.en }), this.isTouch ? '👆' : 'E');
       this.promptAction = () => this._ridePet(this.mount);
       return;
     }
@@ -2950,7 +2950,7 @@ export class Game {
         if (d < bd) { bd = d; ride = pt; }
       }
       if (ride) {
-        ui.showPrompt(`骑上「${ride.word.en}」跑得更快！`, this.isTouch ? '👆' : 'E');
+        ui.showPrompt(t('x.g359', { a0: ride.word.en }), this.isTouch ? '👆' : 'E');
         this.promptAction = () => this._ridePet(ride.word.id);
         return;
       }
@@ -2958,7 +2958,7 @@ export class Game {
     // 坐船过河：船就停在渡口，点一下（或按 E）直接坐过去，不用自己找路
     if (save.hasGate('boat') && !this.riding
         && Math.abs(p.x) < 6 && Math.abs(Math.abs(p.z) - 4.6) < 4.2) {
-      ui.showPrompt('坐 boat 过河 ⛵', 'E');
+      ui.showPrompt(t('x.g360'), 'E');
       this.promptAction = () => this._rideBoat();
       return;
     }
@@ -2966,7 +2966,7 @@ export class Game {
     if (this._naughtyId) {
       const np = this.pets.get(this._naughtyId);
       if (np && Math.hypot(p.x - np.group.position.x, p.z - np.group.position.z) < 2.4) {
-        ui.showPrompt(`😈 抓住淘气的「${np.word.en}」（读出它）`, this.isTouch ? '👆' : 'E');
+        ui.showPrompt(t('x.g361', { a0: np.word.en }), this.isTouch ? '👆' : 'E');
         this.promptAction = () => this._catchNaughty(this._naughtyId);
         return;
       }
@@ -2976,24 +2976,24 @@ export class Game {
       ? this.world.islands.find(i => (i.wellPos && Math.hypot(p.x - i.wellPos.x, p.z - i.wellPos.z) < 2.6)
         || (i.boardPos && Math.hypot(p.x - i.boardPos.x, p.z - i.boardPos.z) < 2.6)) : null;
     if (citySpot && citySpot.wellPos && Math.hypot(p.x - citySpot.wellPos.x, p.z - citySpot.wellPos.z) < 2.6) {
-      ui.showPrompt('到许愿井换新装扮', this.isTouch ? '👆' : 'E');
+      ui.showPrompt(t('x.g362'), this.isTouch ? '👆' : 'E');
       this._activeWellPos = citySpot.wellPos;
       this.promptAction = () => this._openShop();
       return;
     }
     if (citySpot && citySpot.boardPos && Math.hypot(p.x - citySpot.boardPos.x, p.z - citySpot.boardPos.z) < 2.6) {
-      ui.showPrompt('看看今日任务', this.isTouch ? '👆' : 'E');
+      ui.showPrompt(t('x.g363'), this.isTouch ? '👆' : 'E');
       this.promptAction = () => this._openDailyBoard();
       return;
     }
     if (Math.hypot(p.x - 4.6, p.z - 19.5) < 2.6) {
-      ui.showPrompt('到许愿井换新装扮', this.isTouch ? '👆' : 'E');
+      ui.showPrompt(t('x.g362'), this.isTouch ? '👆' : 'E');
       this._activeWellPos = null;   // 主岛井：特效用默认坐标
       this.promptAction = () => this._openShop();
       return;
     }
     if (Math.hypot(p.x + 4.6, p.z - 19.5) < 2.6) {
-      ui.showPrompt('看看今日任务', this.isTouch ? '👆' : 'E');
+      ui.showPrompt(t('x.g363'), this.isTouch ? '👆' : 'E');
       this.promptAction = () => this._openDailyBoard();
       return;
     }
@@ -3001,14 +3001,14 @@ export class Game {
     if (this._event.active && this._event.active.id === 'merchant') {
       const c = this._event.active.data.cart;
       if (c && Math.hypot(p.x - c.x, p.z - c.z) < 2.6) {
-        ui.showPrompt('神秘盲盒 5⭐（按 E 拆开）', this.isTouch ? '👆' : 'E');
+        ui.showPrompt(t('x.g364'), this.isTouch ? '👆' : 'E');
         this.promptAction = () => this._buyMysteryBox();
         return;
       }
     }
     // 猫头鹰园丁（每日任务链）
     if (Math.hypot(p.x + 6.1, p.z - 19.1) < 2.4) {
-      ui.showPrompt('问猫头鹰园丁领今天的任务', this.isTouch ? '👆' : 'E');
+      ui.showPrompt(t('x.g365'), this.isTouch ? '👆' : 'E');
       this.promptAction = () => this._openOwl();
       return;
     }
@@ -3018,14 +3018,14 @@ export class Game {
         ui.showPrompt(t('train.go'), this.isTouch ? '👆' : 'E');
         this.promptAction = () => this._openCityDestinations();
       } else {
-        ui.showPrompt('坐小火车去群岛', this.isTouch ? '👆' : 'E');
+        ui.showPrompt(t('x.g366'), this.isTouch ? '👆' : 'E');
         this.promptAction = () => this._openStation();
       }
       return;
     }
     const hereIsl = this._islandAt(p);
     if (hereIsl && Math.hypot(p.x - hereIsl.cx, p.z - (hereIsl.cz - 2.5)) < 2.6) {
-      ui.showPrompt('坐小火车回阳光农场', this.isTouch ? '👆' : 'E');
+      ui.showPrompt(t('x.g367'), this.isTouch ? '👆' : 'E');
       this.promptAction = () => this._rideTrain(null);
       return;
     }
@@ -3034,11 +3034,11 @@ export class Game {
     if (gate) {
       const ready = gate.need.every(id => save.isHatched(id));
       if (ready) {
-        ui.showPrompt('谜题时间：选对词宠帮帮忙', this.isTouch ? '🪄' : 'E');
+        ui.showPrompt(t('x.g368'), this.isTouch ? '🪄' : 'E');
         this.promptAction = () => this._openSummon(gate);
       } else {
-        const how = this.isTouch ? '点 🪄 看谜语' : '按 Tab 看谜语';
-        ui.showPrompt('这里有一个谜题（' + how + '）', 'Tab');
+        const how = this.isTouch ? t('x.g369') : t('x.g370');
+        ui.showPrompt(t('x.g371') + how + '）', 'Tab');
         this.promptAction = null;
       }
       return;
@@ -3093,7 +3093,7 @@ export class Game {
     if (!obj) { this._setMoveTarget(e); return; }
     const id = obj.userData.wordId;
     if (id === 'boat' && save.hasGate('boat') && !this.eggs.get('boat')) {
-      if (!this._rideBoat()) ui.toast('⛵ 走到渡口边上再坐船哦');
+      if (!this._rideBoat()) ui.toast(t('x.g372'));
       return;
     }
     if (this.eggs.get(id)) { this._approachEgg(id); }
@@ -3111,7 +3111,7 @@ export class Game {
       // 💬 词宠会说话：一半概率冒一句日常短句，跟读 80+ 得 1⭐（同一句每次进游戏只奖励一次）
       if (w && Math.random() < 0.5) { this._petSayLine(pet, w); return; }
       // 摸摸头，它把自己的小故事告诉你（词条里现成的 story/hint）
-      const fact = (typeof w.story === 'string' && w.story) ? w.story : (w.hint || `它叫 ${w.en}，是最可爱的词宠`);
+      const fact = (typeof w.story === 'string' && w.story) ? w.story : (w.hint || t('x.g373', { a0: w.en }));
       if (fact) {
         this._fact = { id, until: performance.now() + 5200 };
         ui.showPetFact(`「${w.en}」${w.zh}`, fact);
@@ -3137,7 +3137,7 @@ export class Game {
     const line = bag[Math.floor(Math.random() * bag.length)];
     this._saidLines.add(line);
     ui.openChallenge({
-      word: { en: line, zh: `${w.en} 的悄悄话`, hint: '你的词宠跟你说话啦！大声跟读一遍～' },
+      word: { en: line, zh: t('x.g374', { a0: w.en }), hint: t('x.g375') },
       mode: 'practice', noSpell: true,
       onSuccess: res => {
         ui.closeChallenge();
@@ -3146,9 +3146,9 @@ export class Game {
           ui.updateStars(save.getStars());
           sfx.great();
           if (save.bumpDaily('read2') === 'done') this._afterDaily();
-          ui.toast('💬 你听懂它的话并回应了它！+1⭐', 3200);
+          ui.toast(t('x.g376'), 3200);
         } else {
-          ui.toast('再读一遍，让词宠听见你的声音～', 2800);
+          ui.toast(t('x.g377'), 2800);
         }
       },
     });
@@ -3165,7 +3165,7 @@ export class Game {
     }
     this._hungryGuide = { id: best.word.id, until: performance.now() + 10000 };
     sfx.pop();
-    ui.toast(`🧭 跟着箭头去喂「${best.word.en}」吧！`, 3000);
+    ui.toast(t('x.g378', { a0: best.word.en }), 3000);
   }
 
   // NPC 复习考官：从错词本挑一只没抓回的淘气词，NPC 捧着词卡请孩子读出来
@@ -3175,7 +3175,7 @@ export class Game {
     if (!ids.length) return false;
     const id = ids[Math.floor(Math.random() * ids.length)];
     const w = WORD_MAP[id];
-    this.npcs._showBubble(`🔔 我捡到一张词卡：「${w.en}」——你能大声读出来，帮我把它认领回去吗？`, npc);
+    this.npcs._showBubble(t('x.g379', { a0: w.en }), npc);
     sfx.pop();
     this._catchNaughty(id);
     return true;
@@ -3408,7 +3408,7 @@ export class Game {
       setBgmMood(moods[st.key.length % 3]);   // 每座城市换一种背景音乐情绪
       setBgmCity(st.key);                     // 一城一调：调性/速度按城市个性变奏
       this._refreshCityPill();
-      this._owlDeliver(`下一站：${st.name}！出发！`);
+      this._owlDeliver(t('x.g386', { a0: st.name }));
       setTimeout(() => {
         ui.showCityCard({
           city: st.city, variant: cityVariant(st.city, visit), visit,
@@ -3443,7 +3443,7 @@ export class Game {
   // 本册全部通关：烟花秀 + 走遍祖国成就卡 + 收尾横幅
   _bookDone() {
     this._fireworks();
-    ui.chapterBanner('🏆 本册全部唤醒，你就是Q淘族传奇！');
+    ui.chapterBanner(t('x.g390'));
     this.lockInput = false;
     if (this.cityTour) {
       const visited = this.cityRouteList.map(id => {
@@ -3472,12 +3472,12 @@ export class Game {
       // 不在巡游路线：家乡/奖励城走解锁判断
       if (done) { this._enterBonusCity(id); return; }
       const isBonus = bonusCities().some(c => c.id === id);
-      ui.toast(isBonus ? '🔒 请全部通关后才能玩该城市哦！' : '🗺️ 这座城市不在你的巡游路线里，先去打卡路线上的城市吧！', 3600);
+      ui.toast(isBonus ? t('x.g391') : t('x.g392'), 3600);
       return;
     }
     const chIdx = this.chapterIndex(this.hatchedInScope());
     if (routeIdx > chIdx) {
-      ui.toast('🚂 这座城市还没解锁——先按顺序孵蛋解锁前面的城市吧！', 3600);
+      ui.toast(t('x.g393'), 3600);
       return;
     }
     if (routeIdx === chIdx) return;   // 已经在这座城
@@ -3485,7 +3485,7 @@ export class Game {
     this._switchCity(routeIdx);
     this._refreshCityPill();
     const st = this.islands[routeIdx];
-    ui.chapterBanner(` 欢迎来到 ${st.name} ${st.emoji}！和词宠们再玩一会儿吧`);
+    ui.chapterBanner(t('x.g394', { a0: st.name, a1: st.emoji }));
     this.lockInput = false;
     this._clearMoveTarget();
   }
@@ -3496,13 +3496,13 @@ export class Game {
     if (this._bonusBusy) return;
     // 奖励城市需通关本册（孵完全册词、抵达北京）才解锁；debug 直达不校验
     if (!debug && this.hatchedInScope() < this.total) {
-      ui.toast('🔒 请全部通关后才能玩该城市哦！', 3200);
+      ui.toast(t('x.g391'), 3200);
       return;
     }
     this._bonusBusy = true;
     try {
       await ensureCityData(id);
-      if (!CITY_MAP[id]) { ui.toast('🗺️ 这座城市的地图还没准备好'); return; }
+      if (!CITY_MAP[id]) { ui.toast(t('x.g395')); return; }
       let idx = this.islands.findIndex(isl => isl.key === id);
       if (idx >= 0) {
         // 目标城已在巡游岛上（debug 直达未解锁的路线城）：锁定舞台到该城，
@@ -3523,7 +3523,7 @@ export class Game {
           cx: Math.cos(a) * dist, cz: Math.sin(a) * dist, r: rr, shape,
           landmark: c.landmark, decos: c.variants.map(v => DECO_EMOJI[v.deco] || '🏮'),
           startChapter: this.chapters.length, unis: c.unis, city: c, level: lv,
-          chapterName: c.name + ' · 奖励探索', bonus: true,
+          chapterName: c.name + t('x.g396'), bonus: true,
         });
         // 奖励关：复习 8 + 新词 4（词池里未学过的），seed=昵称+册+城市，稳定可重玩
         const unlearned = this.scopeWords.map(w => w.id).filter(w => !save.isHatched(w));
@@ -3533,7 +3533,7 @@ export class Game {
         const learnedPool = this.scopeWords.map(w => w.id).filter(w => save.isHatched(w));
         const review = shuffleSeed(learnedPool, rand).slice(0, 8);
         const words = [...fresh, ...review];
-        this.chapters.push({ name: c.name + ' · 奖励探索', words, review, bonus: true });
+        this.chapters.push({ name: c.name + t('x.g396'), words, review, bonus: true });
         idx = i;
         this._forceChapter = this.chapters.length - 1;   // 蛋从奖励关出（普通巡游时清除）
         // 运行时补建精建岛（网格+碰撞+装饰），并塞回数据岛供显隐切换
@@ -3566,7 +3566,7 @@ export class Game {
         quiz: getCityQuiz(st.key), bonus: true,
         onStar: () => { save.addStars(1); ui.updateStars(save.getStars()); },
         onDone: () => {
-          ui.chapterBanner(`🎉 奖励探索「${st.name}」！点亮新蛋、逛逛牌子吧`);
+          ui.chapterBanner(t('x.g397', { a0: st.name }));
           this.lockInput = false;
           this._clearMoveTarget();
         },
@@ -3635,16 +3635,16 @@ export class Game {
     const rect = ZONE_RECTS.find(r => r.key === top[0]);
     // 每关一个主题色（按关卡序号轮换）
     const THEMES = [
-      { accent: '#FF8FB0', emoji: '🌸', name: '樱花' },
-      { accent: '#FFC94E', emoji: '🌼', name: '向日葵' },
-      { accent: '#7EC4F2', emoji: '💙', name: '海洋' },
-      { accent: '#C6A5F0', emoji: '🔮', name: '魔法' },
-      { accent: '#8FD08F', emoji: '🍀', name: '森林' },
-      { accent: '#FF9F68', emoji: '🍊', name: '果园' },
+      { accent: '#FF8FB0', emoji: '🌸', name: t('x.g398') },
+      { accent: '#FFC94E', emoji: '🌼', name: t('x.g399') },
+      { accent: '#7EC4F2', emoji: '💙', name: t('x.g400') },
+      { accent: '#C6A5F0', emoji: '🔮', name: t('x.g401') },
+      { accent: '#8FD08F', emoji: '🍀', name: t('x.g402') },
+      { accent: '#FF9F68', emoji: '🍊', name: t('x.g403') },
     ];
     const theme = THEMES[idx % THEMES.length];
     this.world.dressChapter(rect.x1, rect.z1, rect.x2, rect.z2, theme);
-    ui.toast(`${theme.emoji} 「${ch.name}」的${theme.name}主题布置完成！去 ${rect.name} 看看吧`, 4200);
+    ui.toast(t('x.g404', { a0: theme.emoji, a1: ch.name, a2: theme.name, a3: rect.name }), 4200);
   }
 
   // 猫头鹰园丁送奖演出：扑棱到玩家身边 → 气泡说话 + 撒星星 → 飞回木桩
@@ -3852,7 +3852,7 @@ export class Game {
 
   _checkFirstHatchHint() {
     if (save.hatchedCount() === 1) {
-      const how = this.isTouch ? '点右上角 🪄' : '按 Tab';
+      const how = this.isTouch ? t('x.g406') : t('x.g407');
       setTimeout(() => ui.toast(`💡 小提示：被河流挡路时，${how}可以召唤词宠帮忙哦`, 4200), 2500);
     }
   }
@@ -3886,10 +3886,10 @@ export class Game {
           if (save.bumpDaily('feed2') === 'done') this._afterDaily();
           this._chainReward(save.bumpChain('feed'));
           sfx.good();
-          ui.toast(`🍖「${word.en}」吃饱啦，心满意足地转了个圈 +1⭐`, 3000);
+          ui.toast(t('x.g409', { a0: word.en }), 3000);
           // 💬 词宠用英文道谢（纯展示+朗读，不加挑战）：情感反馈里多一句语言输入
           this._fact = { id, until: performance.now() + 4200 };
-          ui.showPetFact(`💬「${word.en}」说：`, 'Thank you! Yummy yummy!');
+          ui.showPetFact(t('x.g410', { a0: word.en }), 'Thank you! Yummy yummy!');
           speak('Thank you! Yummy yummy!');
           // 喂满 3 次触发进化：长大一圈、戴上星星光环
           const d = save.getSave().pets[id];
@@ -3917,7 +3917,7 @@ export class Game {
     const pet = this.pets.get(id);
     this.pets.setHungry(id, false);
     this.pets.celebrate(id);
-    if (pet) this._petSay(pet, '谢谢我的小主人', 1.2);
+    if (pet) this._petSay(pet, t('x.g411'), 1.2);
     sfx.good();
     this._refreshHungry();
   }
@@ -3960,31 +3960,31 @@ export class Game {
   // 钥匙词 → 机关谜语配置（城市任务牌用）
   _gateConfig(wid) {
     const MAP = {
-      boat: { id: 'boat', need: ['boat'], riddle: '河水挡住了去路——什么能浮在水上，带你过河？' },
-      light: { id: 'light', need: ['light'], riddle: '谷仓里黑漆漆的——谁一出现，到处都亮堂堂？' },
-      wind: { id: 'wind', need: ['wind'], riddle: '圆圆的干草球挡路了——谁看不见摸不着，却能呼呼地把它吹走？' },
-      seed: { id: 'beanstalkSeed', need: ['seed'], riddle: '菜园的泥土翻好了——把它种下去，就会发芽的是？' },
-      rain: { id: 'beanstalkRain', need: ['rain'], riddle: '豆苗咕嘟咕嘟口渴了——从云朵里落下来、花草都张嘴接住的是？' },
-      banana: { id: 'vines', need: ['banana'], riddle: '带刺的荆棘丛拦住了森林——弯弯的黄月亮、猴子最爱的水果是？' },
+      boat: { id: 'boat', need: ['boat'], riddle: t('x.g413') },
+      light: { id: 'light', need: ['light'], riddle: t('x.g414') },
+      wind: { id: 'wind', need: ['wind'], riddle: t('x.g415') },
+      seed: { id: 'beanstalkSeed', need: ['seed'], riddle: t('x.g416') },
+      rain: { id: 'beanstalkRain', need: ['rain'], riddle: t('x.g417') },
+      banana: { id: 'vines', need: ['banana'], riddle: t('x.g418') },
     };
     return MAP[wid] || null;
   }
   // 主岛实体机关（老家可玩，城市模式下非必经）
   _mainIsleGate(p) {
     if (!save.hasGate('boat') && Math.hypot(p.x, p.z - 4.6) < 5 && Math.abs(p.x) < 8)
-      return { id: 'boat', need: ['boat'], riddle: '河水挡住了去路——什么能浮在水上，带你过河？', point: new THREE.Vector3(0, 0, 2.2) };
+      return { id: 'boat', need: ['boat'], riddle: t('x.g413'), point: new THREE.Vector3(0, 0, 2.2) };
     if (!save.hasGate('wind') && Math.hypot(p.x - 13, p.z + 6.5) < 4)
-      return { id: 'wind', need: ['wind'], riddle: '圆圆的干草球挡路了——谁看不见摸不着，却能呼呼地把它吹走？', point: new THREE.Vector3(13, 0, -8) };
+      return { id: 'wind', need: ['wind'], riddle: t('x.g415'), point: new THREE.Vector3(13, 0, -8) };
     if (!save.hasGate('light') && Math.hypot(p.x - 24, p.z - 18.8) < 4.5)
-      return { id: 'light', need: ['light'], riddle: '谷仓里黑漆漆的——谁一出现，到处都亮堂堂？', point: new THREE.Vector3(24, 0, 20) };
+      return { id: 'light', need: ['light'], riddle: t('x.g414'), point: new THREE.Vector3(24, 0, 20) };
     if (!save.hasGate('beanstalk') && Math.hypot(p.x + 22, p.z - 25) < 5) {
-      if (!this.planted) return { id: 'beanstalkSeed', need: ['seed'], riddle: '菜园的泥土翻好了——把它种下去，就会发芽的是？', point: new THREE.Vector3(-22, 0, 26) };
-      return { id: 'beanstalkRain', need: ['rain'], riddle: '豆苗咕嘟咕嘟口渴了——从云朵里落下来、花草都张嘴接住的是？', point: new THREE.Vector3(-22, 0, 26) };
+      if (!this.planted) return { id: 'beanstalkSeed', need: ['seed'], riddle: t('x.g416'), point: new THREE.Vector3(-22, 0, 26) };
+      return { id: 'beanstalkRain', need: ['rain'], riddle: t('x.g417'), point: new THREE.Vector3(-22, 0, 26) };
     }
     if (!save.hasGate('sandWall') && p.z > 30 && Math.abs(p.x) < 32)
-      return { id: 'sandWall', need: ['wind'], riddle: '金灿灿的沙墙好高呀！——谁虽然看不见摸不着，却能吹散一座沙城？', point: new THREE.Vector3(0, 0, 37.2) };
+      return { id: 'sandWall', need: ['wind'], riddle: t('x.g419'), point: new THREE.Vector3(0, 0, 37.2) };
     if (!save.hasGate('vines') && p.x < -31)
-      return { id: 'vines', need: ['banana'], riddle: '带刺的荆棘丛拦住了森林——弯弯的黄月亮、猴子最爱的水果是？', point: new THREE.Vector3(-38, 0, p.z > 0 ? 11 : -11) };
+      return { id: 'vines', need: ['banana'], riddle: t('x.g418'), point: new THREE.Vector3(-38, 0, p.z > 0 ? 11 : -11) };
     return null;
   }
 
@@ -4009,7 +4009,7 @@ export class Game {
       id: p.word.id, en: p.word.en, zh: p.word.zh,
       thumb: () => petThumbnail(p.word.pet),   // 懒生成：召唤盘可能有几百只，列表构建时同步画会卡死
     }));
-    if (!list.length) { ui.toast('还没有词宠哦，先去孵化一颗词宠蛋吧！'); return; }
+    if (!list.length) { ui.toast(t('x.g422')); return; }
     this.pendingGate = gate;
     // 有机关在身边时，标题就是谜语：读懂谜面，挑对词宠
     ui.openPicker(list, id => this._summon(id, gate), () => { this.pendingGate = null; },
@@ -4026,7 +4026,7 @@ export class Game {
       // 随便召唤：小家伙飞过来打个招呼
       const p = this.player.position.clone().add(new THREE.Vector3(Math.sin(this.player.rotation.y) * -1.6, 0, Math.cos(this.player.rotation.y) * -1.6));
       this.pets.flyTo(id, p, 1.1, () => { pet.jumping = true; pet.jt = 0; });
-      ui.toast(`「${word.en}」${word.zh} 来到你身边啦～`);
+      ui.toast(t('x.g423', { a0: word.en, a1: word.zh }));
       return;
     }
     const target = gate.point.clone();
@@ -4036,7 +4036,7 @@ export class Game {
         // 一次答对：聪明星奖励（第一个 boat 机关是必经教学关，不算）；FEVER 期间翻倍
         save.addStars(ui.isFever() ? 6 : 3);
         ui.updateStars(save.getStars());
-        setTimeout(() => ui.toast('🌟 一次就答对！聪明星 +3⭐', 2800), 200);
+        setTimeout(() => ui.toast(t('x.g424'), 2800), 200);
         this._starBurst(pet.group.position.clone().add(new THREE.Vector3(0, 1, 0)), 3);
       }
       if (save.bumpDaily('gate1') === 'done') this._afterDaily();
@@ -4049,18 +4049,18 @@ export class Game {
       this.gateTries[gate.id] = (this.gateTries[gate.id] || 0) + 1;
       const tries = this.gateTries[gate.id];
       this.pets.flyTo(id, target, 1.1, () => {
-        ui.toast(`「${word.en}」${word.zh} 摇了摇头：好像不对哦，再想想谜语～`, 3000);
+        ui.toast(t('x.g425', { a0: word.en, a1: word.zh }), 3000);
         this.addTween(0.5, k => pet.group.rotation.y = Math.sin(k * Math.PI * 4) * 0.4, () => {
           pet.group.rotation.y = 0;
           this.pets.flyTo(id, new THREE.Vector3(pet.home.x, 0, pet.home.y), 1.1);
           // 猜错两次后层层加提示，不让孩子卡死
-          if (tries === 2) setTimeout(() => ui.toast(`💡 再想一想：${gate.riddle}`, 4200), 1600);
+          if (tries === 2) setTimeout(() => ui.toast(t('x.g426', { a0: gate.riddle }), 4200), 1600);
           else if (tries >= 3) setTimeout(() => {
             const answer = gate.need.map(wid => `「${WORD_MAP[wid].en}」${WORD_MAP[wid].zh}`).join(' ');
             const allHatched = gate.need.every(wid => save.isHatched(wid));
             ui.toast(allHatched
-              ? `💡 谜底是 ${answer}，去召唤它试试！`
-              : `💡 谜底是 ${answer}——找到它的蛋孵出来，就能召唤啦！`, 4800);
+              ? t('x.g427', { a0: answer })
+              : t('x.g428', { a0: answer }), 4800);
           }, 1600);
         });
       });
@@ -4071,7 +4071,7 @@ export class Game {
   _afterDaily() {
     setTimeout(() => {
       sfx.great();
-      ui.toast('✅ 今日任务完成！+5⭐', 3600);
+      ui.toast(t('x.g429'), 3600);
       this._starBurst(this.player.position.clone().add(new THREE.Vector3(0, 1.6, 0)), 5);
       this._refreshDailyBanner();
     }, 500);
@@ -4094,7 +4094,7 @@ export class Game {
         pet.target.set(0, 0.4);
         pet.wait = 1e9;       // 不再乱跑，守着渡口
         sfx.magic();
-        ui.toast('🚤「boat」游到河中央，变成了一座小船桥！现在可以过河啦', 4200);
+        ui.toast(t('x.g430'), 4200);
         break;
       }
       case 'wind': {
@@ -4111,7 +4111,7 @@ export class Game {
           hay.group.visible = false;
           this.pets.flyTo(pet.word.id, new THREE.Vector3(pet.home.x, 0, pet.home.y), 1.2);
         });
-        ui.toast('💨「wind」呼——地一吹，干草球咕噜噜滚走啦！', 3800);
+        ui.toast(t('x.g431'), 3800);
         break;
       }
       case 'light': {
@@ -4123,7 +4123,7 @@ export class Game {
           dark.visible = k < 0.99;
           this.world.gates.barnLight.intensity = 2.2 * k;
         }, () => { dark.visible = false; });
-        ui.toast('🏮「light」飞进谷仓，里面亮堂堂的，好像有词宠蛋！', 4200);
+        ui.toast(t('x.g432'), 4200);
         break;
       }
       case 'beanstalkSeed': {
@@ -4134,7 +4134,7 @@ export class Game {
         bs.scale.set(1, 0.02, 1);
         this.addTween(0.8, k => bs.scale.y = 0.02 + k * 0.03);
         sfx.pop();
-        ui.toast('🌱「seed」种进土里，冒出了一个小芽…它还需要一场 rain！', 4200);
+        ui.toast(t('x.g433'), 4200);
         break;
       }
       case 'beanstalkRain': {
@@ -4177,7 +4177,7 @@ export class Game {
           wall.group.scale.y = 1 - k * 0.96;
           wall.group.scale.x = 1 + k * 0.3;
         }, () => { wall.group.visible = false; });
-        ui.toast('💨 沙墙呼啦啦散开啦——欢迎来到阳光海滩！', 4600);
+        ui.toast(t('x.g435'), 4600);
         this._flyPetHome(pet);
         break;
       }
@@ -4200,7 +4200,7 @@ export class Game {
           vines.group.scale.y = 1 - k * 0.96;
           vines.group.rotation.z = Math.sin(k * Math.PI * 2) * 0.12;
         }, () => { vines.group.visible = false; });
-        ui.toast('🍌 荆棘闻到香蕉香，让开了一条路——神秘森林到了！', 4600);
+        ui.toast(t('x.g436'), 4600);
         this._flyPetHome(pet);
         break;
       }
@@ -4238,7 +4238,7 @@ export class Game {
       this.onIsle = up;
       this.player.position.copy(to);
       this.onGround = true; this.vy = 0; this.jumps = 0;
-      if (up) ui.toast('☁️ 欢迎来到天空岛！这里有两颗金色的蛋…', 3600);
+      if (up) ui.toast(t('x.g437'), 3600);
     });
   }
 
@@ -4291,7 +4291,7 @@ export class Game {
     const dur = THREE.MathUtils.clamp(dist / 22, 1.6, 4);
     sfx.magic();
     if (isl) this._trainQuiz(isl.key);   // 跨海路上来一道知识题
-    ui.toast(isl ? `🚂 呜——开往「${isl.name}」的小火车出发啦！` : '🚂 呜——回到主岛啦！', 2600);
+    ui.toast(isl ? t('x.g439', { a0: isl.name }) : t('x.g440'), 2600);
     this.addTween(dur, (k, dt) => {
       const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
       this.player.position.lerpVectors(from, to, e);
@@ -4359,7 +4359,7 @@ export class Game {
     ui.showShop({
       stars: save.getStars(), items,
       onBuy: it => {
-        if (!save.spendStars(it.price)) { ui.toast('星星还不够啦，去读单词赚星星吧！'); return; }
+        if (!save.spendStars(it.price)) { ui.toast(t('x.g441')); return; }
         const patch = it.type === 'hat'
           ? { hatOwned: [...save.getWear().hatOwned, it.value], hat: it.value }
           : it.type === 'title'
@@ -4369,7 +4369,7 @@ export class Game {
         ui.updateStars(save.getStars());
         this._wellStarFx();
         sfx.magic();
-        ui.toast(`🎉 买到了${it.emoji}${it.name}！马上穿上试试`, 3200);
+        ui.toast(t('x.g442', { a0: it.emoji, a1: it.name }), 3200);
         this._refreshPlayerLook();
         this._openShop();  // 刷新货架
       },
@@ -4461,7 +4461,7 @@ export class Game {
           ui.playBookFlip(() => location.reload());
         };
         if (hasRecord) {
-          ui.askChoice(`《${BOOK_LABEL(k)}》有你的旅行记录`, '接着上次的城市之旅，还是重新出发？', '▶️ 接着上次玩', '🔄 重新出发',
+          ui.askChoice(`《${BOOK_LABEL(k)}》有你的旅行记录`, t('x.g445'), t('x.g446'), t('x.g447'),
             () => go(false), () => go(true));
         } else go(false);
       },
@@ -4535,7 +4535,7 @@ export class Game {
     else {
       this.voiceFailStreak = (this.voiceFailStreak || 0) + 1;
       save.markNaughty(this.currentWord.id);   // 错词本：读错的词隔天变淘气词宠回来复习
-      if (this.voiceFailStreak === 3) ui.toast('🌟 读得已经很棒啦！歇口气再试一次，也可以点下面的字母块拼一拼', 4200);
+      if (this.voiceFailStreak === 3) ui.toast(t('x.g450'), 4200);
     }
     return r;
   }
@@ -4637,7 +4637,7 @@ export class Game {
         if (!this.currentWord) return;
         // 只有真的录过一轮才重新常开，避免设备异常时空转
         if ((wasArmed || blob.size > 800) && (this.preferWhisper || !voiceSupported || isVoiceBroken())) this._primeRec();
-        ui.voiceStatus('识别中…');
+        ui.voiceStatus(t('x.g29'));
         const text = await recognizeBlob(blob);
         if (!this.currentWord) return;
         if (!text) { this.voiceFailStreak = (this.voiceFailStreak || 0) + 1; ui.voiceResult({ score: 0, heard: '', error: 'no-result' }); return; }
@@ -4664,7 +4664,7 @@ export class Game {
       ensureWhisper().finally(() => clearInterval(this._loadTick));
       this._loadTick = setInterval(() => {
         const pct = loadPercent();
-        if (pct > 0) ui.voiceStatus(`正在下载语音引擎 ${pct}%（约 40MB，只需下载一次）…`);
+        if (pct > 0) ui.voiceStatus(t('x.g452', { a0: pct }));
       }, 400);
       // 10 秒硬上限：倒计时归零自动收音识别，绝不让孩子干等
       clearTimeout(this._recCap);
@@ -4674,11 +4674,11 @@ export class Game {
       return true;
     }
     // 常开录音没就绪（权限刚给/第一次）：退回按下时启动的老流程
-    ui.voiceStatus('正在准备语音引擎…');
+    ui.voiceStatus(t('x.g453'));
     clearInterval(this._loadTick);
     this._loadTick = setInterval(() => {
       const pct = loadPercent();
-      if (pct > 0) ui.voiceStatus(`正在下载语音引擎 ${pct}%（约 40MB，只需下载一次）…`);
+      if (pct > 0) ui.voiceStatus(t('x.g452', { a0: pct }));
     }, 400);
     ensureWhisper().finally(() => clearInterval(this._loadTick)).then(() => {
       if (!this.currentWord) return;
@@ -4729,12 +4729,12 @@ export class Game {
         ui.voiceResult(this._lenientResult(alts));
       },
       (listening, err) => {
-        if (err === 'not-allowed') ui.toast('🎤 需要允许麦克风权限才能语音读单词哦（点地址栏旁的麦克风图标）', 5000);
+        if (err === 'not-allowed') ui.toast(t('x.g454'), 5000);
         else if (err && err !== 'no-result') {
           this._noteVoiceMiss();
           // Web Speech 出问题就立刻开始下载本地模型，别等下次切换时才让孩子干等
           this._maybePreloadWhisper(true);
-          if (!this.preferWhisper) ui.toast('🎤 识别不太顺，也可以点“换成拼字母块”过关', 4000);
+          if (!this.preferWhisper) ui.toast(t('x.g455'), 4000);
         }
       }
     );
@@ -4748,6 +4748,6 @@ export class Game {
       && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
     if (!canRecord) return;
     this.preferWhisper = true;
-    ui.toast('🎤 下次改用本地识别，第一次要等一下下', 4000);
+    ui.toast(t('x.g456'), 4000);
   }
 }
