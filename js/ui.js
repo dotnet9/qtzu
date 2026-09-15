@@ -1687,15 +1687,40 @@ let leaderboardCurrent = { username: '', score: 0 };
 let leaderboardTimer = null;
 let leaderboardRequest = null;
 
-function leaderboardRowsHtml(rows, current = leaderboardCurrent) {
+// ---------- 多维排行榜：分数 / 词宠 / 城市 / 星星 四个页签 ----------
+let lbRows = [];
+let lbTab = 'score';
+const LB_TABS = [
+  { id: 'score', icon: '🏆', name: '分数', field: 'score', fmt: v => `${v} 分` },
+  { id: 'pets', icon: '🐾', name: '词宠', field: 'pets', fmt: v => `${v} 只` },
+  { id: 'cities', icon: '🏙️', name: '城市', field: 'cities', fmt: v => `${v} 城` },
+  { id: 'stars', icon: '⭐', name: '星星', field: 'stars', fmt: v => `${v}⭐` },
+];
+function lbTabsHtml() {
+  return `<div class="lb-tabs">${LB_TABS.map(t =>
+    `<button type="button" class="lb-tab${t.id === lbTab ? ' on' : ''}" data-t="${t.id}">${t.icon} ${t.name}</button>`).join('')}</div>`;
+}
+function lbBindTabs(container) {
+  container.querySelectorAll('.lb-tab').forEach(b => {
+    b.onclick = () => {
+      sfx.pop();
+      lbTab = b.dataset.t;
+      container.innerHTML = renderLbList();
+      lbBindTabs(container);   // 重绘后重新绑定
+    };
+  });
+}
+function renderLbList(current = leaderboardCurrent) {
+  const t = LB_TABS.find(x => x.id === lbTab) || LB_TABS[0];
   const medals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
-  if (!rows.length) return '<div class="rank-loading">还没有记录，快来拿第一分吧！</div>';
-  return rows.slice(0, 5).map((x, i) => {
+  const sorted = [...lbRows].sort((a, b) => (Number(b[t.field]) || 0) - (Number(a[t.field]) || 0)).slice(0, 5);
+  if (!sorted.length) return lbTabsHtml() + '<div class="rank-loading">还没有记录，快来拿第一分吧！</div>';
+  return lbTabsHtml() + sorted.map((x, i) => {
     const name = String(x.username || '匿名小伙伴');
     const gIcon = x.gender === 'girl' ? '👧' : '👦';   // 没有性别记录的老数据默认男孩
     const title = x.title ? `<i class="rank-title">${escapeHtml(String(x.title))}</i>` : '';
     const active = current.username && name === current.username ? ' current' : '';
-    return `<div class="rank-row${active}"><b>${medals[i]}</b><span>${gIcon} ${escapeHtml(name)}${title}</span><strong>${Number(x.score) || 0} 分</strong></div>`;
+    return `<div class="rank-row${active}"><b>${medals[i]}</b><span>${gIcon} ${escapeHtml(name)}${title}</span><strong>${t.fmt(Number(x[t.field]) || 0)}</strong></div>`;
   }).join('');
 }
 
@@ -1728,8 +1753,9 @@ export async function refreshLeaderboard(current = {}) {
   if (current.score != null) leaderboardCurrent.score = Number(current.score) || 0;
   if (!els.leaderboardList) return;
   try {
-    const rows = await fetchLeaderboardRows();
-    els.leaderboardList.innerHTML = leaderboardRowsHtml(rows, leaderboardCurrent);
+    lbRows = await fetchLeaderboardRows();
+    els.leaderboardList.innerHTML = renderLbList(leaderboardCurrent);
+    lbBindTabs(els.leaderboardList);
   } catch (e) {
     renderLeaderboardOffline(e);
   }
@@ -1954,8 +1980,9 @@ export async function showLeaderboard(current = {}) {
   document.body.appendChild(ov); ov.querySelector('.rank-close').onclick = () => ov.remove();
   const list = ov.querySelector('.rank-list');
   try {
-    const rows = await fetchLeaderboardRows();
-    list.innerHTML = leaderboardRowsHtml(rows, current);
+    lbRows = await fetchLeaderboardRows();
+    list.innerHTML = renderLbList(current);
+    lbBindTabs(list);
   } catch (e) { list.innerHTML = `<div class="rank-loading">${leaderboardOfflineReason(e)}，${escapeHtml(current.username || '你')} 已有 ${current.score || 0} 分。</div>`; }
 }
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c])); }

@@ -265,7 +265,8 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (pathname === '/api/leaderboard' && (req.method === 'GET' || req.method === 'HEAD')) {
-      const rows = readBoard().slice().sort(byRank).slice(0, 5);
+      // 多维榜：返回前 30 名全字段（分数/词宠/城市/星星），客户端按页签排序展示
+      const rows = readBoard().slice().sort(byRank).slice(0, 30);
       sendJson(res, 200, rows);
       log(req, 200, `top${rows.length}`);
       return;
@@ -396,10 +397,15 @@ const server = http.createServer(async (req, res) => {
       const rows = readBoard();
       let row = rows.find(x => x && x.username === username);
       if (!row) { row = { username, score: 0, gender }; rows.push(row); }
-      row.score = (Number(row.score) || 0) + delta;
+      if (delta) row.score = (Number(row.score) || 0) + delta;
       row.gender = gender;
       const title = String((body && body.title) != null ? body.title : '').trim().slice(0, 12);
       if (title) row.title = title;   // 称号展示名（许愿井购买后随分数上报）
+      // 多维权榜字段：词宠数 / 到访城市数 / 星星数（客户端随分数或 sync 上报，取最新值）
+      for (const [k, lim] of [['pets', 9999], ['cities', 999], ['stars', 999999]]) {
+        const v = parseInt((body && body[k]) != null ? body[k] : NaN, 10);
+        if (Number.isFinite(v) && v >= 0) row[k] = Math.min(v, lim);
+      }
       writeBoard(rows);
       sendJson(res, 200, row);
       log(req, 200, `${username}=${row.score}`);

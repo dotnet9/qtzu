@@ -393,6 +393,13 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   background: #FFF3D8; border: 1px solid #F0C060; border-radius: 999px;
   padding: 1px 6px; margin-left: 5px; vertical-align: 1px;
 }
+/* 📊 多维榜页签 */
+.lb-tabs { display: flex; gap: 6px; justify-content: center; margin-bottom: 8px; flex-wrap: wrap; }
+.lb-tab {
+  padding: 4px 10px; font-size: 11px; font-weight: 900; font-family: inherit;
+  color: #9C8C7A; background: #F7F3EE; border: 2px solid #E9E1D8; border-radius: 999px; cursor: pointer;
+}
+.lb-tab.on { color: #C4577E; background: #FFF0F5; border-color: #FF9FB9; }
 
 /* 🎬 小小配音演员 */
 #dub-card {

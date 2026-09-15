@@ -478,13 +478,28 @@ export function addPoint() {
   save();
   // 还没建档案就只记本地分；有档案（哪怕密码为空）才同步给排行榜
   if (!data.profile.registered) return;
-  const body = JSON.stringify({
-    username: data.profile.username, password: data.profile.password, delta: 1, gender: getGender(),
-    title: TITLE_NAMES[data.profile.wear.title] || '',
-  });
+  const body = JSON.stringify(rankBody(1));
   try {
     fetch('/api/score', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {});
   } catch (e) { /* 静态站点或离线时保留本地积分 */ }
+}
+// 多维榜上报体：分数增量 + 词宠/城市/星星最新值
+function rankBody(delta) {
+  const cities = new Set(Object.keys(data.cityVisits || {}).map(k => k.split(':')[1])).size;
+  return {
+    username: data.profile.username, password: data.profile.password, delta, gender: getGender(),
+    title: TITLE_NAMES[data.profile.wear.title] || '',
+    pets: Object.keys(data.pets || {}).length,
+    cities,
+    stars: getStars(),
+  };
+}
+// 登录/换设备后补一次档案同步（delta 0：只刷新多维字段，不动分数）
+export function syncRank() {
+  if (!data.profile.username || !data.profile.registered) return;
+  try {
+    fetch('/api/score', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rankBody(0)), keepalive: true }).catch(() => {});
+  } catch (e) { /* 离线忽略 */ }
 }
 
 export function resetSessionScore() { data.profile.sessionScore = 0; save(); }
