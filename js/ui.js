@@ -1742,14 +1742,20 @@ export function openCityMap(data) {
   const sea = c.createLinearGradient(0, 0, 0, H);
   sea.addColorStop(0, '#93D6F0'); sea.addColorStop(1, '#6CB9E2');
   c.fillStyle = sea; c.fillRect(0, 0, W, H);
-  // 城市多边形
+  // 城市多边形：投影托底 → 城市色罩 → 三层描边（柔光外圈/主体/不画硬单线）
   const poly = data.pts;
   const drawPoly = () => { c.beginPath(); poly.forEach(([x, z], i) => i ? c.lineTo(X(x), Z(z)) : c.moveTo(X(x), Z(z))); c.closePath(); };
+  c.lineJoin = 'round'; c.lineCap = 'round';
+  // 投影：给城面一点落影，从海面上托起来
+  c.save();
+  c.shadowColor = 'rgba(50,90,120,.30)'; c.shadowBlur = 16 * k; c.shadowOffsetY = 6 * k;
   drawPoly();
-  c.fillStyle = 'rgba(255,255,255,.5)'; c.fill();
+  c.fillStyle = 'rgba(255,255,255,.62)'; c.fill();
+  c.restore();
   if (data.color) { drawPoly(); c.fillStyle = data.color + '33'; c.fill(); }
-  drawPoly();
-  c.strokeStyle = 'rgba(110,158,94,.6)'; c.lineWidth = 3 * k; c.stroke();
+  // 描边两层：宽的柔光晕在底下，圆角主体线在上——替代生硬的单线
+  drawPoly(); c.strokeStyle = 'rgba(110,158,94,.15)'; c.lineWidth = 13 * k; c.stroke();
+  drawPoly(); c.strokeStyle = 'rgba(110,158,94,.62)'; c.lineWidth = 3.2 * k; c.stroke();
   // 立牌点：大学蓝/美食橙/风景绿
   const COL = { uni: '#4A90D9', food: '#E8890C', scene: '#3E8E4E' };
   for (const s of data.signs || []) {

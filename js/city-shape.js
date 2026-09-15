@@ -85,6 +85,35 @@ export function polyNearest(pts, x, z) {
   return { qx, qz, d: Math.sqrt(bd), ax, az, bx, bz };
 }
 
+// 沿轮廓法线整体外(内)推 d 的等距环：d>0 向外、d<0 向内，自动识别绕向。
+// 顶点法线取两条邻边法线的角平分（miter 长度钳制防尖角飞刺），装饰用足够平滑：
+// 全国地图的状态晕圈（向外）、院墙内侧渐变过渡带（向内）都从这出，保证是同一条边。
+export function polyOffsetRing(pts, d) {
+  const n = pts.length - 1;                       // 闭合环：末点=首点
+  if (!(d > 0 || d < 0) || n < 3) return pts.slice();
+  let area = 0;
+  for (let i = 0; i < n; i++) area += pts[i][0] * pts[i + 1][1] - pts[i + 1][0] * pts[i][1];
+  const sgn = area > 0 ? 1 : -1;                  // 绕向决定"边法线的哪一侧"是外
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const p = pts[i], a = pts[(i - 1 + n) % n], b = pts[(i + 1) % n];
+    const e1 = edgeOutN(a, p), e2 = edgeOutN(p, b);
+    let nx = e1[0] + e2[0], nz = e1[1] + e2[1];
+    const l = Math.hypot(nx, nz) || 1;
+    nx /= l; nz /= l;
+    const m = Math.min(2.2, 1 / Math.max(0.45, nx * e1[0] + nz * e1[1]));   // 尖角 miter 钳制
+    out.push([p[0] + nx * d * m, p[1] + nz * d * m]);
+  }
+  out.push([out[0][0], out[0][1]]);
+  return out;
+
+  function edgeOutN(a, b) {                       // 有向边 ab 的单位外法线
+    const ex = b[0] - a[0], ez = b[1] - a[1];
+    const l = Math.hypot(ex, ez) || 1;
+    return sgn > 0 ? [ez / l, -ex / l] : [-ez / l, ex / l];
+  }
+}
+
 // 线段的内法线（指向多边形内部那一侧）：在 q 点向法线方向探 0.5 判内外
 function inwardNormal(pts, q) {
   let nx = -(q.bz - q.az), nz = q.bx - q.ax;
