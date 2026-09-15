@@ -4348,6 +4348,7 @@ export class Game {
     const q = save.getDaily();
     ui.showDailyBoard({
       quest: q, stars: save.getStars(),
+      achievements: save.achievementProgress(),
       onClose: () => {},
     });
     sfx.pop();

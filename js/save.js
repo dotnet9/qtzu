@@ -38,6 +38,7 @@ function fresh() {
     badges: {},        // 徽章：key -> true（小导游 guide:<城市> 等）
     stamps: {},        // 景点集章：<城市en> -> { got:[景点名], done:false }
     npcChatDay: '',    // 最近一次和 NPC 聊天之日（隔日重逢问候用）
+    dubCount: 0,       // 完成的配音作品数
   };
 }
 
@@ -71,6 +72,7 @@ function load() {
     merged.badges = d.badges || {};
     merged.stamps = d.stamps || {};
     merged.npcChatDay = d.npcChatDay || '';
+    if (typeof merged.dubCount !== 'number') merged.dubCount = 0;
     merged.daily = Object.assign({ day: '', idx: 0, n: 0, done: false }, d.daily || {});
     if (!merged.player) merged.player = null;
     return merged;
@@ -313,6 +315,28 @@ export function markNpcChat() {
   save();
   return !!yesterday && yesterday !== today;   // 首次 ever 返回 false，隔日重逢返回 true
 }
+
+// ---------- 成就墙：过程性目标（只展示不发星星，避免通胀） ----------
+export const ACHIEVEMENTS = [
+  { id: 'cities10', icon: '🏙️', name: '小小旅行家', desc: '到访 10 座城市', goal: 10, stat: 'cities' },
+  { id: 'stamps5', icon: '🏅', name: '集章达人', desc: '集满 5 座城市的景点章', goal: 5, stat: 'stamps' },
+  { id: 'hatch30', icon: '🧺', name: '孵蛋高手', desc: '唤醒 30 只词宠', goal: 30, stat: 'hatched' },
+  { id: 'guide3', icon: '🎖️', name: '金牌导游', desc: '拿到 3 枚小导游徽章', goal: 3, stat: 'guides' },
+  { id: 'dub3', icon: '🎬', name: '配音新星', desc: '完成 3 部配音作品', goal: 3, stat: 'dubs' },
+];
+export function achievementProgress() {
+  const cities = new Set(Object.keys(data.cityVisits || {}).map(k => k.split(':')[1])).size;
+  const stats = {
+    cities,
+    stamps: Object.keys(data.stamps || {}).filter(k => data.stamps[k].done).length,
+    hatched: Object.keys(data.pets || {}).length,
+    guides: Object.keys(data.badges || {}).filter(k => k.startsWith('guide:')).length,
+    dubs: data.dubCount || 0,
+  };
+  return ACHIEVEMENTS.map(a => ({ ...a, n: Math.min(stats[a.stat] || 0, a.goal), done: (stats[a.stat] || 0) >= a.goal }));
+}
+// 整部配音完成计数
+export function bumpDub() { data.dubCount = (data.dubCount || 0) + 1; save(); }
 
 export function feed(id) {
   const p = data.pets[id];

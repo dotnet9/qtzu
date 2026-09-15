@@ -1345,6 +1345,20 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #toast { animation: toastIn .32s cubic-bezier(.34,1.3,.64,1); }
 @keyframes toastIn { from { transform: translateX(-50%) translateY(-16px); opacity: 0 } to { transform: translateX(-50%) translateY(0); opacity: 1 } }
 
+/* 🏆 成就墙（任务板内） */
+#ach-wall { margin-top: 10px; padding-top: 8px; border-top: 2px dashed #F2DCE4; }
+#ach-wall .ach-t { font-size: 12px; font-weight: 900; color: #C4788F; margin-bottom: 6px; }
+#ach-wall .ach-row {
+  display: flex; align-items: center; gap: 7px; padding: 5px 8px; margin-bottom: 4px;
+  background: #FFF6E8; border: 2px solid #F2C98C; border-radius: 10px; font-size: 12px;
+}
+#ach-wall .ach-row.done { background: #EFF7EC; border-color: #9CCF9C; }
+#ach-wall .ach-row i { font-style: normal; }
+#ach-wall .ach-row b { color: #6B5844; flex: none; }
+#ach-wall .ach-row .ach-desc { flex: 1; color: #9C8C7A; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#ach-wall .ach-row .ach-n { font-weight: 900; color: #C4577E; flex: none; }
+#ach-wall .ach-row.done .ach-n { color: #4E7A46; }
+
 #profile-card .profile-emoji { animation: floaty2 2.6s ease-in-out infinite; display: inline-block; }
 @keyframes floaty2 { 0%,100% { transform: translateY(0) rotate(-3deg) } 50% { transform: translateY(-6px) rotate(3deg) } }
 

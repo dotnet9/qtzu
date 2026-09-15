@@ -4,7 +4,7 @@ import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, getHomeCity, hasHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars } from './save.js';
+import { setHomeCity, getHomeCity, hasHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -2363,6 +2363,7 @@ function _dubSummary(scene, scores) {
   const allPass = done && scores.every(s => s >= 80);
   if (allPass) {
     addStars(1); updateStars(getStars());   // 整部完成奖励
+    bumpDub();                              // 配音作品数 +1（成就墙用）
     sfx.great();
   }
   const ov = document.createElement('div');
@@ -2488,7 +2489,7 @@ export function showShop({ stars, items, onBuy, onToggle }) {
 
 // ---------- 每日任务板 ----------
 let dailyOv = null;
-export function showDailyBoard({ quest, stars }) {
+export function showDailyBoard({ quest, stars, achievements = [] }) {
   if (!dailyOv) {
     dailyOv = document.createElement('div');
     dailyOv.className = 'overlay';
@@ -2497,6 +2498,16 @@ export function showDailyBoard({ quest, stars }) {
     dailyOv.addEventListener('click', e => { if (e.target === dailyOv) dailyOv.classList.add('hidden'); });
   }
   const pct = Math.min(100, Math.round(quest.n / quest.goal * 100));
+  const achHtml = achievements.length ? `
+      <div id="ach-wall">
+        <div class="ach-t">🏆 成就墙</div>
+        ${achievements.map(a => `
+          <div class="ach-row${a.done ? ' done' : ''}">
+            <i>${a.icon}</i><b>${a.name}</b>
+            <span class="ach-desc">${a.desc}</span>
+            <span class="ach-n">${a.done ? '✓' : `${a.n}/${a.goal}`}</span>
+          </div>`).join('')}
+      </div>` : '';
   dailyOv.innerHTML = `
     <div id="daily-card">
       <div id="daily-head">
@@ -2507,6 +2518,7 @@ export function showDailyBoard({ quest, stars }) {
       <div id="daily-quest-text">${quest.text}</div>
       <div id="daily-bar"><div id="daily-bar-fill" style="width:${pct}%"></div></div>
       <div id="daily-progress">${quest.done ? '🎉 已完成！奖励已到手' : `进度 ${Math.min(quest.n, quest.goal)}/${quest.goal} · 完成奖 ⭐5`}</div>
+      ${achHtml}
       <div id="daily-tip">每天来任务板看看，任务会换新的哦～</div>
     </div>`;
   dailyOv.classList.remove('hidden');
