@@ -19,37 +19,51 @@ function wrap(text, n = 15) {
   return out;
 }
 
-// 气泡纹理：当前页文字 + 底部分页条「< 1/3 >」（左右两端是可点的箭头热区）
+// 气泡纹理：与任务气泡（#quest）同一风格——暖白底、琥珀细边、棕色文字、底部小尾巴。
+// 当前页文字 + 底部分页条「< 1/3 >」（左右两端是可点的箭头热区）
 function bubbleTexture(lines, page, total) {
-  const W = 512, H = 56 + LINES_PER_PAGE * 50 + (total > 1 ? 46 : 0);
+  const W = 512, H = 34 + lines.length * 40 + (total > 1 ? 38 : 0) + 18;   // 高度按本页实际行数，短文本不出大空白
   const cv = document.createElement('canvas');
   cv.width = W; cv.height = H;
   const c = cv.getContext('2d');
-  c.fillStyle = 'rgba(255,253,246,.96)';
-  c.strokeStyle = '#E3D4C2';
-  c.lineWidth = 5;
+  c.fillStyle = 'rgba(255,253,248,.93)';
+  c.strokeStyle = 'rgba(255,224,168,.95)';
+  c.lineWidth = 4;
   c.beginPath();
-  if (c.roundRect) c.roundRect(4, 4, W - 8, H - 8, 24); else c.rect(4, 4, W - 8, H - 8);
+  if (c.roundRect) c.roundRect(3, 3, W - 6, H - 6 - 12, 16); else c.rect(3, 3, W - 6, H - 6 - 12);
   c.fill(); c.stroke();
-  c.fillStyle = '#4A3B2E';
-  c.font = '900 32px "Segoe UI", "Microsoft YaHei", sans-serif';
-  c.textAlign = 'left'; c.textBaseline = 'top';
-  lines.forEach((ln, i) => c.fillText(ln, 22, 22 + i * 48));
+  // 底部小尾巴：和任务气泡一个语言
+  c.beginPath();
+  c.moveTo(W / 2 - 11, H - 12 - 11);
+  c.lineTo(W / 2, H - 12);
+  c.lineTo(W / 2 + 11, H - 12 - 11);
+  c.closePath();
+  c.fillStyle = 'rgba(255,253,248,.93)';
+  c.fill();
+  c.strokeStyle = 'rgba(255,224,168,.95)';
+  c.lineWidth = 3;
+  c.stroke();
+  c.fillStyle = '#7A5C22';
+  c.font = '700 26px "Segoe UI", "Microsoft YaHei", sans-serif';
+  c.textAlign = 'center'; c.textBaseline = 'top';
+  lines.forEach((ln, i) => c.fillText(ln, W / 2, 18 + i * 38));
   if (total > 1) {
-    // 分页条：左右箭头 + 中间页码
-    c.font = '900 34px "Segoe UI", "Microsoft YaHei", sans-serif';
-    c.fillStyle = '#C08A2D';
-    c.fillText('‹', 22, 22 + LINES_PER_PAGE * 50);
-    c.textAlign = 'right';
-    c.fillText('›', W - 22, 22 + LINES_PER_PAGE * 50);
-    c.textAlign = 'center';
-    c.fillStyle = '#8A7A66';
+    // 分页条：左右箭头 + 中间页码（低调不抢戏）
+    const py = 22 + lines.length * 40;
     c.font = '700 26px "Segoe UI", "Microsoft YaHei", sans-serif';
-    c.fillText(`${page + 1} / ${total}`, W / 2, 30 + LINES_PER_PAGE * 50);
+    c.fillStyle = '#C9A96B';
+    c.textAlign = 'left';
+    c.fillText('‹', 24, py);
+    c.textAlign = 'right';
+    c.fillText('›', W - 24, py);
+    c.textAlign = 'center';
+    c.fillStyle = '#A98F70';
+    c.font = '700 22px "Segoe UI", "Microsoft YaHei", sans-serif';
+    c.fillText(`${page + 1} / ${total}`, W / 2, py + 4);
   }
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
-  return { tex, w: 4.6, h: 4.6 * H / W };
+  return { tex, w: 3.7, h: 3.7 * H / W, opacity: 0.92 };
 }
 
 function buildNPC(role, shirt) {
@@ -70,23 +84,23 @@ function buildNPC(role, shirt) {
   tex.colorSpace = THREE.SRGBColorSpace;
   const hat = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
   hat.scale.setScalar(0.48); hat.position.y = 1.44; g.add(hat);
-  // 头顶角色名牌
+  // 头顶角色名牌：小一号、半透明（走近才看得清，远看不抢戏）
   const nv = document.createElement('canvas');
-  nv.width = 256; nv.height = 80;
+  nv.width = 256; nv.height = 64;
   const nc = nv.getContext('2d');
-  nc.fillStyle = 'rgba(255,253,246,.94)';
-  nc.strokeStyle = '#E3D4C2'; nc.lineWidth = 5;
+  nc.fillStyle = 'rgba(255,253,248,.82)';
+  nc.strokeStyle = 'rgba(255,224,168,.85)'; nc.lineWidth = 3;
   nc.beginPath();
-  if (nc.roundRect) nc.roundRect(4, 4, 248, 72, 22); else nc.rect(4, 4, 248, 72);
+  if (nc.roundRect) nc.roundRect(3, 3, 250, 58, 15); else nc.rect(3, 3, 250, 58);
   nc.fill(); nc.stroke();
-  nc.fillStyle = '#4A3B2E';
-  nc.font = '900 40px "Microsoft YaHei", sans-serif';
+  nc.fillStyle = '#7A5C22';
+  nc.font = '700 30px "Microsoft YaHei", sans-serif';
   nc.textAlign = 'center'; nc.textBaseline = 'middle';
-  nc.fillText(role.zh, 128, 42);
+  nc.fillText(role.zh, 128, 33);
   const ntex = new THREE.CanvasTexture(nv);
   ntex.colorSpace = THREE.SRGBColorSpace;
-  const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false, fog: false }));
-  tag.scale.set(1.9, 0.6, 1); tag.position.y = 1.95; g.add(tag);
+  const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false, fog: false, opacity: 0.62 }));
+  tag.scale.set(1.28, 0.32, 1); tag.position.y = 1.82; g.add(tag);
   const legGeo = new THREE.CapsuleGeometry(0.07, 0.18, 3, 6);
   const legM = new THREE.MeshStandardMaterial({ color: 0x5B4632, roughness: 0.9 });
   const legL = new THREE.Mesh(legGeo, legM); legL.position.set(-0.1, 0.16, 0);
@@ -143,14 +157,15 @@ export class NPCManager {
   _renderPage() {
     const P = this._pages;
     if (!P) return;
-    const { tex, w, h } = bubbleTexture(P.pages[P.page], P.page, P.pages.length);
+    const { tex, w, h, opacity } = bubbleTexture(P.pages[P.page], P.page, P.pages.length);
     if (this._bubble) {
       this.group.remove(this._bubble);
       this._bubble = null;
     }
-    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, fog: false }));
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, depthTest: false, fog: false, opacity }));
+    sp.renderOrder = 10;   // 说话内容置顶：不被树冠/墙挡（名牌仍走正常深度）
     sp.scale.set(w, h, 1);
-    sp.position.set(P.pos.x, 2.35, P.pos.z);
+    sp.position.set(P.pos.x, 2.25, P.pos.z);
     sp.userData.bubble = true;
     this.group.add(sp);
     this._bubble = sp;
