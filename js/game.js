@@ -662,7 +662,7 @@ export class Game {
         location.reload();
       }, {
         username: save.getUsername(), password: save.getPassword(), registered: save.isRegistered(),
-        semKey: save.getBookSem(), gender: save.getGender(),
+        semKey: save.getBookSem(), gender: save.getGender(), city: save.getHomeCity(),
       }, {
         editing: true,
         onLogout: () => {

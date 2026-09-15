@@ -4,7 +4,7 @@ import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars } from './save.js';
+import { setHomeCity, getHomeCity, hasHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -446,7 +446,9 @@ export function openCityPicker({ current, onPick }) {
     b.onclick = () => {
       sfx.pop();
       const target = list.querySelector(`.city-letter[data-letter="${b.dataset.letter}"]`);
-      if (target) list.scrollTo({ top: target.offsetTop - 4, behavior: 'smooth' });
+      if (!target) return;
+      try { target.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+      catch (e) { list.scrollTop = target.offsetTop - list.offsetTop; }   // 老内核降级
     };
   });
   ov.querySelectorAll('.city-row').forEach(r => {
@@ -1806,7 +1808,7 @@ export function showProfile(onDone, profile = {}, options = {}) {
   // 通讯录式弹层：按拼音首字母索引，点字母快速跳转
   // CITIES 由 cities.js 异步填充：若打开瞬间还没就绪，短轮询自愈
   const citySel = document.getElementById('profile-city');
-  let pickedCity = profile.city || '';
+  let pickedCity = profile.city || (hasHomeCity() ? getHomeCity() : '');   // 真选过才回显，新同学保持"我的城市"占位
   const paintCity = () => {
     const c = CITIES.find(x => x.id === pickedCity);
     citySel.textContent = c ? `${c.name} ${c.en}` : '我的城市';
