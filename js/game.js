@@ -92,6 +92,8 @@ export class Game {
     // 城市巡游：海岛替换为城市舞台（路线=家乡→随机→北京，seed=昵称+册 固定可续）
     this.cityTour = true;
     this.homeCity = save.getHomeCity();
+    // 巡游模式没有机关谜题：今日任务轮到 gate1 就地换成跟读任务，避免死任务
+    if (save.getDaily().id === 'gate1') save.swapDaily('read2');
     const route = cityRoute(this.homeCity, this.sem, this.chapters.length, save.getUsername());
     this.cityRouteList = route;
     this.islands = route.map((cid, i) => {
@@ -3110,6 +3112,7 @@ export class Game {
           save.addStars(1);
           ui.updateStars(save.getStars());
           sfx.great();
+          if (save.bumpDaily('read2') === 'done') this._afterDaily();
           ui.toast('💬 你听懂它的话并回应了它！+1⭐', 3200);
         } else {
           ui.toast('再读一遍，让词宠听见你的声音～', 2800);
@@ -4410,6 +4413,7 @@ export class Game {
         save.addPoint();
         ui.updatePlayerScore(save.getScore(), save.getSessionScore());
         if ((res.score || 0) >= 95 && res.via !== 'spell' && save.bumpDaily('goodread') === 'done') this._afterDaily();
+        if ((res.score || 0) >= 60 && save.bumpDaily('read2') === 'done') this._afterDaily();
         p.idx++;
         setTimeout(() => this._practiceNext(), 300);
       },

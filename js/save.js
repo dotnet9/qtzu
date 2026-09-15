@@ -10,6 +10,7 @@ export const DAILY_QUESTS = [
   { id: 'gate1', goal: 1, text: '解开 1 个机关谜题' },
   { id: 'goodread', goal: 1, text: '朗读拿到 1 次 95 分以上' },
   { id: 'summon3', goal: 3, text: '召唤 3 次词宠' },
+  { id: 'read2', goal: 2, text: '大声跟读 2 句英语' },
 ];
 
 function todayKey() {
@@ -477,6 +478,15 @@ export function bumpDaily(id, n = 1) {
   }
   save();
   return result;
+}
+// 模式不适配的任务换掉：城市巡游没有机关谜题，gate1 换成跟读任务（进度清零重计）
+export function swapDaily(id) {
+  const idx = DAILY_QUESTS.findIndex(q => q.id === id);
+  if (idx < 0 || idx === data.daily.idx) return;
+  data.daily.idx = idx;
+  data.daily.n = 0;
+  data.daily.done = false;
+  save();
 }
 
 export function resetSave() { data = fresh(); save(); }
