@@ -337,6 +337,14 @@ export function achievementProgress() {
 }
 // 整部配音完成计数
 export function bumpDub() { data.dubCount = (data.dubCount || 0) + 1; save(); }
+// 让词宠立刻进入"想你"状态（通关唤醒复习用）：fedAt 倒拨一个完整间隔
+export function makeHungry(id) {
+  const p = data.pets[id];
+  if (!p || isHungry(id)) return;
+  const interval = FEED_INTERVALS[Math.min(p.feedStage, FEED_INTERVALS.length - 1)];
+  p.fedAt = Date.now() - interval - 60000;
+  save();
+}
 // 周报附加统计：集章/徽章/配音
 export function extraStats() {
   return {

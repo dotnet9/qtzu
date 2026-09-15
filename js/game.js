@@ -3341,12 +3341,29 @@ export class Game {
     }
   }
 
+  // 喂养节奏与关卡挂钩：每完成一关，唤醒最多 2 只旧词宠的想念（淘气词优先），
+  // 让"推进越快、复习越勤"而不是"越肝复习越欠账"。淘气词被喂饱即完成错词驯服。
+  _wakeReviewPets(doneCount) {
+    const nextCh = this.chapters[doneCount];
+    const owned = Object.keys(save.getSave().pets || {})
+      .filter(id => !nextCh || !nextCh.words.includes(id))   // 新一关的蛋不掺和
+      .filter(id => !save.isHungry(id));
+    if (!owned.length) return;
+    const naughty = new Set(Object.keys(save.getSave().naughty || {})
+      .filter(id => save.getSave().naughty[id] && !save.getSave().naughty[id].caughtOn));
+    const pool = owned.slice().sort((a, b) => (naughty.has(b) ? 1 : 0) - (naughty.has(a) ? 1 : 0));
+    const wake = pool.slice(0, 2);
+    for (const id of wake) save.makeHungry(id);
+    if (wake.length) this._refreshHungry();
+  }
+
   // 通关演出：全场欢呼 → 星星 → 换装新一关区域 + 新蛋登场 → 全屏通关卡 → 镜头飞向新蛋区
   _chapterComplete(doneCount) {
     sfx.great();
     setTimeout(() => sfx.magic(), 350);
     save.addStars(3);
     ui.updateStars(save.getStars());
+    this._wakeReviewPets(doneCount);   // 喂养节奏与关卡挂钩：通关即唤醒旧词宠的想念，把复习织进推进
     const p = this.player.position.clone().add(new THREE.Vector3(0, 1.4, 0));
     this._letterBurst(p, '★✨⭐');
     this._starBurst(p, 6);
