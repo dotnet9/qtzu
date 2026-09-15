@@ -1937,10 +1937,11 @@ export class Game {
     return tex;
   }
 
-  // 坐小火车回当前城市（主岛火车站触发）
-  _trainToCity() {
+  // 坐小火车（主岛火车站触发）：不带参=回当前城，带 key=直达任意已解锁城（跨城喂食/复习）
+  _trainToCity(key) {
     if (this.riding || this.mount) return;
-    const st = this._currentStage();
+    const st = key ? this.islands.find(i => i.key === key) : this._currentStage();
+    if (!st) return;
     const from = this.player.position.clone();
     const to = new THREE.Vector3(st.cx, 0, st.cz - st.r * 0.35);
     this._clampCityPos(to, st);   // 凹形城市下落点也可能压墙/出城，钳进城内再发车
@@ -2993,12 +2994,11 @@ export class Game {
       this.promptAction = () => this._openOwl();
       return;
     }
-    // 小火车站（主岛）：城市巡游模式=回当前城市；老模式=去群岛
+    // 小火车站（主岛）：城市巡游模式=选任意已解锁城直达；老模式=去群岛
     if (!this._islandAt(p) && Math.hypot(p.x + 9, p.z - 9.6) < 2.8) {
       if (this.cityTour) {
-        const st = this._currentStage();
-        ui.showPrompt(`坐小火车回 ${st.name} ${st.emoji}`, this.isTouch ? '👆' : 'E');
-        this.promptAction = () => this._trainToCity();
+        ui.showPrompt('选一座城出发 🚂', this.isTouch ? '👆' : 'E');
+        this.promptAction = () => this._openCityDestinations();
       } else {
         ui.showPrompt('坐小火车去群岛', this.isTouch ? '👆' : 'E');
         this.promptAction = () => this._openStation();
@@ -4180,6 +4180,26 @@ export class Game {
   }
 
   // ---------- 小火车站 ----------
+  // 巡游模式目的地列表：任意已解锁城直达，有饥饿词宠的城市标 🍖
+  _openCityDestinations() {
+    const cur = this.chapterIndex(this.hatchedInScope());
+    const hungryCities = new Set(save.hungryPets()
+      .map(id => WORD_MAP[id] && WORD_MAP[id].zone)
+      .filter(Boolean));
+    const list = this.islands.map(isl => ({
+      key: isl.key,
+      name: isl.name + (hungryCities.has(isl.key) ? ' 🍖' : ''),
+      emoji: isl.emoji,
+      unlocked: cur >= isl.startChapter || isl.bonus,
+      need: `第${isl.startChapter + 1}关解锁`,
+    }));
+    ui.openStation(list, key => {
+      const isl = this.islands.find(i => i.key === key);
+      if (isl) this._trainToCity(isl.key);
+    }, '🚂 开往哪座城？');
+    sfx.pop();
+  }
+
   _openStation() {
     const cur = this.chapterIndex(this.hatchedInScope());
     // 只列本册的海岛

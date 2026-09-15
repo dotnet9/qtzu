@@ -2086,8 +2086,8 @@ els.catalogNext.addEventListener('click', () => { if (_catPage < Math.ceil(_catE
 els.catalogClose.addEventListener('click', () => els.catalog.classList.add('hidden'));
 
 // ---------- 小火车站 ----------
-export function openStation(list, onPick) {
-  els.pickerTitle.textContent = '🚂 小火车要开去哪座岛？';
+export function openStation(list, onPick, title = '🚂 小火车要开去哪座岛？') {
+  els.pickerTitle.textContent = title;
   els.pickerGrid.innerHTML = '';
   for (const isl of list) {
     const chip = document.createElement('div');
