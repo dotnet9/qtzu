@@ -1,0 +1,15 @@
+{
+  "name": "Q淘族 · 越淘越有词",
+  "short_name": "Q淘族",
+  "description": "3D 儿童英语淘学游戏：巡游中国 52 座城市，孵词宠蛋、读英文单词。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFE9F1",
+  "theme_color": "#FF8FB0",
+  "icons": [
+    { "src": "favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}
