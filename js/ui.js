@@ -1,6 +1,7 @@
 // DOM UI：HUD、挑战弹窗（语音+拼块）、召唤、图鉴、引导、提示
 import { sfx, speak, speakSlow, speakFollow, spellLetters, stopSpeaking, playRecording, scoreVoice, updateBgm, isBgmMuted, setBgmMuted, setBgmFever, getAccent, setAccent } from './audio.js';
 import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.js';
+import { whisperState, loadPercent } from './whisper.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
@@ -355,11 +356,34 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   const canVoice = onlineVoice || canRecord;
   els.btnMic.classList.toggle('hidden', !canVoice);
   ch.canVoice = canVoice;
+  // 本地识别引擎未就绪（首次要下载 ~40MB）：按钮进入"准备中"状态，就绪前点击只提示、不进倒计时
+  clearInterval(ch.engineTick);
+  ch.engineWait = canVoice && !onlineVoice && whisperState() !== 'ready';
+  let elapsed = 0;
+  if (ch.engineWait) {
+    els.micLabel.textContent = '🚀 语音引擎准备中…';
+    ch.engineTick = setInterval(() => {
+      if (!ch.open) { clearInterval(ch.engineTick); return; }
+      elapsed += 0.5;
+      if (whisperState() === 'ready') {
+        clearInterval(ch.engineTick);
+        ch.engineWait = false;
+        els.micLabel.textContent = '🎤 就绪！点我开始读';
+        sfx.pop();
+        return;
+      }
+      const pct = loadPercent();
+      els.micLabel.textContent = pct > 0 ? `🚀 语音引擎准备中 ${pct}%` : '🚀 语音引擎准备中…';
+      if (elapsed >= 30 && pct === 0) els.micLabel.textContent = '📡 网络有点慢，稍等或先拼字母块';
+    }, 500);
+  } else {
+    els.micLabel.textContent = '点我开始读';
+  }
   if (voiceBlockedByInsecure) {
     els.voiceFeedback.textContent = '🎤 要 https:// 网址才能语音，先拼字母块吧';
     setSpellMode(true);
   } else if (canRecord && !onlineVoice) {
-    els.voiceFeedback.textContent = '🎤 用本地识别朗读，第一次要下载一下';
+    els.voiceFeedback.textContent = ch.engineWait ? '🚀 第一次要先准备语音引擎，很快的～' : '🎤 用本地识别朗读，大声读出来吧';
   } else if (!canVoice) {
     els.voiceFeedback.textContent = '🎤 这台设备用不了语音，先拼字母块吧';
     setSpellMode(true);
@@ -621,6 +645,16 @@ export function voiceUnavailable() {
 
 els.btnMic.addEventListener('click', () => {
   if (!ch.open || ch.busy || !ch.canVoice) return;
+  // 引擎准备中：不进入录音/倒计时，只报进度（拼字母块按钮仍可用）
+  if (ch.engineWait) {
+    sfx.pop();
+    const pct = loadPercent();
+    els.voiceFeedback.textContent = pct > 0
+      ? `⏳ 引擎正在热身（${pct}%），几秒后就能开读啦～也可以先点「换成拼字母块」`
+      : '⏳ 语音引擎正在初始化，稍等几秒再点～';
+    els.voiceFeedback.className = '';
+    return;
+  }
   if (ch.listening) {
     setListening(false);
     els.voiceFeedback.textContent = '识别中…';

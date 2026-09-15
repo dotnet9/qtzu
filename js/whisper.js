@@ -2,8 +2,11 @@
 // transformers.js 经 jsdelivr CDN 加载（国内可达）
 let pipePromise = null;
 let loadPct = 0;
+let engineReady = false;
 
 export function loadPercent() { return loadPct; }
+// 引擎状态：idle=未开始 loading=下载/初始化中 ready=可识别
+export function whisperState() { return engineReady ? 'ready' : (pipePromise ? 'loading' : 'idle'); }
 
 function baseEnv(mod) {
   mod.env.allowLocalModels = true;
@@ -31,7 +34,9 @@ export function ensureWhisper() {
     pipePromise = (async () => {
       const mod = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.3.1/dist/transformers.min.js');
       baseEnv(mod);
-      return createPipeline(mod);
+      const pipe = await createPipeline(mod);
+      engineReady = true;
+      return pipe;
     })().catch(err => { pipePromise = null; loadPct = 0; throw err; });
   }
   return pipePromise;
