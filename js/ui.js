@@ -3,7 +3,8 @@ import { sfx, speak, speakSlow, speakFollow, spellLetters, stopSpeaking, playRec
 import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
-import { setHomeCity } from './save.js';
+import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
+import { setHomeCity, hatchedCount, getUsername } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -16,7 +17,7 @@ for (const id of ['loading', 'hud', 'user-pill', 'pet-count', 'score-pill', 'sta
   'pet-fact', 'pet-fact-title', 'pet-fact-text', 'detail-card', 'detail-title', 'detail-body', 'detail-close', 'btn-detail', 'spell-area', 'spell-slots', 'spell-tiles', 'btn-replay-letters', 'btn-show-help-word',
   'btn-skip',
   'btn-switch-spell', 'modal-close', 'modal-foot', 'picker', 'picker-title', 'picker-grid', 'picker-close',
-  'catalog', 'catalog-grid', 'catalog-close', 'map', 'map-head', 'map-canvas', 'map-close',
+  'catalog', 'catalog-grid', 'catalog-close', 'catalog-pager', 'catalog-prev', 'catalog-next', 'catalog-ind', 'map', 'map-head', 'map-canvas', 'map-close',
   'leaderboard-widget', 'leaderboard-list', 'leaderboard-refresh', 'leaderboard-toggle', 'leaderboard-fold',
   'intro', 'intro-emoji', 'intro-text', 'intro-next',
   'levelup', 'levelup-burst', 'levelup-title', 'levelup-sub', 'levelup-stars', 'levelup-words-tip', 'levelup-words', 'levelup-next',
@@ -187,7 +188,90 @@ els.questClose.addEventListener('click', () => {
   sfx.pop();
 });
 
-// ---------- NPC 说话气泡：与任务气泡同款 DOM 气泡，字号恒定不随镜头远近缩放 ----------
+// ---------- 全国巡游地图：大公鸡中国地图 + 路线城市带名字，点城市看介绍 ----------
+// 底图数据来自 china-base.js（DataV 全国/海南/台湾边界，脚本烘焙）
+
+function _projectChina(cv) {
+  cv.width = cv.height = 840;                      // 2x 超采样，CSS 里缩到 420 显示
+  const LATK = Math.cos(35 * Math.PI / 180);
+  const LON0 = 73, LON1 = 136, LAT0 = 15.5, LAT1 = 54.5;
+  const k = Math.min((cv.width - 60) / ((LON1 - LON0) * LATK), (cv.height - 60) / (LAT1 - LAT0));
+  return {
+    X: lon => cv.width / 2 + (lon - (LON0 + LON1) / 2) * k * LATK,
+    Y: lat => cv.height / 2 - (lat - (LAT0 + LAT1) / 2) * k,
+  };
+}
+
+export function openChinaMap({ cities, onPick }) {
+  const cv = els.mapCanvas, c = cv.getContext('2d');
+  const { X, Y } = _projectChina(cv);
+  const W = cv.width, H = cv.height;
+  // 海洋
+  const sea = c.createLinearGradient(0, 0, 0, H);
+  sea.addColorStop(0, '#9AD6F0'); sea.addColorStop(1, '#6CB9E2');
+  c.fillStyle = sea; c.fillRect(0, 0, W, H);
+  // 陆地：大陆 + 海南 + 台湾 + 附岛（淡绿纸面 + 描边）
+  const drawRing = (ring) => {
+    c.beginPath();
+    ring.forEach(([lon, lat], i) => i ? c.lineTo(X(lon), Y(lat)) : c.moveTo(X(lon), Y(lat)));
+    c.closePath();
+    c.fillStyle = '#DFF0D0'; c.fill();
+    c.strokeStyle = '#9DBE8E'; c.lineWidth = 2.5; c.stroke();
+  };
+  drawRing(CHINA_MAINLAND);
+  drawRing(CHINA_ISLANDS.hainan);
+  drawRing(CHINA_ISLANDS.taiwan);
+  (CHINA_ISLANDS.others || []).forEach(drawRing);
+  // 岛屿标注
+  c.fillStyle = '#7A9A6E'; c.font = '700 20px "Microsoft YaHei", sans-serif';
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  const hc = CHINA_ISLANDS.hainan, tw = CHINA_ISLANDS.taiwan;
+  c.fillText('海南', X(hc.reduce((s, p) => s + p[0], 0) / hc.length), Y(hc.reduce((s, p) => s + p[1], 0) / hc.length));
+  c.fillText('台湾', X(tw.reduce((s, p) => s + p[0], 0) / tw.length), Y(tw.reduce((s, p) => s + p[1], 0) / tw.length));
+  // 巡游路线（金色虚线按顺序串起来）
+  const route = cities;
+  if (route.length > 1) {
+    c.beginPath();
+    route.forEach((ct, i) => i ? c.lineTo(X(ct.lon), Y(ct.lat)) : c.moveTo(X(ct.lon), Y(ct.lat)));
+    c.setLineDash([14, 10]);
+    c.strokeStyle = 'rgba(192,138,45,.75)'; c.lineWidth = 4;
+    c.stroke();
+    c.setLineDash([]);
+  }
+  // 城市：点 + 名字（当前城金色大点 + 双圈，已解锁绿点，未解锁灰点）
+  for (const ct of cities) {
+    const px = X(ct.lon), py = Y(ct.lat);
+    const col = ct.current ? '#F7B32B' : ct.unlocked ? '#5FAE5F' : '#D8D2C4';
+    c.beginPath(); c.arc(px, py, ct.current ? 13 : 9, 0, Math.PI * 2);
+    c.fillStyle = col; c.fill();
+    c.lineWidth = 4; c.strokeStyle = '#FFFDF8'; c.stroke();
+    if (ct.current) { c.beginPath(); c.arc(px, py, 22, 0, Math.PI * 2); c.strokeStyle = 'rgba(247,179,43,.65)'; c.lineWidth = 5; c.stroke(); }
+    c.font = (ct.current ? '900 ' : '700 ') + '22px "Microsoft YaHei", sans-serif';
+    c.lineWidth = 5; c.strokeStyle = 'rgba(255,253,248,.92)';
+    c.strokeText(ct.name, px, py - 24);
+    c.fillStyle = ct.current ? '#B47514' : '#6B5844';
+    c.fillText(ct.name, px, py - 24);
+  }
+  // 点击：找最近的城市（画布 2x，阈值 30 canvas 单位）
+  cv.onclick = (e) => {
+    const rect = cv.getBoundingClientRect();
+    const cx = (e.clientX - rect.left) * (cv.width / rect.width);
+    const cy = (e.clientY - rect.top) * (cv.height / rect.height);
+    let best = null, bd = 30 * 30;
+    for (const ct of cities) {
+      const px2 = X(ct.lon), py2 = Y(ct.lat);
+      const d = (px2 - cx) ** 2 + (py2 - cy) ** 2;
+      if (d < bd) { bd = d; best = ct; }
+    }
+    if (best) onPick && onPick(best.key);
+  };
+  const headSpan = els.mapHead.querySelector('span');
+  if (headSpan) headSpan.textContent = '🗺️ 中国巡游地图';
+  els.map.classList.remove('hidden');
+  const lg = document.getElementById('map-legend');
+  if (lg) lg.textContent = '🟡 当前 · 🟢 已解锁 · ⚪ 未解锁 · 点城市看介绍';
+  return true;
+}
 // npcs.js 负责分页与自动翻页，这里只管渲染与屏幕定位；翻页回调由 showNpcBubble 注入
 let npcFlip = null;
 export function showNpcBubble({ pages, page, onFlip }) {
@@ -601,7 +685,10 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     <div class="cc-en">${city.en} · 第 ${visit + 1} 次到访</div>
     <div class="cc-tabs">${tabs.map((t, i) => `<button type="button" class="cc-tab${i === 0 ? ' on' : ''}" data-t="${i}">${t.name}</button>`).join('')}</div>
     <div class="cc-body">${tabs[0].html}</div>
-    <button id="cc-go">出发探索 →</button>
+    <div class="cc-actions">
+      <button id="cc-share" type="button" title="生成这张城市的分享卡">📸 分享卡</button>
+      <button id="cc-go">出发探索 →</button>
+    </div>
   </div>`;
   document.body.appendChild(ov);
 
@@ -704,6 +791,18 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
       } catch (e) { /* 断网保持 emoji */ }
     }, 2500);
   }
+  // 📸 分享卡：城市名 + 到访信息 + 词宠进度，本地生成可直接分享/保存
+  ov.querySelector('#cc-share').onclick = () => {
+    sfx.pop();
+    openShareCard({
+      title: city.name, en: city.en, emoji: variant.emoji,
+      rows: [
+        `📍 ${getUsername() || '小小淘气'} · 第 ${visit + 1} 次到访`,
+        `🐾 词宠已收集 ${hatchedCount()} 只`,
+        `📅 ${new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}`,
+      ],
+    });
+  };
   ov.querySelector('#cc-go').onclick = () => { if (slideTimer) clearInterval(slideTimer); sfx.pop(); ov.remove(); onDone && onDone(); };
 }
 // 地标类型中文名（风景 Tab 用）
@@ -780,9 +879,118 @@ export function showTravelBadge(cities, onDone) {
     <div class="tb-list">${cities.map(c => `<span class="tb-city">${c.emoji} ${c.name}</span>`).join('')}</div>
     <div class="tb-sub">下一册，新的城市在等你～</div>
     <button class="tb-ok">太棒了！</button>
+    <button class="tb-share" type="button">📸 做一张分享卡</button>
   </div>`;
   document.body.appendChild(ov);
   ov.querySelector('.tb-ok').onclick = () => { sfx.great(); ov.remove(); if (onDone) onDone(); };
+  // 通关分享卡：走遍祖国的城市路线图，家长朋友圈传播点
+  const tbShare = ov.querySelector('.tb-share');
+  if (tbShare) tbShare.onclick = () => {
+    sfx.pop();
+    openShareCard({
+      title: '走遍祖国之旅', en: 'Journey Across China', emoji: '🏅',
+      rows: [
+        `🧒 ${getUsername() || '小小淘气'} 完成了本册巡游`,
+        `🏙️ ${cities.length} 座城市：${cities.map(c => c.emoji).join('')}`,
+        `🐾 词宠已收集 ${hatchedCount()} 只 · 📅 ${new Date().toLocaleDateString('zh-CN')}`,
+      ],
+    });
+  };
+}
+
+// ---------- 分享卡片：本地 canvas 画一张，可直接系统分享或保存图片 ----------
+function _rrPath(c, x, y, w, h, r) {
+  c.beginPath();
+  c.moveTo(x + r, y);
+  c.arcTo(x + w, y, x + w, y + h, r);
+  c.arcTo(x + w, y + h, x, y + h, r);
+  c.arcTo(x, y + h, x, y, r);
+  c.arcTo(x, y, x + w, y, r);
+  c.closePath();
+}
+function drawShareCard({ title, en = '', emoji = '🏙️', rows = [], footer = 'Q淘族 · 越淘越有词' }) {
+  const cv = document.createElement('canvas');
+  cv.width = 720; cv.height = 960;
+  const c = cv.getContext('2d');
+  // 纸面底：粉天 → 奶油
+  const bg = c.createLinearGradient(0, 0, 0, cv.height);
+  bg.addColorStop(0, '#FFE3EE'); bg.addColorStop(0.45, '#FFF6E8'); bg.addColorStop(1, '#FFFDF8');
+  c.fillStyle = bg; c.fillRect(0, 0, cv.width, cv.height);
+  // 装饰泡泡
+  c.globalAlpha = 0.16;
+  for (let i = 0; i < 14; i++) {
+    c.beginPath();
+    c.arc((i * 97 + 60) % cv.width, (i * 211 + 90) % cv.height, 26 + (i % 3) * 20, 0, Math.PI * 2);
+    c.fillStyle = i % 2 ? '#FFB9CE' : '#FFD98A'; c.fill();
+  }
+  c.globalAlpha = 1;
+  // 内框
+  c.strokeStyle = 'rgba(255,143,176,.55)'; c.lineWidth = 6;
+  _rrPath(c, 26, 26, cv.width - 52, cv.height - 52, 34); c.stroke();
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  // emoji 主体
+  c.font = '160px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif';
+  c.fillText(emoji, cv.width / 2, 250);
+  // 标题 / 英文名
+  c.fillStyle = '#C4577E'; c.font = '900 62px "Microsoft YaHei",sans-serif';
+  c.fillText(title, cv.width / 2, 428);
+  if (en) { c.fillStyle = '#B9A08E'; c.font = '600 30px Georgia,serif'; c.fillText(en, cv.width / 2, 486); }
+  c.fillStyle = '#FFB9CE';
+  c.beginPath(); c.arc(cv.width / 2, 540, 7, 0, Math.PI * 2); c.fill();
+  // 数据行
+  c.fillStyle = '#6B5844'; c.font = '700 31px "Microsoft YaHei",sans-serif';
+  rows.forEach((r, i) => c.fillText(r, cv.width / 2, 608 + i * 56));
+  // 底部落款
+  _rrPath(c, cv.width / 2 - 190, cv.height - 130, 380, 62, 31);
+  c.fillStyle = '#FF8FB0'; c.fill();
+  c.fillStyle = '#FFF'; c.font = '900 28px "Microsoft YaHei",sans-serif';
+  c.fillText(footer, cv.width / 2, cv.height - 98);
+  return cv;
+}
+export function openShareCard(data) {
+  const cv = drawShareCard(data);
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '135';
+  ov.innerHTML = `<div class="share-pop">
+    <img class="share-pop-img" alt="分享卡片">
+    <div class="share-pop-btns">
+      <button type="button" class="sp-share">📤 分享</button>
+      <button type="button" class="sp-save">💾 保存图片</button>
+    </div>
+    <div class="share-pop-tip"></div>
+    <button type="button" class="round-btn small sp-close" aria-label="关闭">✕</button>
+  </div>`;
+  ov.querySelector('.share-pop-img').src = cv.toDataURL('image/png');
+  document.body.appendChild(ov);
+  const tip = ov.querySelector('.share-pop-tip');
+  cv.toBlob(blob => {
+    if (!blob) return;
+    const file = new File([blob], 'qtzu-share.png', { type: 'image/png' });
+    const savePng = () => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `qtzu-${data.title || '分享卡'}.png`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      tip.textContent = '已保存到下载，快去发给家人看看吧！';
+    };
+    ov.querySelector('.sp-share').onclick = async () => {
+      sfx.pop();
+      try {
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: data.title, text: `${data.title} · Q淘族` });
+          tip.textContent = '分享出去啦，谢谢帮 Q淘族告诉更多小伙伴！';
+        } else {
+          savePng();
+          tip.textContent = '这个浏览器不支持直接分享，已帮你保存图片，去相册发吧！';
+        }
+      } catch (e) { if (e && e.name !== 'AbortError') tip.textContent = '分享没成功，可以试试「保存图片」哦'; }
+    };
+    ov.querySelector('.sp-save').onclick = () => { sfx.pop(); savePng(); };
+  }, 'image/png');
+  ov.querySelector('.sp-close').onclick = () => { sfx.pop(); ov.remove(); };
+  ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
 }
 
 // ---------- 通关奖励城市选择卡 ----------
@@ -856,12 +1064,28 @@ export function showParentReport(rep, name = '') {
   const close = () => ov.remove();
   ov.querySelector('.rp-close').onclick = close;
   ov.addEventListener('click', e => { if (e.target === ov) close(); });
-  ov.querySelector('.rp-share').onclick = () => {
+  // 复制小结：成功/失败都要有看得见的反馈（按钮变形 + 音效），失败给可全选文本兜底
+  ov.querySelector('.rp-share').onclick = async (e) => {
+    const btn = e.currentTarget;
     const text = `${name ? name + '的' : ''}学习周报：本周新孵词宠 ${rep.hatches} 只，朗读 ${rep.reads} 次（平均 ${rep.avg} 分，最高 ${rep.best} 分），图鉴已收集 ${rep.totalPets} 只！——Q淘族`;
-    navigator.clipboard?.writeText(text).then(
-      () => sfx.pop(),
-      () => {}
-    );
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(text);
+      ok = true;
+    } catch (err) { /* 旧浏览器/非 https：走可全选文本兜底 */ }
+    if (ok) {
+      btn.textContent = '✅ 已复制，快去粘贴给家人吧！';
+      btn.classList.add('copied');
+      sfx.good();
+      setTimeout(() => { btn.textContent = '复制本周小结，分享给家人 👨‍👩‍👧'; btn.classList.remove('copied'); }, 2400);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'width:100%;height:90px;margin-top:8px;font:inherit;color:#7A5C22;border:2px solid #F2C98C;border-radius:10px;padding:6px';
+      btn.replaceWith(ta);
+      ta.focus(); ta.select();
+      sfx.pop();
+    }
   };
 }
 
@@ -1527,40 +1751,44 @@ export function openPicker(list, onPick, onClose, opts = {}) {
 els.pickerClose.addEventListener('click', () => els.picker.classList.add('hidden'));
 
 // ---------- 图鉴（只看当前册：标题带上册名与本册进度） ----------
-export function openCatalog(entries, getThumb, meta = {}) {
+// 分页展示：每页 2×4 共 8 只，不出滚动条；已收集排前面
+const CAT_PAGE_SIZE = 8;
+let _catEntries = [], _catThumb = null, _catPage = 0;
+function makeCatCard(e, lazyThumbs) {
+  const d = document.createElement('div');
+  d.className = 'cat-item ' + (e.hatched ? 'open' : 'locked') + (e.hungry ? ' hungry' : '');
+  if (e.hatched) {
+    const badge = e.evo ? '<span class="cat-badge">🌟进化</span>' : (e.rare ? '<span class="cat-badge">✨稀有</span>' : '');
+    d.innerHTML = `${badge}<div class="ico"><span class="ico-ph">🐾</span></div>
+      <div class="en">${e.word.en}</div><div class="zh">${e.word.zh}</div>`;
+    d.title = (typeof e.word.story === 'string' && e.word.story) ? e.word.story : (e.word.hint || '');
+    d.addEventListener('click', () => {
+      toast(`「${e.word.en}」${e.word.zh} —— ${e.word.story}`, 4200);
+      speak(e.word.en);
+    });
+    lazyThumbs.push({ d, w: e.word });
+  } else {
+    d.innerHTML = `<div class="ico">❓</div><div class="en">？？？</div><div class="zh">还没发现</div>`;
+    d.title = '去岛上找找发光的词宠蛋吧！';
+  }
+  return d;
+}
+function renderCatalogPage(getThumb) {
   els.catalogGrid.innerHTML = '';
-  const head = els.catalog ? els.catalog.querySelector('#catalog-head span') : null;
-  if (head) {
-    const opened = entries.filter(e => e.hatched).length;
-    head.textContent = meta.bookLabel
-      ? `📖 ${meta.bookLabel}图鉴 ${opened}/${entries.length}`
-      : `📖 词宠图鉴`;
-  }
-  const lazyThumbs = [];   // 缩略图分帧生成，一次全画会把页面卡死
-  for (const e of entries) {
-    const d = document.createElement('div');
-    d.className = 'cat-item ' + (e.hatched ? 'open' : 'locked') + (e.hungry ? ' hungry' : '');
-    if (e.hatched) {
-      const badge = e.evo ? '<span class="cat-badge">🌟进化</span>' : (e.rare ? '<span class="cat-badge">✨稀有</span>' : '');
-      d.innerHTML = `${badge}<div class="ico"><span class="ico-ph">🐾</span></div>
-        <div class="en">${e.word.en}</div><div class="zh">${e.word.zh}</div>`;
-      d.title = (typeof e.word.story === 'string' && e.word.story) ? e.word.story : (e.word.hint || '');
-      d.addEventListener('click', () => {
-        toast(`「${e.word.en}」${e.word.zh} —— ${e.word.story}`, 4200);
-        speak(e.word.en);
-      });
-      lazyThumbs.push({ d, w: e.word });
-    } else {
-      d.innerHTML = `<div class="ico">❓</div><div class="en">？？？</div><div class="zh">还没发现</div>`;
-      d.title = '去岛上找找发光的词宠蛋吧！';
-    }
-    els.catalogGrid.appendChild(d);
-  }
-  // 按时间预算分帧生成（每帧最多 24ms），不阻塞滚动
+  const pages = Math.max(1, Math.ceil(_catEntries.length / CAT_PAGE_SIZE));
+  _catPage = Math.max(0, Math.min(_catPage, pages - 1));
+  const slice = _catEntries.slice(_catPage * CAT_PAGE_SIZE, _catPage * CAT_PAGE_SIZE + CAT_PAGE_SIZE);
+  const lazyThumbs = [];
+  for (const e of slice) els.catalogGrid.appendChild(makeCatCard(e, lazyThumbs));
+  els.catalogInd.textContent = _catEntries.length ? `${_catPage + 1} / ${pages}` : '';
+  els.catalogPager.classList.remove('hidden');   // 翻页器随图鉴打开（HTML 里初始是 hidden）
+  els.catalogPrev.disabled = _catPage <= 0;
+  els.catalogNext.disabled = _catPage >= pages - 1;
+  // 缩略图分帧生成，不阻塞翻页
   let i = 0;
   const fillNext = () => {
     const grid = els.catalogGrid;
-    if (!grid.isConnected) return;   // 图鉴已关闭
+    if (!grid.isConnected) return;
     const t0 = performance.now();
     while (i < lazyThumbs.length && performance.now() - t0 < 24) {
       const { d, w } = lazyThumbs[i++];
@@ -1575,8 +1803,23 @@ export function openCatalog(entries, getThumb, meta = {}) {
     if (i < lazyThumbs.length) requestAnimationFrame(fillNext);
   };
   requestAnimationFrame(fillNext);
+}
+export function openCatalog(entries, getThumb, meta = {}) {
+  _catEntries = [...entries].sort((a, b) => (b.hatched ? 1 : 0) - (a.hatched ? 1 : 0));
+  _catThumb = getThumb;
+  _catPage = 0;
+  const head = els.catalog ? els.catalog.querySelector('#catalog-head span') : null;
+  if (head) {
+    const opened = entries.filter(e => e.hatched).length;
+    head.textContent = meta.bookLabel
+      ? `📖 ${meta.bookLabel}图鉴 ${opened}/${entries.length}`
+      : `📖 词宠图鉴`;
+  }
+  renderCatalogPage(getThumb);
   els.catalog.classList.remove('hidden');
 }
+els.catalogPrev.addEventListener('click', () => { if (_catPage > 0) { _catPage--; renderCatalogPage(_catThumb); sfx.pop(); } });
+els.catalogNext.addEventListener('click', () => { if (_catPage < Math.ceil(_catEntries.length / CAT_PAGE_SIZE) - 1) { _catPage++; renderCatalogPage(_catThumb); sfx.pop(); } });
 els.catalogClose.addEventListener('click', () => els.catalog.classList.add('hidden'));
 
 // ---------- 小火车站 ----------
@@ -1792,60 +2035,6 @@ export function openMap(data) {
 }
 if (els.mapClose) els.mapClose.addEventListener('click', () => els.map.classList.add('hidden'));
 
-// ---------- 城市巡游地图：真实轮廓 + 立牌/蛋/玩家 ----------
-export function openCityMap(data) {
-  const cv = els.mapCanvas, c = cv.getContext('2d');
-  cv.width = cv.height = 840;
-  const W = cv.width, H = cv.height;
-  const k = W / 420;
-  // 比例：城市直径铺满画布的 82%
-  let minX = 1e9, maxX = -1e9, minZ = 1e9, maxZ = -1e9;
-  for (const [x, z] of data.pts) { minX = Math.min(minX, x); maxX = Math.max(maxX, x); minZ = Math.min(minZ, z); maxZ = Math.max(maxZ, z); }
-  const scale = (W * 0.82) / Math.max(maxX - minX, maxZ - minZ);
-  const X = x => W / 2 + x * scale, Z = z => H / 2 + z * scale;
-  // 海背景
-  const sea = c.createLinearGradient(0, 0, 0, H);
-  sea.addColorStop(0, '#93D6F0'); sea.addColorStop(1, '#6CB9E2');
-  c.fillStyle = sea; c.fillRect(0, 0, W, H);
-  // 城市多边形：投影托底 → 城市色罩 → 三层描边（柔光外圈/主体/不画硬单线）
-  const poly = data.pts;
-  const drawPoly = () => { c.beginPath(); poly.forEach(([x, z], i) => i ? c.lineTo(X(x), Z(z)) : c.moveTo(X(x), Z(z))); c.closePath(); };
-  c.lineJoin = 'round'; c.lineCap = 'round';
-  // 投影：给城面一点落影，从海面上托起来
-  c.save();
-  c.shadowColor = 'rgba(50,90,120,.30)'; c.shadowBlur = 16 * k; c.shadowOffsetY = 6 * k;
-  drawPoly();
-  c.fillStyle = 'rgba(255,255,255,.62)'; c.fill();
-  c.restore();
-  if (data.color) { drawPoly(); c.fillStyle = data.color + '33'; c.fill(); }
-  // 描边两层：宽的柔光晕在底下，圆角主体线在上——替代生硬的单线
-  drawPoly(); c.strokeStyle = 'rgba(110,158,94,.15)'; c.lineWidth = 13 * k; c.stroke();
-  drawPoly(); c.strokeStyle = 'rgba(110,158,94,.62)'; c.lineWidth = 3.2 * k; c.stroke();
-  // 立牌点：大学蓝/美食橙/风景绿
-  const COL = { uni: '#4A90D9', food: '#E8890C', scene: '#3E8E4E' };
-  for (const s of data.signs || []) {
-    c.beginPath(); c.arc(X(s.x), Z(s.z), 4.2 * k, 0, Math.PI * 2);
-    c.fillStyle = COL[s.type] || '#999'; c.fill();
-    c.strokeStyle = '#fff';
-  }
-  // 蛋点：粉=普通 金=天空 蓝=钥匙
-  for (const e of data.eggs || []) {
-    const g2 = e.golden ? '255,201,78' : e.key ? '74,144,217' : '255,159,182';
-    c.beginPath(); c.arc(X(e.x), Z(e.z), 5 * k, 0, Math.PI * 2);
-    c.fillStyle = `rgb(${g2})`; c.fill(); c.strokeStyle = '#fff'; c.stroke();
-  }
-  // 玩家
-  const px = X(data.player.x), pz = Z(data.player.z);
-  c.beginPath(); c.arc(px, pz, 6 * k, 0, Math.PI * 2);
-  c.fillStyle = '#4A90D9'; c.fill(); c.lineWidth = 2.4 * k; c.strokeStyle = '#fff'; c.stroke();
-  // 标题并显示
-  const headSpan = els.mapHead.querySelector('span');
-  if (headSpan) headSpan.textContent = `🗺️ ${data.label || data.name}`;
-  els.map.classList.remove('hidden');
-  const lg = document.getElementById('map-legend');
-  if (lg) lg.textContent = '🔵 你在这里 · 粉点=蛋 · 蓝/橙/绿=大学/美食/风景';
-}
-
 // ---------- 课本朗读练习 ----------
 let bookOv = null;
 
@@ -2015,18 +2204,26 @@ export function showHelp() {
       <div>🤔 被挡住？召唤对的词宠解谜题</div>
       <div>🍖 词宠饿了会想你，回去喂喂它</div>
       <div>⛲ 星星能换帽子和魔法棒</div>
-      <div style="margin-top:8px">🗣️ 发音口音：
-        <button id="accent-toggle" class="accent-btn"></button>
+      <div class="accent-row" style="margin-top:8px">🗣️ 发音口音：
+        <label class="accent-opt"><input type="radio" name="accent" value="uk"><span>🇬🇧 英式</span></label>
+        <label class="accent-opt"><input type="radio" name="accent" value="us"><span>🇺🇸 美式</span></label>
       </div>
       <button id="help-close" class="round-btn small" style="position:absolute;top:14px;right:14px">✕</button>
     </div>`;
   ov.addEventListener('click', e => { if (e.target === ov || e.target.id === 'help-close') ov.remove(); });
   document.body.appendChild(ov);
-  // 口音切换（影响 TTS 兜底嗓音；有真人录音的单词仍是录音）
-  const accBtn = ov.querySelector('#accent-toggle');
-  const paint = () => { accBtn.textContent = getAccent() === 'uk' ? '🇬🇧 英式' : '🇺🇸 美式'; };
+  // 口音单选（影响 TTS 兜底嗓音；有真人录音的单词仍是录音）——当前口音直接亮出来
+  const radios = ov.querySelectorAll('input[name="accent"]');
+  const paint = () => {
+    radios.forEach(r => { r.checked = getAccent() === r.value; r.closest('.accent-opt').classList.toggle('on', r.checked); });
+  };
   paint();
-  accBtn.onclick = () => { setAccent(getAccent() === 'uk' ? 'us' : 'uk'); paint(); speak('hello'); };
+  radios.forEach(r => r.addEventListener('change', () => {
+    if (!r.checked) return;
+    setAccent(r.value);
+    paint();
+    speak('hello');
+  }));
 }
 
 // ---------- 右上角菜单：点 ☰ 展开 / 点别处或选项后收起 ----------

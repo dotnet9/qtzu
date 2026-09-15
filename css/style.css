@@ -309,6 +309,14 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   box-shadow: 0 5px 14px rgba(220, 90, 130, .4);
 }
 #city-card #cc-go:active { transform: scale(.96); }
+/* 分享卡按钮与出发按钮同行 */
+#city-card .cc-actions { display: flex; gap: 8px; margin-top: 14px; }
+#city-card .cc-actions #cc-go { margin-top: 0; width: auto; flex: 1; }
+#city-card #cc-share {
+  flex: 0 0 auto; padding: 12px 18px; font-size: 15px; font-weight: 900; font-family: inherit;
+  color: #C4577E; background: #FFF0F5; border: 2px solid #FFD3E0; border-radius: 999px; cursor: pointer;
+}
+#city-card #cc-share:active { transform: scale(.96); }
 
 /* ---------- 北京终章成就卡 ---------- */
 #travel-card {
@@ -327,6 +335,29 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   color: #FFF; background: linear-gradient(180deg, #FFC94E, #F0A83E); border: none; border-radius: 999px; cursor: pointer;
 }
 #travel-card .tb-ok:active { transform: scale(.96); }
+#travel-card .tb-share {
+  margin-top: 8px; width: 100%; padding: 10px; font-size: 14px; font-weight: 900; font-family: inherit;
+  color: #C4577E; background: #FFF0F5; border: 2px solid #FFD3E0; border-radius: 999px; cursor: pointer;
+}
+#travel-card .tb-share:active { transform: scale(.96); }
+
+/* ---------- 分享卡片弹层 ---------- */
+.share-pop {
+  position: relative; background: #FFFDF8; border-radius: 20px; padding: 14px;
+  border: 3px solid #FFD3E0; box-shadow: 0 18px 50px rgba(150,90,110,.25);
+  width: min(88vw, 380px); max-height: calc(100dvh - 40px); overflow-y: auto;
+}
+.share-pop-img { display: block; width: 100%; border-radius: 12px; }
+.share-pop-btns { display: flex; gap: 10px; margin-top: 10px; }
+.share-pop-btns button {
+  flex: 1; padding: 10px; font-weight: 900; font-family: inherit; font-size: 14px;
+  color: #FFF; border: none; border-radius: 999px; cursor: pointer;
+}
+.share-pop-btns button:active { transform: scale(.96); }
+.share-pop .sp-share { background: linear-gradient(180deg, #FF9FBE, #F76E9C); }
+.share-pop .sp-save { background: linear-gradient(180deg, #FFC94E, #F0A83E); }
+.share-pop-tip { min-height: 18px; margin-top: 8px; font-size: 12px; color: #9C8C7A; text-align: center; font-weight: bold; }
+.share-pop .sp-close { position: absolute; top: 20px; right: 20px; }
 
 /* ---------- 二选一询问卡 ---------- */
 #ask-card {
@@ -464,6 +495,16 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   color: #934C64; background: #FFF0F5; border: 2px solid #FFD3E0; border-radius: 999px; padding: 4px 12px;
 }
 .accent-btn:active { transform: scale(.94); }
+/* 口音单选框：当前口音直接亮出，点一下就切 */
+.accent-row { display: flex; align-items: center; justify-content: flex-start; gap: 10px; }
+.accent-opt {
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+  font-weight: 900; font-size: 13px; color: #B9A08E;
+  background: #FFF6F9; border: 2px solid #FFE0EB; border-radius: 999px; padding: 4px 12px;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.accent-opt input { accent-color: #FF8FB0; margin: 0; cursor: pointer; }
+.accent-opt.on { color: #C4577E; background: #FFF0F5; border-color: #FF8FB0; box-shadow: 0 2px 8px rgba(224,103,141,.18); }
 
 /* ---------- 家长周报卡 ---------- */
 #report-card {
@@ -483,8 +524,10 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #report-card .rp-share {
   margin-top: 12px; width: 100%; padding: 10px; font-weight: 900; font-size: 14px; font-family: inherit;
   color: #FFF; background: linear-gradient(180deg, #FFB86B, #F79A3E); border: none; border-radius: 999px; cursor: pointer;
+  transition: background .2s, transform .15s;
 }
 #report-card .rp-share:active { transform: scale(.97); }
+#report-card .rp-share.copied { background: linear-gradient(180deg, #8FD08F, #5FAE5F); }
 
 /* ---------- 词典详情卡（竖直滚动） ---------- */
 .mini-btn {
@@ -722,7 +765,10 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .gender-btn:active { transform: scale(.95); }
 .gender-btn.active { background: linear-gradient(#FF9DBA, #FF8FB0); border-color: #FF8FB0; color: #fff; box-shadow: 0 3px 10px rgba(224,103,141,.35); }
 .gender-btn.active:hover { transform: scale(1.02); }
-#profile-card .profile-selects { display: flex; gap: 10px; margin: 0 0 12px; }
+#profile-card .profile-selects { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 12px; }
+#profile-card .profile-selects select:nth-child(3) {
+  flex-basis: 100%;   /* 城市下拉独占一行：窄屏不再挤爆 */
+}
 #profile-card select {
   flex: 1; border: 2px solid #D5EDC5; border-radius: 999px; background: #F3FAEC; color: #4E7A46;
   padding: 10px 28px 10px 12px; font: inherit; text-align: center; outline: none; cursor: pointer;
@@ -882,7 +928,17 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   box-shadow: 0 18px 50px rgba(150,90,110,.25); padding: 14px 16px; position: relative;
 }
 #catalog-head { display: flex; justify-content: space-between; align-items: center; color: #C4788F; font-weight: bold; font-size: 16px; margin-bottom: 10px; }
-#catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; max-height: 62vh; overflow-y: auto; padding: 4px; }
+#catalog-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 4px; }
+/* 分页展示：每页 2×4 固定 8 只，不出滚动条 */
+.cat-pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 8px; }
+.cat-pager.hidden { display: none; }
+.cat-page-btn {
+  border: 2px solid #FFD3E0; background: #FFF4F8; color: #C4577E; font-size: 18px; font-weight: 900;
+  line-height: 1; width: 34px; height: 30px; border-radius: 999px; cursor: pointer; font-family: inherit;
+}
+.cat-page-btn:hover { background: #FFE9F1; }
+.cat-page-btn[disabled] { color: #E4D6BC; border-color: #F0E4D8; cursor: default; background: #FBF8F4; }
+#catalog-ind { color: #A98F70; font-size: 12px; font-weight: bold; min-width: 40px; text-align: center; }
 .cat-item { border-radius: 13px; padding: 7px 5px; text-align: center; border: 2px solid; transition: transform .15s, box-shadow .15s, border-color .15s; }
 .cat-item.locked { background: #F7F3EE; border-color: #E9E1D8; color: #C5B9AC; cursor: default; opacity: .7; }
 .cat-item.open { background: #FFF4F8; border-color: #FFC9DD; cursor: pointer; }
@@ -1119,7 +1175,6 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   #star-pill { order: -1; border-radius: 999px 0 0 999px; border-right-width: 1px; }
   #pet-count { border-radius: 0 999px 999px 0; margin-left: -3px; border-left-width: 1px; }
   .menu-info { display: block; padding: 7px 14px; text-align: left; color: #A98F70; font-size: 13px; border-bottom: 1px dashed #F0E4D0; margin: 0 6px 4px; }
-  #catalog-grid { max-height: 56vh; }
   /* 排行榜放在右上角，半透明显示以保留地图视野 */
   #leaderboard-widget { top: calc(98px + var(--sat)); right: calc(8px + var(--sar)); bottom: auto; width: 174px; padding: 8px; background: rgba(255,253,248,.58); border-color: rgba(255,224,184,.7); box-shadow: 0 3px 12px rgba(120,100,70,.12); backdrop-filter: blur(3px); }
   .leaderboard-head { color: rgba(180,117,20,.92); }
@@ -1228,5 +1283,5 @@ button:focus-visible, select:focus-visible, a:focus-visible, [tabindex]:focus-vi
   #joy { width: 136px; height: 136px; }
   #joy-knob { width: 58px; height: 58px; }
   #btn-jump { right: calc(30px + var(--sar)); bottom: calc(110px + var(--sab)); width: 72px; height: 72px; font-size: 20px; }
-  #catalog-grid { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+  #catalog-grid { grid-template-columns: repeat(4, 1fr); }
 }
