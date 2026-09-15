@@ -1099,20 +1099,22 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         trunks.instanceMatrix.needsUpdate = true; leaves.instanceMatrix.needsUpdate = true;
         grp.add(trunks); grp.add(leaves);
       }
-      // 岩裙：沿轮廓边垂直下垂到 -7，再收到中心形成倒锥岩底
+      // 岩裙（长城石基）：沿轮廓边垂直下垂、轻微向岛心收拢。收拢比例 0.8→0.94：
+      // 旧版尾部越远收得越多，俯瞰时墙外露出大片黄土坡；现在几乎垂直，只露一条
+      // 石 basis 细边，颜色对齐砖墙——读作"墙体延伸到地下"，不再像界外黄土
       const skirtPos = [], skirtIdx = [];
-      const sink = -3.2;
+      const sink = -3.6, tuck = 0.94;
       for (let i = 0; i < pts.length - 1; i++) {
         const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
         const k = skirtPos.length / 3;
-        skirtPos.push(ax, 0, az, bx, 0, bz, ax * 0.8, sink, az * 0.8, bx * 0.8, sink, bz * 0.8);
+        skirtPos.push(ax, 0, az, bx, 0, bz, ax * tuck, sink, az * tuck, bx * tuck, sink, bz * tuck);
         skirtIdx.push(k, k + 2, k + 1, k + 1, k + 2, k + 3);
       }
       const sg = new THREE.BufferGeometry();
       sg.setAttribute('position', new THREE.Float32BufferAttribute(skirtPos, 3));
       sg.setIndex(skirtIdx);
       sg.computeVertexNormals();
-      const skirt = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: 0xA8825B, roughness: 1, side: THREE.DoubleSide }));
+      const skirt = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: 0x87928F, roughness: 1, side: THREE.DoubleSide }));
       grp.add(skirt);
       // 沿边浪花：白色小圆点贴着轮廓边外侧撒一圈（合并成单 mesh，随 islandSurf 呼吸闪烁）
       {
