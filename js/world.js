@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { PROPS, badge, letterTexture } from './models.js';
 import { ISLANDS } from './words.js';
 import { buildUniGate } from './uni-gate-models.js';
-import { clampPoly, simplifyPoly } from './city-shape.js';
+import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 
 const M = (color, o = {}) => new THREE.MeshStandardMaterial({
   color, roughness: o.rough ?? 0.9, metalness: 0,
@@ -14,6 +14,117 @@ const M = (color, o = {}) => new THREE.MeshStandardMaterial({
 // 城市院墙半径：CITY_FRAME 围墙管径（墙心在轮廓线上，向内也凸出 bw），
 // 元素摆放/玩家碰撞都要留出这份厚度，否则视觉上穿墙
 export const CITY_WALL_BW = r => Math.max(1.2, r * 0.035);
+
+// ---------- 卡通长城：青灰砖直墙 + 垛口 + 烽火台 ----------
+// 墙体沿边界曲线挤出（替换旧圆管）：更薄（半厚 1.0 vs 旧管径 2.66）、有结构节奏。
+// 全部只做装饰、不加碰撞体——玩家边界仍由 game 层的钳制公式统一裁定。
+
+// 青灰砖纹：一张 128px 画布（四排错缝砖 + 深色顶带当墙帽），全城共享
+let _brickTex = null;
+function brickTexture() {
+  if (_brickTex) return _brickTex;
+  const cv = document.createElement('canvas');
+  cv.width = 128; cv.height = 128;
+  const c = cv.getContext('2d');
+  c.fillStyle = '#8C9C9F'; c.fillRect(0, 0, 128, 128);
+  for (let row = 0; row < 4; row++) {
+    const off = row % 2 ? 32 : 0;
+    for (let col = 0; col < 2; col++) {
+      c.fillStyle = (row + col) % 2 ? '#98A8A9' : '#8C9C9F';
+      c.fillRect((col * 64 + off) % 128, row * 32 + 2, 60, 27);
+    }
+  }
+  c.strokeStyle = 'rgba(84,98,100,.95)'; c.lineWidth = 3;
+  for (let row = 0; row <= 4; row++) { c.beginPath(); c.moveTo(0, row * 32); c.lineTo(128, row * 32); c.stroke(); }
+  for (let row = 0; row < 4; row++) {
+    const off = row % 2 ? 32 : 0;
+    for (let k = 0; k < 2; k++) { const x = (k * 64 + off) % 128; c.beginPath(); c.moveTo(x, row * 32); c.lineTo(x, row * 32 + 32); c.stroke(); }
+  }
+  c.fillStyle = 'rgba(110,124,126,.85)'; c.fillRect(0, 123.5, 128, 4.5);   // 顶带：墙帽走色
+  const tex = new THREE.CanvasTexture(cv);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.colorSpace = THREE.SRGBColorSpace;
+  _brickTex = tex;
+  return tex;
+}
+
+// 沿闭合曲线挤出的墙体几何：外壁/内壁/顶面三幅独立顶点（法线分面更硬朗）
+function buildWallGeometry(curve, H, THICK) {
+  const len = curve.getLength();
+  const N = Math.max(160, Math.min(1600, Math.round(len / 1.3)));
+  const P = curve.getSpacedPoints(N);            // N+1 个点，闭合曲线首尾同点
+  const arcs = [0];                              // 每个采样点的累计弧长
+  for (let i = 1; i <= N; i++) arcs.push(arcs[i - 1] + Math.hypot(P[i].x - P[i - 1].x, P[i].z - P[i - 1].z));
+  const normals = [];
+  for (let i = 0; i <= N; i++) {
+    const pa = P[Math.max(0, i - 1)], pb = P[Math.min(N, i + 1)];
+    let tx = pb.x - pa.x, tz = pb.z - pa.z;
+    const tl = Math.hypot(tx, tz) || 1;
+    normals.push([-tz / tl, tx / tl]);           // 左法线
+  }
+  const pos = [], uv = [], idx = [];
+  const push = (x, y, z, u, v) => { pos.push(x, y, z); uv.push(u, v); };
+  for (let i = 0; i <= N; i++) {                 // 外壁（一行底 + 一行顶）
+    const p = P[i], [nx, nz] = normals[i], u = arcs[i] / 8;
+    push(p.x + nx * THICK, 0, p.z + nz * THICK, u, 0);
+    push(p.x + nx * THICK, H, p.z + nz * THICK, u, 1);
+  }
+  for (let i = 0; i <= N; i++) {                 // 内壁
+    const p = P[i], [nx, nz] = normals[i], u = arcs[i] / 8;
+    push(p.x - nx * THICK, 0, p.z - nz * THICK, u, 0);
+    push(p.x - nx * THICK, H, p.z - nz * THICK, u, 1);
+  }
+  for (let i = 0; i <= N; i++) {                 // 顶面（贴到砖纹的墙帽色带）
+    const p = P[i], [nx, nz] = normals[i], u = arcs[i] / 8;
+    push(p.x + nx * THICK, H, p.z + nz * THICK, u, 0.97);
+    push(p.x - nx * THICK, H, p.z - nz * THICK, u, 0.97);
+  }
+  const rowI = (N + 1) * 2, rowT = (N + 1) * 4;
+  for (let i = 0; i < N; i++) {
+    const a = i * 2, b = a + 2;
+    idx.push(a, b, a + 1, b, b + 1, a + 1);      // 外壁
+    const c = rowI + i * 2, d = c + 2;
+    idx.push(c, d, c + 1, d, d + 1, c + 1);      // 内壁
+    const e = rowT + i * 2, f = e + 2;
+    idx.push(e, f, e + 1, f, f + 1, e + 1);      // 顶面
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return { geo: g, samples: P, normals, arcs, len };
+}
+
+// 烽火台低模：底台 + 楼身 + 顶帽 + 四角垛口 + 瞭望窗 + 城市色小旗 + 火盆（点火点）
+function buildBeaconTower(color) {
+  const g = new THREE.Group();
+  const grey = (c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.95 });
+  const box = (w, h, d, mat, x, y, z) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(x, y, z); g.add(m); return m;
+  };
+  box(5.2, 2.6, 5.2, grey('#879899'), 0, 1.3, 0);            // 底台
+  box(4.2, 2.3, 4.2, grey('#94A4A6'), 0, 3.75, 0);           // 楼身
+  box(4.9, 0.8, 4.9, grey('#7C8D8F'), 0, 5.3, 0);            // 顶帽
+  const tooth = grey('#A9B8B7');
+  for (const [dx, dz] of [[-1.8, -1.8], [1.8, -1.8], [-1.8, 1.8], [1.8, 1.8]]) {
+    box(1.15, 1.05, 1.15, tooth, dx, 6.2, dz);               // 顶上四角垛口
+  }
+  box(1.3, 1.5, 0.3, grey('#49565A'), 0, 3.9, 2.1);          // 瞭望窗（朝城内那面）
+  const bowl = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.6, 0.55, 8), grey('#5A4A3C'));
+  bowl.position.set(0, 6.0, 0); g.add(bowl);                 // 火盆
+  // 城市色小旗：每座城的烽火台有自己的颜色识别度
+  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 2.4, 5), grey('#6B5A48'));
+  pole.position.set(1.6, 7.2, 0); g.add(pole);
+  const flag = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.5, 0.95),
+    new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide })
+  );
+  flag.position.set(2.4, 7.9, 0); g.add(flag);
+  g.userData.bowlY = 6.3;                                    // 火苗锚点（本地高度）
+  return g;
+}
 
 // 城市岛地面贴图：草底 + 城市色分区（路网已按需求移除，绿化走 3D 树草）
 function cityIslandTexture(color, level, shape) {
@@ -836,13 +947,116 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       top0.position.y = 0.02;
       top0.receiveShadow = true;
       grp.add(top0);
-      // CITY_FRAME：围墙——抬到 1.2 高、加粗像院墙
+      // CITY_FRAME：卡通长城——青灰砖直墙 + 墙顶垛口 + 烽火台（可点火彩蛋，game 层驱动）。
+      // 只做装饰、无碰撞体：玩家/物件边界仍走 game 的钳制公式；直墙半厚 1.0 比旧圆管瘦，
+      // 视觉上更通透，窄颈处也显得更好走。保留墙根渐变过渡带（改为灰绿色调配砖墙）。
       {
+        const H = 3.0, THICK = 1.0;
+        const ptIn = (px, pz) => {
+          let hit = false;
+          for (let i = 0, j = pts.length - 2; i < pts.length - 1; j = i++) {
+            const xi = pts[i][0], zi = pts[i][1], xj = pts[j][0], zj = pts[j][1];
+            if (((zi > pz) !== (zj > pz)) && (px < (xj - xi) * (pz - zi) / (zj - zi) + xi)) hit = !hit;
+          } return hit;
+        };
         const fpts = [];
-        for (let i = 0; i < pts.length - 1; i++) fpts.push(new THREE.Vector3(pts[i][0], 1.2, pts[i][1]));
+        for (let i = 0; i < pts.length - 1; i++) fpts.push(new THREE.Vector3(pts[i][0], 0, pts[i][1]));
         const curve = new THREE.CatmullRomCurve3(fpts, true);
-        const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, Math.min(1500, fpts.length * 6), bw, 6, true), new THREE.MeshStandardMaterial({ color: 0xFFF3D9, roughness: 0.8 }));
-        grp.add(tube);
+        const { geo: wallGeo, samples, normals, arcs, len } = buildWallGeometry(curve, H, THICK);
+        // 外侧方向：取一个样本点测试内外，整条边界绕向一致
+        const outerSign = ptIn(samples[0].x + normals[0][0] * 2, samples[0].z + normals[0][1] * 2) ? -1 : 1;
+        const wall = new THREE.Mesh(wallGeo, new THREE.MeshStandardMaterial({ map: brickTexture(), roughness: 0.95, side: THREE.DoubleSide }));
+        grp.add(wall);
+        // 垛口：沿墙顶外侧等距小块（InstancedMesh，节奏感的关键）
+        const merlonGap = 3.4;
+        const merlonN = Math.max(2, Math.floor(len / merlonGap));
+        const merlons = new THREE.InstancedMesh(
+          new THREE.BoxGeometry(1.5, 1.1, 1.0),
+          new THREE.MeshStandardMaterial({ color: '#A9B8B7', roughness: 0.9 }),
+          merlonN
+        );
+        {
+          const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), sc = new THREE.Vector3(1, 1, 1);
+          for (let k = 0; k < merlonN; k++) {
+            const target = (k + 0.5) * merlonGap;
+            // 找弧长最近的采样点
+            let i = Math.round(target / (len / (samples.length - 1)));
+            i = Math.max(0, Math.min(samples.length - 1, i));
+            const p = samples[i], [nx, nz] = normals[i];
+            const yaw = Math.atan2(normals[i][0], normals[i][1]);
+            q.setFromAxisAngle(up, yaw + Math.PI / 2);
+            m4.compose(
+              new THREE.Vector3(p.x + nx * THICK * outerSign * 0.62, H + 0.55, p.z + nz * THICK * outerSign * 0.62),
+              q, sc
+            );
+            merlons.setMatrixAt(k, m4);
+          }
+          merlons.instanceMatrix.needsUpdate = true;
+        }
+        grp.add(merlons);
+        // 烽火台：弧长均分 3~4 座，落在窄域（塔内侧净空不足）就顺延错位或跳过
+        const beacons = [];
+        {
+          const nT = r > 85 ? 4 : 3;
+          for (let k = 0; k < nT; k++) {
+            let placed = null;
+            for (const nudge of [0, 0.04, -0.04, 0.08, -0.08]) {
+              const frac = (k + 0.5) / nT + nudge;
+              const target = frac * len;
+              let i = Math.round(target / (len / (samples.length - 1)));
+              i = Math.max(0, Math.min(samples.length - 1, i));
+              const p = samples[i], [nx, nz] = normals[i];
+              const ox = nx * outerSign, oz = nz * outerSign;
+              // 塔身骑在边界线上；内侧若连 3.8 的地面都没有（窄颈），小人没处站 → 换位
+              if (!ptIn(p.x - ox * 3.8, p.z - oz * 3.8)) continue;
+              placed = { i, p };
+              break;
+            }
+            if (!placed) continue;
+            const { i, p } = placed;
+            const tower = buildBeaconTower(color);
+            // 朝向城心：瞭望窗/小旗都在朝里那面
+            tower.rotation.y = Math.atan2(-p.x, -p.z);
+            tower.position.set(p.x, 0, p.z);
+            grp.add(tower);
+            beacons.push({
+              lx: p.x, lz: p.z,
+              wx: cx + p.x, wz: cz + p.z,
+              top: 6.3,               // 火盆口高度（本地）
+              lit: false, flame: null, smokeT: 0,
+            });
+          }
+        }
+        grp.userData.beacons = beacons;            // game 层走近点火用
+        // 墙根过渡带：向城内渐隐的灰绿色（配砖墙，替代旧的暖沙色）
+        {
+          const band = bw * 1.2 + 0.6;
+          const inner = polyOffsetRing(pts, -band);
+          const posArr = [], colArr = [], idxArr = [];
+          const cBand = new THREE.Color('#B9C0B2');
+          const push = (x, z, a) => {
+            posArr.push(x, 0.06, z);
+            colArr.push(cBand.r, cBand.g, cBand.b, a);
+          };
+          for (let i = 0; i < pts.length - 1; i++) {
+            const k = posArr.length / 3;
+            push(pts[i][0], pts[i][1], 0.42);
+            push(inner[i][0], inner[i][1], 0);
+            push(pts[i + 1][0], pts[i + 1][1], 0.42);
+            push(inner[i + 1][0], inner[i + 1][1], 0);
+            idxArr.push(k, k + 1, k + 2, k + 1, k + 3, k + 2);
+          }
+          const bg = new THREE.BufferGeometry();
+          bg.setAttribute('position', new THREE.Float32BufferAttribute(posArr, 3));
+          bg.setAttribute('color', new THREE.Float32BufferAttribute(colArr, 4));   // 4 分量 = 顶点透明度
+          bg.setIndex(idxArr);
+          const bandMesh = new THREE.Mesh(bg, new THREE.MeshBasicMaterial({
+            vertexColors: true, transparent: true, depthWrite: false, side: THREE.DoubleSide,
+            polygonOffset: true, polygonOffsetFactor: -9, polygonOffsetUnits: -9,
+          }));
+          bandMesh.renderOrder = 2;
+          grp.add(bandMesh);
+        }
         // 边内侧随机种树（两排）：树干+球冠，合并画法简单化——逐棵小 Group 太重，用 InstancedMesh 也不必要，直接撒低模树
         const trunkM = new THREE.MeshStandardMaterial({ color: 0x8A6B4A, roughness: 1 });
         const leafM = new THREE.MeshStandardMaterial({ color: 0x5FA05A, roughness: 1 });

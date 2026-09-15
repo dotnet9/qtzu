@@ -772,6 +772,7 @@ export class Game {
     this._updateWorldAnim(dt, t);
     this._updateIdleLife(dt, t);
     this._updateEvents(dt);
+    this._updateBeacons(dt);
     this._updateWeather(dt, t);
     this._updateGuide(t);
     this._updateZoneHint(dt);
@@ -2709,12 +2710,88 @@ export class Game {
       const f = this.fx[i];
       f.t += dt;
       f.update(f.t, dt);
-      if (f.t >= f.dur) { this.scene.remove(f.obj); this.fx.splice(i, 1); }
+      if (f.t >= f.dur) { if (f.obj.parent) f.obj.parent.remove(f.obj); this.fx.splice(i, 1); }
     }
   }
 
   addTween(dur, onUpdate, onDone, ease) {
     this.tweens.push({ t: 0, dur, onUpdate, onDone, ease });
+  }
+
+  // ================= 烽火台彩蛋 =================
+  // 走进烽火台范围自动点火：火苗常燃 + 一阵烟柱 + 音效（world 建塔，game 管点亮）
+  _updateBeacons(dt) {
+    if (!this.cityTour || !this.world) return;
+    this._beaconCd = (this._beaconCd || 0) - dt;
+    const st = this._currentStage();
+    const list = st && st.grp && st.grp.userData.beacons;
+    if (!list || !list.length) return;
+    const now = performance.now() / 1000;
+    for (const b of list) {
+      if (b.lit && b.flame) {
+        // 火苗呼吸感：缩放/透明度轻轻抖动
+        const k = 0.85 + Math.sin(now * 11 + b.lx) * 0.15;
+        b.flame.scale.setScalar(1.7 * k);
+        b.flame.material.opacity = 0.75 + Math.sin(now * 17 + b.lz) * 0.25;
+      }
+      if (!b.lit) {
+        if (this._beaconCd > 0) continue;
+        const p = this.player.position;
+        // 7.5：钳制边距 3.2 + 塔身半宽 2.6 + 一点余量——沿墙走到塔边就能点着
+        if (Math.hypot(p.x - b.wx, p.z - b.wz) < 7.5) { this._lightBeacon(b, st); this._beaconCd = 0.5; }
+      } else if (b.smokeT > 0) {
+        // 点燃后冒 4 秒烟柱
+        b.smokeT -= dt;
+        if ((b.smokePuff = (b.smokePuff || 0) - dt) <= 0) {
+          b.smokePuff = 0.3;
+          this._beaconPuff(b, st);
+        }
+      }
+    }
+  }
+  _lightBeacon(b, st) {
+    b.lit = true;
+    b.smokeT = 4;
+    sfx.fire();
+    const flame = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: this._emojiTexture('🔥'), transparent: true, depthWrite: false,
+    }));
+    flame.position.set(b.lx, b.top + 0.9, b.lz);
+    flame.scale.setScalar(1.7);
+    st.grp.add(flame);
+    b.flame = flame;
+    ui.toast('🔥 烽火点燃啦！远处的人都看到你的信号～', 3000);
+  }
+  _beaconPuff(b, st) {
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: softTexture(), color: 0xD8D4CC, transparent: true, opacity: 0.55, depthWrite: false,
+    }));
+    s.position.set(b.lx + (Math.random() - 0.5) * 0.6, b.top + 1.4, b.lz + (Math.random() - 0.5) * 0.6);
+    s.scale.setScalar(0.9);
+    st.grp.add(s);
+    this.fx.push({
+      obj: s, t: 0, dur: 2.4,
+      update: (t, dt) => {
+        s.position.y += dt * 1.6;
+        s.position.x += dt * 0.4;             // 风向飘
+        s.scale.setScalar(0.9 + t * 1.3);
+        s.material.opacity = Math.max(0, 0.55 * (1 - t / 2.4));
+      },
+    });
+  }
+  _emojiTexture(ch) {
+    this._emojiTexCache = this._emojiTexCache || {};
+    if (this._emojiTexCache[ch]) return this._emojiTexCache[ch];
+    const cv = document.createElement('canvas');
+    cv.width = cv.height = 96;
+    const c = cv.getContext('2d');
+    c.font = '72px serif';
+    c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.fillText(ch, 48, 52);
+    const tex = new THREE.CanvasTexture(cv);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    this._emojiTexCache[ch] = tex;
+    return tex;
   }
 
   // ================= 交互 =================
