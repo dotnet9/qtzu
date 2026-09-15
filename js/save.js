@@ -37,6 +37,7 @@ function fresh() {
     guideDone: false,  // 新手引导 3 步（走到蛋边→读单词→摸摸词宠）完成过没有
     badges: {},        // 徽章：key -> true（小导游 guide:<城市> 等）
     stamps: {},        // 景点集章：<城市en> -> { got:[景点名], done:false }
+    npcChatDay: '',    // 最近一次和 NPC 聊天之日（隔日重逢问候用）
   };
 }
 
@@ -69,6 +70,7 @@ function load() {
     merged.guideDone = !!d.guideDone;
     merged.badges = d.badges || {};
     merged.stamps = d.stamps || {};
+    merged.npcChatDay = d.npcChatDay || '';
     merged.daily = Object.assign({ day: '', idx: 0, n: 0, done: false }, d.daily || {});
     if (!merged.player) merged.player = null;
     return merged;
@@ -301,6 +303,15 @@ export function addStamp(cityEn, name) {
 export function markStampsDone(cityEn) {
   const s = data.stamps[cityEn];
   if (s && !s.done) { s.done = true; save(); }
+}
+
+// ---------- NPC 记忆：今天第一次和 NPC 聊天 = 隔日重逢，问候语加"欢迎回来" ----------
+export function markNpcChat() {
+  const today = todayKey();
+  const yesterday = data.npcChatDay;
+  data.npcChatDay = today;
+  save();
+  return !!yesterday && yesterday !== today;   // 首次 ever 返回 false，隔日重逢返回 true
 }
 
 export function feed(id) {

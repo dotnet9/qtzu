@@ -1,6 +1,7 @@
 // 城市NPC：低模小人配角（详细说明见 buildNPC）
 import * as THREE from 'three';
 import * as ui from './ui.js';
+import { markNpcChat } from './save.js';
 
 const ROLES = {
   tourist: { zh: '游客', emoji: '🧳', shirts: ['#FF9FBE', '#7EC4F2', '#FFD34E'] },
@@ -9,6 +10,42 @@ const ROLES = {
   gardener: { zh: '园丁', emoji: '🌿', shirts: ['#8FD08F', '#6BA85A'] },
   elder: { zh: '爷爷奶奶', emoji: '🦯', shirts: ['#A8A0B8', '#C0907E'] },
   postman: { zh: '邮递员', emoji: '📮', shirts: ['#5A8A5A', '#4E7CB1'] },
+};
+// 城市特色角色：每座城独有的 NPC 身份，排进出场队列最前面（保证每城必然出现）
+const CITY_ROLES = {
+  chengdu: [{ zh: '熊猫饲养员', emoji: '🐼', shirts: ['#8FD08F', '#4E7A46'] }],
+  beijing: [{ zh: '京剧演员', emoji: '🎭', shirts: ['#C43B3B', '#E8B04B'] }, { zh: '鸽哨大爷', emoji: '🕊️', shirts: ['#A8A0B8'] }],
+  harbin: [{ zh: '冰雕师傅', emoji: '❄️', shirts: ['#7EC4F2', '#BFE3F5'] }],
+  sanya: [{ zh: '冲浪教练', emoji: '🏄', shirts: ['#FF8A5C', '#4EC4F2'] }],
+  xian: [{ zh: '兵马俑讲解员', emoji: '🗿', shirts: ['#B08A6A', '#8A6A4A'] }],
+  hangzhou: [{ zh: '采茶姑娘', emoji: '🍃', shirts: ['#5AB88A', '#8FD08F'] }],
+  suzhou: [{ zh: '绣娘', emoji: '🧵', shirts: ['#FF9FBE', '#E8B04B'] }],
+  dunhuang: [{ zh: '驼队商人', emoji: '🐪', shirts: ['#C0907E', '#E8B04B'] }],
+  chongqing: [{ zh: '火锅老板', emoji: '🌶️', shirts: ['#C43B3B', '#E8B04B'] }],
+  guangzhou: [{ zh: '早茶阿婆', emoji: '🫖', shirts: ['#FFD34E', '#FF9FBE'] }],
+  wuhan: [{ zh: '热干面师傅', emoji: '🍜', shirts: ['#E8B04B'] }],
+  urumqi: [{ zh: '葡萄园主', emoji: '🍇', shirts: ['#7B5AB8', '#5AB88A'] }],
+  hohhot: [{ zh: '草原骑手', emoji: '🐎', shirts: ['#4E9EE8', '#C0907E'] }],
+  qingdao: [{ zh: '赶海大叔', emoji: '🌊', shirts: ['#4E7CB1', '#7EC4F2'] }],
+  xiamen: [{ zh: '渔家阿姨', emoji: '🐟', shirts: ['#4EC4F2', '#FF9FBE'] }],
+  quanzhou: [{ zh: '提线木偶师', emoji: '🎪', shirts: ['#C43B3B', '#E8B04B'] }],
+  fuzhou: [{ zh: '茶艺师', emoji: '🫖', shirts: ['#5AB88A'] }],
+  kunming: [{ zh: '花农', emoji: '🌸', shirts: ['#FF9FBE', '#5AB88A'] }],
+  lhasa: [{ zh: '高原向导', emoji: '🏔️', shirts: ['#C0907E', '#4E7CB1'] }],
+  lanzhou: [{ zh: '拉面师傅', emoji: '🌀', shirts: ['#E8B04B'] }],
+  dalian: [{ zh: '足球少年', emoji: '⚽', shirts: ['#4E9EE8'] }],
+  haikou: [{ zh: '椰子小贩', emoji: '🥥', shirts: ['#5AB88A', '#FFD34E'] }],
+  guiyang: [{ zh: '酸汤鱼厨子', emoji: '🍲', shirts: ['#FF8A5C'] }],
+  nanning: [{ zh: '米粉店主', emoji: '🍜', shirts: ['#FF8A5C', '#5AB88A'] }],
+  changsha: [{ zh: '臭豆腐摊主', emoji: '🍢', shirts: ['#C43B3B'] }],
+  taiyuan: [{ zh: '醋坊掌柜', emoji: '🏺', shirts: ['#7B5AB8'] }],
+  chengde: [{ zh: '避暑山庄侍卫', emoji: '🏯', shirts: ['#4E7CB1'] }],
+  qufu: [{ zh: '国学先生', emoji: '📜', shirts: ['#A8A0B8'] }],
+  kaifeng: [{ zh: '汴绣艺人', emoji: '🧵', shirts: ['#FF9FBE'] }],
+  luoyang: [{ zh: '牡丹花匠', emoji: '🌺', shirts: ['#FF9FBE', '#5AB88A'] }],
+  datong: [{ zh: '石窟匠人', emoji: '🗿', shirts: ['#B08A6A'] }],
+  shenyang: [{ zh: '秧歌大妈', emoji: '🪭', shirts: ['#FF9FBE', '#FFD34E'] }],
+  changchun: [{ zh: '冰雪画师', emoji: '🎨', shirts: ['#7EC4F2'] }],
 };
 const GREETINGS = ['Hello! 你好呀！', 'Welcome! 欢迎来到这座城市！', 'Hi! 祝你孵蛋顺利！', 'Nice to meet you!'];
 const PAGE_SEC = 2;      // 每页停留秒数，自动翻页
@@ -145,9 +182,12 @@ export class NPCManager {
     this._stage = stage;
     const isTouch = matchMedia('(pointer: coarse)').matches;
     const count = isTouch ? 8 : 14;
-    const roles = Object.keys(ROLES);
+    // 本城特色角色排最前（必然出场），其余用通用角色池轮换
+    const special = CITY_ROLES[stage.key] || [];
+    const roles = [...special.map((_, i) => ({ special: true, i })), ...Object.keys(ROLES)];
     for (let i = 0; i < count; i++) {
-      const role = ROLES[roles[i % roles.length]];
+      const r = roles[i % roles.length];
+      const role = r.special ? special[r.i] : ROLES[r];
       const shirt = role.shirts[i % role.shirts.length];
       const { group, legL, legR } = buildNPC(role, shirt);
       const a = (i / count) * Math.PI * 2 + 0.4;
@@ -202,7 +242,10 @@ export class NPCManager {
       nearest.group.lookAt(playerPos.x, nearest.group.position.y, playerPos.z);
       if (!nearest.met) {
         nearest.met = true;
-        this._showBubble(GREETINGS[Math.floor(Math.random() * GREETINGS.length)], nearest);
+        // 隔日重逢：今天第一次和 NPC 聊天，问候语加欢迎回来
+        const back = markNpcChat();
+        const g = back ? 'Welcome back! 好久不见，又见面啦！' : GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
+        this._showBubble(g, nearest);
       }
     }
   }
