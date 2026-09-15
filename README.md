@@ -62,45 +62,52 @@ python scripts/serve.py 6100    # 等价 Python 版
 # 打开 http://localhost:6100/
 ```
 
-Windows 下直接双击 `run.bat`（同样是 6100 端口，自动打开浏览器）。
+Windows 下直接双击 `run.bat`（同样是 6100 端口，自动打开浏览器）。**仅限本地开发**：前台窗口 + 末尾暂停，窗口一关进程就退——生产环境请看下方部署说明。
 
-排行榜/账号/跨设备存档接口：`GET /api/leaderboard`、`POST /api/score`、`/api/register`、`/api/login`、`/api/update`、`/api/push-save`、`/api/pull-save`（服务端不存明文密码）。无后端时自动降级本机存档，游戏照常玩。
+排行榜/账号/跨设备存档接口（服务端不存明文密码；无后端时自动降级本机存档，游戏照常玩）：
+
+| 接口 | 方法 | 用途 |
+|---|---|---|
+| `/api/leaderboard` | GET | 排行榜前 5 名 |
+| `/api/register` | POST | 注册（昵称唯一，密码可为空） |
+| `/api/login` | POST | 登录，返回会话令牌（老账号按空密码兼容） |
+| `/api/heartbeat` | POST | 单点登录心跳：同名新登录顶掉旧会话 |
+| `/api/update` | POST | 改昵称 / 改密码（排行榜分数随改名迁移） |
+| `/api/score` | POST | 上报加分（校验身份，防冒名记账） |
+| `/api/push-save` | POST | 上传完整存档（跨设备云同步） |
+| `/api/pull-save` | POST | 拉取服务器存档（换设备登录后合并） |
 
 ## ☁️ 部署
 
-### 方式 A：自己的服务器（推荐，排行榜/账号/存档全功能）——需要反向代理
+### 方式 A：Windows 服务器部署（推荐，排行榜/账号/存档全功能）
 
-`scripts/serve.js` 是**零依赖** Node 服务，同时提供静态文件和 `/api/*` 接口，默认监听 6100。它不做 TLS/域名，生产环境请用 nginx 做 80/443 → 6100 的反向代理：
+三步搞定：
 
-```bash
-# 1. 上传整个仓库到服务器，例如 /var/www/qtzu
-# 2. 用 pm2 守护进程（npm i -g pm2），或写成 systemd 服务
-cd /var/www/qtzu && pm2 start scripts/serve.js --name qtzu -- 6100 && pm2 save
-```
+1. **装 Node.js**：nodejs.org 下 LTS 版装好，cmd 里 `node -v` 能出版本号
+2. **跑起来**：整个仓库放到网站目录（如 `D:\wwwroot\qtzu.com`），双击 `run.bat` —— 后端就跑在 6100 端口，窗口保持开着
+3. **nginx 反代**：整站 `/` 都交给 6100（宝塔在「网站 → 配置文件」里改）：
 
 ```nginx
-# 3. /etc/nginx/sites-available/qtzu
 server {
     listen 80;
-    server_name qtzu.com;              # 换成你的域名
-    root /var/www/qtzu;                 # 静态文件直接由 nginx 发（比过一道 Node 快）
-    index index.html;
-
-    location /api/ {                    # 接口反代给 Node 服务
+    server_name qtzu.com;                    # 换成你的域名
+    location / {
         proxy_pass http://127.0.0.1:6100;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
+    location ^~ /scripts/ { return 404; }    # 安全：账号/存档 JSON 不给下载
 }
 ```
 
-```bash
-# 4. 上 HTTPS（强烈建议）：浏览器只在 HTTPS 或 localhost 下开放麦克风，
-#    没有 HTTPS 语音跟读不可用，会自动降级为字母块拼词
-sudo certbot --nginx -d qtzu.com
-```
+4. HTTPS 在宝塔里给站点配证书即可（🎤 语音识别需要 HTTPS，没有会自动降级字母块拼词）
 
-运行数据都在 `scripts/*.json`（排行榜/账号/存档/会话，首次运行自动生成，已 gitignore）——定期备份这个目录，迁移服务器时一并带走。
+几个要点：
+
+- ⚠️ **`run.bat` 的窗口 = 后端**：窗口一关，排行榜/登录/存档立即 502（页面还能打开）。长期运营建议用 nssm 注册成开机自启的系统服务：管理员 cmd 执行 `nssm install QtzuAPI "C:\Program Files\nodejs\node.exe" D:\wwwroot\qtzu.com\scripts\serve.js 6100`，再 `nssm start QtzuAPI`
+- **排查**：线上 502 = run.bat 没在跑，去服务器看窗口还在不在
+- **更新代码**：把改动的文件覆盖过去即生效；**千万别覆盖服务器上的 `scripts/*.json`——那是玩家数据**，并定期备份这个目录
+- Linux 服务器同理：把 run.bat 换成 `pm2 start scripts/serve.js --name qtzu -- 6100`，nginx 配置一样
 
 ### 方式 B：纯静态托管（GitHub Pages / Vercel / Netlify，零运维）
 
@@ -124,7 +131,7 @@ assets/             品牌素材（logo）
 ## 🧱 技术栈
 
 - Three.js 0.160（CDN importmap）+ 程序化建模（无外部模型文件）
-- 纯静态、无构建流程；ES Modules
+- 前端纯静态、无构建流程（ES Modules）；排行榜/账号/存档为可选的轻量 Node 后端（无后端自动降级本机存档）
 - 语音：Web Speech API → 本地 Whisper → 字母块，三级降级
 - 发音：Wikimedia 真人录音预生成 mp3（离线可播）
 
