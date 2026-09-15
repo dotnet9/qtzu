@@ -3329,7 +3329,12 @@ export class Game {
         // 运行时补建精建岛（网格+碰撞+装饰），并塞回数据岛供显隐切换
         if (this.world && this.world.buildIsland) {
           const built = this.world.buildIsland(this.islands[i]);
-          if (built) this.islands[i].grp = built.grp;
+          if (built && built.grp) {
+            this.islands[i].grp = built.grp;
+            // buildIsland 会把建好的岛从 world.islands 弹出；不登记回去的话，
+            // 换城显隐循环管不到它（离开这座城它仍渲染），重进还会再建一套副本
+            this.world.islands.push(built);
+          }
         }
       }
       this._switchCity(idx);
