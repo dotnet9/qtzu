@@ -5,7 +5,17 @@ import './compat.js'; // 兼容垫片（roundRect 等），必须最先加载
 // 家长"添加到主屏幕"后就是一个不占地方的小 App
 if ('serviceWorker' in navigator
   && (location.protocol === 'https:' || ['localhost', '127.0.0.1'].includes(location.hostname))) {
-  addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  addEventListener('load', () => {
+    // 已有 SW 控制本页时，新版 SW 接管（缓存换版）后自动刷新一次：防止新 HTML 配旧 JS 的混搭崩溃
+    const hadController = !!navigator.serviceWorker.controller;
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController || refreshing) return;
+      refreshing = true;
+      location.reload();
+    });
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
 }
 import './version.js'; // 热更新检测：线上有新版本时提示刷新
 import * as THREE from 'three';

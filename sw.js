@@ -5,7 +5,7 @@
 //   CDN three.js（版本化 URL） → 缓存优先，命中即离线可用
 //   音频 mp3                    → 缓存优先 + 数量上限（边玩边攒，不塞爆存储）
 //   /api/*（登录/存档同步）     → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v1';
+const VER = 'qtzu-pwa-v2';
 
 // 本地核心资源：装一次就离线可启动
 const CORE = [
