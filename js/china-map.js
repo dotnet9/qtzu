@@ -56,6 +56,8 @@ function nameSprite(name) {
 export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, route = []) {
   const group = new THREE.Group();
   group.visible = false;   // anchor 定位后才显示
+  // 每座城一个子组：换城锚定时把「新城」的背景牌藏掉（不然背景里残留自己城的大名牌）
+  const sub = {};
   // 底图：地图纸色，铺满整个可见范围（拉远到 550 也看不完）
   const base = new THREE.Mesh(
     new THREE.PlaneGeometry(30000, 22000).rotateX(-Math.PI / 2),
@@ -69,6 +71,9 @@ export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, 
     const pts = CITY_SHAPES[cid];
     if (!pts || pts.length < 3) continue;                 // 台湾4城走回退，没有 pts 就跳过
     const s = geo.halfDeg * UPD;
+    const sg = new THREE.Group();
+    sub[cid] = sg;
+    group.add(sg);
     // 城市边界填充：polygonOffset 强制压在底图之上，避免大平面间 z-fighting（远处白条纹）
     const shape = new THREE.Shape(pts.map(([nx, nz]) => new THREE.Vector2(nx * s, nz * s)));
     const mesh = new THREE.Mesh(
@@ -82,23 +87,23 @@ export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, 
     const [lon, lat] = geo.ctr;
     const wx = lon * UPD * LAT_K, wz = -lat * UPD;
     mesh.position.set(wx, BASE_Y + 0.02, wz);
-    group.add(mesh);
+    sg.add(mesh);
     // 边界线
     const line = new THREE.LineLoop(
       new THREE.BufferGeometry().setFromPoints(pts.map(([nx, nz]) => new THREE.Vector3(nx * s, 0, nz * s))),
       new THREE.LineBasicMaterial({ color: '#A89F8D', fog: false, polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6 })
     );
     line.position.set(wx, BASE_Y + 0.05, wz);
-    group.add(line);
+    sg.add(line);
     // 城市名 + 状态浮牌（当前城由可玩场景命名，不重复放牌）
     if (cityNames[cid]) {
       const sp = nameSprite(cityNames[cid]);
       sp.position.set(wx, BASE_Y + 14, wz);
-      group.add(sp);
+      sg.add(sp);
       if (statuses[cid]) {
         const st = statusSprite(statuses[cid]);
         st.position.set(wx, BASE_Y + 5.5, wz);
-        group.add(st);
+        sg.add(st);
       }
     }
   }
@@ -132,6 +137,8 @@ export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, 
     // 底图跟着当前城走：原点在地图经纬原点，离当前城几万单位远，铺不满视野
     base.position.set(lon * UPD * LAT_K, BASE_Y, -lat * UPD);
     group.position.set(cx - lon * UPD * LAT_K, 0, cz + lat * UPD);
+    // 换城后背景里不再画当前城（可玩城市场景已覆盖 + 自己的大名牌会悬在头顶）
+    for (const [cid, sg] of Object.entries(sub)) sg.visible = cid !== stageKey;
     group.visible = true;
   }
 
