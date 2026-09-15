@@ -57,6 +57,7 @@
     <button id="btn-summon" class="round-btn" title="召唤词宠帮忙">🪄</button>
     <button id="btn-menu" class="round-btn" title="菜单">☰</button>
     <div id="hud-menu" class="hidden">
+      <div id="menu-score" class="menu-info hidden">🏆 分数</div>
       <button id="btn-book" class="menu-item">📚 <span>课本朗读</span></button>
       <button id="btn-map" class="menu-item">🗺️ <span>游戏地图</span></button>
       <button id="btn-catalog" class="menu-item">📖 <span>词宠图鉴</span></button>
@@ -72,9 +73,9 @@
 
 <!-- 常驻排行榜：让目标始终在眼前 -->
 <aside id="leaderboard-widget" aria-live="polite">
-  <button id="leaderboard-toggle" type="button" title="展开排行榜" aria-label="展开排行榜">🏆</button>
+  <button id="leaderboard-toggle" type="button" title="展开排行榜" aria-label="展开排行榜">📊 排行榜 ▾</button>
   <div class="leaderboard-body">
-    <div class="leaderboard-head"><span>🏆 排行榜</span><span class="leaderboard-actions"><button id="leaderboard-refresh" type="button" title="刷新排行榜" aria-label="刷新排行榜">↻</button><button id="leaderboard-fold" type="button" title="收起排行榜" aria-label="收起排行榜">✕</button></span></div>
+    <div class="leaderboard-head"><span>🏆 排行榜</span><span class="leaderboard-actions"><button id="leaderboard-refresh" type="button" title="刷新排行榜" aria-label="刷新排行榜">↻</button><button id="leaderboard-fold" type="button" title="收起排行榜" aria-label="收起排行榜">▲</button></span></div>
     <div id="leaderboard-list"><div class="rank-loading">正在看看谁是单词小明星…</div></div>
   </div>
 </aside>

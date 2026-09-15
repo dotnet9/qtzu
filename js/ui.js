@@ -10,6 +10,7 @@ const $ = id => document.getElementById(id);
 const els = {};
 for (const id of ['loading', 'hud', 'user-pill', 'pet-count', 'score-pill', 'star-pill', 'hungry-pill', 'prompt', 'prompt-key', 'prompt-text',
   'quest', 'quest-text', 'quest-close', 'npc-bubble', 'npc-bubble-text', 'npc-bubble-page', 'npc-bubble-prev', 'npc-bubble-next',
+  'menu-score',
   'daily', 'daily-text', 'modal', 'modal-title', 'word-en', 'word-ipa', 'word-zh', 'word-hint', 'btn-play', 'btn-mic',
   'mic-label', 'btn-replay', 'voice-feedback', 'score-panel', 'cheer', 'cheer-emoji', 'cheer-word', 'score-ring', 'score-num', 'score-stars', 'score-msg',
   'pet-fact', 'pet-fact-title', 'pet-fact-text', 'detail-card', 'detail-title', 'detail-body', 'detail-close', 'btn-detail', 'spell-area', 'spell-slots', 'spell-tiles', 'btn-replay-letters', 'btn-show-help-word',
@@ -131,6 +132,12 @@ export function updateStars(n) {
   els.starPill.textContent = `⭐ ${n}`;
   els.starPill.title = '星星：读单词、喂词宠、解谜题都能赚，去许愿井换装扮！';
 }
+// 手机端顶栏没有分数胶囊：点星星胶囊报一遍家底（桌面信息齐全不用点）
+els.starPill.addEventListener('click', () => {
+  if (innerWidth > 640) return;
+  sfx.pop();
+  toast(`⭐ 星星 ${lastStars ?? 0} 颗 · 🏆 累计 ${_scoreInfo.score} 分`, 2600);
+});
 
 // 每日任务横幅（进度或完成状态）
 let lastDaily = '';
@@ -1176,10 +1183,20 @@ function setSpellMode(on) {
   if (on) els.voiceFeedback.textContent = '用字母块拼出英文单词吧！';
   if (on) buildSpell();
 }
+let _scoreInfo = { score: 0, session: 0 };
 export function updatePlayerScore(score, sessionScore = score) {
+  _scoreInfo = { score: Number(score) || 0, session: Number(sessionScore) || 0 };
   if (els.scorePill) els.scorePill.textContent = isTouchMode ? `🏆 ${score}` : `🏆 ${score} 分 · 本局 ${sessionScore}`;
+  refreshMenuScore();
   leaderboardCurrent.score = Number(score) || 0;
   scheduleLeaderboardRefresh();
+}
+// 手机端顶栏不显示分数：菜单里留一行明细（打开菜单/分数变化时刷新）
+function refreshMenuScore() {
+  if (!els.menuScore) return;
+  if (innerWidth > 640) { els.menuScore.classList.add('hidden'); return; }
+  els.menuScore.textContent = `🏆 累计 ${_scoreInfo.score} 分 · 本局 ${_scoreInfo.session} 分`;
+  els.menuScore.classList.remove('hidden');
 }
 
 let leaderboardCurrent = { username: '', score: 0 };
@@ -2017,6 +2034,7 @@ export function toggleHudMenu(show) {
   if (!els.hudMenu) return;
   const open = show != null ? show : els.hudMenu.classList.contains('hidden');
   els.hudMenu.classList.toggle('hidden', !open);
+  if (open) refreshMenuScore();   // 手机端顶栏没有分数：打开菜单时刷新明细行
   if (els.btnMenu) els.btnMenu.textContent = open ? '✕' : '☰';
 }
 

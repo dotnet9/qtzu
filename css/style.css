@@ -100,12 +100,18 @@ body {
 #leaderboard-refresh, #leaderboard-fold { border: 0; background: transparent; color: #C4A78F; font-family: inherit; font-size: 16px; font-weight: bold; line-height: 1; cursor: pointer; padding: 0 2px; }
 #leaderboard-refresh:hover, #leaderboard-fold:hover { color: #B47514; }
 #leaderboard-refresh:hover { transform: rotate(30deg); }
-/* 收起后只剩一颗小小的 🏆 圆钮，不挡地图 */
-#leaderboard-toggle { display: none; border: 0; cursor: pointer; font-size: 22px; line-height: 1; padding: 8px 10px; background: transparent; }
-#leaderboard-widget.collapsed { width: auto; padding: 0 4px; border-radius: 999px; }
+/* 收起后：同位置一枚「📊 排行榜 ▾」文字开关，点开还是这里 */
+#leaderboard-toggle {
+  display: none; border: 2px solid rgba(255,224,184,.55); cursor: pointer;
+  font-size: 13px; font-weight: bold; color: #B47514; line-height: 1;
+  padding: 8px 12px; background: rgba(255,253,248,.72); border-radius: 999px;
+  box-shadow: 0 3px 12px rgba(150,110,60,.14); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+}
+#leaderboard-toggle:active { transform: scale(.95); }
+#leaderboard-widget.collapsed { width: auto; padding: 0; border: none; background: none; box-shadow: none; backdrop-filter: none; border-radius: 999px; }
 #leaderboard-widget.collapsed .leaderboard-body { display: none; }
 #leaderboard-widget.collapsed #leaderboard-toggle { display: block; }
-#leaderboard-widget.collapsed #leaderboard-toggle:active { transform: scale(.92); }
+#leaderboard-widget.collapsed #leaderboard-toggle:active { transform: scale(.95); }
 #leaderboard-list { display: flex; flex-direction: column; gap: 4px; }
 #leaderboard-list .rank-row { grid-template-columns: 22px 1fr auto; gap: 5px; border-width: 1px; border-radius: 8px; padding: 4px 6px; font-size: 11.5px; background: rgba(255,247,234,.5); border-color: rgba(255,224,184,.55); color: rgba(107,88,68,.95); }
 #leaderboard-list .rank-row b { font-size: 13px; }
@@ -1108,6 +1114,11 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   /* 触屏：拇指目标加大（儿童手指友好） */
   .round-btn { width: 42px; height: 42px; font-size: 19px; }
   #quest-close { width: 24px; height: 24px; font-size: 12px; top: -8px; right: -8px; }
+  /* 极简两胶囊：⭐星星+🐾进度拼成一枚；用户名/分数收进 ☰ 菜单 */
+  #user-pill, #score-pill { display: none; }
+  #star-pill { order: -1; border-radius: 999px 0 0 999px; border-right-width: 1px; }
+  #pet-count { border-radius: 0 999px 999px 0; margin-left: -3px; border-left-width: 1px; }
+  .menu-info { display: block; padding: 7px 14px; text-align: left; color: #A98F70; font-size: 13px; border-bottom: 1px dashed #F0E4D0; margin: 0 6px 4px; }
   #catalog-grid { max-height: 56vh; }
   /* 排行榜放在右上角，半透明显示以保留地图视野 */
   #leaderboard-widget { top: calc(98px + var(--sat)); right: calc(8px + var(--sar)); bottom: auto; width: 174px; padding: 8px; background: rgba(255,253,248,.58); border-color: rgba(255,224,184,.7); box-shadow: 0 3px 12px rgba(120,100,70,.12); backdrop-filter: blur(3px); }
@@ -1118,11 +1129,8 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   #leaderboard-list .rank-row { padding: 4px 6px; }
 }
 
-/* ---------- 很窄的手机（≤480px）：顶栏极限压缩 ---------- */
+/* ---------- 很窄的手机（≤480px）：排行榜浮窗再收窄 ---------- */
 @media (max-width: 480px) {
-  /* 用户名只留头像图标（名字在"我的档案"里仍可见），保证顶栏不溢出 */
-  #user-pill { max-width: 44px; padding: 5px 9px; text-align: center; overflow: hidden; }
-  .pill { font-size: 11.5px; padding: 5px 9px; }
   #leaderboard-widget { width: 158px; }
 }
 
