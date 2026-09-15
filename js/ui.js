@@ -4,7 +4,7 @@ import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, getHomeCity, hasHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub } from './save.js';
+import { setHomeCity, getHomeCity, hasHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub, extraStats } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -1300,6 +1300,7 @@ export function playBookFlip(cb) {
 
 // ---------- 家长周报：本周读了多少词、平均分、时长（可复制分享） ----------
 export function showParentReport(rep, name = '') {
+  const ex = extraStats();
   const ov = document.createElement('div');
   ov.className = 'overlay';
   const dayRows = Object.entries(rep.days || {}).map(([d, v]) =>
@@ -1316,6 +1317,7 @@ export function showParentReport(rep, name = '') {
     </div>
     <div class="rp-days">${dayRows}</div>
     <div class="rp-sub">图鉴共收集 ${rep.totalPets} 只词宠 · 累计游玩约 ${rep.playMinutes} 分钟</div>
+    <div class="rp-sub">🏅 集章 ${ex.stampsDone} 城 · 🎖️ 导游徽章 ${ex.guides} 枚 · 🎬 配音 ${ex.dubs} 部</div>
     <button class="rp-share">复制本周小结，分享给家人 👨‍👩‍👧</button>
   </div>`;
   document.body.appendChild(ov);
@@ -1325,7 +1327,7 @@ export function showParentReport(rep, name = '') {
   // 复制小结：成功/失败都要有看得见的反馈（按钮变形 + 音效），失败给可全选文本兜底
   ov.querySelector('.rp-share').onclick = async (e) => {
     const btn = e.currentTarget;
-    const text = `${name ? name + '的' : ''}学习周报：本周新孵词宠 ${rep.hatches} 只，朗读 ${rep.reads} 次（平均 ${rep.avg} 分，最高 ${rep.best} 分），图鉴已收集 ${rep.totalPets} 只！——Q淘族`;
+    const text = `${name ? name + '的' : ''}学习周报：本周新孵词宠 ${rep.hatches} 只，朗读 ${rep.reads} 次（平均 ${rep.avg} 分，最高 ${rep.best} 分），图鉴已收集 ${rep.totalPets} 只，集章 ${ex.stampsDone} 城、导游徽章 ${ex.guides} 枚、配音作品 ${ex.dubs} 部！——Q淘族`;
     let ok = false;
     try {
       await navigator.clipboard.writeText(text);

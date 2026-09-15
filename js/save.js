@@ -337,6 +337,14 @@ export function achievementProgress() {
 }
 // 整部配音完成计数
 export function bumpDub() { data.dubCount = (data.dubCount || 0) + 1; save(); }
+// 周报附加统计：集章/徽章/配音
+export function extraStats() {
+  return {
+    stampsDone: Object.keys(data.stamps || {}).filter(k => data.stamps[k].done).length,
+    guides: Object.keys(data.badges || {}).filter(k => k.startsWith('guide:')).length,
+    dubs: data.dubCount || 0,
+  };
+}
 
 export function feed(id) {
   const p = data.pets[id];
