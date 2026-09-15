@@ -134,8 +134,7 @@ async function autoLocateCity() {
     const hit = CITIES.find(c => c.en.toLowerCase().replace(/\s+/g, '') === key || c.name === d.city);
     if (hit) {
       save.setHomeCity(hit.id);
-      const sel = document.getElementById('profile-city');
-      if (sel) sel.value = hit.id;
+      dispatchEvent(new CustomEvent('home-city', { detail: hit.id }));   // 档案卡开着的话同步刷新显示
     }
   } catch (e) { /* 定位失败/无网络：用档案里的手动选择 */ }
 }

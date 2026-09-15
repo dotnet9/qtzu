@@ -857,6 +857,13 @@ export class Game {
       const d = Math.hypot(e.group.position.x - p.x, e.group.position.z - p.z);
       if (d < bd) { bd = d; best = e; }
     }
+    // 滞后切换：认定过的蛋仍可达就不轻易换，除非新目标近 2 米以上（防止两颗蛋距离接近时箭头来回摇摆）
+    const prev = this._lastGuideEggId != null ? this.eggs.eggs.get(this._lastGuideEggId) : null;
+    if (prev && prev !== best && prev.group && this._reachableZone(prev.word.zone)) {
+      const pd = Math.hypot(prev.group.position.x - p.x, prev.group.position.z - p.z);
+      if (bd >= pd - 2) return prev;
+    }
+    this._lastGuideEggId = best ? best.word.id : null;
     return best;
   }
 
@@ -867,7 +874,7 @@ export class Game {
     const total = this.hatchedInScope();
     const chIdx = this.chapterIndex(total);
     const chapters = this.chapters;
-    // 纯城市链条：引导=当前城市里最近的未孵词宠蛋
+    // 纯城市链条：引导=当前城市里最近的未孵词宠蛋（行进中动态跟随，带 2 米滞后防摇摆）
     if (this.cityTour) {
       const cur = this.currentChapter;
       const left = cur.words.filter(id => !save.isHatched(id) && this.eggs.get(id));
@@ -879,6 +886,13 @@ export class Game {
         const d = this.player.position.distanceTo(e.group.position);
         if (d < bd) { bd = d; best = e; }
       }
+      // 滞后切换：正在跟的蛋没消失就继续跟，除非另一颗近 2 米以上才换方向
+      const prev = this._lastGuideEggId != null && left.includes(this._lastGuideEggId) ? this.eggs.get(this._lastGuideEggId) : null;
+      if (prev && prev !== best && prev.group) {
+        const pd = this.player.position.distanceTo(prev.group.position);
+        if (bd >= pd - 2) best = prev;
+      }
+      this._lastGuideEggId = best ? best.word.id : null;
       return { text: `🥚 朝着发光的词宠蛋走过去，孵化它！`, target: best ? best.group.position : null };
     }
     if (total >= this.total) {

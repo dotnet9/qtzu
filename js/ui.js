@@ -417,6 +417,50 @@ export function closeTrainQuiz() {
   document.querySelectorAll('.train-quiz').forEach(el => el.remove());
 }
 
+// ---------- 📍 通讯录式城市选择器：按拼音首字母分组，右侧字母条点按跳转 ----------
+export function openCityPicker({ current, onPick }) {
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '140';
+  const cities = [...CITIES].sort((a, b) => String(a.en).localeCompare(String(b.en)));
+  const rows = [];
+  let lastLetter = '';
+  for (const c of cities) {
+    const L = (String(c.en)[0] || '#').toUpperCase();
+    if (L !== lastLetter) { rows.push(`<div class="city-letter" data-letter="${L}">${L}</div>`); lastLetter = L; }
+    rows.push(`<button type="button" class="city-row${c.id === current ? ' on' : ''}" data-id="${c.id}">
+      <span>${c.name} ${c.en}</span><i class="city-dot"></i></button>`);
+  }
+  const letters = [...new Set(cities.map(c => (String(c.en)[0] || '#').toUpperCase()))];
+  ov.innerHTML = `<div id="city-picker">
+    <div class="cp-t">📍 选择我的城市</div>
+    <div class="cp-body">
+      <div class="cp-list">${rows.join('')}</div>
+      <div class="cp-rail">${letters.map(l => `<button type="button" data-letter="${l}" aria-label="跳到 ${l}">${l}</button>`).join('')}</div>
+    </div>
+  </div>`;
+  document.body.appendChild(ov);
+  ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
+  const list = ov.querySelector('.cp-list');
+  ov.querySelectorAll('.cp-rail button').forEach(b => {
+    b.onclick = () => {
+      sfx.pop();
+      const target = list.querySelector(`.city-letter[data-letter="${b.dataset.letter}"]`);
+      if (target) list.scrollTo({ top: target.offsetTop - 4, behavior: 'smooth' });
+    };
+  });
+  ov.querySelectorAll('.city-row').forEach(r => {
+    r.onclick = () => {
+      sfx.pop();
+      ov.remove();
+      const id = r.dataset.id;
+      const c = CITIES.find(x => x.id === id);
+      toast(c ? `📍 家乡定为 ${c.name} ${c.emoji || ''}` : '📍 城市已更新', 2200);
+      onPick && onPick(id, c);
+    };
+  });
+}
+
 // ---------- 单词×地理连线：英文词 ↔ 它最有名的城市，点词再点城，全部配对 +2⭐ ----------
 const WORD_CITY_PAIRS = [
   { en: 'panda', zh: '熊猫', city: '成都', cityEn: 'Chengdu' },
@@ -1758,31 +1802,37 @@ export function showProfile(onDone, profile = {}, options = {}) {
     grade.value = profile.semKey[0];
     term.value = profile.semKey[1] === 'a' ? 'up' : 'down';
   }
-  // 我的城市下拉（城市巡游的起点；IP 自动定位会帮着填，这里可手动改）
+  // 我的城市选择器（城市巡游的起点；IP 自动定位会帮着填，这里可手动改）
+  // 通讯录式弹层：按拼音首字母索引，点字母快速跳转
   // CITIES 由 cities.js 异步填充：若打开瞬间还没就绪，短轮询自愈
   const citySel = document.getElementById('profile-city');
-  const fillCityOptions = () => {
-    // 注意：占位 option（value=""）也算一个 option，不能用 options.length 判断
-    if (!citySel || [...citySel.options].some(o => o.value)) return true;   // 无需处理/已填好
-    if (!CITIES.length) return false;                      // 城市列表未就绪，等下一轮
-    for (const c of CITIES) {
-      const o = document.createElement('option');
-      o.value = c.id; o.textContent = `${c.name} ${c.en}`;
-      citySel.appendChild(o);
-    }
-    if (profile.city) citySel.value = profile.city;
-    return true;
+  let pickedCity = profile.city || '';
+  const paintCity = () => {
+    const c = CITIES.find(x => x.id === pickedCity);
+    citySel.textContent = c ? `${c.name} ${c.en}` : '我的城市';
+    citySel.classList.toggle('placeholder', !c);
   };
-  if (citySel && !fillCityOptions()) {
-    let tries = 0;
-    window.__cityFillTries = 0;
-    const t = setInterval(() => {
-      window.__cityFillTries = ++tries;
-      if (fillCityOptions() || tries > 40) clearInterval(t);
-    }, 250);
-    addEventListener('cities-ready', () => fillCityOptions(), { once: true });
+  const tryPaintCity = () => { if (!citySel || !CITIES.length) return false; paintCity(); return true; };
+  if (citySel) {
+    if (!tryPaintCity()) {
+      let tries = 0;
+      const t = setInterval(() => { if (tryPaintCity() || ++tries > 40) clearInterval(t); }, 250);
+      addEventListener('cities-ready', tryPaintCity, { once: true });
+    }
+    citySel.onclick = () => {
+      sfx.pop();
+      openCityPicker({
+        current: pickedCity,
+        onPick: id => {
+          pickedCity = id;
+          paintCity();
+          setHomeCity(id);
+        },
+      });
+    };
+    // IP 定位是异步的：定位成功后档案卡可能已经打开，监听事件把新家乡刷进来
+    addEventListener('home-city', e => { pickedCity = e.detail; paintCity(); });
   }
-  citySel && (citySel.onchange = () => { sfx.pop(); setHomeCity(citySel.value); });
   const paint = () => {
     error.textContent = '';
     title.textContent = editing ? '我的档案' : (mode === 'login' ? '欢迎回来' : '开始前先设置学习档案');
@@ -1806,8 +1856,7 @@ export function showProfile(onDone, profile = {}, options = {}) {
   const busy = () => { start.disabled = true; start.textContent = '稍等…'; };
   const resume = () => { if (!editing) start.textContent = mode === 'login' ? '登录' : '出发去Q淘族'; };
   const done = (semKey, password, serverScore, token) => {
-    const citySel = document.getElementById('profile-city');
-    if (citySel && citySel.value) setHomeCity(citySel.value);   // 档案里选的城市=巡游起点
+    if (pickedCity) setHomeCity(pickedCity);   // 档案里选的城市=巡游起点
     ov.classList.add('hidden'); onDone && onDone(input.value.trim(), semKey, gender, password, serverScore, token);
   };
   const fail = msg => {

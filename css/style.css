@@ -869,9 +869,6 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .gender-btn.active { background: linear-gradient(#FF9DBA, #FF8FB0); border-color: #FF8FB0; color: #fff; box-shadow: 0 3px 10px rgba(224,103,141,.35); }
 .gender-btn.active:hover { transform: scale(1.02); }
 #profile-card .profile-selects { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 12px; }
-#profile-card .profile-selects select:nth-child(3) {
-  flex-basis: 100%;   /* 城市下拉独占一行：窄屏不再挤爆 */
-}
 #profile-card select {
   flex: 1; border: 2px solid #D5EDC5; border-radius: 999px; background: #F3FAEC; color: #4E7A46;
   padding: 10px 28px 10px 12px; font: inherit; text-align: center; outline: none; cursor: pointer;
@@ -881,6 +878,51 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   background-repeat: no-repeat; background-position: right 13px center;
 }
 #profile-card select:hover { border-color: #B7E29F; }
+/* 我的城市：自定义选择器（通讯录式弹层），外观与原生 select 一致 */
+#profile-card .fake-select {
+  flex: 1; border: 2px solid #D5EDC5; border-radius: 999px; background: #F3FAEC; color: #4E7A46;
+  padding: 10px 28px 10px 12px; font: inherit; text-align: center; outline: none; cursor: pointer;
+  appearance: none; -webkit-appearance: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%237CA85C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center;
+}
+#profile-card .fake-select:hover { border-color: #B7E29F; }
+#profile-card .fake-select.placeholder { color: #9BB78A; }
+#profile-card .profile-selects > :nth-child(3) { flex-basis: 100%; }   /* 城市独占一行 */
+
+/* 📍 通讯录式城市选择器 */
+#city-picker {
+  width: min(92vw, 420px); height: min(70dvh, 560px); background: #FFFDF8;
+  border: 3px solid #FFD3E0; border-radius: 20px; padding: 14px; position: relative;
+  box-shadow: 0 18px 50px rgba(150,90,110,.25); display: flex; flex-direction: column;
+}
+#city-picker .cp-t { font-size: 16px; font-weight: 900; color: #C4577E; text-align: center; margin-bottom: 10px; }
+#city-picker .cp-body { flex: 1; display: flex; gap: 6px; min-height: 0; }
+#city-picker .cp-list { flex: 1; overflow-y: auto; position: relative; padding-right: 4px; scrollbar-width: thin; }
+#city-picker .city-letter {
+  position: sticky; top: 0; padding: 4px 10px; font-size: 12px; font-weight: 900; color: #C4788F;
+  background: #FFF0F5; border-radius: 8px; margin: 6px 0 2px;
+}
+#city-picker .city-row {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  padding: 10px 10px; font: inherit; font-size: 14px; text-align: left;
+  background: none; border: none; border-bottom: 1px solid #F6EDE4; cursor: pointer; color: #6B5844;
+}
+#city-picker .city-row:active { background: #FFF4F8; }
+#city-picker .city-row .city-dot {
+  width: 16px; height: 16px; border-radius: 50%; border: 2px solid #D8CFC5; flex: none;
+}
+#city-picker .city-row.on { color: #C4577E; font-weight: 900; }
+#city-picker .city-row.on .city-dot { border-color: #F76E9C; background: radial-gradient(circle, #F76E9C 45%, #FFF 50%); }
+#city-picker .cp-rail {
+  display: flex; flex-direction: column; justify-content: center; gap: 1px; align-items: center;
+  width: 18px; flex: none;
+}
+#city-picker .cp-rail button {
+  width: 18px; height: 16px; padding: 0; font-size: 9px; font-weight: 900; font-family: inherit;
+  color: #C4788F; background: none; border: none; cursor: pointer; border-radius: 4px;
+}
+#city-picker .cp-rail button:active { background: #FFE9F1; }
 #profile-card select:focus { border-color: #7CC96F; box-shadow: 0 0 0 3px rgba(124,201,111,.18); }
 #profile-card select:invalid { color: #9C8C7A; }
 #profile-card .profile-tip { color: #C4A78F; font-size: 12px; margin: 2px 0 12px; }
