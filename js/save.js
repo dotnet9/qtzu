@@ -33,6 +33,7 @@ function fresh() {
     weekly: [],        // 家长周报流水：{t: 时间戳, s: 朗读分} / {t, h:1 孵化}，只留最近 7 天
     naughty: {},       // 错词本：wordId -> {misses, lastMiss, caughtOn}，读错的词隔天变"淘气词宠"回来复习
     cityVisits: {},    // 城市到访次数：id -> 次数（决定介绍版本，常来常新）
+    guideDone: false,  // 新手引导 3 步（走到蛋边→读单词→摸摸词宠）完成过没有
   };
 }
 
@@ -62,6 +63,7 @@ function load() {
     merged.weekly = Array.isArray(d.weekly) ? d.weekly : [];
     merged.naughty = d.naughty || {};
     merged.cityVisits = d.cityVisits || {};
+    merged.guideDone = !!d.guideDone;
     merged.daily = Object.assign({ day: '', idx: 0, n: 0, done: false }, d.daily || {});
     if (!merged.player) merged.player = null;
     return merged;
@@ -273,6 +275,10 @@ export function hungryIn(id) {
 }
 
 export function isHungry(id) { return hungryIn(id) < 0; }
+
+// ---------- 新手引导：第一次玩的孩子走完 3 步就算出师 ----------
+export function isGuideDone() { return !!data.guideDone; }
+export function markGuideDone() { data.guideDone = true; save(); }
 
 export function feed(id) {
   const p = data.pets[id];

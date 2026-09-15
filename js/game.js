@@ -6,6 +6,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 
 import { WORD_MAP, ZONE_NAMES, PER_CHAPTER, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
+import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
 import { NPCManager } from './npcs.js';
 import { cityLandmark } from './world.js';
@@ -860,7 +861,9 @@ export class Game {
   }
 
   // 当前任务目标（文字 + 指路坐标）：剧情钥匙优先，平时显示本关进度
+  // 新手引导优先：第一次玩的孩子按 3 步走完就算出师（详见 _guideObjective）
   _objective() {
+    if (this._guide) return this._guideObjective();
     const total = this.hatchedInScope();
     const chIdx = this.chapterIndex(total);
     const chapters = this.chapters;
@@ -961,6 +964,8 @@ export class Game {
   }
 
   _updateGuide(t) {
+    // 新手引导开闸：第一次玩的孩子（还没孵出过词宠、没走过引导）自动进入 3 步引导
+    if (!this._guide && !save.isGuideDone() && save.hatchedCount() === 0) this._guide = { step: 0 };
     const obj = this._objective();
     ui.setQuest(obj.text);
     // 头顶箭头
@@ -994,6 +999,38 @@ export class Game {
         }
       }
     } else this.pathDotsGroup.visible = false;
+    // ---------- 新手引导 3 步推进（只有第一次玩的孩子会走） ----------
+    if (this._guide) {
+      const p2 = this.player.position;
+      if (this._guide.step === 0 && obj.target
+        && Math.hypot(obj.target.x - p2.x, obj.target.z - p2.z) < 1.9) {
+        this._guide.step = 1;   // 到蛋边了：下一步读单词
+      } else if (this._guide.step === 2) {
+        const pt = this.pets.get(this._guide.petId);
+        if (!pt) return;   // 词宠还没蹦出来
+        if (Math.hypot(pt.group.position.x - p2.x, pt.group.position.z - p2.z) < 1.8) {
+          save.markGuideDone();
+          this._guide = null;
+          sfx.great();
+          ui.toast('🎓 出师啦！词宠饿了自己会想你（头顶冒🍖时走近喂它），大胆去淘吧！', 5200);
+        }
+      }
+    }
+  }
+
+  // 新手引导目标：第1步走到蛋边 → 第2步读单词 → 第3步摸摸词宠
+  _guideObjective() {
+    const g = this._guide;
+    if (g.step === 0) {
+      const e = this._nearestReachableEgg();
+      return { text: '🥚 第1步：走到发光的词宠蛋边！', target: e ? e.group.position : null };
+    }
+    if (g.step === 1) {
+      const e = this._nearestReachableEgg();
+      return { text: '🎤 第2步：大声读出单词，唤醒它！', target: e ? e.group.position : null };
+    }
+    const pt = g.petId ? this.pets.get(g.petId) : null;
+    return { text: '🐾 第3步：走近你的词宠，摸摸头认识它！', target: pt ? pt.group.position : null };
   }
 
   // 区域进入提示
@@ -1636,21 +1673,37 @@ export class Game {
     });
   }
 
-  // 城市巡游 2D 地图：真实轮廓 + 立牌/蛋/玩家
+  // 城市巡游 2D 地图：全国大公鸡地图 + 路线城市带名字，点城市看介绍
   _openCityMap() {
-    const st = this._currentStage();
-    const b = this.world.cityBounds && this.world.cityBounds[st.key];
-    if (!b) return false;
-    const L = p => ({ x: p.x - st.cx, z: p.z - st.cz });
-    ui.openCityMap({
-      name: st.name, emoji: st.emoji, color: st.color, pts: b.pts, r: st.r,
-      signs: (this._signList || []).map(s => ({ x: s.x - st.cx, z: s.z - st.cz, type: s.type })),
-      eggs: [...this.eggs.eggs.values()].map(e => ({ ...L(e.group.position), golden: e.golden,       key: !!e.key })),
-
-  player: L(this.player.position),
-  label: `${st.name} ${st.emoji}`,
-  });
-  return true;
+    if (!this.cityTour) return false;
+    const chIdx = this.chapterIndex(this.hatchedInScope());
+    const curKey = this._currentStage().key;
+    const cities = [];
+    for (const isl of this.islands) {
+      const geo = CITY_GEO[isl.key];
+      if (!geo) continue;
+      cities.push({
+        key: isl.key, name: isl.name, emoji: isl.emoji,
+        lon: geo.ctr[0], lat: geo.ctr[1],
+        current: isl.key === curKey,
+        unlocked: isl.bonus ? true : chIdx >= isl.startChapter,
+      });
+    }
+    return ui.openChinaMap({
+      cities,
+      onPick: (key) => {
+        const idx = this.islands.findIndex(i => i.key === key);
+        if (idx < 0) return;
+        const isl = this.islands[idx];
+        const visit = Math.max(0, (save.getSave().cityVisits?.[this.sem + ':' + key] || 1) - 1);
+        ui.showCityCard({
+          city: isl.city, variant: cityVariant(isl.city, visit), visit,
+          quiz: getCityQuiz(key),
+          isFinal: key === this.cityRouteList[this.cityRouteList.length - 1],
+          onStar: () => { save.addStars(1); ui.updateStars(save.getStars()); },
+        });
+      },
+    });
   }
 
   // ================= 玩家 =================
@@ -3084,6 +3137,8 @@ export class Game {
   }
 
   _doHatch(word, score = 80, via = 'voice') {
+    // 新手引导：第2步完成（读单词孵化成功）→ 进入第3步
+    if (this._guide && this._guide.step === 1) { this._guide.step = 2; this._guide.petId = word.id; }
     setTimeout(() => {
       ui.closeChallenge();
       // 仪式感：蛋先越摇越小幅度地晃三下 → 咔嚓裂开 → 星星彩带庆祝 → 词宠蹦出来
