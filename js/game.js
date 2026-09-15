@@ -2952,9 +2952,24 @@ export class Game {
         return;
       }
     }
-    // 许愿井（星星商店）与每日任务板
+    // 许愿井（星星商店）与每日任务板：主岛广场 + 每座城市广场（功能下沉，免跑回农场）
+    const citySpot = this.cityTour
+      ? this.world.islands.find(i => (i.wellPos && Math.hypot(p.x - i.wellPos.x, p.z - i.wellPos.z) < 2.6)
+        || (i.boardPos && Math.hypot(p.x - i.boardPos.x, p.z - i.boardPos.z) < 2.6)) : null;
+    if (citySpot && citySpot.wellPos && Math.hypot(p.x - citySpot.wellPos.x, p.z - citySpot.wellPos.z) < 2.6) {
+      ui.showPrompt('到许愿井换新装扮', this.isTouch ? '👆' : 'E');
+      this._activeWellPos = citySpot.wellPos;
+      this.promptAction = () => this._openShop();
+      return;
+    }
+    if (citySpot && citySpot.boardPos && Math.hypot(p.x - citySpot.boardPos.x, p.z - citySpot.boardPos.z) < 2.6) {
+      ui.showPrompt('看看今日任务', this.isTouch ? '👆' : 'E');
+      this.promptAction = () => this._openDailyBoard();
+      return;
+    }
     if (Math.hypot(p.x - 4.6, p.z - 19.5) < 2.6) {
       ui.showPrompt('到许愿井换新装扮', this.isTouch ? '👆' : 'E');
+      this._activeWellPos = null;   // 主岛井：特效用默认坐标
       this.promptAction = () => this._openShop();
       return;
     }
@@ -4225,18 +4240,19 @@ export class Game {
   }
 
   // ---------- 许愿井商店 ----------
-  // 许愿井投星星：买到新装扮，一颗星星落进井里画出涟漪
+  // 许愿井投星星：买到新装扮，一颗星星落进井里画出涟漪（城市井用实际井位）
   _wellStarFx() {
+    const wp = this._activeWellPos || { x: 4.6, z: 19.5 };
     const star = new THREE.Sprite(new THREE.SpriteMaterial({ map: letterTexture('⭐', '#FFE24E', '#FFFDF0'), transparent: true }));
-    star.position.set(4.95, 2.9, 19.6);
+    star.position.set(wp.x + 0.35, 2.9, wp.z + 0.1);
     star.scale.setScalar(0.42);
     this.scene.add(star);
     const ripple = new THREE.Mesh(new THREE.RingGeometry(0.05, 0.1, 24).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0xbfe3f5, transparent: true, opacity: 0.9, side: THREE.DoubleSide, depthWrite: false }));
-    ripple.position.set(4.6, 1.06, 19.5);
+    ripple.position.set(wp.x, 1.06, wp.z);
     this.scene.add(ripple);
     this.addTween(0.75, k => {
       star.position.y = 2.9 - k * 1.85;
-      star.position.x = 4.95 - k * 0.35;
+      star.position.x = wp.x + 0.35 - k * 0.35;
       star.material.rotation = k * 6;
       ripple.scale.setScalar(1 + k * 5);
       ripple.material.opacity = 0.9 * (1 - k);

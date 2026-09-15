@@ -1338,9 +1338,26 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     world.anim.islandPads = world.anim.islandPads || [];
     world.anim.islandPads.push({ ring: ringP, beacon });
     colC(cx, cz - 2.5, 0.8);
+    // 城市广场：许愿井 + 任务板（主岛同款功能下沉到城，免跑回农场）
+    let wellPos = null, boardPos = null;
+    if (isCity) {
+      const put = (dx, dz) => {
+        let wx = cx + dx, wz = cz + dz;
+        if (sim) [wx, wz] = clampPoly(sim, wx, wz, bw + 1.6);
+        return [wx - cx, wz - cz, wx, wz];
+      };
+      const [wlx, wlz, wwx, wwz] = put(5, -6.5);
+      const [blx, blz, bwx, bwz] = put(-5, -6.5);
+      place(grp, PROPS.well(), wlx, wlz, -0.5);
+      colC(wwx, wwz, 0.85);
+      place(grp, PROPS.signboard(), blx, blz, 0.5);
+      colC(bwx, bwz, 0.7);
+      wellPos = { x: wwx, z: wwz };
+      boardPos = { x: bwx, z: bwz };
+    }
     grp.position.set(cx, 0, cz);
     scene.add(grp);
-    world.islands.push({ ...isl, grp, full: true, pad: { x: cx, z: cz - 2.5 } });
+    world.islands.push({ ...isl, grp, full: true, pad: { x: cx, z: cz - 2.5 }, wellPos, boardPos });
   };
   for (let si = 0; si < semIslands.length; si++) buildOne(semIslands[si], si);
   // 供奖励城市运行时补建精建岛（复用同一套碰撞/装饰闭包）；返回带 grp 的岛对象
