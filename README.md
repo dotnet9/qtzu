@@ -57,12 +57,12 @@ data/cities/
 ## 🚀 本地运行
 
 ```bash
-node scripts/serve.js 6000      # 零依赖开发服务器（禁缓存），端口默认就是 6000
-python scripts/serve.py 6000    # 等价 Python 版
-# 打开 http://localhost:6000/
+node scripts/serve.js 6100      # 零依赖开发服务器（禁缓存），端口默认就是 6100
+python scripts/serve.py 6100    # 等价 Python 版
+# 打开 http://localhost:6100/
 ```
 
-Windows 下直接双击 `run.bat`（同样是 6000 端口，自动打开浏览器）。
+Windows 下直接双击 `run.bat`（同样是 6100 端口，自动打开浏览器）。
 
 排行榜/账号/跨设备存档接口：`GET /api/leaderboard`、`POST /api/score`、`/api/register`、`/api/login`、`/api/update`、`/api/push-save`、`/api/pull-save`（服务端不存明文密码）。无后端时自动降级本机存档，游戏照常玩。
 
@@ -70,12 +70,12 @@ Windows 下直接双击 `run.bat`（同样是 6000 端口，自动打开浏览�
 
 ### 方式 A：自己的服务器（推荐，排行榜/账号/存档全功能）——需要反向代理
 
-`scripts/serve.js` 是**零依赖** Node 服务，同时提供静态文件和 `/api/*` 接口，默认监听 6000。它不做 TLS/域名，生产环境请用 nginx 做 80/443 → 6000 的反向代理：
+`scripts/serve.js` 是**零依赖** Node 服务，同时提供静态文件和 `/api/*` 接口，默认监听 6100。它不做 TLS/域名，生产环境请用 nginx 做 80/443 → 6100 的反向代理：
 
 ```bash
 # 1. 上传整个仓库到服务器，例如 /var/www/qtzu
 # 2. 用 pm2 守护进程（npm i -g pm2），或写成 systemd 服务
-cd /var/www/qtzu && pm2 start scripts/serve.js --name qtzu -- 6000 && pm2 save
+cd /var/www/qtzu && pm2 start scripts/serve.js --name qtzu -- 6100 && pm2 save
 ```
 
 ```nginx
@@ -87,7 +87,7 @@ server {
     index index.html;
 
     location /api/ {                    # 接口反代给 Node 服务
-        proxy_pass http://127.0.0.1:6000;
+        proxy_pass http://127.0.0.1:6100;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
