@@ -327,7 +327,7 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   els.modalTitle.textContent = title || (mode === 'feed' ? '🍖 词宠饿啦，喊它的名字喂它'
     : mode === 'practice' ? '📖 跟读练习 · 大声读给词宠听'
     : ch.easy ? '🔁 复习蛋 · 大声读一遍就唤醒'
-    : '🥚 遇见词宠蛋！念出单词唤醒它';
+    : '🥚 遇见词宠蛋！念出单词唤醒它');
   els.wordEn.textContent = word.en;
   els.wordEn.classList.remove('spell-hidden');
   // 音标（有数据才显示）
