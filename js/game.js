@@ -651,7 +651,7 @@ export class Game {
       onSummon: () => this._openSummon(),
       onPrompt: () => this._interact(),
       onMap: () => this._openMap(),
-      onHungryPill: () => this._openCatalog(true),
+      onHungryPill: () => this._guideHungry(),
       onRank: () => ui.showLeaderboard({ username: save.getUsername(), score: save.getScore() }),
       onReport: () => ui.showParentReport(save.getWeeklyReport(), save.getUsername()),
       onAbout: () => ui.showAbout(),
@@ -875,6 +875,12 @@ export class Game {
   // 新手引导优先：第一次玩的孩子按 3 步走完就算出师（详见 _guideObjective）
   _objective() {
     if (this._guide) return this._guideObjective();
+    // 饥饿词宠临时指路（点饥饿胶囊触发，10 秒内有效）
+    if (this._hungryGuide) {
+      const hp = this.pets.get(this._hungryGuide.id);
+      if (!hp || performance.now() > this._hungryGuide.until) this._hungryGuide = null;
+      else return { text: `🍖 「${hp.word.en}」饿啦——跟着箭头去喂它！`, target: hp.group.position };
+    }
     const total = this.hatchedInScope();
     const chIdx = this.chapterIndex(total);
     const chapters = this.chapters;
@@ -3136,6 +3142,20 @@ export class Game {
         }
       },
     });
+  }
+
+  // 饥饿词宠一键指路：点 HUD「有词宠想你啦」胶囊，箭头/小径临时指向最近的饥饿词宠（10 秒）
+  _guideHungry() {
+    const list = save.hungryPets().map(id => this.pets.get(id)).filter(Boolean);
+    if (!list.length) { this._openCatalog(true); return; }
+    let best = null, bd = 1e9;
+    for (const pt of list) {
+      const d = Math.hypot(pt.group.position.x - this.player.position.x, pt.group.position.z - this.player.position.z);
+      if (d < bd) { bd = d; best = pt; }
+    }
+    this._hungryGuide = { id: best.word.id, until: performance.now() + 10000 };
+    sfx.pop();
+    ui.toast(`🧭 跟着箭头去喂「${best.word.en}」吧！`, 3000);
   }
 
   // NPC 复习考官：从错词本挑一只没抓回的淘气词，NPC 捧着词卡请孩子读出来
