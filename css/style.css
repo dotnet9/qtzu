@@ -175,6 +175,33 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 #quest-close:hover { background: #FFF3D6; color: #B47514; }
 
+/* ---------- NPC 说话气泡：与任务气泡同款，跟说话的 NPC 走 ---------- */
+#npc-bubble {
+  position: fixed; left: 0; top: 0; z-index: 16;
+  transform: translate(-50%, calc(-100% - 12px));
+  background: #FFFDF8; border: 2px solid rgba(255,224,168,.95);
+  border-radius: 13px; padding: 7px 14px 6px; font-size: 13px; font-weight: bold; color: #7A5C22;
+  box-shadow: 0 4px 14px rgba(200,160,60,.2); max-width: 288px; text-align: center;
+  pointer-events: none;
+}
+#npc-bubble::after {
+  content: ''; position: absolute; left: 50%; bottom: -6.5px;
+  width: 10px; height: 10px; background: #FFFDF8;
+  border-right: 2px solid rgba(255,224,168,.95); border-bottom: 2px solid rgba(255,224,168,.95);
+  transform: translateX(-50%) rotate(45deg);
+}
+#npc-bubble .npc-row {
+  display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 4px;
+  min-height: 18px; pointer-events: auto;
+}
+#npc-bubble .npc-page {
+  border: none; background: none; color: #C9A96B; font-size: 16px; font-weight: 900;
+  cursor: pointer; padding: 0 8px; font-family: inherit; line-height: 1;
+}
+#npc-bubble .npc-page:hover { color: #B47514; }
+#npc-bubble .npc-page[disabled] { color: #E4D6BC; cursor: default; }
+#npc-bubble .npc-ind { color: #A98F70; font-size: 11px; font-weight: bold; min-width: 30px; }
+
 /* 图鉴徽章：稀有/进化 */
 .cat-item { position: relative; }
 .cat-badge {

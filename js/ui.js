@@ -9,7 +9,8 @@ import { loadAppConfig } from './data.js';
 const $ = id => document.getElementById(id);
 const els = {};
 for (const id of ['loading', 'hud', 'user-pill', 'pet-count', 'score-pill', 'star-pill', 'hungry-pill', 'prompt', 'prompt-key', 'prompt-text',
-  'quest', 'quest-text', 'quest-close', 'daily', 'daily-text', 'modal', 'modal-title', 'word-en', 'word-ipa', 'word-zh', 'word-hint', 'btn-play', 'btn-mic',
+  'quest', 'quest-text', 'quest-close', 'npc-bubble', 'npc-bubble-text', 'npc-bubble-page', 'npc-bubble-prev', 'npc-bubble-next',
+  'daily', 'daily-text', 'modal', 'modal-title', 'word-en', 'word-ipa', 'word-zh', 'word-hint', 'btn-play', 'btn-mic',
   'mic-label', 'btn-replay', 'voice-feedback', 'score-panel', 'cheer', 'cheer-emoji', 'cheer-word', 'score-ring', 'score-num', 'score-stars', 'score-msg',
   'pet-fact', 'pet-fact-title', 'pet-fact-text', 'detail-card', 'detail-title', 'detail-body', 'detail-close', 'btn-detail', 'spell-area', 'spell-slots', 'spell-tiles', 'btn-replay-letters', 'btn-show-help-word',
   'btn-skip',
@@ -165,6 +166,40 @@ els.questClose.addEventListener('click', () => {
   els.quest.classList.add('hidden');
   sfx.pop();
 });
+
+// ---------- NPC 说话气泡：与任务气泡同款 DOM 气泡，字号恒定不随镜头远近缩放 ----------
+// npcs.js 负责分页与自动翻页，这里只管渲染与屏幕定位；翻页回调由 showNpcBubble 注入
+let npcFlip = null;
+export function showNpcBubble({ pages, page, onFlip }) {
+  npcFlip = onFlip || null;
+  els.npcBubbleText.textContent = pages[page] || '';
+  const total = pages.length;
+  els.npcBubblePrev.classList.toggle('hidden', total <= 1 || page <= 0);
+  els.npcBubbleNext.classList.toggle('hidden', total <= 1 || page >= total - 1);
+  els.npcBubblePage.textContent = total > 1 ? `${page + 1} / ${total}` : '';
+  els.npcBubble.classList.remove('hidden');
+}
+export function hideNpcBubble() {
+  els.npcBubble.classList.add('hidden');
+  npcFlip = null;
+}
+els.npcBubblePrev.addEventListener('click', () => { sfx.pop(); npcFlip && npcFlip(-1); });
+els.npcBubbleNext.addEventListener('click', () => { sfx.pop(); npcFlip && npcFlip(1); });
+// 每帧由 game.js 传入说话 NPC 头顶的屏幕坐标；null 表示镜头外/不在说话，藏起来
+let _nbx = null, _nby = null;
+export function placeNpcBubble(x, y) {
+  if (x == null) {
+    if (_nbx !== null) { els.npcBubble.style.visibility = 'hidden'; _nbx = null; }
+    return;
+  }
+  const nx = Math.round(Math.max(150, Math.min(innerWidth - 150, x)));
+  const ny = Math.round(Math.max(110, Math.min(innerHeight - 24, y)));
+  if (nx === _nbx && ny === _nby) return;
+  _nbx = nx; _nby = ny;
+  els.npcBubble.style.visibility = 'visible';
+  els.npcBubble.style.left = nx + 'px';
+  els.npcBubble.style.top = ny + 'px';
+}
 
 // ---------- 挑战弹窗 ----------
 const ch = {

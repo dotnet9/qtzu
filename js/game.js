@@ -787,6 +787,7 @@ export class Game {
     }
     this._updatePrompt();
     this._placeQuestBubble();
+    this._placeNpcBubble();
     // 脚步声：真的在走才响，每 0.34 秒很轻的一声
     this._stepT = (this._stepT || 0) + dt;
     const stepped = this._lastPos && this._lastPos.distanceToSquared(this.player.position) > 0.0004;
@@ -804,6 +805,15 @@ export class Game {
     this._v3.set(this.player.position.x, this.player.position.y + 1.6, this.player.position.z).project(this.camera);
     if (this._v3.z < 1) ui.placeQuest((this._v3.x * 0.5 + 0.5) * innerWidth, (-this._v3.y * 0.5 + 0.5) * innerHeight);
     else ui.placeQuest(null);
+  }
+  // NPC 说话气泡：同任务气泡的投影跟随（锚在说话 NPC 头顶）
+  _placeNpcBubble() {
+    const a = this.npcs && this.npcs.bubbleAnchor && this.npcs.bubbleAnchor();
+    if (!a || this.camDist > 50) { ui.placeNpcBubble(null); return; }
+    this._v3b = this._v3b || new THREE.Vector3();
+    this._v3b.set(a.x, a.y, a.z).project(this.camera);
+    if (this._v3b.z < 1) ui.placeNpcBubble((this._v3b.x * 0.5 + 0.5) * innerWidth, (-this._v3b.y * 0.5 + 0.5) * innerHeight);
+    else ui.placeNpcBubble(null);
   }
 
   // ================= 指引系统 =================
@@ -2926,15 +2936,11 @@ export class Game {
     const ndc = new THREE.Vector2((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
     const ray = new THREE.Raycaster();
     ray.setFromCamera(ndc, this.camera);
-    // NPC：点小人聊天（气泡点击=翻页：左箭头上一页，其余下一页）
+    // NPC：点小人聊天（气泡翻页由 DOM 气泡上的箭头按钮接管）
     if (this.npcs && this.npcs.npcs.length) {
       const nh = ray.intersectObjects(this.npcs.group.children, true);
       if (nh.length) {
         let o = nh[0].object;
-        if (o.userData.bubble) {                       // 点的是气泡 → 翻页
-          this.npcs.flipBubble(nh[0].uv && nh[0].uv.x < 0.15 ? -1 : 1);
-          return;
-        }
         while (o && o.parent !== this.npcs.group) o = o.parent;
         if (o && o.parent === this.npcs.group) { sfx.pop(); this.npcs.talkTo(o); return; }
       }

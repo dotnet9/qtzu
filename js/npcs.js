@@ -1,5 +1,6 @@
 // 城市NPC：低模小人配角（详细说明见 buildNPC）
 import * as THREE from 'three';
+import * as ui from './ui.js';
 
 const ROLES = {
   tourist: { zh: '游客', emoji: '🧳', shirts: ['#FF9FBE', '#7EC4F2', '#FFD34E'] },
@@ -17,53 +18,6 @@ function wrap(text, n = 15) {
   const out = [];
   for (let i = 0; i < text.length; i += n) out.push(text.slice(i, i + n));
   return out;
-}
-
-// 气泡纹理：与任务气泡（#quest）同一风格——暖白底、琥珀细边、棕色文字、底部小尾巴。
-// 当前页文字 + 底部分页条「< 1/3 >」（左右两端是可点的箭头热区）
-function bubbleTexture(lines, page, total) {
-  const W = 512, H = 34 + lines.length * 40 + (total > 1 ? 38 : 0) + 18;   // 高度按本页实际行数，短文本不出大空白
-  const cv = document.createElement('canvas');
-  cv.width = W; cv.height = H;
-  const c = cv.getContext('2d');
-  c.fillStyle = 'rgba(255,253,248,.93)';
-  c.strokeStyle = 'rgba(255,224,168,.95)';
-  c.lineWidth = 4;
-  c.beginPath();
-  if (c.roundRect) c.roundRect(3, 3, W - 6, H - 6 - 12, 16); else c.rect(3, 3, W - 6, H - 6 - 12);
-  c.fill(); c.stroke();
-  // 底部小尾巴：和任务气泡一个语言
-  c.beginPath();
-  c.moveTo(W / 2 - 11, H - 12 - 11);
-  c.lineTo(W / 2, H - 12);
-  c.lineTo(W / 2 + 11, H - 12 - 11);
-  c.closePath();
-  c.fillStyle = 'rgba(255,253,248,.93)';
-  c.fill();
-  c.strokeStyle = 'rgba(255,224,168,.95)';
-  c.lineWidth = 3;
-  c.stroke();
-  c.fillStyle = '#7A5C22';
-  c.font = '700 26px "Segoe UI", "Microsoft YaHei", sans-serif';
-  c.textAlign = 'center'; c.textBaseline = 'top';
-  lines.forEach((ln, i) => c.fillText(ln, W / 2, 18 + i * 38));
-  if (total > 1) {
-    // 分页条：左右箭头 + 中间页码（低调不抢戏）
-    const py = 22 + lines.length * 40;
-    c.font = '700 26px "Segoe UI", "Microsoft YaHei", sans-serif';
-    c.fillStyle = '#C9A96B';
-    c.textAlign = 'left';
-    c.fillText('‹', 24, py);
-    c.textAlign = 'right';
-    c.fillText('›', W - 24, py);
-    c.textAlign = 'center';
-    c.fillStyle = '#A98F70';
-    c.font = '700 22px "Segoe UI", "Microsoft YaHei", sans-serif';
-    c.fillText(`${page + 1} / ${total}`, W / 2, py + 4);
-  }
-  const tex = new THREE.CanvasTexture(cv);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return { tex, w: 3.7, h: 3.7 * H / W, opacity: 0.92 };
 }
 
 function buildNPC(role, shirt) {
@@ -116,8 +70,8 @@ export class NPCManager {
     this.group = new THREE.Group();
     scene.add(this.group);
     this.npcs = [];
-    this._bubble = null;
     this._bubbleUntil = 0;
+    this._anchor = null;
     this.knowledge = [];
     this._colliders = [];
     this._clampFn = null;
@@ -150,39 +104,31 @@ export class NPCManager {
     this._hideBubble();
     const lines = wrap(text, 15);
     const pages = [];
-    for (let i = 0; i < lines.length; i += LINES_PER_PAGE) pages.push(lines.slice(i, i + LINES_PER_PAGE));
-    this._pages = { pages, page: 0, pos: { x: pos.x, z: pos.z } };
+    for (let i = 0; i < lines.length; i += LINES_PER_PAGE) pages.push(lines.slice(i, i + LINES_PER_PAGE).join(''));
+    this._pages = { pages, page: 0 };
+    this._anchor = { x: pos.x, y: 1.7, z: pos.z };
     this._renderPage();
   }
   _renderPage() {
     const P = this._pages;
     if (!P) return;
-    const { tex, w, h, opacity } = bubbleTexture(P.pages[P.page], P.page, P.pages.length);
-    if (this._bubble) {
-      this.group.remove(this._bubble);
-      this._bubble = null;
-    }
-    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, depthTest: false, fog: false, opacity }));
-    sp.renderOrder = 10;   // 说话内容置顶：不被树冠/墙挡（名牌仍走正常深度）
-    sp.scale.set(w, h, 1);
-    sp.position.set(P.pos.x, 2.25, P.pos.z);
-    sp.userData.bubble = true;
-    this.group.add(sp);
-    this._bubble = sp;
+    // 渲染交给 ui 的 DOM 气泡（任务气泡同款）：字号恒定，不随镜头远近缩放
+    ui.showNpcBubble({ pages: P.pages, page: P.page, onFlip: dir => this._flip(dir) });
     this._bubbleUntil = performance.now() / 1000 + PAGE_SEC;
   }
-  // 点击气泡翻页：uv.x < 0.15 上一页，其余下一页
-  flipBubble(dir) {
+  // 翻页（DOM 按钮/自动翻页共用）：超出最后一页即收起
+  _flip(dir) {
     const P = this._pages;
-    if (!P) return false;
+    if (!P) return;
     const to = P.page + dir;
-    if (to < 0 || to >= P.pages.length) { this._hideBubble(); return true; }
+    if (to < 0 || to >= P.pages.length) { this._hideBubble(); return; }
     P.page = to;
     this._renderPage();
-    return true;
   }
+  // 正在说话时返回锚点（NPC 头顶世界坐标），供 game 层投到屏幕坐标
+  bubbleAnchor() { return this._pages ? this._anchor : null; }
   _hideBubble() {
-    if (this._bubble) { this.group.remove(this._bubble); this._bubble = null; }
+    ui.hideNpcBubble();
     this._pages = null;
   }
   spawnForCity(stage, clampFn, colliders) {
@@ -215,9 +161,8 @@ export class NPCManager {
   update(dt, playerPos) {
     const now = performance.now() / 1000;
     // 分页气泡：每页停 2 秒自动翻下一页，最后一页播完隐藏
-    if (this._bubble && now > this._bubbleUntil) {
-      const P = this._pages;
-      if (P && P.page < P.pages.length - 1) { P.page++; this._renderPage(); }
+    if (this._pages && now > this._bubbleUntil) {
+      if (this._pages.page < this._pages.pages.length - 1) { this._pages.page++; this._renderPage(); }
       else this._hideBubble();
     }
     let nearest = null, nd = 1e9;
