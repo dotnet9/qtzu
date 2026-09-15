@@ -4,7 +4,7 @@ import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone } from './save.js';
+import { setHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -273,6 +273,8 @@ export function openChinaMap({ cities, onPick }) {
   };
   const headSpan = els.mapHead.querySelector('span');
   if (headSpan) headSpan.textContent = '🗺️ 中国巡游地图';
+  const wgBtn = document.getElementById('map-wordgame');
+  if (wgBtn) wgBtn.onclick = () => { sfx.pop(); openWordMapGame(); };
   els.map.classList.remove('hidden');
   const lg = document.getElementById('map-legend');
   if (lg) lg.textContent = '🟡 当前 · 🟢 已解锁 · ⚪ 未解锁 · 点城市看介绍';
@@ -413,6 +415,92 @@ export function closeTrainQuiz() {
   clearTimeout(_tqTimer);
   _tqTimer = null;
   document.querySelectorAll('.train-quiz').forEach(el => el.remove());
+}
+
+// ---------- 单词×地理连线：英文词 ↔ 它最有名的城市，点词再点城，全部配对 +2⭐ ----------
+const WORD_CITY_PAIRS = [
+  { en: 'panda', zh: '熊猫', city: '成都', cityEn: 'Chengdu' },
+  { en: 'ice', zh: '冰雕', city: '哈尔滨', cityEn: 'Harbin' },
+  { en: 'beach', zh: '沙滩', city: '三亚', cityEn: 'Sanya' },
+  { en: 'hot pot', zh: '火锅', city: '重庆', cityEn: 'Chongqing' },
+  { en: 'silk', zh: '丝绸', city: '杭州', cityEn: 'Hangzhou' },
+  { en: 'camel', zh: '骆驼', city: '敦煌', cityEn: 'Dunhuang' },
+  { en: 'horse', zh: '骏马', city: '呼和浩特', cityEn: 'Hohhot' },
+  { en: 'grapes', zh: '葡萄', city: '乌鲁木齐', cityEn: 'Urumqi' },
+  { en: 'roast duck', zh: '烤鸭', city: '北京', cityEn: 'Beijing' },
+  { en: 'garden', zh: '园林', city: '苏州', cityEn: 'Suzhou' },
+  { en: 'noodles', zh: '面条', city: '兰州', cityEn: 'Lanzhou' },
+  { en: 'tea', zh: '茶', city: '福州', cityEn: 'Fuzhou' },
+];
+const _shuffle = arr => {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+};
+export function openWordMapGame() {
+  const pairs = _shuffle(WORD_CITY_PAIRS).slice(0, 8);
+  const words = _shuffle(pairs);
+  const cities = _shuffle(pairs);
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '130';
+  ov.innerHTML = `<div id="word-game">
+    <button class="round-btn small" id="wg-close" style="position:absolute;top:12px;right:12px">✕</button>
+    <div class="wg-t">🔗 单词 × 地理连线</div>
+    <div class="wg-sub">点一个英文词，再点它最有名的城市，全部配对 +2⭐</div>
+    <div class="wg-cols">
+      <div class="wg-col">${words.map(p => `<button type="button" class="wg-w" data-city="${p.city}"><b>${p.en}</b><i>${p.zh}</i></button>`).join('')}</div>
+      <div class="wg-col">${cities.map(p => `<button type="button" class="wg-c" data-city="${p.city}"><b>${p.city}</b><i>${p.cityEn}</i></button>`).join('')}</div>
+    </div>
+    <div class="wg-rs"></div>
+  </div>`;
+  document.body.appendChild(ov);
+  const rs = ov.querySelector('.wg-rs');
+  const close = () => ov.remove();
+  ov.querySelector('#wg-close').onclick = () => { sfx.pop(); close(); };
+  ov.addEventListener('click', e => { if (e.target === ov) close(); });
+  const wordBtns = [...ov.querySelectorAll('.wg-w')];
+  const cityBtns = [...ov.querySelectorAll('.wg-c')];
+  let sel = null;
+  wordBtns.forEach(wb => {
+    wb.onclick = () => {
+      if (wb.disabled) return;
+      sfx.pop();
+      wordBtns.forEach(x => x.classList.remove('sel'));
+      wb.classList.add('sel');
+      sel = wb;
+      rs.textContent = '它属于哪座城？点点右边～';
+    };
+  });
+  cityBtns.forEach(cb => {
+    cb.onclick = () => {
+      if (cb.disabled) return;
+      if (!sel) { rs.textContent = '先点左边一个英文词哦'; return; }
+      if (cb.dataset.city === sel.dataset.city) {
+        sfx.good();
+        sel.classList.remove('sel'); sel.classList.add('locked'); sel.disabled = true;
+        cb.classList.add('locked'); cb.disabled = true;
+        sel = null;
+        if (wordBtns.every(x => x.disabled)) {
+          sfx.great();
+          addStars(2);
+          updateStars(getStars());
+          rs.textContent = '🏆 全部配对完成！+2⭐ 你就是地理小达人！';
+          rs.classList.add('good');
+        } else {
+          rs.textContent = '✅ 配对成功！继续～';
+        }
+      } else {
+        sfx.pop();
+        rs.textContent = '再想想——这个词最有名的地方是哪座城？';
+        cb.classList.add('shake');
+        sel.classList.add('shake');
+        const w = sel;
+        setTimeout(() => { cb.classList.remove('shake'); w.classList.remove('shake', 'sel'); }, 450);
+        sel = null;
+      }
+    };
+  });
 }
 
 // ---------- 麦克风：点击开始 → 10 秒倒计时内读完 → 再点结束（到时也自动识别） ----------

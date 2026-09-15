@@ -3059,6 +3059,8 @@ export class Game {
       sfx.pat();
       const w = pet.word || WORD_MAP[id];
       if (w) speak(w.en);
+      // 💬 词宠会说话：一半概率冒一句日常短句，跟读 80+ 得 1⭐（同一句每次进游戏只奖励一次）
+      if (w && Math.random() < 0.5) { this._petSayLine(pet, w); return; }
       // 摸摸头，它把自己的小故事告诉你（词条里现成的 story/hint）
       const fact = (typeof w.story === 'string' && w.story) ? w.story : (w.hint || `它叫 ${w.en}，是最可爱的词宠`);
       if (fact) {
@@ -3067,6 +3069,39 @@ export class Game {
       }
     }
     else this._setMoveTarget(e);   // 点的是空地 → 走过去（手机轻点同理）
+  }
+
+  // 💬 词宠的悄悄话：日常短句跟读挑战。句子带词宠自己的名字，情感互动里塞复习。
+  _petSayLine(pet, w) {
+    const pool = [
+      `I am ${w.en}!`,
+      'Play with me!',
+      'You are my best friend!',
+      'I am so happy today!',
+      'Thank you, my friend!',
+      `Let's learn English together!`,
+      `I love ${w.en}! Do you love me?`,
+    ];
+    this._saidLines = this._saidLines || new Set();
+    const fresh = pool.filter(l => !this._saidLines.has(l));
+    const bag = fresh.length ? fresh : pool;
+    const line = bag[Math.floor(Math.random() * bag.length)];
+    this._saidLines.add(line);
+    ui.openChallenge({
+      word: { en: line, zh: `${w.en} 的悄悄话`, hint: '你的词宠跟你说话啦！大声跟读一遍～' },
+      mode: 'practice', noSpell: true,
+      onSuccess: res => {
+        ui.closeChallenge();
+        if ((res.score || 0) >= 80) {
+          save.addStars(1);
+          ui.updateStars(save.getStars());
+          sfx.great();
+          ui.toast('💬 你听懂它的话并回应了它！+1⭐', 3200);
+        } else {
+          ui.toast('再读一遍，让词宠听见你的声音～', 2800);
+        }
+      },
+    });
   }
 
   // 坐船过河：船划到岸边接人 → 驮着过河 → 自己划回渡口守桥
@@ -3757,6 +3792,10 @@ export class Game {
           this._chainReward(save.bumpChain('feed'));
           sfx.good();
           ui.toast(`🍖「${word.en}」吃饱啦，心满意足地转了个圈 +1⭐`, 3000);
+          // 💬 词宠用英文道谢（纯展示+朗读，不加挑战）：情感反馈里多一句语言输入
+          this._fact = { id, until: performance.now() + 4200 };
+          ui.showPetFact(`💬「${word.en}」说：`, 'Thank you! Yummy yummy!');
+          speak('Thank you! Yummy yummy!');
           // 喂满 3 次触发进化：长大一圈、戴上星星光环
           const d = save.getSave().pets[id];
           if (d && d.feeds >= 3 && !d.evo) {
