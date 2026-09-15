@@ -64,5 +64,21 @@
   "prof.switchReg": "I'm new — Register",
   "prof.name": "Write a name first~",
   "prof.pickGrade": "Pick your grade",
-  "prof.pickTerm": "Pick a term"
+  "prof.pickTerm": "Pick a term",
+  "daily.feed2": "Feed 2 hungry pets",
+  "daily.hatch2": "Hatch 2 new word eggs",
+  "daily.gate1": "Solve 1 gate puzzle",
+  "daily.goodread": "Score 95+ on a read-aloud",
+  "daily.summon3": "Summon your pets 3 times",
+  "daily.read2": "Read 2 English lines aloud",
+  "ach.cities10.name": "Little Traveler",
+  "ach.cities10.desc": "Visit 10 cities",
+  "ach.stamps5.name": "Stamp Collector",
+  "ach.stamps5.desc": "Complete stamps in 5 cities",
+  "ach.hatch30.name": "Egg Master",
+  "ach.hatch30.desc": "Hatch 30 word pets",
+  "ach.guide3.name": "Gold Guide",
+  "ach.guide3.desc": "Earn 3 tour-guide badges",
+  "ach.dub3.name": "Dubbing Star",
+  "ach.dub3.desc": "Finish 3 dubbing shows"
 }

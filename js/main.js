@@ -107,6 +107,16 @@ async function begin(name, semKey, gender, password, serverScore, token) {
     if (gender) save.setGender(gender);
     save.resetSessionScore();
     // 城市数据加载（路线=家乡→随机→北京，seed 稳定可续）：必须先于 Game 构造
+    // 手作城市布局表：构建世界前注入（失败静默，走程序化布局）
+    try {
+      const [d, w] = await Promise.all([
+        import('./data.js').then(m => m.loadJson('cities/layouts.json')),
+        import('./world.js'),
+      ]);
+      w.setCityLayouts(d);
+    } catch (e) { /* ignore */ }
+    // 双语文案资源就绪后再进游戏（i18n-ready 事件也会刷新已渲染的 HUD）
+    try { await import('./i18n.js').then(m => m.initI18n()); } catch (e) { /* ignore */ }
     await initCities({
       homeId: save.getHomeCity(),
       semKey: save.getBookSem() || '3a',

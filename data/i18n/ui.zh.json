@@ -64,5 +64,21 @@
   "prof.switchReg": "我是新同学，去注册",
   "prof.name": "先写一个名字哦～",
   "prof.pickGrade": "请选择你的年级",
-  "prof.pickTerm": "请选择上册或下册"
+  "prof.pickTerm": "请选择上册或下册",
+  "daily.feed2": "喂饱 2 只想你的词宠",
+  "daily.hatch2": "孵化 2 颗新词宠蛋",
+  "daily.gate1": "解开 1 个机关谜题",
+  "daily.goodread": "朗读拿到 1 次 95 分以上",
+  "daily.summon3": "召唤 3 次词宠",
+  "daily.read2": "大声跟读 2 句英语",
+  "ach.cities10.name": "小小旅行家",
+  "ach.cities10.desc": "到访 10 座城市",
+  "ach.stamps5.name": "集章达人",
+  "ach.stamps5.desc": "集满 5 座城市的景点章",
+  "ach.hatch30.name": "孵蛋高手",
+  "ach.hatch30.desc": "唤醒 30 只词宠",
+  "ach.guide3.name": "金牌导游",
+  "ach.guide3.desc": "拿到 3 枚小导游徽章",
+  "ach.dub3.name": "配音新星",
+  "ach.dub3.desc": "完成 3 部配音作品"
 }

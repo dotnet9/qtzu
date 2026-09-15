@@ -1,0 +1,30 @@
+{
+  "greetings": [
+    "Hello! Nice to see you!",
+    "Welcome to our city!",
+    "Hi! Good luck with your eggs!",
+    "Nice to meet you!"
+  ],
+  "dub": {
+    "scenes": [
+      { "emoji": "🥚", "name": "A Baby Egg is Born", "lines": ["Hello, world!", "I am so happy!", "Welcome, my friend!"] },
+      { "emoji": "🏙️", "name": "Welcome to Our City", "lines": ["Welcome to our city!", "So many yummy foods!", "Let's have fun together!"] },
+      { "emoji": "🎂", "name": "My Pet's Birthday", "lines": ["Happy birthday to me!", "What a lovely cake!", "Best day ever!"] },
+      { "emoji": "🚂", "name": "Here Comes the Train", "lines": ["All aboard!", "Off we go!", "What a beautiful country!"] }
+    ]
+  },
+  "wordmap": [
+    { "en": "panda", "zh": "panda", "city": "Chengdu", "cityEn": "Chengdu" },
+    { "en": "ice", "zh": "ice lantern", "city": "Harbin", "cityEn": "Harbin" },
+    { "en": "beach", "zh": "beach", "city": "Sanya", "cityEn": "Sanya" },
+    { "en": "hot pot", "zh": "hot pot", "city": "Chongqing", "cityEn": "Chongqing" },
+    { "en": "silk", "zh": "silk", "city": "Hangzhou", "cityEn": "Hangzhou" },
+    { "en": "camel", "zh": "camel", "city": "Dunhuang", "cityEn": "Dunhuang" },
+    { "en": "horse", "zh": "horse", "city": "Hohhot", "cityEn": "Hohhot" },
+    { "en": "grapes", "zh": "grapes", "city": "Urumqi", "cityEn": "Urumqi" },
+    { "en": "roast duck", "zh": "roast duck", "city": "Beijing", "cityEn": "Beijing" },
+    { "en": "garden", "zh": "garden", "city": "Suzhou", "cityEn": "Suzhou" },
+    { "en": "noodles", "zh": "noodles", "city": "Lanzhou", "cityEn": "Lanzhou" },
+    { "en": "tea", "zh": "tea", "city": "Fuzhou", "cityEn": "Fuzhou" }
+  ]
+}

@@ -1,7 +1,6 @@
 // 城市配置驱动层：城市内容全部来自 game/data/cities/ 的 JSON，本文件只负责
 // 加载调度、路线算法和变体轮换，不写死任何一座城市。新增/修改城市 → 只改 JSON。
 import { loadCityIndex, loadCityData } from './data.js';
-import { setCityLayouts } from './world.js';
 
 // 舞台装饰类型 → emoji（city.json variants 的 deco 字段）
 export const DECO_EMOJI = {
@@ -140,11 +139,6 @@ export async function initCities({ homeId, semKey, count = 10, username = '' } =
     CITIES.length = 0;
     for (const c of _index.cities) CITIES.push({ id: c.id, name: c.name, en: c.en, region: c.region });
     window.dispatchEvent(new Event('cities-ready'));   // 通知 UI（档案卡城市下拉等）填充
-    // 手作城市布局表：逐城定制的风格/朝向/专属记忆装饰（失败静默，走程序化布局）
-    try {
-      const { loadJson } = await import('./data.js');
-      setCityLayouts(await loadJson('cities/layouts.json'));
-    } catch (e) { /* 无手作表：全部走程序化布局 */ }
     // 巡游路线城市的完整数据
     const route = cityRoute(homeId, semKey, count, username);
     const datas = await Promise.all(route.map(id => loadCityData(id)));

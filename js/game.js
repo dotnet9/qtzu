@@ -3015,7 +3015,7 @@ export class Game {
     // 小火车站（主岛）：城市巡游模式=选任意已解锁城直达；老模式=去群岛
     if (!this._islandAt(p) && Math.hypot(p.x + 9, p.z - 9.6) < 2.8) {
       if (this.cityTour) {
-        ui.showPrompt('选一座城出发 🚂', this.isTouch ? '👆' : 'E');
+        ui.showPrompt(t('train.go'), this.isTouch ? '👆' : 'E');
         this.promptAction = () => this._openCityDestinations();
       } else {
         ui.showPrompt('坐小火车去群岛', this.isTouch ? '👆' : 'E');
@@ -4259,7 +4259,7 @@ export class Game {
     ui.openStation(list, key => {
       const isl = this.islands.find(i => i.key === key);
       if (isl) this._trainToCity(isl.key);
-    }, '🚂 开往哪座城？');
+    }, t('train.title'));
     sfx.pop();
   }
 
@@ -4410,7 +4410,7 @@ export class Game {
   // 顶部每日任务小横幅
   _refreshDailyBanner() {
     const q = save.getDaily();
-    ui.setDaily(`今日任务：${q.text}（${Math.min(q.n, q.goal)}/${q.goal}）${q.done ? ' ✅' : ''}`, q.done);
+    ui.setDaily(`${t('daily.head')}：${t('daily.' + q.id)}（${Math.min(q.n, q.goal)}/${q.goal}）${q.done ? ' ✅' : ''}`, q.done);
   }
 
   // ---------- 图鉴（只看本册：序章 + 本册课本词） ----------

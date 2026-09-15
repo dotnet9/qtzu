@@ -2,7 +2,7 @@
 import { sfx, speak, speakSlow, speakFollow, spellLetters, stopSpeaking, playRecording, scoreVoice, updateBgm, isBgmMuted, setBgmMuted, setBgmFever, getAccent, setAccent } from './audio.js';
 import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.js';
 import { whisperState, loadPercent } from './whisper.js';
-import { t, isEn, initI18n } from './i18n.js';
+import { t, isEn, initI18n, getGameRes } from './i18n.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
@@ -506,27 +506,11 @@ export function openCityPicker({ current, onPick }) {
 }
 
 // ---------- 单词×地理连线：英文词 ↔ 它最有名的城市，点词再点城，全部配对 +2⭐ ----------
-const WORD_CITY_PAIRS = [
-  { en: 'panda', zh: '熊猫', city: '成都', cityEn: 'Chengdu' },
-  { en: 'ice', zh: '冰雕', city: '哈尔滨', cityEn: 'Harbin' },
-  { en: 'beach', zh: '沙滩', city: '三亚', cityEn: 'Sanya' },
-  { en: 'hot pot', zh: '火锅', city: '重庆', cityEn: 'Chongqing' },
-  { en: 'silk', zh: '丝绸', city: '杭州', cityEn: 'Hangzhou' },
-  { en: 'camel', zh: '骆驼', city: '敦煌', cityEn: 'Dunhuang' },
-  { en: 'horse', zh: '骏马', city: '呼和浩特', cityEn: 'Hohhot' },
-  { en: 'grapes', zh: '葡萄', city: '乌鲁木齐', cityEn: 'Urumqi' },
-  { en: 'roast duck', zh: '烤鸭', city: '北京', cityEn: 'Beijing' },
-  { en: 'garden', zh: '园林', city: '苏州', cityEn: 'Suzhou' },
-  { en: 'noodles', zh: '面条', city: '兰州', cityEn: 'Lanzhou' },
-  { en: 'tea', zh: '茶', city: '福州', cityEn: 'Fuzhou' },
-];
-const _shuffle = arr => {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
-  return a;
-};
+// 词对资源在 data/i18n/game.zh.json / game.en.json 的 wordmap 字段
 export function openWordMapGame() {
-  const pairs = _shuffle(WORD_CITY_PAIRS).slice(0, 8);
+  const pool = getGameRes().wordmap || [];
+  if (pool.length < 8) { toast('词对资源还没加载好，稍后再来～'); return; }
+  const pairs = _shuffle(pool).slice(0, 8);
   const words = _shuffle(pairs);
   const cities = _shuffle(pairs);
   const ov = document.createElement('div');
@@ -2386,13 +2370,9 @@ export function openMap(data) {
 if (els.mapClose) els.mapClose.addEventListener('click', () => els.map.classList.add('hidden'));
 
 // ---------- 🎬 小小配音演员：选情景 → 逐句跟读配音 → 总结 + 配音卡分享 ----------
-const DUB_SCENES = [
-  { emoji: '🥚', name: '蛋宝宝出生啦', lines: ['Hello, world!', 'I am so happy!', 'Welcome, my friend!'] },
-  { emoji: '🏙️', name: '欢迎来到我们的城市', lines: ['Welcome to our city!', 'So many yummy foods!', "Let's have fun together!"] },
-  { emoji: '🎂', name: '词宠过生日', lines: ['Happy birthday to me!', 'What a lovely cake!', 'Best day ever!'] },
-  { emoji: '🚂', name: '小火车出发啦', lines: ['All aboard!', 'Off we go!', 'What a beautiful country!'] },
-];
+// 情景与台词资源在 data/i18n/game.zh.json / game.en.json 的 dub.scenes 字段
 export function showDubStudio() {
+  const scenes = getGameRes().dub?.scenes || [];
   const ov = document.createElement('div');
   ov.className = 'overlay';
   ov.style.zIndex = '125';
@@ -2400,7 +2380,7 @@ export function showDubStudio() {
     <button class="round-btn small" id="dub-close" style="position:absolute;top:12px;right:12px">✕</button>
     <div class="dub-t">🎬 小小配音演员</div>
     <div class="dub-sub">选一个情景，把每句台词大声配出来！每句 80 分 +1⭐，整部完成再 +1⭐</div>
-    <div class="dub-scenes">${DUB_SCENES.map((s, i) =>
+    <div class="dub-scenes">${scenes.map((s, i) =>
       `<button type="button" class="dub-scene" data-i="${i}"><span>${s.emoji}</span><b>${s.name}</b><i>${s.lines.length} 句台词</i></button>`).join('')}
     </div>
   </div>`;
@@ -2408,7 +2388,7 @@ export function showDubStudio() {
   ov.querySelector('#dub-close').onclick = () => { sfx.pop(); ov.remove(); };
   ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
   ov.querySelectorAll('.dub-scene').forEach(b => {
-    b.onclick = () => { sfx.pop(); ov.remove(); _dubFlow(DUB_SCENES[Number(b.dataset.i)], 0, []); };
+    b.onclick = () => { sfx.pop(); ov.remove(); _dubFlow(scenes[Number(b.dataset.i)], 0, []); };
   });
 }
 function _dubFlow(scene, idx, scores) {
@@ -2585,15 +2565,14 @@ export function showDailyBoard({ quest, stars, achievements = [] }) {
     dailyOv.addEventListener('click', e => { if (e.target === dailyOv) dailyOv.classList.add('hidden'); });
   }
   const pct = Math.min(100, Math.round(quest.n / quest.goal * 100));
-  const en = isEn();
-  const qText = en && quest.textEn ? quest.textEn : quest.text;
+  const qText = t('daily.' + quest.id);
   const achHtml = achievements.length ? `
       <div id="ach-wall">
         <div class="ach-t">${t('ach.head')}</div>
         ${achievements.map(a => `
           <div class="ach-row${a.done ? ' done' : ''}">
-            <i>${a.icon}</i><b>${en && a.nameEn ? a.nameEn : a.name}</b>
-            <span class="ach-desc">${en && a.descEn ? a.descEn : a.desc}</span>
+            <i>${a.icon}</i><b>${t('ach.' + a.id + '.name')}</b>
+            <span class="ach-desc">${t('ach.' + a.id + '.desc')}</span>
             <span class="ach-n">${a.done ? '✓' : `${a.n}/${a.goal}`}</span>
           </div>`).join('')}
       </div>` : '';

@@ -1,0 +1,30 @@
+{
+  "greetings": [
+    "Hello! 你好呀！",
+    "Welcome! 欢迎来到这座城市！",
+    "Hi! 祝你孵蛋顺利！",
+    "Nice to meet you!"
+  ],
+  "dub": {
+    "scenes": [
+      { "emoji": "🥚", "name": "蛋宝宝出生啦", "lines": ["Hello, world!", "I am so happy!", "Welcome, my friend!"] },
+      { "emoji": "🏙️", "name": "欢迎来到我们的城市", "lines": ["Welcome to our city!", "So many yummy foods!", "Let's have fun together!"] },
+      { "emoji": "🎂", "name": "词宠过生日", "lines": ["Happy birthday to me!", "What a lovely cake!", "Best day ever!"] },
+      { "emoji": "🚂", "name": "小火车出发啦", "lines": ["All aboard!", "Off we go!", "What a beautiful country!"] }
+    ]
+  },
+  "wordmap": [
+    { "en": "panda", "zh": "熊猫", "city": "成都", "cityEn": "Chengdu" },
+    { "en": "ice", "zh": "冰雕", "city": "哈尔滨", "cityEn": "Harbin" },
+    { "en": "beach", "zh": "沙滩", "city": "三亚", "cityEn": "Sanya" },
+    { "en": "hot pot", "zh": "火锅", "city": "重庆", "cityEn": "Chongqing" },
+    { "en": "silk", "zh": "丝绸", "city": "杭州", "cityEn": "Hangzhou" },
+    { "en": "camel", "zh": "骆驼", "city": "敦煌", "cityEn": "Dunhuang" },
+    { "en": "horse", "zh": "骏马", "city": "呼和浩特", "cityEn": "Hohhot" },
+    { "en": "grapes", "zh": "葡萄", "city": "乌鲁木齐", "cityEn": "Urumqi" },
+    { "en": "roast duck", "zh": "烤鸭", "city": "北京", "cityEn": "Beijing" },
+    { "en": "garden", "zh": "园林", "city": "苏州", "cityEn": "Suzhou" },
+    { "en": "noodles", "zh": "面条", "city": "兰州", "cityEn": "Lanzhou" },
+    { "en": "tea", "zh": "茶", "city": "福州", "cityEn": "Fuzhou" }
+  ]
+}

@@ -19,6 +19,9 @@ const CORE = [
   'js/npcs.js', 'js/china-base.js', 'js/china-map.js', 'js/city-shape.js',
   'js/city-shape-data.js', 'js/pep-extra.js', 'js/uni-gate-models.js',
   'js/uni-gates.js', 'js/whisper.js',
+  'data/i18n/ui.zh.json', 'data/i18n/ui.en.json',
+  'data/i18n/game.zh.json', 'data/i18n/game.en.json',
+  'data/cities/index.json', 'data/app.json',
 ];
 const AUDIO_MAX = 400;   // 音频缓存上限（条）
 

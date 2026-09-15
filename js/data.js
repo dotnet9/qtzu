@@ -80,6 +80,8 @@ export async function loadCityData(cityId) {
     const en = await loadJson(`cities/en/${cityId}.json`);
     if (en) {
       if (en.history) out.history = en.history;
+      if (en.importance) out.importance = en.importance;
+      (en.gallery || []).forEach((c, i) => { if (out.gallery && out.gallery[i] && c) out.gallery[i].caption = c; });
       (en.foods || []).forEach((d, i) => { if (out.foods[i] && d) out.foods[i].desc = d; });
       (en.scenes || []).forEach((d, i) => { if (out.scenes[i] && d) out.scenes[i].desc = d; });
       (en.unis || []).forEach((d, i) => { if (out.unis[i] && d) out.unis[i].history = d; });
