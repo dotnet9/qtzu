@@ -76,6 +76,10 @@ const SHOP_ITEMS = [
   { id: 'hat-flower', type: 'hat', value: 'flower', emoji: '👑', name: '花朵王冠', desc: '香喷喷的小花环', price: 30 },
   { id: 'balloon', type: 'balloon', emoji: '🎈', name: '红气球', desc: '蹦蹦跳跳跟着你', price: 40 },
   { id: 'wand', type: 'wand', emoji: '🪄', name: '星星魔法棒', desc: '走路会撒下小星星', price: 50 },
+  // 称号：排行榜名字旁亮金字（星星的新消耗口）
+  { id: 'title-explorer', type: 'title', value: 'explorer', emoji: '🧭', name: '探险家称号', desc: '排行榜亮出「小小探险家」', price: 20 },
+  { id: 'title-star', type: 'title', value: 'star', emoji: '🌟', name: '朗读之星称号', desc: '排行榜亮出「朗读之星」', price: 35 },
+  { id: 'title-legend', type: 'title', value: 'legend', emoji: '🏆', name: '淘气传奇称号', desc: '排行榜亮出「淘气传奇」', price: 60 },
 ];
 
 export class Game {
@@ -4321,8 +4325,10 @@ export class Game {
   _openShop() {
     const wear = save.getWear();
     const items = SHOP_ITEMS.map(it => {
-      const owned = it.type === 'hat' ? wear.hatOwned.includes(it.value) : wear[it.type + 'Owned'];
-      const on = it.type === 'hat' ? wear.hat === it.value : !!wear[it.type];
+      const owned = it.type === 'hat' ? wear.hatOwned.includes(it.value)
+        : it.type === 'title' ? (wear.titleOwned || []).includes(it.value)
+        : wear[it.type + 'Owned'];
+      const on = it.type === 'hat' ? wear.hat === it.value : it.type === 'title' ? wear.title === it.value : !!wear[it.type];
       return { ...it, owned, on };
     });
     ui.showShop({
@@ -4331,6 +4337,8 @@ export class Game {
         if (!save.spendStars(it.price)) { ui.toast('星星还不够啦，去读单词赚星星吧！'); return; }
         const patch = it.type === 'hat'
           ? { hatOwned: [...save.getWear().hatOwned, it.value], hat: it.value }
+          : it.type === 'title'
+          ? { titleOwned: [...(save.getWear().titleOwned || []), it.value], title: it.value }
           : { [it.type + 'Owned']: true, [it.type]: true };
         save.updateWear(patch);
         ui.updateStars(save.getStars());

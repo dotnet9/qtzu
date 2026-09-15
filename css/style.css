@@ -387,6 +387,13 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #word-game .wg-rs { min-height: 20px; margin-top: 10px; text-align: center; font-size: 13px; font-weight: 900; color: #9C8C7A; }
 #word-game .wg-rs.good { color: #4E7A46; }
 
+/* 🏷️ 排行榜称号金字 */
+.rank-title {
+  font-style: normal; font-size: 10px; font-weight: 900; color: #B47514;
+  background: #FFF3D8; border: 1px solid #F0C060; border-radius: 999px;
+  padding: 1px 6px; margin-left: 5px; vertical-align: 1px;
+}
+
 /* 🎬 小小配音演员 */
 #dub-card {
   position: relative; width: min(94vw, 480px); max-height: calc(100dvh - 40px); overflow-y: auto;

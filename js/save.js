@@ -28,7 +28,7 @@ function fresh() {
     intro: false,
     playSeconds: 0,
     profile: { username: '', password: '', registered: false, score: 0, sessionScore: 0, gender: 'boy', stars: 0, city: 'beijing', token: '',
-      wear: { hat: '', hatOwned: [], balloon: false, balloonOwned: false, wand: false, wandOwned: false } },
+      wear: { hat: '', hatOwned: [], balloon: false, balloonOwned: false, wand: false, wandOwned: false, title: '', titleOwned: [] } },
     daily: { day: '', idx: 0, n: 0, done: false },
     milestones: {},    // 已领取的里程碑（collect1=孵满10只、enrolled3b=换过这册）
     weekly: [],        // 家长周报流水：{t: 时间戳, s: 朗读分} / {t, h:1 孵化}，只留最近 7 天
@@ -449,6 +449,12 @@ export function isRegistered() { return !!data.profile.registered; }
 export function setRegistered(v) { data.profile.registered = !!v; save(); }
 
 // 每完成一个学习挑战加 1 分；本地先记账，联网时再同步到排行榜服务。
+// 称号展示名（许愿井购买后亮在排行榜名字旁）
+export const TITLE_NAMES = {
+  explorer: '小小探险家',
+  star: '朗读之星',
+  legend: '淘气传奇',
+};
 export function addPoint() {
   if (!data.profile.username) return;
   data.profile.score = getScore() + 1;
@@ -458,6 +464,7 @@ export function addPoint() {
   if (!data.profile.registered) return;
   const body = JSON.stringify({
     username: data.profile.username, password: data.profile.password, delta: 1, gender: getGender(),
+    title: TITLE_NAMES[data.profile.wear.title] || '',
   });
   try {
     fetch('/api/score', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {});

@@ -398,6 +398,8 @@ const server = http.createServer(async (req, res) => {
       if (!row) { row = { username, score: 0, gender }; rows.push(row); }
       row.score = (Number(row.score) || 0) + delta;
       row.gender = gender;
+      const title = String((body && body.title) != null ? body.title : '').trim().slice(0, 12);
+      if (title) row.title = title;   // 称号展示名（许愿井购买后随分数上报）
       writeBoard(rows);
       sendJson(res, 200, row);
       log(req, 200, `${username}=${row.score}`);

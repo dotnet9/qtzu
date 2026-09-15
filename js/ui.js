@@ -1691,8 +1691,9 @@ function leaderboardRowsHtml(rows, current = leaderboardCurrent) {
   return rows.slice(0, 5).map((x, i) => {
     const name = String(x.username || '匿名小伙伴');
     const gIcon = x.gender === 'girl' ? '👧' : '👦';   // 没有性别记录的老数据默认男孩
+    const title = x.title ? `<i class="rank-title">${escapeHtml(String(x.title))}</i>` : '';
     const active = current.username && name === current.username ? ' current' : '';
-    return `<div class="rank-row${active}"><b>${medals[i]}</b><span>${gIcon} ${escapeHtml(name)}</span><strong>${Number(x.score) || 0} 分</strong></div>`;
+    return `<div class="rank-row${active}"><b>${medals[i]}</b><span>${gIcon} ${escapeHtml(name)}${title}</span><strong>${Number(x.score) || 0} 分</strong></div>`;
   }).join('');
 }
 
