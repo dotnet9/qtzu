@@ -1,11 +1,12 @@
 // Q淘族 Service Worker：离线可玩（PWA）
 // 策略：
-//   导航请求（index.html）     → 网络优先，断网回退缓存（配合 version.js 热更新检测）
-//   同源静态资源（js/css/json）→ 先回缓存秒开，后台静默刷新（stale-while-revalidate）
-//   CDN three.js（版本化 URL） → 缓存优先，命中即离线可用
-//   音频 mp3                    → 缓存优先 + 数量上限（边玩边攒，不塞爆存储）
-//   /api/*（登录/存档同步）     → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v2';
+//   导航 / 同源小文件（html/js/css/json）→ 网络优先，3.5s 超时或断网回退缓存
+//     （保证部署后第一屏就是新代码，绝不出现"新 HTML 配旧 JS"的混搭崩溃）
+//   跨域（three.js CDN、维基图片等）       → 缓存优先（版本化 URL 内容不变）
+//   音频 mp3 / 模型 onnx                  → 缓存优先 + 数量上限（大文件边玩边攒）
+//   /api/*（登录/存档同步）               → 永远走网络，不缓存
+const VER = 'qtzu-pwa-v3';
+const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动
 const CORE = [
@@ -33,27 +34,21 @@ self.addEventListener('activate', e => {
   );
 });
 
-async function staleWhileRevalidate(req) {
-  const cache = await caches.open(VER);
-  const hit = await cache.match(req);
-  const fresh = fetch(req).then(res => {
-    if (res && res.ok) cache.put(req, res.clone());
-    return res;
-  }).catch(() => null);
-  return hit || (await fresh) || Response.error();
-}
-
-async function networkFirst(req, fallback) {
+async function networkFirst(req) {
   const cache = await caches.open(VER);
   try {
-    const res = await fetch(req);
-    if (res && res.ok) cache.put(req, res.clone());
-    return res;
-  } catch (e) { /* 断网 */ }
+    const res = await Promise.race([
+      fetch(req),
+      new Promise(resolve => setTimeout(() => resolve(null), NET_TIMEOUT)),
+    ]);
+    if (res && res.ok) {
+      cache.put(req, res.clone());
+      return res;
+    }
+    if (res) return res;   // 非 ok（如 404）也照实返回
+  } catch (e) { /* 断网/超时 → 回退缓存 */ }
   const hit = await cache.match(req);
-  if (hit) return hit;
-  if (fallback) return (await cache.match(fallback)) || Response.error();
-  return Response.error();
+  return hit || Response.error();
 }
 
 async function cacheFirst(req, isAudio) {
@@ -80,12 +75,13 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.pathname.startsWith('/api/')) return;   // 登录/存档：只走网络
   if (req.mode === 'navigate') {
-    e.respondWith(networkFirst(req, 'index.html'));
+    e.respondWith(networkFirst(req));
     return;
   }
   if (url.origin === location.origin) {
-    if (url.pathname.startsWith('/audio/')) e.respondWith(cacheFirst(req, true));
-    else e.respondWith(staleWhileRevalidate(req));
+    // 大文件（音频/模型）缓存优先；小代码文件网络优先，更新即时生效
+    if (/\.(mp3|onnx|wasm)$/i.test(url.pathname)) e.respondWith(cacheFirst(req, true));
+    else e.respondWith(networkFirst(req));
     return;
   }
   // 跨域：three.js CDN（版本化 URL 内容不变）、维基图片等 → 缓存优先
