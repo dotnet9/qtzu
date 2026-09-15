@@ -71,7 +71,7 @@ export class NPCManager {
     scene.add(this.group);
     this.npcs = [];
     this._bubbleUntil = 0;
-    this._anchor = null;
+    this._anchorNpc = null;
     this.knowledge = [];
     this._colliders = [];
     this._clampFn = null;
@@ -100,13 +100,13 @@ export class NPCManager {
       if (d < min && d > 1e-4) { p.x = c.x + dx / d * min; p.z = c.z + dz / d * min; }
     }
   }
-  _showBubble(text, pos) {
+  _showBubble(text, npc) {
     this._hideBubble();
     const lines = wrap(text, 15);
     const pages = [];
     for (let i = 0; i < lines.length; i += LINES_PER_PAGE) pages.push(lines.slice(i, i + LINES_PER_PAGE).join(''));
     this._pages = { pages, page: 0 };
-    this._anchor = { x: pos.x, y: 1.7, z: pos.z };
+    this._anchorNpc = npc;   // 存 NPC 引用而非位置快照：NPC 漫步时气泡跟着它走
     this._renderPage();
   }
   _renderPage() {
@@ -125,11 +125,15 @@ export class NPCManager {
     P.page = to;
     this._renderPage();
   }
-  // 正在说话时返回锚点（NPC 头顶世界坐标），供 game 层投到屏幕坐标
-  bubbleAnchor() { return this._pages ? this._anchor : null; }
+  // 正在说话时返回锚点（说话 NPC 的头顶实时位置——它走气泡也走）
+  bubbleAnchor() {
+    const n = this._anchorNpc;
+    return n ? { x: n.group.position.x, y: 1.7, z: n.group.position.z } : null;
+  }
   _hideBubble() {
     ui.hideNpcBubble();
     this._pages = null;
+    this._anchorNpc = null;
   }
   spawnForCity(stage, clampFn, colliders) {
     this.clear();
@@ -189,11 +193,11 @@ export class NPCManager {
       const d = Math.hypot(playerPos.x - n.group.position.x, playerPos.z - n.group.position.z);
       if (d < nd) { nd = d; nearest = n; }
     }
-    if (nearest && nd < 3.2) {
+    if (nearest && nd < 2.2) {   // 贴得够近才打招呼：擦肩不弹
       nearest.group.lookAt(playerPos.x, nearest.group.position.y, playerPos.z);
       if (!nearest.met) {
         nearest.met = true;
-        this._showBubble(GREETINGS[Math.floor(Math.random() * GREETINGS.length)], nearest.group.position);
+        this._showBubble(GREETINGS[Math.floor(Math.random() * GREETINGS.length)], nearest);
       }
     }
   }
@@ -212,12 +216,12 @@ export class NPCManager {
     n.met = true;
     const item = this.knowledge.length ? this.knowledge[Math.floor(Math.random() * this.knowledge.length)] : null;
     const text = item ? `🤔 ${item[0]}  💡 ${item[1]}` : GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
-    this._showBubble(text, n.group.position);
+    this._showBubble(text, n);
     return true;
   }
   // 讲一条小知识（问题+自答），优先还没讲过的
   tellKnowledge(playerPos) {
-    const nearest = this._nearest(playerPos, 6);
+    const nearest = this._nearest(playerPos, 2.8);   // 小知识也要凑近讲
     if (!nearest) return false;
     let item = null;
     if (this.knowledge.length) {
@@ -227,7 +231,7 @@ export class NPCManager {
       item.used = true;
     }
     const text = item ? `🤔 ${item[0]}  💡 ${item[1]}` : GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
-    this._showBubble(text, nearest.group.position);
+    this._showBubble(text, nearest);
     return true;
   }
 }
