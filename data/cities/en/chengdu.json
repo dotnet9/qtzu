@@ -1,5 +1,28 @@
 {
   "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Chengdu has some 4,500 years of urban civilization — the heart of ancient Shu culture, its symbol the Golden Sun Bird of Jinsha. Qin-era Zhang Yi built the walls; Han brocade gave it the name 'Brocade City', and hibiscus plantings named it 'Hibiscus City'. The Dujiangyan irrigation works made it the 'Land of Abundance'. In 2,300+ years the city has never changed its name or site — unique in China. The Shu kingdom of the Three Kingdoms had its capital here. Today Chengdu is western China's tech, trade and finance hub, a UNESCO City of Gastronomy, famous worldwide for teahouses and pandas.",
+  "importance": "Capital of Sichuan · First batch National Historical City · Home of the giant panda",
+  "gallery": [ "Giant panda", "Anshun Bridge", "Jinli Ancient Street", "Wuhou Shrine" ],
+  "unis": [
+    "Grown from Sichuan Chinese-Western School — the oldest comprehensive university in southwest China.",
+    "Founded by merging telecom engineering departments; top in China for electronic information.",
+    "From Shanhaiguan Beiyang Railway School — the birthplace of Chinese civil and transport engineering education.",
+    "Started as Guanghua University in Shanghai; a leading finance school, called 'the talent pool of Chinese finance'.",
+    "A key provincial normal university — the cradle of basic-education teachers in Sichuan.",
+    "Born in geology and energy; famous for its national lab on geological disaster prevention.",
+    "A family of many ethnic groups studying together, known for ethnic studies.",
+    "One of the first four TCM colleges of New China.",
+    "A provincial key university with engineering at its core and many disciplines in harmony.",
+    "Started as an air-force meteorology training unit; strong in weather and IT.",
+    "Chengdu's own comprehensive university — the host of the Universiade Village.",
+    "The largest higher music school in southwest China.",
+    "One of the earliest PE institutes of New China; a center of martial arts and sports medicine.",
+    "China's first independent tourism university; its culinary program is nationally known.",
+    "Former Chengdu Military Medical School of the Third Military Medical University.",
+    "An important base for training Sichuan's basic-education teachers.",
+    "A key base for film and media talent in western China.",
+    "An independent college based on UESTC — applied electronic information talents."
+  ],
   "foods": [
     "Red oil bubbling, numbing and spicy — a whole table around one pot. Chengdu's liveliest way to eat.",
     "Numbing, spicy, hot and tender. 'Chen Mapo' created this world-famous dish 150 years ago.",
