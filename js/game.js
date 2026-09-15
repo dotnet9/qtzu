@@ -303,6 +303,8 @@ export class Game {
     this._buildSigns(this._currentStage());
     this.npcs = new NPCManager(this.scene);
     this.npcs.spawnForCity(this._currentStage(), (q, st) => this._clampCityPos(q, st), this.world.colliders);
+    // NPC 复习考官：错词本里有没抓回的淘气词时，NPC 随机请孩子读词卡（被需要感里的错词复习）
+    this.npcs.onReview = npc => this._npcReview(npc);
     import('./data.js').then(m => m.loadJson('knowledge.json')).then(k => {
       if (!k || !this.npcs) return;
       this.npcs.setKnowledge([...(k.hygiene || []), ...(k.world || [])]);
@@ -3134,6 +3136,19 @@ export class Game {
         }
       },
     });
+  }
+
+  // NPC 复习考官：从错词本挑一只没抓回的淘气词，NPC 捧着词卡请孩子读出来
+  _npcReview(npc) {
+    const naughty = save.getSave().naughty || {};
+    const ids = Object.keys(naughty).filter(id => naughty[id] && !naughty[id].caughtOn && WORD_MAP[id]);
+    if (!ids.length) return false;
+    const id = ids[Math.floor(Math.random() * ids.length)];
+    const w = WORD_MAP[id];
+    this.npcs._showBubble(`🔔 我捡到一张词卡：「${w.en}」——你能大声读出来，帮我把它认领回去吗？`, npc);
+    sfx.pop();
+    this._catchNaughty(id);
+    return true;
   }
 
   // 坐船过河：船划到岸边接人 → 驮着过河 → 自己划回渡口守桥

@@ -115,6 +115,7 @@ export class NPCManager {
     this._colliders = [];
     this._clampFn = null;
     this._pages = null;   // { lines: [[..],[..]..], page, pos }
+    this.onReview = null; // 复习考官钩子：game 注入，有淘气词时 NPC 化身考官
   }
   setKnowledge(list) { this.knowledge = list || []; }
   clear() {
@@ -258,10 +259,12 @@ export class NPCManager {
     return nearest;
   }
   // 点击 NPC：主动和它聊一句（打过招呼就讲小知识），返回是否命中
+  // 若注册了 onReview 回调且有淘气词，60% 概率化身复习考官（读对淘气词帮 NPC 认领词卡）
   talkTo(group) {
     const n = this.npcs.find(x => x.group === group);
     if (!n) return false;
     n.met = true;
+    if (this.onReview && Math.random() < 0.6 && this.onReview(n)) return true;
     const item = this.knowledge.length ? this.knowledge[Math.floor(Math.random() * this.knowledge.length)] : null;
     const text = item ? `🤔 ${item[0]}  💡 ${item[1]}` : GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
     this._showBubble(text, n);
