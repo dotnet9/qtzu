@@ -673,21 +673,34 @@ const FAMILY = {
 };
 
 // 校徽/校名匾：横梁正面贴白底校徽图（本地 img，contain 缩进）
-function plaque(g, img, beamY, beamW, fz) {
-  if (!img) return;
+// 图片必须带 crossOrigin 拉（维基图床等跨域源）：否则 canvas 被污染，three 每帧
+// 抛 texSubImage2D SecurityError。拉不到（断网/无 CORS/404）就画校名文字兜底。
+function plaque(g, img, beamY, beamW, fz, zh) {
   const cv = document.createElement('canvas');
   cv.width = 512; cv.height = 128;
   const c2 = cv.getContext('2d');
   c2.fillStyle = '#FFFDF4'; c2.fillRect(0, 0, 512, 128);
-  const tex = new THREE.CanvasTexture(cv);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  const im = new Image();
-  im.onload = () => {
-    const k = Math.min(112 / im.height, 472 / im.width);
-    c2.drawImage(im, (512 - im.width * k) / 2, (128 - im.height * k) / 2, im.width * k, im.height * k);
+  const drawFallback = () => {
+    c2.fillStyle = '#5A4A38';
+    c2.font = '900 44px "Microsoft YaHei", sans-serif';
+    c2.textAlign = 'center'; c2.textBaseline = 'middle';
+    c2.fillText(String(zh || '').slice(0, 10), 256, 68);
     tex.needsUpdate = true;
   };
-  im.src = img;
+  const tex = new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  if (!img) { drawFallback(); }
+  else {
+    const im = new Image();
+    im.crossOrigin = 'anonymous';   // 跨域校徽图：不带这个画进 canvas 会污染（WebGL 禁传）
+    im.onload = () => {
+      const k = Math.min(112 / im.height, 472 / im.width);
+      c2.drawImage(im, (512 - im.width * k) / 2, (128 - im.height * k) / 2, im.width * k, im.height * k);
+      tex.needsUpdate = true;
+    };
+    im.onerror = drawFallback;
+    im.src = img;
+  }
   const board = new THREE.Mesh(
     new THREE.PlaneGeometry(beamW - 0.3, 0.4),
     new THREE.MeshBasicMaterial({ map: tex, toneMapped: false })
@@ -714,7 +727,7 @@ export function buildUniGate(g, zh, img) {
     const span = 3.6 + rnd() * 0.9, px = span / 2, h = 3.2 + rnd() * 0.5;
     [beamY, beamW, fz] = (FAMILY[familyFor(zh)] || FAMILY.classic)(g, rnd, h, px);
   }
-  plaque(g, img, beamY, beamW, fz);
+  plaque(g, img, beamY, beamW, fz, zh);
   box(g, 2.4, 0.1, 1.2, '#D8CCA8', 0, 0.05, 0.4);   // 门前空地
   return { beamY, beamW };
 }
