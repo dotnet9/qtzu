@@ -152,12 +152,14 @@ export function simplifyPoly(pts, tol = 0.1) {
 }
 
 // 把点钳进多边形，并保证离边界至少 margin（0 = 只保证在多边形内）。
+// floor < margin 时为「窄颈放宽」：实在挤不出 margin 的细颈里，退而求其次只保证
+// floor（≥小人身位），不再朝内极点传送——城市是同一个家，细颈处也应该走得过去。
 // 旧版「投影到边再 ×0.97」对凹多边形不可靠：0.97 是向原点收缩，窄处/凹湾处可能仍在墙外。
 // 现在：外部点先朝内极点逐级收缩进城（避免被投影到湖面小岛之类的细碎飞地上），再从
 // 内侧沿「最近边点 → 当前点」方向补足 margin；一侧推够另一侧可能变最近，多轮交替
-// 收敛，推过头（凹角/窄缝）就折半步长；窄域里实在放不下 margin 时，沿当前点→内极点
+// 收敛，推过头（凹角/窄缝）就折半步长；窄域里实在放不下 floor 时，沿当前点→内极点
 // 方向找最近的可行位（内极点必在主城深处）。
-export function clampPoly(pts, x, z, margin = 0) {
+export function clampPoly(pts, x, z, margin = 0, floor = margin) {
   const [poleX, poleZ] = polyPole(pts);
   if (!polyInside(pts, x, z)) {
     let f = 0.97, inside = false;
@@ -167,7 +169,8 @@ export function clampPoly(pts, x, z, margin = 0) {
     }
     if (!inside) { x = poleX; z = poleZ; }   // 畸形轮廓的兜底：内极点必在城里
   }
-  if (margin > 0) {
+  const floor2 = Math.max(0, Math.min(floor, margin));
+  if (floor2 > 0) {
     let ok = false;
     for (let k = 0; k < 10; k++) {
       const q = polyNearest(pts, x, z);
@@ -184,10 +187,12 @@ export function clampPoly(pts, x, z, margin = 0) {
       if (!moved) break;
     }
     if (!ok) {
-      // 窄域/离岛碎片里推不满边距：朝内极点方向找最近的可行位（离当前点越近越好）
+      // 细颈/离岛碎片里挤不出 margin：先看当前位置是否已够 floor（窄颈里放小人通过），
+      // 不够再朝内极点方向找最近的可行位（离当前点越近越好）
+      if (polyNearest(pts, x, z).d >= floor2) return [x, z];
       for (let t = 0.05; t <= 0.95; t += 0.05) {
         const fx = x + (poleX - x) * t, fz = z + (poleZ - z) * t;
-        if (polyInside(pts, fx, fz) && polyNearest(pts, fx, fz).d >= margin) { x = fx; z = fz; break; }
+        if (polyInside(pts, fx, fz) && polyNearest(pts, fx, fz).d >= floor2) { x = fx; z = fz; break; }
       }
     }
   }

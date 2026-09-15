@@ -7,6 +7,7 @@
 import { writeFileSync, existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { healNecks, healWidthForCity } from './heal-neck-lib.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, '..', 'js', 'city-shape-data.js');
@@ -111,6 +112,17 @@ function toShape(ring) {
   return { pts: out, ctr: [Math.round(cx * 1000) / 1000, Math.round(cz * 1000) / 1000], halfDeg: Math.round(half * 10000) / 10000 };
 }
 
+function cityContents(cid) {
+  // 通行宽按城市内容量（半径系数）推导，与 world/game 的钳制边距同源
+  const rd = f => { try { return JSON.parse(readFileSync(join(__dirname, '..', 'data', 'cities', cid, f), 'utf8')); } catch { return null; } };
+  const n = d => (d?.unis?.length || 0) + (d?.items?.length || 0);
+  const cj = rd('city.json');
+  return {
+    radius: cj?.level?.radius || 28,
+    contents: n(rd('universities.json')) + n(rd('foods.json')) + n(rd('scenes.json')),
+  };
+}
+
 (async () => {
   // 全量重生成（高细节版）：不读旧文件做增量，直接覆盖
   const shapes = {};
@@ -130,7 +142,11 @@ function toShape(ring) {
           : geom.coordinates.map(poly => poly[0]);
         rings.sort((a, b) => ringArea(b) - ringArea(a));
         const shape = toShape(rings[0]);
-        if (shape) shapes[cid] = shape;
+        if (shape) {
+          // 窄颈修复：把腐蚀后不连通的细颈撑宽到可通行（见 heal-neck-lib.mjs）
+          shape.pts = healNecks(shape.pts, healWidthForCity(cityContents(cid)));
+          shapes[cid] = shape;
+        }
         else missing.push(cid);
       } catch (e) {
         failed.push(`${cid}(${e.message})`);

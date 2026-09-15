@@ -389,7 +389,9 @@ export class Game {
       const st = this._currentStage();
       const q = { x: st.cx + st.r * 0.3, z: st.cz - st.r * 0.3 };
       // 与 _cityPos 天空蛋同点同边距同钳制：凹形城市下蛋也不会漂到墙外、离开台面
-      this._clampCityPos(q, st, this._cityWallMargin(st, 1.2));
+      // （静态物件严格边距：floor=margin，不触发窄颈放宽）
+      const m = this._cityWallMargin(st, 1.2);
+      this._clampCityPos(q, st, m, m);
       egg.baseY = 3.2;
       egg.group.position.set(q.x, 3.2, q.z);
       return;
@@ -1663,8 +1665,10 @@ export class Game {
     if (word.zone === 'sky') { x = stage.cx + stage.r * 0.3; z = stage.cz - stage.r * 0.3; }
     // 真实轮廓下细长/凹形城市（兰州等）按半径摆放可能落海：统一钳回多边形内
     // 天空蛋边距=石台边距（world.js 同为 墙厚+1.2），同点同钳制，蛋才不会漂离台面
+    // 静态蛋位严格边距（floor=margin）：蛋容许被甩向城心（保可捡），不许贴进墙缝
     const q = { x, z };
-    this._clampCityPos(q, stage, word.zone === 'sky' ? this._cityWallMargin(stage, 1.2) : undefined);
+    const m = this._cityWallMargin(stage, word.zone === 'sky' ? 1.2 : 0.5);
+    this._clampCityPos(q, stage, m, m);
     return word.zone === 'sky' ? { x: q.x, z: q.z, y: 3.2 } : { x: q.x, z: q.z, y: 0 };
   }
   // 换城：切舞台显隐、词宠全家迁城、玩家落在新城
@@ -1764,7 +1768,7 @@ export class Game {
           const rrT = rr * (1 - Math.min(0.55, t * 0.055));
           ux = Math.sin(angT); uz = Math.cos(angT);
           const clampP = { x: stage.cx + ux * rrT, z: stage.cz + uz * rrT };
-          this._clampCityPos(clampP, stage, margin);
+          this._clampCityPos(clampP, stage, margin, margin);   // 静态牌子严格边距
           x = clampP.x; z = clampP.z;
           if (!placedSigns.some(q => Math.hypot(q.x - x, q.z - z) < gap)) break;
         }
@@ -1782,7 +1786,8 @@ export class Game {
           grp.add(gate);
           this._signList.push({ ...it, x, z });
           const es = { x: x - ux * 1.2 + uz * 0.9, z: z - uz * 1.2 - ux * 0.9 };   // 蛋点偏移随校门缩 1/2
-          this._clampCityPos(es, stage, this._cityWallMargin(stage, 0.5));   // 牌旁蛋点也钳进陆地（细长轮廓防落海）
+          const esM = this._cityWallMargin(stage, 0.5);
+          this._clampCityPos(es, stage, esM, esM);   // 牌旁蛋点也钳进陆地（细长轮廓防落海；静态严格）
           this._signEggSpots.unshift(es);
           return;
         }
@@ -1794,7 +1799,8 @@ export class Game {
         this._signList.push({ ...it, x, z });
         if (this._signEggSpots.length < 26) {
           const es2 = { x: x - dx * 0.9 + dz * 0.75, z: z - dz * 0.9 - dx * 0.75 };   // 牌子侧后方（偏移同步缩小）
-          this._clampCityPos(es2, stage, this._cityWallMargin(stage, 0.5));   // 蛋不许落在院墙外
+          const esM2 = this._cityWallMargin(stage, 0.5);
+          this._clampCityPos(es2, stage, esM2, esM2);   // 蛋不许落在院墙外（静态严格）
           this._signEggSpots.push(es2);
         }
       });
@@ -2233,8 +2239,10 @@ export class Game {
     return Math.max(1.2, st.r * 0.035) + extra;
   }
   // 把世界坐标点钳回当前城市多边形内，并保证离院墙内壁至少 margin（默认=玩家半径）；
+  // floor 是窄颈放宽下限（city-shape.clampPoly）：细颈里挤不出 margin 时只保证 floor，
+  // 小人/词宠/NPC 这些「要走路的」贴着墙缝也要过得去，不再被甩向城心（floor=margin 即严格）。
   // 返回是否发生了钳制。城市边界的唯一裁判：玩家/NPC/蛋/立牌全走这里，边界永远一致
-  _clampCityPos(p, st = this._currentStage(), margin = this._cityWallMargin(st)) {
+  _clampCityPos(p, st = this._currentStage(), margin = this._cityWallMargin(st), floor = 0.5) {
     const b = this.world.cityBounds && this.world.cityBounds[st.key];
     if (!b) {   // 兜底：圆形钳制
       const dx = p.x - st.cx, dz = p.z - st.cz;
@@ -2251,7 +2259,7 @@ export class Game {
       if (q.d >= margin + 2.5 && polyInside(b.sim || b.pts, lx, lz)) return false;
     }
     // 简化轮廓（≤0.1 误差，边距 ≥1.2 下无感）：贴边时的精确钳制
-    const [nx, nz] = clampPoly(b.sim || b.pts, lx, lz, margin);
+    const [nx, nz] = clampPoly(b.sim || b.pts, lx, lz, margin, floor);
     p.x = st.cx + nx; p.z = st.cz + nz;
     return Math.abs(nx - lx) > 1e-6 || Math.abs(nz - lz) > 1e-6;
   }
