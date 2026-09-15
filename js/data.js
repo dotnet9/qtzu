@@ -1,6 +1,10 @@
 // 城市数据加载器：game/data/cities/ 目录下的 JSON 统一从这里进。
 // 设计原则：fetch + 内存缓存；缺文件/断网只降级不崩——城市卡没图就显示 emoji 横幅，
 // 牌子少了那块，游戏本身照常玩。内容想改只改 JSON，不用动任何程序。
+// 双语资源：zh 主资源即各 JSON 原文；纯英模式（档案卡设置）叠加 cities/en/<id>.json
+// 覆盖层（按索引对齐的英文叙述数组，见 cities/en/chengdu.json 样例），缺文件/缺条目回退中文。
+import { getLang } from './save.js';
+
 const cache = new Map();
 
 function fetchJson(url) {
@@ -64,13 +68,24 @@ export async function loadCityData(cityId) {
     loadJson(base + 'scenes.json'),
   ]);
   if (!city) return null;   // 城市主体都没有：调用方走兜底路线
-  return {
+  const out = {
     ...city,
     id: city.id || cityId,
     unis: (unis && unis.unis) || [],
     foods: (foods && foods.items) || [],
     scenes: (scenes && scenes.items) || [],
   };
+  // 纯英模式：叠加英文叙述覆盖层（按索引对齐；缺文件/缺条目回退中文）
+  if (getLang() === 'en') {
+    const en = await loadJson(`cities/en/${cityId}.json`);
+    if (en) {
+      if (en.history) out.history = en.history;
+      (en.foods || []).forEach((d, i) => { if (out.foods[i] && d) out.foods[i].desc = d; });
+      (en.scenes || []).forEach((d, i) => { if (out.scenes[i] && d) out.scenes[i].desc = d; });
+      (en.unis || []).forEach((d, i) => { if (out.unis[i] && d) out.unis[i].history = d; });
+    }
+  }
+  return out;
 }
 
 // 批量加载一座城市的多个分册原始数据（城市卡单独刷新某分册时用）

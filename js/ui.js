@@ -2,7 +2,7 @@
 import { sfx, speak, speakSlow, speakFollow, spellLetters, stopSpeaking, playRecording, scoreVoice, updateBgm, isBgmMuted, setBgmMuted, setBgmFever, getAccent, setAccent } from './audio.js';
 import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.js';
 import { whisperState, loadPercent } from './whisper.js';
-import { t, isEn } from './i18n.js';
+import { t, isEn, initI18n } from './i18n.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
@@ -411,7 +411,7 @@ export function showTrainQuiz({ q, opts, answer, onGood }) {
   closeTrainQuiz();
   const ov = document.createElement('div');
   ov.className = 'train-quiz';
-  ov.innerHTML = `<div class="tq-q">🚄 车上小问答：${q}</div>
+  ov.innerHTML = `<div class="tq-q">${t('quiz.q', { q })}</div>
     <div class="tq-opts">${(opts || []).map((o, i) => `<button type="button" data-i="${i}">${o}</button>`).join('')}</div>
     <div class="tq-rs"></div>`;
   document.body.appendChild(ov);
@@ -421,12 +421,12 @@ export function showTrainQuiz({ q, opts, answer, onGood }) {
       const ok = Number(b.dataset.i) === answer;
       ov.querySelectorAll('.tq-opts button').forEach(x => { x.disabled = true; if (x === b) x.classList.add(ok ? 'right' : 'wrong'); });
       if (ok) {
-        rs.textContent = '答对啦 +1⭐';
+        rs.textContent = t('quiz.ok');
         rs.className = 'tq-rs good';
         sfx.great();
         onGood && onGood();
       } else {
-        rs.textContent = `正确答案：${opts[answer]}`;
+        rs.textContent = t('quiz.answer', { a: opts[answer] });
         rs.className = 'tq-rs bad';
         sfx.pop();
       }
@@ -854,9 +854,10 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
   const q = quiz ? `<div class="cc-quiz"><b>🤔 小问答：${quiz.q}</b><div class="cc-opts">${
     quiz.opts.map((o, i) => `<button type="button" data-i="${i}">${o}</button>`).join('')
   }</div><div class="cc-quiz-rs"></div></div>` : '';
+  const introText = isEn() && variant.introEn ? variant.introEn : variant.intro;
   const homeHtml = `
-    ${city.history ? `<div class="cc-hist">${city.history}</div>` : ''}
-    <p class="cc-p">欢迎来到 <b>${city.name} ${city.en}</b>！${variant.intro}</p>
+    ${city.history && !isEn() ? `<div class="cc-hist">${city.history}</div>` : ''}
+    <p class="cc-p">欢迎来到 <b>${city.name} ${city.en}</b>！${introText}</p>
     <button class="cc-intro-en" data-en="${variant.introEn}">🔊 ${variant.introEn}</button>
     ${variant.introEn ? `<button type="button" class="cc-guide">🎤 当小导游 · 80分得徽章${hasBadge('guide:' + city.en) ? ' 🎖️' : ''}</button>` : ''}
     ${city.importance ? `<div class="cc-imp">⭐ ${city.importance}</div>` : ''}
@@ -898,18 +899,26 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
         ${it.desc ? `<div class="it-desc">${it.desc}</div>` : ''}
       </div>`).join('');
     if (!cards) return `<p class="cc-p">这座城市的秘密等你亲自去发现！</p>`;
-    const line = stampable ? `<div class="cc-stamp-line">🏅 景点集章 ${got.length}/${(items || []).length}${isStampsDone(city.en) ? ' · 全部完成！' : ' · 点一点盖上纪念章'}</div>` : '';
+    const line = stampable
+      ? `<div class="cc-stamp-line">${isStampsDone(city.en)
+          ? t('cc.stampDone', { n: got.length, total: (items || []).length })
+          : t('cc.stamp', { n: got.length, total: (items || []).length })}</div>`
+      : '';
     return `${line}<p class="cc-p">${tip}</p><div class="cc-grid">${cards}</div>`;
   };
 
   // 风景页每次进入都按最新盖章状态重画
-  const scenesHtml = () => itemsHtml(city.scenes, '🏞️', `${city.name}的风景名胜（${LANDMARK_ZH[city.landmark] || '城市舞台'}是它的名片）：`, true);
+  const scenesHtml = () => itemsHtml(city.scenes, '🏞️', isEn()
+    ? `Famous sights in ${city.name}:`
+    : `${city.name}的风景名胜（${LANDMARK_ZH[city.landmark] || '城市舞台'}是它的名片）：`, true);
 
   // Tab 栏：配置数组驱动，city.customTabs 可无代码扩展
   const tabs = [
     { id: 'home', name: '🏠 首页', html: homeHtml },
     { id: 'uni', name: '🎓 大学', html: uniHtml },
-    { id: 'food', name: '🍜 美食', html: itemsHtml(city.foods, '🍜', `来到${city.name}，一定要尝尝这些特色美味：`) },
+    { id: 'food', name: '🍜 美食', html: itemsHtml(city.foods, '🍜', isEn()
+      ? `Must-try foods in ${city.name}:`
+      : `来到${city.name}，一定要尝尝这些特色美味：`) },
     { id: 'scene', name: '🏞️ 风景', html: scenesHtml() },
     ...(city.customTabs || []).map(t => ({ id: t.name, name: t.name, html: t.html || '' })),
   ];
@@ -1038,13 +1047,13 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
         const ok = Number(b.dataset.i) === quiz.a;
         b.classList.add(ok ? 'right' : 'wrong');
         if (ok) {
-          rs.textContent = '答对啦 +1⭐';
+          rs.textContent = t('cc.quizOk');
           rs.className = 'cc-quiz-rs good';
           sfx.great();
           onStar && onStar();
           quizBox.querySelectorAll('.cc-opts button').forEach(x => x.disabled = true);
         } else {
-          rs.textContent = '再想一想～';
+          rs.textContent = t('cc.quizRetry');
           rs.className = 'cc-quiz-rs bad';
         }
       };
@@ -2740,6 +2749,8 @@ function watchBgmDialogs() {
 }
 
 // ---------- HUD 文案语言切换：档案卡改语言后调用，重写静态 UI 文案 ----------
+initI18n().then(() => applyLang());          // 词典资源就绪后刷新一遍
+addEventListener('i18n-ready', applyLang);
 function applyLang() {
   const map = [
     ['btn-book', 'menu.book'], ['btn-map', 'menu.map'], ['btn-catalog', 'menu.catalog'],

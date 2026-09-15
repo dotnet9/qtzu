@@ -1,5 +1,6 @@
-// 轻量双语系统：key 为英文短句 id，字典提供 zh/en 双语文案；存档 lang 决定输出。
-// 双语模式：zh 为主、en 附注（部分调用点自行拼接）；纯英模式：只出 en。
+// 轻量双语系统：key 为英文短句 id，文案资源在 data/i18n/ui.zh.json 与 ui.en.json
+// （key 相同、按语言分文件维护，全球协作者改 JSON 即可翻译）；代码内置同内容兜底，
+// 资源加载失败也不影响显示。存档 lang 决定输出：bi=中文为主 en=纯英文。
 import { getLang } from './save.js';
 
 const DICT = {
@@ -60,6 +61,7 @@ const DICT = {
   'train.title': { zh: '🚂 开往哪座城？', en: '🚂 Which city next?' },
   'quiz.q':      { zh: '车上小问答：{q}', en: '🚄 Train quiz: {q}' },
   'quiz.ok':     { zh: '答对啦 +1⭐', en: 'Correct! +1⭐' },
+  'quiz.answer': { zh: '正确答案：{a}', en: 'Correct answer: {a}' },
   // 档案 / 设置
   'prof.city':    { zh: '我的城市', en: 'My City' },
   'prof.grade':   { zh: '选择年级', en: 'Grade' },
@@ -82,19 +84,34 @@ const DICT = {
 };
 
 export function t(key, vars) {
-  const e = DICT[key];
-  const lang = getLang();
-  let s = e ? e[lang === 'en' ? 'en' : 'zh'] : key;
+  let s = dictGet(key) ?? key;
   if (vars) for (const k in vars) s = s.split(`{${k}}`).join(vars[k]);
   return s;
 }
 // 双语模式输出 "zh / en"，纯英模式只出 en；用于并列展示型文案
 export function tb(key, vars) {
-  const e = DICT[key];
-  if (!e) return t(key, vars);
-  if (getLang() === 'en') return e.en;
-  let s = e.zh;
+  if (getLang() === 'en') return t(key, vars);
+  let s = _merged.zh[key] ?? DICT[key]?.zh ?? key;
   if (vars) for (const k in vars) s = s.split(`{${k}}`).join(vars[k]);
   return s;
 }
 export function isEn() { return getLang() === 'en'; }
+
+// ---------- 词典资源化：从 data/i18n/ 拉取 zh/en 资源合并覆盖内置兜底 ----------
+const _merged = { zh: {}, en: {} };
+export function initI18n() {
+  const load = f => fetch(`data/i18n/${f}.json`, { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null);
+  return Promise.all([load('ui.zh'), load('ui.en')]).then(([zh, en]) => {
+    if (zh) Object.assign(_merged.zh, zh);
+    if (en) Object.assign(_merged.en, en);
+    _merged.loaded = true;
+    dispatchEvent(new Event('i18n-ready'));
+    return true;
+  }).catch(() => false);
+}
+export function isI18nLoaded() { return !!_merged.loaded; }
+function dictGet(key) {
+  const lang = getLang();
+  if (lang === 'en') return _merged.en[key] ?? DICT[key]?.en;
+  return _merged.zh[key] ?? DICT[key]?.zh;
+}

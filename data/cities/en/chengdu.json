@@ -1,0 +1,27 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "foods": [
+    "Red oil bubbling, numbing and spicy — a whole table around one pot. Chengdu's liveliest way to eat.",
+    "Numbing, spicy, hot and tender. 'Chen Mapo' created this world-famous dish 150 years ago.",
+    "Noodles once carried on a shoulder pole through the streets, with pickled veggies, minced pork and chili oil.",
+    "Skewers of all kinds swished in a red-oil pot — you pay by counting the sticks. Chengdu at its most down-to-earth.",
+    "Thin-skinned Sichuan wontons, silky and tender, in clear broth or red oil. The old flagship shop is on Chunxi Road.",
+    "Pork dumplings in sweet red-oil soy sauce — a century-old taste, salty, sweet and slightly spicy.",
+    "Sliced beef and offal in chili oil with crushed peanuts. Named after a couple who sold it from a street stall.",
+    "Little round cakes baked in a copper street pan, crispy outside, soft inside. Students' favorite snack.",
+    "Sticky-rice balls thrown at the counter with three loud 'bangs' — the farther they fly, the better the maker.",
+    "Braised rabbit head, spicy or five-spice. 'Nibbling rabbit heads' is a true Chengdu pleasure."
+  ],
+  "scenes": [
+    "A 2,200-year-old irrigation system built by Li Bing, which turned the plain into the 'Land of Abundance'. A World Heritage Site.",
+    "Home of the giant pandas — watch cubs climb and tumble. Panda fans from all over the world come here.",
+    "The only shrine in China where a ruler and his minister are worshipped together: Liu Bei and Zhuge Liang. A Three-Kingdoms pilgrimage site.",
+    "A Qing-dynasty style street beside Wuhou Shrine — lanterns, snacks and a beautiful night view.",
+    "The cottage where the poet Du Fu lived in Chengdu. He wrote his famous 'Broad mansions for all' poem here.",
+    "Wide Alley, Narrow Alley and Well Alley from the Qing 'Manchu City' — a living fossil of old Chengdu life.",
+    "One of the birthplaces of Taoism. 'Qingcheng, the most serene mountain under heaven' — temples hidden in deep woods.",
+    "Ruins of the ancient Shu kingdom. The Golden Sun Bird was unearthed here — now the symbol of Chengdu.",
+    "Heming Teahouse has served tea for a century. Ear-cleaning, chatting — the most 'Chengdu' afternoon ever.",
+    "A Ming-dynasty covered bridge over the Jin River, full of restaurants and bars, glowing like a treasure ship at night."
+  ]
+}
