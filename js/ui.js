@@ -2,10 +2,11 @@
 import { sfx, speak, speakSlow, speakFollow, spellLetters, stopSpeaking, playRecording, scoreVoice, updateBgm, isBgmMuted, setBgmMuted, setBgmFever, getAccent, setAccent } from './audio.js';
 import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.js';
 import { whisperState, loadPercent } from './whisper.js';
+import { t, isEn } from './i18n.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, getHomeCity, hasHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub, extraStats } from './save.js';
+import { setHomeCity, getHomeCity, hasHomeCity, setLang, getLang, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub, extraStats } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -325,10 +326,10 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   ch.open = true; ch.word = word; ch.mode = mode; ch.onSuccess = onSuccess; ch.onClose = onClose; ch.onSkip = onSkip; ch.onDemoEnd = onDemoEnd || null; ch.easy = !!easy;   // 复习蛋简单模式：读一遍就过
   ch.busy = false; ch.spellMode = false; ch.listening = false; ch.replayUrl = null;
   toggleHudMenu(false);   // 弹窗打开时收起菜单
-  els.modalTitle.textContent = title || (mode === 'feed' ? '🍖 词宠饿啦，喊它的名字喂它'
-    : mode === 'practice' ? '📖 跟读练习 · 大声读给词宠听'
-    : ch.easy ? '🔁 复习蛋 · 大声读一遍就唤醒'
-    : '🥚 遇见词宠蛋！念出单词唤醒它');
+  els.modalTitle.textContent = title || (mode === 'feed' ? t('ch.feed')
+    : mode === 'practice' ? t('ch.practice')
+    : ch.easy ? t('ch.review')
+    : t('ch.hatch'));
   els.wordEn.textContent = word.en;
   els.wordEn.classList.remove('spell-hidden');
   // 音标（有数据才显示）
@@ -368,16 +369,16 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
       if (whisperState() === 'ready') {
         clearInterval(ch.engineTick);
         ch.engineWait = false;
-        els.micLabel.textContent = '🎤 就绪！点我开始读';
+        els.micLabel.textContent = t('ch.micReady');
         sfx.pop();
         return;
       }
       const pct = loadPercent();
-      els.micLabel.textContent = pct > 0 ? `🚀 语音引擎准备中 ${pct}%` : '🚀 语音引擎准备中…';
-      if (elapsed >= 30 && pct === 0) els.micLabel.textContent = '📡 网络有点慢，稍等或先拼字母块';
+      els.micLabel.textContent = pct > 0 ? t('ch.micLoadPct', { pct }) : t('ch.micLoad');
+      if (elapsed >= 30 && pct === 0) els.micLabel.textContent = t('ch.micSlow');
     }, 500);
   } else {
-    els.micLabel.textContent = '点我开始读';
+    els.micLabel.textContent = t('ch.micGo');
   }
   if (voiceBlockedByInsecure) {
     els.voiceFeedback.textContent = '🎤 要 https:// 网址才能语音，先拼字母块吧';
@@ -618,10 +619,10 @@ function setListening(on) {
         }
         return;
       }
-      if (ch.listening) els.micLabel.textContent = `读完点这里 ${left}s`;
+      if (ch.listening) els.micLabel.textContent = t('ch.micRec', { n: left });
     }, 1000);
   } else {
-    els.micLabel.textContent = '点我开始读';
+    els.micLabel.textContent = t('ch.micGo');
   }
 }
 
@@ -657,20 +658,20 @@ els.btnMic.addEventListener('click', () => {
   }
   if (ch.listening) {
     setListening(false);
-    els.voiceFeedback.textContent = '识别中…';
+    els.voiceFeedback.textContent = t('ch.recognize');
     if (ch.onMicEnd) ch.onMicEnd();
     return;
   }
   stopSpeaking();          // 停掉示范发音，别盖过孩子的声音
   els.btnReplay.classList.add('hidden');
   setListening(true);
-  els.voiceFeedback.textContent = `● 开口大声读！${LISTEN_SECONDS} 秒内读完会自动识别`;
+  els.voiceFeedback.textContent = t('ch.listen', { n: LISTEN_SECONDS });
   els.voiceFeedback.className = 'good';
   const ok = ch.onMic ? ch.onMic() : false;
   if (ok === false) {
     // 识别引擎启动失败：立即降级为字母块，不让小朋友干等
     setListening(false);
-    els.voiceFeedback.textContent = '🎤 语音启动失败，改用字母块拼吧';
+    els.voiceFeedback.textContent = t('ch.fail');
     setTimeout(() => setSpellMode(true), 500);
     return;
   }
@@ -682,7 +683,7 @@ export function voiceResult(res) {
   setListening(false);
   if (res.error) {
     els.voiceFeedback.textContent = res.error === 'no-result'
-      ? '没听清，再大声读一次～'
+      ? t('ch.reRead')
       : '再读一次试试～';
     els.voiceFeedback.className = 'bad';
     sfx.miss();
@@ -1891,7 +1892,7 @@ export function showProfile(onDone, profile = {}, options = {}) {
   let pickedCity = profile.city || (hasHomeCity() ? getHomeCity() : '');   // 真选过才回显，新同学保持"我的城市"占位
   const paintCity = () => {
     const c = CITIES.find(x => x.id === pickedCity);
-    citySel.textContent = c ? `${c.name} ${c.en}` : '我的城市';
+    citySel.textContent = c ? `${c.name} ${c.en}` : t('prof.city');
     citySel.classList.toggle('placeholder', !c);
   };
   const tryPaintCity = () => { if (!citySel || !CITIES.length) return false; paintCity(); return true; };
@@ -1931,6 +1932,19 @@ export function showProfile(onDone, profile = {}, options = {}) {
       : (mode === 'login' ? '忘了密码？换个名字重新注册一个就行。' : '同一个名字就是同一份学习记录哦。');
     close.classList.toggle('hidden', !editing);
     logout.classList.toggle('hidden', !editing);
+    // 文案语言：双语（默认）/ 纯英语，切换即存档并刷新生效
+    const langRow = document.getElementById('profile-lang');
+    if (langRow) {
+      langRow.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === getLang()));
+      langRow.querySelectorAll('.lang-btn').forEach(b => {
+        b.onclick = () => {
+          if (b.dataset.lang === getLang()) return;
+          sfx.pop();
+          setLang(b.dataset.lang);
+          location.reload();   // 切语言立即生效（静态文案重写最干净）
+        };
+      });
+    }
   };
   paint();
   if (options.kickMsg) error.textContent = options.kickMsg;   // 被顶下线后的提示
@@ -2562,28 +2576,30 @@ export function showDailyBoard({ quest, stars, achievements = [] }) {
     dailyOv.addEventListener('click', e => { if (e.target === dailyOv) dailyOv.classList.add('hidden'); });
   }
   const pct = Math.min(100, Math.round(quest.n / quest.goal * 100));
+  const en = isEn();
+  const qText = en && quest.textEn ? quest.textEn : quest.text;
   const achHtml = achievements.length ? `
       <div id="ach-wall">
-        <div class="ach-t">🏆 成就墙</div>
+        <div class="ach-t">${t('ach.head')}</div>
         ${achievements.map(a => `
           <div class="ach-row${a.done ? ' done' : ''}">
-            <i>${a.icon}</i><b>${a.name}</b>
-            <span class="ach-desc">${a.desc}</span>
+            <i>${a.icon}</i><b>${en && a.nameEn ? a.nameEn : a.name}</b>
+            <span class="ach-desc">${en && a.descEn ? a.descEn : a.desc}</span>
             <span class="ach-n">${a.done ? '✓' : `${a.n}/${a.goal}`}</span>
           </div>`).join('')}
       </div>` : '';
   dailyOv.innerHTML = `
     <div id="daily-card">
       <div id="daily-head">
-        <span>📌 今日任务</span>
+        <span>${t('daily.head')}</span>
         <span id="daily-stars">⭐ ${stars}</span>
         <button id="daily-close" class="round-btn small">✕</button>
       </div>
-      <div id="daily-quest-text">${quest.text}</div>
+      <div id="daily-quest-text">${qText}</div>
       <div id="daily-bar"><div id="daily-bar-fill" style="width:${pct}%"></div></div>
-      <div id="daily-progress">${quest.done ? '🎉 已完成！奖励已到手' : `进度 ${Math.min(quest.n, quest.goal)}/${quest.goal} · 完成奖 ⭐5`}</div>
+      <div id="daily-progress">${quest.done ? t('daily.done') : t('daily.progress', { n: Math.min(quest.n, quest.goal), goal: quest.goal })}</div>
       ${achHtml}
-      <div id="daily-tip">每天来任务板看看，任务会换新的哦～</div>
+      <div id="daily-tip">${t('daily.tip')}</div>
     </div>`;
   dailyOv.classList.remove('hidden');
   dailyOv.querySelector('#daily-close').onclick = () => dailyOv.classList.add('hidden');
@@ -2723,6 +2739,21 @@ function watchBgmDialogs() {
   update();
 }
 
+// ---------- HUD 文案语言切换：档案卡改语言后调用，重写静态 UI 文案 ----------
+function applyLang() {
+  const map = [
+    ['btn-book', 'menu.book'], ['btn-map', 'menu.map'], ['btn-catalog', 'menu.catalog'],
+    ['btn-rank', 'menu.rank'], ['btn-report', 'menu.report'], ['btn-dub', 'menu.dub'],
+    ['btn-help', 'menu.help'], ['btn-about', 'menu.about'], ['btn-account', 'menu.account'],
+  ];
+  for (const [id, key] of map) {
+    const b = document.getElementById(id);
+    const span = b && b.querySelector('span');
+    if (span) span.textContent = t(key);
+  }
+  const bgm = document.getElementById('btn-bgm');
+  if (bgm) { const s = bgm.querySelector('span'); if (s) s.textContent = isBgmMuted() ? t('menu.bgmOff') : t('menu.bgm'); }
+}
 // ---------- 绑定 HUD 按钮 ----------
 export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, onHungryPill, onMic, onMicEnd, onRank, onReport, onAccount, onAbout, isTouch }) {
   isTouchMode = !!isTouch;
@@ -2765,6 +2796,7 @@ export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, 
     els.hudMenu.addEventListener('click', e => e.stopPropagation());
     els.hudMenu.querySelectorAll('.menu-item').forEach(b => b.addEventListener('click', () => toggleHudMenu(false)));
   }
+  applyLang();   // HUD 静态文案按当前语言重写
   document.addEventListener('click', e => {
     if (els.hudMenu && !els.hudMenu.classList.contains('hidden')) toggleHudMenu(false);
   });

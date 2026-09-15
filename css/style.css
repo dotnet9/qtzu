@@ -387,6 +387,11 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #word-game .wg-rs { min-height: 20px; margin-top: 10px; text-align: center; font-size: 13px; font-weight: 900; color: #9C8C7A; }
 #word-game .wg-rs.good { color: #4E7A46; }
 
+/* 🌐 语言切换（档案卡） */
+#profile-lang { display: flex; gap: 8px; margin-bottom: 10px; }
+#profile-lang .lang-btn { flex: 1; }
+#profile-lang .lang-btn.active { background: linear-gradient(#FF9DBA, #FF8FB0); border-color: #FF8FB0; color: #fff; box-shadow: 0 3px 10px rgba(224,103,141,.35); }
+
 /* 🏷️ 排行榜称号金字 */
 .rank-title {
   font-style: normal; font-size: 10px; font-weight: 900; color: #B47514;

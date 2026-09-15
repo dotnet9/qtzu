@@ -10,6 +10,7 @@ import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
 import { NPCManager } from './npcs.js';
 import { cityLandmark, cityLayout } from './world.js';
+import { t } from './i18n.js';
 import { buildWorld } from './world.js';
 import { buildPlayer, letterTexture, petThumbnail, speechBubbleTexture, PROPS } from './models.js';
 import { EggManager, PetManager } from './pets.js';
@@ -883,7 +884,7 @@ export class Game {
     if (this._hungryGuide) {
       const hp = this.pets.get(this._hungryGuide.id);
       if (!hp || performance.now() > this._hungryGuide.until) this._hungryGuide = null;
-      else return { text: `🍖 「${hp.word.en}」饿啦——跟着箭头去喂它！`, target: hp.group.position };
+      else return { text: t('q.hungry', { en: hp.word.en }), target: hp.group.position };
     }
     const total = this.hatchedInScope();
     const chIdx = this.chapterIndex(total);
@@ -892,7 +893,7 @@ export class Game {
     if (this.cityTour) {
       const cur = this.currentChapter;
       const left = cur.words.filter(id => !save.isHatched(id) && this.eggs.get(id));
-      if (!left.length) return { text: `找到本关剩下的词宠蛋，全部唤醒就过关啦！`, target: null };
+      if (!left.length) return { text: t('q.done'), target: null };
       let best = null, bd = 1e9;
       for (const id of left) {
         const e = this.eggs.get(id);
@@ -907,7 +908,7 @@ export class Game {
         if (bd >= pd - 2) best = prev;
       }
       this._lastGuideEggId = best ? best.word.id : null;
-      return { text: `🥚 朝着发光的词宠蛋走过去，孵化它！`, target: best ? best.group.position : null };
+      return { text: t('q.egg'), target: best ? best.group.position : null };
     }
     if (total >= this.total) {
       return {
@@ -1051,14 +1052,14 @@ export class Game {
     const g = this._guide;
     if (g.step === 0) {
       const e = this._nearestReachableEgg();
-      return { text: '🥚 第1步：走到发光的词宠蛋边！', target: e ? e.group.position : null };
+      return { text: t('q.step1'), target: e ? e.group.position : null };
     }
     if (g.step === 1) {
       const e = this._nearestReachableEgg();
-      return { text: '🎤 第2步：大声读出单词，唤醒它！', target: e ? e.group.position : null };
+      return { text: t('q.step2'), target: e ? e.group.position : null };
     }
     const pt = g.petId ? this.pets.get(g.petId) : null;
-    return { text: '🐾 第3步：走近你的词宠，摸摸头认识它！', target: pt ? pt.group.position : null };
+    return { text: t('q.step3'), target: pt ? pt.group.position : null };
   }
 
   // 区域进入提示

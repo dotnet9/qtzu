@@ -5,12 +5,12 @@ const KEY = 'wordpet_save_v1';
 
 // 每日任务池：按日期轮换，完成奖 5 颗星星
 export const DAILY_QUESTS = [
-  { id: 'feed2', goal: 2, text: '喂饱 2 只想你的词宠' },
-  { id: 'hatch2', goal: 2, text: '孵化 2 颗新词宠蛋' },
-  { id: 'gate1', goal: 1, text: '解开 1 个机关谜题' },
-  { id: 'goodread', goal: 1, text: '朗读拿到 1 次 95 分以上' },
-  { id: 'summon3', goal: 3, text: '召唤 3 次词宠' },
-  { id: 'read2', goal: 2, text: '大声跟读 2 句英语' },
+  { id: 'feed2', goal: 2, text: '喂饱 2 只想你的词宠', textEn: 'Feed 2 hungry pets' },
+  { id: 'hatch2', goal: 2, text: '孵化 2 颗新词宠蛋', textEn: 'Hatch 2 new word eggs' },
+  { id: 'gate1', goal: 1, text: '解开 1 个机关谜题', textEn: 'Solve 1 gate puzzle' },
+  { id: 'goodread', goal: 1, text: '朗读拿到 1 次 95 分以上', textEn: 'Score 95+ on a read-aloud' },
+  { id: 'summon3', goal: 3, text: '召唤 3 次词宠', textEn: 'Summon your pets 3 times' },
+  { id: 'read2', goal: 2, text: '大声跟读 2 句英语', textEn: 'Read 2 English lines aloud' },
 ];
 
 function todayKey() {
@@ -28,7 +28,9 @@ function fresh() {
     intro: false,
     playSeconds: 0,
     profile: { username: '', password: '', registered: false, score: 0, sessionScore: 0, gender: 'boy', stars: 0, city: 'beijing', token: '',
-      wear: { hat: '', hatOwned: [], balloon: false, balloonOwned: false, wand: false, wandOwned: false, title: '', titleOwned: [] } },
+      wear: { hat: '', hatOwned: [], balloon: false, balloonOwned: false, wand: false, wandOwned: false, title: '', titleOwned: [] },
+      lang: 'bi',        // 文案语言：bi=中英双语（默认） en=纯英语
+    },
     daily: { day: '', idx: 0, n: 0, done: false },
     milestones: {},    // 已领取的里程碑（collect1=孵满10只、enrolled3b=换过这册）
     weekly: [],        // 家长周报流水：{t: 时间戳, s: 朗读分} / {t, h:1 孵化}，只留最近 7 天
@@ -64,6 +66,7 @@ function load() {
     if (typeof merged.profile.token !== 'string') merged.profile.token = '';   // 在线会话令牌（单点登录）
     // 是否已建过档案（用来决定是否直接续玩）；老存档默认 false，下次填一次名字即可
     if (typeof merged.profile.registered !== 'boolean') merged.profile.registered = false;
+    if (merged.profile.lang !== 'en') merged.profile.lang = 'bi';
     merged.milestones = d.milestones || {};
     merged.weekly = Array.isArray(d.weekly) ? d.weekly : [];
     merged.naughty = d.naughty || {};
@@ -318,11 +321,11 @@ export function markNpcChat() {
 
 // ---------- 成就墙：过程性目标（只展示不发星星，避免通胀） ----------
 export const ACHIEVEMENTS = [
-  { id: 'cities10', icon: '🏙️', name: '小小旅行家', desc: '到访 10 座城市', goal: 10, stat: 'cities' },
-  { id: 'stamps5', icon: '🏅', name: '集章达人', desc: '集满 5 座城市的景点章', goal: 5, stat: 'stamps' },
-  { id: 'hatch30', icon: '🧺', name: '孵蛋高手', desc: '唤醒 30 只词宠', goal: 30, stat: 'hatched' },
-  { id: 'guide3', icon: '🎖️', name: '金牌导游', desc: '拿到 3 枚小导游徽章', goal: 3, stat: 'guides' },
-  { id: 'dub3', icon: '🎬', name: '配音新星', desc: '完成 3 部配音作品', goal: 3, stat: 'dubs' },
+  { id: 'cities10', icon: '🏙️', name: '小小旅行家', nameEn: 'Little Traveler', desc: '到访 10 座城市', descEn: 'Visit 10 cities', goal: 10, stat: 'cities' },
+  { id: 'stamps5', icon: '🏅', name: '集章达人', nameEn: 'Stamp Collector', desc: '集满 5 座城市的景点章', descEn: 'Complete stamps in 5 cities', goal: 5, stat: 'stamps' },
+  { id: 'hatch30', icon: '🧺', name: '孵蛋高手', nameEn: 'Egg Master', desc: '唤醒 30 只词宠', descEn: 'Hatch 30 word pets', goal: 30, stat: 'hatched' },
+  { id: 'guide3', icon: '🎖️', name: '金牌导游', nameEn: 'Gold Guide', desc: '拿到 3 枚小导游徽章', descEn: 'Earn 3 tour-guide badges', goal: 3, stat: 'guides' },
+  { id: 'dub3', icon: '🎬', name: '配音新星', nameEn: 'Dubbing Star', desc: '完成 3 部配音作品', descEn: 'Finish 3 dubbing shows', goal: 3, stat: 'dubs' },
 ];
 export function achievementProgress() {
   const cities = new Set(Object.keys(data.cityVisits || {}).map(k => k.split(':')[1])).size;
@@ -463,6 +466,10 @@ export function getPassword() { return data.profile.password || ''; }
 export function setPassword(pwd) { data.profile.password = String(pwd || ''); save(); }
 export function isRegistered() { return !!data.profile.registered; }
 export function setRegistered(v) { data.profile.registered = !!v; save(); }
+
+// ---------- 文案语言 ----------
+export function getLang() { return data.profile.lang === 'en' ? 'en' : 'bi'; }
+export function setLang(l) { data.profile.lang = l === 'en' ? 'en' : 'bi'; save(); }
 
 // 每完成一个学习挑战加 1 分；本地先记账，联网时再同步到排行榜服务。
 // 称号展示名（许愿井购买后亮在排行榜名字旁）

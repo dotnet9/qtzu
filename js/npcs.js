@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import * as ui from './ui.js';
 import { markNpcChat } from './save.js';
+import { isEn } from './i18n.js';
 
 const ROLES = {
   tourist: { zh: '游客', emoji: '🧳', shirts: ['#FF9FBE', '#7EC4F2', '#FFD34E'] },
@@ -47,7 +48,12 @@ const CITY_ROLES = {
   shenyang: [{ zh: '秧歌大妈', emoji: '🪭', shirts: ['#FF9FBE', '#FFD34E'] }],
   changchun: [{ zh: '冰雪画师', emoji: '🎨', shirts: ['#7EC4F2'] }],
 };
-const GREETINGS = ['Hello! 你好呀！', 'Welcome! 欢迎来到这座城市！', 'Hi! 祝你孵蛋顺利！', 'Nice to meet you!'];
+const GREETINGS = [
+  { zh: 'Hello! 你好呀！', en: 'Hello! Nice to see you!' },
+  { zh: 'Welcome! 欢迎来到这座城市！', en: 'Welcome to our city!' },
+  { zh: 'Hi! 祝你孵蛋顺利！', en: 'Hi! Good luck with your eggs!' },
+  { zh: 'Nice to meet you!', en: 'Nice to meet you!' },
+];
 const PAGE_SEC = 2;      // 每页停留秒数，自动翻页
 const BUBBLE_MAX = 5;    // 气泡总时长上限（秒）：再长的内容也不常驻屏幕
 const LINES_PER_PAGE = 3; // 每页行数：一次不多显示，文字多自动分页
@@ -245,7 +251,8 @@ export class NPCManager {
         nearest.met = true;
         // 隔日重逢：今天第一次和 NPC 聊天，问候语加欢迎回来
         const back = markNpcChat();
-        const g = back ? 'Welcome back! 好久不见，又见面啦！' : GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
+        const g = back ? 'Welcome back! 好久不见，又见面啦！'
+          : GREETINGS[Math.floor(Math.random() * GREETINGS.length)][isEn() ? 'en' : 'zh'];
         this._showBubble(g, nearest);
       }
     }
