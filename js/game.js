@@ -3217,7 +3217,11 @@ export class Game {
       await ensureCityData(id);
       if (!CITY_MAP[id]) { ui.toast('🗺️ 这座城市的地图还没准备好'); return; }
       let idx = this.islands.findIndex(isl => isl.key === id);
-      if (idx < 0) {
+      if (idx >= 0) {
+        // 目标城已在巡游岛上（debug 直达未解锁的路线城）：锁定舞台到该城，
+        // 否则 _currentStage/currentChapter 仍按进度指回家乡城——胶囊显示旧城、蛋刷成旧城的词
+        this._forceChapter = this.islands[idx].startChapter;
+      } else {
         // 追加城市舞台：位置放到巡游圈外一层，避免与已有城市重叠
         const i = this.islands.length;
         const c = CITY_MAP[id];
@@ -3252,10 +3256,12 @@ export class Game {
         }
       }
       this._switchCity(idx);
-      // 清掉未孵的旧蛋（正常通关路径不会有，防御 hack/异常进度），再按奖励关进度出蛋
+      // 清掉未孵的旧蛋（正常通关路径不会有，防御 hack/异常进度），再按当前关进度出蛋
+      // （在途城 debug 直达时 currentChapter=该城的路线关，追加奖励城时=刚推入的奖励关）
+      const keepWords = this.currentChapter.words;
       for (const [eid, eg] of this.eggs.eggs) {
         if (!eg.group.visible) continue;
-        if (this.chapters[this.chapters.length - 1].words.includes(eid)) continue;
+        if (keepWords.includes(eid)) continue;
         this.eggs.removeEgg(eid);
       }
       this._spawnProgress();   // 按新进度生成奖励关的蛋（部分在牌子旁）
