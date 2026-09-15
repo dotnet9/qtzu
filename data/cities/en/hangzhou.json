@@ -1,0 +1,34 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "'Above there is heaven; below are Suzhou and Hangzhou.' When the Southern Song made Lin'an its capital, Hangzhou was among the world's most splendid cities — Marco Polo called it 'the most beautiful and magnificent city in the world'. The Ten Scenes of West Lake date from the Song; the Grand Canal's southern end is here. Bai Juyi and Su Dongpo both dredged its lake and built causeways. Today it rides the digital economy — capital of e-commerce and cloud computing, and home of Longjing tea.",
+  "importance": "Capital of Zhejiang · Yangtze-delta central city · Digital economy hub",
+  "gallery": [
+    "West Lake",
+    "Lingyin Temple",
+    "Leifeng Pagoda"
+  ],
+  "foods": [
+    "Grass carp in sweet-sour sauce — the taste of a sister-in-law's farewell, the legend says.",
+    "Dongpo pork — braised slowly with little water, tender and rich.",
+    "Longjing tea leaves with river shrimp — the most elegant dish of Jiangnan.",
+    "Chicken wrapped in lotus leaf and clay, baked — crack it open for the aroma.",
+    "Noodles with pickled greens, bamboo and pork — Century-old Kuiyuan House.",
+    "Thin pancake pressed with fried dough — a folk snack honoring General Yue Fei.",
+    "Pink rice cakes stamped 'certain victory' — a send-off treat for Song armies.",
+    "Zhiweiguan's pork xiaolongbao — a century-old Hangzhou taste.",
+    "Lotus root stuffed with glutinous rice in osmanthus syrup — king of Jiangnan sweets.",
+    "Crispy fried radish-shred cakes — old street flavor of Hangzhou."
+  ],
+  "scenes": [
+    "World Heritage lake — 'Spring Dawn at Su Causeway', 'Melting Snow at Broken Bridge' and more.",
+    "East-Jin temple with the Feilai Peak grotto carvings, a treasury of Buddhist art.",
+    "The sunset pagoda of the White Snake legend — one of the Ten Scenes.",
+    "1,078 islands like a fairyland — the source of Nongfu Spring water.",
+    "The world's longest canal; Gongchen Bridge watched grain ships for a millennium.",
+    "Song Culture Park — 'give us a day, we give you a thousand years'.",
+    "A wetland haven in the city — reeds and winding waterways.",
+    "The ancient tide-guarding pagoda by the Qiantang River.",
+    "Birthplace of Lion Peak Longjing tea among misty hills.",
+    "Qinghefang historic block with the century-old Hu Qingyutang pharmacy."
+  ]
+}

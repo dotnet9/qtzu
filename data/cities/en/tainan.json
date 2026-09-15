@@ -1,0 +1,45 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Tainan is Taiwan's oldest city: the Dutch built Fort Zeelandia here; after Zheng Chenggong recovered Taiwan in 1662 it became the capital, and for two centuries the saying ran 'first Tainan, then Lukang, then Mengjia'. It has the island's densest temples; the Confucius Temple of 1665 was Taiwan's first academy. Chihkan Tower, Anping Old Fort and Eternal Golden Castle tell tales from the Age of Sail to modern times. Tainan food is 'the origin of Taiwan flavor' — danzai noodles, coffin toast and bowl rice cake were all born here. The old-town lanes are a maze with a century-old shop around every corner.",
+  "importance": "Historic capital of Taiwan · Cultural capital",
+  "gallery": [
+    "Chihkan Tower",
+    "Anping Old Fort",
+    "Tainan Confucius Temple"
+  ],
+  "unis": [
+    "From the Tainan engineering school, named after Zheng Chenggong — the southern flagship of engineering and medicine.",
+    "From the Tainan normal school — a century of teacher training.",
+    "A top private tech university, strong in engineering and management.",
+    "A Christian university of the Presbyterian church, a green campus by the railway.",
+    "Started in pharmacy — its cosmetics-science program is one of a kind.",
+    "Its visual-animation program has won international festival awards.",
+    "Full arts programs; its gymnasium once served as Olympic training ground.",
+    "Distinctive in medical testing and food nutrition.",
+    "A century-old church university from the Oxford School of Tamsui."
+  ],
+  "foods": [
+    "Du Xiaoyue, founded 1895 — a spoon of braised pork and shallot on noodles; the century fire never goes out.",
+    "Invented at Sakariba in 1940 — thick bread fried crisp, filled with seafood soup; the funny name echoes island-wide.",
+    "Rice batter with braised pork and egg yolk steamed in a bowl — Fu Sheng Hao queues for thirty years.",
+    "Fresh beef sliced at dawn, swished in boiling broth — the sweetness comes from freshness.",
+    "Shrimp rolls in net lard, fried golden — the Zhou family shop sells thousands daily.",
+    "Tainan's meatballs are steamed, springy with soy-paste — the rival of Changhua's fried style.",
+    "Plump oysters of the near sea, old-style omelet with house sauce.",
+    "A century-old drink from Lian de Tang's candy craft — the summer cooler.",
+    "Quick-fried sweet-sour eel noodles — wok-hei is the soul of Tainan late nights.",
+    "Plums and preserved fruits of Anping Old Street — a hundred years of pickling."
+  ],
+  "scenes": [
+    "The Dutch Fort Provintia of 1653 — the sea-god temple and Wenchang Pavilion saw four centuries.",
+    "Fort Zeelandia of 1624 — Taiwan's oldest castle; Anping Old Street is right beside it.",
+    "Founded 1665 — Taiwan's first Confucius Temple and academy, 'the island's first school'.",
+    "Eternal Golden Castle of 1876 — French Armstrong cannons still stand.",
+    "The old Five Ports lanes — narrow houses now little shops, loveliest when lanterns light.",
+    "Among the island's largest night markets — Thursday to Sunday, a thousand stalls.",
+    "A national monument of Guan Yu worship — red walls rolling like waves.",
+    "Salt mountains like snow; tile salt fields mirror the sky.",
+    "Banyan roots swallowed abandoned warehouses into a green maze.",
+    "The mangrove-lined 'Amazon of Taiwan' — raft boats through the green."
+  ]
+}

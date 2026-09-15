@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Yinchuan, ancient Xingqing Prefecture, was the Western Xia capital for 189 years. The rammed-earth royal tombs under Helan Mountain are called 'pyramids of the East'; rock carvings record the nomads' lives. 'The Yellow River enriches Ningxia' — two thousand years of irrigation made the plain the 'Jiangnan beyond the frontier'.",
+  "importance": "Capital of Ningxia · Jiangnan beyond the Great Wall",
+  "gallery": [
+    "Western Xia Tombs",
+    "Helan Rock Art",
+    "Yuehai Wetland"
+  ],
+  "foods": [
+    "Tan lamb — tender, with no gamey smell.",
+    "The skewer hotpot Yinchuan kids grew up on.",
+    "Red chili oil with lung noodles — a strong morning taste.",
+    "Glass noodles and mushrooms stewed with tan lamb.",
+    "Northwest-style niangpi — sour and refreshing.",
+    "Zhongning goji berries — the nation's best.",
+    "Eight-treasure covered-bowl tea, sweet with a long finish.",
+    "Clear-broth tan lamb hotpot — incomparably fresh."
+  ],
+  "scenes": [
+    "Nine imperial tombs — 'the pyramids of the East'.",
+    "Prehistoric sun-god rock carvings.",
+    "Filming site of 'A Chinese Odyssey'.",
+    "A 40,000-year prehistoric site and Ming wall.",
+    "The landmark mosque of Yinchuan.",
+    "A Yellow River ferry crossing with desert wetlands.",
+    "'West Lake of the frontier' — a birding paradise.",
+    "Suyukou's pine forests and blue sheep."
+  ]
+}

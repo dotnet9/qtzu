@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Fuzhou was founded in 202 BC; its banyan trees gave it the name 'Banyan City'. The Three Lanes and Seven Alleys, a 'living fossil' of the old ward system, raised modern stars like Lin Zexu, Yan Fu and Lin Juemin. Mawei Shipyard was the cradle of China's modern navy; lacquerware and Shoushan stone carving are the city's treasures.",
+  "importance": "Capital of Fujian · Banyan City · Gateway of the Maritime Silk Road",
+  "gallery": [
+    "Three Lanes and Seven Alleys",
+    "Drum Mountain",
+    "Fuzhou West Lake"
+  ],
+  "foods": [
+    "King of Fujian cuisine — abalone, sea cucumber and shark fin simmered eight hours.",
+    "Yonghe fish balls, thin skin and fragrant filling — the taste of home.",
+    "Wrappers beaten from meat; the 'swallow skin' dish opens every banquet.",
+    "Pork carved to bloom like a lychee — sweet, sour and springy.",
+    "Thin rice sheets scraped at the pot rim, with shrimp-oil flavor.",
+    "Peanut soup so soft you need no teeth, served with taro paste.",
+    "Steamed taro paste with lard and sugar — king of Fujian desserts.",
+    "Fuzhou olives, sweet after the bite — fragrant candied fruit."
+  ],
+  "scenes": [
+    "'Half of modern Chinese history' — Lin Juemin's former home.",
+    "Yongquan Temple and cliff carvings; climb for river views.",
+    "A 1,700-year-old garden from the Jin dynasty.",
+    "Old consulates and western houses — an artsy quarter.",
+    "The cradle of China's modern navy.",
+    "Old merchant quarter, picture-like at night.",
+    "A steel walkway through the forest canopy.",
+    "Blue-tears glow and stone-built fishing villages."
+  ]
+}

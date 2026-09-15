@@ -1,0 +1,50 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "The Taipei basin was home of the Ketagalan people; the Qing set up Taipei Prefecture and the walled city was completed in 1884, soon replacing Tainan as Taiwan's political center. Japanese-era baroque planning widened the streets; after 1945 it became the provincial capital. Taipei 101 long held 'world's tallest'; the National Palace Museum keeps 690,000+ relics from Beijing's palace; Shilin Night Market's oyster omelets and bubble tea smell worldwide. Sunsets on the Tamsui River, Beitou hot springs and Yangmingshan cherry blossoms warm this city of mountains and rivers.",
+  "importance": "Provincial capital of Taiwan · Political, economic and cultural center",
+  "gallery": [
+    "Taipei 101",
+    "Chiang Kai-shek Memorial Hall",
+    "National Palace Museum"
+  ],
+  "unis": [
+    "Taiwan's oldest and largest comprehensive university — from the Taipei Imperial University, famous for its palm avenue.",
+    "The island's top teachers college — its Chinese-language center is world-known.",
+    "Taiwan's first technological university, strong in engineering.",
+    "From Nanjing's central party school — strong in humanities, media and politics.",
+    "Yangming campus famed for medicine and life sciences; merged with Chiao Tung in 2021.",
+    "A public university of law and commerce traditions — from Chung Hsing's law college.",
+    "A century-old engineering school from the Governor's industrial school.",
+    "A Catholic university founded in Beijing in 1925, re-established in Taiwan in 1961 — known for languages and communication.",
+    "Taiwan's first private university — sunset over the Taiwan Strait from Tamsui campus.",
+    "From Soochow University — law education tops the island.",
+    "A journalism and communication school — cradle of Taiwan's media people.",
+    "Design school of international fame — the fashion-show graduation is an annual event.",
+    "The first Asian university accredited by MSCHE — highly international.",
+    "A university on Yangmingshan — once the most departments on the island."
+  ],
+  "foods": [
+    "Bubble tea, invented in the 1980s — one cup in every hand; chewy pearls, rich milk tea.",
+    "King of night markets! Oysters in sweet-potato batter with greens, sweet-sour sauce on top.",
+    "The Beef Noodle Festival bred countless famous shops — braised vs clear, each with fans.",
+    "Din Tai Fung's 18-fold xiaolongbao became a world brand — 'open a window, sip the soup'.",
+    "Sticky rice sausage wrapped around a Taiwan sausage — the night-market queue king.",
+    "Braised pork over hot rice with a braised egg — Taiwan's national comfort food.",
+    "Raohe market's Fuzhou pepper buns — baked in a clay oven, scalding and fragrant.",
+    "Thick bread hollowed, fried, filled with chicken-liver seafood soup — scary name, amazing taste.",
+    "Golden pineapple-cake bricks — Taipei's top souvenir.",
+    "Yongkang Street's mango shaved ice sparked an island ice war — summer sweetness."
+  ],
+  "scenes": [
+    "The 508-meter bamboo-shaped tower, once the world's tallest — see all the city from floor 89.",
+    "690,000 relics — the Jadeite Cabbage and Meat-shaped Stone are the stars.",
+    "Blue-tile white-wall octagon; the hourly guard ceremony is solemn and fun.",
+    "Taipei's largest night market — from oyster omelets to 'frog eggs' drinks.",
+    "The Japanese-era hot-spring town — steaming geothermal valley and a wooden green library.",
+    "Volcanic national park — cherry trails in spring, silvergrass seas in autumn.",
+    "Fort San Domingo saw 400 years; Fisherman's Wharf's Lover Bridge sunset is famous.",
+    "A century of commerce and street culture — cinema street and the Red House.",
+    "Twenty minutes up — the Six Boulders, best photo of Taipei 101.",
+    "A temple of 1805, honored with a UNESCO heritage award."
+  ]
+}

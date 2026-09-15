@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Shenzhen grew from a border fishing village of 1979 into a first-tier city of twenty million in four decades — 'Shenzhen Speed' is the byword of reform and opening. Tencent, Huawei and DJI went to the world from its parks. The waves of Dameisha and the code of Science Park both speak of youth and speed.",
+  "importance": "Special Economic Zone · City of Innovation",
+  "gallery": [
+    "Shenzhen skyline",
+    "Shenzhen Bay",
+    "Dameisha Beach"
+  ],
+  "foods": [
+    "Wenchang chicken in young-coconut broth — light and heartwarming.",
+    "The millennium oyster village — charcoal-grilled oysters, plump.",
+    "Cantonese rice rolls with soy sauce — how morning tea starts.",
+    "Roast pigeon — crispy skin, tender meat, head of the 'three treasures'.",
+    "Lychee-wood roasted — crispy skin, juicy meat.",
+    "White-pepper pork-belly soup — the winter warm pot.",
+    "Hakka fried sesame balls — crispy, glutinous, sweet.",
+    "Old-style cured meats — steamed rice full of aroma."
+  ],
+  "scenes": [
+    "Window of the World — miniatures of world wonders.",
+    "A free beach and the Wishing Tower.",
+    "Seaside cycling and migratory-bird mudflats.",
+    "Deng Xiaoping's statue on the hill overlooking Futian.",
+    "OCT East — tea valleys and ecotourism.",
+    "Ping'an tower — 600 meters, the city's tallest observatory.",
+    "A Hakka walled-village culture town.",
+    "Dapeng's B&B beaches — Shenzhen's Gulangyu."
+  ]
+}

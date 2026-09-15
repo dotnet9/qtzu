@@ -1,0 +1,34 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Old Takao was a bamboo grove of the Makatao people, then a fishing village, opened as a treaty port in 1860. Under Japanese rule the harbor grew into southern Taiwan's industrial gateway; after the war Kaohsiung Port ranked among the world's largest container ports. It has Taiwan's biggest shipbuilding and steel industries, the romantic lights of the Love River, the sea breeze of Cijin Island and the creativity of the Pier-2 Art Center. Formosa Boulevard's 'Dome of Light' was rated by CNN among the world's loveliest metro stations, and Mt. Shou overlooks the whole harbor city.",
+  "importance": "Largest port city of Taiwan · International sea-and-air hub",
+  "gallery": [
+    "Kaohsiung Harbor",
+    "Dome of Light",
+    "Love River at night"
+  ],
+  "foods": [
+    "The night-market classic — fresh papaya blended with milk, thick, sweet and world-famous.",
+    "Seafood congee straight from Cijin's fishing port — shrimp, crab legs and oysters in one bowl.",
+    "Crisp fried mackerel in thick soup with pepper and cilantro — Kaohsiung's old-style breakfast.",
+    "Thin lamb slices blanched in angelica herbal broth — Taiwan's famous winter tonic.",
+    "A shaved-ice mountain bigger than your face, piled with taro balls and red beans.",
+    "Basil-fried chicken pieces — one bag per person at the night market, better with garlic.",
+    "A century-old Cijin ice shop — four-fruit ice through three generations.",
+    "Thin noodles in thick gravy with plump oysters and intestine — one bowl of satisfaction.",
+    "Thick toast fried crisp, filled with seafood soup — funny name, No.1 seller.",
+    "Cijin's signature little drum-shaped pastries — taro flavor sells out first."
+  ],
+  "scenes": [
+    "Old warehouses turned art village — giant figures and graffiti everywhere.",
+    "A five-minute ferry to the island: seafood street, lighthouse, black-sand cove.",
+    "The world's largest single glass artwork — 4,500 panels telling the cycle of life.",
+    "Built in 1865 on the hillside — the best spot for Sizihwan sunsets.",
+    "Enter the Dragon Tiger Pagodas through the dragon's mouth; the Spring and Autumn Pavilions float on the lake.",
+    "A sightseeing night market of sixty years — seafood congee and papaya milk are the signature.",
+    "Sunset over the bay; National Sun Yat-sen University sits between mountain and sea.",
+    "A giant bronze Buddha and eight pagodas — a Buddhist art palace, free to enter.",
+    "Music Center's wave-and-dolphin architecture glows at night.",
+    "A coral limestone hill in the city where macaques live along the trails."
+  ]
+}

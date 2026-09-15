@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Guiyang got its name from its bamboo; karst hills make it 'a city within mountains, mountains within a city'. Jiaxiu Tower has stood on the Nanming River for 400 years; Qingyan Ancient Town keeps its Ming-Qing look. Its cool climate made it a pioneer of China's big-data industry — 'the Data Valley of China'.",
+  "importance": "Capital of Guizhou · Big-data hub city",
+  "gallery": [
+    "Jiaxiu Tower",
+    "Qingyan Ancient Town",
+    "Qianling Mountain"
+  ],
+  "foods": [
+    "Noodles in red oil with blood curd and crispy bits — the king of Guiyang breakfast.",
+    "Thin wraps rolled with a dozen veggie strips, dipped in sour soup.",
+    "Kaili red sour soup with rice-paddy fish — appetizing and fresh.",
+    "Beef rice noodles in clear broth, smooth and springy.",
+    "Lei's tofu balls — crispy outside, hollow inside, dipped in herb water.",
+    "Charcoal-grilled tofu bursting with juice, with chili dip — a romantic name.",
+    "The soul cold-dish of Guizhou people.",
+    "Braised 'zhuangyuan' pork trotter, soft and fragrant."
+  ],
+  "scenes": [
+    "A 400-year-old tower on Turtle Rock in the Nanming River.",
+    "Wild macaques in the city park and the incense of Hongfu Temple.",
+    "Ming-Qing garrison town with stone-paved lanes.",
+    "Highland flower sea and wetland by the Huaxi River.",
+    "Karst caves, waterfalls and stone bonsai landscapes.",
+    "A unique nine-corner three-story pagoda building.",
+    "Yelang culture and Miao silver ornaments.",
+    "A Republic-era culture town."
+  ]
+}

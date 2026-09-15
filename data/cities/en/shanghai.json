@@ -1,0 +1,34 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Shanghai started as a Song-era fishing village; after opening as a treaty port in 1843, the Bund grew into a 'World Architecture Expo' and the Far East's largest city. Gothic domes of the Bund face Pudong's glass towers across the river — a century of time gazing at itself. The CPC was born here; reform turned Pudong's fields into a miracle. Today Shanghai is a global financial center and the world's largest container port, where soft Wu dialects and world languages play together.",
+  "importance": "International center of economy, finance, trade and shipping · National central city",
+  "gallery": [
+    "The Bund",
+    "Lujiazui skyline",
+    "Yu Garden"
+  ],
+  "foods": [
+    "Nanxiang xiaolongbao — thin skin, hot soup; 'open a window, sip the soup'.",
+    "Pan-fried buns — crispy base, juicy, sesame and scallion; head of the 'four breakfast kings'.",
+    "Red-braised pork of Benbang cuisine — glossy, melt-in-mouth.",
+    "Autumn hairy crabs from Yangcheng Lake — ginger-vinegar with golden roe.",
+    "Xiaoshaoxing white-cut chicken — yellow skin, tender, just soy sauce.",
+    "Fried pork chop with soft rice cakes — sweet sauce is the finishing touch.",
+    "Crab-shell-shaped sesame pastry — salty vs sweet, an eternal debate.",
+    "Salted pork, fresh pork and spring bamboo in one pot — spring's first freshness.",
+    "Scallion oil poured over springy noodles — the taste of home.",
+    "The Park Hotel bakery queue a hundred meters long — butter puff pastry that crumbles."
+  ],
+  "scenes": [
+    "The World-architecture Bund facing Lujiazui towers — a century of river views.",
+    "Ming Jiangnan garden with the zigzag bridge and teahouse.",
+    "The 468-meter TV tower — Shanghai's classic landmark.",
+    "Nanjing Road — China's first commercial street, a hundred years of bustle.",
+    "Mainland China's first Disneyland — TRON is unique here.",
+    "A 1,700-year water town with Fangsheng Bridge.",
+    "A museum of bronzes, ceramics and paintings in a tripod-shaped building.",
+    "A creative quarter in shikumen alleys.",
+    "Plane-tree avenues and the Wukang Mansion.",
+    "A migratory-bird haven at the Yangtze mouth."
+  ]
+}

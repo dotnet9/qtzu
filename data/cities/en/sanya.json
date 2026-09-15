@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Sanya, ancient Yazhou, was once the 'end of the sky and corner of the sea' where exiled officials were sent — today it is China's most famous tropical seaside resort. Yalong Bay is 'the finest bay under heaven'; the Guanyin of the South Sea stands 108 meters tall. Li and Miao culture, the Coconut Dream Corridor and the diving paradise Wuzhizhou Island make it the Hawaii of the East.",
+  "importance": "Tropical seaside resort · Ends of the Earth",
+  "gallery": [
+    "Yalong Bay",
+    "Nanshan Guanyin",
+    "Ends of the Earth"
+  ],
+  "foods": [
+    "First of Hainan's four famous dishes — best white-cut.",
+    "Roe-full crab congee, sweet and thick.",
+    "Coconut-fragrant sticky rice with coconut meat.",
+    "Must-order at the Night Market of Market No.1.",
+    "Buy seafood at Market No.1, cooked on the spot.",
+    "Li-style fragrant rice in bamboo tubes.",
+    "Li people's Shanlan glutinous rice wine.",
+    "Tanjia fishing rafts — caught and cooked fresh."
+  ],
+  "scenes": [
+    "'The finest bay under heaven' — white sand and blue sea.",
+    "'Pillar of the southern sky' and ancient stone carvings.",
+    "The 108-meter Guanyin of the South Sea.",
+    "China's diving paradise — Lovers' Island.",
+    "A South-Sea dragon culture Taoist park.",
+    "A Li love-legend hill overlooking Sanya Bay.",
+    "22 kilometers of coconut-lined sunset avenue.",
+    "A seafood-processing night market full of life."
+  ]
+}

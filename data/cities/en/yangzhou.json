@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Yangzhou rose with the Grand Canal — 'in misty March go down to Yangzhou', Li Bai's invitation. After Emperor Yang dug the canal it became a Tang world-city: 'Yang first, Yi second'. The five-pavilion bridge and white pagoda of Slender West Lake are picture-perfect; Ge Garden's four-season rocks are unique; Yangzhou fried rice and morning tea are known worldwide.",
+  "importance": "Firstborn of the Canal · Famous city of Huai-Zuo",
+  "gallery": [
+    "Slender West Lake",
+    "Ge Garden",
+    "Daming Temple"
+  ],
+  "foods": [
+    "Fried rice with ham and shrimp — born of state banquets.",
+    "Lion's-head meatballs stewed with crab roe — melts in the mouth.",
+    "Fuchun Teahouse's three-delicacy bun with Kuilongzhu tea.",
+    "Knife-cut dried tofu in chicken soup — fresh.",
+    "Tofu sliced into hairs — the supreme Huaiyang knife skill.",
+    "Morning tea starts with hot shredded tofu.",
+    "Soft sesame cowhide candy.",
+    "Lotus-root-powder skin with fruit filling — bouncy and smooth."
+  ],
+  "scenes": [
+    "Willows and flowers along the water — Five-Pavilion Bridge and Twenty-Four Bridge.",
+    "Four-season rock gardens — the greatest salt-merchant garden.",
+    "'First garden of late Qing' — the double corridor.",
+    "Where Jianzhen set sail for Japan — the Qiling Pagoda.",
+    "Thousand-year old street — Xie Fuchun cosmetics and lacquerware.",
+    "A canal-side city landmark.",
+    "A canal-culture giant ship-shaped museum.",
+    "A 1,600-year town on the canal."
+  ]
+}

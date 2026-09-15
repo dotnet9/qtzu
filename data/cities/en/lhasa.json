@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Lhasa grew around the Jokhang Temple 1,300 years ago — 'first there was the Jokhang, then came Lhasa'. The Potala Palace is the highest palace complex on earth, World Heritage since 1994. With 3,000+ sunshine hours a year it is the 'City of Sunlight'. Prayer wheels, butter tea and pilgrims on their long prostrations paint the spiritual scene of the Roof of the World.",
+  "importance": "Capital of Tibet · City of Sunlight · Holy city",
+  "gallery": [
+    "Potala Palace",
+    "Jokhang Temple",
+    "Namtso Lake"
+  ],
+  "foods": [
+    "Salty butter tea with tsampa — highland energy.",
+    "Roasted-barley flour kneaded into balls — the Tibetan staple.",
+    "Yak noodle soup in a sweet-tea house.",
+    "Lhasa's sweet milk tea, black-tea and milk.",
+    "Yak hotpot in clear highland broth.",
+    "Highland barley wine, lightly sweet.",
+    "Winter air-dried yak jerky.",
+    "Tibetan cold jelly noodles with chili powder."
+  ],
+  "scenes": [
+    "The world's highest palace — the Red and White palaces above the city.",
+    "Center of Tibetan Buddhism, home of the Jowo 12-year-old Buddha statue.",
+    "The Barkhor kora — the old pilgrim circuit around the old town.",
+    "Sera Monastery's debating courtyard thunders with claps.",
+    "Norbulingka, the summer palace — a garden of treasures.",
+    "Drepung — one of the world's largest monasteries, where the Shoton thangka unfurls.",
+    "Namtso, the holy 'Heavenly Lake' under Nyenchen Tanglha snow peaks.",
+    "The best spot to photograph the Potala's reflection."
+  ]
+}

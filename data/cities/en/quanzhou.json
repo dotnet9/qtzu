@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Quanzhou, ancient Zayton, was 'the greatest port of the East' in Song-Yuan times — Marco Polo's City of Light. In 2021, 'Quanzhou: Emporium of the World in Song-Yuan China' joined the World Heritage List with 22 sites. Kaiyuan Temple's twin pagodas, the Qingjing Mosque and Guandi Temple stand side by side — many faiths live in harmony; Nanyin music and string puppets have sung for a thousand years.",
+  "importance": "World Heritage city · Emporium of Song-Yuan China",
+  "gallery": [
+    "Kaiyuan Temple",
+    "Qingjing Mosque",
+    "Twin Pagodas"
+  ],
+  "foods": [
+    "Shuimen noodle paste with fried dough sticks — old Quanzhou flavor.",
+    "Crystal anhai worm jelly with garlic vinegar.",
+    "Sidan ginger-duck in a clay pot, fragrant.",
+    "Hou A-puo's pork zongzi with peanut sauce.",
+    "Four-fruit soup with agar jelly — the summer savior.",
+    "Qingming thin wraps rolled with vegetable shreds.",
+    "Minnese curried beef ribs with salty rice.",
+    "Peanut-filled soft pancakes — perfect with tea."
+  ],
+  "scenes": [
+    "Thousand-year temple — the twin pagodas are Quanzhou's landmark.",
+    "China's largest stone Laozi statue.",
+    "Thousand-year street — the Clock Tower and red-brick houses.",
+    "China's oldest surviving mosque.",
+    "China's first cross-sea stone bridge, led by Cai Xiang.",
+    "A Ming anti-pirate stone city and the Hui'an maidens.",
+    "Cizao oyster-shell houses and flower-crowned Xunpu women.",
+    "An ancestral home of Mazu belief."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Hefei was ancient Luzhou, a Three Kingdoms battleground where Zhang Liao stunned the east at Xiaoyao Ford. It is the hometown of Bao Zheng, the just Judge Bao. Today it is a comprehensive national science center — the 'artificial sun' of USTC and quantum communication went global from here.",
+  "importance": "Capital of Anhui · Comprehensive National Science Center",
+  "gallery": [
+    "USTC",
+    "Xiaoyao Ford",
+    "Lord Bao Park"
+  ],
+  "foods": [
+    "Crispy duck with sweet sauce — the old Hefei flavor.",
+    "Fried rice-flour shells with shrimp and tofu filling.",
+    "Braised goose, salty and savory — Chaohu specialty.",
+    "Chaohu loach stewed with dried noodles — pure countryside.",
+    "Ningguo Road's crayfish street glows all night.",
+    "Duck-fat pastry with sesame — warm, yellow and crispy.",
+    "Traditional crisp candy with osmanthus sweetness.",
+    "Silverfish scrambled with eggs — the lake's taste."
+  ],
+  "scenes": [
+    "The ancient battlefield where Zhang Liao stunned Xiaoyao Ford.",
+    "Lord Bao's shrine and Qingfeng Pavilion — justice incarnate.",
+    "Science Island's 'artificial sun' under cherry blossoms.",
+    "A 2,500-year water town with its 'eight ancient' sights.",
+    "The Chu ding bronze and cloud-patterned vessels.",
+    "City lake views and sunset silhouettes.",
+    "A food street famous for 'clink the jar' toasts.",
+    "An extinct-volcano forest park in the city."
+  ]
+}

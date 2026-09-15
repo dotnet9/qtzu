@@ -1,0 +1,48 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Wuhan united Wuchang, Hankou and Hanyang where the Yangtze meets the Han River. The 3,500-year-old Panlongcheng opened its city story; Yellow Crane Tower saw Cui Hao's poem stop Li Bai's brush. The 1911 Wuchang Uprising fired the first shot of the Xinhai Revolution. Today it is one of China's greatest education hubs with a million students; Optics Valley is the heart of China's optoelectronics.",
+  "importance": "Capital of Hubei · National central city · Thoroughfare of nine provinces",
+  "gallery": [
+    "Yellow Crane Tower",
+    "First Yangtze Bridge",
+    "East Lake"
+  ],
+  "unis": [
+    "From the Wuchang normal school; a comprehensive giant with strong humanities and remote sensing.",
+    "A national defense flagship — 'China's Whampoa of naval engineering'.",
+    "From the mining school of 1898; geosciences and caving clubs are world-known.",
+    "A top comprehensive university of the martial-arts world — humanities, sciences and medicine all strong.",
+    "Grew from the 1898 craft school; light industry and food science lead the nation.",
+    "The Normal School of the Republic era; humanities and teacher training shine.",
+    "A agriculture-medicine-science giant from the 1898 Hubei farming school.",
+    "From the 1898 Hubei chemistry school — materials and transportation engineering first-class.",
+    "A finance-law giant of Zhongnan; accounting and law rank top-5.",
+    "The socialist school of 1950s Wuhan; a national 'double first-class' of education science.",
+    "A fashion and art university — its graduation show is a national event.",
+    "Young but fast — the computer science of Wuhan's internet industry."
+  ],
+  "foods": [
+    "Hot-dry noodles with sesame paste — the head of Wuhan's 'guozao' breakfast.",
+    "Lao Tongcheng's three-delicacy doupi — glutinous rice in golden egg skin.",
+    "Jingwu duck neck, spicy to the bone — the binge-watch snack king.",
+    "Honghu lotus root with pork ribs — Hubei kids' home taste.",
+    "Fresh-fish soup with fried dough sticks — the 'fresh' of Hankou breakfast.",
+    "Fried rice batter rings — thick rim, crisp center.",
+    "'Drink Changsha water, eat Wuchang fish' — steamed is freshest.",
+    "Sijimei soup dumplings — paper-thin skin; open a window first.",
+    "Heavy-oil shaomai with glutinous rice and pepper — Yan's shop queues daily.",
+    "Xiaogan rice wine, sweet and lightly tipsy — perfect with fish soup."
+  ],
+  "scenes": [
+    "'First tower of rivers and mountains' — Cui Hao's poem stopped Li Bai.",
+    "One of China's largest city lakes — cherry and plum gardens all seasons.",
+    "Wuhan University's cherry castle and old dorms — the most beautiful campus.",
+    "The 'First Bridge over the Yangtze', built in 1957.",
+    "'Breakfast at Hubu Alley' — a street of Wuhan snacks.",
+    "Home of the Sword of Goujian and the Zenghouyi bells.",
+    "A 600-year street where old churches meet creative shops.",
+    "Jianghan Road — a century of Hankou concession buildings.",
+    "A Republic-style cruise with drama on the night Yangtze.",
+    "Hometown of the Mulan legend — canyons and waterfalls."
+  ]
+}

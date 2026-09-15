@@ -1,0 +1,48 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Taichung, old 'Dadun', was chosen by Liu Mingchuan for a new walled city when Taiwan became a province in the Qing era — hence 'Taiwanfu'. Under Japanese rule it got a chessboard street plan, the first planned city on the island. Spring-like all year, it is called the most livable city. Bubble tea was born here (Chun Shui Tang, 1987); Fengjia Night Market leads Taiwan's night-market culture; Gaomei Wetland sunsets, the Rainbow Village paintings and Luce Chapel's curves keep visitors lingering.",
+  "importance": "Hub of central Taiwan · A most livable city",
+  "gallery": [
+    "Gaomei Wetland",
+    "Luce Chapel",
+    "Rainbow Village"
+  ],
+  "unis": [
+    "Grew from a Taichung agriculture school; tops Taiwan in agricultural and life sciences.",
+    "Taiwan's first TCM university — a leader in integrated Chinese-Western medicine.",
+    "Named after Qiu Fengjia; strong in business and engineering, with the famous Fengjia Night Market outside.",
+    "Taiwan's first private university — the I.M. Pei-designed Luce Chapel is its landmark.",
+    "From the Taichung normal school — a century of teacher education.",
+    "Its dentistry is famed island-wide; the hospital serves central Taiwan.",
+    "A Catholic university known for languages and tourism, with a beautiful tree-lined campus.",
+    "A modernist campus with an Asia University museum of Tadao Ando's triangle buildings.",
+    "A tech university of business roots, rich in tourism and culinary internships.",
+    "A private-donation-first example with deep mechanical engineering traditions.",
+    "Started in nursing; known for food nutrition and beauty design.",
+    "Design and finance both strong — next door to Rainbow Village."
+  ],
+  "foods": [
+    "Chun Shui Tang invented pearl milk tea in 1987 — every hand-shaken tea in the world started here.",
+    "Malt-crisp pastry thin as paper — a Taichung city card for sixty years.",
+    "Fengjia Night Market's charcoal sausage wrapped in sticky rice — the queue says it all.",
+    "Transparent sweet-potato skin wrapped around bamboo and pork, steamed then fried, with sweet chili sauce.",
+    "Taichung is the pineapple-cake homeland — Sunrise turned it into a boutique treat.",
+    "Xing Fa Ting's honey-bean ice, ninety years old — a hill of candied beans and fruits.",
+    "Yizhong Street's wild creation — fried noodles inside a hot bun, double carb joy.",
+    "Purple mille-feuille of Dajia taro, dense taro paste inside, deeply fragrant.",
+    "A classic of central night markets — the iron-shovel old shop of Zhongxiao Street, thirty seconds to serve.",
+    "Sugar & Nut nougat by Tunghai University — a must-buy for international travelers."
+  ],
+  "scenes": [
+    "A boardwalk reaches into the wind; at sunset the whole wetland turns golden mirror.",
+    "Grandpa Huang's rainbow paintings saved the whole military village — world visitors come to see it.",
+    "The curved double-shell chapel by I.M. Pei and Chen Chi-kwan — the soul of Tunghai University.",
+    "A century-old park opened in 1903 — the Lake Pavilion is a Japanese-era landmark.",
+    "Ito Toyo's 'sound-carrying curves' — among the hardest buildings ever built.",
+    "Taiwan's most popular night market — new snacks spread from here island-wide.",
+    "A hidden valley under Xueshan — February cherry blossoms with the peak in postcard light.",
+    "A hot-spring village on the Central Cross-Island Highway — soft springs, grand valley views.",
+    "A 3.6-km green belt linking the art museum and shops — best for a stroll or ride.",
+    "Twelve boardwalk trails over twelve hills — the 'balcony of Taichung'."
+  ]
+}

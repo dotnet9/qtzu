@@ -1,0 +1,34 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "'The finest land of Jiangnan, the imperial state of Jinling.' Nanjing has 2,500 years of city history; six dynasties, the Southern Tang, Ming, Taiping and the Republic all made it their capital. Its 25 km of surviving Ming wall is the world's longest brick-stone city wall; Ming Xiaoling founded the imperial tomb style of Ming and Qing. Lantern shadows and oar sounds at the Confucius Temple on the Qinhuai River run back a thousand years. The plane-tree avenues are the city's gentlest card.",
+  "importance": "Capital of Jiangsu · Ancient capital of six dynasties · First-batch National Historical City",
+  "gallery": [
+    "Ming City Wall",
+    "Confucius Temple",
+    "Sun Yat-sen Mausoleum"
+  ],
+  "foods": [
+    "Salted duck at its plumy best in osmanthus season — white skin, tender meat.",
+    "Duck blood and vermicelli soup — the king of Nanjing snacks.",
+    "Jiming soup dumplings served upside down, brimming with broth.",
+    "Qijiawan potstickers — crispy base, juicy; bite carefully, it's hot.",
+    "Taro shoots slow-stewed in brown sugar and osmanthus — Jinling's sweet No.1.",
+    "Duck embryo egg — the brave eater's Nanjing delicacy.",
+    "A big bowl of pork-skin noodles piled high — the deluxe Nanjing breakfast.",
+    "Red-bean rice balls of Lianhu — sweet and warming.",
+    "Five-colored steamed cakes of the Confucius Temple, full of rice aroma.",
+    "Needle-shaped green tea like pine needles — Nanjing's famous tea."
+  ],
+  "scenes": [
+    "392 steps up to the Fraternity Arch — the solemn Zhongshan holy site.",
+    "The Qinhuai River of 'oar sounds and lantern shadows' — the Literary Hub arch.",
+    "Ming founder's tomb — head of the Ming-Qing imperial tombs, World Heritage.",
+    "600 years from Qing viceroy's office to Republic headquarters.",
+    "One of the three great southern lakes, ringed by the Ming wall.",
+    "First of the '480 southern temples' — cherry avenue like spring snow.",
+    "One of China's three great museums — walk through a century in the Republic hall.",
+    "The national memorial site — remember history, cherish peace.",
+    "'Qixia in autumn' — red maples and the Thousand-Buddha grottoes.",
+    "Old south-city lanes — Jinling life in grey bricks and dark tiles."
+  ]
+}

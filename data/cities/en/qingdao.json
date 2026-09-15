@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Qingdao was established in 1891; the German era left red roofs, green trees and European buildings — a 'World Architecture Expo'. The plane trees of Badaguan, seagulls at the Pier and the Taoist wonderland of Mt. Lao set the tone: red roofs, green trees, blue sea, blue sky. Tsingtao Beer was born here in 1903 and went worldwide. Today it is a city of marine science and sailing.",
+  "importance": "Separately-planned city · City of brands · Sailing capital",
+  "gallery": [
+    "Zhanqiao Pier",
+    "Badaguan",
+    "Mount Lao"
+  ],
+  "foods": [
+    "German-style brew from 1903 — beer sold in plastic bags is the city's odd sight.",
+    "Clams, conch and prawns in one pot — perfect with beer.",
+    "Plump Hongdao clams — 'swig beer, eat gala clams'.",
+    "Spanish mackerel dumplings — Qingdao's No.1 welcome dish.",
+    "Whole squid on an iron plate with sweet-spicy glaze.",
+    "Giant handmade steamed buns under Mt. Lao, full of wheat aroma.",
+    "Seaweed jelly with vinegar and garlic — a summer cooler.",
+    "Wanhechun pork-rib casserole rice — the king of Qingdao fast food."
+  ],
+  "scenes": [
+    "A century-old pier promenade with seagulls — the city's card.",
+    "'World Architecture Expo' — the Granite Mansion and Princess House.",
+    "First famous mountain by the sea — the Taoist Taiqing Palace.",
+    "The red 'May Wind' sculpture and Fushan Bay nights.",
+    "The century-old brewery site — fresh beer on tap.",
+    "White lighthouse on Xiaoqingdao — 'the floating lamp'.",
+    "Gothic twin-towered church — a Zhejiang Road landmark of 100 years.",
+    "Asia's finest beach of fine sand and blue waves."
+  ]
+}

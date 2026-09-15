@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Shaoxing has 2,500 years of city history — ancient Yuezhou, capital of the Yue kingdom. Black-awning boats rock under stone bridges; yellow wine warms a thousand years. Wang Xizhi wrote the world's finest calligraphy at Lanting; Lu Xun's Baicao Garden and Three-Flavor Study, Lu You and Tang Wan's Shen Garden, Wang Yangming's cave — the literary vein never breaks.",
+  "importance": "Hometown of Lu Xun · Water town of wine",
+  "gallery": [
+    "Lu Xun's Hometown",
+    "Lanting",
+    "Shen Garden"
+  ],
+  "foods": [
+    "Daughter Red and Scholar Red wines, warmed, with fennel beans.",
+    "Kong Yiji's 'not many more, not many'.",
+    "Dried mustard greens steamed with pork belly.",
+    "Chicken soaked in yellow wine — the aroma everywhere.",
+    "Shaoxing stinky tofu with sweet sauce.",
+    "A century-old shop's little pastry — ancestor of egg tarts.",
+    "Hand-pressed noodles with stir-fried toppings.",
+    "Wine-lees shrimp — fresher with every bite."
+  ],
+  "scenes": [
+    "Baicao Garden and the Three-Flavor Study — the textbook Shaoxing.",
+    "The love garden of Lu You and Tang Wan's 'Phoenix Hairpin'.",
+    "Wang Xizhi's floating-cup stream and the Lanting Preface.",
+    "Cliff, water and stone bonsai — boats through the caves.",
+    "The home of advisors, fragrant with sausage.",
+    "Burial place of Yu the Great, the flood tamer.",
+    "A Song bridge, the 'ancient cloverleaf'.",
+    "Where Yu met the lords — birthplace of yellow wine."
+  ]
+}

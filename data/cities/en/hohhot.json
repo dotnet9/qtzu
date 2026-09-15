@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Hohhot means 'the Blue City', founded in the Ming era by Altan Khan of the Tumed; the Silver Buddha of Dazhao Temple still sits today. Here steppe and farming civilizations met; the Zhaojun Museum tells the tale of peace through marriage. Milk and mutton flavors and horse-head fiddle tunes are the city's base notes.",
+  "importance": "Capital of Inner Mongolia · The Blue City",
+  "gallery": [
+    "Dazhao Temple",
+    "Zhaojun Museum",
+    "Xilamuren Grassland"
+  ],
+  "foods": [
+    "Boiled lamb in clear water — the pure original taste.",
+    "A grassland feast full of ceremony.",
+    "Salty milk tea with fried millet and milk skin.",
+    "Lamb-and-scallion shaomai with brick tea — the king of breakfast.",
+    "Hui-style baked bun stuffed with spicy paste.",
+    "Lamb offal soup with crispy baked buns.",
+    "Grassland dairy treats — sweet and bouncy.",
+    "Milk tea in a copper pot boiled with beef jerky and milk skin."
+  ],
+  "scenes": [
+    "Ming-era Tibetan Buddhist temple — silver Buddha, dragon carving and murals.",
+    "Wang Zhaojun's tomb, the 'Green Mound' of peace-through-marriage lore.",
+    "Dinosaur fossils and steppe civilization.",
+    "Ming-Qing old street beside Dazhao Temple.",
+    "The grassland nearest a city — try a yurt.",
+    "Alpine meadows, a horseback paradise.",
+    "Vajra-seat stupa with a Mongolian star chart.",
+    "A red-education memorial park."
+  ]
+}

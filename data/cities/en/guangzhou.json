@@ -1,0 +1,34 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Guangzhou was founded in 214 BC and has been a great starting port of the Maritime Silk Road for 2,000 years — the Thirteen Hongs made it world-famous in Ming-Qing times. Cantonese food is one of China's four great cuisines: 'eat in Guangzhou'. The Five Rams legend, Chen Clan Academy's carvings, Shamian's European streets and Canton Tower all shine together. Today it is the core engine of the Greater Bay Area.",
+  "importance": "Capital of Guangdong · National central city · Millennium commercial capital",
+  "gallery": [
+    "Canton Tower",
+    "Chen Clan Academy",
+    "Shamian Island"
+  ],
+  "foods": [
+    "Morning tea with 'one pot, two dishes' — shrimp dumplings, siu mai and phoenix claws are standard.",
+    "White-cut chicken with ginger-scallion sauce — the foundation of Cantonese freshness.",
+    "Deep-well roast goose, crispy and shiny, with sour plum sauce.",
+    "Rice-noodle rolls smooth as silk — soy sauce is the soul.",
+    "Slow-simmered Cantonese soup, three hours minimum.",
+    "Wonton noodles with bamboo-press alkaline noodles — classic Xiguan taste.",
+    "Double-skin milk from Shunde — silky as cream.",
+    "Congee of the boat people, loaded with fish and seafood.",
+    "One of the 'four kings' of dim sum — juicy honey-glazed char siu bun.",
+    "Glutinous rice and chicken steamed in lotus leaf — open it and the aroma bursts."
+  ],
+  "scenes": [
+    "The 600-meter 'slim waist' twisting tower — the best Pearl River night view.",
+    "Built in 1888 — the summit of Lingnan brick, wood and stone carving.",
+    "150 European buildings in a historic quarter under plane trees.",
+    "Five Rams statue and Ming city wall — the origin point of Guangzhou.",
+    "'First beauty of the Goat City' — Mt. Baiyun overlooks the whole city.",
+    "One of the world's largest zoos by species.",
+    "Arcade old streets — a paradise of food with rich Xiguan flavor.",
+    "Cruise the Pearl River; Canton Tower reflected in the water.",
+    "The 2,000-year-old Nanyue King's tomb with its jade burial suit.",
+    "One of only four all-stone Gothic cathedrals in the world."
+  ]
+}

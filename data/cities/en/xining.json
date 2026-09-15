@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Xining, ancient Qingtang city, guarded the Silk Road's southern line and the Tang-Tibet road for two millennia. Tsongkhapa, founder of the Gelug school, was born here; Kumbum Monastery's butter sculptures, murals and embroidery are the 'three arts' famed across Tibet. Average summer temperature 18°C — one of China's best summer retreats.",
+  "importance": "Capital of Qinghai · Gateway of the Plateau",
+  "gallery": [
+    "Kumbum Monastery",
+    "Qinghai Lake",
+    "Dongguan Mosque"
+  ],
+  "foods": [
+    "Plateau Tibetan lamb, tender and fresh.",
+    "Thick niangpi noodles with fragrant chili oil.",
+    "Sweet oat ferment — a lightly tipsy summer cooler.",
+    "Old yogurt with a golden skin on top.",
+    "Air-dried yak jerky, better with every chew.",
+    "Fingernail-sized noodle bits of Qinghai.",
+    "Fu brick tea with salt and milk — the herder's way.",
+    "A copper pot of mixed goodies for warm winters."
+  ],
+  "scenes": [
+    "One of the six Gelug monasteries — home of the three arts.",
+    "China's largest saltwater lake ringed by rapeseed flowers.",
+    "One of the four great mosques of the Northwest.",
+    "Riyue Pass — where Princess Wencheng crossed to Tibet.",
+    "A panoramic plateau ecology park.",
+    "The Northern Wudang Taoist sanctuary.",
+    "Huangyuan — an old tea-horse trade city.",
+    "Tulou Temple's cliff grottoes."
+  ]
+}

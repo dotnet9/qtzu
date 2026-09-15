@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Zhuhai became a Special Economic Zone in 1980 and is famous for its cityscape: the Fisher Girl — 'a pearl born of shell, a shell born of sea' — is its symbol. The 55-km Hong Kong-Zhuhai-Macao Bridge, the world's longest sea crossing, opened in 2018. Sunsets on Lovers' Road and Chimelong's whale-shark hall earned it the name 'City of Romance'.",
+  "importance": "Special Economic Zone · City of Romance",
+  "gallery": [
+    "Fisher Girl",
+    "HZM Bridge",
+    "Lovers' Road"
+  ],
+  "foods": [
+    "Oysters of 'one-big, two-fat, three-white, four-tender'.",
+    "Shell-changing crabs — best steamed.",
+    "Steamed sea bass, tender meat.",
+    "Roe crab baked over rice — full of wok-hei.",
+    "Zhuhai morning tea, slow living.",
+    "Mudflat yellow croaker, steamed fresh.",
+    "Hakka leaf-wrapped sweet cakes.",
+    "Seafood caught fresh at Wailingding Island."
+  ],
+  "scenes": [
+    "A 28-km romantic seaside avenue.",
+    "The city symbol by Xianglu Bay.",
+    "One of the world's largest ocean theme parks.",
+    "The 55-km world's longest sea bridge.",
+    "Where Wen Tianxiang sighed at Lingding Ocean.",
+    "Diamond sands of Nansha Bay.",
+    "Yuanming New Garden — forty scenes rebuilt 1:1.",
+    "Mangrove wetlands and Baishi old lanes."
+  ]
+}

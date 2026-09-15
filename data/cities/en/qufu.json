@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Qufu is the hometown of Confucius — the 'Holy City of the East'. The Temple, Mansion and Cemetery of Confucius (the 'Three Kong') joined the World Heritage List in 1994; the Dacheng Hall ranks with the Forbidden City's Hall of Supreme Harmony among the three great eastern halls. The Confucius ceremony has run for 2,000+ years; Confucian learning went from here across East Asia.",
+  "importance": "Hometown of Confucius · Holy City of the East",
+  "gallery": [
+    "Confucius Temple",
+    "Confucius Mansion",
+    "Confucius Cemetery"
+  ],
+  "foods": [
+    "'Never tire of fine food, never tire of fine mince' — ancestor of official mansion cuisine.",
+    "Coarse-grain wraps rolled with scallions — pure Shandong.",
+    "Confucius smoked tofu with woody smoke aroma.",
+    "Slow-steamed until the meat falls off the bone.",
+    "Ginkgo sweet dish of the Confucius mansion.",
+    "One duck, one pigeon — a famous dish with a story.",
+    "One of Qufu's three treasures — Han stele rubbings.",
+    "Boxwood carvings of the Sage's household craft."
+  ],
+  "scenes": [
+    "The World Heritage core where Confucius is honored.",
+    "'First family under heaven' — the Duke Yansheng's mansion.",
+    "A family cemetery of 2,400 years.",
+    "The 72-meter Confucius statue and the Great Learning Hall.",
+    "Temple of Duke Zhou beside the ancient Lu city.",
+    "Shrine of Yan Hui, the Master's favorite student.",
+    "Where Kong Shangren lived seclusion and wrote 'The Peach Blossom Fan'.",
+    "An experience park of rites, music, archery, chariots, letters and numbers."
+  ]
+}

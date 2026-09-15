@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Dunhuang was the throat of the Silk Road — 'Dun means great; Huang means splendid'. The Mogao Grottoes hold 735 caves and 45,000 square meters of murals across a millennium — among China's first World Heritage sites in 1987. Crescent Lake has survived a thousand years beside the Singing Sand Dunes; Yumen and Yang Passes echo the frontier poetry of old.",
+  "importance": "Pearl of the Silk Road · World treasury of Buddhist art",
+  "gallery": [
+    "Mogao Grottoes",
+    "Crescent Lake",
+    "Yumen Pass"
+  ],
+  "foods": [
+    "Hand-pulled yellow noodles — called 'a wonder of China'.",
+    "Stewed lamb with thin pancakes soaked in gravy.",
+    "Sweet-sour drink brewed from Li Guang apricots.",
+    "Red-willow skewers of barbecue on the desert edge.",
+    "Fried glutinous rice puffs — hollow and crispy.",
+    "Thick chewy cold noodles, sour and spicy.",
+    "Wild desert onion scrambled with eggs.",
+    "Dunhuang sweet apricots — fresh or dried."
+  ],
+  "scenes": [
+    "735 caves and 45,000 square meters of murals — a treasury of Buddhist art.",
+    "The wonder of spring and dunes coexisting, never drying for a thousand years.",
+    "The Han-dynasty pass behind 'spring wind never crosses Yumen Pass'.",
+    "The old Silk Road of 'no old friends beyond Yang Pass'.",
+    "Wind-eroded yardang landforms like a demon castle.",
+    "Silk Road relics and Han-dynasty wooden slips.",
+    "A night market full of Silk Road flavor.",
+    "A famous Buddhist temple beside Crescent Lake."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Changsha has 3,000 years of history — the 'home of Qu Yuan and Jia Yi', a famous Chu-Han city. The Lady Xinzhui and the gauze dress from Mawangdui amazed the world. At Yuelu Academy, Zhu Xi once lectured; on Orange Isle young Mao Zedong wrote his ambitions. Today Changsha is famous for Hunan TV, milk tea and nightlife — a UNESCO City of Media Arts.",
+  "importance": "Capital of Hunan · UNESCO City of Media Arts · Trendy internet-famous city",
+  "gallery": [
+    "Orange Isle",
+    "Yuelu Academy",
+    "Mawangdui Han Tomb"
+  ],
+  "foods": [
+    "Stinky tofu — smells odd, tastes great; the Fire Palace version is the most authentic.",
+    "China's first milk tea with cream-cheese foam — people queue three hours for it.",
+    "Sweet sticky rice cakes fried in sugar syrup — a street sweet.",
+    "Spicy crayfish — the king of Changsha late-night snacks.",
+    "Hunan classic: big fish head steamed with red chopped chili, fresh and hot.",
+    "Rice noodles with toppings — 'suo fen' is the Changsha morning ritual.",
+    "Spicy crab full of roe — a night-market hit.",
+    "Crispy baked bun with preserved-mustard pork filling."
+  ],
+  "scenes": [
+    "Long island in the Xiang River with the young Mao Zedong sculpture.",
+    "A thousand-year academy — 'Chu has talent, and here it flourishes'.",
+    "The Han tomb of Mawangdui and its silk gauze dress.",
+    "Thousand-year old street with Jia Yi's former home and a food corridor.",
+    "Famous tower on the old city wall — the origin point of Changsha.",
+    "Theme park of miniature world wonders.",
+    "Poet Du Fu's memorial tower by the Xiang River — best fireworks viewpoint.",
+    "Ancient town cluster with stone-paved streets and old shops."
+  ]
+}

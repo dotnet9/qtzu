@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Suzhou was founded in 514 BC and its city site has not moved in 2,500 years. Nine gardens including the Humble Administrator's and the Lingering Garden are World Heritage — 'Jiangnan's gardens rule the world; Suzhou's rule Jiangnan'. Pingtan and Kunqu in soft Wu tones, silk and embroidery of heavenly skill, and Hanshan Temple's bell of 'A Night Mooring by Maple Bridge' have sounded for a thousand years.",
+  "importance": "City of Gardens · Paradise on Earth",
+  "gallery": [
+    "Humble Administrator's Garden",
+    "Master-of-Nets Garden",
+    "Hanshan Temple"
+  ],
+  "foods": [
+    "Mandarin-fish shaped like a squirrel in sweet-sour sauce — king of Suzhou cuisine.",
+    "Autumn hairy crab — golden roe when 'autumn winds rise'.",
+    "Fengzhen pork noodles — clear broth, white noodles.",
+    "Curled Dongting green tea — 'frighteningly fragrant'.",
+    "Yaba pan-fried buns — thin skin, hot soup.",
+    "Pan Yulin's sweet red-bean porridge — a childhood taste.",
+    "Huangtianyuan's five-colored steamed cakes.",
+    "Cherry-red braised pork, melt-soft."
+  ],
+  "scenes": [
+    "Head of China's four great gardens — World Heritage.",
+    "'Not visiting Tiger Hill is a pity' — Suzhou's leaning pagoda.",
+    "An 800-year old lane where waterways and streets run parallel.",
+    "One of the four great gardens — the Guanyun Peak limestone.",
+    "The temple of 'the midnight bell reaches my boat'.",
+    "'First water town of China' — the Twin Bridges scene.",
+    "A modern lakeside skyline and Ferris wheel.",
+    "The model of small gardens — night tours with pingtan."
+  ]
+}

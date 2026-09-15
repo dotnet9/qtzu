@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Nanchang has 2,200 years of city history; the Tengwang Pavilion of 'sunset clouds fly with a lone duck' has been immortal for ages. The August 1st Uprising of 1927 fired here — the People's Army was born, so it is the 'Hero City'. Poyang Lake's migrating birds and the Haihunhou tomb's tons of gold stunned archaeologists.",
+  "importance": "Capital of Jiangxi · Hero City",
+  "gallery": [
+    "Tengwang Pavilion",
+    "Bayi Square",
+    "Poyang Lake"
+  ],
+  "foods": [
+    "Clay-jar soup baked over charcoal — meat-patty and egg soup, fresh.",
+    "Mixed rice noodles with clay-jar soup — the golden breakfast pair.",
+    "Crisp wormwood shoots of Poyang Lake — a Jiangxi classic.",
+    "Fried golden and dusted with sugar — soft and chewy.",
+    "'One cup of oil, one of soy, one of wine.'",
+    "Hair-thin crispy fried dough twists.",
+    "Wok-fried noodles for the night shift.",
+    "Lake crabs full of roe — an autumn exclusive."
+  ],
+  "scenes": [
+    "First of the three great southern towers — 'sunset clouds and lone duck'.",
+    "Monument where the army's flag first rose.",
+    "A Han tomb with ten thousand relics and mountains of gold.",
+    "Thousand-year pagoda ringed by food streets.",
+    "China's largest freshwater lake — winter home of white cranes.",
+    "Nanchang's back garden — summer retreat by Yaohu Lake.",
+    "Asia's largest fountain cluster facing the Tengwang Pavilion.",
+    "Taoist master Xu Jing's sanctuary and heritage streets."
+  ]
+}

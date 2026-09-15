@@ -1,8 +1,29 @@
 {
   "history": "Anciently called Chang'an, it served as capital for 13 dynasties — Western Zhou, Qin, Western Han, Sui, Tang and more — over 1,000 years of capital history. It ranks with Athens, Rome and Cairo as one of the world's four great ancient capitals. The Silk Road set out from here, camel bells ringing all the way to Rome. The Terracotta Army is the Eighth Wonder of the World; the Ming City Wall is the best-preserved ancient wall. Today it is a national central city and a powerhouse of science, education, aerospace and defense.",
   "importance": "Capital of 13 dynasties · First batch National Historical City",
-  "gallery": [ "Terracotta Warriors", "Ming City Wall", "Giant Wild Goose Pagoda" ],
-  "unis": [ null, null, null, null, null, null, "Main campus is in Yangling.", null ],
+  "gallery": [
+    "Terracotta Warriors",
+    "Ming City Wall",
+    "Giant Wild Goose Pagoda"
+  ],
+  "unis": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "Main campus is in Yangling.",
+    null,
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
   "foods": [
     "Baiji flatbread stuffed with braised pork — called the ancestor of the Chinese hamburger.",
     "You tear the bread yourself into the rich mutton broth — a ritual as tasty as the soup.",

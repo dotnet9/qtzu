@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Wuxi has 3,000 years of history — Taibo came east and began Jiangnan civilization. Turtle Head Isle's cherry blossoms are 'China's first cherry-viewing place'; the Grand Buddha is 88 meters tall. Modern national industry and the Sunan township model started here; today it is a heavy-hitter of the IoT industry.",
+  "importance": "Pearl of Taihu Lake · Land of fish and rice",
+  "gallery": [
+    "Taihu Lake",
+    "Grand Buddha",
+    "Turtle Head Isle"
+  ],
+  "foods": [
+    "Sweet little pork buns, brimming with soup.",
+    "Sanfengqiao braised ribs — sweet, salty, fall-apart.",
+    "Whitefish, shrimp and silverfish — the lake's finest three.",
+    "Gluten puffs stuffed with pork — a homely favorite.",
+    "Old-style yellow wine, mellow.",
+    "Huishan crispy pastry of the 'diamond navel' kind.",
+    "Lake-fresh wontons, light and clean.",
+    "Plum-blossom-shaped bean-paste cakes."
+  ],
+  "scenes": [
+    "The finest corner of Taihu — China's No.1 cherry spot.",
+    "The 88-meter bronze Buddha and the Brahma Palace.",
+    "Ancestral halls and the clay-figure museum.",
+    "The ancient canal's 'water lane' at night.",
+    "The legend of Fan Li and Xishi among lake rocks.",
+    "Rong family's plum garden — early-spring blossoms.",
+    "A Jiangnan old street of small bridges.",
+    "CCTV film base with live shows."
+  ]
+}

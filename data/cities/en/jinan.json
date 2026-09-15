@@ -1,0 +1,30 @@
+{
+  "_comment": "英文覆盖层：按索引对齐 foods/scenes/unis 的中文条目（本文件数组顺序必须与 zh 文件一致）。覆盖 desc/history 叙述字段；名称用各条目已有的 en 字段。",
+  "history": "Jinan is the 'City of Springs' — of its 72 famous springs, Baotu Spring is 'the First Spring under Heaven'. 'Lotus on four sides, willows on three; mountain colors in the city, half the city a lake' describes Daming Lake. Li Qingzhao and Xin Qiji were born here; Longshan culture goes back 4,500 years.",
+  "importance": "Capital of Shandong · City of Springs",
+  "gallery": [
+    "Baotu Spring",
+    "Daming Lake",
+    "Thousand-Buddha Mountain"
+  ],
+  "foods": [
+    "Shandong classic — sour, sweet, bitter, spicy and salty in one dish.",
+    "Yellow River carp posed with head and tail up — festive and grand.",
+    "Fire-mastered Shandong dish — crisp and tender, never gamey.",
+    "Pork braised in soy, tied with straw — perfect with rice.",
+    "Salty millet paste with peanuts and spinach — the Jinan breakfast.",
+    "Spiral scallion pancake — crispy outside, fragrant within.",
+    "Soup-filled potstickers of the Caobao shop.",
+    "Daming Lake lotus root — crisp and without threads."
+  ],
+  "scenes": [
+    "The First Spring under Heaven — three jets leaping skyward.",
+    "Daming Lake of 'lotus and willows' — the Summer Rain Lotus story.",
+    "Sui-dynasty cliff Buddhas; climb for a view of the spring city.",
+    "Old spring-city streets full of snacks.",
+    "Three stone tiger heads gushing — locals queue with buckets.",
+    "Ancient temple with clay arhats called 'the finest under heaven'.",
+    "'Spring water in every home, willows by every door.'",
+    "Eggshell black pottery and Han-dynasty bamboo slips."
+  ]
+}
