@@ -15,6 +15,20 @@ const M = (color, o = {}) => new THREE.MeshStandardMaterial({
 // 元素摆放/玩家碰撞都要留出这份厚度，否则视觉上穿墙
 export const CITY_WALL_BW = r => Math.max(1.2, r * 0.035);
 
+// 城市布局个性：按城市 key 派生确定性参数（旋转角/副地标风格/观景石台位/装饰随机流）。
+// 同 key 每次重建结果一致；不同城市即便半径相同，地标朝向/石台位/绿化排布也各不相同。
+// game.js 的天空蛋位（_cityPos sky 分支）必须用同一份 perchA/perchD——石台与蛋才能重合。
+export function cityLayout(key) {
+  let h = 5381;
+  for (const ch of String(key || '')) h = ((h * 33) ^ ch.charCodeAt(0)) >>> 0;
+  const rn = () => { h = (Math.imul(h, 48271) + 11) % 2147483647; return h / 2147483647; };
+  const baseA = rn() * Math.PI * 2;                                  // 城内布置整体初始角
+  const style = ['ring', 'twin', 'line', 'cross'][Math.floor(rn() * 4)];   // 副地标摆法
+  const perchA = baseA + 1.9 + rn() * 1.4;                           // 观景石台方向
+  const perchD = 0.22 + rn() * 0.14;                                 // 石台半径系数（×r）
+  return { baseA, style, perchA, perchD, rn };
+}
+
 // ---------- 卡通长城：青灰砖直墙 + 垛口 + 烽火台 ----------
 // 墙体沿边界曲线挤出（替换旧圆管）：更薄（半厚 1.0 vs 旧管径 2.66）、有结构节奏。
 // 全部只做装饰、不加碰撞体——玩家边界仍由 game 层的钳制公式统一裁定。
@@ -1202,10 +1216,15 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       const LM_HALF = { gate: 3.6, tower: 1.7, wall: 7.2, panda: 3.2, ice: 2.4, palm: 3.6, dome: 2.8, mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4, 'uni-gate': 3.4 };
       const lms = (isl.level && isl.level.landmarks && isl.level.landmarks.length)
         ? isl.level.landmarks : [isl.landmark, 'pavilion'];
+      const lay = cityLayout(key);   // 本城布局个性（方向/风格/石台位，确定性）
       lms.forEach((type, i) => {
         if (i > 0 && type === lms[0]) return;
-        const a = (i / Math.max(1, lms.length)) * Math.PI * 2 + 1.1;
-        const rr = i === 0 ? 0 : r * 0.56;
+        // 副地标按风格摆：ring=均匀环绕 / twin=两侧成对 / line=沿一条轴线纵深排开
+        let a, rr;
+        if (i === 0) { a = lay.baseA; rr = 0; }
+        else if (lay.style === 'twin') { a = lay.baseA + (i % 2 ? 0.55 : -0.55); rr = r * 0.42; }
+        else if (lay.style === 'line') { a = lay.baseA + ((i % 2) ? Math.PI : 0); rr = r * (0.38 + 0.14 * Math.floor(i / 2)); }
+        else { a = lay.baseA + (i / Math.max(1, lms.length)) * Math.PI * 2; rr = r * 0.56; }
         const sc = i === 0 ? 1 : 0.78;
         let lx = Math.cos(a) * rr, lz = Math.sin(a) * rr;
         if (i > 0 && polySim) [lx, lz] = clampPoly(polySim, lx, lz, bw + (LM_HALF[type] || 2.8) * sc + 0.3);
@@ -1217,16 +1236,16 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         grp.add(lm);
         colC(cx + lx, cz + lz, i === 0 ? 1.4 : 1.0);
       });
-      // 观景石台：天空词蛋放上面，跳上去够得着（钳制逻辑与 _cityPos 天空位一致，石台与蛋必重合）
-      let px = r * 0.3, pz = -r * 0.3;
+      // 观景石台：天空词蛋放上面，跳上去够得着——位置按城市个性旋转/偏移（game._cityPos sky 同参同钳）
+      let px = Math.cos(lay.perchA) * r * lay.perchD, pz = Math.sin(lay.perchA) * r * lay.perchD;
       if (polySim) [px, pz] = clampPoly(polySim, px, pz, bw + 1.2);   // 顶面 2.1 宽：边距=墙厚+半宽
       box(grp, 1.6, 3.2, 1.6, '#C8B898', px, 1.6, pz);
       box(grp, 2.1, 0.3, 2.1, '#D8CCA8', px, 3.3, pz);
       colTop(cx + px, cz + pz, 1.15, 3.45);
       // 中英文城市名牌：已取消常驻 3D 名牌（城市名由顶栏胶囊与介绍卡表达，拉远后牌面过大不协调）
-      // 特产装饰 emoji 撒一圈（随到访版本的城市特色）
+      // 特产装饰 emoji 撒一圈（随到访版本的城市特色；初始角按城市个性旋转）
       (isl.decos || ['🏮']).forEach((em, i) => {
-        const a = Math.PI * 2 * i / Math.max(1, isl.decos.length) + 0.4;
+        const a = lay.baseA + Math.PI * 2 * i / Math.max(1, isl.decos.length) + 0.4;
         let dx2 = Math.cos(a) * (r - 3), dz2 = Math.sin(a) * (r - 3);
         if (polySim) [dx2, dz2] = clampPoly(polySim, dx2, dz2, bw + 0.5);
         const s = new THREE.Sprite(letterTexture(em, '#FFFDF4', '#6B5844'));
@@ -1234,9 +1253,10 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         s.position.set(dx2, 0.6, dz2);
         grp.add(s);
       });
-      // 花丛点缀：环路四个象限
+      // 花丛点缀：环路四个象限（随城市个性旋转）
       if (PROPS.flowerpatch) for (const [dx, dz] of [[0.4, 0.4], [-0.4, 0.4], [0.4, -0.4], [-0.4, -0.4]]) {
-        let fx = dx * r, fz = dz * r;
+        let fx = dx * r * Math.cos(lay.baseA) + dz * r * Math.sin(lay.baseA);
+        let fz = -dx * r * Math.sin(lay.baseA) + dz * r * Math.cos(lay.baseA);
         if (polySim) [fx, fz] = clampPoly(polySim, fx, fz, bw + 0.7);
         const fp = PROPS.flowerpatch();
         fp.position.set(fx, 0, fz);
@@ -1244,8 +1264,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       }
 ﻿      // 城市绿化+高楼：内部撒树丛/草丛（装饰不碰撞），中环带立低模高楼（带碰撞）
       {
-        let sd = (r * 7919) | 0;
-        const rn = () => (sd = (Math.imul(sd, 48271) + 11) % 2147483647) / 2147483647;
+        const rn = lay.rn;   // 城市个性随机流：同城重建一致，异城（哪怕半径相同）装饰排布不同
         const inPt = (px, pz) => {
           if (!poly) return Math.hypot(px, pz) < r - 4;
           let ins = false;
@@ -1264,6 +1283,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             if (!inPt(px, pz)) continue;
             if (polySim) [px, pz] = clampPoly(polySim, px, pz, margin);
             if (placed.some(q => Math.hypot(q[0] - px, q[1] - pz) < gap)) continue;
+            // 迎宾主街留空：返回台（本地 z=-2.5）到中心主地标之间不撒树/高楼，一眼看穿城
+            if (Math.abs(px) < r * 0.05 && pz < 0.35 && pz > -r * 0.95) continue;
             placed.push([px, pz]);
             return [px, pz];
           }

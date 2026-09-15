@@ -9,7 +9,7 @@ import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensu
 import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
 import { NPCManager } from './npcs.js';
-import { cityLandmark } from './world.js';
+import { cityLandmark, cityLayout } from './world.js';
 import { buildWorld } from './world.js';
 import { buildPlayer, letterTexture, petThumbnail, speechBubbleTexture, PROPS } from './models.js';
 import { EggManager, PetManager } from './pets.js';
@@ -1754,7 +1754,12 @@ export class Game {
     const rr = stage.r * (0.38 + 0.28 * Math.min(1, Math.hypot(ox, oz) / 52));
     let x = stage.cx + Math.cos(a) * rr, z = stage.cz + Math.sin(a) * rr;
     // 天空词蛋放城市高台上（地标旁的石台，跳上去够得着）
-    if (word.zone === 'sky') { x = stage.cx + stage.r * 0.3; z = stage.cz - stage.r * 0.3; }
+    if (word.zone === 'sky') {
+      // 观景石台位与 world.js 城市布局个性同参（perchA/perchD），石台与蛋必重合
+      const lay = cityLayout(stage.key);
+      x = stage.cx + Math.cos(lay.perchA) * stage.r * lay.perchD;
+      z = stage.cz + Math.sin(lay.perchA) * stage.r * lay.perchD;
+    }
     // 真实轮廓下细长/凹形城市（兰州等）按半径摆放可能落海：统一钳回多边形内
     // 天空蛋边距=石台边距（world.js 同为 墙厚+1.2），同点同钳制，蛋才不会漂离台面
     // 静态蛋位严格边距（floor=margin）：蛋容许被甩向城心（保可捡），不许贴进墙缝
