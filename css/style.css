@@ -895,6 +895,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   width: min(92vw, 420px); height: min(70dvh, 560px); background: #FFFDF8;
   border: 3px solid #FFD3E0; border-radius: 20px; padding: 14px; position: relative;
   box-shadow: 0 18px 50px rgba(150,90,110,.25); display: flex; flex-direction: column;
+  animation: cardIn .14s ease-out;   /* 选择器要跟手：短动画，不用弹跳缓动 */
 }
 #city-picker .cp-t { font-size: 16px; font-weight: 900; color: #C4577E; text-align: center; margin-bottom: 10px; }
 #city-picker .cp-body { flex: 1; display: flex; gap: 6px; min-height: 0; }
@@ -923,6 +924,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   color: #C4788F; background: none; border: none; cursor: pointer; border-radius: 4px;
 }
 #city-picker .cp-rail button:active { background: #FFE9F1; }
+#city-picker .cp-rail button.active { background: #F76E9C; color: #FFF; }
 #profile-card select:focus { border-color: #7CC96F; box-shadow: 0 0 0 3px rgba(124,201,111,.18); }
 #profile-card select:invalid { color: #9C8C7A; }
 #profile-card .profile-tip { color: #C4A78F; font-size: 12px; margin: 2px 0 12px; }

@@ -442,14 +442,31 @@ export function openCityPicker({ current, onPick }) {
   document.body.appendChild(ov);
   ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
   const list = ov.querySelector('.cp-list');
-  ov.querySelectorAll('.cp-rail button').forEach(b => {
+  const railBtns = [...ov.querySelectorAll('.cp-rail button')];
+  const setActiveLetter = L => railBtns.forEach(b => b.classList.toggle('active', b.dataset.letter === L));
+  railBtns.forEach(b => {
     b.onclick = () => {
       sfx.pop();
+      setActiveLetter(b.dataset.letter);
       const target = list.querySelector(`.city-letter[data-letter="${b.dataset.letter}"]`);
       if (!target) return;
-      try { target.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
-      catch (e) { list.scrollTop = target.offsetTop - list.offsetTop; }   // 老内核降级
+      list.scrollTop = target.offsetTop - list.offsetTop;   // 通讯录式瞬时定位：跳字母不搞动画
     };
+  });
+  // 滚动同步：手动滚列表时，右侧字母条实时高亮当前段
+  let spyTick = false;
+  list.addEventListener('scroll', () => {
+    if (spyTick) return;
+    spyTick = true;
+    requestAnimationFrame(() => {
+      spyTick = false;
+      let cur = railBtns.length ? railBtns[0].dataset.letter : '';
+      for (const el of list.querySelectorAll('.city-letter')) {
+        if (el.offsetTop - list.offsetTop <= list.scrollTop + 12) cur = el.dataset.letter;
+        else break;
+      }
+      setActiveLetter(cur);
+    });
   });
   ov.querySelectorAll('.city-row').forEach(r => {
     r.onclick = () => {
