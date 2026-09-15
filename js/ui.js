@@ -4,7 +4,7 @@ import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, hatchedCount, getUsername } from './save.js';
+import { setHomeCity, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -318,7 +318,7 @@ const ch = {
   busy: false, listening: false, canVoice: false, replayUrl: null,
 };
 
-export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEnd, easy }) {
+export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEnd, easy, noSpell }) {
   ch.open = true; ch.word = word; ch.mode = mode; ch.onSuccess = onSuccess; ch.onClose = onClose; ch.onSkip = onSkip; ch.onDemoEnd = onDemoEnd || null; ch.easy = !!easy;   // 复习蛋简单模式：读一遍就过
   ch.busy = false; ch.spellMode = false; ch.listening = false; ch.replayUrl = null;
   toggleHudMenu(false);   // 弹窗打开时收起菜单
@@ -342,6 +342,7 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   els.spellArea.classList.add('hidden');
   els.modalFoot.classList.remove('hidden');
   els.btnSkip.classList.toggle('hidden', mode !== 'practice' && !ch.easy);
+  els.btnSwitchSpell.classList.toggle('hidden', !!noSpell);   // 整句跟读没有"拼字母块"
   // 详细按钮只在喂养时显示：孵化/练习时孩子专注朗读拼块，词义详情留到喂养时专注看
   els.btnDetail.classList.toggle('hidden', mode !== 'feed');
   if (mode === 'feed') setTimeout(() => els.btnDetail.click(), 600);   // 喂养时自动弹出词义详情
@@ -376,6 +377,43 @@ export function closeChallenge() {
 }
 
 export function challengeOpen() { return ch.open; }
+
+// ---------- 小火车快问快答：转场等待期的一道目的地城市知识题（非阻塞，不作答也会自动消失） ----------
+let _tqTimer = null;
+export function showTrainQuiz({ q, opts, answer, onGood }) {
+  closeTrainQuiz();
+  const ov = document.createElement('div');
+  ov.className = 'train-quiz';
+  ov.innerHTML = `<div class="tq-q">🚄 车上小问答：${q}</div>
+    <div class="tq-opts">${(opts || []).map((o, i) => `<button type="button" data-i="${i}">${o}</button>`).join('')}</div>
+    <div class="tq-rs"></div>`;
+  document.body.appendChild(ov);
+  const rs = ov.querySelector('.tq-rs');
+  ov.querySelectorAll('.tq-opts button').forEach(b => {
+    b.onclick = () => {
+      const ok = Number(b.dataset.i) === answer;
+      ov.querySelectorAll('.tq-opts button').forEach(x => { x.disabled = true; if (x === b) x.classList.add(ok ? 'right' : 'wrong'); });
+      if (ok) {
+        rs.textContent = '答对啦 +1⭐';
+        rs.className = 'tq-rs good';
+        sfx.great();
+        onGood && onGood();
+      } else {
+        rs.textContent = `正确答案：${opts[answer]}`;
+        rs.className = 'tq-rs bad';
+        sfx.pop();
+      }
+      clearTimeout(_tqTimer);
+      _tqTimer = setTimeout(closeTrainQuiz, 2400);
+    };
+  });
+  _tqTimer = setTimeout(closeTrainQuiz, 7000);   // 不作答也自动消失
+}
+export function closeTrainQuiz() {
+  clearTimeout(_tqTimer);
+  _tqTimer = null;
+  document.querySelectorAll('.train-quiz').forEach(el => el.remove());
+}
 
 // ---------- 麦克风：点击开始 → 10 秒倒计时内读完 → 再点结束（到时也自动识别） ----------
 let countdownTimer = null;
@@ -634,6 +672,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     ${city.history ? `<div class="cc-hist">${city.history}</div>` : ''}
     <p class="cc-p">欢迎来到 <b>${city.name} ${city.en}</b>！${variant.intro}</p>
     <button class="cc-intro-en" data-en="${variant.introEn}">🔊 ${variant.introEn}</button>
+    ${variant.introEn ? `<button type="button" class="cc-guide">🎤 当小导游 · 80分得徽章${hasBadge('guide:' + city.en) ? ' 🎖️' : ''}</button>` : ''}
     ${city.importance ? `<div class="cc-imp">⭐ ${city.importance}</div>` : ''}
     ${cwords ? `<div class="cc-sec">🗣️ 城市英文词（点点读）</div><div class="cc-chips">${cwords}</div>` : ''}
     ${q}`;
@@ -661,26 +700,31 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     ? `<p class="cc-p">点大学名字，去它们的官网看看（排名为公开榜单参考值）：</p><div class="uni-list">${unis}</div>`
     : `<p class="cc-p">这座城市更出名的是风景，去看看「风景」页吧！</p>`;
 
-  // 图片卡片网格生成器（美食/风景共用）
-  const itemsHtml = (items, emoji, tip) => {
+  // 图片卡片网格生成器（美食/风景共用）；风景页支持盖章收集
+  const itemsHtml = (items, emoji, tip, stampable) => {
+    const got = stampable ? getStamps(city.en) : [];
     const cards = (items || []).map(it => `
-      <div class="item-card" data-emoji="${emoji}">
+      <div class="item-card${stampable ? ' stampable' : ''}${got.includes(it.name) ? ' stamped' : ''}" data-emoji="${emoji}"${stampable ? ` data-name="${it.name}"` : ''}>
+        ${stampable && got.includes(it.name) ? '<span class="stamp-mark">🏅</span>' : ''}
         ${it.img ? `<img src="${it.img}" alt="${it.name}" loading="lazy"
              onerror="this.style.display='none';this.parentElement.classList.add('noimg')">` : ''}
         <div class="it-name">${it.name}<i>${it.en || ''}</i></div>
         ${it.desc ? `<div class="it-desc">${it.desc}</div>` : ''}
       </div>`).join('');
-    return cards
-      ? `<p class="cc-p">${tip}</p><div class="cc-grid">${cards}</div>`
-      : `<p class="cc-p">这座城市的秘密等你亲自去发现！</p>`;
+    if (!cards) return `<p class="cc-p">这座城市的秘密等你亲自去发现！</p>`;
+    const line = stampable ? `<div class="cc-stamp-line">🏅 景点集章 ${got.length}/${(items || []).length}${isStampsDone(city.en) ? ' · 全部完成！' : ' · 点一点盖上纪念章'}</div>` : '';
+    return `${line}<p class="cc-p">${tip}</p><div class="cc-grid">${cards}</div>`;
   };
+
+  // 风景页每次进入都按最新盖章状态重画
+  const scenesHtml = () => itemsHtml(city.scenes, '🏞️', `${city.name}的风景名胜（${LANDMARK_ZH[city.landmark] || '城市舞台'}是它的名片）：`, true);
 
   // Tab 栏：配置数组驱动，city.customTabs 可无代码扩展
   const tabs = [
     { id: 'home', name: '🏠 首页', html: homeHtml },
     { id: 'uni', name: '🎓 大学', html: uniHtml },
     { id: 'food', name: '🍜 美食', html: itemsHtml(city.foods, '🍜', `来到${city.name}，一定要尝尝这些特色美味：`) },
-    { id: 'scene', name: '🏞️ 风景', html: itemsHtml(city.scenes, '🏞️', `${city.name}的风景名胜（${LANDMARK_ZH[city.landmark] || '城市舞台'}是它的名片）：`) },
+    { id: 'scene', name: '🏞️ 风景', html: scenesHtml() },
     ...(city.customTabs || []).map(t => ({ id: t.name, name: t.name, html: t.html || '' })),
   ];
   ov.innerHTML = `<div id="city-card" class="${isFinal ? 'final' : ''}">
@@ -728,7 +772,8 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
       sfx.pop();
       ov.querySelectorAll('.cc-tab').forEach(x => x.classList.remove('on'));
       b.classList.add('on');
-      body.innerHTML = tabs[Number(b.dataset.t)].html;
+      const t = tabs[Number(b.dataset.t)];
+      body.innerHTML = t.id === 'scene' ? scenesHtml() : t.html;   // 风景页按最新盖章状态重画
       bindChips();
       bindQuiz();
     };
@@ -736,6 +781,54 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
   const bindChips = () => {
     body.querySelectorAll('.cu-chip, .cc-intro-en').forEach(b => {
       b.onclick = () => { sfx.pop(); if (b.dataset.en) speak(b.dataset.en); };
+    });
+    // 🎤 小导游挑战：跟读城市英文介绍，80 分拿徽章
+    body.querySelectorAll('.cc-guide').forEach(b => {
+      b.onclick = () => {
+        sfx.pop();
+        els.modal.style.zIndex = '130';   // 挑战弹窗要压在城市卡（120）之上
+        openChallenge({
+          word: { en: variant.introEn, zh: `${city.name} · 小导游词`, hint: '当小导游，大声把这座城介绍给游客！' },
+          mode: 'practice', noSpell: true,
+          onSuccess: res => {
+            closeChallenge();
+            if ((res.score || 0) >= 80) {
+              const first = !hasBadge('guide:' + city.en);
+              awardBadge('guide:' + city.en);
+              sfx.great();
+              onStar && onStar();
+              toast(first ? `🎖️ 小导游徽章到手！${city.name}介绍得真棒 +1⭐` : `🎖️ 又当了一次小导游，越说越溜 +1⭐`, 4200);
+            } else {
+              toast('再多练一次，80 分就能拿到小导游徽章！', 3200);
+            }
+          },
+          onClose: () => { els.modal.style.zIndex = ''; },
+        });
+      };
+    });
+    // 🏅 景点盖章：点风景卡盖上纪念章，集满一座城 +2⭐
+    body.querySelectorAll('.item-card.stampable').forEach(card => {
+      card.onclick = () => {
+        const name = card.dataset.name;
+        if (!name) return;
+        const count = addStamp(city.en, name);
+        sfx.pat();
+        if (!card.classList.contains('stamped')) {
+          card.classList.add('stamped');
+          card.insertAdjacentHTML('afterbegin', '<span class="stamp-mark">🏅</span>');
+        }
+        const total = (city.scenes || []).length;
+        if (!isStampsDone(city.en) && count >= total) {
+          markStampsDone(city.en);
+          sfx.great();
+          onStar && onStar(); onStar && onStar();   // 集满一座城：+2⭐
+          toast(`🏅「${city.name}」景点集章全部完成！+2⭐`, 4200);
+        } else {
+          toast(`🏅 盖上「${name}」纪念章！已集 ${count}/${total}`, 2600);
+        }
+        const line = body.querySelector('.cc-stamp-line');
+        if (line) line.textContent = `🏅 景点集章 ${count}/${total}${isStampsDone(city.en) ? ' · 全部完成！' : ' · 点一点盖上纪念章'}`;
+      };
     });
     // 大学名 → 新窗口打开官网（触屏先确认，防误触离开游戏）
     body.querySelectorAll('.uni-name').forEach(b => {
@@ -821,12 +914,19 @@ const LANDMARK_ZH = {
 
 // ---------- 牌子详情弹卡：点击城市里的大学/美食/风景立牌弹出 ----------
 const SIGN_TYPE_ZH = { uni: ['🎓', '大学'], food: ['🍜', '美食'], scene: ['🏞️', '风景名胜'] };
-export function showSignDetail(it) {
+export function showSignDetail(it, cityEn) {
   const ov = document.createElement('div');
   ov.className = 'overlay';
   ov.style.zIndex = '118';
   const [emoji, typeName] = SIGN_TYPE_ZH[it.type] || ['📍', '城市名片'];
   const nm = it.name || it.zh || '';
+  // 🏅 风景立牌打开即盖章（与城市卡风景页共用同一本集章册）
+  let stampTip = '';
+  if (cityEn && it.type === 'scene' && nm) {
+    const count = addStamp(cityEn, nm);
+    stampTip = `<div class="sg-stamp">🏅 已盖上「${nm}」纪念章（第 ${count} 枚），集满一座城有惊喜！</div>`;
+    sfx.pat();
+  }
   ov.innerHTML = `<div id="sign-card">
     <button class="round-btn small" id="sign-close" style="position:absolute;top:12px;right:12px">✕</button>
     <div class="sg-fb" style="display:flex"><span>${emoji}</span></div>
@@ -837,6 +937,7 @@ export function showSignDetail(it) {
     ${it.history ? `<div class="sg-hist">${it.history}</div>` : ''}
     <div class="sg-wiki"></div>
     ${it.site ? `<a class="sg-site" href="${it.site}" target="_blank" rel="noopener noreferrer">🌐 打开官网</a>` : ''}
+    ${stampTip}
     <div class="sg-tip">🔊 点读英文名 · 照片来自维基百科</div>
   </div>`;
   document.body.appendChild(ov);

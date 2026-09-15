@@ -318,6 +318,51 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 #city-card #cc-share:active { transform: scale(.96); }
 
+/* 🎤 小导游挑战按钮 */
+#city-card .cc-guide {
+  margin-top: 8px; width: 100%; padding: 9px; font-size: 14px; font-weight: 900; font-family: inherit;
+  color: #C4577E; background: #FFF0F5; border: 2px dashed #FFB9CE; border-radius: 999px; cursor: pointer;
+}
+#city-card .cc-guide:active { transform: scale(.96); }
+
+/* 🏅 景点集章 */
+#city-card .cc-stamp-line {
+  margin: 2px 0 6px; padding: 7px 12px; font-size: 13px; font-weight: 900; color: #934C64;
+  background: #FFF6E8; border: 2px solid #F2C98C; border-radius: 12px; text-align: center;
+}
+#city-card .item-card.stampable { cursor: pointer; }
+#city-card .item-card.stampable:active { transform: scale(.96); }
+#city-card .item-card.stamped { border-color: #F2C98C; background: #FFFBF0; }
+#city-card .stamp-mark {
+  position: absolute; top: 6px; right: 8px; font-size: 18px;
+  transform: rotate(-12deg); filter: drop-shadow(0 1px 2px rgba(150,110,30,.35));
+}
+#sign-card .sg-stamp {
+  margin-top: 10px; padding: 8px 12px; font-size: 13px; font-weight: 900; color: #934C64;
+  background: #FFF6E8; border: 2px solid #F2C98C; border-radius: 12px; text-align: center;
+}
+
+/* 🚄 小火车快问快答（非阻塞小卡，7 秒不作答自动消失） */
+.train-quiz {
+  position: fixed; top: calc(58px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+  z-index: 90; width: min(92vw, 460px); padding: 10px 14px;
+  background: #FFFDF8; border: 3px solid #FFD3E0; border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(150,90,110,.25); animation: tqIn .25s ease-out;
+}
+@keyframes tqIn { from { opacity: 0; transform: translate(-50%, -8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.train-quiz .tq-q { font-size: 14px; font-weight: 900; color: #6B5844; text-align: center; }
+.train-quiz .tq-opts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
+.train-quiz .tq-opts button {
+  flex: 1 1 auto; padding: 8px 14px; font-size: 13px; font-weight: 900; font-family: inherit;
+  color: #6B5844; background: #FFF4F8; border: 2px solid #FFD3E0; border-radius: 999px; cursor: pointer;
+}
+.train-quiz .tq-opts button:active { transform: scale(.95); }
+.train-quiz .tq-opts button.right { color: #FFF; background: #5FAE5F; border-color: #5FAE5F; }
+.train-quiz .tq-opts button.wrong { color: #FFF; background: #E08A96; border-color: #E08A96; }
+.train-quiz .tq-rs { min-height: 18px; margin-top: 6px; text-align: center; font-size: 12px; font-weight: 900; color: #9C8C7A; }
+.train-quiz .tq-rs.good { color: #4E7A46; }
+.train-quiz .tq-rs.bad { color: #C4577E; }
+
 /* ---------- 北京终章成就卡 ---------- */
 #travel-card {
   width: min(420px, 92vw); max-height: calc(100dvh - 28px); overflow-y: auto;

@@ -34,6 +34,8 @@ function fresh() {
     naughty: {},       // 错词本：wordId -> {misses, lastMiss, caughtOn}，读错的词隔天变"淘气词宠"回来复习
     cityVisits: {},    // 城市到访次数：id -> 次数（决定介绍版本，常来常新）
     guideDone: false,  // 新手引导 3 步（走到蛋边→读单词→摸摸词宠）完成过没有
+    badges: {},        // 徽章：key -> true（小导游 guide:<城市> 等）
+    stamps: {},        // 景点集章：<城市en> -> { got:[景点名], done:false }
   };
 }
 
@@ -64,6 +66,8 @@ function load() {
     merged.naughty = d.naughty || {};
     merged.cityVisits = d.cityVisits || {};
     merged.guideDone = !!d.guideDone;
+    merged.badges = d.badges || {};
+    merged.stamps = d.stamps || {};
     merged.daily = Object.assign({ day: '', idx: 0, n: 0, done: false }, d.daily || {});
     if (!merged.player) merged.player = null;
     return merged;
@@ -279,6 +283,24 @@ export function isHungry(id) { return hungryIn(id) < 0; }
 // ---------- 新手引导：第一次玩的孩子走完 3 步就算出师 ----------
 export function isGuideDone() { return !!data.guideDone; }
 export function markGuideDone() { data.guideDone = true; save(); }
+
+// ---------- 小导游徽章 / 景点集章 ----------
+export function hasBadge(key) { return !!data.badges[key]; }
+export function awardBadge(key) { if (!data.badges[key]) { data.badges[key] = true; save(); } }
+export function getStamps(cityEn) {
+  const s = data.stamps[cityEn];
+  return s ? s.got.slice() : [];
+}
+export function isStampsDone(cityEn) { return !!(data.stamps[cityEn] && data.stamps[cityEn].done); }
+export function addStamp(cityEn, name) {
+  const s = data.stamps[cityEn] || (data.stamps[cityEn] = { got: [], done: false });
+  if (!s.got.includes(name)) { s.got.push(name); save(); }
+  return s.got.length;
+}
+export function markStampsDone(cityEn) {
+  const s = data.stamps[cityEn];
+  if (s && !s.done) { s.done = true; save(); }
+}
 
 export function feed(id) {
   const p = data.pets[id];

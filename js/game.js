@@ -1931,6 +1931,7 @@ export class Game {
     this.riding = true;
     ui.hidePrompt();
     sfx.pop();
+    this._trainQuiz(st.key);   // 车上时间别浪费：来一道目的地城市知识题
     this.addTween(3.2, k => {
       const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
       this.player.position.lerpVectors(from, to, e);
@@ -1939,7 +1940,25 @@ export class Game {
     }, () => {
       this.riding = false;
       this.player.position.copy(to);
+      ui.closeTrainQuiz();
       ui.toast(`🚂 到站！欢迎来到 ${st.name} ${st.emoji}`, 3400);
+    });
+  }
+
+  // 小火车快问快答：目的地城市知识二选一/三选一，答对 +1⭐（选项随机打乱，别让孩子记位置）
+  _trainQuiz(key) {
+    const quiz = getCityQuiz(key);
+    if (!quiz || !quiz.opts || quiz.opts.length < 2) return;
+    const order = quiz.opts.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+    ui.showTrainQuiz({
+      q: quiz.q,
+      opts: order.map(i => quiz.opts[i]),
+      answer: order.indexOf(quiz.a),
+      onGood: () => { save.addStars(1); ui.updateStars(save.getStars()); },
     });
   }
 
@@ -3005,7 +3024,7 @@ export class Game {
         const it = sh[0].object.userData.sign;
         if (it) {
           sfx.pop();
-          ui.showSignDetail(it);
+          ui.showSignDetail(it, this._currentStage().city && this._currentStage().city.en);
           const en = it.en || (it.name || it.zh || '');
           speak(en);
           return;
@@ -4117,6 +4136,7 @@ export class Game {
     const dist = from.distanceTo(to);
     const dur = THREE.MathUtils.clamp(dist / 22, 1.6, 4);
     sfx.magic();
+    if (isl) this._trainQuiz(isl.key);   // 跨海路上来一道知识题
     ui.toast(isl ? `🚂 呜——开往「${isl.name}」的小火车出发啦！` : '🚂 呜——回到主岛啦！', 2600);
     this.addTween(dur, (k, dt) => {
       const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
@@ -4140,6 +4160,7 @@ export class Game {
       this.player.position.y = 0;
       this.onGround = true; this.vy = 0; this.jumps = 0;
       this.lastZone = null;  // 触发新区域提示
+      ui.closeTrainQuiz();
       sfx.good();
       if (save.addVisited(isl ? isl.key : 'meadow')) {
         this._refreshDailyBanner && this._refreshDailyBanner();
