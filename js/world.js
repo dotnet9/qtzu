@@ -830,7 +830,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         uv.setXY(i, (pos.getX(i) - minX) / (maxX - minX), 1 - (pos.getY(i) - minZ) / (maxZ - minZ));
       }
       const top0 = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: cityIslandTexture(color, isl.level, pts), side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }));
-      top0.rotation.x = -Math.PI / 2;
+      // 旋转 +90°：轮廓 y（=世界 z）原样落位。此前用 -90° 会把地面南北镜像——
+      // 不对称城市（乌鲁木齐等）地面画到界外、城内露出台纸白块，树全站在"空白"上
+      top0.rotation.x = Math.PI / 2;
       top0.position.y = 0.02;
       top0.receiveShadow = true;
       grp.add(top0);
