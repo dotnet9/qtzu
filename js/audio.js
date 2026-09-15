@@ -347,6 +347,20 @@ export function setBgmMood(mood) {
   if (bgmOn) ambientStart(bgmMood);   // 环境音跟着换
 }
 
+// ---------- 城市主题变奏：一城一调 ----------
+// 按城市 key 派生确定性调性偏移（±3 半音）与速度乘数（±6%）：
+// 同一座城永远同一个"主题曲"，不同城市听感不同，但都基于同一套旋律素材。
+let cityTf = 1, cityBpmMul = 1;
+export function setBgmCity(key) {
+  if (!key) { cityTf = 1; cityBpmMul = 1; return; }   // 主岛/农场：恢复基准调
+  let h = 5381;
+  for (const ch of String(key)) h = ((h * 33) ^ ch.charCodeAt(0)) >>> 0;
+  const rn = () => { h = (Math.imul(h, 48271) + 11) % 2147483647; return h / 2147483647; };
+  const semi = [-3, -2, -1, 0, 1, 2, 3][Math.floor(rn() * 7)];
+  cityTf = Math.pow(2, semi / 12);
+  cityBpmMul = 0.94 + rn() * 0.12;
+}
+
 // ---------- 环境音景：跟着分区走，全部 WebAudio 合成，零素材 ----------
 // 海滩=海浪（滤过的白噪 + 慢起伏）、农场=偶发鸟鸣、森林=偶发虫鸣；音量都压得很低
 let ambGain = null;
@@ -430,9 +444,9 @@ function bgmVoice(freq, t0, dur, type, peak) {
 
 function bgmScheduleBar(mood, idx, t0) {
   const M = BGM_MOODS[mood];
-  // FEVER 时整体升一个大二度、节奏快 8%，曲子瞬间“燃”起来
-  const tf = bgmFever ? 1.1225 : 1;
-  const beat = (60 / M.bpm) * (bgmFever ? 0.92 : 1);
+  // FEVER 时整体升一个大二度、节奏快 8%，曲子瞬间“燃”起来；城市变奏叠加调性/速度个性
+  const tf = (bgmFever ? 1.1225 : 1) * cityTf;
+  const beat = (60 / (M.bpm * cityBpmMul)) * (bgmFever ? 0.92 : 1);
   const v = M.vel;
   const chord = M.chords[idx % M.chords.length];
   bgmVoice(chord.bass * tf, t0, beat * 0.95, 'sine', 0.05 * v);            // 低音：第 1 拍
@@ -452,7 +466,7 @@ function bgmSchedule() {
     const M = BGM_MOODS[bgmMood];
     bgmScheduleBar(bgmMood, bgmBar % M.melody.length, bgmNextBarTime);
     bgmBar++;
-    bgmNextBarTime += (60 / M.bpm) * 4;
+    bgmNextBarTime += (60 / (M.bpm * cityBpmMul)) * 4;   // 小节时长同步城市速度乘数，BPM 变了不错拍
   }
 }
 

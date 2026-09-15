@@ -16,7 +16,7 @@ import { EggManager, PetManager } from './pets.js';
 import * as save from './save.js';
 import * as ui from './ui.js';
 import { startListening, stopListening, matchAlt, voiceSupported, isVoiceBroken, markVoiceBroken } from './speech.js';
-import { speak, sfx, stopSpeaking, setBgmMood, isSpeaking } from './audio.js';
+import { speak, sfx, stopSpeaking, setBgmMood, setBgmCity, isSpeaking } from './audio.js';
 import { ensureWhisper, recognizeBlob, preloadWhisper, loadPercent } from './whisper.js';
 import { buildChinaMap } from './china-map.js';
 import { CURRICULUM } from './curriculum.js';
@@ -3405,6 +3405,7 @@ export class Game {
       const visit = save.visitCity(this.sem + ':' + st.key);
       const moods = ['farm', 'beach', 'forest'];
       setBgmMood(moods[st.key.length % 3]);   // 每座城市换一种背景音乐情绪
+      setBgmCity(st.key);                     // 一城一调：调性/速度按城市个性变奏
       this._refreshCityPill();
       this._owlDeliver(`下一站：${st.name}！出发！`);
       setTimeout(() => {
@@ -4312,6 +4313,7 @@ export class Game {
       this.player.position.y = 0;
       this.onGround = true; this.vy = 0; this.jumps = 0;
       this.lastZone = null;  // 触发新区域提示
+      if (!isl) setBgmCity(null);   // 回农场：恢复基准调
       ui.closeTrainQuiz();
       sfx.good();
       if (save.addVisited(isl ? isl.key : 'meadow')) {
