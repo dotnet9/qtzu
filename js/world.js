@@ -26,8 +26,16 @@ export function cityLayout(key) {
   const style = ['ring', 'twin', 'line', 'cross'][Math.floor(rn() * 4)];   // 副地标摆法
   const perchA = baseA + 1.9 + rn() * 1.4;                           // 观景石台方向
   const perchD = 0.22 + rn() * 0.14;                                 // 石台半径系数（×r）
-  return { baseA, style, perchA, perchD, rn };
+  // 数据级手作覆写（data/cities/layouts.json）：人工逐城定制，优先于程序化参数
+  const o = CITY_LAYOUT_OVERRIDES[key];
+  const lay = { ...{ baseA, style, perchA, perchD, rn: null }, ...(o || {}) };
+  // rn 流与覆写无关：始终基于 key 的确定性序列
+  lay.rn = rn;
+  return lay;
 }
+// 手作布局表：cities.js 启动时从 data/cities/layouts.json 注入
+let CITY_LAYOUT_OVERRIDES = {};
+export function setCityLayouts(data) { CITY_LAYOUT_OVERRIDES = data || {}; }
 
 // ---------- 卡通长城：青灰砖直墙 + 垛口 + 烽火台 ----------
 // 墙体沿边界曲线挤出（替换旧圆管）：更薄（半厚 1.0 vs 旧管径 2.66）、有结构节奏。
@@ -1253,6 +1261,16 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         s.position.set(dx2, 0.6, dz2);
         grp.add(s);
       });
+      // 手作城市记忆点：layouts.json 逐城摆放的专属装饰（a=方向角 d=半径系数，坐标随城半径缩放）
+      for (const p of (CITY_LAYOUT_OVERRIDES[key] && CITY_LAYOUT_OVERRIDES[key].props) || []) {
+        let px2 = Math.cos(p.a || 0) * r * (p.d == null ? 0.5 : p.d);
+        let pz2 = Math.sin(p.a || 0) * r * (p.d == null ? 0.5 : p.d);
+        if (polySim) [px2, pz2] = clampPoly(polySim, px2, pz2, bw + 0.5);
+        const s = new THREE.Sprite(letterTexture(p.emoji, '#FFFDF4', '#6B5844'));
+        s.scale.setScalar(p.scale || 1.15);
+        s.position.set(px2, p.y || 0.75, pz2);
+        grp.add(s);
+      }
       // 花丛点缀：环路四个象限（随城市个性旋转）
       if (PROPS.flowerpatch) for (const [dx, dz] of [[0.4, 0.4], [-0.4, 0.4], [0.4, -0.4], [-0.4, -0.4]]) {
         let fx = dx * r * Math.cos(lay.baseA) + dz * r * Math.sin(lay.baseA);
