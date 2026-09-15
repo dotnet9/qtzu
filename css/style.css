@@ -1083,7 +1083,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 /* ---------- 手机小屏适配 ---------- */
 @media (max-width: 640px) {
   .pill { font-size: 12px; padding: 5px 10px; border-color: rgba(255,211,224,.72); box-shadow: 0 2px 8px rgba(120,100,100,.1), inset 0 1px 0 rgba(255,255,255,.85); }
-  .round-btn { width: 36px; height: 36px; font-size: 17px; background: rgba(255,255,255,.52); border-color: rgba(255,211,224,.7); color: rgba(160,86,111,.92); box-shadow: 0 2px 8px rgba(120,100,100,.1); backdrop-filter: blur(2px); }
+  .round-btn { width: 36px; height: 36px; font-size: 17px; background: rgba(255,255,255,.52); border-color: rgba(255,211,224,.7); color: rgba(160,86,111,.92); box-shadow: 0 2px 8px rgba(120,100,100,.1); backdrop-filter: blur(2px); flex-shrink: 0; }
   #hud { top: calc(8px + var(--sat)); left: calc(8px + var(--sal)); right: calc(8px + var(--sar)); }
   #hud > div { gap: 6px; }
   /* 次要入口都收进了 ☰ 菜单，这里不再按设备隐藏 */
@@ -1105,6 +1105,9 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   #user-pill { max-width: 96px; }
   #word-ipa { font-size: 15px; }
   #prompt { bottom: calc(22% + var(--sab)); font-size: 14px; padding: 8px 14px; background: rgba(255,255,255,.64); border-color: rgba(205,235,200,.72); color: rgba(78,122,70,.95); box-shadow: 0 3px 10px rgba(100,140,90,.14); backdrop-filter: blur(2px); }
+  /* 触屏：拇指目标加大（儿童手指友好） */
+  .round-btn { width: 42px; height: 42px; font-size: 19px; }
+  #quest-close { width: 24px; height: 24px; font-size: 12px; top: -8px; right: -8px; }
   #catalog-grid { max-height: 56vh; }
   /* 排行榜放在右上角，半透明显示以保留地图视野 */
   #leaderboard-widget { top: calc(98px + var(--sat)); right: calc(8px + var(--sar)); bottom: auto; width: 174px; padding: 8px; background: rgba(255,253,248,.58); border-color: rgba(255,224,184,.7); box-shadow: 0 3px 12px rgba(120,100,70,.12); backdrop-filter: blur(3px); }
@@ -1113,6 +1116,14 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   #leaderboard-list .rank-row strong { color: rgba(180,117,20,.9); }
   #leaderboard-list .rank-row.current { background: rgba(255,240,201,.72); border-color: rgba(255,203,100,.78); }
   #leaderboard-list .rank-row { padding: 4px 6px; }
+}
+
+/* ---------- 很窄的手机（≤480px）：顶栏极限压缩 ---------- */
+@media (max-width: 480px) {
+  /* 用户名只留头像图标（名字在"我的档案"里仍可见），保证顶栏不溢出 */
+  #user-pill { max-width: 44px; padding: 5px 9px; text-align: center; overflow: hidden; }
+  .pill { font-size: 11.5px; padding: 5px 9px; }
+  #leaderboard-widget { width: 158px; }
 }
 
 /* ---------- 精细度打磨：动效 / 滚动条 / 焦点 / 细节 ---------- */

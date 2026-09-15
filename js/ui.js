@@ -53,13 +53,24 @@ export function showPrompt(text, key = 'E') {
 }
 export function hidePrompt() { els.prompt.classList.add('hidden'); }
 
-// 左上角显示当前登录用户名
-export function updateUser(name) {
+// 左上角显示当前登录用户名（很窄的手机只留图标，名字进 title/档案卡）
+let _userName = '';
+function renderUserPill() {
   if (!els.userPill) return;
-  const n = String(name || '').trim();
-  els.userPill.textContent = n ? `👤 ${n}` : '👤';
+  const narrow = window.matchMedia && matchMedia('(max-width: 480px)').matches;
+  const n = _userName;
+  els.userPill.textContent = n ? (narrow ? '👤' : `👤 ${n}`) : '👤';
   els.userPill.classList.toggle('hidden', !n);
   els.userPill.title = n ? `${n} 的学习档案` : '';
+}
+export function updateUser(name) {
+  if (!els.userPill) return;
+  _userName = String(name || '').trim();
+  renderUserPill();
+}
+if (window.matchMedia) {
+  matchMedia('(max-width: 480px)').addEventListener('change', renderUserPill);
+  matchMedia('(max-width: 640px)').addEventListener('change', () => renderPetCount());
 }
 
 // 劲舞团式喝彩分级：分数 → (大字, 样式, 配套表情)
@@ -77,8 +88,10 @@ let lastHUD = null;
 function renderPetCount() {
   if (!lastHUD) return;
   const shown = Math.max(0, lastHUD.count - petDebt);
-  els.petCount.textContent = isTouchMode
-    ? `🐾 ${shown}/${lastHUD.total}`
+  const narrow = window.matchMedia && matchMedia('(max-width: 640px)').matches;
+  const chShort = lastHUD.chapterText ? (lastHUD.chapterText.match(/第\d+关/) || [lastHUD.chapterText])[0] : '';
+  els.petCount.textContent = (isTouchMode || narrow)
+    ? `🐾 ${chShort ? chShort + ' · ' : ''}${shown}/${lastHUD.total}`
     : `🐾 ${lastHUD.chapterText ? lastHUD.chapterText + ' · ' : ''}词宠 ${shown}/${lastHUD.total}`;
 }
 export function petRewardBegin() { petDebt++; renderPetCount(); }
