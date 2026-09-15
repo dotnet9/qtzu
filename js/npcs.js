@@ -12,6 +12,7 @@ const ROLES = {
 };
 const GREETINGS = ['Hello! 你好呀！', 'Welcome! 欢迎来到这座城市！', 'Hi! 祝你孵蛋顺利！', 'Nice to meet you!'];
 const PAGE_SEC = 2;      // 每页停留秒数，自动翻页
+const BUBBLE_MAX = 5;    // 气泡总时长上限（秒）：再长的内容也不常驻屏幕
 const LINES_PER_PAGE = 3; // 每页行数：一次不多显示，文字多自动分页
 
 function wrap(text, n = 15) {
@@ -71,6 +72,7 @@ export class NPCManager {
     scene.add(this.group);
     this.npcs = [];
     this._bubbleUntil = 0;
+    this._bubbleStart = 0;   // 本轮气泡开始时刻：算总时长用
     this._anchorNpc = null;
     this.knowledge = [];
     this._colliders = [];
@@ -106,6 +108,7 @@ export class NPCManager {
     const pages = [];
     for (let i = 0; i < lines.length; i += LINES_PER_PAGE) pages.push(lines.slice(i, i + LINES_PER_PAGE).join(''));
     this._pages = { pages, page: 0 };
+    this._bubbleStart = performance.now() / 1000;
     this._anchorNpc = npc;   // 存 NPC 引用而非位置快照：NPC 漫步时气泡跟着它走
     this._renderPage();
   }
@@ -164,8 +167,10 @@ export class NPCManager {
   }
   update(dt, playerPos) {
     const now = performance.now() / 1000;
-    // 分页气泡：每页停 2 秒自动翻下一页，最后一页播完隐藏
-    if (this._pages && now > this._bubbleUntil) {
+    // 分页气泡：每页停 2 秒自动翻下一页，最后一页播完隐藏；总时长 5 秒封顶（手动翻页也一样）
+    if (this._pages && now - this._bubbleStart > BUBBLE_MAX) {
+      this._hideBubble();
+    } else if (this._pages && now > this._bubbleUntil) {
       if (this._pages.page < this._pages.pages.length - 1) { this._pages.page++; this._renderPage(); }
       else this._hideBubble();
     }

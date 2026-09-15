@@ -158,13 +158,19 @@ export function setDaily(text, done = false) {
 
 // ---------- 任务气泡：跟着小人走，尾巴指向他 ----------
 // 小朋友点 ✅ 关掉后不烦人：同一个目标保持隐藏，换了新目标气泡自动回来
+// 任何目标最长显示 5 秒自动消失：导航靠 3D 箭头/发光小径还在，气泡常驻反而挡视线
+const QUEST_TTL = 5000;
 let questDismissedFor = null;
+let _questText = '', _questShownAt = 0;
 export function setQuest(text) {
-  if (els.questText.textContent !== text) {
-    els.questText.textContent = text;
+  if (_questText !== text) {   // 换了新目标：重新计时，并解除之前的手动关闭
+    _questText = text;
+    _questShownAt = performance.now();
     if (questDismissedFor !== null && questDismissedFor !== text) questDismissedFor = null;
   }
-  els.quest.classList.toggle('hidden', questDismissedFor === text);
+  const expired = performance.now() - _questShownAt > QUEST_TTL;
+  els.questText.textContent = text;
+  els.quest.classList.toggle('hidden', questDismissedFor === text || expired);
 }
 // 每帧由 game.js 传入小人头顶的屏幕坐标；null 表示小人在镜头外，先藏起来。
 // 值没变就不动 DOM（每帧写 style 会白耗布局）
