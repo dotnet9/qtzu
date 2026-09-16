@@ -187,7 +187,7 @@ export function pickNaughtyToday() {
     delete d._todayId;
   }
   const cand = Object.keys(d).filter(id =>
-    id !== '_todayId' && d[id].misses >= 2
+    id !== '_todayId' && d[id].misses >= 1
     && (d[id].caughtOn || '') !== today && (d[id].lastMiss || '') !== today);
   if (!cand.length) return null;
   const id = cand[Math.floor(Math.random() * cand.length)];
