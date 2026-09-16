@@ -12,8 +12,18 @@ const HOST = process.env.HOST || '0.0.0.0';
 const ROOT = path.resolve(__dirname, '..');
 const BOARD_FILE = path.join(__dirname, 'leaderboard.json');
 const ACCOUNTS_FILE = path.join(__dirname, 'accounts.json');
-const SAVES_FILE = path.join(__dirname, 'saves.json');   // 跨设备存档（push-save/pull-save）
+const SAVES_DIR = path.join(__dirname, 'saves');             // 跨设备存档：每用户一个文件（写放大归零）
+const LEGACY_SAVES_FILE = path.join(__dirname, 'saves.json'); // 旧版单文件（启动时自动迁移拆分）
 const SESSIONS_FILE = path.join(__dirname, 'sessions.json'); // 在线会话：同账号只允许一处在线
+const BACKUP_DIR = path.join(__dirname, 'backup');           // 每日自动备份
+
+// ---------- 写队列：所有"读-改-写"操作串行执行，根除并发覆盖丢数据 ----------
+let _chain = Promise.resolve();
+function enqueue(fn) {
+  const p = _chain.then(fn, fn);   // 前一个失败也不阻断后续
+  _chain = p.catch(() => {});
+  return p;
+}
 
 // ---------- 在线会话（单点登录：后登录的顶掉先登录的） ----------
 // sessions.json 持久化，服务重启不误踢；新登录覆盖旧令牌，旧会话心跳即失效
@@ -115,21 +125,59 @@ function writeAccounts(obj) {
   fs.renameSync(tmp, ACCOUNTS_FILE);   // 原子替换
 }
 
-// ---------- 跨设备存档（云同步的"半个云"：本地文件存储） ----------
-function readSaves() {
-  try {
-    const obj = JSON.parse(fs.readFileSync(SAVES_FILE, 'utf8'));
-    return obj && typeof obj === 'object' && !Array.isArray(obj) ? obj : {};
-  } catch (e) {
-    return {};
-  }
+// ---------- 跨设备存档（云同步的"半个云"：每用户一个文件，写放大归零） ----------
+function savePath(username) { return path.join(SAVES_DIR, encodeURIComponent(username) + '.json'); }
+
+function readSave(username) {
+  try { return JSON.parse(fs.readFileSync(savePath(username), 'utf8')); }
+  catch (e) { return null; }
 }
 
-function writeSaves(obj) {
-  const tmp = SAVES_FILE + '.tmp';
-  fs.writeFileSync(tmp, JSON.stringify(obj), 'utf8');   // 存档含完整词宠/进度，体积大，不缩进
-  fs.renameSync(tmp, SAVES_FILE);
+function writeSave(username, rec) {
+  fs.mkdirSync(SAVES_DIR, { recursive: true });
+  const p = savePath(username);
+  const tmp = p + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(rec), 'utf8');   // 存档含完整词宠/进度，体积大，不缩进
+  fs.renameSync(tmp, p);   // 原子替换（Windows 上 rename 可覆盖已存在文件）
 }
+
+// 启动迁移：旧版单文件 saves.json → saves/ 目录（每个用户一个文件），旧文件改名 .migrated
+(function migrateSaves() {
+  try {
+    if (!fs.existsSync(LEGACY_SAVES_FILE)) return;
+    const obj = JSON.parse(fs.readFileSync(LEGACY_SAVES_FILE, 'utf8'));
+    if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
+      fs.mkdirSync(SAVES_DIR, { recursive: true });
+      let n = 0;
+      for (const [u, rec] of Object.entries(obj)) {
+        const p = savePath(u);
+        if (!fs.existsSync(p)) { fs.writeFileSync(p, JSON.stringify(rec), 'utf8'); n++; }
+      }
+      fs.renameSync(LEGACY_SAVES_FILE, LEGACY_SAVES_FILE + '.migrated');
+      console.log(`[迁移] 旧 saves.json 已拆分为 saves/ 目录（${n} 个用户），旧文件改名 .migrated`);
+    }
+  } catch (e) { console.error('[迁移失败]', e.message, '—— 旧数据保留在 saves.json，服务继续用现有数据'); }
+})();
+
+// ---------- 每日自动备份：启动时 + 每小时检查跨天，当日已备份则跳过 ----------
+function backupOnce() {
+  try {
+    const day = new Date().toISOString().slice(0, 10);
+    const dir = path.join(BACKUP_DIR, day);
+    if (fs.existsSync(dir)) return;   // 今天已备过
+    fs.mkdirSync(dir, { recursive: true });
+    for (const f of [BOARD_FILE, ACCOUNTS_FILE, SESSIONS_FILE]) {
+      try { fs.copyFileSync(f, path.join(dir, path.basename(f))); } catch (e) { /* 文件可能还没生成 */ }
+    }
+    try {
+      if (fs.existsSync(SAVES_DIR)) fs.cpSync(SAVES_DIR, path.join(dir, 'saves'), { recursive: true });
+      else if (fs.existsSync(LEGACY_SAVES_FILE)) fs.copyFileSync(LEGACY_SAVES_FILE, path.join(dir, 'saves.json'));
+    } catch (e) { /* ignore */ }
+    console.log(`[备份] ${day} 玩家数据已备份 -> ${dir}`);
+  } catch (e) { console.error('[备份失败]', e.message); }
+}
+backupOnce();
+setInterval(backupOnce, 60 * 60 * 1000);   // 每小时检查一次，跨天自动补备份
 
 // 校验身份并返回账号名；失败返回 null（与 /api/score 同一套规则）
 function authSave(body) {
@@ -277,19 +325,22 @@ const server = http.createServer(async (req, res) => {
       const creds = cleanCreds(body);
       if (creds.error) { sendJson(res, 400, { error: creds.error }); log(req, 400, creds.error); return; }
       const { username, password } = creds;
-      const accounts = readAccounts();
-      // 昵称唯一：已注册的、或老排行榜里已有的名字，都不能再注册，只能登录
-      if (accounts[username] || isLegacyName(username)) {
-        sendJson(res, 409, { error: '这个名字已经有人用了' });
-        log(req, 409, 'name taken');
-        return;
-      }
       const gender = body.gender === 'girl' ? 'girl' : 'boy';
-      accounts[username] = { pwd: hashPwd(username, password), gender, createdAt: Date.now() };
-      writeAccounts(accounts);
-      const token = newSession(username);   // 单点登录：新会话顶掉旧会话
-      sendJson(res, 201, { username, gender, score: 0, token });
-      log(req, 201, 'registered');
+      // 唯一性检查与写入必须原子：两个同名注册并发时不能都通过
+      await enqueue(() => {
+        const accounts = readAccounts();
+        // 昵称唯一：已注册的、或老排行榜里已有的名字，都不能再注册，只能登录
+        if (accounts[username] || isLegacyName(username)) {
+          sendJson(res, 409, { error: '这个名字已经有人用了' });
+          log(req, 409, 'name taken');
+          return;
+        }
+        accounts[username] = { pwd: hashPwd(username, password), gender, createdAt: Date.now() };
+        writeAccounts(accounts);
+        const token = newSession(username);   // 单点登录：新会话顶掉旧会话
+        sendJson(res, 201, { username, gender, score: 0, token });
+        log(req, 201, 'registered');
+      });
       return;
     }
 
@@ -298,31 +349,28 @@ const server = http.createServer(async (req, res) => {
       const creds = cleanCreds(body);
       if (creds.error) { sendJson(res, 400, { error: creds.error }); log(req, 400, creds.error); return; }
       const { username, password } = creds;
-      const accounts = readAccounts();
-      let acc = accounts[username];
-      if (!acc) {
-        // 老账号：还没登记过，按空密码处理；登录成功后补登记
-        if (!isLegacyName(username)) {
-          sendJson(res, 404, { error: '还没有这个名字，去注册吧' });
-          log(req, 404, 'no account');
+      let out = null;   // 队列任务里组装响应
+      await enqueue(() => {
+        const accounts = readAccounts();
+        let acc = accounts[username];
+        if (!acc) {
+          // 老账号：还没登记过，按空密码处理；登录成功后补登记
+          if (!isLegacyName(username)) {
+            out = [404, { error: '还没有这个名字，去注册吧' }, 'no account'];
+            return;
+          }
+          if (password !== LEGACY_PASSWORD) { out = [401, { error: '密码不对' }, 'bad legacy pwd']; return; }
+          acc = { pwd: hashPwd(username, LEGACY_PASSWORD), gender: genderOf(username), createdAt: Date.now() };
+          accounts[username] = acc;
+          writeAccounts(accounts);
+        } else if (acc.pwd !== hashPwd(username, password)) {
+          out = [401, { error: '密码不对' }, 'bad pwd'];
           return;
         }
-        if (password !== LEGACY_PASSWORD) {
-          sendJson(res, 401, { error: '密码不对' });
-          log(req, 401, 'bad legacy pwd');
-          return;
-        }
-        acc = { pwd: hashPwd(username, LEGACY_PASSWORD), gender: genderOf(username), createdAt: Date.now() };
-        accounts[username] = acc;
-        writeAccounts(accounts);
-      } else if (acc.pwd !== hashPwd(username, password)) {
-        sendJson(res, 401, { error: '密码不对' });
-        log(req, 401, 'bad pwd');
-        return;
-      }
-      const token = newSession(username);   // 单点登录：本次登录顶掉该账号其他设备
-      sendJson(res, 200, { username, gender: acc.gender === 'girl' ? 'girl' : genderOf(username), score: scoreOf(username), token });
-      log(req, 200, 'login ok');
+        const token = newSession(username);   // 单点登录：本次登录顶掉该账号其他设备
+        out = [200, { username, gender: acc.gender === 'girl' ? 'girl' : genderOf(username), score: scoreOf(username), token }, 'login ok'];
+      });
+      if (out) { sendJson(res, out[0], out[1]); log(req, out[0], out[2]); }
       return;
     }
 
@@ -333,40 +381,45 @@ const server = http.createServer(async (req, res) => {
       if (cur.error) { sendJson(res, 400, { error: cur.error }); log(req, 400, cur.error); return; }
       const next = cleanCreds({ username: body.newUsername, password: body.newPassword });
       if (next.error) { sendJson(res, 400, { error: next.error }); log(req, 400, next.error); return; }
-      const accounts = readAccounts();
-      const acc = accounts[cur.username];
-      // 先验证当前身份；没有账号的老名字按空密码验证；完全没出现过的名字当新注册放行
-      if (acc) {
-        if (acc.pwd !== hashPwd(cur.username, cur.password)) {
-          sendJson(res, 401, { error: '密码不对' });
-          log(req, 401, 'bad pwd (update)');
+      // 改名涉及账号表+排行榜双写，整体入队保证原子
+      await enqueue(() => {
+        const accounts = readAccounts();
+        const acc = accounts[cur.username];
+        // 先验证当前身份；没有账号的老名字按空密码验证；完全没出现过的名字当新注册放行
+        if (acc) {
+          if (acc.pwd !== hashPwd(cur.username, cur.password)) {
+            sendJson(res, 401, { error: '密码不对' });
+            log(req, 401, 'bad pwd (update)');
+            return;
+          }
+        } else if (isLegacyName(cur.username)) {
+          if (cur.password !== LEGACY_PASSWORD) {
+            sendJson(res, 401, { error: '密码不对' });
+            log(req, 401, 'bad legacy pwd (update)');
+            return;
+          }
+        }
+        // 改昵称要保证新名字没被别人占用
+        if (next.username !== cur.username && (accounts[next.username] || isLegacyName(next.username))) {
+          sendJson(res, 409, { error: '这个名字已经有人用了' });
+          log(req, 409, 'name taken (update)');
           return;
         }
-      } else if (isLegacyName(cur.username)) {
-        if (cur.password !== LEGACY_PASSWORD) {
-          sendJson(res, 401, { error: '密码不对' });
-          log(req, 401, 'bad legacy pwd (update)');
-          return;
+        const gender = (acc && acc.gender === 'girl') || genderOf(cur.username) === 'girl' ? 'girl' : 'boy';
+        if (next.username !== cur.username) delete accounts[cur.username];
+        accounts[next.username] = { pwd: hashPwd(next.username, next.password), gender, createdAt: (acc && acc.createdAt) || Date.now() };
+        writeAccounts(accounts);
+        // 排行榜里的分数跟着改名，别丢进度；云存档文件同步改名
+        if (next.username !== cur.username) {
+          const rows = readBoard();
+          const row = rows.find(x => x && String(x.username || '') === cur.username);
+          if (row) { row.username = next.username; writeBoard(rows); }
+          const rec = readSave(cur.username);
+          if (rec) { writeSave(next.username, rec); try { fs.unlinkSync(savePath(cur.username)); } catch (e) {} }
         }
-      }
-      // 改昵称要保证新名字没被别人占用
-      if (next.username !== cur.username && (accounts[next.username] || isLegacyName(next.username))) {
-        sendJson(res, 409, { error: '这个名字已经有人用了' });
-        log(req, 409, 'name taken (update)');
-        return;
-      }
-      const gender = (acc && acc.gender === 'girl') || genderOf(cur.username) === 'girl' ? 'girl' : 'boy';
-      if (next.username !== cur.username) delete accounts[cur.username];
-      accounts[next.username] = { pwd: hashPwd(next.username, next.password), gender, createdAt: (acc && acc.createdAt) || Date.now() };
-      writeAccounts(accounts);
-      // 排行榜里的分数跟着改名，别丢进度
-      if (next.username !== cur.username) {
-        const rows = readBoard();
-        const row = rows.find(x => x && String(x.username || '') === cur.username);
-        if (row) { row.username = next.username; writeBoard(rows); }
-      }
-      sendJson(res, 200, { username: next.username, gender, score: scoreOf(next.username) });
-      log(req, 200, 'account updated');
+        sendJson(res, 200, { username: next.username, gender, score: scoreOf(next.username) });
+        log(req, 200, 'account updated');
+      });
       return;
     }
 
@@ -394,21 +447,24 @@ const server = http.createServer(async (req, res) => {
         log(req, 401, 'unauthorized score');
         return;
       }
-      const rows = readBoard();
-      let row = rows.find(x => x && x.username === username);
-      if (!row) { row = { username, score: 0, gender }; rows.push(row); }
-      if (delta) row.score = (Number(row.score) || 0) + delta;
-      row.gender = gender;
-      const title = String((body && body.title) != null ? body.title : '').trim().slice(0, 12);
-      if (title) row.title = title;   // 称号展示名（许愿井购买后随分数上报）
-      // 多维权榜字段：词宠数 / 到访城市数 / 星星数（客户端随分数或 sync 上报，取最新值）
-      for (const [k, lim] of [['pets', 9999], ['cities', 999], ['stars', 999999]]) {
-        const v = parseInt((body && body[k]) != null ? body[k] : NaN, 10);
-        if (Number.isFinite(v) && v >= 0) row[k] = Math.min(v, lim);
-      }
-      writeBoard(rows);
-      sendJson(res, 200, row);
-      log(req, 200, `${username}=${row.score}`);
+      // 记账读改写入队：两个并发加分不能互相覆盖
+      await enqueue(() => {
+        const rows = readBoard();
+        let row = rows.find(x => x && x.username === username);
+        if (!row) { row = { username, score: 0, gender }; rows.push(row); }
+        if (delta) row.score = (Number(row.score) || 0) + delta;
+        row.gender = gender;
+        const title = String((body && body.title) != null ? body.title : '').trim().slice(0, 12);
+        if (title) row.title = title;   // 称号展示名（许愿井购买后随分数上报）
+        // 多维权榜字段：词宠数 / 到访城市数 / 星星数（客户端随分数或 sync 上报，取最新值）
+        for (const [k, lim] of [['pets', 9999], ['cities', 999], ['stars', 999999]]) {
+          const v = parseInt((body && body[k]) != null ? body[k] : NaN, 10);
+          if (Number.isFinite(v) && v >= 0) row[k] = Math.min(v, lim);
+        }
+        writeBoard(rows);
+        sendJson(res, 200, row);
+        log(req, 200, `${username}=${row.score}`);
+      });
       return;
     }
 
@@ -434,11 +490,12 @@ const server = http.createServer(async (req, res) => {
       if (!save || typeof save !== 'object' || Array.isArray(save)) {
         sendJson(res, 400, { error: 'invalid save' }); log(req, 400, 'invalid save'); return;
       }
-      const saves = readSaves();
-      saves[username] = { save, updatedAt: Date.now() };
-      writeSaves(saves);
-      sendJson(res, 200, { ok: true });
-      log(req, 200, `${username} save pushed`);
+      // 存档写入入队：同账号双设备同时 push 不会写坏文件
+      await enqueue(() => {
+        writeSave(username, { save, updatedAt: Date.now() });
+        sendJson(res, 200, { ok: true });
+        log(req, 200, `${username} save pushed`);
+      });
       return;
     }
 
@@ -450,7 +507,7 @@ const server = http.createServer(async (req, res) => {
       }
       const username = authSave(body);
       if (!username) { sendJson(res, 401, { error: '请先登录' }); log(req, 401, 'unauthorized save'); return; }
-      const rec = readSaves()[username];
+      const rec = readSave(username);
       sendJson(res, 200, rec ? { save: rec.save } : {});
       log(req, 200, rec ? `${username} save pulled` : `${username} no save`);
       return;
@@ -474,6 +531,8 @@ server.listen(PORT, HOST, () => {
   console.log(`  静态目录 : ${ROOT}`);
   console.log(`  排行榜   : ${BOARD_FILE}`);
   console.log(`  账号     : ${ACCOUNTS_FILE}（密码 MD5×3 加盐保存，不存明文）`);
+  console.log(`  云存档   : ${SAVES_DIR}\\（每用户一个文件）`);
+  console.log(`  备份     : ${BACKUP_DIR}\\（每日一份，保留全部历史）`);
   console.log('  接口     : GET /api/leaderboard   POST /api/score|register|login|update');
   console.log('  nginx 反代 /api/ 指向本服务即可');
 });
