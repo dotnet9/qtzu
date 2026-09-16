@@ -252,15 +252,14 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #city-card {
   width: min(430px, 94vw); max-height: calc(100dvh - 28px); overflow: hidden;
   display: flex; flex-direction: column;
-  background: linear-gradient(180deg, #FFF9EC, #FFFDF8 60%);
-  border-radius: 26px; border: 3px solid #FFE0B8;
-  box-shadow: 0 20px 60px rgba(150, 90, 60, .35);
+  background: var(--c-surface);
+  border-radius: var(--r-card); border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-pop);
   padding: 18px; text-align: center; position: relative;
 }
 #city-card .cc-banner {
-  height: 88px; border-radius: 16px; margin-bottom: 10px; position: relative; overflow: hidden;
+  height: 88px; border-radius: var(--r-ctrl); margin-bottom: 10px; position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: inset 0 -18px 24px rgba(120, 70, 40, .12);
 }
 #city-card .bn-home { background: linear-gradient(135deg, #A8D8F0, #C8E8C0 60%, #FFE8B8); }
 #city-card .bn-uni  { background: linear-gradient(135deg, #C8B8E8, #E8D8F0 60%, #F5E8C8); }
@@ -296,26 +295,26 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #city-card .cc-intro { color: #6B5844; font-weight: bold; margin-top: 8px; font-size: 14px; }
 #city-card .cc-intro-en {
   margin-top: 8px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: bold;
-  color: #4A7AB8; background: #EAF4FF; border: 2px solid #B8D8F5; border-radius: 999px; padding: 5px 14px;
+  color: var(--c-text); background: var(--c-field); border: 1px solid var(--c-line); border-radius: 999px; padding: 5px 14px;
 }
 #city-card .cc-sec { text-align: left; color: #A08A6E; font-weight: 900; font-size: 12px; margin: 12px 0 6px; }
 #city-card .cc-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .cu-chip {
-  cursor: pointer; font-family: inherit; font-size: 12px; font-weight: bold; color: #6B5844;
-  background: #FFFDF8; border: 2px solid #FFE0B8; border-radius: 10px; padding: 4px 8px;
+  cursor: pointer; font-family: inherit; font-size: 12px; font-weight: bold; color: var(--c-text);
+  background: var(--c-field); border: 1px solid var(--c-line); border-radius: 10px; padding: 4px 8px;
   display: inline-flex; align-items: center; gap: 5px;
 }
 .cu-chip:active { transform: scale(.94); }
 .cu-chip .tag { font-style: normal; font-size: 10px; font-weight: 900; border-radius: 6px; padding: 1px 4px; }
 .cu-chip .tag.t985 { background: #FFD34E; color: #7A5200; }
 .cu-chip .tag.t211 { background: #B8D8F5; color: #2E5F8A; }
-.cu-chip.cw { color: #4A7AB8; border-color: #B8D8F5; }
-#city-card .cc-quiz { margin-top: 14px; background: #F0F7EA; border: 2px solid #CDEBC8; border-radius: 14px; padding: 10px; }
-#city-card .cc-quiz b { color: #4E7A46; font-size: 13px; }
+.cu-chip.cw { color: var(--c-text); border-color: var(--c-line); }
+#city-card .cc-quiz { margin-top: 14px; background: var(--c-field); border: 1px solid var(--c-line); border-radius: var(--r-ctrl); padding: 10px; }
+#city-card .cc-quiz b { color: var(--c-text); font-size: 13px; }
 #city-card .cc-opts { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 8px; }
 #city-card .cc-opts button {
-  cursor: pointer; font-family: inherit; font-size: 13px; font-weight: bold; color: #4E7A46;
-  background: #FFF; border: 2px solid #CDEBC8; border-radius: 999px; padding: 6px 12px;
+  cursor: pointer; font-family: inherit; font-size: 13px; font-weight: bold; color: var(--c-text);
+  background: var(--c-field); border: 1px solid var(--c-line); border-radius: 999px; padding: 6px 12px;
 }
 #city-card .cc-opts button.right { background: #CDEBC8; border-color: #8FC97F; }
 #city-card .cc-opts button.wrong { background: #F5D8D8; border-color: #E8A8A8; opacity: .7; }
@@ -323,31 +322,31 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #city-card .cc-quiz-rs.bad { color: #C4577E; }
 #city-card #cc-go {
   margin-top: 14px; width: 100%; padding: 12px; font-size: 16px; font-weight: 900; font-family: inherit;
-  color: #FFF; background: linear-gradient(180deg, #FF9FBE, #F76E9C);
+  color: #FFF; background: var(--c-primary);
   border: none; border-radius: 999px; cursor: pointer;
-  box-shadow: 0 5px 14px rgba(220, 90, 130, .4);
+  box-shadow: 0 3px 0 var(--c-primary-deep);
 }
-#city-card #cc-go:active { transform: scale(.96); }
+#city-card #cc-go:active { transform: scale(.96); box-shadow: none; }
 /* 分享卡按钮与出发按钮同行 */
 #city-card .cc-actions { display: flex; gap: 8px; margin-top: 14px; }
 #city-card .cc-actions #cc-go { margin-top: 0; width: auto; flex: 1; }
 #city-card #cc-share {
   flex: 0 0 auto; padding: 12px 18px; font-size: 15px; font-weight: 900; font-family: inherit;
-  color: #C4577E; background: #FFF0F5; border: 2px solid #FFD3E0; border-radius: 999px; cursor: pointer;
+  color: var(--c-text); background: var(--c-field); border: 1px solid var(--c-line); border-radius: 999px; cursor: pointer;
 }
 #city-card #cc-share:active { transform: scale(.96); }
 
 /* 🎤 小导游挑战按钮 */
 #city-card .cc-guide {
   margin-top: 8px; width: 100%; padding: 9px; font-size: 14px; font-weight: 900; font-family: inherit;
-  color: #C4577E; background: #FFF0F5; border: 2px dashed #FFB9CE; border-radius: 999px; cursor: pointer;
+  color: var(--c-primary-deep); background: var(--c-primary-soft); border: 1px solid var(--c-primary-soft); border-radius: 999px; cursor: pointer;
 }
 #city-card .cc-guide:active { transform: scale(.96); }
 
 /* 🏅 景点集章 */
 #city-card .cc-stamp-line {
-  margin: 2px 0 6px; padding: 7px 12px; font-size: 13px; font-weight: 900; color: #934C64;
-  background: #FFF6E8; border: 2px solid #F2C98C; border-radius: 12px; text-align: center;
+  margin: 2px 0 6px; padding: 7px 12px; font-size: 13px; font-weight: 900; color: var(--c-text-2);
+  background: var(--c-field); border: 1px solid var(--c-line); border-radius: var(--r-ctrl); text-align: center;
 }
 #city-card .item-card.stampable { cursor: pointer; }
 #city-card .item-card.stampable:active { transform: scale(.96); }
@@ -521,7 +520,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #city-card .cc-tabs { display: flex; gap: 6px; justify-content: center; margin: 10px 0; }
 #city-card .cc-tab {
   cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 900;
-  color: #A08A6E; background: #FFF6E8; border: 2px solid #FFE0B8; border-radius: 999px; padding: 5px 12px;
+  color: var(--c-text-2); background: var(--c-field); border: 1px solid var(--c-line); border-radius: 999px; padding: 5px 12px;
 }
 
 /* ---------- 城市卡升级：幻灯片图集 / 大学富卡 / 图片卡片 / 终点徽章 ---------- */
@@ -617,7 +616,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #sign-card .sg-meta { font-size: 11px; color: #9C8C7A; margin-top: 8px; }
 #sign-card .sg-hist { font-size: 11px; color: #9C8C7A; line-height: 1.6; margin-top: 6px; text-align: justify; }
 #sign-card .sg-tip { font-size: 10px; color: #B8A890; margin-top: 10px; }
-#city-card .cc-tab.on { color: #FFF; background: linear-gradient(180deg, #FFB86B, #F79A3E); border-color: #F79A3E; }
+#city-card .cc-tab.on { color: #FFF; background: var(--c-primary); border-color: var(--c-primary); }
 #city-card .cc-body { min-height: 120px; overflow-y: auto; flex: 1 1 auto; overscroll-behavior: contain; padding-right: 4px; }
 #city-card .cc-scene { font-weight: 900; color: #4E7A46; font-size: 14px; margin-bottom: 6px; }
 #city-card .cc-sub { color: #8A6B4A; font-size: 12px; margin-top: 6px; }
@@ -982,15 +981,15 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #profile-logout:hover { color: var(--c-primary); }
 #profile-logout.hidden { display: none; }
 #profile-error { color: #D06A9C; min-height: 16px; margin-top: 6px; font-size: 12px; }
-#rank-card { border-color: #FFE0A8; }
+#rank-card { border-color: var(--c-line); }
 .rank-close { position: absolute; top: 12px; right: 12px; }
-.rank-title { color: #B47514; font-weight: bold; font-size: 17px; }
-.rank-sub { color: #C4A78F; font-size: 12px; margin: 6px 0 12px; }
+.rank-title { color: var(--c-text); font-weight: bold; font-size: 17px; }
+.rank-sub { color: var(--c-text-2); font-size: var(--fs-sub); margin: 6px 0 12px; }
 .rank-list { display: flex; flex-direction: column; gap: 8px; }
-.rank-row { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 8px; background: #FFF7EA; border: 2px solid #FFE0B8; border-radius: 12px; padding: 8px 10px; color: #6B5844; }
+.rank-row { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 8px; background: var(--c-field); border: 1px solid var(--c-line); border-radius: var(--r-ctrl); padding: 8px 10px; color: var(--c-text); }
 .rank-row b { font-size: 18px; }
 .rank-row span { text-align: left; font-weight: bold; overflow: hidden; text-overflow: ellipsis; }
-.rank-row strong { color: #B47514; }
+.rank-row strong { color: var(--c-primary-deep); }
 .rank-loading { color: #9C8C7A; padding: 18px 8px; }
 
 /* ---------- 挑战卡片 ---------- */
@@ -1105,16 +1104,16 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 
 /* ---------- 图鉴 ---------- */
 #catalog-card {
-  width: min(720px, 94vw); background: #FFFDF8; border-radius: 22px; border: 3px solid #FFD3E0;
-  box-shadow: 0 18px 50px rgba(150,90,110,.25); padding: 14px 16px; position: relative;
+  width: min(720px, 94vw); background: var(--c-surface); border-radius: var(--r-card); border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-pop); padding: 14px 16px; position: relative;
 }
-#catalog-head { display: flex; justify-content: space-between; align-items: center; color: #C4788F; font-weight: bold; font-size: 16px; margin-bottom: 10px; }
+#catalog-head { display: flex; justify-content: space-between; align-items: center; color: var(--c-text); font-weight: bold; font-size: 16px; margin-bottom: 10px; }
 #catalog-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 4px; }
 /* 分页展示：每页 2×4 固定 8 只，不出滚动条 */
 .cat-pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 8px; }
 .cat-pager.hidden { display: none; }
 .cat-page-btn {
-  border: 2px solid #FFD3E0; background: #FFF4F8; color: #C4577E; font-size: 18px; font-weight: 900;
+  border: 1px solid var(--c-line); background: var(--c-field); color: var(--c-primary-deep); font-size: 18px; font-weight: 900;
   line-height: 1; width: 34px; height: 30px; border-radius: 999px; cursor: pointer; font-family: inherit;
 }
 .cat-page-btn:hover { background: #FFE9F1; }
