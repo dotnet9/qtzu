@@ -603,5 +603,17 @@
   "lvlup.wordsTip": "这一关你学会的单词：",
   "up.text": "🎉 Q淘族更新了新内容！",
   "up.now": "立即更新",
-  "prof.pickCity": "📍 选择我的城市"
+  "prof.pickCity": "📍 选择我的城市",
+  "wd.tapWord": "点点词语听发音",
+  "mg.button": "{city}小游戏",
+  "mg.title": "{city} · 听音选词",
+  "mg.sub": "听发音，选出你听到的词！三题全对 +1⭐",
+  "mg.hear": "再听一遍",
+  "mg.perfect": "🏆 三题全对！+1⭐ 你就是{city}小达人！",
+  "mg.done": "答对 {n}/{total} 题，再来一次全对吧！",
+  "mg.retry": "再听一听，选另一个试试～",
+  "mg.noWords": "这座城市的词还在准备中～",
+  "rest.title": "你的词宠打哈欠啦～",
+  "rest.body": "已经连续玩了 30 分钟啦！让眼睛休息 10 分钟，看看窗外，词宠在这儿等你回来～",
+  "rest.ok": "休息好啦，继续！"
 }

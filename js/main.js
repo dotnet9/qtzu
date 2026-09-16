@@ -129,6 +129,7 @@ async function begin(name, semKey, gender, password, serverScore, token) {
     window.__game = game; // 调试句柄
     save.startHeartbeat();   // 单点登录心跳：被同名新登录顶下线时弹登录框
     if (SHARE.city) setTimeout(() => game._handleShareCity && game._handleShareCity(SHARE.city, SHARE.debug), 1600);
+    initRestReminder();   // 😴 儿童护眼：连续玩 30 分钟提醒休息
   } catch (err) {
     console.error(err);
     window.__bootErr = err && (err.stack || err.message);
@@ -142,6 +143,21 @@ async function begin(name, semKey, gender, password, serverScore, token) {
         `<small style="display:block;margin-top:10px;font-size:12px;opacity:.75;word-break:break-all">${msg}${log ? '<br>' + log : ''}</small>`;
     }
   }
+}
+
+// 😴 儿童护眼休息提醒：累计活跃 30 分钟弹一次休息卡（页面切后台不计时），确认"休息好啦"重新计时
+function initRestReminder() {
+  const LIMIT = 30 * 60 * 1000;
+  let played = 0, last = Date.now();
+  const tick = setInterval(() => {
+    if (document.visibilityState !== 'visible') { last = Date.now(); return; }   // 切后台不累计
+    played += Date.now() - last;
+    last = Date.now();
+    if (played >= LIMIT) {
+      clearInterval(tick);
+      import('./ui.js').then(m => m.showRestCard());
+    }
+  }, 15000);
 }
 
 // IP 定位家乡城市：免费接口识别到城市池里的城市就自动填上（失败静默，档案卡里可手改）

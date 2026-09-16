@@ -458,6 +458,61 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #dub-card .dub-share { background: linear-gradient(180deg, #FFC94E, #F0A83E); }
 #dub-card .dub-again:active, #dub-card .dub-share:active { transform: scale(.96); }
 
+/* 整句跟读：逐词点读块 */
+#word-en .wd-word {
+  display: inline-block; margin: 2px 1px; padding: 4px 9px; font: inherit; font-size: 26px; font-weight: 900;
+  color: var(--c-text); background: var(--c-field); border: 1px solid var(--c-line); border-radius: 10px;
+  cursor: pointer; transition: transform .12s, border-color .12s, color .12s;
+}
+#word-en .wd-word:active { transform: scale(.92); border-color: var(--c-primary); color: var(--c-primary-deep); }
+
+/* 🎮 城市专属小游戏 */
+#mini-game {
+  width: min(420px, 92vw); background: var(--c-surface); border: 1px solid var(--c-line);
+  border-radius: var(--r-card); box-shadow: var(--shadow-pop); padding: 16px; position: relative; text-align: center;
+  animation: popIn .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+#mini-game .mg-t { font-size: 17px; font-weight: 900; color: var(--c-primary-deep); }
+#mini-game .mg-sub { margin: 6px 0 12px; font-size: var(--fs-sub); font-weight: bold; color: var(--c-text-2); }
+#mini-game #mg-hear {
+  padding: 12px 26px; font-size: 16px; font-weight: 900; font-family: inherit; cursor: pointer;
+  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
+  transition: transform .12s, box-shadow .12s;
+}
+#mini-game #mg-hear:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--c-primary-deep); }
+#mini-game .mg-opts { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+#mini-game .mg-opts button {
+  padding: 12px; font: inherit; font-size: 16px; font-weight: 900; cursor: pointer;
+  color: var(--c-text); background: var(--c-field); border: 1px solid var(--c-line); border-radius: var(--r-ctrl);
+  transition: transform .12s, background .15s, border-color .15s;
+}
+#mini-game .mg-opts button:active { transform: scale(.97); }
+#mini-game .mg-opts button.right { background: #EFF7EC; border-color: var(--c-success); color: var(--c-success); }
+#mini-game .mg-opts button.wrong { background: #FBEBEE; border-color: #E08A96; color: #C4577E; }
+#mini-game .mg-rs { min-height: 20px; margin-top: 10px; font-size: 13px; font-weight: 900; color: var(--c-text-2); }
+#mini-game .mg-rs.good { color: var(--c-success); }
+#mini-game .mg-rs.bad { color: #C4577E; }
+#city-card .cc-minigame {
+  margin-top: 8px; width: 100%; padding: 9px; font-size: 14px; font-weight: 900; font-family: inherit;
+  color: var(--c-text); background: var(--c-field); border: 1px solid var(--c-line); border-radius: 999px; cursor: pointer;
+}
+#city-card .cc-minigame:active { transform: scale(.96); }
+
+/* 😴 休息提醒卡 */
+#rest-card {
+  width: min(340px, 88vw); background: var(--c-surface); border: 1px solid var(--c-line);
+  border-radius: var(--r-card); box-shadow: var(--shadow-pop); padding: 22px 20px; text-align: center;
+  animation: popIn .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+#rest-card .rest-emoji { font-size: 52px; animation: lvlupBounce 1.2s cubic-bezier(.34,1.56,.64,1); }
+#rest-card .rest-t { font-size: 18px; font-weight: 900; color: var(--c-text); margin-top: 8px; }
+#rest-card .rest-sub { font-size: var(--fs-body); color: var(--c-text-2); line-height: 1.6; margin: 8px 0 14px; }
+#rest-card #rest-ok {
+  width: 100%; padding: 11px; font-size: 15px; font-weight: 900; font-family: inherit; cursor: pointer;
+  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
+}
+#rest-card #rest-ok:active { transform: translateY(2px); box-shadow: none; }
+
 /* ---------- 北京终章成就卡 ---------- */
 #travel-card {
   width: min(420px, 92vw); max-height: calc(100dvh - 28px); overflow-y: auto;

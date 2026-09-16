@@ -330,8 +330,17 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
     : mode === 'practice' ? t('ch.practice')
     : ch.easy ? t('ch.review')
     : t('ch.hatch'));
-  els.wordEn.textContent = word.en;
   els.wordEn.classList.remove('spell-hidden');
+  if (/\s/.test(word.en)) {
+    // 整句跟读：逐词渲染成点读块——点哪个词听哪个词，降低整句朗读的恐惧感
+    els.wordEn.innerHTML = word.en.split(/\s+/)
+      .map(w => `<button type="button" class="wd-word" data-w="${w}">${w}</button>`).join(' ');
+    els.wordEn.querySelectorAll('.wd-word').forEach(b => {
+      b.onclick = () => { sfx.pop(); speak(b.dataset.w); };
+    });
+  } else {
+    els.wordEn.textContent = word.en;
+  }
   // 音标（有数据才显示）
   const ipa = ipaMap && ipaMap[String(word.en).toLowerCase()];
   els.wordIpa.textContent = ipa ? `/${ipa}/` : '';
@@ -844,6 +853,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     <p class="cc-p">欢迎来到 <b>${city.name} ${city.en}</b>！${introText}</p>
     <button class="cc-intro-en" data-en="${variant.introEn}">🔊 ${variant.introEn}</button>
     ${variant.introEn ? t('y.4', { a0: hasBadge('guide:' + city.en) ? ' 🎖️' : '' }) : ''}
+    <button type="button" class="cc-minigame">🎮 ${t('mg.button', { city: city.name })}</button>
     ${city.importance ? `<div class="cc-imp">⭐ ${city.importance}</div>` : ''}
     ${cwords ? t('x.g46', { a0: cwords }) : ''}
     ${q}`;
@@ -960,6 +970,10 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
   const bindChips = () => {
     body.querySelectorAll('.cu-chip, .cc-intro-en').forEach(b => {
       b.onclick = () => { sfx.pop(); if (b.dataset.en) speak(b.dataset.en); };
+    });
+    // 🎮 城市专属小游戏：听音选词三连，词池来自这座城市自己
+    body.querySelectorAll('.cc-minigame').forEach(b => {
+      b.onclick = () => { sfx.pop(); openCityMiniGame(city); };
     });
     // 🎤 小导游挑战：跟读城市英文介绍，80 分拿徽章
     body.querySelectorAll('.cc-guide').forEach(b => {
@@ -2368,6 +2382,102 @@ export function openMap(data) {
   els.map.classList.remove('hidden');
 }
 if (els.mapClose) els.mapClose.addEventListener('click', () => els.map.classList.add('hidden'));
+
+// ---------- 😴 休息提醒：连续玩 30 分钟，词宠劝孩子让眼睛休息 ----------
+export function showRestCard() {
+  if (document.querySelector('#rest-card')) return;   // 已在提醒中
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '128';
+  ov.innerHTML = `<div id="rest-card">
+    <div class="rest-emoji">😴</div>
+    <div class="rest-t">${t('rest.title')}</div>
+    <div class="rest-sub">${t('rest.body')}</div>
+    <button type="button" id="rest-ok">${t('rest.ok')}</button>
+  </div>`;
+  document.body.appendChild(ov);
+  sfx.pop();
+  ov.querySelector('#rest-ok').onclick = () => { sfx.great(); ov.remove(); };
+}
+
+// ---------- 🎮 城市专属小游戏：用每座城自己的词池出"听音选词"三连，全对 +1⭐ ----------
+export function openCityMiniGame(city) {
+  // 词池：课本词（variants）+ 美食/风景英文名，天然每城不同
+  const pool = [];
+  (city.variants || []).forEach(v => (v.words || []).forEach(w => pool.push({ en: w })));
+  (city.foods || []).forEach(it => { if (it.en) pool.push({ en: it.en, zh: it.name }); });
+  (city.scenes || []).forEach(it => { if (it.en) pool.push({ en: it.en, zh: it.name }); });
+  const uniq = pool.filter((p, i) => p.en && pool.findIndex(q => q.en === p.en) === i);
+  if (uniq.length < 3) { toast(t('mg.noWords')); return; }
+  // 出 3 题：每题答案 + 2 个干扰项
+  const bag = [...uniq].sort(() => Math.random() - .5);
+  const qs = [];
+  for (let i = 0; i < 3 && bag.length >= 3; i++) {
+    const [a, b, c] = bag.splice(0, 3);
+    const opts = [[a, b, c], [a, c, b], [b, a, c], [b, c, a], [c, a, b], [c, b, a]][Math.floor(Math.random() * 6)];
+    qs.push({ answer: a, opts: [opts[0].en, opts[1].en, opts[2].en] });
+  }
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '126';
+  ov.innerHTML = `<div id="mini-game">
+    <button class="round-btn small" id="mg-close" style="position:absolute;top:12px;right:12px">✕</button>
+    <div class="mg-t">🎮 ${t('mg.title', { city: city.name })}</div>
+    <div class="mg-sub">${t('mg.sub')}</div>
+    <button type="button" id="mg-hear">🔊 ${t('mg.hear')}</button>
+    <div class="mg-opts">${qs[0].opts.map((o, i) => `<button type="button" data-i="${i}">${o}</button>`).join('')}</div>
+    <div class="mg-rs"></div>
+  </div>`;
+  document.body.appendChild(ov);
+  const rs = ov.querySelector('.mg-rs');
+  const hear = ov.querySelector('#mg-hear');
+  let qi = 0, right = 0;
+  const close = () => ov.remove();
+  ov.querySelector('#mg-close').onclick = () => { sfx.pop(); close(); };
+  ov.addEventListener('click', e => { if (e.target === ov) close(); });
+  const playQ = () => speak(qs[qi].answer.en);
+  const next = () => {
+    qi++;
+    if (qi >= qs.length) {
+      if (right === qs.length) {
+        sfx.great();
+        addStars(1); updateStars(getStars());
+        rs.textContent = t('mg.perfect', { city: city.name });
+        rs.className = 'mg-rs good';
+      } else {
+        rs.textContent = t('mg.done', { n: right, total: qs.length });
+        rs.className = 'mg-rs';
+      }
+      return;
+    }
+    ov.querySelector('.mg-opts').querySelectorAll('button').forEach(b => { b.disabled = false; b.className = ''; });
+    hear.textContent = `🔊 ${t('mg.hear')}`;
+    rs.textContent = '';
+    playQ();
+  };
+  hear.onclick = () => { sfx.pop(); playQ(); };
+  playQ();
+  ov.querySelectorAll('.mg-opts button').forEach(b => {
+    b.onclick = () => {
+      if (b.disabled) return;
+      const ok = b.textContent === qs[qi].answer.en;
+      ov.querySelectorAll('.mg-opts button').forEach(x => { x.disabled = true; if (x.textContent === qs[qi].answer.en) x.classList.add('right'); });
+      if (ok) {
+        right++;
+        rs.textContent = t('cc.quizOk');
+        rs.className = 'mg-rs good';
+        sfx.great();
+        setTimeout(next, 900);
+      } else {
+        b.classList.add('wrong');
+        rs.textContent = t('mg.retry');
+        rs.className = 'mg-rs bad';
+        sfx.pop();
+        setTimeout(next, 1300);
+      }
+    };
+  });
+}
 
 // ---------- 🎬 小小配音演员：选情景 → 逐句跟读配音 → 总结 + 配音卡分享 ----------
 // 情景与台词资源在 data/i18n/game.zh.json / game.en.json 的 dub.scenes 字段

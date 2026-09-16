@@ -603,5 +603,17 @@
   "lvlup.wordsTip": "Words you learned this level:",
   "up.text": "🎉 QTZu has new content!",
   "up.now": "Update now",
-  "prof.pickCity": "📍 Pick your city"
+  "prof.pickCity": "📍 Pick your city",
+  "wd.tapWord": "Tap a word to hear it",
+  "mg.button": "{city} Mini Game",
+  "mg.title": "{city} · Listen & Pick",
+  "mg.sub": "Listen and pick the word you hear! All 3 right = +1⭐",
+  "mg.hear": "Play again",
+  "mg.perfect": "🏆 All 3 right! +1⭐ — {city} expert!",
+  "mg.done": "{n}/{total} right — try again for a perfect run!",
+  "mg.retry": "Listen again and pick another~",
+  "mg.noWords": "This city's words are still loading~",
+  "rest.title": "Your pet is yawning~",
+  "rest.body": "You've been playing for 30 minutes! Rest your eyes for 10 minutes — your pet will wait for you here~",
+  "rest.ok": "I'm rested, let's go!"
 }
