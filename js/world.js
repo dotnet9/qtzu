@@ -983,7 +983,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         };
         const fpts = [];
         for (let i = 0; i < pts.length - 1; i++) fpts.push(new THREE.Vector3(pts[i][0], 0, pts[i][1]));
-        const curve = new THREE.CatmullRomCurve3(fpts, true);
+        // 张力 0：样条贴着轮廓顶点走，不再在拐角处过冲甩出"S"形波浪——
+        // 旧版墙体自己扭来扭去，垛口跟着甩得东倒西歪，看着像乱摆的砖
+        const curve = new THREE.CatmullRomCurve3(fpts, true, 'catmullrom', 0);
         const { geo: wallGeo, samples, normals, arcs, len } = buildWallGeometry(curve, H, THICK);
         // 外侧方向：取一个样本点测试内外，整条边界绕向一致
         const outerSign = ptIn(samples[0].x + normals[0][0] * 2, samples[0].z + normals[0][1] * 2) ? -1 : 1;
@@ -1005,10 +1007,13 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             let i = Math.round(target / (len / (samples.length - 1)));
             i = Math.max(0, Math.min(samples.length - 1, i));
             const p = samples[i], [nx, nz] = normals[i];
-            const yaw = Math.atan2(normals[i][0], normals[i][1]);
-            q.setFromAxisAngle(up, yaw + Math.PI / 2);
+            // 朝向取本段切线（相邻采样点连线）：与墙体走向严格一致，垛口不再各自乱歪
+            // （+π/2 让 1.5 的长边贴着墙走向，1.0 的短边横跨墙顶）
+            const pa = samples[Math.max(0, i - 1)], pb = samples[Math.min(samples.length - 1, i + 1)];
+            const yaw = Math.atan2(pb.x - pa.x, pb.z - pa.z) + Math.PI / 2;
+            q.setFromAxisAngle(up, yaw);
             m4.compose(
-              new THREE.Vector3(p.x + nx * THICK * outerSign * 0.62, H + 0.55, p.z + nz * THICK * outerSign * 0.62),
+              new THREE.Vector3(p.x + nx * THICK * outerSign * 0.5, H + 0.5, p.z + nz * THICK * outerSign * 0.5),
               q, sc
             );
             merlons.setMatrixAt(k, m4);
