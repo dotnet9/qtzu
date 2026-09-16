@@ -7,10 +7,10 @@ import { getLang } from './save.js';
 
 const _merged = { zh: {}, en: {}, game: { zh: null, en: null }, loaded: false };
 
-// 查一个界面文案：纯英读 en 表，双语读 zh 表；资源缺失时返回 key 本身
+// 查一个界面文案：优先当前语言表；缺失时回落另一语言表（绝不显示空/裸 key）
 function dictGet(key) {
-  const table = getLang() === 'en' ? _merged.en : _merged.zh;
-  return table[key];
+  const lang = getLang() === 'en' ? 'en' : 'zh';
+  return _merged[lang][key] ?? _merged[lang === 'en' ? 'zh' : 'en'][key];
 }
 
 export function t(key, vars) {
@@ -21,7 +21,7 @@ export function t(key, vars) {
 // 双语模式输出中文、纯英模式输出英文；用于并列展示型文案
 export function tb(key, vars) {
   if (getLang() === 'en') return t(key, vars);
-  let s = _merged.zh[key] ?? key;
+  let s = _merged.zh[key] ?? _merged.en[key] ?? key;
   if (vars) for (const k in vars) s = s.split(`{${k}}`).join(vars[k]);
   return s;
 }
