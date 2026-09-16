@@ -230,8 +230,11 @@ try {
 } catch (e) { /* ignore */ }
 
 // 建过档案（有昵称、选好课本）就直接续玩；否则弹窗：有昵称的走登录，没有的走注册
-if (save.getUsername() && save.isRegistered() && CURRICULUM[save.getBookSem()]) begin();
-else ui.showProfile(begin, {
-  username: save.getUsername(), password: save.getPassword(), registered: save.isRegistered(),
-  semKey: save.getBookSem(), gender: save.getGender(), city: save.getHomeCity(),
-}, { mode: save.getUsername() ? 'login' : 'register', kickMsg });
+// 首屏弹窗必须等双语文案就绪，否则 t() 动态文案显示裸 key
+import('./i18n.js').then(m => m.initI18n()).catch(() => {}).then(() => {
+  if (save.getUsername() && save.isRegistered() && CURRICULUM[save.getBookSem()]) begin();
+  else ui.showProfile(begin, {
+    username: save.getUsername(), password: save.getPassword(), registered: save.isRegistered(),
+    semKey: save.getBookSem(), gender: save.getGender(), city: save.getHomeCity(),
+  }, { mode: save.getUsername() ? 'login' : 'register', kickMsg });
+});

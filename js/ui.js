@@ -1973,6 +1973,8 @@ export function showProfile(onDone, profile = {}, options = {}) {
     }
   };
   paint();
+  // 双语文案异步加载：就绪后重绘动态文案（首屏弹出早于资源到达时不显示裸 key）
+  addEventListener('i18n-ready', () => { paint(); paintGender(); tryPaintCity(); }, { once: true });
   if (options.kickMsg) error.textContent = options.kickMsg;   // 被顶下线后的提示
   let submitted = false;
   const busy = () => { start.disabled = true; start.textContent = t('x.g157'); };
