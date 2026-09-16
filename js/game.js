@@ -1893,6 +1893,7 @@ export class Game {
     for (const pt of this.pets.all()) {
       const c2 = this._cityPos(pt.word, cur);
       pt.group.position.set(c2.x, c2.y || 0, c2.z);
+      pt.baseY = c2.y || 0;   // 同步站立高度：天空词宠站高台（3.2），不更新会悬浮回 14
       pt.home.set(c2.x, c2.z);
       pt.target.set(c2.x, c2.z);
     }
@@ -3436,7 +3437,7 @@ export class Game {
     // 词宠出生在蛋的位置（钳到可站位）。不带位置会退回主岛老坐标 word.pos——
     // 城市巡游下那是在城外几百单位的外海，孩子看不到自己的新词宠，“走过去+1”也永远走不到
     const bornAt = this._eggSpot(eggPos.x, eggPos.z);
-    const pet = this.pets.spawn(word, { x: bornAt.x, z: bornAt.z });
+    const pet = this.pets.spawn(word, { x: bornAt.x, z: bornAt.z, y: eggObj ? (eggObj.baseY || 0) : 0 });
     pet.group.userData.wordId = word.id;
     // 95 分孵出的 = 稀有词宠：带柔光入场
     if (score >= 95) {
