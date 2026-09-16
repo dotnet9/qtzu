@@ -151,7 +151,9 @@ function haloColor(status) {
     }
   }
 
-﻿  // 巡游路线：按顺序串起路线城中心点（金色虚线）
+  ﻿  // 巡游路线：按顺序串起路线城中心点（金色虚线）。
+  // 只在拉远看全国地图时显现：城市近景里它是几条横穿城墙的“黄线”，孩子看不懂还挡视线
+  let routeLine = null, routeMat = null;
   {
     const rp = [];
     for (const cid of route) {
@@ -162,14 +164,25 @@ function haloColor(status) {
     }
     if (rp.length > 1) {
       const lg = new THREE.BufferGeometry().setFromPoints(rp);
-      const line = new THREE.Line(lg, new THREE.LineDashedMaterial({
+      routeMat = new THREE.LineDashedMaterial({
         color: '#C08A2D', dashSize: 70, gapSize: 45, fog: false, depthTest: false,
+        transparent: true, opacity: 0,
         polygonOffset: true, polygonOffsetFactor: -7, polygonOffsetUnits: -7,
-      }));
-      line.computeLineDistances();
-      line.renderOrder = 5;
-      group.add(line);
+      });
+      routeLine = new THREE.Line(lg, routeMat);
+      routeLine.computeLineDistances();
+      routeLine.renderOrder = 5;
+      routeLine.visible = false;   // anchor 后由 setRouteFade 按镜头距离决定显隐
+      group.add(routeLine);
     }
+  }
+
+  // 镜头距离 → 路线虚线透明度：≤70 隐藏（城内玩法），70~130 渐显，≥130 全显（看全国巡游路线）
+  function setRouteFade(camDist) {
+    if (!routeMat || !routeLine) return;
+    const k = Math.max(0, Math.min(1, (camDist - 70) / 60));
+    routeMat.opacity = k * 0.9;
+    routeLine.visible = k > 0.02;
   }
 
   // 锚定：把当前城市的地图位置对齐到它的可玩舞台中心（cx, cz）
@@ -186,5 +199,5 @@ function haloColor(status) {
   }
 
   scene.add(group);
-  return { group, anchor };
+  return { group, anchor, setRouteFade };
 }
