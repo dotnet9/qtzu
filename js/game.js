@@ -146,12 +146,14 @@ export class Game {
     }
     return n - 1;
   }
-  // 本关要抽查小测的词：seed=昵称+册+关号，每关固定 2 个、跨会话一致
+  // 本关要抽查小测的词：seed=昵称+册+关号，每关固定 2 个、跨会话一致。
+  // 只从本关新词里抽——复习词已孵过、不会再触发孵化，抽到就等于白丢一次小测
   _chapterQuizIds() {
     const ch = this.currentChapter;
     if (this._quizCache && this._quizCache.ch === ch) return this._quizCache.ids;
+    const pool = ch.words.filter(id => !ch.review.includes(id));
     const rand = makeSeedRand(save.getUsername() + '|' + this.sem + '|quiz|' + (this._forceChapter ?? this.chapterIndex()));
-    const ids = shuffleSeed(ch.words.slice(), rand).slice(0, 2);
+    const ids = shuffleSeed(pool, rand).slice(0, 2);
     this._quizCache = { ch, ids };
     return ids;
   }
