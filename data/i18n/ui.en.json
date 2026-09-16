@@ -615,5 +615,11 @@
   "mg.noWords": "This city's words are still loading~",
   "rest.title": "Your pet is yawning~",
   "rest.body": "You've been playing for 30 minutes! Rest your eyes for 10 minutes — your pet will wait for you here~",
-  "rest.ok": "I'm rested, let's go!"
+  "rest.ok": "I'm rested, let's go!",
+  "wd.sylTip": "By syllable:",
+  "qz.title": "Weekly Word Quiz",
+  "qz.doneTitle": "📝 Quiz done!",
+  "qz.ok": "OK!",
+  "qz.doneAll": "All naughty words recaptured, +2⭐! Word master!",
+  "qz.doneSome": "{n}/{total} right — the naughty pets will come back. Keep going!"
 }

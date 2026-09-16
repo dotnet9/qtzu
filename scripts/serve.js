@@ -499,6 +499,26 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // 行为埋点：append-only 落 events/events-YYYY-MM-DD.jsonl（每行一个 JSON），零并发冲突
+    if (pathname === '/api/track' && req.method === 'POST') {
+      const raw = await readBody(req, 2048);
+      let ev;
+      try { ev = JSON.parse(raw || '{}'); } catch (e) { res.writeHead(204); res.end(); return; }
+      if (!ev || typeof ev.name !== 'string' || ev.name.length > 40) { res.writeHead(204); res.end(); return; }
+      try {
+        const rec = {
+          t: Date.now(),
+          aid: String(ev.aid || '').slice(0, 16) || 'anon',
+          name: ev.name.slice(0, 40),
+          props: ev.props && typeof ev.props === 'object' ? ev.props : {},
+        };
+        fs.mkdirSync(path.join(__dirname, 'events'), { recursive: true });
+        fs.appendFileSync(path.join(__dirname, 'events', `events-${new Date().toISOString().slice(0, 10)}.jsonl`), JSON.stringify(rec) + '\n', 'utf8');
+      } catch (e) { /* 埋点写失败不影响任何功能 */ }
+      res.writeHead(204); res.end();
+      return;
+    }
+
     // 拉取服务器存档（登录后立即调，与本地合并）
     if (pathname === '/api/pull-save' && req.method === 'POST') {
       const body = await parseBody(req, res); if (!body) return;

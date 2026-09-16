@@ -42,6 +42,8 @@ function fresh() {
     stamps: {},        // 景点集章：<城市en> -> { got:[景点名], done:false }
     npcChatDay: '',    // 最近一次和 NPC 聊天之日（隔日重逢问候用）
     dubCount: 0,       // 完成的配音作品数
+    streak: { day: '', n: 0, rewarded: {} },  // 连续打卡：day=最后游玩日 n=连击数 rewarded={3:true,7:true} 已领奖的里程碑
+    lastQuizDay: '',   // 最近一次错词周测之日（每周日且距上次 ≥7 天才提醒）
   };
 }
 
@@ -77,6 +79,8 @@ function load() {
     merged.stamps = d.stamps || {};
     merged.npcChatDay = d.npcChatDay || '';
     if (typeof merged.dubCount !== 'number') merged.dubCount = 0;
+    merged.streak = Object.assign({ day: '', n: 0, rewarded: {} }, d.streak || {});
+    merged.lastQuizDay = d.lastQuizDay || '';
     merged.daily = Object.assign({ day: '', idx: 0, n: 0, done: false }, d.daily || {});
     if (!merged.player) merged.player = null;
     return merged;
@@ -310,6 +314,46 @@ export function markStampsDone(cityEn) {
   const s = data.stamps[cityEn];
   if (s && !s.done) { s.done = true; save(); }
 }
+
+// ---------- 连续打卡：每天第一次进游戏算一天，断了从 1 重来 ----------
+export function touchStreak() {
+  const today = new Date().toISOString().slice(0, 10);
+  const s = data.streak;
+  if (s.day === today) return { n: s.n, newMilestone: null };   // 今天已记过
+  const yest = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  s.n = s.day === yest ? s.n + 1 : 1;   // 昨天玩过 → 连击+1；断了从 1 开始
+  s.day = today;
+  // 连击里程碑奖励：3 天 +3⭐、7 天 +7⭐、14 天 +14⭐（每个档只领一次）
+  let newMilestone = null;
+  for (const m of [3, 7, 14, 30]) {
+    if (s.n >= m && !s.rewarded[m]) {
+      s.rewarded[m] = true;
+      const bonus = { 3: 3, 7: 7, 14: 14, 30: 30 }[m];
+      const p = data.profile;
+      p.stars = (p.stars || 0) + bonus;
+      newMilestone = { days: m, bonus };
+      break;
+    }
+  }
+  save();
+  return { n: s.n, newMilestone };
+}
+export function getStreak() { return data.streak; }
+
+// ---------- 错词周测：错词本取词，拼写选择三题 ----------
+export function isQuizDay() {   // 今天是周日且距上次测验 ≥7 天
+  const today = new Date();
+  if (today.getDay() !== 0) return false;
+  if (!data.lastQuizDay) return true;
+  return (Date.now() - new Date(data.lastQuizDay + 'T00:00:00').getTime()) >= 6 * 86400000;
+}
+export function getNaughtyForQuiz(limit = 3) {   // 错得最多的词优先
+  return Object.entries(data.naughty)
+    .sort((a, b) => (b[1].misses || 0) - (a[1].misses || 0))
+    .slice(0, limit)
+    .map(([id]) => id);
+}
+export function markQuizDone() { data.lastQuizDay = new Date().toISOString().slice(0, 10); save(); }
 
 // ---------- NPC 记忆：今天第一次和 NPC 聊天 = 隔日重逢，问候语加"欢迎回来" ----------
 export function markNpcChat() {

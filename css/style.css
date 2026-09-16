@@ -513,6 +513,44 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 #rest-card #rest-ok:active { transform: translateY(2px); box-shadow: none; }
 
+/* 分节读辅助条（挑战卡内，单词下方） */
+.wd-syl { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin: 2px 0 6px; align-items: center; }
+.wd-syl i { font-style: normal; font-size: 11px; color: var(--c-text-2); font-weight: bold; }
+.wd-syl button {
+  padding: 3px 10px; font-family: inherit; font-size: 14px; font-weight: 900; cursor: pointer;
+  color: var(--c-primary-deep); background: var(--c-primary-soft); border: 1px solid var(--c-primary-soft);
+  border-radius: 8px; transition: transform .12s;
+}
+.wd-syl button:active { transform: scale(.9); }
+
+/* 📝 错词周测卡 */
+#quiz-card {
+  width: min(380px, 92vw); background: var(--c-surface); border: 1px solid var(--c-line);
+  border-radius: var(--r-card); box-shadow: var(--shadow-pop); padding: 18px; text-align: center;
+  animation: popIn .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+#quiz-card .qz-t { font-size: 16px; font-weight: 900; color: var(--c-primary-deep); }
+#quiz-card .qz-zh { font-size: 22px; font-weight: 900; color: var(--c-text); margin: 10px 0; }
+#quiz-card #qz-hear {
+  padding: 9px 22px; font-size: 15px; font-weight: 900; font-family: inherit; cursor: pointer;
+  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
+}
+#quiz-card .qz-opts { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+#quiz-card .qz-opts button {
+  padding: 12px; font: inherit; font-size: 16px; font-weight: 900; cursor: pointer;
+  color: var(--c-text); background: var(--c-field); border: 1px solid var(--c-line); border-radius: var(--r-ctrl);
+  transition: transform .12s, background .15s, border-color .15s;
+}
+#quiz-card .qz-opts button:active { transform: scale(.97); }
+#quiz-card .qz-opts button.right { background: #EFF7EC; border-color: var(--c-success); color: var(--c-success); }
+#quiz-card .qz-opts button.wrong { background: #FBEBEE; border-color: #E08A96; color: #C4577E; }
+#quiz-card #qz-ok {
+  width: 100%; margin-top: 12px; padding: 11px; font-size: 15px; font-weight: 900; font-family: inherit;
+  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; cursor: pointer;
+  box-shadow: 0 3px 0 var(--c-primary-deep);
+}
+#quiz-card #qz-ok:active { transform: translateY(2px); box-shadow: none; }
+
 /* ---------- 北京终章成就卡 ---------- */
 #travel-card {
   width: min(420px, 92vw); max-height: calc(100dvh - 28px); overflow-y: auto;

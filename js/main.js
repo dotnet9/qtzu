@@ -1,6 +1,8 @@
 import { t } from './i18n.js';
+import { track } from './track.js';
 // Q淘族 · 入口
 import './compat.js'; // 兼容垫片（roundRect 等），必须最先加载
+track('boot_ok');   // 引擎加载成功（此后再失败属于运行时错误）
 
 // PWA：https（或本地调试）下注册 Service Worker —— 孩子离线/地铁上也能玩，
 // 家长"添加到主屏幕"后就是一个不占地方的小 App
@@ -130,6 +132,33 @@ async function begin(name, semKey, gender, password, serverScore, token) {
     save.startHeartbeat();   // 单点登录心跳：被同名新登录顶下线时弹登录框
     if (SHARE.city) setTimeout(() => game._handleShareCity && game._handleShareCity(SHARE.city, SHARE.debug), 1600);
     initRestReminder();   // 😴 儿童护眼：连续玩 30 分钟提醒休息
+    track('game_start');
+    // 🔥 连续打卡：每天第一次进游戏记一天，断签从 1 重来；里程碑（3/7/14/30 天）自动发星星
+    const st = save.touchStreak();
+    if (st.newMilestone) {
+      save.addStars(st.newMilestone.bonus);
+      ui.updateStars(save.getStars());
+      setTimeout(() => ui.toast(`🔥 连续打卡 ${st.newMilestone.days} 天！奖励 +${st.newMilestone.bonus}⭐`, 4200), 2500);
+    } else if (st.n >= 2) {
+      setTimeout(() => ui.toast(`🔥 连续打卡 ${st.n} 天，保持下去！`, 2600), 2200);
+    }
+    // 📝 错词周测：周日且距上次 ≥7 天，错词本里有词才考
+    setTimeout(async () => {
+      if (!save.isQuizDay()) return;
+      const ids = save.getNaughtyForQuiz(3);
+      if (!ids.length) return;
+      const { WORD_MAP } = await import('./words.js');
+      const words = ids.map(id => WORD_MAP[id]).filter(Boolean);
+      if (words.length) ui.showWeeklyQuiz(words, () => save.markQuizDone());
+    }, 4000);
+    // 🎊 节日轻装饰：HUD 顶部一枚节日徽标 + 进城问候
+    import('./festival.js').then(({ getFestival }) => {
+      const f = getFestival();
+      if (!f) return;
+      const pill = document.getElementById('festival-pill');
+      if (pill) { pill.textContent = `${f.emoji} ${f.name}${f.soon ? '快到啦' : '快乐'}`; pill.classList.remove('hidden'); }
+      if (!f.soon) setTimeout(() => ui.toast(`${f.emoji} ${f.name}快乐！${f.en}`, 4200), 1800);
+    }).catch(() => {});
   } catch (err) {
     console.error(err);
     window.__bootErr = err && (err.stack || err.message);

@@ -775,6 +775,7 @@ export class Game {
   // ================= 主循环 =================
   _loop() {
     requestAnimationFrame(() => this._loop());
+    this._fpsWatch();
     const dt = Math.min(this.clock.getDelta(), 0.05);
     const t = this.clock.elapsedTime;
     this._updatePlayer(dt);
@@ -805,6 +806,23 @@ export class Game {
     (this._lastPos = this._lastPos || new THREE.Vector3()).copy(this.player.position);
     if (this.composer) this.composer.render();
     else this.renderer.render(this.scene, this.camera);
+  }
+
+  // 低端机帧率自适应：连续 6 秒平均 FPS < 25 → 降级一次（关后期合成/阴影/天空动画），不恢复避免抖动
+  _fpsWatch() {
+    const now = performance.now();
+    this._fpsFrames = (this._fpsFrames || 0) + 1;
+    if (!this._fpsT0) this._fpsT0 = now;
+    if (now - this._fpsT0 < 6000) return;
+    const fps = Math.round(this._fpsFrames * 1000 / (now - this._fpsT0));
+    this._fpsFrames = 0; this._fpsT0 = now;
+    if (this._lowFx) return;
+    if (fps >= 25) return;
+    this._lowFx = true;
+    if (this.composer) { this.composer = null; }                       // 关 Bloom 后期
+    if (this.renderer && this.renderer.shadowMap) { this.renderer.shadowMap.enabled = false; }
+    this.scene.traverse(o => { if (o.isMesh && o.material) o.material.needsUpdate = true; });
+    ui.toast('⚡ 已自动开启流畅模式，游戏更顺滑啦～', 3200);
   }
 
   // 任务气泡锚在小人头顶：3D 坐标投到屏幕，镜头外就先藏起来

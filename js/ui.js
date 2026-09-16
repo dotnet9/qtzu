@@ -3,6 +3,8 @@ import { sfx, speak, speakSlow, speakFollow, spellLetters, stopSpeaking, playRec
 import { voiceSupported, voiceBlockedByInsecure, isVoiceBroken } from './speech.js';
 import { whisperState, loadPercent } from './whisper.js';
 import { t, isEn, initI18n, getGameRes } from './i18n.js';
+import { track } from './track.js';
+import { WORD_MAP } from './words.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
@@ -326,11 +328,23 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   ch.open = true; ch.word = word; ch.mode = mode; ch.onSuccess = onSuccess; ch.onClose = onClose; ch.onSkip = onSkip; ch.onDemoEnd = onDemoEnd || null; ch.easy = !!easy;   // 复习蛋简单模式：读一遍就过
   ch.busy = false; ch.spellMode = false; ch.listening = false; ch.replayUrl = null;
   toggleHudMenu(false);   // 弹窗打开时收起菜单
+  track('challenge_open', { mode });
   els.modalTitle.textContent = title || (mode === 'feed' ? t('ch.feed')
     : mode === 'practice' ? t('ch.practice')
     : ch.easy ? t('ch.review')
     : t('ch.hatch'));
   els.wordEn.classList.remove('spell-hidden');
+  // 分节读辅助：多音节长词显示音节块，点一下听一节（低年级友好）
+  const oldSyl = document.getElementById('wd-syl');
+  if (oldSyl) oldSyl.remove();
+  if (Array.isArray(word.syl) && word.syl.length > 1) {
+    const row = document.createElement('div');
+    row.id = 'wd-syl';
+    row.className = 'wd-syl';
+    row.innerHTML = `<i>${t('wd.sylTip')}</i>` + word.syl.map(s => `<button type="button" data-s="${s}">${s}</button>`).join('');
+    els.wordEn.insertAdjacentElement('afterend', row);
+    row.querySelectorAll('button').forEach(b => { b.onclick = () => { sfx.pop(); speak(b.dataset.s); }; });
+  }
   if (/\s/.test(word.en)) {
     // 整句跟读：逐词渲染成点读块——点哪个词听哪个词，降低整句朗读的恐惧感
     els.wordEn.innerHTML = word.en.split(/\s+/)
@@ -753,6 +767,7 @@ export function homeStars(x, y, n = 3) {
 // ---------- 全屏通关卡：星星结算 + 本关单词回顾（点单词可再听发音） ----------
 export function levelUpOpen() { return els.levelup && !els.levelup.classList.contains('hidden'); }
 export function showLevelComplete({ index, name, words = [], last = false, onNext }) {
+  track('level_clear', { level: index, last });
   els.levelupBurst.textContent = last ? '🏆' : '🎉';
   els.levelupTitle.textContent = last ? t('x.g36') : t('x.g37', { a0: index });
   els.levelupSub.textContent = last
@@ -812,6 +827,7 @@ export function setCityPill(text, onOpen) {
 // ---------- 城市介绍卡：顶部幻灯片图集 + 配置化 Tab（首页/大学/美食/风景/自定义）+ 小问答 ----------
 // 内容全部来自城市 JSON（gallery/unis/foods/scenes/customTabs），程序只负责渲染
 export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFinal }) {
+  track('city_enter', { city: city.en, visit: visit || 1 });
   const ov = document.createElement('div');
   ov.className = 'overlay';
   ov.style.zIndex = '120';
@@ -1549,6 +1565,7 @@ function showScore(score, heard, opts = {}) {
     setTimeout(() => {
       els.scorePanel.classList.add('hidden');
       // via 告诉游戏层这次分数是“朗读”还是“拼字母块”（“朗读 95 分”类每日任务只认真正的朗读）
+      track('challenge_result', { score, mode: ch.mode, via: ch.spellMode ? 'spell' : 'voice' });
       ch.onSuccess && ch.onSuccess({ score, heard, via: ch.spellMode ? 'spell' : 'voice' });
     }, 1400);
   } else {
@@ -1960,7 +1977,9 @@ export function showProfile(onDone, profile = {}, options = {}) {
   const resume = () => { if (!editing) start.textContent = mode === 'login' ? t('x.g149') : t('x.g150'); };
   const done = (semKey, password, serverScore, token) => {
     if (pickedCity) setHomeCity(pickedCity);   // 档案里选的城市=巡游起点
-    ov.classList.add('hidden'); onDone && onDone(input.value.trim(), semKey, gender, password, serverScore, token);
+    ov.classList.add('hidden');
+    track('profile_done', { mode: mode || 'register' });
+    onDone && onDone(input.value.trim(), semKey, gender, password, serverScore, token);
   };
   const fail = msg => {
     error.textContent = msg; submitted = false; start.disabled = false; resume();
@@ -2383,6 +2402,60 @@ export function openMap(data) {
 }
 if (els.mapClose) els.mapClose.addEventListener('click', () => els.map.classList.add('hidden'));
 
+// ---------- 📝 错词周测：周日弹一次，听音看义选词，把错词本变成主动复习 ----------
+export function showWeeklyQuiz(words, onDone) {
+  // 出题：正确词 + 从词库随机抽 2 个干扰项
+  const qs = words.map(w => {
+    const pool = Object.values(WORD_MAP).filter(x => x.en !== w.en);
+    const distract = [];
+    while (distract.length < 2 && pool.length) {
+      const c = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+      if (!distract.includes(c)) distract.push(c);
+    }
+    const opts = [w, ...distract].sort(() => Math.random() - .5);
+    return { w, opts };
+  });
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.style.zIndex = '126';
+  let qi = 0, right = 0;
+  const paint = () => {
+    const q = qs[qi];
+    ov.innerHTML = `<div id="quiz-card">
+      <div class="qz-t">📝 ${t('qz.title')} ${qi + 1}/${qs.length}</div>
+      <div class="qz-zh">${q.w.zh}</div>
+      <button type="button" id="qz-hear">🔊 ${t('mg.hear')}</button>
+      <div class="qz-opts">${q.opts.map(o => `<button type="button" data-en="${o.en}">${o.en}</button>`).join('')}</div>
+      <div class="qz-rs"></div>
+    </div>`;
+    speak(q.w.en);
+    ov.querySelector('#qz-hear').onclick = () => { sfx.pop(); speak(q.w.en); };
+    ov.querySelectorAll('.qz-opts button').forEach(b => {
+      b.onclick = () => {
+        const ok = b.dataset.en === q.w.en;
+        ov.querySelectorAll('.qz-opts button').forEach(x => {
+          x.disabled = true;
+          if (x.dataset.en === q.w.en) x.classList.add('right');
+        });
+        if (ok) { right++; sfx.great(); } else { b.classList.add('wrong'); sfx.pop(); }
+        qi++;
+        if (qi < qs.length) { setTimeout(paint, 800); return; }
+        const all = right === qs.length;
+        if (all) { addStars(2); updateStars(getStars()); sfx.great(); }
+        ov.querySelector('.qz-t').textContent = t('qz.doneTitle');
+        ov.querySelector('#quiz-card').innerHTML = `<div class="qz-t">${t('qz.doneTitle')}</div>
+          <div class="rest-sub">${right === qs.length ? t('qz.doneAll') : t('qz.doneSome', { n: right, total: qs.length })}</div>
+          <button type="button" id="qz-ok">${t('qz.ok')}</button>`;
+        if (all) track('weekly_quiz_perfect');
+        ov.querySelector('#qz-ok').onclick = () => { sfx.pop(); ov.remove(); };
+      };
+    });
+  };
+  document.body.appendChild(ov);
+  track('weekly_quiz_open');
+  paint();
+}
+
 // ---------- 😴 休息提醒：连续玩 30 分钟，词宠劝孩子让眼睛休息 ----------
 export function showRestCard() {
   if (document.querySelector('#rest-card')) return;   // 已在提醒中
@@ -2444,6 +2517,7 @@ export function openCityMiniGame(city) {
         addStars(1); updateStars(getStars());
         rs.textContent = t('mg.perfect', { city: city.name });
         rs.className = 'mg-rs good';
+        track('mini_game_done', { city: city.en, perfect: true });
       } else {
         rs.textContent = t('mg.done', { n: right, total: qs.length });
         rs.className = 'mg-rs';
