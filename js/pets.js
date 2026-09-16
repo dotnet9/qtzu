@@ -142,7 +142,9 @@ export class PetManager {
     if (word.phrase) addPhraseTag(g, word.en, word.icon);
     else addLetterTag(g, word.en[0]);
     const [x, z] = posOverride ? [posOverride.x, posOverride.z] : word.pos;
-    const baseY = word.zone === 'sky' ? 14 : 0;
+    // baseY 优先取调用方给的 y：城市巡游没有天空岛，天空词宠按高台 3.2 站，
+    // 不再固定 14 悬浮半空；老农场模式不传 y 仍按原逻辑上天空岛
+    const baseY = posOverride && posOverride.y != null ? posOverride.y : (word.zone === 'sky' ? 14 : 0);
     g.position.set(x, baseY, z);
     this.scene.add(g);
     const pet = {

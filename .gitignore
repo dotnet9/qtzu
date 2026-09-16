@@ -2,6 +2,10 @@
 scripts/accounts.json
 scripts/leaderboard.json
 scripts/saves.json
+scripts/saves.json.migrated
+scripts/saves/
+scripts/backup/
+scripts/events/
 scripts/*.log
 
 # 图片本地化中间产物
