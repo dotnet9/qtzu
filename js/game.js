@@ -4,7 +4,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
-import { WORD_MAP, ZONE_NAMES, PER_CHAPTER, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
+import { WORD_MAP, ZONE_NAMES, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
 import { buildPet } from './models.js';
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
@@ -136,9 +136,15 @@ export class Game {
   }
 
   // ================= 本册范围 =================
-  // 章节索引：以本册已唤醒数量折算（只数本册词，别的册不算进度）
-  chapterIndex(hatchedCount) {
-    return Math.min(Math.floor(hatchedCount / PER_CHAPTER), this.chapters.length - 1);
+  // 章节索引：按孵化状态推导——当前关 = 第一关还有词蛋没孵出来的关。
+  // 通关唯一条件 = 本关的蛋全部孵化（新单词/短语全部学完）；分数/星星不参与升关。
+  // 旧版按「全册已孵数 ÷ 6」折算，本关蛋没孵完也可能数够升关，出现没学会就升级。
+  chapterIndex() {
+    const n = Math.min(this.chapters.length, this.islands.length);
+    for (let i = 0; i < n; i++) {
+      if (this.chapters[i].words.some(id => !save.isHatched(id))) return i;
+    }
+    return n - 1;
   }
   // 本册已唤醒数量
   hatchedInScope() {
@@ -222,6 +228,13 @@ export class Game {
     this._initGuide();
   }
 
+  // 进城出生点：城心主地标正南侧两步半，面朝地标——落地第一眼就是这座城市名片
+  _citySpawnPos(st) {
+    const p = { x: st.cx, z: st.cz + 2.6 };
+    this._clampCityPos(p, st);
+    return p;
+  }
+
   _initPlayer() {
     const p = buildPlayer(save.getGender(), save.getWear());
     this.player = p.group;
@@ -231,7 +244,8 @@ export class Game {
     const sp = save.getPlayer();
     if (this.cityTour) {
       const st = this._currentStage();
-      this.player.position.set(st.cx, 0, st.cz - st.r * 0.35);
+      const sp0 = this._citySpawnPos(st);
+      this.player.position.set(sp0.x, 0, sp0.z);
       this._collide();   // 出生点若与牌子/校门碰撞体重叠，立即推出来（防进入就晃动）
     } else if (sp && typeof sp.x === 'number') {
       this.player.position.set(sp.x, sp.y || 0, sp.z);
@@ -458,9 +472,9 @@ export class Game {
       this.keys.add(e.code);
       if (/^Key[WASD]$|^Arrow/.test(e.code)) this._clearMoveTarget(); // 手动方向一按，自动走路让位
       if (e.code === 'KeyE') this._interact();
-      // 键盘缩放视角：+/= 拉近，-/_ 拉远（滚轮之外的第二种手感）
-      if (e.code === 'Equal' || e.code === 'NumpadAdd') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget - 17.5, 2.8, 550);
-      if (e.code === 'Minus' || e.code === 'NumpadSubtract') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + 17.5, 2.8, 550);
+      // 键盘缩放视角：+/= 拉近，-/_ 拉远（与滚轮同款比例步长，近距离也好微调）
+      if (e.code === 'Equal' || e.code === 'NumpadAdd') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * 0.88, 2.8, 550);
+      if (e.code === 'Minus' || e.code === 'NumpadSubtract') this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * 1.14, 2.8, 550);
       if (e.code === 'Tab') { e.preventDefault(); this._openSummon(); }
       if (e.code === 'Space') {
         e.preventDefault();
@@ -507,7 +521,8 @@ export class Game {
         if (this.touchCam.size === 2) {
           const [a, b] = [...this.touchCam.values()];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (this.pinchDist > 0) this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * this.pinchDist / d, 2.8, 550);
+          // 双指捏合按比例缩放并加 0.5 次幂阻尼：手指挪一厘米不再猛拉一大截
+          if (this.pinchDist > 0) this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * Math.pow(this.pinchDist / d, 0.5), 2.8, 550);
           this.pinchDist = d;
         }
       }
@@ -531,7 +546,8 @@ export class Game {
     addEventListener('pointercancel', endPointer);
     this.canvas.addEventListener('wheel', e => {
       if (this.lockInput) return;
-      this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget + e.deltaY * 0.09, 2.8, 550);
+      // 按比例缩放（每格约 ±11%）：近距离一格只挪一点点，不再一格拉到天上
+      this.camDistTarget = THREE.MathUtils.clamp(this.camDistTarget * Math.exp(e.deltaY * 0.0011), 2.8, 550);
     }, { passive: true });
 
     // ---- 虚拟摇杆 ----
@@ -787,6 +803,7 @@ export class Game {
     const t = this.clock.elapsedTime;
     this._updatePlayer(dt);
     this._updateCamera(dt);
+    if (this.chinaMap) this.chinaMap.setRouteFade(this.camDist);   // 巡游路线虚线：拉远才显现
     this._updateWorldAnim(dt, t);
     this._updateIdleLife(dt, t);
     this._updateEvents(dt);
@@ -1868,7 +1885,21 @@ export class Game {
       pt.home.set(c2.x, c2.z);
       pt.target.set(c2.x, c2.z);
     }
-    this.player.position.set(cur.cx, 0, cur.cz - cur.r * 0.35);
+    // 补建精建岛后城界才可用：本关的蛋重新钳进新城——
+    // 上一关通关演出出蛋时新城还是占位岛（无城界），蛋会被圆形兜底甩到城墙外，看得见够不着
+    const perchId = this._perchEggId();
+    for (const [eid, eg] of this.eggs.eggs) {
+      if (!eg.group.visible || !this.currentChapter.words.includes(eid)) continue;
+      if (eid === perchId) { this._putEggOnPerch(eg); continue; }   // 高台蛋回台面
+      if (eg.word.zone !== 'sky' && this._eggReachable(eg.group.position.x, eg.group.position.z)) continue;   // 城内/牌旁蛋位不动
+      const c2 = this._cityPos(eg.word, cur);
+      const spot = this._eggSpot(c2.x, c2.z);
+      const y = eg.word.zone === 'sky' ? (c2.y || 3.2) : 0;
+      eg.group.position.set(spot.x, y, spot.z);
+      eg.baseY = y;
+    }
+    const spawn = this._citySpawnPos(cur);   // 城心主地标旁，面朝地标
+    this.player.position.set(spawn.x, 0, spawn.z);
     this._clampCityPos(this.player.position, cur);   // 有机轮廓下出生点也可能在海上
     this._collide();   // 同上：出生点撞进牌子/校门碰撞体就立即推出
     this.chinaMap && this.chinaMap.anchor(cur.key, cur.cx, cur.cz);   // 全国地图跟随当前城锚定
@@ -2038,7 +2069,8 @@ export class Game {
     const st = key ? this.islands.find(i => i.key === key) : this._currentStage();
     if (!st) return;
     const from = this.player.position.clone();
-    const to = new THREE.Vector3(st.cx, 0, st.cz - st.r * 0.35);
+    const spawn = this._citySpawnPos(st);
+    const to = new THREE.Vector3(spawn.x, 0, spawn.z);
     this._clampCityPos(to, st);   // 凹形城市下落点也可能压墙/出城，钳进城内再发车
     this.riding = true;
     ui.hidePrompt();
@@ -2847,6 +2879,11 @@ export class Game {
     this._dnT = 60;   // 约每秒一次
     this._refreshCityGateTags();
     const hr = new Date().getHours() + new Date().getMinutes() / 60;
+    // 真实时间里日月几乎不动：分钟档没跨过去就不重写光照/颜色——
+    // 每秒重复提交整屏光照状态会经由泛光管线造成整幅画面“一闪一闪”
+    const bucket = Math.round(hr * 5);   // 12 分钟一档
+    if (bucket === this._dnBucket) return;
+    this._dnBucket = bucket;
     const sea = this.world.anim.sea;
     if (hr < 6 || hr >= 18) {
       // 夜晚：月亮当班、光照调暗、雾色转深、全岛萤火虫点亮
@@ -2885,7 +2922,11 @@ export class Game {
     const p = this.player.position;
     if (this.cityTour) {
       const cur = this._currentStage();
-      for (const isl of this.world.islands) if (isl.grp) isl.grp.visible = isl.uid === cur.uid;
+      for (const isl of this.world.islands) {
+        if (!isl.grp) continue;
+        const want = isl.uid === cur.uid;
+        if (isl.grp.visible !== want) isl.grp.visible = want;   // 状态不变不写，避免无谓打断渲染
+      }
       return;
     }
     for (const isl of this.world.islands) {
@@ -3381,7 +3422,10 @@ export class Game {
     const golden = !!(eggObj && eggObj.golden);
     const eggPos = eggObj ? eggObj.group.position.clone() : this.player.position.clone().add(new THREE.Vector3(0, 0.6, 0));
     this.eggs.removeEgg(word.id);
-    const pet = this.pets.spawn(word);
+    // 词宠出生在蛋的位置（钳到可站位）。不带位置会退回主岛老坐标 word.pos——
+    // 城市巡游下那是在城外几百单位的外海，孩子看不到自己的新词宠，“走过去+1”也永远走不到
+    const bornAt = this._eggSpot(eggPos.x, eggPos.z);
+    const pet = this.pets.spawn(word, { x: bornAt.x, z: bornAt.z });
     pet.group.userData.wordId = word.id;
     // 95 分孵出的 = 稀有词宠：带柔光入场
     if (score >= 95) {
@@ -3417,12 +3461,17 @@ export class Game {
     speak(word.en);
     this._refreshHungry();
     this._checkFirstHatchHint();
-    // 每唤醒 6 只词宠 = 通关：庆祝一下，放出下一关的蛋
+    // 通关唯一条件：本关的蛋全部孵化。全册孵完走收官演出；
+    // 刚孵的词所在关全部孵完才放通关演出（doneCount = 已完成关数，与 _enterChapter 对齐）
     const total = this.hatchedInScope();
-    if (total % PER_CHAPTER === 0 && total < this.total) {
-      setTimeout(() => this._chapterComplete(total / PER_CHAPTER), 1100);
-    } else if (total >= this.total) {
+    if (total >= this.total) {
       setTimeout(() => this._chapterComplete(this.chapters.length), 1100);
+    } else {
+      const doneIdx = this.chapters.findIndex(ch => ch.words.includes(word.id));
+      const after = this.chapterIndex();
+      if (doneIdx >= 0 && doneIdx === after - 1) {
+        setTimeout(() => this._chapterComplete(after), 1100);
+      }
     }
   }
 
@@ -4002,17 +4051,25 @@ export class Game {
   }
 
   _refreshHungry() {
+    // 同时“想你”的词宠最多 4 只：自然饥饿是批次性的（首喂间隔才 10 分钟），
+    // 不封顶会全城词宠一起饿、一起冲过来冒泡泡。超出的先“错峰”，饿得最久的优先
+    const HUNGRY_CAP = 4;
+    const hungry = save.hungryPets();
+    if (hungry.length > HUNGRY_CAP) {
+      hungry.sort((a, b) => save.hungryIn(a) - save.hungryIn(b));
+      for (const id of hungry.slice(HUNGRY_CAP)) save.snoozeHungry(id, 120 + Math.random() * 240);
+    }
     for (const pet of this.pets.all()) {
       const hungry = save.isHungry(pet.word.id);
       if (hungry && !pet.hungry && this._started) this._petEmoji(pet, '🍖');   // 刚开始想你了：头顶冒🍖
       pet.hungry = hungry;
       this.pets.setHungry(pet.word.id, hungry);
     }
-    // HUD 显示本关进度：第 X 关 · 本关唤醒 n/6
-    const total = this.hatchedInScope();
-    const chIdx = this.chapterIndex(total);
-    const inChapter = this.chapters[chIdx].words.filter(id => save.isHatched(id)).length;
-    ui.updateHUD(inChapter, PER_CHAPTER, save.hungryPets().length, t('y.47', { a0: BOOK_LABEL(this.sem), a1: chIdx + 1 }));
+    // HUD 显示本关进度：第 X 关 · 本关唤醒 n/本关词数（首关 12 词垫满，其余 6+6）
+    const chIdx = this.chapterIndex();
+    const chWords = this.chapters[chIdx].words;
+    const inChapter = chWords.filter(id => save.isHatched(id)).length;
+    ui.updateHUD(inChapter, chWords.length, save.hungryPets().length, t('y.47', { a0: BOOK_LABEL(this.sem), a1: chIdx + 1 }));
   }
 
   // ---------- 召唤解谜 ----------

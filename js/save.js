@@ -394,6 +394,15 @@ export function makeHungry(id) {
   p.fedAt = Date.now() - interval - 60000;
   save();
 }
+// 错峰：把已饿的词宠往后推 delaySec 秒再“想你”。自然饥饿是批次性的（首喂间隔才 10 分钟），
+// 不封顶的话全城词宠会同时饿，一起冲着小主人冒泡泡
+export function snoozeHungry(id, delaySec) {
+  const p = data.pets[id];
+  if (!p || !isHungry(id)) return;
+  const interval = FEED_INTERVALS[Math.min(p.feedStage, FEED_INTERVALS.length - 1)];
+  p.fedAt = Date.now() + delaySec * 1000 - interval;
+  save();
+}
 // 周报附加统计：集章/徽章/配音
 export function extraStats() {
   return {

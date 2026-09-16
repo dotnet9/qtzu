@@ -227,6 +227,18 @@ export class PetManager {
       if (h.t >= h.dur) { this.scene.remove(h.s); this.hearts.splice(i, 1); }
     }
     const CULL_DIST = 70;   // 远处词宠隐藏（全收集后 932 只，不剔除会拖垮手机）
+    // 饿了想讨吃的词宠很多时，只让离小主人最近的 2 只跑过来（p.chase），其余原地溜达
+    const chasers = [];
+    if (playerPos) {
+      for (const p of this.pets.values()) {
+        if (!p.hungry || !p.group.visible || p.flying) continue;
+        const d = Math.hypot(p.group.position.x - playerPos.x, p.group.position.z - playerPos.z);
+        if (d > 2.2 && d < 10) chasers.push([d, p]);
+      }
+      chasers.sort((a, b) => a[0] - b[0]);
+    }
+    const chaseSet = new Set(chasers.slice(0, 2).map(([, p]) => p));
+    for (const p of this.pets.values()) p.chase = chaseSet.has(p);
     for (const p of this.pets.values()) {
       if (playerPos) {
         const d = Math.hypot(p.group.position.x - playerPos.x, p.group.position.z - playerPos.z);
@@ -256,8 +268,9 @@ export class PetManager {
         p.group.position.y = p.baseY + Math.abs(Math.sin(p.jt * 8)) * 0.35;
         if (p.jt > 1.4) { p.jumping = false; p.group.position.y = p.baseY; }
       } else {
-        // 饿了的词宠会主动跑到小主人身边讨吃的（8 米内才追，追到 2.2 米内停下）
-        if (p.hungry && playerPos) {
+        // 饿了的词宠会主动跑到小主人身边讨吃的（8 米内才追，追到 2.2 米内停下）。
+        // 全城都饿的话只让最近的 2 只追：集体围上来冒泡泡太吓人，其余的在家等着
+        if (p.hungry && playerPos && p.chase) {
           const pd = Math.hypot(playerPos.x - p.group.position.x, playerPos.z - p.group.position.z);
           if (pd > 2.2 && pd < 10) p.target.set(playerPos.x, playerPos.z);
         }
