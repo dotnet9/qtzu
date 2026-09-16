@@ -22,3 +22,6 @@ Thumbs.db
 # AI 助手工作区（本地数据）
 .codebuddy/
 scripts/sessions.json
+
+# 自动化测试浏览器档案
+.pw-profile/
