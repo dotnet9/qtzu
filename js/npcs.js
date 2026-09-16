@@ -78,22 +78,22 @@ function buildNPC(role, shirt) {
   tex.colorSpace = THREE.SRGBColorSpace;
   const hat = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
   hat.scale.setScalar(0.48); hat.position.y = 1.44; g.add(hat);
-  // 头顶角色名牌：小一号、半透明（走近才看得清，远看不抢戏）
+  // 头顶角色名牌：底要实（旧版太透，文字都看不清），整体略降不透明度保住"远看不抢戏"
   const nv = document.createElement('canvas');
   nv.width = 256; nv.height = 64;
   const nc = nv.getContext('2d');
-  nc.fillStyle = 'rgba(255,253,248,.82)';
-  nc.strokeStyle = 'rgba(255,224,168,.85)'; nc.lineWidth = 3;
+  nc.fillStyle = 'rgba(255,253,248,.95)';
+  nc.strokeStyle = 'rgba(255,224,168,.95)'; nc.lineWidth = 3;
   nc.beginPath();
   if (nc.roundRect) nc.roundRect(3, 3, 250, 58, 15); else nc.rect(3, 3, 250, 58);
   nc.fill(); nc.stroke();
-  nc.fillStyle = '#7A5C22';
+  nc.fillStyle = '#5F431A';
   nc.font = '700 30px "Microsoft YaHei", sans-serif';
   nc.textAlign = 'center'; nc.textBaseline = 'middle';
   nc.fillText(t(role.zh), 128, 33);
   const ntex = new THREE.CanvasTexture(nv);
   ntex.colorSpace = THREE.SRGBColorSpace;
-  const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false, fog: false, opacity: 0.62 }));
+  const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false, fog: false, opacity: 0.95 }));
   tag.scale.set(1.28, 0.32, 1); tag.position.y = 1.82; g.add(tag);
   const legGeo = new THREE.CapsuleGeometry(0.07, 0.18, 3, 6);
   const legM = new THREE.MeshStandardMaterial({ color: 0x5B4632, roughness: 0.9 });
