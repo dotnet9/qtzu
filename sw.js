@@ -5,7 +5,7 @@
 //   跨域（three.js CDN、维基图片等）       → 缓存优先（版本化 URL 内容不变）
 //   音频 mp3 / 模型 onnx                  → 缓存优先 + 数量上限（大文件边玩边攒）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v6';   // v6：游戏化视觉体系全站推广（通用糖边卡/凹槽/果冻CTA/卡内蛋宠）
+const VER = 'qtzu-pwa-v7';   // v7：修复 auto-templates 缺 badge 导入导致 3D 场景启动崩溃
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动

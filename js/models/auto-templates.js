@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { M, add, G, sph, box, cyl, cone, cap, tor, face, quadBody } from './kit.js';
 
-import { letterTexture } from './tags.js';
+import { letterTexture, badge } from './tags.js';
 
 export const BADGE_COLORS = ['#FFD9E8', '#FFF3C8', '#D8F0D0', '#D0E8F5', '#E8DFF5', '#FFE4CC'];
 
