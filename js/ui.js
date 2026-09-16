@@ -866,7 +866,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
   const introText = isEn() && variant.introEn ? variant.introEn : variant.intro;
   const homeHtml = `
     ${city.history && !isEn() ? `<div class="cc-hist">${city.history}</div>` : ''}
-    <p class="cc-p">欢迎来到 <b>${city.name} ${city.en}</b>！${introText}</p>
+    <p class="cc-p">${t('cc.welcome', { name: city.name, en: city.en })}${introText}</p>
     <button class="cc-intro-en" data-en="${variant.introEn}">🔊 ${variant.introEn}</button>
     ${variant.introEn ? t('y.4', { a0: hasBadge('guide:' + city.en) ? ' 🎖️' : '' }) : ''}
     <button type="button" class="cc-minigame">🎮 ${t('mg.button', { city: city.name })}</button>
@@ -2565,8 +2565,8 @@ export function showDubStudio() {
   ov.style.zIndex = '125';
   ov.innerHTML = `<div id="dub-card">
     <button class="round-btn small" id="dub-close" style="position:absolute;top:12px;right:12px">✕</button>
-    <div class="dub-t">🎬 小小配音演员</div>
-    <div class="dub-sub">选一个情景，把每句台词大声配出来！每句 80 分 +1⭐，整部完成再 +1⭐</div>
+    <div class="dub-t">${t('dub.title')}</div>
+    <div class="dub-sub">${t('dub.sub')}</div>
     <div class="dub-scenes">${scenes.map((s, i) =>
       t('x.g179', { a0: i, a1: s.emoji, a2: s.name, a3: s.lines.length })).join('')}
     </div>

@@ -850,7 +850,7 @@ export class Game {
     if (this.composer) { this.composer = null; }                       // 关 Bloom 后期
     if (this.renderer && this.renderer.shadowMap) { this.renderer.shadowMap.enabled = false; }
     this.scene.traverse(o => { if (o.isMesh && o.material) o.material.needsUpdate = true; });
-    ui.toast('⚡ 已自动开启流畅模式，游戏更顺滑啦～', 3200);
+    ui.toast(t('fps.low'), 3200);
   }
 
   // 任务气泡锚在小人头顶：3D 坐标投到屏幕，镜头外就先藏起来

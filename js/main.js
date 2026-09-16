@@ -1,4 +1,4 @@
-import { t } from './i18n.js';
+import { t, isEn } from './i18n.js';
 import { track } from './track.js';
 // Q淘族 · 入口
 import './compat.js'; // 兼容垫片（roundRect 等），必须最先加载
@@ -142,9 +142,9 @@ async function begin(name, semKey, gender, password, serverScore, token) {
     if (st.newMilestone) {
       save.addStars(st.newMilestone.bonus);
       ui.updateStars(save.getStars());
-      setTimeout(() => ui.toast(`🔥 连续打卡 ${st.newMilestone.days} 天！奖励 +${st.newMilestone.bonus}⭐`, 4200), 2500);
+      setTimeout(() => ui.toast(t('streak.milestone', { d: st.newMilestone.days, n: st.newMilestone.bonus }), 4200), 2500);
     } else if (st.n >= 2) {
-      setTimeout(() => ui.toast(`🔥 连续打卡 ${st.n} 天，保持下去！`, 2600), 2200);
+      setTimeout(() => ui.toast(t('streak.keep', { n: st.n }), 2600), 2200);
     }
     // 📝 错词周测：周日且距上次 ≥7 天，错词本里有词才考
     setTimeout(async () => {
@@ -160,8 +160,13 @@ async function begin(name, semKey, gender, password, serverScore, token) {
       const f = getFestival();
       if (!f) return;
       const pill = document.getElementById('festival-pill');
-      if (pill) { pill.textContent = `${f.emoji} ${f.name}${f.soon ? '快到啦' : '快乐'}`; pill.classList.remove('hidden'); }
-      if (!f.soon) setTimeout(() => ui.toast(`${f.emoji} ${f.name}快乐！${f.en}`, 4200), 1800);
+      if (pill) {
+        pill.textContent = isEn()
+          ? `${f.emoji} ${f.en}${f.soon ? t('fest.soon') : ''}`
+          : `${f.emoji} ${f.name}${f.soon ? t('fest.soon') : t('fest.happy')}`;
+        pill.classList.remove('hidden');
+      }
+      if (!f.soon) setTimeout(() => ui.toast(t('fest.toast', { e: f.emoji, zh: f.name, en: f.en }), 4200), 1800);
     }).catch(() => {});
   } catch (err) {
     console.error(err);

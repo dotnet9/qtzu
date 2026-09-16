@@ -621,5 +621,16 @@
   "qz.doneTitle": "📝 周测完成！",
   "qz.ok": "好的！",
   "qz.doneAll": "错词全部收复，+2⭐！你是记单词小能手！",
-  "qz.doneSome": "答对 {n}/{total} 题——错词还会再回来的，加油！"
+  "qz.doneSome": "答对 {n}/{total} 题——错词还会再回来的，加油！",
+  "dub.title": "🎬 小小配音演员",
+  "dub.sub": "选一个情景，把每句台词大声配出来！每句 80 分 +1⭐，整部完成再 +1⭐",
+  "dub.lines": "句台词",
+  "map.noPairs": "词对资源还没加载好，稍后再来～",
+  "cc.welcome": "欢迎来到 {name} {en}！",
+  "fps.low": "⚡ 已自动开启流畅模式，游戏更顺滑啦～",
+  "streak.milestone": "🔥 连续打卡 {d} 天！奖励 +{n}⭐",
+  "streak.keep": "🔥 连续打卡 {n} 天，保持下去！",
+  "fest.soon": "快到啦",
+  "fest.happy": "快乐",
+  "fest.toast": "{e} {zh}快乐！{en}"
 }

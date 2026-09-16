@@ -621,5 +621,16 @@
   "qz.doneTitle": "📝 Quiz done!",
   "qz.ok": "OK!",
   "qz.doneAll": "All naughty words recaptured, +2⭐! Word master!",
-  "qz.doneSome": "{n}/{total} right — the naughty pets will come back. Keep going!"
+  "qz.doneSome": "{n}/{total} right — the naughty pets will come back. Keep going!",
+  "dub.title": "🎬 Little Dubbing Star",
+  "dub.sub": "Pick a scene and dub every line out loud! 80+ each line = +1⭐, finish the show for +1⭐ more",
+  "dub.lines": "lines",
+  "map.noPairs": "Word pairs are still loading — come back soon~",
+  "cc.welcome": "Welcome to {name} {en}!",
+  "fps.low": "⚡ Auto smooth mode on — running smoother now~",
+  "streak.milestone": "🔥 {d}-day streak! +{n}⭐ bonus",
+  "streak.keep": "🔥 {n}-day streak — keep it up!",
+  "fest.soon": " soon",
+  "fest.happy": "",
+  "fest.toast": "{e} Happy {en}!"
 }
