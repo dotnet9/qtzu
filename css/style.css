@@ -993,7 +993,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
     radial-gradient(60px 30px at 78% 0, #FFE9F1 58%, transparent 62%);
   pointer-events: none; z-index: 0;
 }
-#profile-card > * { position: relative; z-index: 1; }
+#profile-card > :not(#profile-close) { position: relative; z-index: 1; }
 .prof-mascot {
   position: absolute; top: -40px; left: 50%; margin-left: -34px;
   width: 68px; height: 68px; font-size: 56px; line-height: 68px; text-align: center;

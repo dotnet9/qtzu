@@ -5,7 +5,7 @@
 //   跨域（three.js CDN、维基图片等）       → 缓存优先（版本化 URL 内容不变）
 //   音频 mp3 / 模型 onnx                  → 缓存优先 + 数量上限（大文件边玩边攒）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v10';   // v10：引导改单卡 Tab 页签；NPC 角色名惰性翻译（修裸 key）
+const VER = 'qtzu-pwa-v11';   // v11：修档案卡关闭按钮被焕新层 >* 规则盖掉（position 被覆盖成 relative 落入文档流）
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动
