@@ -5,6 +5,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
 import { WORD_MAP, ZONE_NAMES, PER_CHAPTER, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
+import { buildPet } from './models.js';
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
@@ -174,6 +175,8 @@ export class Game {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 1, 6000);   // near 1 提升远距深度精度（防大平面 z-fighting），远平面 6000 见全国地图
     this.world = buildWorld(this.scene, this.islands, { focus: Math.max(0, this.chapterIndex(this.hatchedInScope())) });   // 只精建当前关±1 的城市，其余轻量占位
+    this._ranchPets = [];   // 🐾 词宠乐园：迷你分身（最近孵出的 6 只）
+    this.syncRanch();
     // 全国地图背景：其他城市按真实位置平铺（边界+名称），当前城锚定到舞台中心
     if (this.cityTour) {
       if (this.world.anim.sea) this.world.anim.sea.visible = false;   // 外围是地图纸面，藏掉主岛海面（防拉远后蓝方块 z-fighting）
@@ -799,6 +802,12 @@ export class Game {
     this._updatePrompt();
     this._placeQuestBubble();
     this._placeNpcBubble();
+    // 🐾 词宠乐园：迷你分身轻轻蹦跳 + 慢慢转身
+    for (const p of this._ranchPets) {
+      p.t += dt;
+      p.group.position.y = 0.14 + Math.abs(Math.sin(p.t * 2.2)) * 0.1;
+      p.group.rotation.y += dt * 0.4;
+    }
     // 脚步声：真的在走才响，每 0.34 秒很轻的一声
     this._stepT = (this._stepT || 0) + dt;
     const stepped = this._lastPos && this._lastPos.distanceToSquared(this.player.position) > 0.0004;
@@ -806,6 +815,25 @@ export class Game {
     (this._lastPos = this._lastPos || new THREE.Vector3()).copy(this.player.position);
     if (this.composer) this.composer.render();
     else this.renderer.render(this.scene, this.camera);
+  }
+
+  // 🐾 词宠乐园：把最近孵出的 6 只词宠的迷你分身放进乐园围栏里
+  syncRanch() {
+    const zone = this.world && this.world.ranch;
+    if (!zone) return;
+    for (const p of this._ranchPets) this.scene.remove(p.group);
+    this._ranchPets = [];
+    const hatched = this.chapters.flatMap(c => c.words).filter(id => save.isHatched(id) && WORD_MAP[id] && WORD_MAP[id].pet);
+    const latest = hatched.slice(-6);
+    latest.forEach((id, i) => {
+      const g = buildPet(WORD_MAP[id].pet);
+      g.scale.setScalar(0.55);
+      const a = (i / Math.max(latest.length, 1)) * Math.PI * 2;
+      g.position.set(zone.x + Math.cos(a) * zone.r * 0.55, 0.14, zone.z + Math.sin(a) * zone.r * 0.55);
+      g.rotation.y = Math.random() * Math.PI * 2;
+      this.scene.add(g);
+      this._ranchPets.push({ group: g, t: Math.random() * 6 });
+    });
   }
 
   // 低端机帧率自适应：连续 6 秒平均 FPS < 25 → 降级一次（关后期合成/阴影/天空动画），不恢复避免抖动
@@ -3307,6 +3335,7 @@ export class Game {
 
   _hatchReveal(word, score, eggObj, via = 'voice') {
     save.hatch(word.id);
+    this.syncRanch();   // 🐾 新词宠入住乐园
     save.addPoint();
     ui.updatePlayerScore(save.getScore(), save.getSessionScore());
     // 星星奖励：读得越准赚得越多（95+ 得 2 颗，80+ 得 1 颗）；FEVER 连击期间翻倍

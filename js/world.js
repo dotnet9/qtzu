@@ -1423,6 +1423,60 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     world.gates.station = { group: st, pos: { x: -9, z: 9.6 } };
   }
 
+  // ---- 🐾 词宠乐园（主岛西南角空地）：孵出的词宠的迷你分身住在这里，围栏一圈留北向门 ----
+  {
+    const RX = -12.5, RZ = 14.5, RR = 3.2;
+    const lawn = new THREE.Mesh(new THREE.CylinderGeometry(RR, RR + 0.25, 0.14, 24), M('#BFE3A8'));
+    lawn.position.set(RX, 0.07, RZ);
+    lawn.receiveShadow = true;
+    scene.add(lawn);
+    // 木桩围栏：12 根桩 + 横杆，北向（z 减小方向）留 1.6 宽的门口
+    const post = (x, z) => {
+      const g = box(0.14, 0.8, 0.14, '#A9743F', x, 0.4, z);
+      g.castShadow = true;
+      scene.add(g);
+      colC(x, z, 0.22);
+      return g;
+    };
+    const N = 14;
+    for (let i = 0; i < N; i++) {
+      const a = (i / N) * Math.PI * 2;
+      const x = RX + Math.cos(a) * RR, z = RZ + Math.sin(a) * RR;
+      if (z < RZ - 2 && Math.abs(x - RX) < 1.4) continue;   // 北向门口不立桩
+      post(x, z);
+    }
+    // 横杆（两圈，门口同样断开）：用细长盒沿弦近似
+    for (const h of [0.28, 0.6]) {
+      const rail = new THREE.Mesh(new THREE.TorusGeometry(RR, 0.05, 6, 24, Math.PI * 2 * 0.86), M('#B9834C'));
+      rail.position.set(RX, h, RZ);
+      rail.rotation.x = Math.PI / 2;
+      rail.rotation.z = Math.PI * 0.07;   // 缺口朝北
+      scene.add(rail);
+    }
+    // 门牌：两柱一板，写"词宠乐园"
+    const sign = new THREE.Group();
+    sign.add(box(0.12, 1.1, 0.12, '#A9743F', -0.9, 0.55, 0));
+    sign.add(box(0.12, 1.1, 0.12, '#A9743F', 0.9, 0.55, 0));
+    const boardMesh = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.66, 0.1), M('#FFFDF8'));
+    boardMesh.position.set(0, 1.15, 0);
+    boardMesh.castShadow = true;
+    const cnv = document.createElement('canvas');
+    cnv.width = 256; cnv.height = 80;
+    const c2 = cnv.getContext('2d');
+    c2.fillStyle = '#FFFDF8'; c2.fillRect(0, 0, 256, 80);
+    c2.font = '900 44px "Microsoft YaHei",sans-serif';
+    c2.fillStyle = '#C4577E'; c2.textAlign = 'center'; c2.textBaseline = 'middle';
+    c2.fillText('🐾 词宠乐园', 128, 42);
+    boardMesh.material = [M('#E8D9C4'), M('#E8D9C4'), M('#E8D9C4'), M('#E8D9C4'), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(cnv) }), M('#E8D9C4')];
+    sign.add(boardMesh);
+    sign.position.set(RX, 0, RZ - RR - 0.9);
+    sign.rotation.y = 0;
+    scene.add(sign);
+    colC(RX - 0.9, RZ - RR - 0.9, 0.2);
+    colC(RX + 0.9, RZ - RR - 0.9, 0.2);
+    world.ranch = { x: RX, z: RZ, r: RR - 0.7 };
+  }
+
   // ---- 装饰散布 ----
   for (let i = 0; i < 18; i++) {
     const a = Math.random() * Math.PI * 2, r = 8 + Math.random() * 38;
