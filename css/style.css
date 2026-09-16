@@ -244,9 +244,9 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   border-radius: 999px; padding: 2px 8px; box-shadow: 0 2px 6px rgba(200, 160, 40, .3);
 }
 
-/* ---------- 顶部城市胶囊 ---------- */
+/* ---------- 顶部城市胶囊：挂在左上（关卡胶囊下方），不再横在画面正中挡视野 ---------- */
 #city-pill {
-  position: fixed; top: calc(56px + var(--sat)); left: 50%; transform: translateX(-50%);   /* 顶栏下一行，避免与关卡/分数块重叠 */
+  position: fixed; top: calc(58px + var(--sat)); left: calc(14px + var(--sal));
   z-index: 22; cursor: pointer;
   background: linear-gradient(90deg, rgba(255,159,190,.9), rgba(255,209,102,.9));
   border-radius: 999px; padding: 6px 18px; font-size: 14px; font-weight: 900; color: #FFF;
@@ -254,7 +254,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   box-shadow: 0 4px 14px rgba(200,100,130,.35);
   animation: fadeIn .3s;
 }
-#city-pill:active { transform: translateX(-50%) scale(.95); }
+#city-pill:active { transform: scale(.95); }
 
 /* ---------- 城市介绍卡 ---------- */
 #city-card {
@@ -296,6 +296,37 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   #city-card .cc-bn-emoji { font-size: 34px; }
   #city-card .cc-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; align-items: start; }
   #city-card .cc-body > .cc-banner, #city-card .cc-body > .cc-p:first-child { grid-column: 1 / -1; }
+}
+
+/* ---------- 手机横屏：单词卡改两栏（左单词/右跟读），字母块区压成横排，卡片限高可滚 ----------
+   竖排一摞在横屏上必然超高（字母块模式更甚），用横向空间换竖向高度 */
+@media (orientation: landscape) and (max-height: 480px) {
+  #modal-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'head  head'
+      'word  voice'
+      'score score'
+      'spell spell'
+      'foot  foot';
+    align-content: start; column-gap: 16px; row-gap: 2px;
+    width: min(720px, 94vw); max-height: calc(100dvh - 14px); overflow-y: auto;
+    padding: 10px 16px 8px;
+  }
+  #modal-head { grid-area: head; }
+  #word-display { grid-area: word; align-self: center; margin: 4px 0; padding: 4px 6px 6px; }
+  #word-en { font-size: 26px; }
+  #voice-area { grid-area: voice; align-self: center; margin: 4px 0; }
+  #voice-area button { font-size: 13px; padding: 8px 14px; }
+  #score-panel { grid-area: score; }
+  #spell-area { grid-area: spell; margin-top: 6px; padding-top: 0; border-top: 2px dashed #FFE0B8; }
+  #spell-title { margin-bottom: 4px; }
+  #spell-slots, #spell-tiles, #spell-actions { display: inline-flex; vertical-align: middle; margin: 0 8px 6px 0; }
+  #spell-slots { min-height: 42px; }
+  #spell-actions { margin: 0 0 6px; }
+  .slot, .tile { width: 34px; height: 40px; font-size: 19px; }
+  #modal-foot { grid-area: foot; }
 }
 #city-card .cc-emoji { font-size: 58px; animation: lvlupBounce .9s cubic-bezier(.34,1.56,.64,1); }
 #city-card .cc-name { font-size: 30px; font-weight: 900; color: #C4577E; margin-top: 4px; letter-spacing: 3px; }
@@ -1163,6 +1194,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   width: min(440px, 92vw); background: var(--c-surface); border-radius: var(--r-card);
   border: 1px solid var(--c-line); box-shadow: var(--shadow-pop);
   padding: 14px 18px 12px; position: relative;
+  max-height: calc(100dvh - 24px); overflow-y: auto;   /* 再矮的屏也装得下：超高了卡内滚动 */
   animation: popIn .3s cubic-bezier(.34,1.56,.64,1);
 }
 @keyframes popIn { from { transform: scale(.7); opacity: 0 } to { transform: scale(1); opacity: 1 } }
@@ -1498,6 +1530,8 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   .pill { font-size: 12px; padding: 5px 10px; border-color: rgba(255,211,224,.72); box-shadow: 0 2px 8px rgba(120,100,100,.1), inset 0 1px 0 rgba(255,255,255,.85); }
   .round-btn { width: 36px; height: 36px; font-size: 17px; background: rgba(255,255,255,.52); border-color: rgba(255,211,224,.7); color: rgba(160,86,111,.92); box-shadow: 0 2px 8px rgba(120,100,100,.1); backdrop-filter: blur(2px); flex-shrink: 0; }
   #hud { top: calc(8px + var(--sat)); left: calc(8px + var(--sal)); right: calc(8px + var(--sar)); }
+  /* 城市胶囊跟到左上角正下方，别悬在画面中央 */
+  #city-pill { top: calc(46px + var(--sat)); left: calc(8px + var(--sal)); font-size: 13px; padding: 4px 14px; }
   #hud > div { gap: 6px; }
   /* 次要入口都收进了 ☰ 菜单，这里不再按设备隐藏 */
   /* 饥饿提醒出现时让出分数条的位置，避免横向挤爆 */
@@ -1752,7 +1786,9 @@ body {
 
 
 /* 🏷️ 全局品牌角标：所有界面可见 */
-#brand-badge{position:fixed;bottom:calc(10px + var(--sab));left:50%;transform:translateX(-50%);z-index:130;pointer-events:none;background:linear-gradient(180deg,rgba(255,253,248,.92),rgba(255,240,248,.82));border:2px solid rgba(255,150,190,.85);color:#B4436F;font-weight:900;font-size:13px;letter-spacing:1px;padding:3px 12px;border-radius:999px;box-shadow:0 3px 8px rgba(232,72,127,.18)}
+/* 品牌徽章：桌面挂在左下角（摇杆不出现的那一侧），手机触屏直接隐藏（加载页/菜单里已有品牌露出） */
+#brand-badge{position:fixed;bottom:calc(10px + var(--sab));left:calc(14px + var(--sal));z-index:130;pointer-events:none;background:linear-gradient(180deg,rgba(255,253,248,.92),rgba(255,240,248,.82));border:2px solid rgba(255,150,190,.85);color:#B4436F;font-weight:900;font-size:13px;letter-spacing:1px;padding:3px 12px;border-radius:999px;box-shadow:0 3px 8px rgba(232,72,127,.18)}
+body.touch #brand-badge{display:none}
 /* 引导卡 Tab 页签：一次弹窗翻完引导 */
 #intro-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px}
 .intro-tab{width:40px;height:40px;font-size:20px;border-radius:14px;border:2px solid var(--c-line);background:var(--c-field);cursor:pointer;transition:transform .12s,border-color .15s,background .15s;font-family:inherit}
