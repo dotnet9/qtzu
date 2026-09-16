@@ -79,9 +79,9 @@
 
 <!-- 常驻排行榜：让目标始终在眼前 -->
 <aside id="leaderboard-widget" aria-live="polite">
-  <button id="leaderboard-toggle" type="button" title="展开排行榜" aria-label="展开排行榜">📊 排行榜 ▾</button>
+  <button id="leaderboard-toggle" type="button" title="展开排行榜" aria-label="展开排行榜">data-i18n="lb.toggle">📊 排行榜 ▾</button>
   <div class="leaderboard-body">
-    <div class="leaderboard-head"><span>🏆 排行榜</span><span class="leaderboard-actions"><button id="leaderboard-refresh" type="button" title="刷新排行榜" aria-label="刷新排行榜">↻</button><button id="leaderboard-fold" type="button" title="收起排行榜" aria-label="收起排行榜">▲</button></span></div>
+    <div class="leaderboard-head"><span data-i18n="lb.head">🏆 排行榜</span><span class="leaderboard-actions"><button id="leaderboard-refresh" type="button" title="刷新排行榜" aria-label="刷新排行榜">↻</button><button id="leaderboard-fold" type="button" title="收起排行榜" aria-label="收起排行榜">▲</button></span></div>
     <div id="leaderboard-list"><div class="rank-loading">正在看看谁是单词小明星…</div></div>
   </div>
 </aside>
@@ -95,22 +95,22 @@
     <input id="profile-name" maxlength="20" autocomplete="nickname" aria-label="用户名" placeholder="例如：小雨" />
     <input id="profile-password" maxlength="64" type="password" autocomplete="current-password" aria-label="密码" placeholder="设置密码（至少 1 位）" />
     <div id="profile-gender" role="radiogroup" aria-label="性别">
-      <button type="button" id="gender-boy" class="gender-btn">👦 男孩</button>
-      <button type="button" id="gender-girl" class="gender-btn">👧 女孩</button>
+      <button type="button" id="gender-boy" class="gender-btn" data-i18n="prof.boy">👦 男孩</button>
+      <button type="button" id="gender-girl" class="gender-btn" data-i18n="prof.girl">👧 女孩</button>
     </div>
     <div class="profile-selects">
-      <select id="profile-grade" aria-label="年级"><option value="" disabled selected>选择年级</option><option value="3">三年级</option><option value="4">四年级</option><option value="5">五年级</option><option value="6">六年级</option></select>
-      <select id="profile-term" aria-label="上下册"><option value="" disabled selected>选择上下册</option><option value="up">上册</option><option value="down">下册</option></select>
+      <select id="profile-grade" aria-label="年级"><option value="" disabled selected data-i18n="prof.grade">选择年级</option><option value="3" data-i18n="prof.g3">三年级</option><option value="4" data-i18n="prof.g4">四年级</option><option value="5" data-i18n="prof.g5">五年级</option><option value="6" data-i18n="prof.g6">六年级</option></select>
+      <select id="profile-term" aria-label="上下册"><option value="" disabled selected data-i18n="prof.term">选择上下册</option><option value="up" data-i18n="prof.up">上册</option><option value="down" data-i18n="prof.down">下册</option></select>
       <div id="profile-city" class="fake-select placeholder" role="button" tabindex="0" aria-label="选择我的城市">我的城市</div>
     </div>
     <div id="profile-lang" role="radiogroup" aria-label="文案语言 Language">
-      <button type="button" class="gender-btn lang-btn" data-lang="bi">🌐 双语 / 双语</button>
+      <button type="button" class="gender-btn lang-btn" data-lang="bi">🌐 中文 / English</button>
       <button type="button" class="gender-btn lang-btn" data-lang="en">🔤 English</button>
     </div>
-    <div class="profile-tip">完成一个挑战得 1 分，和同学比比谁的词宠最多！</div>
-    <button id="profile-start">出发去Q淘族</button>
-    <button id="profile-switch" class="profile-switch" type="button">我已有账号，去登录</button>
-    <button id="profile-logout" class="profile-logout hidden" type="button">退出当前账号</button>
+    <div class="profile-tip"></div>
+    <button id="profile-start" data-i18n="prof.start">出发去Q淘族</button>
+    <button id="profile-switch" class="profile-switch" type="button" data-i18n="prof.switch">我已有账号，去登录</button>
+    <button id="profile-logout" class="profile-logout hidden" type="button" data-i18n="prof.logout">退出当前账号</button>
     <div id="profile-error" role="alert"></div>
   </div>
 </div>
@@ -124,7 +124,7 @@
   <div id="joy-knob"></div>
 </div>
 <!-- 触屏跳跃按钮（手机上显示） -->
-<div id="btn-jump" class="hidden">跳</div>
+<div id="btn-jump" class="hidden" data-i18n="joy.jump">跳</div>
 
 <!-- 交互提示 -->
 <div id="prompt" class="hidden"><span id="prompt-key">E</span><span id="prompt-text"></span></div>
@@ -134,7 +134,7 @@
   <div id="modal-card">
     <div id="modal-head">
       <span id="modal-title">遇见词宠蛋！</span>
-      <button id="btn-detail" class="mini-btn" type="button">📖 详细</button>
+      <button id="btn-detail" class="mini-btn" type="button" data-i18n="ch.detail">📖 详细</button>
       <button id="modal-close" class="round-btn small">✕</button>
     </div>
     <div id="word-display">
@@ -144,29 +144,29 @@
       <div id="word-hint"></div>
     </div>
     <div id="voice-area">
-      <button id="btn-play">🔊 听一听</button>
-      <button id="btn-mic">🎤<span id="mic-label">点我开始读</span></button>
-      <button id="btn-replay" class="hidden" title="回放刚才的录音">🎧 听我读的</button>
+      <button id="btn-play" data-i18n="ch.play">🔊 听一听</button>
+      <button id="btn-mic">🎤<span id="mic-label" data-i18n="ch.micGo">点我开始读</span></button>
+      <button id="btn-replay" class="hidden" title="回放刚才的录音" data-i18n="ch.replayMine">🎧 听我读的</button>
       <div id="voice-feedback"></div>
     </div>
     <!-- 发音评分 -->
     <div id="score-panel" class="hidden">
-      <div id="score-ring"><div id="score-num">0</div><div id="score-unit">分</div></div>
+      <div id="score-ring"><div id="score-num">0</div><div id="score-unit" data-i18n="ch.unit">分</div></div>
       <div id="score-stars"></div>
       <div id="score-msg"></div>
     </div>
     <div id="spell-area" class="hidden">
-      <div id="spell-title">用字母块拼出它：</div>
+      <div id="spell-title" data-i18n="ch.spellTitle">用字母块拼出它：</div>
       <div id="spell-slots"></div>
       <div id="spell-tiles"></div>
       <div id="spell-actions">
-        <button id="btn-replay-letters">🔊 字母发音</button>
-        <button id="btn-show-help-word">💡 提示一下</button>
+        <button id="btn-replay-letters" data-i18n="ch.letterSounds">🔊 字母发音</button>
+        <button id="btn-show-help-word" data-i18n="ch.hintBtn">💡 提示一下</button>
       </div>
     </div>
     <div id="modal-foot">
-      <button id="btn-skip" class="hidden">下一个 →</button>
-      <button id="btn-switch-spell">🧩 换成拼字母块</button>
+      <button id="btn-skip" class="hidden" data-i18n="ch.next">下一个 →</button>
+      <button id="btn-switch-spell" data-i18n="ch.spell">🧩 换成拼字母块</button>
     </div>
   </div>
 </div>
@@ -174,7 +174,7 @@
 <!-- 召唤选择 -->
 <div id="picker" class="overlay hidden">
   <div id="picker-card">
-    <div id="picker-title">召唤一只词宠来帮忙：</div>
+    <div id="picker-title" data-i18n="x.g167">召唤一只词宠来帮忙：</div>
     <div id="picker-grid"></div>
     <button id="picker-close" class="round-btn small">✕</button>
   </div>
@@ -197,11 +197,11 @@
   <div id="map-card">
     <div id="map-head">
       <span>🗺️ Q淘族地图</span>
-      <button id="map-wordgame" class="mini-btn" type="button">🔗 单词连线</button>
+      <button id="map-wordgame" class="mini-btn" type="button" data-i18n="map.wordgame">🔗 单词连线</button>
       <button id="map-close" class="round-btn small">✕</button>
     </div>
     <canvas id="map-canvas" width="420" height="420"></canvas>
-    <div id="map-legend">🔵 你在这里 · ⬤ 粉点=本关蛋 / 蓝点=🔑钥匙蛋 · 🔒 需要特殊词宠帮忙才能进入</div>
+    <div id="map-legend" data-i18n="map.legend">🔵 你在这里 · ⬤ 粉点=本关蛋 / 蓝点=🔑钥匙蛋 · 🔒 需要特殊词宠帮忙才能进入</div>
   </div>
 </div>
 
@@ -210,7 +210,7 @@
   <div id="intro-card">
     <div id="intro-emoji">🥚</div>
     <div id="intro-text"></div>
-    <button id="intro-next">好呀！</button>
+    <button id="intro-next" data-i18n="x.g213">好呀！</button>
   </div>
 </div>
 
@@ -221,9 +221,9 @@
     <div id="levelup-title">第 1 关完成！</div>
     <div id="levelup-sub"></div>
     <div id="levelup-stars"><span>⭐</span><span>⭐</span><span>⭐</span></div>
-    <div id="levelup-words-tip">这一关你学会的单词：</div>
+    <div id="levelup-words-tip" data-i18n="lvlup.wordsTip">这一关你学会的单词：</div>
     <div id="levelup-words"></div>
-    <button id="levelup-next">继续冒险 →</button>
+    <button id="levelup-next" data-i18n="x.g41">继续冒险 →</button>
   </div>
 </div>
 
@@ -232,8 +232,8 @@
 
 <!-- 游戏有新版本：非模态提示条，不打断游戏 -->
 <div id="update-bar" class="hidden">
-  <span class="update-text">🎉 Q淘族更新了新内容！</span>
-  <button id="update-now" type="button">立即更新</button>
+  <span class="update-text" data-i18n="up.text">🎉 Q淘族更新了新内容！</span>
+  <button id="update-now" type="button" data-i18n="up.now">立即更新</button>
   <button id="update-later" type="button" aria-label="稍后再说">✕</button>
 </div>
 

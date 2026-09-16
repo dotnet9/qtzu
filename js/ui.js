@@ -458,7 +458,7 @@ export function openCityPicker({ current, onPick }) {
   }
   const letters = [...new Set(cities.map(c => (String(c.en)[0] || '#').toUpperCase()))];
   ov.innerHTML = `<div id="city-picker">
-    <div class="cp-t">📍 选择我的城市</div>
+    <div class="cp-t">${t('prof.pickCity')}</div>
     <div class="cp-body">
       <div class="cp-list">${rows.join('')}</div>
       <div class="cp-rail">${letters.map(l => t('y.2', { a0: l, a1: l, a2: l })).join('')}</div>
@@ -2743,6 +2743,9 @@ function applyLang() {
   }
   const bgm = document.getElementById('btn-bgm');
   if (bgm) { const s = bgm.querySelector('span'); if (s) s.textContent = isBgmMuted() ? t('menu.bgmOff') : t('menu.bgm'); }
+  // 通用机制：HTML 里标了 data-i18n / data-i18n-ph 的元素自动跟随语言
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
 }
 // ---------- 绑定 HUD 按钮 ----------
 export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, onHungryPill, onMic, onMicEnd, onRank, onReport, onAccount, onAbout, isTouch }) {
