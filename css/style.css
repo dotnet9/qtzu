@@ -1718,3 +1718,35 @@ body {
 }
 /* 聚焦光环随新主色（全局 field/输入框无需改，浅粉光环即可） */
 
+/* ---------- 🍭 游戏化视觉体系全站推广（角色创建页同款） ---------- */
+/* 通用卡面：所有弹窗统一糖果软糖卡（糖边+胖圆角+厚粉影），个性细节由各卡自定 */
+.overlay > div {
+  border: 4px solid #FFDCE8 !important;
+  border-radius: 30px !important;
+  box-shadow: 0 16px 40px rgba(232, 72, 127, .20), 0 4px 14px rgba(91, 81, 72, .10), inset 0 3px 0 rgba(255,255,255,.95) !important;
+}
+/* 卡内浮动蛋宠：卡内顶部居中，零裁切风险 */
+.card-mascot {
+  width: 52px; height: 52px; margin: 0 auto 2px; font-size: 42px; line-height: 52px; text-align: center;
+  filter: drop-shadow(0 5px 5px rgba(150, 60, 90, .25));
+  animation: mascotFloat 2.6s ease-in-out infinite;
+}
+/* 弹窗内输入控件统一游戏凹槽质感（id 级个性定义自然优先） */
+.overlay input:not([type=checkbox]):not([type=radio]):not(.round-btn), .overlay select {
+  border: 2px solid transparent; border-radius: 13px; background: #FFF3E2;
+  box-shadow: inset 0 2px 5px rgba(150, 110, 80, .13);
+}
+.overlay input:not([type=checkbox]):not([type=radio]):not(.round-btn):focus, .overlay select:focus {
+  background: #FFFDF8; border-color: var(--c-primary); box-shadow: var(--ring);
+}
+/* 主 CTA 果冻化收编：引导按钮与商店购买键 */
+#intro-next, .shop-buy {
+  background: var(--grad-cta) !important;
+  border: none; color: #fff; font-weight: 900;
+  box-shadow: 0 5px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.45) !important;
+  text-shadow: 0 1px 0 rgba(199,42,95,.35);
+}
+#intro-next:active, .shop-buy:active { transform: translateY(4px) scale(.97); box-shadow: 0 1px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.3) !important; }
+/* 引导卡按钮两侧星星 */
+#intro-next::before, #intro-next::after { content: '✨'; font-size: 14px; margin: 0 4px; }
+

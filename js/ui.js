@@ -2675,6 +2675,7 @@ export function showBookPanel(data) {
   }).join('');
   bookOv.innerHTML = `
     <div id="book-card">
+      <div class="card-mascot" aria-hidden="true">🐣</div>
       <div id="book-head">
         <span>📚 课本朗读练习</span>
         <button id="book-close" class="round-btn small">✕</button>
@@ -2721,6 +2722,7 @@ export function showShop({ stars, items, onBuy, onToggle }) {
   }).join('');
   shopOv.innerHTML = `
     <div id="shop-card">
+      <div class="card-mascot" aria-hidden="true">🐣</div>
       <div id="shop-head">
         <span>⛲ 许愿井 · 星星商店</span>
         <span id="shop-stars">⭐ ${stars}</span>
@@ -2765,6 +2767,7 @@ export function showDailyBoard({ quest, stars, achievements = [] }) {
       </div>` : '';
   dailyOv.innerHTML = `
     <div id="daily-card">
+      <div class="card-mascot" aria-hidden="true">🐣</div>
       <div id="daily-head">
         <span>${t('daily.head')}</span>
         <span id="daily-stars">⭐ ${stars}</span>
