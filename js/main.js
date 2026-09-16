@@ -131,10 +131,14 @@ async function begin(name, semKey, gender, password, serverScore, token) {
     window.__game = game; // 调试句柄
     save.startHeartbeat();   // 单点登录心跳：被同名新登录顶下线时弹登录框
     if (SHARE.city) setTimeout(() => game._handleShareCity && game._handleShareCity(SHARE.city, SHARE.debug), 1600);
-    initRestReminder();   // 😴 儿童护眼：连续玩 30 分钟提醒休息
+    initRestReminder();   // 😴 儿童护眼：连续玩 30 分钟提醒休息（确认后重新计时，周期性）
     track('game_start');
     // 🔥 连续打卡：每天第一次进游戏记一天，断签从 1 重来；里程碑（3/7/14/30 天）自动发星星
     const st = save.touchStreak();
+    if (st.n >= 2) {
+      const sp = document.getElementById('streak-pill');
+      if (sp) { sp.textContent = `🔥 x${st.n}`; sp.classList.remove('hidden'); }
+    }
     if (st.newMilestone) {
       save.addStars(st.newMilestone.bonus);
       ui.updateStars(save.getStars());
@@ -184,7 +188,8 @@ function initRestReminder() {
     last = Date.now();
     if (played >= LIMIT) {
       clearInterval(tick);
-      import('./ui.js').then(m => m.showRestCard());
+      // 确认"休息好啦"后重新计时：休息提醒是周期性的，不是只提醒一次
+      import('./ui.js').then(m => m.showRestCard(() => initRestReminder()));
     }
   }, 15000);
 }

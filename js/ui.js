@@ -1723,6 +1723,8 @@ function setSpellMode(on) {
   els.spellArea.classList.toggle('hidden', !on);
   els.modalFoot.classList.toggle('hidden', on);
   els.wordEn.classList.toggle('spell-hidden', on);
+  const sylRow = document.getElementById('wd-syl');   // 音节条跟随单词区一起隐藏
+  if (sylRow) sylRow.classList.toggle('hidden', on);
   if (on) els.voiceFeedback.textContent = t('x.g124');
   if (on) buildSpell();
 }
@@ -2447,6 +2449,7 @@ export function showWeeklyQuiz(words, onDone) {
           <div class="rest-sub">${right === qs.length ? t('qz.doneAll') : t('qz.doneSome', { n: right, total: qs.length })}</div>
           <button type="button" id="qz-ok">${t('qz.ok')}</button>`;
         if (all) track('weekly_quiz_perfect');
+        onDone && onDone();   // 记录周测日期：不做的话每周日都会重复弹
         ov.querySelector('#qz-ok').onclick = () => { sfx.pop(); ov.remove(); };
       };
     });
@@ -2457,7 +2460,7 @@ export function showWeeklyQuiz(words, onDone) {
 }
 
 // ---------- 😴 休息提醒：连续玩 30 分钟，词宠劝孩子让眼睛休息 ----------
-export function showRestCard() {
+export function showRestCard(onRested) {
   if (document.querySelector('#rest-card')) return;   // 已在提醒中
   const ov = document.createElement('div');
   ov.className = 'overlay';
@@ -2470,7 +2473,7 @@ export function showRestCard() {
   </div>`;
   document.body.appendChild(ov);
   sfx.pop();
-  ov.querySelector('#rest-ok').onclick = () => { sfx.great(); ov.remove(); };
+  ov.querySelector('#rest-ok').onclick = () => { sfx.great(); ov.remove(); onRested && onRested(); };
 }
 
 // ---------- 🎮 城市专属小游戏：用每座城自己的词池出"听音选词"三连，全对 +1⭐ ----------

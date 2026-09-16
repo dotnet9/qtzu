@@ -18,7 +18,7 @@ const CORE = [
   'js/models.js', 'js/pets.js', 'js/world.js', 'js/audio.js', 'js/speech.js',
   'js/npcs.js', 'js/china-base.js', 'js/china-map.js', 'js/city-shape.js',
   'js/city-shape-data.js', 'js/pep-extra.js', 'js/uni-gate-models.js',
-  'js/uni-gates.js', 'js/whisper.js',
+  'js/uni-gates.js', 'js/whisper.js', 'js/track.js', 'js/festival.js',
   'data/i18n/ui.zh.json', 'data/i18n/ui.en.json',
   'data/i18n/game.zh.json', 'data/i18n/game.en.json',
   'data/cities/index.json', 'data/app.json',
