@@ -1796,14 +1796,15 @@ let leaderboardRequest = null;
 let lbRows = [];
 let lbTab = 'score';
 const LB_TABS = [
-  { id: 'score', icon: '🏆', name: t('x.g127'), field: 'score', fmt: v => t('x.g128', { a0: v }) },
-  { id: 'pets', icon: '🐾', name: t('x.g129'), field: 'pets', fmt: v => t('x.g130', { a0: v }) },
-  { id: 'cities', icon: '🏙️', name: t('x.g131'), field: 'cities', fmt: v => t('x.g132', { a0: v }) },
-  { id: 'stars', icon: '⭐', name: t('x.g133'), field: 'stars', fmt: v => `${v}⭐` },
+  // name 用函数懒取：模块加载时 i18n 词典往往还没就绪，急切取值会把原始 key 印在页签上
+  { id: 'score', icon: '🏆', name: () => t('x.g127'), field: 'score', fmt: v => t('x.g128', { a0: v }) },
+  { id: 'pets', icon: '🐾', name: () => t('x.g129'), field: 'pets', fmt: v => t('x.g130', { a0: v }) },
+  { id: 'cities', icon: '🏙️', name: () => t('x.g131'), field: 'cities', fmt: v => t('x.g132', { a0: v }) },
+  { id: 'stars', icon: '⭐', name: () => t('x.g133'), field: 'stars', fmt: v => `${v}⭐` },
 ];
 function lbTabsHtml() {
-  return `<div class="lb-tabs">${LB_TABS.map(t =>
-    `<button type="button" class="lb-tab${t.id === lbTab ? ' on' : ''}" data-t="${t.id}">${t.icon} ${t.name}</button>`).join('')}</div>`;
+  return `<div class="lb-tabs">${LB_TABS.map(x =>
+    `<button type="button" class="lb-tab${x.id === lbTab ? ' on' : ''}" data-t="${x.id}">${x.icon} ${x.name()}</button>`).join('')}</div>`;
 }
 function lbBindTabs(container) {
   container.querySelectorAll('.lb-tab').forEach(b => {
@@ -1816,16 +1817,16 @@ function lbBindTabs(container) {
   });
 }
 function renderLbList(current = leaderboardCurrent) {
-  const t = LB_TABS.find(x => x.id === lbTab) || LB_TABS[0];
+  const tab = LB_TABS.find(x => x.id === lbTab) || LB_TABS[0];
   const medals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
-  const sorted = [...lbRows].sort((a, b) => (Number(b[t.field]) || 0) - (Number(a[t.field]) || 0)).slice(0, 5);
+  const sorted = [...lbRows].sort((a, b) => (Number(b[tab.field]) || 0) - (Number(a[tab.field]) || 0)).slice(0, 5);
   if (!sorted.length) return lbTabsHtml() + t('x.g134');
   return lbTabsHtml() + sorted.map((x, i) => {
     const name = String(x.username || t('x.g135'));
     const gIcon = x.gender === 'girl' ? '👧' : '👦';   // 没有性别记录的老数据默认男孩
     const title = x.title ? `<i class="rank-title">${escapeHtml(String(x.title))}</i>` : '';
     const active = current.username && name === current.username ? ' current' : '';
-    return `<div class="rank-row${active}"><b>${medals[i]}</b><span>${gIcon} ${escapeHtml(name)}${title}</span><strong>${t.fmt(Number(x[t.field]) || 0)}</strong></div>`;
+    return `<div class="rank-row${active}"><b>${medals[i]}</b><span>${gIcon} ${escapeHtml(name)}${title}</span><strong>${tab.fmt(Number(x[tab.field]) || 0)}</strong></div>`;
   }).join('');
 }
 
