@@ -632,5 +632,9 @@
   "streak.keep": "🔥 连续打卡 {n} 天，保持下去！",
   "fest.soon": "快到啦",
   "fest.happy": "快乐",
-  "fest.toast": "{e} {zh}快乐！{en}"
+  "fest.toast": "{e} {zh}快乐！{en}",
+  "prof.h2": "开始前先设置学习档案",
+  "prof.intro": "先选好年级，之后的单词和短语会跟着你的课本走。",
+  "prof.g1": "🐣 我是谁",
+  "prof.g2": "📚 我的课本"
 }

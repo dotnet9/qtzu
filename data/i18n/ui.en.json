@@ -632,5 +632,9 @@
   "streak.keep": "🔥 {n}-day streak — keep it up!",
   "fest.soon": " soon",
   "fest.happy": "",
-  "fest.toast": "{e} Happy {en}!"
+  "fest.toast": "{e} Happy {en}!",
+  "prof.h2": "Set Up Your Profile First",
+  "prof.intro": "Pick your grade — vocabulary and phrases follow your textbook.",
+  "prof.g1": "🐣 Who Am I",
+  "prof.g2": "📚 My Textbook"
 }

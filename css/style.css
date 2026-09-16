@@ -36,7 +36,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }
 body {
-  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-family: "ZCOOL KuaiLe", "Yuanti SC", "YouYuan", "幼圆", "Microsoft YaHei", "PingFang SC", sans-serif;
   background: linear-gradient(#BDE9FF, #DFF6E8);
   user-select: none;
 }
@@ -413,10 +413,10 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #word-game .wg-rs { min-height: 20px; margin-top: 10px; text-align: center; font-size: 13px; font-weight: 900; color: #9C8C7A; }
 #word-game .wg-rs.good { color: #4E7A46; }
 
-/* 🌐 语言切换（档案卡） */
+/* 🌐 语言切换（档案卡）：弱化为小果冻 pill，不抢主次 */
 #profile-lang { display: flex; gap: 8px; margin-bottom: 10px; }
-#profile-lang .lang-btn { flex: 1; }
-#profile-lang .lang-btn.active { background: var(--c-primary); border-color: var(--c-primary); color: #fff; box-shadow: 0 3px 0 var(--c-primary-deep); }
+#profile-lang .lang-btn { flex: 1; padding: 8px 6px; font-size: 12.5px; border-radius: 999px; }
+#profile-lang .lang-btn.active { background: var(--grad-cta); border-color: transparent; color: #fff; text-shadow: 0 1px 0 rgba(199,42,95,.35); box-shadow: 0 3px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.45); }
 
 /* 🏷️ 排行榜称号金字 */
 .rank-title {
@@ -977,44 +977,95 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   box-shadow: var(--shadow-pop); padding: 28px 26px 20px; text-align: center; position: relative;
 }
 #profile-close { position: absolute; top: 12px; right: 12px; }
-#profile-card { animation: popIn .35s cubic-bezier(.34,1.56,.64,1); }
-#profile-card h2 { color: var(--c-text); margin: 0 0 6px; font-size: var(--fs-title); }
-#profile-card h2::before { content: '🌟 '; }
-#profile-card p { color: var(--c-text-2); font-size: var(--fs-body); line-height: 1.55; margin: 0 0 4px; }
-#profile-name { width: 100%; margin: 14px 0 12px; border: 1px solid var(--c-line); border-radius: var(--r-ctrl); background: var(--c-field); padding: 12px 16px; font: inherit; text-align: center; outline: none; transition: border-color .15s, box-shadow .15s; }
-#profile-name:focus { border-color: var(--c-primary); box-shadow: var(--ring); }
-#profile-name[readonly] { background: #F7F2EC; color: #A09084; }
-#profile-password {
-  width: 100%; margin: 0 0 8px; border: 1px solid var(--c-line); border-radius: var(--r-ctrl); background: var(--c-field);
-  padding: 12px 14px; font: inherit; text-align: center; outline: none;
-  transition: border-color .15s, box-shadow .15s;
+/* 🐣 角色创建卡：云朵软糖卡——卡顶骑一只蛋宠，云弧顶边，奶油描边像糖果盒 */
+#profile-card {
+  overflow: visible;                    /* 让吉祥物探出卡外 */
+  border-radius: 34px;
+  border: 4px solid #FFDCE8;
+  box-shadow: 0 16px 40px rgba(232, 72, 127, .22), 0 4px 14px rgba(91, 81, 72, .10), inset 0 3px 0 rgba(255,255,255,.95);
+  padding-top: 46px;
 }
-#profile-card ::placeholder { color: #C9B6A6; opacity: 1; }
-#profile-password:focus { border-color: var(--c-primary); box-shadow: var(--ring); }
-/* 性别选择：两个按钮 · 减装饰（白底细边，选中浅粉） */
-#profile-gender { display: flex; gap: 10px; margin: 0 0 12px; }
-.gender-btn {
-  flex: 1; border: 1px solid var(--c-line); background: var(--c-field); color: var(--c-text);
-  font: inherit; font-weight: bold; font-size: var(--fs-body); padding: 9px; border-radius: var(--r-ctrl);
-  cursor: pointer; transition: transform .12s, background .15s, border-color .15s, color .15s;
+#profile-card::before { display: none; } /* 彩虹条让位给云弧装饰 */
+#profile-card::after {                   /* 卡内顶部两朵云弧（马卡龙天色） */
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 90px; border-radius: 30px 30px 0 0;
+  background:
+    radial-gradient(46px 24px at 22% 0, #E8F6FF 58%, transparent 62%),
+    radial-gradient(60px 30px at 78% 0, #FFE9F1 58%, transparent 62%);
+  pointer-events: none; z-index: 0;
 }
-.gender-btn:active { transform: scale(.96); }
-.gender-btn.active { background: var(--c-primary-soft); border-color: var(--c-primary); color: var(--c-primary-deep); animation: btnPop .28s cubic-bezier(.34,1.56,.64,1); }
+#profile-card > * { position: relative; z-index: 1; }
+.prof-mascot {
+  position: absolute; top: -40px; left: 50%; margin-left: -34px;
+  width: 68px; height: 68px; font-size: 56px; line-height: 68px; text-align: center;
+  filter: drop-shadow(0 6px 6px rgba(150, 60, 90, .28));
+  animation: mascotFloat 2.6s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+@keyframes mascotFloat {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-7px) rotate(3deg) scale(1.04); }
+}
+#profile-card h2 {
+  margin: 2px 0 4px; font-size: 20px; font-weight: 900; letter-spacing: .5px;
+  background: var(--grad-title); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+#profile-card p { color: var(--c-text-2); font-size: 12.5px; line-height: 1.5; margin: 0 0 12px; }
+/* 分组标题：小糖果签 */
+.pgroup { text-align: left; font-weight: 900; font-size: 13px; color: var(--c-primary-deep); margin: 4px 0 6px; letter-spacing: 1px; opacity: .85; }
+/* 游戏凹槽输入框：奶油凹底 + 内嵌图标，聚焦时"弹起"变白 */
+.pfield { display: block; position: relative; margin: 0 0 10px; }
+.pfield i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-style: normal; font-size: 17px; pointer-events: none; }
+.pfield input {
+  width: 100%; border: 2px solid transparent; border-radius: 15px; background: #FFF3E2;
+  box-shadow: inset 0 2px 5px rgba(150, 110, 80, .13);
+  padding: 12px 14px 12px 42px; font: inherit; font-weight: bold; text-align: left; outline: none; color: var(--c-text);
+  transition: border-color .15s, background .15s, box-shadow .15s, transform .15s;
+}
+.pfield.small input { padding: 9px 12px 9px 38px; font-size: 13px; font-weight: normal; }
+.pfield input:focus {
+  background: #FFFDF8; border-color: var(--c-primary); box-shadow: var(--ring);
+  transform: translateY(-1px);
+}
+#profile-name[readonly] { background: #F7F2EC; color: #A09084; box-shadow: none; }
+#profile-card ::placeholder { color: #C9B6A6; opacity: 1; font-weight: normal; }
+/* 性别 = 3D 角色卡：白卡浮起 + 底部彩色投影，选中果冻渐变高亮 + ✓ 角标 */
+#profile-gender { display: flex; gap: 12px; margin: 0 0 12px; }
+#profile-gender .gender-btn {
+  position: relative; flex: 1; border: 2px solid #F3E5DC; background: #FFFDF8; color: var(--c-text);
+  font: inherit; font-weight: 900; font-size: 15px; padding: 13px 8px; border-radius: 18px;
+  cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s, border-color .15s, color .15s;
+  box-shadow: 0 4px 0 #F0DFD2, 0 8px 14px rgba(150, 110, 80, .10);
+}
+#profile-gender .gender-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #F0DFD2, 0 12px 18px rgba(150, 110, 80, .14); }
+#profile-gender .gender-btn:active { transform: translateY(1px) scale(.98); box-shadow: 0 2px 0 #F0DFD2; }
+#profile-gender .gender-btn.active {
+  background: var(--grad-cta); border-color: transparent; color: #fff; text-shadow: 0 1px 0 rgba(199,42,95,.35);
+  box-shadow: 0 5px 0 var(--c-primary-deep), 0 12px 20px rgba(232, 72, 127, .30);
+  animation: btnPop .28s cubic-bezier(.34,1.56,.64,1);
+}
+#profile-gender .gender-btn.active::after {
+  content: '✓'; position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; line-height: 22px;
+  background: var(--c-sun); color: #fff; font-size: 13px; font-weight: 900; border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(180, 117, 20, .4);
+}
 @keyframes btnPop { 0% { transform: scale(.92); } 60% { transform: scale(1.05); } 100% { transform: scale(1); } }
 #profile-card .profile-selects { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 12px; }
 #profile-card select {
-  flex: 1; border: 1px solid var(--c-line); border-radius: var(--r-ctrl); background: var(--c-field); color: var(--c-text);
-  padding: 10px 28px 10px 12px; font: inherit; text-align: center; outline: none; cursor: pointer;
-  transition: border-color .15s, box-shadow .15s;
+  flex: 1; border: 2px solid transparent; border-radius: 15px; background: #FFF3E2; color: var(--c-text);
+  padding: 11px 28px 11px 12px; font: inherit; font-weight: bold; text-align: center; outline: none; cursor: pointer;
+  transition: border-color .15s, box-shadow .15s, background .15s;
+  box-shadow: inset 0 2px 5px rgba(150, 110, 80, .13);
   appearance: none; -webkit-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23B9A08E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 13px center;
 }
-#profile-card select:hover { border-color: #DCCBBB; }
+#profile-card select:focus { background-color: #FFFDF8; border-color: var(--c-primary); box-shadow: var(--ring); }
+#profile-card select:hover { border-color: #F5C9D8; }
 /* 我的城市：自定义选择器（通讯录式弹层），外观与原生 select 一致 */
 #profile-card .fake-select {
-  flex: 1; border: 1px solid var(--c-line); border-radius: var(--r-ctrl); background: var(--c-field); color: var(--c-text);
-  padding: 10px 28px 10px 12px; font: inherit; text-align: center; outline: none; cursor: pointer;
+  flex: 1; border: 2px solid transparent; border-radius: 15px; background: #FFF3E2; color: var(--c-text);
+  padding: 11px 28px 11px 12px; font: inherit; font-weight: bold; text-align: center; outline: none; cursor: pointer;
+  box-shadow: inset 0 2px 5px rgba(150, 110, 80, .13);
   appearance: none; -webkit-appearance: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23B9A08E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 13px center;
@@ -1062,13 +1113,24 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #profile-card select:invalid { color: var(--c-text-2); }
 #profile-card .profile-tip { color: var(--c-text-2); font-size: var(--fs-sub); margin: 2px 0 12px; }
 #profile-start {
-  border: none; background: var(--c-primary); color: #fff; font: inherit; font-weight: bold;
-  padding: 12px 30px; border-radius: 999px; cursor: pointer;
-  box-shadow: 0 3px 0 var(--c-primary-deep);
-  transition: transform .12s, box-shadow .12s, filter .15s; letter-spacing: 2px; font-size: 16px;
+  position: relative; border: none; background: var(--grad-cta); color: #fff; font: inherit; font-weight: 900;
+  padding: 14px 34px; border-radius: 999px; cursor: pointer; font-size: 17px; letter-spacing: 2px;
+  box-shadow: 0 6px 0 var(--c-primary-deep), 0 14px 24px rgba(232, 72, 127, .32), inset 0 2px 0 rgba(255,255,255,.5);
+  text-shadow: 0 1px 0 rgba(199,42,95,.35);
+  transition: transform .15s, box-shadow .15s, filter .15s;
+  overflow: visible;
 }
-#profile-start:hover { filter: brightness(1.05); }
-#profile-start:active { transform: translateY(3px); box-shadow: 0 0 0 var(--c-primary-deep); }
+/* 果冻星星特效：两侧常驻小星星 + 悬停摇摆 */
+#profile-start::before, #profile-start::after {
+  content: '✨'; position: absolute; top: -10px; font-size: 16px;
+  filter: drop-shadow(0 2px 2px rgba(180,117,20,.35));
+  animation: starTwinkle 1.8s ease-in-out infinite;
+}
+#profile-start::before { left: -8px; }
+#profile-start::after { right: -8px; animation-delay: .9s; }
+@keyframes starTwinkle { 0%, 100% { transform: scale(.8) rotate(-8deg); opacity: .75; } 50% { transform: scale(1.15) rotate(10deg); opacity: 1; } }
+#profile-start:hover { transform: scale(1.04) rotate(-1deg); }
+#profile-start:active { transform: translateY(5px) scale(.97); box-shadow: 0 1px 0 var(--c-primary-deep), 0 4px 10px rgba(232, 72, 127, .25), inset 0 2px 0 rgba(255,255,255,.35); }
 #profile-start:disabled { opacity: .6; cursor: default; }
 .profile-switch {
   display: block; margin: 12px auto 0; border: 0; background: transparent; color: var(--c-text-2);
@@ -1546,10 +1608,16 @@ button:focus-visible, select:focus-visible, a:focus-visible, [tabindex]:focus-vi
   }
   #profile-card { padding: 12px 16px 10px; }
   #profile-card p { display: none; }   /* 横屏省掉说明行，卡片免滚动 */
-  #profile-name, #profile-password { padding: 8px 13px; margin-bottom: 7px; }
-  #profile-name { margin-top: 9px; }
-  .gender-btn { padding: 6px; font-size: 13px; }
-  #profile-start { padding: 8px 22px; }
+  .pfield { margin-bottom: 7px; }
+  .pfield input { padding: 8px 12px 8px 36px; }
+  .pfield.small input { padding: 7px 12px 7px 36px; }
+  #profile-gender .gender-btn { padding: 9px 6px; font-size: 13px; }
+  /* 矮屏：蛋宠收回卡内、云弧收起，卡片恢复滚动 */
+  #profile-card { overflow-y: auto; padding-top: 12px; }
+  #profile-card::after { display: none; }
+  .prof-mascot { position: static; margin: -4px auto 2px; width: 44px; height: 44px; font-size: 36px; line-height: 44px; animation: none; }
+  .pgroup { display: none; }   /* 矮屏再省掉分组签，保证一屏放下 */
+  #profile-start { padding: 10px 24px; font-size: 15px; }
   #modal-card { padding: 12px 16px 10px; }
   #word-en { font-size: 30px; }
   #voice-area { margin: 8px 0 2px; gap: 10px; }

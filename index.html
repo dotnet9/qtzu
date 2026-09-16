@@ -19,6 +19,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Q淘族">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <script type="importmap">
 { "imports": {
@@ -88,18 +91,21 @@
   </div>
 </aside>
 
-<!-- 玩家名字（用于排行榜） -->
+<!-- 玩家名字（用于排行榜）：3D 游戏角色创建页 -->
 <div id="profile" class="overlay">
   <div id="profile-card">
     <button id="profile-close" class="round-btn small profile-close hidden" type="button" aria-label="关闭">✕</button>
-    <h2>开始前先设置学习档案</h2>
-    <p>先选好年级，之后的单词和短语会跟着你的课本走。</p>
-    <input id="profile-name" maxlength="20" autocomplete="nickname" aria-label="用户名" placeholder="例如：小雨" />
-    <input id="profile-password" maxlength="64" type="password" autocomplete="current-password" aria-label="密码" placeholder="设置密码（至少 1 位）" />
+    <div class="prof-mascot" aria-hidden="true">🐣</div>
+    <h2 data-i18n="prof.h2">开始前先设置学习档案</h2>
+    <p data-i18n="prof.intro">先选好年级，之后的单词和短语会跟着你的课本走。</p>
+    <div class="pgroup" data-i18n="prof.g1">🐣 我是谁</div>
+    <label class="pfield"><i aria-hidden="true">🐣</i><input id="profile-name" maxlength="20" autocomplete="nickname" aria-label="用户名" placeholder="例如：小雨" /></label>
     <div id="profile-gender" role="radiogroup" aria-label="性别">
       <button type="button" id="gender-boy" class="gender-btn" data-i18n="prof.boy">👦 男孩</button>
       <button type="button" id="gender-girl" class="gender-btn" data-i18n="prof.girl">👧 女孩</button>
     </div>
+    <div class="pgroup" data-i18n="prof.g2">📚 我的课本</div>
+    <label class="pfield small"><i aria-hidden="true">🔒</i><input id="profile-password" maxlength="64" type="password" autocomplete="current-password" aria-label="密码" placeholder="设置密码（至少 1 位）" /></label>
     <div class="profile-selects">
       <select id="profile-grade" aria-label="年级"><option value="" disabled selected data-i18n="prof.grade">选择年级</option><option value="3" data-i18n="prof.g3">三年级</option><option value="4" data-i18n="prof.g4">四年级</option><option value="5" data-i18n="prof.g5">五年级</option><option value="6" data-i18n="prof.g6">六年级</option></select>
       <select id="profile-term" aria-label="上下册"><option value="" disabled selected data-i18n="prof.term">选择上下册</option><option value="up" data-i18n="prof.up">上册</option><option value="down" data-i18n="prof.down">下册</option></select>
