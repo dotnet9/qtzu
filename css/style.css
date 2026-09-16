@@ -1753,3 +1753,8 @@ body {
 
 /* 🏷️ 全局品牌角标：所有界面可见 */
 #brand-badge{position:fixed;bottom:calc(10px + var(--sab));left:50%;transform:translateX(-50%);z-index:130;pointer-events:none;background:linear-gradient(180deg,rgba(255,253,248,.92),rgba(255,240,248,.82));border:2px solid rgba(255,150,190,.85);color:#B4436F;font-weight:900;font-size:13px;letter-spacing:1px;padding:3px 12px;border-radius:999px;box-shadow:0 3px 8px rgba(232,72,127,.18)}
+/* 引导卡 Tab 页签：一次弹窗翻完引导 */
+#intro-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:10px}
+.intro-tab{width:40px;height:40px;font-size:20px;border-radius:14px;border:2px solid var(--c-line);background:var(--c-field);cursor:pointer;transition:transform .12s,border-color .15s,background .15s;font-family:inherit}
+.intro-tab:hover{transform:translateY(-2px)}
+.intro-tab.active{background:var(--grad-cta);border-color:transparent;box-shadow:0 3px 0 var(--c-primary-deep)}

@@ -5,48 +5,48 @@ import { markNpcChat } from './save.js';
 import { t, getGameRes } from './i18n.js';
 
 const ROLES = {
-  tourist: { zh: t('x.g457'), emoji: '🧳', shirts: ['#FF9FBE', '#7EC4F2', '#FFD34E'] },
-  vendor: { zh: t('x.g458'), emoji: '🍜', shirts: ['#FF8A5C', '#E8B04B'] },
-  student: { zh: t('x.g459'), emoji: '🎒', shirts: ['#4E9EE8', '#5AB88A'] },
-  gardener: { zh: t('x.g460'), emoji: '🌿', shirts: ['#8FD08F', '#6BA85A'] },
-  elder: { zh: t('x.g461'), emoji: '🦯', shirts: ['#A8A0B8', '#C0907E'] },
-  postman: { zh: t('x.g462'), emoji: '📮', shirts: ['#5A8A5A', '#4E7CB1'] },
+  tourist: { zh: 'x.g457', emoji: '🧳', shirts: ['#FF9FBE', '#7EC4F2', '#FFD34E'] },
+  vendor: { zh: 'x.g458', emoji: '🍜', shirts: ['#FF8A5C', '#E8B04B'] },
+  student: { zh: 'x.g459', emoji: '🎒', shirts: ['#4E9EE8', '#5AB88A'] },
+  gardener: { zh: 'x.g460', emoji: '🌿', shirts: ['#8FD08F', '#6BA85A'] },
+  elder: { zh: 'x.g461', emoji: '🦯', shirts: ['#A8A0B8', '#C0907E'] },
+  postman: { zh: 'x.g462', emoji: '📮', shirts: ['#5A8A5A', '#4E7CB1'] },
 };
 // 城市特色角色：每座城独有的 NPC 身份，排进出场队列最前面（保证每城必然出现）
 const CITY_ROLES = {
-  chengdu: [{ zh: t('x.g463'), emoji: '🐼', shirts: ['#8FD08F', '#4E7A46'] }],
-  beijing: [{ zh: t('x.g464'), emoji: '🎭', shirts: ['#C43B3B', '#E8B04B'] }, { zh: t('x.g465'), emoji: '🕊️', shirts: ['#A8A0B8'] }],
-  harbin: [{ zh: t('x.g466'), emoji: '❄️', shirts: ['#7EC4F2', '#BFE3F5'] }],
-  sanya: [{ zh: t('x.g467'), emoji: '🏄', shirts: ['#FF8A5C', '#4EC4F2'] }],
-  xian: [{ zh: t('x.g468'), emoji: '🗿', shirts: ['#B08A6A', '#8A6A4A'] }],
-  hangzhou: [{ zh: t('x.g469'), emoji: '🍃', shirts: ['#5AB88A', '#8FD08F'] }],
-  suzhou: [{ zh: t('x.g470'), emoji: '🧵', shirts: ['#FF9FBE', '#E8B04B'] }],
-  dunhuang: [{ zh: t('x.g471'), emoji: '🐪', shirts: ['#C0907E', '#E8B04B'] }],
-  chongqing: [{ zh: t('x.g472'), emoji: '🌶️', shirts: ['#C43B3B', '#E8B04B'] }],
-  guangzhou: [{ zh: t('x.g473'), emoji: '🫖', shirts: ['#FFD34E', '#FF9FBE'] }],
-  wuhan: [{ zh: t('x.g474'), emoji: '🍜', shirts: ['#E8B04B'] }],
-  urumqi: [{ zh: t('x.g475'), emoji: '🍇', shirts: ['#7B5AB8', '#5AB88A'] }],
-  hohhot: [{ zh: t('x.g476'), emoji: '🐎', shirts: ['#4E9EE8', '#C0907E'] }],
-  qingdao: [{ zh: t('x.g477'), emoji: '🌊', shirts: ['#4E7CB1', '#7EC4F2'] }],
-  xiamen: [{ zh: t('x.g478'), emoji: '🐟', shirts: ['#4EC4F2', '#FF9FBE'] }],
-  quanzhou: [{ zh: t('x.g479'), emoji: '🎪', shirts: ['#C43B3B', '#E8B04B'] }],
-  fuzhou: [{ zh: t('x.g480'), emoji: '🫖', shirts: ['#5AB88A'] }],
-  kunming: [{ zh: t('x.g481'), emoji: '🌸', shirts: ['#FF9FBE', '#5AB88A'] }],
-  lhasa: [{ zh: t('x.g482'), emoji: '🏔️', shirts: ['#C0907E', '#4E7CB1'] }],
-  lanzhou: [{ zh: t('x.g483'), emoji: '🌀', shirts: ['#E8B04B'] }],
-  dalian: [{ zh: t('x.g484'), emoji: '⚽', shirts: ['#4E9EE8'] }],
-  haikou: [{ zh: t('x.g485'), emoji: '🥥', shirts: ['#5AB88A', '#FFD34E'] }],
-  guiyang: [{ zh: t('x.g486'), emoji: '🍲', shirts: ['#FF8A5C'] }],
-  nanning: [{ zh: t('x.g487'), emoji: '🍜', shirts: ['#FF8A5C', '#5AB88A'] }],
-  changsha: [{ zh: t('x.g488'), emoji: '🍢', shirts: ['#C43B3B'] }],
-  taiyuan: [{ zh: t('x.g489'), emoji: '🏺', shirts: ['#7B5AB8'] }],
-  chengde: [{ zh: t('x.g490'), emoji: '🏯', shirts: ['#4E7CB1'] }],
-  qufu: [{ zh: t('x.g491'), emoji: '📜', shirts: ['#A8A0B8'] }],
-  kaifeng: [{ zh: t('x.g492'), emoji: '🧵', shirts: ['#FF9FBE'] }],
-  luoyang: [{ zh: t('x.g493'), emoji: '🌺', shirts: ['#FF9FBE', '#5AB88A'] }],
-  datong: [{ zh: t('x.g494'), emoji: '🗿', shirts: ['#B08A6A'] }],
-  shenyang: [{ zh: t('x.g495'), emoji: '🪭', shirts: ['#FF9FBE', '#FFD34E'] }],
-  changchun: [{ zh: t('x.g496'), emoji: '🎨', shirts: ['#7EC4F2'] }],
+  chengdu: [{ zh: 'x.g463', emoji: '🐼', shirts: ['#8FD08F', '#4E7A46'] }],
+  beijing: [{ zh: 'x.g464', emoji: '🎭', shirts: ['#C43B3B', '#E8B04B'] }, { zh: 'x.g465', emoji: '🕊️', shirts: ['#A8A0B8'] }],
+  harbin: [{ zh: 'x.g466', emoji: '❄️', shirts: ['#7EC4F2', '#BFE3F5'] }],
+  sanya: [{ zh: 'x.g467', emoji: '🏄', shirts: ['#FF8A5C', '#4EC4F2'] }],
+  xian: [{ zh: 'x.g468', emoji: '🗿', shirts: ['#B08A6A', '#8A6A4A'] }],
+  hangzhou: [{ zh: 'x.g469', emoji: '🍃', shirts: ['#5AB88A', '#8FD08F'] }],
+  suzhou: [{ zh: 'x.g470', emoji: '🧵', shirts: ['#FF9FBE', '#E8B04B'] }],
+  dunhuang: [{ zh: 'x.g471', emoji: '🐪', shirts: ['#C0907E', '#E8B04B'] }],
+  chongqing: [{ zh: 'x.g472', emoji: '🌶️', shirts: ['#C43B3B', '#E8B04B'] }],
+  guangzhou: [{ zh: 'x.g473', emoji: '🫖', shirts: ['#FFD34E', '#FF9FBE'] }],
+  wuhan: [{ zh: 'x.g474', emoji: '🍜', shirts: ['#E8B04B'] }],
+  urumqi: [{ zh: 'x.g475', emoji: '🍇', shirts: ['#7B5AB8', '#5AB88A'] }],
+  hohhot: [{ zh: 'x.g476', emoji: '🐎', shirts: ['#4E9EE8', '#C0907E'] }],
+  qingdao: [{ zh: 'x.g477', emoji: '🌊', shirts: ['#4E7CB1', '#7EC4F2'] }],
+  xiamen: [{ zh: 'x.g478', emoji: '🐟', shirts: ['#4EC4F2', '#FF9FBE'] }],
+  quanzhou: [{ zh: 'x.g479', emoji: '🎪', shirts: ['#C43B3B', '#E8B04B'] }],
+  fuzhou: [{ zh: 'x.g480', emoji: '🫖', shirts: ['#5AB88A'] }],
+  kunming: [{ zh: 'x.g481', emoji: '🌸', shirts: ['#FF9FBE', '#5AB88A'] }],
+  lhasa: [{ zh: 'x.g482', emoji: '🏔️', shirts: ['#C0907E', '#4E7CB1'] }],
+  lanzhou: [{ zh: 'x.g483', emoji: '🌀', shirts: ['#E8B04B'] }],
+  dalian: [{ zh: 'x.g484', emoji: '⚽', shirts: ['#4E9EE8'] }],
+  haikou: [{ zh: 'x.g485', emoji: '🥥', shirts: ['#5AB88A', '#FFD34E'] }],
+  guiyang: [{ zh: 'x.g486', emoji: '🍲', shirts: ['#FF8A5C'] }],
+  nanning: [{ zh: 'x.g487', emoji: '🍜', shirts: ['#FF8A5C', '#5AB88A'] }],
+  changsha: [{ zh: 'x.g488', emoji: '🍢', shirts: ['#C43B3B'] }],
+  taiyuan: [{ zh: 'x.g489', emoji: '🏺', shirts: ['#7B5AB8'] }],
+  chengde: [{ zh: 'x.g490', emoji: '🏯', shirts: ['#4E7CB1'] }],
+  qufu: [{ zh: 'x.g491', emoji: '📜', shirts: ['#A8A0B8'] }],
+  kaifeng: [{ zh: 'x.g492', emoji: '🧵', shirts: ['#FF9FBE'] }],
+  luoyang: [{ zh: 'x.g493', emoji: '🌺', shirts: ['#FF9FBE', '#5AB88A'] }],
+  datong: [{ zh: 'x.g494', emoji: '🗿', shirts: ['#B08A6A'] }],
+  shenyang: [{ zh: 'x.g495', emoji: '🪭', shirts: ['#FF9FBE', '#FFD34E'] }],
+  changchun: [{ zh: 'x.g496', emoji: '🎨', shirts: ['#7EC4F2'] }],
 };
 // 问候语资源在 data/i18n/game.zh.json / game.en.json 的 greetings 字段
 const GREETINGS_FALLBACK = ['Hello!'];
@@ -90,7 +90,7 @@ function buildNPC(role, shirt) {
   nc.fillStyle = '#7A5C22';
   nc.font = '700 30px "Microsoft YaHei", sans-serif';
   nc.textAlign = 'center'; nc.textBaseline = 'middle';
-  nc.fillText(role.zh, 128, 33);
+  nc.fillText(t(role.zh), 128, 33);
   const ntex = new THREE.CanvasTexture(nv);
   ntex.colorSpace = THREE.SRGBColorSpace;
   const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false, fog: false, opacity: 0.62 }));

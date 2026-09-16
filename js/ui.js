@@ -2800,20 +2800,27 @@ export function playIntro(onDone, isTouch = false, bookLabel = '', total = 0) {
     ['🐾', t('x.g211')],
   ];
   let i = 0;
+  // 单卡 Tab 页签：一次弹窗翻完所有引导，出发按钮常驻随时可走
+  const tabs = document.getElementById('intro-tabs');
+  tabs.innerHTML = steps.map((s, k) => `<button type="button" class="intro-tab" data-k="${k}" title="${s[1].replace(/<[^>]+>/g, '').slice(0, 24)}">${s[0]}</button>`).join('');
+  tabs.onclick = e => {
+    const b = e.target.closest('.intro-tab');
+    if (!b) return;
+    sfx.pop();
+    i = +b.dataset.k;
+    show();
+  };
   const show = () => {
     els.introEmoji.textContent = steps[i][0];
     els.introText.innerHTML = steps[i][1];
-    els.introNext.textContent = i === steps.length - 1 ? t('x.g212') : t('x.g213');
+    tabs.querySelectorAll('.intro-tab').forEach(b => b.classList.toggle('active', +b.dataset.k === i));
   };
   els.intro.classList.remove('hidden');
   show();
   els.introNext.onclick = () => {
     sfx.pop();
-    i++;
-    if (i >= steps.length) {
-      els.intro.classList.add('hidden');
-      onDone && onDone();
-    } else show();
+    els.intro.classList.add('hidden');
+    onDone && onDone();
   };
 }
 
