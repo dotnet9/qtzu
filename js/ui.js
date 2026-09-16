@@ -465,6 +465,50 @@ export function closeTrainQuiz() {
   document.querySelectorAll('.train-quiz').forEach(el => el.remove());
 }
 
+// ---------- 孵化小测：听音选义 3 选 1（答错不拦路，词进错词本后续复习） ----------
+let _wqTimer = null;
+export function showWordQuiz({ en, opts, answer, onGood, onWrong }) {
+  closeWordQuiz();
+  speak(en);
+  const ov = document.createElement('div');
+  ov.className = 'word-quiz';
+  ov.innerHTML = `<div class="wq-q">${t('wq.q')}</div>
+    <button type="button" class="wq-replay">${t('wq.replay')}</button>
+    <div class="wq-opts">${(opts || []).map((o, i) => `<button type="button" data-i="${i}">${o}</button>`).join('')}</div>
+    <div class="wq-rs"></div>`;
+  document.body.appendChild(ov);
+  const rs = ov.querySelector('.wq-rs');
+  ov.querySelector('.wq-replay').onclick = () => speak(en);
+  ov.querySelectorAll('.wq-opts button').forEach(b => {
+    b.onclick = () => {
+      const ok = Number(b.dataset.i) === answer;
+      ov.querySelectorAll('.wq-opts button').forEach((x, i) => {
+        x.disabled = true;
+        if (i === answer) x.classList.add('right');
+        else if (x === b && !ok) x.classList.add('wrong');
+      });
+      if (ok) {
+        rs.textContent = t('wq.ok');
+        rs.className = 'wq-rs good';
+        sfx.great();
+        onGood && onGood();
+        _wqTimer = setTimeout(closeWordQuiz, 1600);
+      } else {
+        rs.textContent = t('wq.answer', { a: opts[answer] });
+        rs.className = 'wq-rs bad';
+        onWrong && onWrong();
+        setTimeout(() => speak(en), 900);   // 再听一遍：答错也要把音补上
+        _wqTimer = setTimeout(closeWordQuiz, 3600);
+      }
+    };
+  });
+}
+export function closeWordQuiz() {
+  clearTimeout(_wqTimer);
+  _wqTimer = null;
+  document.querySelectorAll('.word-quiz').forEach(el => el.remove());
+}
+
 // ---------- 📍 通讯录式城市选择器：按拼音首字母分组，右侧字母条点按跳转 ----------
 export function openCityPicker({ current, onPick }) {
   const ov = document.createElement('div');

@@ -146,6 +146,15 @@ export class Game {
     }
     return n - 1;
   }
+  // 本关要抽查小测的词：seed=昵称+册+关号，每关固定 2 个、跨会话一致
+  _chapterQuizIds() {
+    const ch = this.currentChapter;
+    if (this._quizCache && this._quizCache.ch === ch) return this._quizCache.ids;
+    const rand = makeSeedRand(save.getUsername() + '|' + this.sem + '|quiz|' + (this._forceChapter ?? this.chapterIndex()));
+    const ids = shuffleSeed(ch.words.slice(), rand).slice(0, 2);
+    this._quizCache = { ch, ids };
+    return ids;
+  }
   // 本册已唤醒数量
   hatchedInScope() {
     let n = 0;
@@ -3471,6 +3480,9 @@ export class Game {
       const after = this.chapterIndex();
       if (doneIdx >= 0 && doneIdx === after - 1) {
         setTimeout(() => this._chapterComplete(after), 1100);
+      } else if (this._chapterQuizIds().includes(word.id)) {
+        // 孵化小测：演出收尾后弹听音选义（被通关取代时不出，别抢戏）
+        setTimeout(() => this._runHatchQuiz(word), 2600);
       }
     }
   }
@@ -3489,6 +3501,32 @@ export class Game {
     const wake = pool.slice(0, 2);
     for (const id of wake) save.makeHungry(id);
     if (wake.length) this._refreshHungry();
+  }
+
+  // 孵化小测：听音选义 3 选 1，测「刚学的词听懂了没」。答对 +1⭐、词宠雀跃；
+  // 答错不拦路——自动重播读音后必过，词悄悄进错词本（markNaughty），
+  // 之后随淘气词宠复习。永无失败惩罚
+  _runHatchQuiz(word) {
+    if (this.lockInput || ui.challengeOpen() || this.cinematic) return;
+    const pool = this.scopeWords.filter(w => w.id !== word.id && w.zh && w.zh !== word.zh);
+    const distractors = [];
+    while (distractors.length < 2 && pool.length) {
+      distractors.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    }
+    const all = [word, ...distractors].sort(() => Math.random() - 0.5);
+    ui.showWordQuiz({
+      en: word.en,
+      opts: all.map(w => (w.icon ? w.icon + ' ' : '') + w.zh),
+      answer: all.findIndex(w => w.id === word.id),
+      onGood: () => {
+        save.addStars(1);
+        ui.updateStars(save.getStars());
+        if (this.pets.get(word.id)) this.pets.celebrate(word.id);   // 答对：本尊词宠跳起来
+      },
+      onWrong: () => {
+        save.markNaughty(word.id);   // 进错词本，隔天淘气词宠回来复习
+      },
+    });
   }
 
   // 通关演出：全场欢呼 → 星星 → 换装新一关区域 + 新蛋登场 → 全屏通关卡 → 镜头飞向新蛋区

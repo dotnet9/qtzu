@@ -420,6 +420,30 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .train-quiz .tq-rs.good { color: #4E7A46; }
 .train-quiz .tq-rs.bad { color: #C4577E; }
 
+/* ---------- 孵化小测：听音选义（选项加大，儿童拇指友好） ---------- */
+.word-quiz {
+  position: fixed; top: calc(64px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+  z-index: 90; width: min(92vw, 380px); padding: 12px 14px;
+  background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(150,90,110,.25); animation: tqIn .25s ease-out;
+}
+.word-quiz .wq-q { font-size: 15px; font-weight: 900; color: #6B5844; text-align: center; }
+.word-quiz .wq-replay {
+  display: block; margin: 8px auto 2px; padding: 7px 18px; font-size: 14px; font-weight: 900; font-family: inherit;
+  color: #4E7A9E; background: #EAF7FC; border: 2px solid #BDE3F0; border-radius: 999px; cursor: pointer;
+}
+.word-quiz .wq-opts { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.word-quiz .wq-opts button {
+  padding: 10px 14px; font-size: 16px; font-weight: 900; font-family: inherit;
+  color: #6B5844; background: #FFF4F8; border: 2px solid #FFD3E0; border-radius: 14px; cursor: pointer;
+}
+.word-quiz .wq-opts button:active { transform: scale(.97); }
+.word-quiz .wq-opts button.right { color: #FFF; background: #5FAE5F; border-color: #5FAE5F; }
+.word-quiz .wq-opts button.wrong { color: #FFF; background: #E08A96; border-color: #E08A96; }
+.word-quiz .wq-rs { min-height: 18px; margin-top: 6px; text-align: center; font-size: 13px; font-weight: 900; color: #9C8C7A; }
+.word-quiz .wq-rs.good { color: #4E7A46; }
+.word-quiz .wq-rs.bad { color: #C4577E; }
+
 /* 🔗 单词×地理连线 */
 #word-game {
   position: relative; width: min(94vw, 560px); max-height: calc(100dvh - 40px); overflow-y: auto;
