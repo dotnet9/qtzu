@@ -89,8 +89,9 @@
   </div>
 </aside>
 
-<!-- 玩家名字（用于排行榜）：3D 游戏角色创建页 -->
-<div id="profile" class="overlay">
+<!-- 玩家名字（用于排行榜）：3D 游戏角色创建页。默认隐藏：建过档案直接进游戏，
+     只有未注册时才由 showProfile() 解除隐藏弹出，避免首屏闪一下档案卡 -->
+<div id="profile" class="overlay hidden">
   <div id="profile-card">
     <button id="profile-close" class="round-btn small profile-close hidden" type="button" aria-label="关闭">✕</button>
     <div class="prof-mascot" aria-hidden="true">🐣</div>
