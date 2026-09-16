@@ -6,24 +6,32 @@
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
 
-  /* ---- 设计 token：简约化的唯一事实源 ----
-     颜色语义：粉=行动/选中（唯一强调色）；绿=仅成功反馈；其余控件一律中性 */
-  --c-primary: #F76E9C;         /* 行动/选中 */
-  --c-primary-deep: #E0548A;    /* 按压/描边 */
-  --c-primary-soft: #FFE9F1;    /* 选中浅底 */
+  /* ---- 设计 token：糖果个性化的唯一事实源 ----
+     颜色语义：粉=行动/主 CTA（渐变强调）；黄=星星/奖励；蓝=信息；薄荷=成长；
+     每种情绪一种糖果色，界面整体保持奶油卡面 + 彩色点缀的活泼感 */
+  --c-primary: #FF6FA5;         /* 行动/选中（主粉） */
+  --c-primary-deep: #E8487F;    /* 按压/描边 */
+  --c-primary-soft: var(--c-primary-soft);    /* 选中浅底 */
   --c-text: #5B5148;            /* 正文 */
   --c-text-2: #9C8C7A;          /* 辅助说明 */
-  --c-line: #EFE3D8;            /* 中性边框（输入框/下拉/分隔） */
+  --c-line: #F3E5DC;            /* 中性边框（输入框/下拉/分隔） */
   --c-surface: #FFFDF8;         /* 卡面 */
   --c-field: #FFFFFF;           /* 输入控件底 */
-  --c-success: #4E7A46;         /* 仅：答对/评分/完成 */
+  --c-success: #55B36B;         /* 仅：答对/评分/完成（薄荷绿） */
+  --c-sun: #FFB93C;             /* 星星/奖励金 */
+  --c-sky: #57B8E8;             /* 信息蓝 */
+  --c-grape: #A56BE0;           /* 彩蛋紫 */
+  --grad-cta: linear-gradient(180deg, #FF97BC, #FF6FA5 52%, #F0548F);   /* 主 CTA 糖果渐变 */
+  --grad-sun: linear-gradient(180deg, #FFD268, #FFB93C 55%, #F5A623);   /* 奖励渐变 */
+  --grad-title: linear-gradient(92deg, #FF6FA5, #FF8A5C 55%, #FFB93C);  /* 标题渐变字 */
+  --grad-band: linear-gradient(92deg, #FF6FA5, #FFB93C 38%, #57B8E8 68%, #A56BE0);  /* 卡片顶彩带 */
   --r-card: 24px;               /* 卡片圆角（唯一大圆角档，Q 版圆润） */
   --r-ctrl: 12px;               /* 控件圆角 */
   --fs-title: 18px;             /* 界面标题 */
   --fs-body: 14px;              /* 正文/控件 */
   --fs-sub: 12px;               /* 辅助说明 */
-  --shadow-pop: 0 8px 28px rgba(90, 60, 70, .12);   /* 弹层唯一阴影档 */
-  --ring: 0 0 0 3px rgba(247, 110, 156, .15);        /* 聚焦光环 */
+  --shadow-pop: 0 10px 30px rgba(232, 72, 127, .16), 0 4px 12px rgba(91, 81, 72, .08);   /* 弹层粉调阴影 */
+  --ring: 0 0 0 3px rgba(255, 111, 165, .18);        /* 聚焦光环 */
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }
@@ -55,9 +63,9 @@ body {
 #hud > div { display: flex; gap: 10px; min-width: 0; }
 .pill {
   pointer-events: auto;
-  background: rgba(255,253,248,.8); border: 2px solid rgba(255,205,221,.85); color: #934C64;
+  background: rgba(255,253,248,.8); border: 2px solid rgba(255,150,190,.85); color: #B4436F;
   padding: 6px 13px; border-radius: 999px; font-size: 14px; font-weight: bold;
-  box-shadow: 0 3px 10px rgba(214,120,150,.18), inset 0 1px 0 rgba(255,255,255,.9);
+  box-shadow: 0 3px 10px rgba(232,72,127,.18), inset 0 1px 0 rgba(255,255,255,.9);
   text-shadow: 0 1px 0 rgba(255,255,255,.75);
   backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
   /* 屏幕窄的时候宁可省略，也不要竖排折成一根长条 */
@@ -66,7 +74,7 @@ body {
 .pill.warn { border-color: #FFC46B; color: #B47514; cursor: pointer; animation: pulse 1.6s infinite; }
 @keyframes pulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.06) } }
 #user-pill { max-width: 150px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
-#user-pill:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(214,120,150,.22), inset 0 1px 0 rgba(255,255,255,.85); }
+#user-pill:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(232,72,127,.22), inset 0 1px 0 rgba(255,255,255,.85); }
 #user-pill:active { transform: translateY(0) scale(.97); }
 /* 星星 pill：拿到星星时蹦一下 */
 .pill.star-pill { border-color: #FFE08A; color: #9A6410; background: rgba(255,249,225,.8); }
@@ -74,15 +82,15 @@ body {
 @keyframes starPopAnim { 0% { transform: scale(1) } 40% { transform: scale(1.28) rotate(-4deg) } 100% { transform: scale(1) } }
 .round-btn {
   pointer-events: auto; cursor: pointer; flex: none;
-  width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,205,221,.9);
-  background: rgba(255,253,248,.8); font-size: 20px; color: #934C64;
-  box-shadow: 0 3px 10px rgba(214,120,150,.18), inset 0 1px 0 rgba(255,255,255,.95);
+  width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,150,190,.9);
+  background: rgba(255,253,248,.8); font-size: 20px; color: #B4436F;
+  box-shadow: 0 3px 10px rgba(232,72,127,.18), inset 0 1px 0 rgba(255,255,255,.95);
   transition: transform .15s, box-shadow .15s;
   backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
 }
-.round-btn:hover { transform: scale(1.1); box-shadow: 0 5px 14px rgba(214,120,150,.24), inset 0 1px 0 rgba(255,255,255,.9); }
+.round-btn:hover { transform: scale(1.1); box-shadow: 0 5px 14px rgba(232,72,127,.24), inset 0 1px 0 rgba(255,255,255,.9); }
 .round-btn:active { transform: scale(.92); }
-.round-btn.small { width: 30px; height: 30px; font-size: 13px; border: none; background: rgba(255,228,238,.85); box-shadow: 0 2px 6px rgba(214,120,150,.16); }
+.round-btn.small { width: 30px; height: 30px; font-size: 13px; border: none; background: rgba(255,228,238,.85); box-shadow: 0 2px 6px rgba(232,72,127,.16); }
 .round-btn.small:hover { background: #FFE4EE; }
 
 /* ---------- 右上角菜单（收纳次要入口，点 ☰ 展开） ---------- */
@@ -356,7 +364,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   transform: rotate(-12deg); filter: drop-shadow(0 1px 2px rgba(150,110,30,.35));
 }
 #sign-card .sg-stamp {
-  margin-top: 10px; padding: 8px 12px; font-size: 13px; font-weight: 900; color: #934C64;
+  margin-top: 10px; padding: 8px 12px; font-size: 13px; font-weight: 900; color: #B4436F;
   background: #FFF6E8; border: 2px solid #F2C98C; border-radius: 12px; text-align: center;
 }
 
@@ -397,7 +405,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 #word-game .wg-w b, #word-game .wg-c b { display: block; font-size: 14px; color: #6B5844; }
 #word-game .wg-w i, #word-game .wg-c i { font-style: normal; font-size: 11px; color: #B9A08E; }
-#word-game .wg-w.sel { border-color: #FF8FB0; background: #FFE9F1; transform: scale(1.03); }
+#word-game .wg-w.sel { border-color: #FF8FB0; background: var(--c-primary-soft); transform: scale(1.03); }
 #word-game .wg-w.locked, #word-game .wg-c.locked { background: #EFF7EC; border-color: #9CCF9C; opacity: .75; cursor: default; }
 #word-game .wg-w.locked b, #word-game .wg-c.locked b { color: #4E7A46; }
 #word-game .shake { animation: wgShake .4s; }
@@ -449,7 +457,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #dub-card .dub-line i { font-style: normal; }
 #dub-card .dub-line b { flex: 1; font-size: 14px; color: #6B5844; }
 #dub-card .dub-line em { font-style: normal; font-size: 12px; font-weight: 900; color: #C4577E; }
-#dub-card .dub-rs { margin: 4px 0 12px; text-align: center; font-size: 13px; font-weight: 900; color: #934C64; }
+#dub-card .dub-rs { margin: 4px 0 12px; text-align: center; font-size: 13px; font-weight: 900; color: #B4436F; }
 #dub-card .dub-again, #dub-card .dub-share {
   margin-top: 8px; width: 100%; padding: 11px; font-size: 14px; font-weight: 900; font-family: inherit;
   color: #FFF; border: none; border-radius: 999px; cursor: pointer;
@@ -606,7 +614,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 #ask-card button:active { transform: scale(.96); }
 #ask-card .ak-yes { color: #FFF; background: var(--c-primary); border: none; }
-#ask-card .ak-no { color: #934C64; background: #FFF0F5; border: 2px solid #FFD3E0; }
+#ask-card .ak-no { color: #B4436F; background: #FFF0F5; border: 2px solid #FFD3E0; }
 .cu-chip .en { font-style: normal; font-size: 10px; color: #A08A6E; }
 .cc-chips.col { flex-direction: column; }
 .cc-chips.col .cu-chip { justify-content: flex-start; }
@@ -725,7 +733,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 /* ---------- 口音切换按钮 ---------- */
 .accent-btn {
   font-family: inherit; font-weight: 900; font-size: 13px; cursor: pointer;
-  color: #934C64; background: #FFF0F5; border: 2px solid #FFD3E0; border-radius: 999px; padding: 4px 12px;
+  color: #B4436F; background: #FFF0F5; border: 2px solid #FFD3E0; border-radius: 999px; padding: 4px 12px;
 }
 .accent-btn:active { transform: scale(.94); }
 /* 口音单选框：当前口音直接亮出，点一下就切 */
@@ -737,7 +745,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   transition: border-color .15s, background .15s, color .15s;
 }
 .accent-opt input { accent-color: #FF8FB0; margin: 0; cursor: pointer; }
-.accent-opt.on { color: #C4577E; background: #FFF0F5; border-color: #FF8FB0; box-shadow: 0 2px 8px rgba(224,103,141,.18); }
+.accent-opt.on { color: #C4577E; background: #FFF0F5; border-color: #FF8FB0; box-shadow: 0 2px 8px rgba(232,72,127,.18); }
 
 /* ---------- 家长周报卡 ---------- */
 #report-card {
@@ -1039,7 +1047,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   width: 16px; height: 16px; border-radius: 50%; border: 2px solid #D8CFC5; flex: none;
 }
 #city-picker .city-row.on { color: #C4577E; font-weight: 900; }
-#city-picker .city-row.on .city-dot { border-color: #F76E9C; background: radial-gradient(circle, #F76E9C 45%, #FFF 50%); }
+#city-picker .city-row.on .city-dot { border-color: var(--c-primary); background: radial-gradient(circle, var(--c-primary) 45%, #FFF 50%); }
 #city-picker .cp-rail {
   display: flex; flex-direction: column; justify-content: center; gap: 1px; align-items: center;
   width: 18px; flex: none;
@@ -1048,8 +1056,8 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   width: 18px; height: 16px; padding: 0; font-size: 9px; font-weight: 900; font-family: inherit;
   color: #C4788F; background: none; border: none; cursor: pointer; border-radius: 4px;
 }
-#city-picker .cp-rail button:active { background: #FFE9F1; }
-#city-picker .cp-rail button.active { background: #F76E9C; color: #FFF; }
+#city-picker .cp-rail button:active { background: var(--c-primary-soft); }
+#city-picker .cp-rail button.active { background: var(--c-primary); color: #FFF; }
 #profile-card select:focus { border-color: var(--c-primary); box-shadow: var(--ring); }
 #profile-card select:invalid { color: var(--c-text-2); }
 #profile-card .profile-tip { color: var(--c-text-2); font-size: var(--fs-sub); margin: 2px 0 12px; }
@@ -1158,7 +1166,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .slot.filled { border-style: solid; border-color: #FFB1CC; background: #FFF0F5; }
 .slot.space { border: none; background: none; width: 18px; }
 .slot { cursor: pointer; }
-.slot.sel { border-style: solid; border-color: #FF8FB0; background: #FFE9F1; transform: translateY(-3px); box-shadow: 0 3px 10px rgba(255,143,176,.35); }
+.slot.sel { border-style: solid; border-color: #FF8FB0; background: var(--c-primary-soft); transform: translateY(-3px); box-shadow: 0 3px 10px rgba(255,143,176,.35); }
 .tile {
   width: 40px; height: 46px; border-radius: 11px; border: 2px solid #BDE3F0;
   background: #EAF7FC; color: #2E6E8E; font-size: 22px; font-weight: 900; cursor: pointer;
@@ -1217,13 +1225,13 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   border: 1px solid var(--c-line); background: var(--c-field); color: var(--c-primary-deep); font-size: 18px; font-weight: 900;
   line-height: 1; width: 34px; height: 30px; border-radius: 999px; cursor: pointer; font-family: inherit;
 }
-.cat-page-btn:hover { background: #FFE9F1; }
+.cat-page-btn:hover { background: var(--c-primary-soft); }
 .cat-page-btn[disabled] { color: #E4D6BC; border-color: #F0E4D8; cursor: default; background: #FBF8F4; }
 #catalog-ind { color: #A98F70; font-size: 12px; font-weight: bold; min-width: 40px; text-align: center; }
 .cat-item { border-radius: 13px; padding: 7px 5px; text-align: center; border: 2px solid; transition: transform .15s, box-shadow .15s, border-color .15s; }
 .cat-item.locked { background: #F7F3EE; border-color: #E9E1D8; color: #C5B9AC; cursor: default; opacity: .7; }
 .cat-item.open { background: #FFF4F8; border-color: #FFC9DD; cursor: pointer; }
-.cat-item.open:hover { transform: translateY(-3px) scale(1.03); border-color: #FF9EC5; box-shadow: 0 8px 18px rgba(224,103,141,.18); }
+.cat-item.open:hover { transform: translateY(-3px) scale(1.03); border-color: #FF9EC5; box-shadow: 0 8px 18px rgba(232,72,127,.18); }
 .cat-item.open:active { transform: scale(.97); }
 .cat-item .ico { font-size: 30px; height: 38px; display: flex; align-items: center; justify-content: center; }
 .cat-item .ico .ico-ph { opacity: .4; font-size: 26px; }
@@ -1578,3 +1586,67 @@ button:focus-visible, select:focus-visible, a:focus-visible, [tabindex]:focus-vi
   #btn-jump { right: calc(30px + var(--sar)); bottom: calc(110px + var(--sab)); width: 72px; height: 72px; font-size: 20px; }
   #catalog-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ---------- 🍭 个性化焕新层：糖果世界（简约定调后个性在此叠加） ---------- */
+/* 天空：三层云景 + 底部奶油雾，随地图一起成为游戏世界的"天空幕布" */
+body {
+  background:
+    radial-gradient(88px 34px at 12% 12%, rgba(255,255,255,.95), transparent 70%),
+    radial-gradient(120px 44px at 82% 7%, rgba(255,255,255,.85), transparent 70%),
+    radial-gradient(70px 28px at 64% 17%, rgba(255,255,255,.75), transparent 70%),
+    radial-gradient(56px 22px at 30% 26%, rgba(255,255,255,.6), transparent 70%),
+    radial-gradient(90vw 44vh at 50% 118%, var(--c-primary-soft) 30%, transparent 75%),
+    linear-gradient(180deg, #9ED8FA, #C8ECF7 38%, #FDF3E3 78%, #FFEDE0);
+}
+/* 弹窗卡：奶油卡面 + 顶部彩虹奶油条 + 卡内极淡星点纹理 + 粉调飘影 */
+.overlay > div {
+  background:
+    radial-gradient(3px 3px at 12% 8%, rgba(255,111,165,.14), transparent 60%),
+    radial-gradient(2.5px 2.5px at 85% 14%, rgba(87,184,232,.16), transparent 60%),
+    radial-gradient(2px 2px at 70% 88%, rgba(255,185,60,.16), transparent 60%),
+    radial-gradient(2.5px 2.5px at 22% 80%, rgba(165,107,224,.13), transparent 60%),
+    var(--c-surface);
+  box-shadow: var(--shadow-pop), inset 0 2px 0 rgba(255,255,255,.9);
+  overflow: hidden;
+}
+.overlay > div::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: var(--grad-band); opacity: .85;
+}
+/* 主 CTA：粉橙糖果渐变 + 顶部高光，软糖按压感保留 */
+#book-quick, .book-go, #profile-lang .lang-btn.active {
+  background: var(--grad-cta) !important;
+  box-shadow: 0 3px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.45) !important;
+  text-shadow: 0 1px 0 rgba(199,42,95,.35);
+}
+#book-quick:active, .book-go:active { box-shadow: 0 1px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.3) !important; }
+/* HUD 药丸：糖霜微渐变，颜色按情绪区分 */
+.pill {
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,244,250,.8));
+  border-color: rgba(255,150,190,.9);
+}
+.pill.star-pill { background: linear-gradient(180deg, rgba(255,252,235,.95), rgba(255,240,200,.85)); border-color: #FFC46B; }
+.pill.warn { background: linear-gradient(180deg, rgba(255,247,225,.95), rgba(255,232,190,.85)); }
+/* 标题字：糖果渐变（能配文字裁切的容器通用） */
+.dub-t, #picker-title, #streak-t, .ach-t, .ms-t, #daily-card > div:first-child span:first-child {
+  background: var(--grad-title); -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-weight: 900; letter-spacing: .5px;
+}
+/* 加载屏：奶油云底 + 渐变字，第一眼就是糖果世界 */
+#loading { background: linear-gradient(180deg, #FFE0EC, #FFF6E5 60%, #E3F5FF); }
+.loading-text {
+  background: var(--grad-title); -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-weight: 900; font-size: 20px;
+}
+/* Toast：白奶油 + 彩虹细边，提示也带一点节日感 */
+#toast {
+  background: linear-gradient(180deg, #FFFDF8, #FFF4E8);
+  border: 2px solid rgba(255,169,120,.75);
+  box-shadow: 0 8px 24px rgba(232, 72, 127, .18);
+}
+/* 3D HUD 角标按钮：糖霜渐变 */
+.round-btn {
+  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,240,248,.82));
+}
+/* 聚焦光环随新主色（全局 field/输入框无需改，浅粉光环即可） */
+
