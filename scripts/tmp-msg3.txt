@@ -1,6 +1,0 @@
-fix: 实测修复三连——首屏裸 key 时序、43 个迁移污染键、图鉴蛋宠
-
-- main.js 首屏弹注册卡改为等 initI18n 就绪（此前顶层同步弹出早于资源加载，t() 动态文案显示裸 key）
-- ui.js showProfile 监听 i18n-ready 重绘动态文案（兜底所有打开路径）
-- 清洗 ui.zh.json 43 个被迁移管线污染的键（{a0}expr} → {a0}，HUD/横幅/进度等运行时文案全部恢复）
-- index.html 图鉴卡加蛋宠 mascot；SW v8
