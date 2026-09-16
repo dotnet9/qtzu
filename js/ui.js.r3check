@@ -835,7 +835,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     for (let i = order.length - 1; i > 0; i--) { h = (Math.imul(h, 1664525) + 1013904223) >>> 0; const j = h % (i + 1); [order[i], order[j]] = [order[j], order[i]]; }
     quiz = { ...quiz, opts: order.map(i => quiz.opts[i]), a: order.indexOf(quiz.a) };
   }
-  const q = quiz ? `<div class="cc-quiz"><b>${t('y.quizTag')}${quiz.q}</b><div class="cc-opts">${
+  const q = quiz ? `<div class="cc-quiz"><b>🤔 小问答：${quiz.q}</b><div class="cc-opts">${
     quiz.opts.map((o, i) => `<button type="button" data-i="${i}">${o}</button>`).join('')
   }</div><div class="cc-quiz-rs"></div></div>` : '';
   const introText = isEn() && variant.introEn ? variant.introEn : variant.intro;
@@ -894,7 +894,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
   // 风景页每次进入都按最新盖章状态重画
   const scenesHtml = () => itemsHtml(city.scenes, '🏞️', isEn()
     ? `Famous sights in ${city.name}:`
-    : t('y.sights', { a0: city.name, a1: LANDMARK_ZH[city.landmark] || t('y.5') }), true);
+    : `${city.name}的风景名胜（${LANDMARK_ZH[city.landmark] || t('y.5')}是它的名片）：`, true);
 
   // Tab 栏：配置数组驱动，city.customTabs 可无代码扩展
   const tabs = [
@@ -1006,7 +1006,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
           toast(t('x.g65', { a0: name, a1: count, a2: total }), 2600);
         }
         const line = body.querySelector('.cc-stamp-line');
-        if (line) line.textContent = t('y.stampLine', { a0: count, a1: total, a2: isStampsDone(city.en) ? t('y.6') : t('y.7') });
+        if (line) line.textContent = `🏅 景点集章 ${count}/${total}${isStampsDone(city.en) ? t('y.6') : t('y.7')}`;
       };
     });
     // 大学名 → 新窗口打开官网（触屏先确认，防误触离开游戏）
@@ -1075,7 +1075,7 @@ export function showCityCard({ city, variant, visit, quiz, onStar, onDone, isFin
     openShareCard({
       title: city.name, en: city.en, emoji: variant.emoji,
       rows: [
-        t('y.9', { a0: getUsername() || t('y.nick'), a1: visit + 1 }),
+        t('y.9', { a0: getUsername() || '小小淘气', a1: visit + 1 }),
         t('x.g69', { a0: hatchedCount() }),
         `📅 ${new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}`,
       ],
@@ -1176,7 +1176,7 @@ export function showTravelBadge(cities, onDone) {
     openShareCard({
       title: t('x.g88'), en: 'Journey Across China', emoji: '🏅',
       rows: [
-        t('y.10', { a0: getUsername() || t('y.nick') }),
+        t('y.10', { a0: getUsername() || '小小淘气' }),
         t('y.11', { a0: cities.length, a1: cities.map(c => c.emoji).join('') }),
         t('y.12', { a0: hatchedCount(), a1: new Date().toLocaleDateString('zh-CN') }),
       ],
@@ -1332,7 +1332,7 @@ export function showParentReport(rep, name = '') {
   const ov = document.createElement('div');
   ov.className = 'overlay';
   const dayRows = Object.entries(rep.days || {}).map(([d, v]) =>
-    `<div class="rp-row"><span>${d}</span><span>${v.hatches ? t('y.hatchN', { a0: v.hatches }) : ''}${v.hatches && v.reads ? ' · ' : ''}${v.reads ? t('y.readN', { a0: v.reads }) : ''}${v.reads ? t('y.avgN', { a0: Math.round(v.sum / v.reads) }) : ''}</span></div>`).join('')
+    `<div class="rp-row"><span>${d}</span><span>${v.hatches ? `孵 ${v.hatches} 只` : ''}${v.hatches && v.reads ? ' · ' : ''}${v.reads ? `读 ${v.reads} 次` : ''}${v.reads ? ` · 均分 ${Math.round(v.sum / v.reads)}` : ''}</span></div>`).join('')
     || t('x.g107');
   ov.innerHTML = `<div id="report-card">
     <button class="round-btn small rp-close">✕</button>
@@ -1355,7 +1355,7 @@ export function showParentReport(rep, name = '') {
   // 复制小结：成功/失败都要有看得见的反馈（按钮变形 + 音效），失败给可全选文本兜底
   ov.querySelector('.rp-share').onclick = async (e) => {
     const btn = e.currentTarget;
-    const text = t('y.14', { a0: name ? name + t('x.g108') : '', a1: rep.hatches, a2: rep.reads, a3: rep.avg, a4: rep.best, a5: rep.totalPets, a6: ex.stampsDone, a7: ex.guides, a8: ex.dubs });
+    const text = t('y.14', { a0: name ? name + '的' : '', a1: rep.hatches, a2: rep.reads, a3: rep.avg, a4: rep.best, a5: rep.totalPets, a6: ex.stampsDone, a7: ex.guides, a8: ex.dubs });
     let ok = false;
     try {
       await navigator.clipboard.writeText(text);
@@ -2016,7 +2016,7 @@ export function showProfile(onDone, profile = {}, options = {}) {
 export async function showLeaderboard(current = {}) {
   const ov = document.createElement('div'); ov.className = 'overlay';
   ov.innerHTML = `<div id="rank-card"><button class="round-btn small rank-close">✕</button>
-    <div class="rank-title">${t('y.rankHead')}</div><div class="rank-sub">${t('y.rankSub')}</div>
+    <div class="rank-title">🏆 Q淘族小小排行榜</div><div class="rank-sub">完成一个挑战得 1 分</div>
     <div class="rank-list"><div class="rank-loading">正在看看谁是单词小明星…</div></div></div>`;
   document.body.appendChild(ov); ov.querySelector('.rank-close').onclick = () => ov.remove();
   const list = ov.querySelector('.rank-list');
@@ -2024,7 +2024,7 @@ export async function showLeaderboard(current = {}) {
     lbRows = await fetchLeaderboardRows();
     list.innerHTML = renderLbList(current);
     lbBindTabs(list);
-  } catch (e) { list.innerHTML = t('y.rankOffline', { a0: leaderboardOfflineReason(e), a1: escapeHtml(current.username || t('y.15')), a2: current.score || 0 }); }
+  } catch (e) { list.innerHTML = `<div class="rank-loading">${leaderboardOfflineReason(e)}，${escapeHtml(current.username || t('y.15'))} 已有 ${current.score || 0} 分。</div>`; }
 }
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c])); }
 els.btnSwitchSpell.addEventListener('click', () => { setSpellMode(true); sfx.pop(); });
@@ -2455,9 +2455,9 @@ function _dubSummary(scene, scores) {
     openShareCard({
       title: scene.name, en: 'Dubbing Show', emoji: scene.emoji,
       rows: [
-        t('y.20', { a0: getUsername() || t('y.nick') }),
+        t('y.20', { a0: getUsername() || '小小淘气' }),
         ...scene.lines.map((l, i) => `"${l}" · ${scores[i] != null ? scores[i] + t('x.g198') : t('y.21')}`),
-        t('y.petsDate', { a0: hatchedCount(), a1: new Date().toLocaleDateString('zh-CN') }),
+        `⭐ 词宠已收集 ${hatchedCount()} 只 · 📅 ${new Date().toLocaleDateString('zh-CN')}`,
       ],
     });
   };
@@ -2599,7 +2599,7 @@ export function playIntro(onDone, isTouch = false, bookLabel = '', total = 0) {
     ? t('x.g204')
     : t('x.g205');
   const steps = [
-    ['🌼', t('y.welcome', { a0: bookLabel || t('y.23'), a1: total || t('y.24') })],
+    ['🌼', `欢迎来到 <b>Q淘族</b>！<br>现在玩的是 <b>${bookLabel || t('y.23')}</b>，<br>你的家乡城市里住着 <b>${total || t('y.24')}</b> 只词宠，<br>它们只会为<b>会说英文的小朋友</b>孵化哦。`],
     ['🎮', move],
     ['🥚', isTouch
       ? t('x.g208')

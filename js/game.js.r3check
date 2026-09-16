@@ -1494,7 +1494,7 @@ export class Game {
     const ipa = ui.ipaFor(w.en);
     if (ipa) html += `<div class="dt-ipa"><span>🔊 /${esc(ipa)}/</span></div>`;
     if (Array.isArray(w.syl) && w.syl.length) {
-      html += `<div class="dt-sec">${t('y.syl')}</div><div class="dt-row dt-syl">${w.syl.map(x => `<span>${esc(x)}</span>`).join('')}</div>`;
+      html += `<div class="dt-sec">🧩 音节拆分</div><div class="dt-row dt-syl">${w.syl.map(x => `<span>${esc(x)}</span>`).join('')}</div>`;
     }
     html += t('y.31', { a0: esc(w.zh) });
     html += t('y.32', { a0: esc(w.hint || '') });
@@ -2038,7 +2038,7 @@ export class Game {
     this.currentWord = word;
     this._maybePreloadWhisper(); this._warmMic();
     ui.openChallenge({
-      word: { en: word.en, zh: word.zh, syl: word.syl, hint: word.hint || t('y.readName') },
+      word: { en: word.en, zh: word.zh, syl: word.syl, hint: word.hint || '大声读出它的名字，把它抓回来！' },
       mode: 'practice',
       onSuccess: res => {
         if ((res.score || 0) >= 60) {
@@ -2077,7 +2077,7 @@ export class Game {
     this.onGround = true; this.vy = 0; this.jumps = 0;
     sfx.boing();
     this._petEmoji(pet, '😍');
-    ui.toast(t('y.ride', { a0: pet.word.en, a1: this.mountFly ? t('y.37') : t('y.38') }), 3000);
+    ui.toast(`骑上「${pet.word.en}」啦！${this.mountFly ? t('y.37') : t('y.38')}，再点它下来`, 3000);
   }
 
   _updatePlayer(dt) {
@@ -3327,7 +3327,7 @@ export class Game {
     // 屏幕层庆祝：彩带雨 + 震动，金蛋最华丽
     ui.confettiBurst(golden ? 110 : 70);
     ui.vibrate([20, 40, 20, 40, 60]);
-    ui.toast(t('y.eggGot', { a0: word.en, a1: word.zh, a2: earned, a3: golden ? t('y.41') : '' }), 3400);
+    ui.toast(`🧺 淘了个蛋！「${word.en}」${word.zh} 加入图鉴啦 +${earned}⭐${golden ? t('y.41') : ''}`, 3400);
     // 收集里程碑：每孵满 10 只词宠解锁一份礼物（帽子/气球/魔棒，全有时送星星）
     const milestone = save.checkCollectReward();
     if (milestone) setTimeout(() => {
@@ -4145,7 +4145,7 @@ export class Game {
           bs.position.y = 0;
         }, () => {
           save.setGate('beanstalk');
-          ui.toast(t('y.beanstalk', { a0: this.isTouch ? t('y.50') : t('y.51') }), 4600);
+          ui.toast(`🌿 豆藤长到天上去了！走到豆藤旁${this.isTouch ? t('y.50') : t('y.51')}就能爬上天空岛`, 4600);
         });
         // 小雨点特效
         for (let i = 0; i < 12; i++) {
@@ -4503,7 +4503,7 @@ export class Game {
       ui.closeChallenge();
       const avg = Math.round(p.scores.reduce((a, b) => a + b, 0) / Math.max(1, p.scores.length));
       sfx.great();
-      ui.toast(t('y.dubDone', { a0: p.quick ? t('y.55') : t('y.56'), a1: avg, a2: avg >= 85 ? t('y.57') : t('y.58') }), 4200);
+      ui.toast(`${p.quick ? t('y.55') : t('y.56')}平均 ${avg} 分，${avg >= 85 ? t('y.57') : t('y.58')}`, 4200);
       this.currentWord = null;
       return;
     }
