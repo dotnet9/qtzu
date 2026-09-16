@@ -126,6 +126,7 @@ export class Game {
     this.riverHintCd = 0;
     this.preferWhisper = false;   // 在线识别连续失败后，改用自带的本地模型
     this.voiceMiss = 0;
+    if (typeof window !== 'undefined') window.__game = this;   // 调试/自动化测试钩子
     this._initRenderer();
     this._initScene();
     this._initPlayer();
@@ -339,7 +340,9 @@ export class Game {
       if (this.eggs.get(w.id)) continue;
       if (cur.has(w.id)) {
         if (brickId === w.id) continue;   // 这颗蛋藏进了悬浮砖块，顶爆才掉出来
-        const egg = this.eggs.spawnEgg(w, w.zone === 'sky', false, this.currentChapter.words.indexOf(w.id) + 1, this._cityPos(w));
+        const pos0 = this._cityPos(w);
+        const spot0 = this._eggSpot(pos0.x, pos0.z);
+        const egg = this.eggs.spawnEgg(w, w.zone === 'sky', false, this.currentChapter.words.indexOf(w.id) + 1, spot0);
         egg.group.userData.wordId = w.id;
         // 本关有一颗蛋放上跳跳石高台：要跳上去才够得着，加点小挑战
         if (perchId === w.id) this._putEggOnPerch(egg);
@@ -352,14 +355,15 @@ export class Game {
           let si = this._hashStr(this.sem + ':' + st.key + ':' + w.id) % spots.length;
           for (let k = 0; k < spots.length && used.has(si); k++) si = (si + 1) % spots.length;
           used.add(si);
-          const spot = spots[si];
+          const spot = this._eggSpot(spots[si].x, spots[si].z);   // 牌旁点若嵌进碰撞体/城界，内移到可站位
           egg.group.position.set(spot.x, 0, spot.z);
           egg.baseY = 0;
         }
       } else if (!this.cityTour && this._pendingGateWord(w.id)) {
         if (this.cityTour) {
           // 纯城市链条：没有农场机关，剧情词蛋按普通粉蛋处理（保证本关可完成）
-          const egg = this.eggs.spawnEgg(w, false, false, this.currentChapter.words.indexOf(w.id) + 1, this._cityPos(w));
+          const gp = this._eggSpot(this._cityPos(w).x, this._cityPos(w).z);
+          const egg = this.eggs.spawnEgg(w, false, false, this.currentChapter.words.indexOf(w.id) + 1, gp);
           egg.group.userData.wordId = w.id;
         } else {
           const pos = this._cityPos(w);
@@ -1815,6 +1819,33 @@ export class Game {
     this._clampCityPos(q, stage, m, m);
     return word.zone === 'sky' ? { x: q.x, z: q.z, y: 3.2 } : { x: q.x, z: q.z, y: 0 };
   }
+  // 蛋位可站性：在城界内（玩家贴墙线）且不与任何碰撞体重叠，孩子才能走到蛋旁按 E。
+  // 蛋 spawn 旧逻辑只钳城界不避碰撞体——蛋会刷进碑/树/城墙夹缝，看得见够不着（原地撞墙晃）。
+  _eggReachable(x, z) {
+    const st = this._currentStage();
+    const probe = { x, z };
+    if (this._clampCityPos(probe, st, this._cityWallMargin(st), 0.5)) return false;   // 被城界推出 = 站不到
+    const R = 1.0;   // 玩家站位半径（含一点余量）
+    for (const c of this.world.colliders) {
+      if (c.dead) continue;
+      if (c.t === 'c') { if (Math.hypot(x - c.x, z - c.z) < (c.r || 0) + R) return false; }
+      else {
+        const cx = Math.max(c.x1, Math.min(x, c.x2)), cz = Math.max(c.z1, Math.min(z, c.z2));
+        if (Math.hypot(x - cx, z - cz) < R) return false;
+      }
+    }
+    return true;
+  }
+  // 不可站就沿「落点→城心」方向内移（每次 12%），城心广场一定可站；最多 24 步
+  _eggSpot(x, z) {
+    const st = this._currentStage();
+    let px = x, pz = z;
+    for (let i = 0; i < 24; i++) {
+      if (this._eggReachable(px, pz)) return { x: px, z: pz };
+      px += (st.cx - px) * 0.12; pz += (st.cz - pz) * 0.12;
+    }
+    return { x: st.cx, z: st.cz };
+  }
   // 换城：切舞台显隐、词宠全家迁城、玩家落在新城
   _switchCity(stageIdx) {
     const cur = this.islands[stageIdx];
@@ -2397,10 +2428,11 @@ export class Game {
     });
   }
 
-  // 城市院墙内缩量：墙管半径（与 world.js CITY_FRAME 同公式）+ 自身半径。
-  // 墙心在轮廓线上、向内凸出 bw，玩家/物件只钳到轮廓线会半个身子嵌进墙里（视觉穿墙）
+  // 城市院墙内缩量：墙半厚 1.0（world.js 直墙 THICK/2，墙心在轮廓线上向内凸）+ 玩家半径 0.42。
+  // 人能贴着墙站（间距≈0），旧公式 max(1.2, r*0.035)+extra 会把玩家隔在 2~3 个身位外（看着就别扭）。
+  // extra>0.5 的调用（高台蛋/立牌）语义不变：比玩家贴墙线更靠内。
   _cityWallMargin(st, extra = 0.5) {
-    return Math.max(1.2, st.r * 0.035) + extra;
+    return 1.42 + Math.max(0, extra - 0.5);
   }
   // 把世界坐标点钳回当前城市多边形内，并保证离院墙内壁至少 margin（默认=玩家半径）；
   // floor 是窄颈放宽下限（city-shape.clampPoly）：细颈里挤不出 margin 时只保证 floor，
@@ -2961,9 +2993,9 @@ export class Game {
   _updatePrompt() {
     if (ui.challengeOpen()) { ui.hidePrompt(); return; }
     const p = this.player.position;
-    // 蛋（高台顶上的蛋要跳上去，站在地面够不着）
-    const egg = this.eggs.nearest(p, 2.6);
-    if (egg && egg.group.position.y - p.y <= 1.2) {
+    // 蛋（高台顶上的蛋允许站台下缘按 E，孩子不用精确跳到中心点）
+    const egg = this.eggs.nearest(p, 4.2);
+    if (egg && egg.group.position.y - p.y <= 1.8) {
       ui.showPrompt(t('x.g354'), 'E'); this.promptAction = () => this._openEgg(egg.word.id); return;
     }
     // 饿了的词宠
