@@ -235,6 +235,26 @@ export function pickNaughtyToday() {
   save();
   return id;
 }
+// 错词巡逻：读对一次减一次 miss，归零就移出错词本（"赎罪出狱"）
+export function redeemNaughty(id) {
+  const d = data.naughty || {};
+  const rec = d[id];
+  if (!rec) return 0;
+  rec.misses = Math.max(0, (rec.misses || 1) - 1);
+  if (rec.misses === 0) delete d[id];   // 连续读对赎完罪，错词本放它走
+  save();
+  return rec.misses;
+}
+// 巡逻候选：今天要复习的错词（miss >= 1 且没被今天抓住的）
+export function naughtyPatrol(max = 3) {
+  const d = data.naughty || {};
+  const today = todayKey();
+  return Object.keys(d)
+    .filter(id => id !== '_todayId' && (d[id].misses || 0) >= 1 && (d[id].caughtOn || '') !== today)
+    .sort((a, b) => (d[b].misses || 0) - (d[a].misses || 0))
+    .slice(0, max);
+}
+
 export function catchNaughty(id) {
   const d = data.naughty || {};
   if (d[id]) d[id].caughtOn = todayKey();

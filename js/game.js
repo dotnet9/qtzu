@@ -782,6 +782,7 @@ export class Game {
       }, 900);
     }
     this._spawnNaughty();
+    this._spawnPatrol();
     this._refreshCityPill();
     this._syncShareUrl();
     setInterval(() => this._refreshHungry(), 1500);
@@ -2198,6 +2199,28 @@ export class Game {
     setTimeout(() => ui.toast(t('y.36', { a0: WORD_MAP[id].en }), 5200), 6000);
   }
 
+  // 📖 错词巡逻：每天把错词本里的词放 1-3 只到街上（头顶 📖 标记），
+  // 点它读对一次就 miss-1，连续读对把 miss 清零就"赎罪出狱"移出错词本
+  _spawnPatrol() {
+    if (this._patrolIds && this._patrolIds.length) return;   // 本场已有巡逻
+    const ids = save.naughtyPatrol(3).filter(id => save.isHatched(id) && this.pets.get(id));
+    if (!ids.length) { this._patrolIds = []; return; }
+    this._patrolIds = ids;
+    for (const id of ids) {
+      const pet = this.pets.get(id);
+      if (!pet) continue;
+      const tag = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: letterTexture('📖', '#FF9E5E', '#FFF'), transparent: true, depthWrite: false,
+      }));
+      tag.scale.setScalar(0.5);
+      tag.position.y = 1.55;
+      pet.group.add(tag);
+      this._patrolTags = this._patrolTags || new Map();
+      this._patrolTags.set(id, tag);
+    }
+    if (ids.length) setTimeout(() => ui.toast(t('y.patrol', { n: ids.length }), 4800), 9000);
+  }
+
   // 抓淘气词宠：读出它的名字（60 分以上算抓住），成功 +2⭐
   _catchNaughty(id) {
     const word = WORD_MAP[id];
@@ -2209,16 +2232,38 @@ export class Game {
       mode: 'practice',
       onSuccess: res => {
         if ((res.score || 0) >= 60) {
-          save.catchNaughty(id);
-          save.addStars(2);
-          ui.updateStars(save.getStars());
-          if (this._naughtyTag) { this._naughtyTag.parent && this._naughtyTag.parent.remove(this._naughtyTag); this._naughtyTag = null; }
-          this._naughtyId = null;
-          sfx.great();
-          ui.confettiBurst(60);
-          ui.toast(t('x.g338', { a0: word.en }), 4200);
-          const pt = this.pets.get(id);
-          if (pt) this.pets.celebrate(id);
+          const isPatrol = this._patrolIds && this._patrolIds.includes(id);
+          if (isPatrol) {
+            // 巡逻：读对一次 miss-1，归零出狱；否则标记摘除（miss>0 明天继续巡逻）
+            const left = save.redeemNaughty(id);
+            if (this._patrolTags && this._patrolTags.has(id)) {
+              const tg = this._patrolTags.get(id);
+              tg.parent && tg.parent.remove(tg); this._patrolTags.delete(id);
+            }
+            this._patrolIds = this._patrolIds.filter(x => x !== id);
+            save.addStars(1);
+            ui.updateStars(save.getStars());
+            sfx.great();
+            if (left <= 0) {
+              ui.confettiBurst(60);
+              ui.toast(t('y.patrolDone', { a0: word.en }), 4200);
+              const pt = this.pets.get(id);
+              if (pt) this.pets.celebrate(id);
+            } else {
+              ui.toast(t('y.patrolLeft', { a0: word.en, n: left }), 3600);
+            }
+          } else {
+            save.catchNaughty(id);
+            save.addStars(2);
+            ui.updateStars(save.getStars());
+            if (this._naughtyTag) { this._naughtyTag.parent && this._naughtyTag.parent.remove(this._naughtyTag); this._naughtyTag = null; }
+            this._naughtyId = null;
+            sfx.great();
+            ui.confettiBurst(60);
+            ui.toast(t('x.g338', { a0: word.en }), 4200);
+            const pt = this.pets.get(id);
+            if (pt) this.pets.celebrate(id);
+          }
         }
         this.currentWord = null;
       },
@@ -2279,7 +2324,7 @@ export class Game {
           const iid = this.moveThenInteract;
           this.moveThenInteract = null;
           if (save.isHungry(iid)) this._feedPet(iid);
-          else if (iid === this._naughtyId) this._catchNaughty(iid);
+          else if (iid === this._naughtyId || (this._patrolIds && this._patrolIds.includes(iid))) this._catchNaughty(iid);
         }
       } else {
         cameraRelative = false;
@@ -3311,14 +3356,14 @@ export class Game {
     else this._setMoveTarget(e);   // 点的是空地 → 走过去（手机轻点同理）
   }
 
-  // 点了饿宠/淘气词：够得着直接互动（喂食/抓捕），够不着先走过去再自动互动，防止触屏误触弹窗
+  // 点了饿宠/淘气词/巡逻词：够得着直接互动，够不着先走过去再自动互动，防止触屏误触弹窗
   _approachInteract(id) {
     const pt = this.pets.get(id);
     const pos = pt ? pt.group.position : null;
     const p = this.player.position;
     if (pos && Math.hypot(pos.x - p.x, pos.z - p.z) <= 2.4) {
       if (save.isHungry(id)) { this._clearMoveTarget(); this._feedPet(id); return; }
-      if (id === this._naughtyId) { this._clearMoveTarget(); this._catchNaughty(id); return; }
+      if (id === this._naughtyId || (this._patrolIds && this._patrolIds.includes(id))) { this._clearMoveTarget(); this._catchNaughty(id); return; }
     }
     if (pos) {
       this.moveTarget = { x: pos.x, z: pos.z };
