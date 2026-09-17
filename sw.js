@@ -3,9 +3,10 @@
 //   导航 / 同源小文件（html/js/css/json）→ 网络优先，3.5s 超时或断网回退缓存
 //     （保证部署后第一屏就是新代码，绝不出现"新 HTML 配旧 JS"的混搭崩溃）
 //   跨域（three.js CDN、维基图片等）       → 缓存优先（版本化 URL 内容不变）
-//   音频 mp3 / 模型 onnx                  → 缓存优先 + 数量上限（大文件边玩边攒）
+//   音频 mp3                          → 缓存优先 + 按字节限量（边玩边攒，只留最近听过的）
+//   大模型 onnx/wasm                     → 缓存优先 + 独立大文件桶（不受音频上限挤兑，也不挤占音频）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v15';   // v12：去掉 skipWaiting/claim——新版本不再立即接管页面，杜绝「靠岸两次」（配合 version.js 更新提示）
+const VER = 'qtzu-pwa-v16';   // v12：去掉 skipWaiting/claim——新版本不再立即接管页面，杜绝「靠岸两次」（配合 version.js 更新提示）
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动
@@ -23,7 +24,8 @@ const CORE = [
   'data/i18n/game.zh.json', 'data/i18n/game.en.json',
   'data/cities/index.json', 'data/app.json',
 ];
-const AUDIO_MAX = 400;   // 音频缓存上限（条）
+const AUDIO_MAX_BYTES = 24 * 1024 * 1024;   // 音频缓存上限 24MB（约 500 条 3 秒发音）
+const BIG_MAX_BYTES = 200 * 1024 * 1024;     // 大文件（模型/onnx/wasm）缓存上限 200MB
 
 self.addEventListener('install', e => {
   // 不自动 skipWaiting：新 SW 默认等待，由 version.js 更新条「立即更新」发消息触发——
@@ -37,7 +39,7 @@ self.addEventListener('message', e => {
 
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(k => k !== VER).map(k => caches.delete(k))))
+    caches.keys().then(keys => Promise.all(keys.filter(k => k !== VER && k !== VER + '-audio' && k !== VER + '-big').map(k => caches.delete(k))))
   );
 });
 
@@ -58,22 +60,41 @@ async function networkFirst(req) {
   return hit || Response.error();
 }
 
-async function cacheFirst(req, isAudio) {
-  const cache = await caches.open(VER);
+async function cacheFirst(req, kind) {
+  // 音频与大文件分桶：互不挤兑；桶内按字节限量，超了按插入序清最老的
+  const bucket = kind === 'big' ? VER + '-big' : kind === 'audio' ? VER + '-audio' : VER;
+  const cap = kind === 'big' ? BIG_MAX_BYTES : kind === 'audio' ? AUDIO_MAX_BYTES : Infinity;
+  const cache = await caches.open(bucket);
   const hit = await cache.match(req);
   if (hit) return hit;
   try {
     const res = await fetch(req);
     if (res && (res.ok || res.type === 'opaque')) {
-      cache.put(req, res.clone());
-      // 音频缓存限量：超了就把最早放进去的清掉
-      if (isAudio) {
-        const keys = await cache.keys();
-        for (let i = 0; i < keys.length - AUDIO_MAX; i++) cache.delete(keys[i]);
-      }
+      await cache.put(req, res.clone());
+      if (cap !== Infinity) trimCache(cache, cap);
     }
     return res;
   } catch (e) { return Response.error(); }
+}
+
+// 按字节清最老条目：总量超过上限就把最早放进去的一个个删掉
+async function trimCache(cache, cap) {
+  try {
+    const reqs = await cache.keys();
+    let total = 0;
+    const sizes = await Promise.all(reqs.map(async r => {
+      const res = await cache.match(r);
+      const size = res ? Number(res.headers.get('content-length')) || 0 : 0;
+      total += size;
+      return size;
+    }));
+    let i = 0;
+    while (total > cap && i < reqs.length) {
+      await cache.delete(reqs[i]);
+      total -= sizes[i];
+      i++;
+    }
+  } catch (e) { /* 限量失败不影响功能 */ }
 }
 
 self.addEventListener('fetch', e => {
@@ -87,7 +108,8 @@ self.addEventListener('fetch', e => {
   }
   if (url.origin === location.origin) {
     // 大文件（音频/模型）缓存优先；小代码文件网络优先，更新即时生效
-    if (/\.(mp3|onnx|wasm)$/i.test(url.pathname)) e.respondWith(cacheFirst(req, true));
+    if (/\.mp3$/i.test(url.pathname)) e.respondWith(cacheFirst(req, 'audio'));
+    else if (/\.(onnx|wasm)$/i.test(url.pathname)) e.respondWith(cacheFirst(req, 'big'));
     else e.respondWith(networkFirst(req));
     return;
   }
