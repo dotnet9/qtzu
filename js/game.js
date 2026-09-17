@@ -1817,7 +1817,7 @@ export class Game {
           city: isl.city, variant: cityVariant(isl.city, visit), visit,
           quiz: getCityQuiz(key),
           isFinal: key === this.cityRouteList[this.cityRouteList.length - 1],
-          onStar: () => { save.addStars(1); ui.updateStars(save.getStars()); },
+          onStar: () => { save.addStars(1); ui.updateStars(save.getStars()); this._bumpTask('stamp'); },
         });
       },
     });
@@ -2170,6 +2170,43 @@ export class Game {
     if (!this.cityTour) { ui.setCityPill(null); return; }
     const st = this._currentStage();
     ui.setCityPill(`${st.name} ${st.emoji}`, () => this._openCityIntro());
+    this._ensureCityTask(st);
+  }
+  // 任务推进：命中 kind 就 +1，完成发城市贴纸（集满章）+ 3⭐
+  _bumpTask(kind) {
+    const st = this._currentStage();
+    if (!st || !st.city || !st.city.en) return;
+    const r = save.bumpCityTask(kind);
+    if (r === 'done') {
+      const ct = save.getCityTask();
+      save.addStars(3);
+      ui.updateStars(save.getStars());
+      sfx.great();
+      ui.confettiBurst(70);
+      ui.toast(t('y.taskDone', { a0: st.name }), 5200);
+      if (ct && ct.kind === 'stamp') save.markStampsDone(st.city.en);   // 集章任务完成 = 城市贴纸到手
+    } else if (r && r.n) {
+      ui.toast(t('y.taskProg', { a0: r.n, a1: r.goal }), 2200);
+    }
+  }
+
+  // 🎯 进城小任务：本城没集满章就抽一个（集 3 章 / 喂 2 只饿宠 / 读 1 块立牌）
+  _ensureCityTask(st) {
+    if (!st || !st.city || !st.city.en) return;
+    if (save.isStampsDone(st.city.en)) return;   // 集满过这座城就不再发任务
+    const ct = save.getCityTask();
+    if (ct && ct.city === st.city.en && !ct.done) return;   // 本城任务进行中
+    if (ct && ct.city === st.city.en && ct.done) return;     // 本城已完成（换城才重置）
+    // 三选一任务池：集章 / 喂食 / 读立牌
+    const kinds = [
+      { kind: 'stamp', goal: Math.min(3, (st.city.scenes || []).length || 3) },
+      { kind: 'feed', goal: 2 },
+      { kind: 'sign', goal: 1 },
+    ];
+    const pick = kinds[Math.floor(Math.random() * kinds.length)];
+    save.startCityTask(st.city.en, pick.kind, pick.goal);
+    const names = { stamp: t('y.taskStamp', { a0: pick.goal }), feed: t('y.taskFeed', { a0: pick.goal }), sign: t('y.taskSign') }[pick.kind];
+    setTimeout(() => ui.toast(`${t('y.taskTitle')} ${names}`, 4600), 2500);
   }
   _openCityIntro() {
     const st = this._currentStage();
@@ -3312,6 +3349,7 @@ export class Game {
           ui.showSignDetail(it, this._currentStage().city && this._currentStage().city.en);
           const en = it.en || (it.name || it.zh || '');
           speak(en);
+          this._bumpTask('sign');
           return;
         }
       }
@@ -4216,6 +4254,7 @@ export class Game {
           save.addStars(ui.isFever() ? 2 : 1);
           ui.updateStars(save.getStars());
           if (save.bumpDaily('feed2') === 'done') this._afterDaily();
+          this._bumpTask('feed');
           this._chainReward(save.bumpChain('feed'));
           sfx.good();
           ui.toast(t('x.g409', { a0: word.en }), 3000);

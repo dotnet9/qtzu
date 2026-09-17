@@ -34,6 +34,7 @@ function fresh() {
       lang: 'bi',        // 文案语言：bi=中英双语（默认） en=纯英语
     },
     daily: { day: '', idx: 0, n: 0, done: false },
+    cityTask: { city: '', kind: '', n: 0, goal: 0, done: false },   // 进城小任务：帮游客集章/喂食/找牌
     milestones: {},    // 已领取的里程碑（collect1=孵满10只、enrolled3b=换过这册）
     weekly: [],        // 家长周报流水：{t: 时间戳, s: 朗读分} / {t, h:1 孵化}，只留最近 7 天
     naughty: {},       // 错词本：wordId -> {misses, lastMiss, caughtOn}，读错的词隔天变"淘气词宠"回来复习
@@ -87,6 +88,7 @@ function load() {
     merged.streak = Object.assign({ day: '', n: 0, rewarded: {} }, d.streak || {});
     merged.lastQuizDay = d.lastQuizDay || '';
     merged.daily = Object.assign({ day: '', idx: 0, n: 0, done: false }, d.daily || {});
+    merged.cityTask = Object.assign({ city: '', kind: '', n: 0, goal: 0, done: false }, d.cityTask || {});
     if (!merged.player) merged.player = null;
     return merged;
   } catch (e) {
@@ -374,6 +376,24 @@ export function markStampsDone(cityEn) {
   const s = data.stamps[cityEn];
   if (s && !s.done) { s.done = true; save(); }
 }
+
+// ---------- 进城小任务：三选一（集章/喂食/找立牌），完成得城市贴纸 ----------
+export function startCityTask(city, kind, goal) {
+  const ct = data.cityTask = data.cityTask || { city: '', kind: '', n: 0, goal: 0, done: false };
+  ct.city = city; ct.kind = kind; ct.n = 0; ct.goal = goal || 1; ct.done = false;
+  save();
+  return ct;
+}
+// 任务推进：kind 匹配且未完成才 +1；达到目标置 done
+export function bumpCityTask(kind, step = 1) {
+  const ct = data.cityTask;
+  if (!ct || !ct.kind || ct.done || ct.kind !== kind) return null;
+  ct.n = Math.min(ct.goal, ct.n + step);
+  if (ct.n >= ct.goal) ct.done = true;
+  save();
+  return ct.done ? 'done' : ct;
+}
+export function getCityTask() { return data.cityTask; }
 
 // ---------- 连续打卡：每天第一次进游戏算一天，断了从 1 重来 ----------
 export function touchStreak() {
