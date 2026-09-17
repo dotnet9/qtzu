@@ -15,7 +15,7 @@ function stopTts() {
 }
 
 function stopAllPlayback() {
-  if (currentAudio) { try { currentAudio.pause(); } catch (e) { /* ignore */ } currentAudio = null; }
+  if (currentAudio) { try { currentAudio.pause(); currentAudio._userStopped = true; } catch (e) { /* ignore */ } currentAudio = null; }
   stopTts();
 }
 
@@ -59,7 +59,7 @@ function playFileMeta(url) {
       a.onerror = () => finish(false);
       a.load();
       // 某些浏览器不触发 loadedmetadata 的兜底
-      setTimeout(() => { if (a.paused && a.currentTime === 0 && currentAudio !== a) finish(false); }, 2500);
+      setTimeout(() => { if (a.paused && a.currentTime === 0 && currentAudio !== a && !a._userStopped) finish(false); }, 2500);
     } catch (e) { resolve({ ok: false, dur: 0 }); }
   });
 }
@@ -134,8 +134,16 @@ function tts(text, { rate = 0.8, pitch = 1.05, onEnd } = {}) {
 }
 
 // 对外发音入口：单词/短语/音节/字母 自动匹配语音文件（喝彩播放中会礼貌排队）
+// 全局冷却：点立牌/摸头这类"轻量朗读"若连续触发（密集立牌街），1.5s 内去重，避免声音互相掐断
+let lastCasualSpeak = 0;
 export async function speak(text, { rate = 0.8, onEnd } = {}) {
   const raw = String(text).trim();
+  if (!raw) return;
+  if (!onEnd) {
+    const now = Date.now();
+    if (now - lastCasualSpeak < 1500) return;   // 同一次点击风暴只播第一声
+    lastCasualSpeak = now;
+  }
   const fk = fileKey(raw);
   const go = async () => {
     if (fk) {
@@ -177,7 +185,7 @@ export function speakFollow(word, syl, onSyl, onEnd) {
 
 // 立刻停下正在播的发音（点麦克风开口前调用，避免示范音压过孩子的声音）
 export function stopSpeaking() {
-  if (currentAudio) { try { currentAudio.pause(); } catch (e) { /* ignore */ } currentAudio = null; }
+  if (currentAudio) { try { currentAudio.pause(); currentAudio._userStopped = true; } catch (e) { /* ignore */ } currentAudio = null; }
   try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { /* ignore */ }
 }
 

@@ -74,7 +74,7 @@ function ensureRec() {
 // 评分原则：孩子的发音只要“听起来像”就给鼓励分，识别岔了不让小朋友背锅
 // leniency: 宽容等级（连败安抚用）：1 = 编辑距离放宽一档、听感骨架相似直接算过
 export function matchAlt(alts, target, leniency = 0) {
-  const tol = (target.length <= 3 ? 0 : target.length <= 5 ? 1 : 2) + leniency;
+  const tol = (target.length <= 3 ? 1 : target.length <= 5 ? 1 : 2) + leniency; // 短词给 1 档容差：cat/dog 是最常见单词，反而最不该零误差判死
   const tNoSp = target.replace(/ /g, '');
   let best = { ok: false, close: false, heard: '', score: 0 };
   for (const a of alts || []) {
