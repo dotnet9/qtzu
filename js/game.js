@@ -766,7 +766,7 @@ export class Game {
     this._refreshDailyBanner();
     if (!save.getIntro()) {
       const st0 = this._currentStage();
-      setTimeout(() => ui.playIntro(() => save.setIntro(true), this.isTouch, BOOK_LABEL(this.sem), this.total,
+      setTimeout(() => ui.playIntro(() => { save.setIntro(true); this._introDoneAt = Date.now(); }, this.isTouch, BOOK_LABEL(this.sem), this.total,
         { emoji: st0.emoji, name: st0.name, en: st0.city ? (st0.city.en || '') : '' }), 600);
     }
     this._initEvents();
@@ -3581,8 +3581,9 @@ export class Game {
       this._refreshCityPill();
       this._owlDeliver(t('x.g386', { a0: st.name }));
       setTimeout(() => {
-        // 首访（引导未看完）：城市介绍已并入引导 Tab 最后一页，这里不再叠弹第二张卡
-        if (!save.getIntro()) {
+        // 刚看完引导（20 秒内）：城市介绍已在引导最后一页看过，不再叠弹城市卡打断节奏
+        const fresh = !save.getIntro() || (this._introDoneAt && Date.now() - this._introDoneAt < 20000);
+        if (fresh) {
           const egg = ch.words.map(id => this.eggs.get(id)).find(e => e && e.group && e.group.visible);
           const go = () => {
             ui.chapterBanner(t('y.43', { a0: doneCount + 1, a1: ch.name, a2: st.name, a3: st.emoji }));
