@@ -15,7 +15,13 @@ async function fetchEntry() {
   try {
     const res = await fetch('index.html', { cache: 'no-cache' });
     if (!res.ok) return null;
-    return await res.text();
+    let s = await res.text();
+    // sw.js 的 VER 串也纳入指纹：纯 CSS/JS 更新（入口未变）同样触发提示
+    try {
+      const sw = await fetch('sw.js', { cache: 'no-cache' });
+      if (sw.ok) s += '\n' + (await sw.text()).slice(0, 400);
+    } catch (e) { /* ignore */ }
+    return s;
   } catch (e) { return null; }   // 断网/离线时静默，别打扰游戏
 }
 
@@ -29,8 +35,13 @@ export async function checkUpdate() {
     if (sameAsDismissed) return;
     lastShown = Date.now();
     showUpdateBar({
-      // 立即更新：先把新入口预热进 HTTP 缓存，reload 后 js/css 的协商缓存拿到的是新版
+      // 立即更新：先把新入口预热进 HTTP 缓存，reload 后 js/css 的协商缓存拿到的是新版；
+      // 同时让等待中的新 SW 立即接管（新缓存换版），点更新=明确意图，不受「不打断」策略限制
       onUpdate: async () => {
+        try {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const r of regs) if (r.waiting) r.waiting.postMessage({ type: 'SKIP_WAITING' });
+        } catch (e) { /* ignore */ }
         try { await fetch('index.html', { cache: 'reload' }); } catch (e) { /* ignore */ }
         location.reload();
       },
