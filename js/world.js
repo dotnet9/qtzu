@@ -1258,13 +1258,13 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           else nc.fillRect(6, 6, 328, 112);
           nc.fillStyle = '#B4436F'; nc.textAlign = 'center'; nc.textBaseline = 'middle';
           nc.font = "900 46px 'Microsoft YaHei', sans-serif";
-          nc.fillText('欢迎来 ' + isl.city.name, 170, 46);
+          nc.fillStyle = '#8E2252'; nc.fillText('欢迎来 ' + isl.city.name, 170, 46);
           nc.fillStyle = '#C4788F'; nc.font = "bold 32px 'Microsoft YaHei', sans-serif";
           nc.fillText(isl.city.en || '', 170, 94);
           const wtex = new THREE.CanvasTexture(cv);
-          const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: wtex, transparent: true, depthWrite: false }));
+          const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: wtex, transparent: true, depthWrite: false, fog: false }));
           spr.name = 'welcome-sign';
-          spr.scale.set(3.4, 1.24, 1);
+          spr.scale.set(4.2, 1.5, 1);
           spr.position.set(0, (LM_HALF[type] || 2.8) * 1.75 + 1.1, 0);
           lm.add(spr);
         }
