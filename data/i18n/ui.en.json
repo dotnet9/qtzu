@@ -640,5 +640,8 @@
   "wq.q": "🔊 Which meaning is your word pet saying?",
   "wq.replay": "🔊 Play again",
   "wq.ok": "Correct! +1⭐",
-  "wq.answer": "It means \"{a}\" — listen once more and remember it!"
+  "wq.answer": "It means \"{a}\" — listen once more and remember it!",
+  "prof.pwdFold": "🔒 Set a password (optional)",
+  "prof.bubble": "Name me!",
+  "prof.bubbleBack": "Welcome back! ✨"
 }

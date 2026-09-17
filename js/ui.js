@@ -2003,21 +2003,30 @@ export function showProfile(onDone, profile = {}, options = {}) {
       : (mode === 'login' ? t('x.g155') : t('x.g156'));
     close.classList.toggle('hidden', !editing);
     logout.classList.toggle('hidden', !editing);
-    // 文案语言：双语（默认）/ 纯英语，切换即存档并刷新生效
-    const langRow = document.getElementById('profile-lang');
-    if (langRow) {
-      langRow.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === getLang()));
-      langRow.querySelectorAll('.lang-btn').forEach(b => {
-        b.onclick = () => {
-          if (b.dataset.lang === getLang()) return;
-          sfx.pop();
-          setLang(b.dataset.lang);
-          location.reload();   // 切语言立即生效（静态文案重写最干净）
-        };
-      });
+    // 文案语言：单钮循环（双语 ↔ 纯英语），家长设置项，切换即存档并刷新生效
+    const langCycle = document.getElementById('profile-lang');
+    if (langCycle) {
+      langCycle.onclick = () => {
+        sfx.pop();
+        setLang(getLang() === 'bi' ? 'en' : 'bi');
+        location.reload();   // 切语言立即生效（静态文案重写最干净）
+      };
     }
   };
   paint();
+  // 密码折叠：注册默认收起（孩子不需要）；登录/编辑展开
+  const pwdFold = document.getElementById('pwd-fold');
+  const pwdWrap = document.querySelector('.pwd-wrap');
+  let pwdOpen = mode !== 'register';
+  const paintPwd = () => {
+    if (pwdWrap) pwdWrap.classList.toggle('hidden', !pwdOpen);
+    if (pwdFold) pwdFold.classList.toggle('hidden', pwdOpen);
+  };
+  if (pwdFold) pwdFold.onclick = () => { sfx.pop(); pwdOpen = true; paintPwd(); pwd.focus(); };
+  paintPwd();
+  // 蛋宠气泡：注册=起名字，登录/编辑=欢迎回来
+  const bubble = document.querySelector('.prof-bubble');
+  if (bubble) bubble.textContent = editing || mode === 'login' ? t('prof.bubbleBack') : t('prof.bubble');
   // 双语文案异步加载：就绪后重绘动态文案（首屏弹出早于资源到达时不显示裸 key）
   addEventListener('i18n-ready', () => { paint(); paintGender(); tryPaintCity(); }, { once: true });
   if (options.kickMsg) error.textContent = options.kickMsg;   // 被顶下线后的提示

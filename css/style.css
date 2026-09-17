@@ -1073,10 +1073,10 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .pfield input {
   width: 100%; border: 2px solid transparent; border-radius: 15px; background: #FFF3E2;
   box-shadow: inset 0 2px 5px rgba(150, 110, 80, .13);
-  padding: 12px 14px 12px 42px; font: inherit; font-weight: bold; text-align: left; outline: none; color: var(--c-text);
+  padding: 12px 14px 12px 42px; font: inherit; font-size: 16px; font-weight: bold; text-align: left; outline: none; color: var(--c-text);
   transition: border-color .15s, background .15s, box-shadow .15s, transform .15s;
 }
-.pfield.small input { padding: 9px 12px 9px 38px; font-size: 13px; font-weight: normal; }
+.pfield.small input { padding: 9px 12px 9px 38px; font-size: 16px; font-weight: normal; }
 .pfield input:focus {
   background: #FFFDF8; border-color: var(--c-primary); box-shadow: var(--ring);
   transform: translateY(-1px);
@@ -1107,7 +1107,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #profile-card .profile-selects { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 12px; }
 #profile-card select {
   flex: 1; border: 2px solid transparent; border-radius: 15px; background: #FFF3E2; color: var(--c-text);
-  padding: 11px 28px 11px 12px; font: inherit; font-weight: bold; text-align: center; outline: none; cursor: pointer;
+  padding: 11px 28px 11px 12px; font: inherit; font-size: 16px; font-weight: bold; text-align: center; outline: none; cursor: pointer;
   transition: border-color .15s, box-shadow .15s, background .15s;
   box-shadow: inset 0 2px 5px rgba(150, 110, 80, .13);
   appearance: none; -webkit-appearance: none;
@@ -1664,18 +1664,29 @@ button:focus-visible, select:focus-visible, a:focus-visible, [tabindex]:focus-vi
     overflow-y: auto; overscroll-behavior: contain;
     scrollbar-width: thin; scrollbar-color: #F0BFCE transparent;
   }
-  #profile-card { padding: 12px 16px 10px; }
-  #profile-card p { display: none; }   /* 横屏省掉说明行，卡片免滚动 */
+  /* 档案卡横屏双栏：左列=我是谁，右列=课本+设置，一屏全见不滚动 */
+  #profile-card {
+    width: min(680px, 94vw);
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; align-content: start;
+    text-align: left;
+    overflow-y: auto; padding: 10px 16px 10px;
+  }
+  #profile-card p { display: none; }
   .pfield { margin-bottom: 7px; }
-  .pfield input { padding: 8px 12px 8px 36px; }
+  .pfield input { padding: 8px 12px 8px 36px; font-size: 16px; }
   .pfield.small input { padding: 7px 12px 7px 36px; }
-  #profile-gender .gender-btn { padding: 9px 6px; font-size: 13px; }
-  /* 矮屏：蛋宠收回卡内、云弧收起，卡片恢复滚动 */
-  #profile-card { overflow-y: auto; padding-top: 12px; }
+  #profile-gender .gender-btn { padding: 10px 6px; font-size: 13px; }
   #profile-card::after { display: none; }
-  .prof-mascot { position: static; margin: -4px auto 2px; width: 44px; height: 44px; font-size: 36px; line-height: 44px; animation: none; }
-  .pgroup { display: none; }   /* 矮屏再省掉分组签，保证一屏放下 */
-  #profile-start { padding: 10px 24px; font-size: 15px; }
+  .prof-mascot { position: static; top: auto; left: auto; margin: -2px auto 2px; width: 44px; height: 44px; font-size: 36px; line-height: 44px; animation: none; grid-column: 1 / -1; }
+  #profile-card h2 { grid-column: 1 / -1; text-align: center; }
+  .pgroup { display: none; }   /* 矮屏省掉分组签：双栏分区已表达分组 */
+  #profile-name { grid-column: 1; }
+  #profile-gender { grid-column: 1; margin: 0; }
+  label.pfield.small { grid-column: 2; grid-row: 3; }
+  .profile-selects { grid-column: 2; grid-row: 4; margin: 0; }
+  #profile-lang { grid-column: 1 / -1; margin: 2px 0 6px; }
+  .profile-tip { display: none; }
+  #profile-start { grid-column: 1 / -1; justify-self: center; padding: 10px 30px; font-size: 15px; }
   #modal-card { padding: 12px 16px 10px; }
   #word-en { font-size: 30px; }
   #voice-area { margin: 8px 0 2px; gap: 10px; }
@@ -1818,3 +1829,16 @@ body.touch #brand-badge{display:none}
 .intro-tab{width:40px;height:40px;font-size:20px;border-radius:14px;border:2px solid var(--c-line);background:var(--c-field);cursor:pointer;transition:transform .12s,border-color .15s,background .15s;font-family:inherit}
 .intro-tab:hover{transform:translateY(-2px)}
 .intro-tab.active{background:var(--grad-cta);border-color:transparent;box-shadow:0 3px 0 var(--c-primary-deep)}
+/* 📱 档案卡多终端适配补充 */
+/* 竖屏矮机（iPhone SE/mini）：卡片限高内滚，出发按钮 sticky 常驻 */
+@media (orientation: portrait) and (max-height: 720px){
+  #profile-card{max-height:calc(100dvh - 20px);overflow-y:auto;overflow-x:hidden}
+  #profile-start{position:sticky;bottom:4px;z-index:3}
+}
+/* 窄屏（iPhone SE 级 320~375 竖屏） */
+@media (max-width: 375px){
+  #profile-card{padding-left:14px;padding-right:14px;border-width:3px}
+  #profile-gender .gender-btn{font-size:13px;padding:11px 4px}
+  .pfield i{left:11px;font-size:15px}
+  .pfield input{padding-left:36px}
+}

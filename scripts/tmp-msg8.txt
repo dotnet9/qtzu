@@ -1,0 +1,8 @@
+fix(pwa): 修「Q淘族正在靠岸」显示两次——版本更新不再打断进游戏
+
+根因：SW install 用 skipWaiting + activate 用 clients.claim() 强制新版本立即接管页面，
+触发 main.js 的 controllerchange 防护 → location.reload() → 靠岸屏重现，进两次地图。
+
+修复：去掉 skipWaiting/claim——新 SW 在旧页面关闭后自然接管（PWA 惯例），
+打开中的页面不再被打断；版本更新提示由 version.js 的横幅负责（用户手动点刷新）。
+main.js 的 controllerchange→reload 保留作防御（去掉强接管后实际不会再触发）。SW v12。
