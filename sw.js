@@ -5,7 +5,7 @@
 //   跨域（three.js CDN、维基图片等）       → 缓存优先（版本化 URL 内容不变）
 //   音频 mp3 / 模型 onnx                  → 缓存优先 + 数量上限（大文件边玩边攒）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v11';   // v11：修档案卡关闭按钮被焕新层 >* 规则盖掉（position 被覆盖成 relative 落入文档流）
+const VER = 'qtzu-pwa-v12';   // v12：去掉 skipWaiting/claim——新版本不再立即接管页面，杜绝「靠岸两次」（配合 version.js 更新提示）
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动
@@ -26,14 +26,15 @@ const CORE = [
 const AUDIO_MAX = 400;   // 音频缓存上限（条）
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VER).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
+  // 不用 skipWaiting：新 SW 等旧 SW 管理的页面全部关闭后自然接管——
+  // 否则新版本立即接管会触发 controllerchange → main.js 自动 reload = 「靠岸两次」
+  e.waitUntil(caches.open(VER).then(c => c.addAll(CORE)));
 });
 
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== VER).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
+    caches.keys().then(keys => Promise.all(keys.filter(k => k !== VER).map(k => caches.delete(k))))
+    // 不 claim：首访页面直连网络，下次访问起走 SW（否则 controllerchange 又是一次 reload）
   );
 });
 
