@@ -963,6 +963,30 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .listen-opt.wrong .lo-zh { color: #C05555; }
 .listen-empty { color: #C9BBA8; font-size: 13px; padding: 12px; }
 
+/* ---------- 词宠名片卡：档案 + 晒宠 ---------- */
+#pet-card { display: flex; align-items: center; justify-content: center; z-index: 80; }
+#pet-card-card {
+  position: relative; width: min(320px, 86vw); border-radius: 22px; padding: 22px 18px 18px;
+  background: linear-gradient(170deg, #FFFDF8, #FFEFF7);
+  border: 3px solid #FFD9E8; box-shadow: 0 12px 34px rgba(232,72,127,.28); text-align: center;
+  animation: popIn .35s cubic-bezier(.34,1.56,.64,1);
+}
+#pet-card-close { position: absolute; top: 10px; right: 10px; }
+#pet-card-head { margin-top: 6px; }
+#pet-card-thumb { width: 108px; height: 108px; border-radius: 50%; background: #FFF0F6; border: 3px solid #FFD9E8; box-shadow: 0 4px 14px rgba(232,72,127,.18); object-fit: contain; }
+#pet-card-name { font-size: 26px; font-weight: 900; color: #B4436F; margin-top: 8px; }
+#pet-card-zh { font-size: 14px; color: #9A7A8A; margin-top: 2px; }
+#pet-card-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 14px 0 10px; }
+.pc-stat { font-size: 13px; font-weight: 700; color: #7A5C4A; background: #FFF6E8; border: 1.5px solid #FFE3B8; border-radius: 999px; padding: 4px 12px; }
+#pet-card-tags { display: flex; justify-content: center; gap: 8px; min-height: 26px; margin-bottom: 12px; }
+.pc-tag { font-size: 12px; font-weight: 800; border-radius: 999px; padding: 3px 10px; color: #8A6A9C; background: #F4ECFA; border: 1.5px solid #DCC8EC; }
+.pc-tag-evo { color: #B47514; background: #FFF6E8; border-color: #FFE3B8; }
+.pc-tag-rare { color: #C05555; background: #FFEEF0; border-color: #FFC9CF; }
+#pet-card-share { width: 100%; padding: 12px; border-radius: 14px; font-size: 15px; font-weight: 800;
+  color: #fff; background: linear-gradient(135deg, #FF8FB2, #E85A4B); border: 0; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(232,90,75,.3); transition: transform .12s; }
+#pet-card-share:active { transform: scale(.97); }
+
 /* ---------- 农场地图 ---------- */
 #map-card {
   background: var(--c-surface); border-radius: 20px; border: 1px solid var(--c-line);

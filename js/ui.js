@@ -29,6 +29,7 @@ for (const id of ['loading', 'hud', 'user-pill', 'pet-count', 'score-pill', 'sta
   'chapter-banner', 'chapter-banner-text',
   'update-bar', 'update-now', 'update-later', 'city-pill', 'city-pill-text',
   'toast', 'btn-catalog', 'btn-help', 'btn-account', 'profile-close', 'profile-logout', 'btn-report',
+  'pet-card', 'pet-card-card', 'pet-card-close', 'pet-card-thumb', 'pet-card-name', 'pet-card-zh', 'pet-card-stats', 'pet-card-tags', 'pet-card-share',
   'hud-menu', 'btn-menu']) els[id.replace(/-(\w)/g, (_, c) => c.toUpperCase())] = $(id);
 
 // 音标表（tools/gen_ipa.py 生成，可选：404 时静默跳过）
@@ -1562,6 +1563,36 @@ export function placePetFact(x, y) {
 }
 export function hidePetFact() {
   els.petFact.classList.add('hidden');
+}
+
+// ---------- 词宠名片卡：独一无二词宠档案 + 晒宠分享 ----------
+export function showPetCard(info) {
+  if (!info || !info.en) return;
+  els.petCardThumb.src = info.thumb || '';
+  els.petCardName.textContent = info.en;
+  els.petCardZh.textContent = info.zh || '';
+  const stats = [];
+  if (info.ageDays != null) stats.push(`${t('pet.age')} ${info.ageDays} ${t('pet.day')}`);
+  if (info.feeds != null) stats.push(`${t('pet.feeds')} ${info.feeds}`);
+  els.petCardStats.innerHTML = stats.map(x => `<span class="pc-stat">${escapeHtml(x)}</span>`).join('');
+  const tags = [];
+  if (info.evo) tags.push(`<span class="pc-tag pc-tag-evo">${t('pet.evo')}</span>`);
+  if (info.rare) tags.push(`<span class="pc-tag pc-tag-rare">${t('pet.rare')}</span>`);
+  if (info.stars != null) tags.push(`<span class="pc-tag">${t('pet.stars')} ${info.stars}</span>`);
+  els.petCardTags.innerHTML = tags.join('');
+  els.petCard.classList.remove('hidden');
+  // 分享：Web Share API 优先，降级剪贴板
+  const shareText = `${t('pet.shareTitle')}「${info.en}」${info.zh || ''}！${info.rare ? t('pet.shareRare') : ''}${t('pet.shareTail')}`;
+  els.petCardShare.onclick = async () => {
+    try {
+      if (navigator.share) { await navigator.share({ text: shareText }); return; }
+    } catch (e) { /* 用户取消或失败 */ }
+    try {
+      await navigator.clipboard.writeText(shareText);
+      toast(t('pet.copied'), 2600);
+    } catch (e2) { toast(t('pet.copyFail'), 2600); }
+  };
+  els.petCardClose.onclick = () => els.petCard.classList.add('hidden');
 }
 
 // ---------- FEVER 连击：连续 3 次 PERFECT(95+) 触发，星星翻倍，读非完美即断 ----------

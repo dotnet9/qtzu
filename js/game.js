@@ -458,6 +458,7 @@ export class Game {
 
   _initInput() {
     this.joy = { x: 0, y: 0, active: false };
+    this.sprinting = false; this._sprintUntil = 0;
     // 终端判断：手机/平板走触屏 UI，电脑（含触屏笔记本）走键盘鼠标
     // ?touch=1 / ?touch=0 可强制指定
     const q = /[?&]touch=(1|0)/.exec(location.search);
@@ -568,12 +569,17 @@ export class Game {
       let joyId = null, cx = 0, cy = 0;
       const R = 44;
       const setKnob = (dx, dy) => { knob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`; };
+      let lastTap = 0;
       joy.addEventListener('pointerdown', e => {
         joyId = e.pointerId;
         try { joy.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
         const r = joy.getBoundingClientRect();
         cx = r.left + r.width / 2; cy = r.top + r.height / 2;
         this.joy.active = true;
+        // 双击摇杆 = 冲刺 2 秒（触屏没有 Shift 键，双击是最直觉的加速手势）
+        const now = Date.now();
+        if (now - lastTap < 380) { this.sprinting = true; this._sprintUntil = now + 2000; ui.toast(t('y.sprint'), 1400); sfx.pop(); }
+        lastTap = now;
         e.preventDefault();
       });
       joy.addEventListener('pointermove', e => {
@@ -2378,7 +2384,8 @@ export class Game {
     }
     const moving = move.lengthSq() > 0;
     // 空中保留操控且带一点冲劲：方向键+空格 = 向前跳；骑词宠快 60%
-    const speed = PLAYER_SPEED * (this.mount ? 1.6 : 1) * (this.onGround ? 1 : 1.38);
+    if (this.sprinting && performance.now() > this._sprintUntil) this.sprinting = false;
+    const speed = PLAYER_SPEED * (this.mount ? 1.6 : 1) * (this.onGround ? 1 : 1.38) * (this.sprinting ? 1.55 : 1);
     if (moving) {
       if (cameraRelative) {
         // 绕 Y 轴转 camYaw（等价于原 applyAxisAngle，不建临时对象）
@@ -3374,6 +3381,12 @@ export class Game {
     else if (save.isHungry(id)) { this._approachInteract(id); }
     else if (id === this._naughtyId) { this._approachInteract(id); }
     else if (this.pets.get(id)) {
+      // 📇 6 秒内再点一次 → 打开词宠名片（档案 + 分享）
+      if (this._petCardArmed && this._petCardArmed.id === id && performance.now() < this._petCardArmed.until) {
+        this._petCardArmed = null;
+        this._openPetCard(id);
+        return;
+      }
       // 摸头：点吃饱了的词宠，它开心地跳一下、念出自己的名字（顺手就是一次复习）
       this._clearMoveTarget();
       const pet = this.pets.get(id);
@@ -3390,6 +3403,9 @@ export class Game {
         this._fact = { id, until: performance.now() + 5200 };
         ui.showPetFact(`「${w.en}」${w.zh}`, fact);
       }
+      // 📇 词宠名片：再点一次这个词宠就打开档案卡（独一无二养成数据 + 晒宠分享）
+      this._petCardArmed = { id, until: performance.now() + 6000 };
+      ui.toast(t('y.petCardHint'), 2600);
     }
     else this._setMoveTarget(e);   // 点的是空地 → 走过去（手机轻点同理）
   }
@@ -3409,6 +3425,23 @@ export class Game {
       this.moveMarker.position.set(pos.x, pos.y + 0.06, pos.z);
       this.moveMarker.visible = true;
     }
+  }
+
+  // 📇 词宠名片：档案卡——独一无二养成数据 + 一键晒宠
+  _openPetCard(id) {
+    const w = WORD_MAP[id];
+    if (!w) return;
+    const pd = save.getSave().pets[id];
+    const ageDays = pd && pd.hatchedAt ? Math.max(1, Math.floor((Date.now() - pd.hatchedAt) / 86400000)) : 0;
+    let thumb = '';
+    try { thumb = petThumbnail(id); } catch (e) { /* 缩略图渲染失败不阻塞名片 */ }
+    ui.showPetCard({
+      en: w.en, zh: w.zh, thumb,
+      ageDays, feeds: pd ? pd.feeds || 0 : 0,
+      evo: !!(pd && pd.evo), rare: !!(pd && pd.rare),
+      stars: save.getStars(),
+    });
+    sfx.pop();
   }
 
   // 💬 词宠的悄悄话：日常短句跟读挑战。句子带词宠自己的名字，情感互动里塞复习。
