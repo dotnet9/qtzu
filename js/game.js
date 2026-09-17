@@ -3448,11 +3448,15 @@ export class Game {
     if (!word) return;   // 非法/过期 id 静默忽略，别让整局崩掉
     this.currentWord = word;
     this._maybePreloadWhisper(); this._warmMic();
+    // 🎧 听音预热：40% 概率先"听发音 → 4 选 1 认词"再孵化（听力识别，离线可用）；
+    // 复习蛋保持简单模式直接读，不插听音，免得复习流程被拖长
+    const isReview = (this.currentChapter.review || []).includes(word.id);
+    if (!isReview && Math.random() < 0.4) { this._listenFirst(word); return; }
     ui.openChallenge({
       word, mode: 'hatch',
       // 常开录音要等示范音播完再启动：开着录就起录的话，扬声器里的示范音会被录进缓冲，
       // 孩子一开口识别到的就是"示范音+人声"的混合，得分自然不准
-      easy: (this.currentChapter.review || []).includes(word.id),   // 复习蛋简单模式：读一遍就过
+      easy: isReview,   // 复习蛋简单模式：读一遍就过
       onDemoEnd: () => this._primeRecWhenSafe(),
       onSuccess: res => this._doHatch(word, res && res.score, res && res.via),
       onClose: () => { this.currentWord = null; this._stopPrimeRec(); },
@@ -3463,6 +3467,29 @@ export class Game {
       if (!this._primeRecActive && this.currentWord
         && (this.preferWhisper || !voiceSupported || isVoiceBroken())) this._primeRecWhenSafe();
     }, 7000);
+  }
+
+  // 🎧 听音预热：听发音从 4 个选项里认词，认对接孵化；✕ 关闭则跳过听音直接孵化
+  _listenFirst(word) {
+    const opts = this._listenOptions(word);
+    ui.openChallenge({
+      word, mode: 'listen', options: opts,
+      onDemoEnd: null,
+      onSuccess: () => {
+        ui.closeChallenge();
+        this._doHatch(word, 92, 'listen');   // 听音认出：92 分，跟"读得不错"同档
+      },
+      onClose: () => { this.currentWord = null; this._stopPrimeRec(); },
+    });
+  }
+
+  // 生成听音 4 选 1 选项：正确词 + 3 个同关卡/已学过的干扰词
+  _listenOptions(word) {
+    const pool = this.scopeWords && this.scopeWords.length ? this.scopeWords : Object.keys(WORD_MAP);
+    const others = pool.filter(w => w.id !== word.id && !(this.currentChapter.review || []).includes(w.id)).slice(0, 30);
+    const shuffled = others.sort(() => Math.random() - 0.5).slice(0, 3);
+    const list = [word, ...shuffled].map(w => ({ id: w.id, en: w.en, zh: w.zh }));
+    return list.sort(() => Math.random() - 0.5);
   }
 
   // 常开录音的启动时机：等喇叭彻底安静（示范音/喝彩都放完）再开录，避免外放音串进缓冲

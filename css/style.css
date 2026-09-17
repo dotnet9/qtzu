@@ -941,6 +941,28 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .star-pop { display: inline-block; animation: starPop .4s cubic-bezier(.34,1.56,.64,1) backwards; }
 @keyframes starPop { from { transform: scale(0) rotate(-40deg) } to { transform: scale(1) rotate(0) } }
 
+/* ---------- 听音选词：4 选 1 词宠（听力识别） ---------- */
+#listen-area { text-align: center; margin-top: 8px; }
+#listen-tip { color: #B47514; font-size: 14px; font-weight: bold; margin-bottom: 8px; }
+#listen-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 340px; margin: 0 auto; }
+.listen-opt {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 8px; border-radius: 16px; cursor: pointer;
+  background: linear-gradient(180deg, #FFFDF8, #FFF3F9);
+  border: 2.5px solid #FFD9E8; box-shadow: 0 3px 10px rgba(232,72,127,.12);
+  transition: transform .12s, box-shadow .12s, border-color .12s;
+}
+.listen-opt:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(232,72,127,.2); }
+.listen-opt:active { transform: scale(.96); }
+.listen-opt:disabled { cursor: default; }
+.listen-opt .lo-en { font-size: 22px; font-weight: 900; color: #5C4A38; line-height: 1.15; }
+.listen-opt .lo-zh { font-size: 13px; font-weight: 800; color: #B4436F; }
+.listen-opt.right { border-color: #7CC96F; background: linear-gradient(180deg, #F4FFEF, #E8FADF); box-shadow: 0 0 0 3px rgba(124,201,111,.3); }
+.listen-opt.right .lo-zh { color: #4E7A46; }
+.listen-opt.wrong { border-color: #F2A0A0; background: linear-gradient(180deg, #FFF3F3, #FFE6E6); }
+.listen-opt.wrong .lo-zh { color: #C05555; }
+.listen-empty { color: #C9BBA8; font-size: 13px; padding: 12px; }
+
 /* ---------- 农场地图 ---------- */
 #map-card {
   background: var(--c-surface); border-radius: 20px; border: 1px solid var(--c-line);

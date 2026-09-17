@@ -20,6 +20,7 @@ for (const id of ['loading', 'hud', 'user-pill', 'pet-count', 'score-pill', 'sta
   'mic-label', 'btn-replay', 'voice-feedback', 'score-panel', 'cheer', 'cheer-emoji', 'cheer-word', 'score-ring', 'score-num', 'score-stars', 'score-msg',
   'pet-fact', 'pet-fact-title', 'pet-fact-text', 'detail-card', 'detail-title', 'detail-body', 'detail-close', 'btn-detail', 'spell-area', 'spell-slots', 'spell-tiles', 'btn-replay-letters', 'btn-show-help-word',
   'btn-skip',
+  'listen-area', 'listen-tip', 'listen-options',
   'btn-switch-spell', 'modal-close', 'modal-foot', 'picker', 'picker-title', 'picker-grid', 'picker-close',
   'catalog', 'catalog-grid', 'catalog-close', 'catalog-pager', 'catalog-prev', 'catalog-next', 'catalog-ind', 'map', 'map-head', 'map-canvas', 'map-close',
   'leaderboard-widget', 'leaderboard-list', 'leaderboard-refresh', 'leaderboard-toggle', 'leaderboard-fold',
@@ -322,11 +323,12 @@ const ch = {
   open: false, word: null, mode: 'hatch', spellMode: false,
   slots: [], filled: [], tiles: [], onSuccess: null, onClose: null,
   busy: false, listening: false, canVoice: false, replayUrl: null,
+  options: null,
 };
 
-export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEnd, easy, noSpell, title }) {
+export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEnd, easy, noSpell, title, options }) {
   ch.open = true; ch.word = word; ch.mode = mode; ch.onSuccess = onSuccess; ch.onClose = onClose; ch.onSkip = onSkip; ch.onDemoEnd = onDemoEnd || null; ch.easy = !!easy;   // 复习蛋简单模式：读一遍就过
-  ch.busy = false; ch.spellMode = false; ch.listening = false; ch.replayUrl = null;
+  ch.busy = false; ch.spellMode = false; ch.listening = false; ch.replayUrl = null; ch.options = options || null;
   toggleHudMenu(false);   // 弹窗打开时收起菜单
   track('challenge_open', { mode });
   els.modalTitle.textContent = title || (mode === 'feed' ? t('ch.feed')
@@ -368,10 +370,18 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   els.micLabel.textContent = t('x.g11');
   els.spellArea.classList.add('hidden');
   els.modalFoot.classList.remove('hidden');
-  els.btnSkip.classList.toggle('hidden', mode !== 'practice' && !ch.easy);
+  const isListen = mode === 'listen';
+  els.btnSkip.classList.toggle('hidden', mode !== 'practice' && !ch.easy && !isListen);
   els.btnSwitchSpell.classList.toggle('hidden', !!noSpell);   // 整句跟读没有t('x.g12')
   // 详细按钮只在喂养时显示：孵化/练习时孩子专注朗读拼块，词义详情留到喂养时专注看
   els.btnDetail.classList.toggle('hidden', mode !== 'feed');
+  // 听音选词：隐藏朗读按钮，只留发音 + 4 选 1 词宠
+  els.listenArea.classList.toggle('hidden', !isListen);
+  els.btnPlay.classList.toggle('hidden', isListen);
+  els.btnMic.classList.toggle('hidden', isListen);
+  els.btnReplay.classList.toggle('hidden', isListen);
+  els.wordIpa.classList.toggle('hidden', isListen);   // 听音不看音标，避免照着拼
+  if (isListen) renderListenOptions(word, ch.options);
   if (mode === 'feed') setTimeout(() => els.btnDetail.click(), 600);   // 喂养时自动弹出词义详情
   // 能不能“读”：在线识别可用，或设备能录音（改走自带的本地识别模型）
   const canRecord = typeof MediaRecorder !== 'undefined'
@@ -416,7 +426,8 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
   // 自动示范两遍发音（正常速 + 童声慢速文件）；示范全部放完回调 onDemoEnd
   // （游戏层等这一刻才开常开录音，避免示范音被录进缓冲污染识别）
   setTimeout(() => speak(word.en), 400);
-  setTimeout(() => speakSlow(word.en, () => { if (ch.onDemoEnd) ch.onDemoEnd(); }), 1500);
+  if (isListen) { setTimeout(() => { if (ch.onDemoEnd) ch.onDemoEnd(); }, 1200); }
+  else setTimeout(() => speakSlow(word.en, () => { if (ch.onDemoEnd) ch.onDemoEnd(); }), 1500);
 }
 
 export function closeChallenge() {
@@ -424,6 +435,39 @@ export function closeChallenge() {
   ch.open = false;
   els.modal.classList.add('hidden');
   if (ch.onClose) ch.onClose();
+}
+
+// 听音选词：渲染 4 个选项（英文 + 中文），点正确单词过，点错提示再听
+// options: [{ id, en, zh }] 四选一；正确项 id === word.id
+function renderListenOptions(word, opts) {
+  const grid = els.listenOptions;
+  grid.innerHTML = '';
+  const list = Array.isArray(opts) ? opts : [];
+  if (!list.length) { grid.innerHTML = '<div class="listen-empty">…</div>'; return; }
+  const correctId = word && (word.id || word.en);
+  for (const o of list) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'listen-opt';
+    btn.innerHTML = `<span class="lo-en">${escapeHtml(o.en || '')}</span><span class="lo-zh">${escapeHtml(o.zh || '')}</span>`;
+    btn.onclick = () => {
+      const ok = (o.id || o.en) === correctId;
+      grid.querySelectorAll('.listen-opt').forEach(x => x.disabled = true);
+      if (ok) {
+        btn.classList.add('right');
+        sfx.great();
+        if (ch.onSuccess) ch.onSuccess({ score: 95, heard: o.en, ok: true });
+      } else {
+        btn.classList.add('wrong');
+        sfx.pop();
+        els.listenTip.textContent = t('ch.listenWrong');
+        // 再听一遍，并允许重试（不锁死，给孩子再来一次的机会）
+        setTimeout(() => { btn.disabled = false; btn.classList.remove('wrong'); speak(word.en); }, 900);
+      }
+    };
+    grid.appendChild(btn);
+  }
+  els.listenTip.textContent = t('ch.listenTip');
 }
 
 export function challengeOpen() { return ch.open; }

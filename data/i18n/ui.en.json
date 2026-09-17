@@ -596,6 +596,8 @@
   "ch.replayMine": "🎧 My recording",
   "ch.unit": "pts",
   "ch.spellTitle": "Spell it with letter blocks:",
+  "ch.listenTip": "👂 Listen — which pet is it?",
+  "ch.listenWrong": "Listen again and find the right one～",
   "ch.letterSounds": "🔊 Letter sounds",
   "ch.hintBtn": "💡 Hint",
   "ch.next": "Next →",
