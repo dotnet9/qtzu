@@ -643,5 +643,6 @@
   "wq.answer": "It means \"{a}\" — listen once more and remember it!",
   "prof.pwdFold": "🔒 Set a password (optional)",
   "prof.bubble": "Name me!",
-  "prof.bubbleBack": "Welcome back! ✨"
+  "prof.bubbleBack": "Welcome back! ✨",
+  "y.firstStop": "📍 First stop: {a2}! Glowing eggs are hiding around — hatch them!"
 }

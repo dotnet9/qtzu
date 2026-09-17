@@ -2840,7 +2840,7 @@ export function showDailyBoard({ quest, stars, achievements = [] }) {
 }
 
 // ---------- 开场引导 ----------
-export function playIntro(onDone, isTouch = false, bookLabel = '', total = 0) {
+export function playIntro(onDone, isTouch = false, bookLabel = '', total = 0, city = null) {
   const move = isTouch
     ? t('x.g204')
     : t('x.g205');
@@ -2853,6 +2853,7 @@ export function playIntro(onDone, isTouch = false, bookLabel = '', total = 0) {
     ['🤔', t('x.g210')],
     ['🐾', t('x.g211')],
   ];
+  if (city) steps.push(['📍', t('y.firstStop', { a0: city.emoji, a1: city.name, a2: city.en })]);
   let i = 0;
   // 单卡 Tab 页签：一次弹窗翻完所有引导，出发按钮常驻随时可走
   const tabs = document.getElementById('intro-tabs');

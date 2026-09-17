@@ -765,7 +765,9 @@ export class Game {
     ui.updatePlayerScore(save.getScore(), save.getSessionScore());
     this._refreshDailyBanner();
     if (!save.getIntro()) {
-      setTimeout(() => ui.playIntro(() => save.setIntro(true), this.isTouch, BOOK_LABEL(this.sem), this.total), 600);
+      const st0 = this._currentStage();
+      setTimeout(() => ui.playIntro(() => save.setIntro(true), this.isTouch, BOOK_LABEL(this.sem), this.total,
+        { emoji: st0.emoji, name: st0.name, en: st0.city ? (st0.city.en || '') : '' }), 600);
     }
     this._initEvents();
     this._loop();
@@ -3579,6 +3581,18 @@ export class Game {
       this._refreshCityPill();
       this._owlDeliver(t('x.g386', { a0: st.name }));
       setTimeout(() => {
+        // 首访（引导未看完）：城市介绍已并入引导 Tab 最后一页，这里不再叠弹第二张卡
+        if (!save.getIntro()) {
+          const egg = ch.words.map(id => this.eggs.get(id)).find(e => e && e.group && e.group.visible);
+          const go = () => {
+            ui.chapterBanner(t('y.43', { a0: doneCount + 1, a1: ch.name, a2: st.name, a3: st.emoji }));
+            this.lockInput = false;
+            this._clearMoveTarget();
+          };
+          if (egg) this._flyTo(egg.group.position, go);
+          else go();
+          return;
+        }
         ui.showCityCard({
           city: st.city, variant: cityVariant(st.city, visit), visit,
           quiz: getCityQuiz(st.key),
