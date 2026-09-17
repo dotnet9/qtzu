@@ -2539,7 +2539,7 @@ export function openCityMiniGame(city) {
   (city.variants || []).forEach(v => (v.words || []).forEach(w => pool.push({ en: w })));
   (city.foods || []).forEach(it => { if (it.en) pool.push({ en: it.en, zh: it.name }); });
   (city.scenes || []).forEach(it => { if (it.en) pool.push({ en: it.en, zh: it.name }); });
-  const uniq = pool.filter((p, i) => p.en && pool.findIndex(q => q.en === p.en) === i);
+  const uniq = pool.filter((p, i) => p.en && p.en.trim().split(/\s+/).length <= 3 && p.en.length <= 18 && pool.findIndex(q => q.en === p.en) === i);
   if (uniq.length < 3) { toast(t('mg.noWords')); return; }
   // 出 3 题：每题答案 + 2 个干扰项
   const bag = [...uniq].sort(() => Math.random() - .5);
@@ -2583,12 +2583,18 @@ export function openCityMiniGame(city) {
       }
       return;
     }
-    ov.querySelector('.mg-opts').querySelectorAll('button').forEach(b => { b.disabled = false; b.className = ''; });
+    ov.querySelector('.mg-opts').querySelectorAll('button').forEach(b => { b.disabled = false; b.className = ''; b.dataset.used = ''; });
     hear.textContent = `🔊 ${t('mg.hear')}`;
+    hears = 0;
     rs.textContent = '';
     playQ();
   };
-  hear.onclick = () => { sfx.pop(); playQ(); };
+  let hears = 0;
+  hear.onclick = () => {
+    sfx.pop(); hears++; playQ();
+    // TTS 静默兜底：连点两次还没听清，亮出中文提示（孩子不至于卡死在听不到）
+    if (hears >= 2) rs.textContent = t('mg.hint', { a: qs[qi].answer.zh });
+  };
   playQ();
   ov.querySelectorAll('.mg-opts button').forEach(b => {
     b.onclick = () => {
