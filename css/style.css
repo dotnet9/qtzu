@@ -816,6 +816,8 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #report-card .rp-cell i { font-style: normal; font-size: 11px; color: var(--c-text-2); }
 #report-card .rp-days { margin-top: 12px; border-top: 1px dashed var(--c-line); padding-top: 8px; }
 #report-card .rp-row { display: flex; justify-content: space-between; font-size: 13px; color: #6B5844; padding: 4px 2px; }
+#report-card .rp-wrong { margin-top: 10px; font-size: 12.5px; color: #8A5A3A; background: #FFF4EC; border: 1.5px dashed #F2C98C; border-radius: 10px; padding: 8px 10px; line-height: 1.7; }
+#report-card .rp-wrong b { display: block; color: #B47514; margin-bottom: 2px; }
 #report-card .rp-sub { margin-top: 10px; font-size: 12px; color: #A08A6E; }
 #report-card .rp-share {
   margin-top: 12px; width: 100%; padding: 10px; font-weight: 900; font-size: 14px; font-family: inherit;

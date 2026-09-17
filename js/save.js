@@ -269,9 +269,13 @@ function pruneWeekly() {
   const cutoff = Date.now() - 7 * 86400000;
   data.weekly = (data.weekly || []).filter(x => x.t >= cutoff);
 }
-export function logWeeklyScore(score) {
+export function logWeeklyScore(score, wordId) {
   data.weekly = data.weekly || [];
-  data.weekly.push({ t: Date.now(), s: Math.max(0, Math.min(100, Math.round(score))) });
+  const s = Math.max(0, Math.min(100, Math.round(score)));
+  const rec = { t: Date.now(), s };
+  // 低分（<60）记录是哪个词读错了：家长周报的"本周易错词 Top5"全靠这个
+  if (wordId && s < 60) rec.w = wordId;
+  data.weekly.push(rec);
   pruneWeekly();
   save();
 }
@@ -293,6 +297,13 @@ export function getWeeklyReport() {
     if (typeof x.s === 'number') { days[key].reads++; days[key].sum += x.s; }
     if (x.h) days[key].hatches++;
   }
+  // 本周易错词 Top5：低分（<60）记录的错词按次数排
+  const cnt = {};
+  for (const x of data.weekly) if (x.w) cnt[x.w] = (cnt[x.w] || 0) + 1;
+  const mistakes = Object.keys(cnt)
+    .sort((a, b) => cnt[b] - cnt[a])
+    .slice(0, 5)
+    .map(id => ({ id, n: cnt[id] }));
   return {
     reads: scores.length,
     avg: scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0,
@@ -301,6 +312,7 @@ export function getWeeklyReport() {
     days,
     playMinutes: Math.round((data.playSeconds || 0) / 60),
     totalPets: Object.keys(data.pets).length,
+    mistakes,
   };
 }
 

@@ -3933,7 +3933,13 @@ export class Game {
         const bag = shuffleSeed(unlearned, rand);
         const fresh = bag.slice(0, 4);
         const learnedPool = this.scopeWords.map(w => w.id).filter(w => save.isHatched(w));
-        const review = shuffleSeed(learnedPool, rand).slice(0, 8);
+        // 数据驱动复习：错词本里的词（miss 高者优先）先进复习蛋，最多 5 个；其余随机补足 8 个
+        const wrongIds = Object.keys(save.getSave().naughty || {})
+          .filter(w => save.isHatched(w))
+          .sort((a, b) => ((save.getSave().naughty[b] || {}).misses || 0) - ((save.getSave().naughty[a] || {}).misses || 0))
+          .slice(0, 5);
+        const rest = shuffleSeed(learnedPool.filter(w => !wrongIds.includes(w)), rand);
+        const review = [...wrongIds, ...rest].slice(0, 8);
         const words = [...fresh, ...review];
         this.chapters.push({ name: c.name + t('x.g396'), words, review, bonus: true });
         idx = i;
@@ -4942,7 +4948,7 @@ export class Game {
   // 连败安抚：连续读不准时自动放宽判定（听感像就算过）并温柔鼓励，别让孩子卡在挫败感里
   _lenientResult(alts) {
     const r = matchAlt(alts, this.currentWord.en, (this.voiceFailStreak || 0) >= 2 ? 1 : 0);
-    if (r.score > 0) save.logWeeklyScore(r.score);   // 家长周报：真实朗读才记
+    if (r.score > 0) save.logWeeklyScore(r.score, this.currentWord && this.currentWord.id);   // 家长周报：真实朗读才记；低分带词 id 供"本周易错词 Top5"
     if (r.ok) this.voiceFailStreak = 0;
     else {
       this.voiceFailStreak = (this.voiceFailStreak || 0) + 1;

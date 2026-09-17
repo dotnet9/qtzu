@@ -1463,6 +1463,10 @@ export function showParentReport(rep, name = '') {
       <div class="rp-cell"><b>${rep.best}</b><i>最高分</i></div>
     </div>
     <div class="rp-days">${dayRows}</div>
+    ${rep.mistakes && rep.mistakes.length ? `<div class="rp-wrong"><b>📌 本周易错词</b><span>${rep.mistakes.map(m => {
+      const w = WORD_MAP[m.id];
+      return w ? `${escapeHtml(w.en)}(${escapeHtml(w.zh)})×${m.n}` : '';
+    }).filter(Boolean).join(' · ')}</span></div>` : ''}
     <div class="rp-sub">图鉴共收集 ${rep.totalPets} 只词宠 · 累计游玩约 ${rep.playMinutes} 分钟</div>
     <div class="rp-sub">🏅 集章 ${ex.stampsDone} 城 · 🎖️ 导游徽章 ${ex.guides} 枚 · 🎬 配音 ${ex.dubs} 部</div>
     <button class="rp-share">复制本周小结，分享给家人 👨‍👩‍👧</button>
