@@ -4,7 +4,11 @@ const ID_KEY = 'qtzu_aid';
 let aid = '';
 try {
   aid = localStorage.getItem(ID_KEY) || '';
-  if (!aid) { aid = 'a' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36); localStorage.setItem(ID_KEY, aid); }
+  if (!aid) {
+    aid = 'a' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+    // 单独 try：隐身模式/隐私模式下 setItem 会抛异常，不能让它把模块加载打断（白屏）
+    try { localStorage.setItem(ID_KEY, aid); } catch (e) { /* 隐私模式：本次会话内用内存 ID */ }
+  }
 } catch (e) { aid = 'anon'; }
 
 export function track(name, props = {}) {

@@ -2,6 +2,7 @@
 import { FEED_INTERVALS } from './words.js';
 
 const KEY = 'wordpet_save_v1';
+const BACKUP_KEY = 'wordpet_save_v1_backup';   // 主键写坏/超限时的兜底副本
 
 // 每日任务池：按日期轮换，完成奖 5 颗星星
 // 文案（zh/en）在 data/i18n/ui.*.json 的 daily.<id> 键；这里只存玩法数值
@@ -48,12 +49,16 @@ function fresh() {
 }
 
 let data = load();
+let lastGoodJson = null;   // 最近一次成功落盘序列化快照：写入失败时留作回滚/兜底备份
 
 function load() {
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return fresh();
     const d = JSON.parse(raw);
+    try { lastGoodJson = JSON.stringify(d); } catch (e) { /* 旧档不可序列化：仅内存使用 */ }
+    // 兜底备份：主键写坏/超限时还能从 BACKUP_KEY 恢复（本地也留一份，离线不丢档）
+    try { if (!localStorage.getItem(BACKUP_KEY)) localStorage.setItem(BACKUP_KEY, lastGoodJson); } catch (e) { /* ignore */ }
     // 深度合并 + 兼容旧版本存档（缺字段自动补齐）
     const merged = Object.assign(fresh(), d);
     merged.pets = d.pets || {};
@@ -89,30 +94,63 @@ function load() {
   }
 }
 
+// 仅本地落盘（含序列化预检 + 失败回滚 + 备份键同步），不触发推送
+function persistLocal() {
+  let json = null;
+  try { json = JSON.stringify(data); } catch (e) { /* 存档含不可序列化数据：保留上次快照，至少不写坏 */ }
+  if (json == null) return;
+  try {
+    localStorage.setItem(KEY, json);
+    lastGoodJson = json;
+    // 备份键同步：主键与备份保持一致，写坏任一个都能从另一个恢复
+    try { localStorage.setItem(BACKUP_KEY, json); } catch (e) { /* ignore */ }
+  } catch (e) {
+    // 主键写入失败（超限/隐身模式）：尝试回滚到上次成功快照，避免半写状态
+    try { if (lastGoodJson != null) localStorage.setItem(KEY, lastGoodJson); } catch (e2) { /* ignore */ }
+  }
+}
+
 export function save() {
-  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* 隐身模式等 */ }
+  persistLocal();
+  localDirty = true;
   schedulePush();
 }
 
 // ---------- 跨设备存档同步：本地与服务器双写，同用户名换设备登录拉回全部进度 ----------
 let pushTimer = null;
 let lastPush = 0;
+let localDirty = false;   // 有实质进度变化待推送（纯位置移动不置位）
 function schedulePush() {
   clearTimeout(pushTimer);
   pushTimer = setTimeout(pushSaveNow, 3000);   // 防抖：一波操作只推一次
 }
 // 静默上传完整存档（离线/静态站失败就留本地，下次再推）
+// 安全：不上传密码/会话令牌/当前位置字段——鉴权只靠服务端会话令牌（token），
+// 密码只在注册/登录/改密/上线时单向验证，存档内容永远不再带明文密码过网络。
 export function pushSaveNow() {
   const p = data.profile;
   if (!p.registered || !p.username) return;
+  if (!localDirty) return;                      // 没有实质进度变化（纯位置移动）不推
   if (Date.now() - lastPush < 10000) return;   // 至少间隔 10 秒
   lastPush = Date.now();
+  const payload = sanitizeForUpload(data);
+  localDirty = false;
   try {
     fetch('/api/push-save', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
-      body: JSON.stringify({ username: p.username, password: p.password, token: p.token, save: data }),
-    }).catch(() => {});
-  } catch (e) { /* ignore */ }
+      body: JSON.stringify({ username: p.username, token: p.token, save: payload }),
+    }).catch(() => { localDirty = true; });     // 失败：下次再推
+  } catch (e) { localDirty = true; }
+}
+// 上传前脱敏：密码/会话令牌/当前位置只留在本机，不上服务器
+function sanitizeForUpload(d) {
+  const copy = JSON.parse(JSON.stringify(d));
+  if (copy.profile) {
+    delete copy.profile.password;
+    delete copy.profile.token;
+  }
+  copy.player = null;   // 位置属于本机会话，不跨设备
+  return copy;
 }
 // 登录时拉取服务器存档并与本地合并（换设备不丢词宠/星星/进度）；返回是否拉到了
 export async function pullSave() {
@@ -149,8 +187,10 @@ function mergeSave(r) {
   data.visited = [...new Set([...(r.visited || []), ...(data.visited || [])])];
   data.book.units = Object.assign({}, r.book?.units || {}, data.book.units);
   if (!data.book.sem && r.book?.sem) data.book.sem = r.book.sem;
-  if ((r.profile?.score || 0) > getScore()) data.profile.score = Math.floor(r.profile.score);
-  if ((r.profile?.stars || 0) > getStars()) data.profile.stars = r.profile.stars;
+  // 分数/星星取较大值：本地更高时保留本地（下次 push 上送），避免「低分盖高分」
+  const mergedScore = Math.max(getScore(), Number(r.profile?.score) || 0);
+  data.profile.score = Math.floor(mergedScore);
+  data.profile.stars = Math.max(getStars(), Number(r.profile?.stars) || 0);
   const rw = r.profile?.wear || {};
   data.profile.wear.hatOwned = [...new Set([...(rw.hatOwned || []), ...(data.profile.wear.hatOwned || [])])];
   if (rw.balloonOwned) data.profile.wear.balloonOwned = true;
@@ -470,7 +510,8 @@ export function addVisited(zone) {
 }
 export function getVisited() { return data.visited; }
 
-export function savePlayer(p) { data.player = p; save(); }
+// 位置存档：只写本地，不上传服务器（换设备不需要恢复"站哪"；也避免 3 秒一次的推送放大）
+export function savePlayer(p) { data.player = p; persistLocal(); }
 export function getPlayer() { return data.player; }
 
 export function setBookSem(sem) { data.book.sem = sem; save(); }
@@ -624,7 +665,7 @@ export function swapDaily(id) {
   save();
 }
 
-export function resetSave() { data = fresh(); save(); }
+export function resetSave() { data = fresh(); persistLocal(); }
 
 // ---------- 单点登录：同账号只允许一处在线，后登录顶掉先登录 ----------
 let kickCb = null;
@@ -641,7 +682,7 @@ function _kicked() {
   stopHeartbeat();
   data.profile.token = '';
   data.profile.registered = false;
-  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* ignore */ }
+  persistLocal();
   if (kickCb) kickCb();
 }
 export function onKick(cb) { kickCb = typeof cb === 'function' ? cb : null; }

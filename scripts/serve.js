@@ -180,13 +180,21 @@ backupOnce();
 setInterval(backupOnce, 60 * 60 * 1000);   // 每小时检查一次，跨天自动补备份
 
 // 校验身份并返回账号名；失败返回 null（与 /api/score 同一套规则）
+// 新版客户端：只带会话令牌（token），存档内容不再上传明文密码；老客户端仍可用密码兜底
 function authSave(body) {
   const username = String((body && body.username) != null ? body.username : '').trim().slice(0, 20);
   if (!username) return null;
   const accounts = readAccounts();
   const acc = accounts[username];
+  if (!acc) return null;
+  // token 校验：与当前会话一致即通过（单点登录：被顶下线的旧令牌自然失效）
+  if (body && body.token) {
+    const sess = SESSIONS[username];
+    if (sess && sess.token === body.token) return username;
+  }
+  // 老客户端兜底：密码单向验证
   const password = String((body && body.password) != null ? body.password : '');
-  if (!acc || acc.pwd !== hashPwd(username, password)) return null;
+  if (acc.pwd !== hashPwd(username, password)) return null;
   return username;
 }
 
