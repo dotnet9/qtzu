@@ -1,0 +1,23 @@
+﻿node : file:///E:/github/Apps/qtzu/js/world.js:236
+所在位置 C:\Users\liu64\AppData\Local\Temp\genie-ps-1789625029454-m32f1s.ps1:813 字符: 74
++ ... oding utf8 scripts\tmp-mod.mjs; node scripts\tmp-mod.mjs 2>&1 | Out-F ...
++                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (file:///E:/gith...js/world.js:236:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  if (isl && isl.key === 'chengdu') return chengduTexture(1024);
+                                    ^^^^^^
+
+SyntaxError: Illegal return statement
+    at compileSourceTextModule (node:internal/modules/esm/utils:305:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:111:18)
+    at #translate (node:internal/modules/esm/loader:467:20)
+    at afterLoad (node:internal/modules/esm/loader:523:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:528:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:565:36)
+    at afterResolve (node:internal/modules/esm/loader:618:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:624:12)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:143:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:228:17)
+
+Node.js v25.2.1
