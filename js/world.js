@@ -1269,7 +1269,67 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           lm.add(spr);
         }
       });
-      // 观景石台：天空词蛋放上面，跳上去够得着——位置按城市个性旋转/偏移（game._cityPos sky 同参同钳）
+      // 悬浮岛试点（成都）：岩裙侧壁 + 底部垂石 + 环岛云海
+      if (isl.key === 'chengdu' && isl.shape) {
+        const ptsF = isl.shape;
+        const xsF = ptsF.map(p => p[0]), zsF = ptsF.map(p => p[1]);
+        const mnXF = Math.min(...xsF), mxxXF = Math.max(...xsF), mnZF = Math.min(...zsF), mxxZF = Math.max(...zsF);
+        const ring = polyOffsetRing(ptsF, 0.7);
+        const n = ring.length - 1;
+        let sx = 0, sz = 0;
+        for (let i = 0; i < n; i++) { sx += ring[i][0]; sz += ring[i][1]; }
+        sx /= n; sz /= n;
+        const DEPTH = 4.2, TAPER = 0.8;
+        const posArr = [], colArr = [], idxArr = [];
+        const cTop = new THREE.Color('#7CBF74'), cMid = new THREE.Color('#8A6B4A'), cBot = new THREE.Color('#4A3826');
+        const tmpC = new THREE.Color();
+        for (let i = 0; i < n; i++) {
+          const a = ring[i], b = ring[i + 1];
+          const ax = sx + (a[0] - sx) * TAPER, az = sz + (a[1] - sz) * TAPER;
+          const bx = sx + (b[0] - sx) * TAPER, bz = sz + (b[1] - sz) * TAPER;
+          const base = posArr.length / 3;
+          posArr.push(a[0], 0, a[1], b[0], 0, b[1], bx, -DEPTH, bz, ax, -DEPTH, az);
+          for (let k = 0; k < 4; k++) {
+            const t = k < 2 ? 0 : 1;
+            tmpC.copy(cTop).lerp(cMid, t * 0.45).lerp(cBot, t);
+            colArr.push(tmpC.r, tmpC.g, tmpC.b);
+          }
+          idxArr.push(base, base + 1, base + 2, base, base + 2, base + 3);
+        }
+        const skirtGeo = new THREE.BufferGeometry();
+        skirtGeo.setAttribute('position', new THREE.Float32BufferAttribute(posArr, 3));
+        skirtGeo.setAttribute('color', new THREE.Float32BufferAttribute(colArr, 3));
+        skirtGeo.setIndex(idxArr);
+        skirtGeo.computeVertexNormals();
+        const skirt = new THREE.Mesh(skirtGeo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, side: THREE.DoubleSide }));
+        grp.add(skirt);
+        for (let k = 0; k < 6; k++) {
+          const a = (k / 6) * Math.PI * 2 + 0.4;
+          const rr = (Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2) * (0.3 + 0.1 * (k % 3));
+          const cone = new THREE.Mesh(new THREE.ConeGeometry(1.1 + 0.35 * (k % 2), 2.4 + 0.5 * (k % 3), 7),
+            new THREE.MeshStandardMaterial({ color: '#5A4632', roughness: 1 }));
+          cone.rotation.x = Math.PI;
+          cone.position.set(cx + Math.cos(a) * rr, -DEPTH - 0.9, cz + Math.sin(a) * rr);
+          grp.add(cone);
+        }
+        const cc = document.createElement('canvas');
+        cc.width = 256; cc.height = 128;
+        const ccx = cc.getContext('2d');
+        ccx.fillStyle = 'rgba(255,255,255,.92)';
+        for (const pt of [[70, 80, 46], [128, 64, 56], [190, 84, 44], [100, 96, 38], [160, 100, 34]]) {
+          ccx.beginPath(); ccx.arc(pt[0], pt[1], pt[2], 0, Math.PI * 2); ccx.fill();
+        }
+        const cloudTex = new THREE.CanvasTexture(cc);
+        cloudTex.colorSpace = THREE.SRGBColorSpace;
+        const cloudR = Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2 + 6;
+        for (let k = 0; k < 8; k++) {
+          const a = (k / 8) * Math.PI * 2;
+          const cs = new THREE.Sprite(new THREE.SpriteMaterial({ map: cloudTex, transparent: true, opacity: 0.92, depthWrite: false }));
+          cs.scale.set(10, 5, 1);
+          cs.position.set(cx + Math.cos(a) * cloudR, -2.4 + 0.5 * (k % 2), cz + Math.sin(a) * cloudR);
+          grp.add(cs);
+        }
+      }
       let px = Math.cos(lay.perchA) * r * lay.perchD, pz = Math.sin(lay.perchA) * r * lay.perchD;
       if (polySim) [px, pz] = clampPoly(polySim, px, pz, bw + 1.2);   // 顶面 2.1 宽：边距=墙厚+半宽
       box(grp, 1.6, 3.2, 1.6, '#C8B898', px, 1.6, pz);
