@@ -581,6 +581,7 @@
   "y.petsDate": "⭐ {a0} word pets collected · 📅 {a1}",
   "lb.toggle": "📊 Leaderboard ▾",
   "lb.head": "🏆 Leaderboard",
+  "lb.loading": "Finding out who is the word star…",
   "prof.boy": "👦 Boy",
   "prof.girl": "👧 Girl",
   "prof.g3": "Grade 3",

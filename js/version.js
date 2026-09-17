@@ -3,7 +3,7 @@
 // 入口文件只有几 KB，全文对比最可靠，不依赖 ETag/Last-Modified 头的配置差异
 import { showUpdateBar } from './ui.js';
 
-const CHECK_INTERVAL = 60 * 1000;      // 常规检测间隔
+const CHECK_INTERVAL = 5 * 60 * 1000;      // 常规检测间隔（5 分钟：入口仅几 KB，但移动端弱网下 60 秒一次太频繁）
 const RE_NAG_AFTER = 10 * 60 * 1000;   // 点过"稍后"后，隔多久才允许为同一版本再提醒
 
 let baseline = null;     // 本次页面加载时的入口内容（当前正在玩的版本）

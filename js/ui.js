@@ -341,14 +341,14 @@ export function openChallenge({ word, mode, onSuccess, onClose, onSkip, onDemoEn
     const row = document.createElement('div');
     row.id = 'wd-syl';
     row.className = 'wd-syl';
-    row.innerHTML = `<i>${t('wd.sylTip')}</i>` + word.syl.map(s => `<button type="button" data-s="${s}">${s}</button>`).join('');
+    row.innerHTML = `<i>${t('wd.sylTip')}</i>` + word.syl.map(s => `<button type="button" data-s="${escapeHtml(s)}">${escapeHtml(s)}</button>`).join('');
     els.wordEn.insertAdjacentElement('afterend', row);
     row.querySelectorAll('button').forEach(b => { b.onclick = () => { sfx.pop(); speak(b.dataset.s); }; });
   }
   if (/\s/.test(word.en)) {
     // 整句跟读：逐词渲染成点读块——点哪个词听哪个词，降低整句朗读的恐惧感
     els.wordEn.innerHTML = word.en.split(/\s+/)
-      .map(w => `<button type="button" class="wd-word" data-w="${w}">${w}</button>`).join(' ');
+      .map(w => `<button type="button" class="wd-word" data-w="${escapeHtml(w)}">${escapeHtml(w)}</button>`).join(' ');
     els.wordEn.querySelectorAll('.wd-word').forEach(b => {
       b.onclick = () => { sfx.pop(); speak(b.dataset.w); };
     });
@@ -826,7 +826,7 @@ export function showLevelComplete({ index, name, words = [], last = false, onNex
   });
   els.levelupWordsTip.style.display = words.length ? '' : 'none';
   els.levelupWords.innerHTML = words.map(w =>
-    `<button type="button" class="lvlup-chip" data-en="${w.en}"><b>${w.en}</b><i>${w.zh}</i></button>`).join('');
+    `<button type="button" class="lvlup-chip" data-en="${escapeHtml(w.en)}"><b>${escapeHtml(w.en)}</b><i>${escapeHtml(w.zh)}</i></button>`).join('');
   els.levelupWords.querySelectorAll('.lvlup-chip').forEach(btn => {
     btn.onclick = () => { sfx.pop(); speak(btn.dataset.en); };
   });

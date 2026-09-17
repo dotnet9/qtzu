@@ -634,6 +634,7 @@ export class Game {
   _clearMoveTarget() {
     this.moveTarget = null;
     this.moveThenEgg = null;
+    this.moveThenInteract = null;
     if (this.moveMarker) this.moveMarker.visible = false;
     this._stuckT = 0;
   }
@@ -2266,7 +2267,7 @@ export class Game {
       const dz = this.moveTarget.z - this.player.position.z;
       const d = Math.hypot(dx, dz);
       // 去孵蛋的路：进入互动半径就停下开蛋，不用非走到蛋的正中心
-      if (d < 0.4 || (this.moveThenEgg && d < 2.4)) {
+      if (d < 0.4 || (this.moveThenEgg && d < 2.4) || (this.moveThenInteract && d < 2.4)) {
         const eggId = this.moveThenEgg;
         const egg = eggId && this.eggs.get(eggId);
         this._clearMoveTarget();
@@ -2274,6 +2275,11 @@ export class Game {
           const ep = egg.group.position;
           if (Math.hypot(ep.x - this.player.position.x, ep.z - this.player.position.z) <= 2.6 && ep.y - this.player.position.y <= 1.2) this._openEgg(eggId);
           else ui.toast(t('x.g340'), 3200);
+        } else if (this.moveThenInteract) {
+          const iid = this.moveThenInteract;
+          this.moveThenInteract = null;
+          if (save.isHungry(iid)) this._feedPet(iid);
+          else if (iid === this._naughtyId) this._catchNaughty(iid);
         }
       } else {
         cameraRelative = false;
@@ -3282,8 +3288,8 @@ export class Game {
       return;
     }
     if (this.eggs.get(id)) { this._approachEgg(id); }
-    else if (save.isHungry(id)) { this._clearMoveTarget(); this._feedPet(id); }
-    else if (id === this._naughtyId) { this._clearMoveTarget(); this._catchNaughty(id); }
+    else if (save.isHungry(id)) { this._approachInteract(id); }
+    else if (id === this._naughtyId) { this._approachInteract(id); }
     else if (this.pets.get(id)) {
       // 摸头：点吃饱了的词宠，它开心地跳一下、念出自己的名字（顺手就是一次复习）
       this._clearMoveTarget();
@@ -3303,6 +3309,23 @@ export class Game {
       }
     }
     else this._setMoveTarget(e);   // 点的是空地 → 走过去（手机轻点同理）
+  }
+
+  // 点了饿宠/淘气词：够得着直接互动（喂食/抓捕），够不着先走过去再自动互动，防止触屏误触弹窗
+  _approachInteract(id) {
+    const pt = this.pets.get(id);
+    const pos = pt ? pt.group.position : null;
+    const p = this.player.position;
+    if (pos && Math.hypot(pos.x - p.x, pos.z - p.z) <= 2.4) {
+      if (save.isHungry(id)) { this._clearMoveTarget(); this._feedPet(id); return; }
+      if (id === this._naughtyId) { this._clearMoveTarget(); this._catchNaughty(id); return; }
+    }
+    if (pos) {
+      this.moveTarget = { x: pos.x, z: pos.z };
+      this.moveThenInteract = id;
+      this.moveMarker.position.set(pos.x, pos.y + 0.06, pos.z);
+      this.moveMarker.visible = true;
+    }
   }
 
   // 💬 词宠的悄悄话：日常短句跟读挑战。句子带词宠自己的名字，情感互动里塞复习。
