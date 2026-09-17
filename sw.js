@@ -5,13 +5,13 @@
 //   跨域（three.js CDN、维基图片等）       → 缓存优先（版本化 URL 内容不变）
 //   音频 mp3 / 模型 onnx                  → 缓存优先 + 数量上限（大文件边玩边攒）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v13';   // v12：去掉 skipWaiting/claim——新版本不再立即接管页面，杜绝「靠岸两次」（配合 version.js 更新提示）
+const VER = 'qtzu-pwa-v14';   // v12：去掉 skipWaiting/claim——新版本不再立即接管页面，杜绝「靠岸两次」（配合 version.js 更新提示）
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动
 const CORE = [
   './', 'index.html', 'manifest.webmanifest',
-  'css/style.css',
+  'css/style.css', 'css/profile-plus.css',
   'favicon.ico', 'favicon.png', 'apple-touch-icon.png',
   'js/compat.js', 'js/version.js', 'js/main.js', 'js/game.js', 'js/ui.js',
   'js/save.js', 'js/words.js', 'js/cities.js', 'js/curriculum.js', 'js/data.js',
