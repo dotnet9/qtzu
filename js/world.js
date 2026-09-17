@@ -1279,9 +1279,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         let sx = 0, sz = 0;
         for (let i = 0; i < n; i++) { sx += ring[i][0]; sz += ring[i][1]; }
         sx /= n; sz /= n;
-        const DEPTH = 4.2, TAPER = 0.8;
+        const DEPTH = 9, TAPER = 0.5;
         const posArr = [], colArr = [], idxArr = [];
-        const cTop = new THREE.Color('#7CBF74'), cMid = new THREE.Color('#8A6B4A'), cBot = new THREE.Color('#4A3826');
+        const cTop = new THREE.Color('#8A6B4A'), cMid = new THREE.Color('#6B5138'), cBot = new THREE.Color('#3A2C1E');
         const tmpC = new THREE.Color();
         for (let i = 0; i < n; i++) {
           const a = ring[i], b = ring[i + 1];
@@ -1306,7 +1306,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         for (let k = 0; k < 6; k++) {
           const a = (k / 6) * Math.PI * 2 + 0.4;
           const rr = (Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2) * (0.3 + 0.1 * (k % 3));
-          const cone = new THREE.Mesh(new THREE.ConeGeometry(1.1 + 0.35 * (k % 2), 2.4 + 0.5 * (k % 3), 7),
+          const cone = new THREE.Mesh(new THREE.ConeGeometry(1.8 + 0.5 * (k % 2), 3.8 + 0.8 * (k % 3), 7),
             new THREE.MeshStandardMaterial({ color: '#5A4632', roughness: 1 }));
           cone.rotation.x = Math.PI;
           cone.position.set(cx + Math.cos(a) * rr, -DEPTH - 0.9, cz + Math.sin(a) * rr);
@@ -1321,14 +1321,19 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         }
         const cloudTex = new THREE.CanvasTexture(cc);
         cloudTex.colorSpace = THREE.SRGBColorSpace;
-        const cloudR = Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2 + 6;
-        for (let k = 0; k < 8; k++) {
+        const cloudR = Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2 + 10;
+        for (let k = 0; k < 12; k++) {
           const a = (k / 8) * Math.PI * 2;
           const cs = new THREE.Sprite(new THREE.SpriteMaterial({ map: cloudTex, transparent: true, opacity: 0.92, depthWrite: false }));
-          cs.scale.set(10, 5, 1);
-          cs.position.set(cx + Math.cos(a) * cloudR, -2.4 + 0.5 * (k % 2), cz + Math.sin(a) * cloudR);
+          cs.scale.set(16, 8, 1);
+          cs.position.set(cx + Math.cos(a) * cloudR, -3.5 + 1.2 * (k % 3), cz + Math.sin(a) * cloudR);
           grp.add(cs);
         }
+        // 云海上的投影暗影：悬浮感的画龙点睛
+        const sh = new THREE.Mesh(new THREE.CircleGeometry(1, 40).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: '#2A3040', transparent: true, opacity: 0.16, depthWrite: false }));
+        sh.scale.set((mxxXF - mnXF) * 0.62, 1, (mxxZF - mnZF) * 0.62);
+        sh.position.set(cx, -8.5, cz);
+        grp.add(sh);
       }
       let px = Math.cos(lay.perchA) * r * lay.perchD, pz = Math.sin(lay.perchA) * r * lay.perchD;
       if (polySim) [px, pz] = clampPoly(polySim, px, pz, bw + 1.2);   // 顶面 2.1 宽：边距=墙厚+半宽

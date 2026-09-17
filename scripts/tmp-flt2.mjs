@@ -1,0 +1,12 @@
+﻿import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { chromium } = require('playwright-core');
+const exe = 'C:/Users/liu64/.agent-browser/browsers/chrome-153.0.8010.47/chrome.exe';
+const ctx = await chromium.launchPersistentContext('.pw-profile', { headless: true, executablePath: exe, viewport: { width: 1280, height: 800 } });
+const page = ctx.pages()[0] || await ctx.newPage();
+const errs = [];
+page.on('pageerror', e => errs.push(String(e.stack || e).slice(0, 500)));
+await page.goto('http://localhost:6100/?city=chengdu&debug=1', { waitUntil: 'load' });
+await page.waitForTimeout(12000);
+console.log(errs.join('\n---\n'));
+await ctx.close();
