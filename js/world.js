@@ -1619,16 +1619,16 @@ export function cityLandmark(type, color, seedStr, img) {
     box(g, 4.2, 0.5, 3, '#E8C86A', 0, 3.4, 0);
   } else if (type === 'panda') {
     // 大熊猫：白身黑耳黑眼圈，怀里抱根竹子（成都）
-    sph(g, 1.5, M('#F5F1E8'), 0, 1.3, 0);
-    sph(g, 0.95, M('#F5F1E8'), 0, 2.8, 0.25);
-    sph(g, 0.26, M('#2A2A2A'), -0.55, 3.5, 0.1);
-    sph(g, 0.26, M('#2A2A2A'), 0.55, 3.5, 0.1);
-    sph(g, 0.14, M('#2A2A2A'), -0.32, 2.9, 0.62);
-    sph(g, 0.14, M('#2A2A2A'), 0.32, 2.9, 0.62);
-    sph(g, 0.12, M('#2A2A2A'), 0, 3.02, 0.75);
-    sph(g, 0.5, M('#2A2A2A'), -1.35, 1.5, 0.3);
-    sph(g, 0.5, M('#2A2A2A'), 1.35, 1.5, 0.3);
-    cyl(g, 0.09, 0.09, 1.6, '#7CBB5E', 0.85, 1.6, 0.75, 0, 0, 0, 8);
+    sph(g, 1.5, '#F5F1E8', 0, 1.3, 0);
+    sph(g, 0.95, '#F5F1E8', 0, 2.8, 0.25);
+    sph(g, 0.28, '#2A2A2A', -0.52, 3.68, 0.25);
+    sph(g, 0.28, '#2A2A2A', 0.52, 3.68, 0.25);
+    sph(g, 0.17, '#2A2A2A', -0.38, 2.96, 1.1);
+    sph(g, 0.17, '#2A2A2A', 0.38, 2.96, 1.1);
+    sph(g, 0.11, '#2A2A2A', 0, 2.7, 1.18);
+    sph(g, 0.44, '#2A2A2A', -1.6, 1.55, 0.25);
+    sph(g, 0.44, '#2A2A2A', 1.6, 1.55, 0.25);
+    cyl(g, 0.09, 0.09, 1.6, '#7CBB5E', 0.95, 1.55, 1.42, 0, 0, 0, 8);
   } else if (type === 'ice') {
     // 冰雕塔（哈尔滨）：半透明尖塔群
     const iceM = new THREE.MeshStandardMaterial({ color: 0xA8D8FF, roughness: 0.15, transparent: true, opacity: 0.8, emissive: 0x4E9EE8, emissiveIntensity: 0.45 });
