@@ -2733,7 +2733,6 @@ export class Game {
         }
       }
     }
-    }
     // 卡死逃逸：主动移动中被连续推出 0.8 秒 = 目标点在障碍里（老版点击校门的晃动根源），放弃这步
     if (hit && trying) {
       this._stuckN = (this._stuckN || 0) + 1;
