@@ -1,0 +1,26 @@
+﻿node : file:///E:/github/Apps/qtzu/scripts/tmp-ur.mjs:8
+所在位置 C:\Users\liu64\AppData\Local\Temp\genie-ps-1789627354793-w3psau.ps1:813 字符: 938
++ ... ole.log('console hook added')" ; node scripts\tmp-ur.mjs 2>&1 | Out-F ...
++                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (file:///E:/gith...ts/tmp-ur.mjs:8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  window.__errs = []; const _ce = console.error.bind(console); console.error = function(){ try { window.__errs.push('CE
+: ' + Array.prototype.map.call(arguments, function(a){ return String(a && a.stack || a).slice(0, 300); }).join(' | '); 
+} catch(e){} _ce.apply(null, arguments); };
+                                                                                                                       
+                                                                                                                    ^
+
+SyntaxError: missing ) after argument list
+    at compileSourceTextModule (node:internal/modules/esm/utils:305:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:111:18)
+    at #translate (node:internal/modules/esm/loader:467:20)
+    at afterLoad (node:internal/modules/esm/loader:523:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:528:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:565:36)
+    at afterResolve (node:internal/modules/esm/loader:618:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:624:12)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:643:32)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+
+Node.js v25.2.1

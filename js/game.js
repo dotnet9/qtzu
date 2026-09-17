@@ -1923,7 +1923,21 @@ export class Game {
         }
       }
       if (covered) continue;
-      const hw = size.x / 2, hd = size.z / 2; this.world.colliders.push({ t: 'r', x1: +(ctr.x - hw).toFixed(2), x2: +(ctr.x + hw).toFixed(2), z1: +(ctr.z - hd).toFixed(2), z2: +(ctr.z + hd).toFixed(2), auto: true });
+      const ownR = Math.min(4.5, Math.max(0.9, Math.max(size.x, size.z) * 0.38));
+      let fx = ctr.x, fz = ctr.z;
+      for (const c2 of this.world.colliders) {
+        if (c2.dead || c2.auto) continue;
+        const r2 = c2.t === 'c' ? Number(c2.r) : 0;
+        const cx2 = c2.t === 'c' ? c2.x : (c2.x1 + c2.x2) / 2;
+        const cz2 = c2.t === 'c' ? c2.z : (c2.z1 + c2.z2) / 2;
+        const dd = Math.hypot(fx - cx2, fz - cz2);
+        const minD = r2 + ownR + 0.3;
+        if (dd > 0.01 && dd < minD) { fx += (fx - cx2) / dd * (minD - dd); fz += (fz - cz2) / dd * (minD - dd); }
+      }
+      const dxMv = fx - ctr.x, dzMv = fz - ctr.z;
+      if (Math.abs(dxMv) + Math.abs(dzMv) > 0.05) grp.position.set(grp.position.x + dxMv, grp.position.y, grp.position.z + dzMv);
+      const hw = size.x / 2, hd = size.z / 2;
+      this.world.colliders.push({ t: 'r', x1: +(fx - hw).toFixed(2), x2: +(fx + hw).toFixed(2), z1: +(fz - hd).toFixed(2), z2: +(fz + hd).toFixed(2), auto: true, grp });
     }
   }
 
@@ -1939,8 +1953,8 @@ export class Game {
         Object.assign(wIsl, built, { light: false, full: true });
       }
     }
-    this._autoColliders(wIsl && wIsl.grp);   // 大件碰撞兜底（须在 NPC/蛋落位前）
     this._buildSigns(cur);
+    this._autoColliders(wIsl && wIsl.grp);   // 大件碰撞兜底+推开避让（须在牌子注册后，树才避得开牌子）
     if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st), this.world.colliders);   // 每座城市重建自己的牌子
     for (const isl of this.world.islands || []) if (isl.grp) isl.grp.visible = isl.uid === cur.uid;
     for (const pt of this.pets.all()) {
@@ -2055,6 +2069,7 @@ export class Game {
           nm.scale.set(4.2, 0.94, 1); nm.position.set(0, 4.6, 0); gate.add(nm);
           gate.traverse(o => { o.userData.sign = it; });   // 缺这个：点校门会 fallthrough 成走过去，玩家卡进碰撞体来回晃
           grp.add(gate);
+          this.world.colliders.push({ t: 'c', x: +x.toFixed(2), z: +z.toFixed(2), r: 2.2, fixed: true });   // 校门占位
           this._signList.push({ ...it, x, z });
           const es = { x: x - ux * 1.2 + uz * 0.9, z: z - uz * 1.2 - ux * 0.9 };   // 蛋点偏移随校门缩 1/2
           const esM = this._cityWallMargin(stage, 0.5);
@@ -2066,6 +2081,7 @@ export class Game {
         sign.position.set(x, 0, z);
         sign.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);   // 牌面朝向城中心（纯Y旋转，lookAt会翻滚）
         grp.add(sign);
+        this.world.colliders.push({ t: 'c', x: +x.toFixed(2), z: +z.toFixed(2), r: 1.2, fixed: true });   // 立牌占位：树的自动摆放会避开
         sign.scale.setScalar(0.7);   // 立牌同步城市缩放微调
         this._signList.push({ ...it, x, z });
         if (this._signEggSpots.length < 26) {

@@ -1,23 +1,25 @@
-﻿node : file:///E:/github/Apps/qtzu/js/world.js:236
-所在位置 C:\Users\liu64\AppData\Local\Temp\genie-ps-1789625029454-m32f1s.ps1:813 字符: 74
+﻿node : node:internal/modules/package_json_reader:316
+所在位置 C:\Users\liu64\AppData\Local\Temp\genie-ps-1789626876708-e0x27u.ps1:813 字符: 74
 + ... oding utf8 scripts\tmp-mod.mjs; node scripts\tmp-mod.mjs 2>&1 | Out-F ...
 +                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (file:///E:/gith...js/world.js:236:String) [], RemoteException
+    + CategoryInfo          : NotSpecified: (node:internal/m...json_reader:316:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
  
-  if (isl && isl.key === 'chengdu') return chengduTexture(1024);
-                                    ^^^^^^
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
 
-SyntaxError: Illegal return statement
-    at compileSourceTextModule (node:internal/modules/esm/utils:305:16)
-    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:111:18)
-    at #translate (node:internal/modules/esm/loader:467:20)
-    at afterLoad (node:internal/modules/esm/loader:523:29)
-    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:528:12)
-    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:565:36)
-    at afterResolve (node:internal/modules/esm/loader:618:52)
-    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:624:12)
-    at ModuleJob.syncLink (node:internal/modules/esm/module_job:143:33)
-    at ModuleJob.link (node:internal/modules/esm/module_job:228:17)
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'three' imported from E:\github\Apps\qtzu\js\world.js
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:316:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:858:18)
+    at defaultResolve (node:internal/modules/esm/resolve:990:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:712:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:729:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:758:52)
+    at #resolve (node:internal/modules/esm/loader:694:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:614:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:143:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
 
 Node.js v25.2.1

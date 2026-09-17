@@ -1279,6 +1279,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       const polySim = sim;   // 钳制统一用简化轮廓（与 game._clampCityPos 完全同一条边界）
       // 各地标原型的占地半径（未缩放；cityLandmark 里的最大外扩尺寸）
       const LM_HALF = { gate: 3.6, tower: 1.7, wall: 7.2, panda: 3.2, ice: 2.4, palm: 3.6, dome: 2.8, mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4, 'uni-gate': 3.4 };
+      const lmSpots = [[0, 0]];
       const lms = (isl.level && isl.level.landmarks && isl.level.landmarks.length)
         ? isl.level.landmarks : [isl.landmark, 'pavilion'];
       const lay = cityLayout(key);   // 本城布局个性（方向/风格/石台位，确定性）
@@ -1293,6 +1294,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         const sc = i === 0 ? 1 : 0.78;
         let lx = Math.cos(a) * rr, lz = Math.sin(a) * rr;
         if (i > 0 && polySim) [lx, lz] = clampPoly(polySim, lx, lz, bw + (LM_HALF[type] || 2.8) * sc + 0.3);
+        lmSpots.push([lx, lz]);
         const lm = cityLandmark(type, color);
         lm.position.set(lx, 0, lz);
         lm.scale.setScalar(sc);
@@ -1435,6 +1437,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           return ins;
         };
         const placed = [];
+        const lmHalf = 3.5;   // 绿化块在 forEach 外拿不到单地标 type，用最大占地保守避让
+        const lmFar = (px, pz) => lmSpots.every(q => Math.hypot(q[0] - px, q[1] - pz) > lmHalf * 0.9 + 2.2);
         // margin：采样点钳到离边界至少这么远（墙厚+自身半径），树丛/高楼不再嵌进院墙
         const spot = (dMin, dMax, gap, margin) => {
           for (let k = 0; k < 40; k++) {
@@ -1443,6 +1447,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             if (!inPt(px, pz)) continue;
             if (polySim) [px, pz] = clampPoly(polySim, px, pz, margin);
             if (placed.some(q => Math.hypot(q[0] - px, q[1] - pz) < gap)) continue;
+            if (!lmFar(px, pz)) continue;   // 树不贴地标/牌坊底座
             // 迎宾主街留空：返回台（本地 z=-2.5）到中心主地标之间不撒树/高楼，一眼看穿城
             if (Math.abs(px) < r * 0.05 && pz < 0.35 && pz > -r * 0.95) continue;
             placed.push([px, pz]);

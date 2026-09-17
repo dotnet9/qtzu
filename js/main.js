@@ -237,4 +237,4 @@ import('./i18n.js').then(m => m.initI18n()).catch(() => {}).then(() => {
     username: save.getUsername(), password: save.getPassword(), registered: save.isRegistered(),
     semKey: save.getBookSem(), gender: save.getGender(), city: save.getHomeCity(),
   }, { mode: save.getUsername() ? 'login' : 'register', kickMsg });
-});
+}).catch(e => { console.error('BEGIN-FAIL', e && e.stack || e); const el = document.querySelector('#loading .loading-text'); if (el) { el.textContent = '启动失败：' + String(e && e.message || e).slice(0, 80); el.style.fontSize = '13px'; el.style.color = '#C0392B'; } });

@@ -1,0 +1,19 @@
+﻿node : node:internal/modules/run_main:107
+所在位置 C:\Users\liu64\AppData\Local\Temp\genie-ps-1789626799671-awheji.ps1:813 字符: 213
++ ... s',c);console.log('wait 25s')" ; node scripts\tmp-st.mjs 2>&1 | Out-F ...
++                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (node:internal/modules/run_main:107:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: Cannot read properties of undefined (reading 'colliders')
+    at eval (eval at evaluate (:311:30), <anonymous>:4:24)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at E:\github\Apps\qtzu\scripts\tmp-st.mjs:9:24 {
+  log: []
+}
+
+Node.js v25.2.1
