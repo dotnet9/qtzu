@@ -3228,6 +3228,15 @@ export class Game {
     const ndc = new THREE.Vector2((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
     const ray = new THREE.Raycaster();
     ray.setFromCamera(ndc, this.camera);
+    // 城市中心欢迎牌：点「欢迎来 XX」开城市介绍卡
+    if (this.cityTour) {
+      const wIsl = (this.world.islands || []).find(w => w.uid === this._currentStage().uid);
+      const sign = wIsl && wIsl.grp && wIsl.grp.getObjectByName('welcome-sign');
+      if (sign) {
+        const wh = ray.intersectObject(sign, false);
+        if (wh.length) { sfx.pop(); this._openCityIntro(); return; }
+      }
+    }
     // NPC：点小人聊天（气泡翻页由 DOM 气泡上的箭头按钮接管）
     if (this.npcs && this.npcs.npcs.length) {
       const nh = ray.intersectObjects(this.npcs.group.children, true);

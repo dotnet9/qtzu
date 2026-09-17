@@ -1247,7 +1247,27 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         lm.rotation.y = -a + Math.PI;
         lm.traverse(o => { if (o.isMesh) o.castShadow = true; });
         grp.add(lm);
-        colC(cx + lx, cz + lz, i === 0 ? 1.4 : 1.0);
+        colC(cx + lx, cz + lz, i === 0 ? Math.max(1.4, (LM_HALF[type] || 2.8) * 0.85 * sc) : 1.0);
+        if (i === 0 && isl.city) {
+          const cv = document.createElement('canvas');
+          cv.width = 340; cv.height = 124;
+          const nc = cv.getContext('2d');
+          nc.fillStyle = 'rgba(255,253,248,.95)';
+          nc.strokeStyle = '#FF9FBE'; nc.lineWidth = 6;
+          if (nc.roundRect) { nc.beginPath(); nc.roundRect(6, 6, 328, 112, 26); nc.fill(); nc.stroke(); }
+          else nc.fillRect(6, 6, 328, 112);
+          nc.fillStyle = '#B4436F'; nc.textAlign = 'center'; nc.textBaseline = 'middle';
+          nc.font = "900 46px 'Microsoft YaHei', sans-serif";
+          nc.fillText('欢迎来 ' + isl.city.name, 170, 46);
+          nc.fillStyle = '#C4788F'; nc.font = "bold 32px 'Microsoft YaHei', sans-serif";
+          nc.fillText(isl.city.en || '', 170, 94);
+          const wtex = new THREE.CanvasTexture(cv);
+          const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: wtex, transparent: true, depthWrite: false }));
+          spr.name = 'welcome-sign';
+          spr.scale.set(3.4, 1.24, 1);
+          spr.position.set(0, (LM_HALF[type] || 2.8) * 1.75 + 1.1, 0);
+          lm.add(spr);
+        }
       });
       // 观景石台：天空词蛋放上面，跳上去够得着——位置按城市个性旋转/偏移（game._cityPos sky 同参同钳）
       let px = Math.cos(lay.perchA) * r * lay.perchD, pz = Math.sin(lay.perchA) * r * lay.perchD;
