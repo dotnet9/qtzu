@@ -1881,7 +1881,7 @@ export class Game {
   // 自动碰撞兜底：扫岛内大件装饰（建筑/树），中心未被任何碰撞体覆盖的注册圆形碰撞体。
   // 装饰生成只给部分元素手写碰撞体，其余大件会被人穿模（穿塔 bug）——这里全量兜底。
   // 幂等：已覆盖的组跳过，重复调用无副作用。
-  _autoColliders(rootGrp) {
+  _autoColliders(rootGrp) {    this.world.colliders = this.world.colliders.filter(c => !c.auto);   // 重建：清掉上一轮自动碰撞体（旧版圆形→矩形升级）
     if (!rootGrp) return;
     const box = new THREE.Box3(), size = new THREE.Vector3(), ctr = new THREE.Vector3();
     const groups = [];
@@ -1910,7 +1910,7 @@ export class Game {
         }
       }
       if (covered) continue;
-      const rr = Math.min(4.5, Math.max(0.9, maxDim * 0.38)); this.world.colliders.push({ t: 'c', x: +ctr.x.toFixed(2), z: +ctr.z.toFixed(2), r: +rr.toFixed(2), auto: true });
+      const hw = size.x / 2, hd = size.z / 2; this.world.colliders.push({ t: 'r', x1: +(ctr.x - hw).toFixed(2), x2: +(ctr.x + hw).toFixed(2), z1: +(ctr.z - hd).toFixed(2), z2: +(ctr.z + hd).toFixed(2), auto: true });
     }
   }
 
