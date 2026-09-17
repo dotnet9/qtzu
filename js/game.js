@@ -764,6 +764,7 @@ export class Game {
     ui.setLeaderboardPlayer({ username: save.getUsername(), score: save.getScore() });
     ui.updatePlayerScore(save.getScore(), save.getSessionScore());
     this._refreshDailyBanner();
+    this._autoColliders(this.scene);   // 全场景大件碰撞兜底（含所有已精建岛）
     if (!save.getIntro()) {
       const st0 = this._currentStage();
       setTimeout(() => ui.playIntro(() => { save.setIntro(true); this._introDoneAt = Date.now(); }, this.isTouch, BOOK_LABEL(this.sem), this.total,
@@ -1877,6 +1878,42 @@ export class Game {
     return { x: st.cx, z: st.cz };
   }
   // 换城：切舞台显隐、词宠全家迁城、玩家落在新城
+  // 自动碰撞兜底：扫岛内大件装饰（建筑/树），中心未被任何碰撞体覆盖的注册圆形碰撞体。
+  // 装饰生成只给部分元素手写碰撞体，其余大件会被人穿模（穿塔 bug）——这里全量兜底。
+  // 幂等：已覆盖的组跳过，重复调用无副作用。
+  _autoColliders(rootGrp) {
+    if (!rootGrp) return;
+    const box = new THREE.Box3(), size = new THREE.Vector3(), ctr = new THREE.Vector3();
+    const groups = [];
+    const collect = o => { for (const c of o.children) { if (c.isObject3D) { groups.push(c); collect(c); } } };
+    collect(rootGrp);
+    const done = new Set();
+    for (const grp of groups) {
+      if (done.has(grp.uuid) || !grp.visible) continue;
+      let meshes = 0;
+      grp.traverse(m => { if (m.isMesh) meshes++; });
+      if (meshes < 2) continue;                                  // 单 mesh：地表/小件
+      box.setFromObject(grp);
+      box.getSize(size); box.getCenter(ctr);
+      const maxDim = Math.max(size.x, size.z);
+      if (maxDim < 2.2 || maxDim > 30 || size.y < 1.2) continue; // 小件不挡；树林整组/贴地件跳过
+      const key = ctr.x.toFixed(1) + ',' + ctr.z.toFixed(1) + ',' + maxDim.toFixed(0);
+      if (done.has(key)) continue;
+      done.add(key);
+      let covered = false;
+      for (const c of this.world.colliders) {
+        if (c.dead) continue;
+        if (c.t === 'c') { if (Math.hypot(ctr.x - c.x, ctr.z - c.z) < (c.r || 0) + 1.4) { covered = true; break; } }
+        else {
+          const cx = Math.max(c.x1, Math.min(ctr.x, c.x2)), cz = Math.max(c.z1, Math.min(ctr.z, c.z2));
+          if (Math.hypot(ctr.x - cx, ctr.z - cz) < 1.4) { covered = true; break; }
+        }
+      }
+      if (covered) continue;
+      const rr = Math.min(4.5, Math.max(0.9, maxDim * 0.38)); this.world.colliders.push({ t: 'c', x: +ctr.x.toFixed(2), z: +ctr.z.toFixed(2), r: +rr.toFixed(2), auto: true });
+    }
+  }
+
   _switchCity(stageIdx) {
     const cur = this.islands[stageIdx];
     if (!cur) return;
@@ -1889,6 +1926,7 @@ export class Game {
         Object.assign(wIsl, built, { light: false, full: true });
       }
     }
+    this._autoColliders(wIsl && wIsl.grp);   // 大件碰撞兜底（须在 NPC/蛋落位前）
     this._buildSigns(cur);
     if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st), this.world.colliders);   // 每座城市重建自己的牌子
     for (const isl of this.world.islands || []) if (isl.grp) isl.grp.visible = isl.uid === cur.uid;
@@ -3724,6 +3762,7 @@ export class Game {
         if (this.world && this.world.buildIsland) {
           const built = this.world.buildIsland(this.islands[i]);
           if (built && built.grp) {
+            this._autoColliders(built.grp);
             this.islands[i].grp = built.grp;
             // buildIsland 会把建好的岛从 world.islands 弹出；不登记回去的话，
             // 换城显隐循环管不到它（离开这座城它仍渲染），重进还会再建一套副本
