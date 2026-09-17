@@ -737,7 +737,7 @@ export class Game {
     // 位置存档：每 3 秒 + 离开页面时
     setInterval(() => this._savePosition(), 3000);
     addEventListener('pagehide', () => this._savePosition());
-    document.addEventListener('visibilitychange', () => { if (document.hidden) this._savePosition(); });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) this._savePosition(); else this._resumeFix = true; });
   }
 
   _savePosition() {
@@ -812,6 +812,11 @@ export class Game {
   // ================= 主循环 =================
   _loop() {
     requestAnimationFrame(() => this._loop());
+    // 页面隐藏（切后台/最小化）时跳过渲染与逻辑：不烧 GPU/电量；
+    // 恢复时 Three.Clock 会自己把 getDelta 算成"离开时长"，被下方 clamp 掐到 0.05，
+    // 但基于 Date.now() 的倒计时（事件/喝彩锁/BGM）会瞬间快进，所以恢复时统一重排时钟
+    if (document.hidden) { this.clock.getDelta(); return; }
+    if (this._resumeFix) { this.clock.getDelta(); this._resumeFix = false; }
     this._fpsWatch();
     const dt = Math.min(this.clock.getDelta(), 0.05);
     const t = this.clock.elapsedTime;
