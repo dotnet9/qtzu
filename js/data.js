@@ -61,11 +61,12 @@ export async function loadCityIndex() {
 // }
 export async function loadCityData(cityId) {
   const base = `cities/${cityId}/`;
-  const [city, unis, foods, scenes] = await Promise.all([
+  const [city, unis, foods, scenes, terrain] = await Promise.all([
     loadJson(base + 'city.json'),
     loadJson(base + 'universities.json'),
     loadJson(base + 'foods.json'),
     loadJson(base + 'scenes.json'),
+    loadJson(base + 'terrain.json'),   // 微缩分层地形配置（可选，缺文件=null 走平地）
   ]);
   if (!city) return null;   // 城市主体都没有：调用方走兜底路线
   const out = {
@@ -74,6 +75,7 @@ export async function loadCityData(cityId) {
     unis: (unis && unis.unis) || [],
     foods: (foods && foods.items) || [],
     scenes: (scenes && scenes.items) || [],
+    terrain: terrain || null,
   };
   // 纯英模式：叠加英文叙述覆盖层（按索引对齐；缺文件/缺条目回退中文）
   if (getLang() === 'en') {

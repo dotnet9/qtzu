@@ -116,6 +116,7 @@ export class Game {
         shape,
         landmark: c.landmark, decos: c.variants.map(v => DECO_EMOJI[v.deco] || '🏮'),
         startChapter: i, unis: c.unis, city: c, level: lv,
+        terrain: c.terrain || null,   // 微缩分层地形配置（data/cities/<id>/terrain.json，可选）
         chapterName: c.name,
       };
     });
@@ -314,7 +315,7 @@ export class Game {
 
   _initEntities() {
     this.eggs = new EggManager(this.scene);
-    this.pets = new PetManager(this.scene);
+    this.pets = new PetManager(this.scene, (x, z) => this._groundY(x, z));
     if (this.cityTour) this._initCityNPCs();   // 城市牌子先立好，蛋才有t('x.g253')可依
     this._spawnProgress();
     this.planted = save.hasGate('planted');
@@ -336,7 +337,7 @@ export class Game {
   _initCityNPCs() {
     this._buildSigns(this._currentStage());
     this.npcs = new NPCManager(this.scene);
-    this.npcs.spawnForCity(this._currentStage(), (q, st) => this._clampCityPos(q, st), this.world.colliders);
+    this.npcs.spawnForCity(this._currentStage(), (q, st) => this._clampCityPos(q, st), this.world.colliders, (x, z) => this._groundY(x, z));
     // NPC 复习考官：错词本里有没抓回的淘气词时，NPC 随机请孩子读词卡（被需要感里的错词复习）
     this.npcs.onReview = npc => this._npcReview(npc);
     import('./data.js').then(m => m.loadJson('knowledge.json')).then(k => {
@@ -381,8 +382,9 @@ export class Game {
           for (let k = 0; k < spots.length && used.has(si); k++) si = (si + 1) % spots.length;
           used.add(si);
           const spot = this._eggSpot(spots[si].x, spots[si].z);   // 牌旁点若嵌进碰撞体/城界，内移到可站位
-          egg.group.position.set(spot.x, 0, spot.z);
-          egg.baseY = 0;
+          const gy1 = this._groundY(spot.x, spot.z);   // 微缩地形：蛋贴山坡
+          egg.group.position.set(spot.x, gy1, spot.z);
+          egg.baseY = gy1;
         }
       } else if (!this.cityTour && this._pendingGateWord(w.id)) {
         if (this.cityTour) {
@@ -1955,7 +1957,7 @@ export class Game {
     }
     this._buildSigns(cur);
     this._autoColliders(wIsl && wIsl.grp);   // 大件碰撞兜底+推开避让（须在牌子注册后，树才避得开牌子）
-    if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st), this.world.colliders);   // 每座城市重建自己的牌子
+    if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st), this.world.colliders, (x, z) => this._groundY(x, z));   // 每座城市重建自己的牌子
     for (const isl of this.world.islands || []) if (isl.grp) isl.grp.visible = isl.uid === cur.uid;
     for (const pt of this.pets.all()) {
       const c2 = this._cityPos(pt.word, cur);
@@ -2060,7 +2062,7 @@ export class Game {
         placedSigns.push({ x, z });
         if (it.type === 'uni') {
           const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name, it.img);
-          gate.position.set(x, 0, z);
+          gate.position.set(x, this._groundY(x, z), z);   // 微缩地形：校门贴山坡
           gate.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);
           gate.scale.setScalar(0.5);   // 校门同步城市缩 1/2（名牌 sprite 为子对象自动跟随）
           const nm = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -2078,7 +2080,7 @@ export class Game {
           return;
         }
         const sign = this._makeSign(it, colorOf[it.type]);
-        sign.position.set(x, 0, z);
+        sign.position.set(x, this._groundY(x, z), z);   // 微缩地形：立牌贴山坡
         sign.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);   // 牌面朝向城中心（纯Y旋转，lookAt会翻滚）
         grp.add(sign);
         this.world.colliders.push({ t: 'c', x: +x.toFixed(2), z: +z.toFixed(2), r: 1.2, fixed: true });   // 立牌占位：树的自动摆放会避开
@@ -2571,7 +2573,7 @@ export class Game {
     egg.group.position.set(b.x, b.top, b.z);
     ui.toast(t('y.40', { a0: w.en }), 3600);
     this.addTween(0.5, k => { egg.baseY = b.top * (1 - k * k); }, () => {
-      egg.baseY = 0;
+      egg.baseY = this._groundY(b.x, b.z);   // 微缩地形：机关蛋落回坡面而不是 y=0
       sfx.good();
       this._puff(0xbfe3f5);
     });
@@ -2590,16 +2592,24 @@ export class Game {
     return best;
   }
 
-  // 脚下支撑面高度：地面（0 / 天空岛 14）或位置重合、台面不高于脚边太多的跳跳石
+  // 脚下支撑面高度：地面（0 / 天空岛 14 / 城市微缩地形）或位置重合、台面不高于脚边太多的跳跳石
   _supportAt(x, z) {
     let top = this.onIsle ? 14 : 0;
     if (!this.onIsle) {
+      top = Math.max(top, this._groundY(x, z));   // 城市分层地形：台地/山坡可行走（走出边缘自然下落）
       const y = this.player.position.y;
       for (const pf of this.world.platforms || []) {
         if (Math.hypot(x - pf.x, z - pf.z) <= pf.r + 0.15 && pf.top <= y + 0.3 && pf.top > top) top = pf.top;
       }
     }
     return top;
+  }
+
+  // 当前城市地形高度（无地形配置的城市恒为 0）：world.cityBounds[key].terrainHeight 由 world.js 挂载
+  _groundY(x, z) {
+    const st = this._currentStage();
+    const b = this.world.cityBounds && this.world.cityBounds[st.key];
+    return (b && b.terrainHeight) ? b.terrainHeight(x, z) : 0;
   }
 
   // 脚下的小尘土
@@ -3944,6 +3954,7 @@ export class Game {
           cx: Math.cos(a) * dist, cz: Math.sin(a) * dist, r: rr, shape,
           landmark: c.landmark, decos: c.variants.map(v => DECO_EMOJI[v.deco] || '🏮'),
           startChapter: this.chapters.length, unis: c.unis, city: c, level: lv,
+          terrain: c.terrain || null,
           chapterName: c.name + t('x.g396'), bonus: true,
         });
         // 奖励关：复习 8 + 新词 4（词池里未学过的），seed=昵称+册+城市，稳定可重玩

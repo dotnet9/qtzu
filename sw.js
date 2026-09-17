@@ -6,7 +6,7 @@
 //   音频 mp3                          → 缓存优先 + 按字节限量（边玩边攒，只留最近听过的）
 //   大模型 onnx/wasm                     → 缓存优先 + 独立大文件桶（不受音频上限挤兑，也不挤占音频）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v16';   // v12：去掉 skipWaiting/claim——新版本不再立即接管页面，杜绝「靠岸两次」（配合 version.js 更新提示）
+const VER = 'qtzu-pwa-v17';   // v17：成都微缩分层地形（terrain.js 新模块必须让旧缓存失效，防 import 404 白屏）；game 层牌子/校门/蛋贴山坡
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动

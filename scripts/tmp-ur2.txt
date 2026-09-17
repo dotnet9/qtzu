@@ -1,5 +1,0 @@
-﻿RESULT {
- "errs": [],
- "game": true,
- "hasWorld": true
-}

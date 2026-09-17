@@ -178,10 +178,11 @@ export class NPCManager {
     this._pages = null;
     this._anchorNpc = null;
   }
-  spawnForCity(stage, clampFn, colliders) {
+  spawnForCity(stage, clampFn, colliders, heightFn = null) {
     this.clear();
     this._colliders = colliders || [];
     this._clampFn = clampFn || null;
+    this._hFn = heightFn || null;   // 城市微缩地形寻高（game.js 注入；null=平地）
     this._stage = stage;
     const isTouch = matchMedia('(pointer: coarse)').matches;
     const count = isTouch ? 8 : 14;
@@ -196,7 +197,7 @@ export class NPCManager {
       const a = (i / count) * Math.PI * 2 + 0.4;
       const p = { x: stage.cx + Math.cos(a) * stage.r * 0.55, z: stage.cz + Math.sin(a) * stage.r * 0.55 };
       if (clampFn) { const q = { x: p.x, z: p.z }; clampFn(q, stage); p.x = q.x; p.z = q.z; }
-      group.position.set(p.x, 0, p.z);
+      group.position.set(p.x, this._hFn ? this._hFn(p.x, p.z) : 0, p.z);
       this.group.add(group);
       this.npcs.push({
         group, legL, legR,
@@ -237,6 +238,7 @@ export class NPCManager {
         n.legL.position.z = Math.sin(now * 8) * 0.09;
         n.legR.position.z = -Math.sin(now * 8) * 0.09;
       }
+      if (this._hFn) n.group.position.y = this._hFn(n.group.position.x, n.group.position.z);
       this._pushOut(n.group.position);          // 每帧无条件推出：静止时也不许待在墙里
       const d = Math.hypot(playerPos.x - n.group.position.x, playerPos.z - n.group.position.z);
       if (d < nd) { nd = d; nearest = n; }

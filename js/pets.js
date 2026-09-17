@@ -131,11 +131,14 @@ export class EggManager {
 
 // ---------- 已孵化的词宠 ----------
 export class PetManager {
-  constructor(scene) {
+  constructor(scene, heightFn = null) {
     this.scene = scene;
+    this._hFn = heightFn;   // 城市微缩地形寻高（world.js/game.js 注入；null=平地）
     this.pets = new Map();
     this.hearts = [];   // 飘起的爱心特效
   }
+  // 词宠脚下贴住地形（城市有分层地形时随坡起伏，平地恒 0）
+  _groundY(x, z) { return this._hFn ? this._hFn(x, z) : 0; }
 
   spawn(word, posOverride = null) {
     const g = buildPet(word.pet);
@@ -266,9 +269,10 @@ export class PetManager {
       }
       // 溜达
       if (p.jumping) {
+        const baseY = p.baseY + this._groundY(p.group.position.x, p.group.position.z);
         p.jt += dt;
-        p.group.position.y = p.baseY + Math.abs(Math.sin(p.jt * 8)) * 0.35;
-        if (p.jt > 1.4) { p.jumping = false; p.group.position.y = p.baseY; }
+        p.group.position.y = baseY + Math.abs(Math.sin(p.jt * 8)) * 0.35;
+        if (p.jt > 1.4) { p.jumping = false; p.group.position.y = baseY; }
       } else {
         // 饿了的词宠会主动跑到小主人身边讨吃的（8 米内才追，追到 2.2 米内停下）。
         // 全城都饿的话只让最近的 2 只追：集体围上来冒泡泡太吓人，其余的在家等着
@@ -290,7 +294,7 @@ export class PetManager {
           p.group.position.x += dx / d * sp * dt;
           p.group.position.z += dz / d * sp * dt;
           p.group.rotation.y = Math.atan2(dx, dz);
-          p.group.position.y = p.baseY + Math.abs(Math.sin(p.t * 7)) * 0.05;
+          p.group.position.y = p.baseY + this._groundY(p.group.position.x, p.group.position.z) + Math.abs(Math.sin(p.t * 7)) * 0.05;
         }
       }
       // 饿了的气泡呼吸

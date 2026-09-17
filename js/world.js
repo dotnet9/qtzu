@@ -4,6 +4,7 @@ import { PROPS, badge, letterTexture } from './models.js';
 import { ISLANDS } from './words.js';
 import { buildUniGate } from './uni-gate-models.js';
 import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
+import { createCityTerrain } from './terrain.js';
 
 const M = (color, o = {}) => new THREE.MeshStandardMaterial({
   color, roughness: o.rough ?? 0.9, metalness: 0,
@@ -989,6 +990,10 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     const bw = CITY_WALL_BW(r);   // 院墙管径：所有贴边元素按它留出墙厚
     let sim = null;               // 简化轮廓：钳制/碰撞专用低模（原精度留给渲染）
     const grp = new THREE.Group();
+    // 微缩分层地形高度钩子：有 terrain 配置的城市 TY=寻高、Y=装饰落点贴地；
+    // 无配置城市 TY=null、Y 恒等于 base（一切摆放逻辑与从前完全一致）
+    let TY = null;
+    const Y = (x, z, base = 0) => (TY ? TY(x, z) + base : base);
     if (!forceFull && focus >= 0 && si !== focus) {
       // 只精建当前城：相邻精建岛在部分渲染器（IDE 预览/软渲染）上贴图会丢失显白块，且白岛叠在当前城边造成"能走过去"的错觉
       const vr = r * 0.45;   // 占位岛缩小一圈，避免邻岛在海上挤成绿大陆
@@ -1006,21 +1011,30 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       const coarse = simplifyPoly(pts, 2.5);      // 更粗一级：快速通道测距（远离边界时免精确钳）
       const xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
       const minX = Math.min(...xs), maxX = Math.max(...xs), minZ = Math.min(...zs), maxZ = Math.max(...zs);
-      const shape = new THREE.Shape(pts.map(p => new THREE.Vector2(p[0], p[1])));
-      const geo = new THREE.ShapeGeometry(shape, 24);
-      // 顶面贴图：UV 按包围盒归一化，环道/街纹理才能对上
-      // 注意：ShapeGeometry 顶点是 (x, y, 0)，多边形的"z"存在 y 分量里
-      const uv = geo.attributes.uv, pos = geo.attributes.position;
-      for (let i = 0; i < uv.count; i++) {
-        uv.setXY(i, (pos.getX(i) - minX) / (maxX - minX), 1 - (pos.getY(i) - minZ) / (maxZ - minZ));
+      // 微缩分层地形（data/cities/<id>/terrain.json 有配置的城市）：真 3D 高度场替代平面贴图
+      let terrain = null;
+      if (isl.terrain) {
+        terrain = createCityTerrain({ pts, cfg: isl.terrain });
+        grp.add(terrain.group);
+        TY = (x, z) => terrain.heightAtLocal(x, z);
       }
-      const top0 = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: cityIslandTexture(color, isl.level, pts, isl), side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }));
-      // 旋转 +90°：轮廓 y（=世界 z）原样落位。此前用 -90° 会把地面南北镜像——
-      // 不对称城市（乌鲁木齐等）地面画到界外、城内露出台纸白块，树全站在"空白"上
-      top0.rotation.x = Math.PI / 2;
-      top0.position.y = 0.02;
-      top0.receiveShadow = true;
-      grp.add(top0);
+      if (!terrain) {
+        const shape = new THREE.Shape(pts.map(p => new THREE.Vector2(p[0], p[1])));
+        const geo = new THREE.ShapeGeometry(shape, 24);
+        // 顶面贴图：UV 按包围盒归一化，环道/街纹理才能对上
+        // 注意：ShapeGeometry 顶点是 (x, y, 0)，多边形的"z"存在 y 分量里
+        const uv = geo.attributes.uv, pos = geo.attributes.position;
+        for (let i = 0; i < uv.count; i++) {
+          uv.setXY(i, (pos.getX(i) - minX) / (maxX - minX), 1 - (pos.getY(i) - minZ) / (maxZ - minZ));
+        }
+        const top0 = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: cityIslandTexture(color, isl.level, pts, isl), side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }));
+        // 旋转 +90°：轮廓 y（=世界 z）原样落位。此前用 -90° 会把地面南北镜像——
+        // 不对称城市（乌鲁木齐等）地面画到界外、城内露出台纸白块，树全站在"空白"上
+        top0.rotation.x = Math.PI / 2;
+        top0.position.y = 0.02;
+        top0.receiveShadow = true;
+        grp.add(top0);
+      }
       // CITY_FRAME：卡通长城——青灰砖直墙 + 墙顶垛口 + 烽火台（可点火彩蛋，game 层驱动）。
       // 只做装饰、无碰撞体：玩家/物件边界仍走 game 的钳制公式；直墙半厚 1.0 比旧圆管瘦，
       // 视觉上更通透，窄颈处也显得更好走。保留墙根渐变过渡带（改为灰绿色调配砖墙）。
@@ -1237,7 +1251,11 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         }
       }
       world.cityBounds = world.cityBounds || {};
-      world.cityBounds[key] = { pts, sim, coarse, minX, maxX, minZ, maxZ, cx, cz };
+      world.cityBounds[key] = {
+        pts, sim, coarse, minX, maxX, minZ, maxZ, cx, cz,
+        // 微缩地形寻高（世界坐标）：game._supportAt/_groundY 用它让玩家/NPC/词宠走上台地山坡
+        terrainHeight: terrain ? (wx, wz) => terrain.heightAtLocal(wx - cx, wz - cz) : null,
+      };
     } else {
       // 兜底：无轮廓时保持圆形岛身
       const top = new THREE.Mesh(new THREE.CylinderGeometry(r, r * 0.92, 6, 26),
@@ -1296,7 +1314,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         if (i > 0 && polySim) [lx, lz] = clampPoly(polySim, lx, lz, bw + (LM_HALF[type] || 2.8) * sc + 0.3);
         lmSpots.push([lx, lz]);
         const lm = cityLandmark(type, color);
-        lm.position.set(lx, 0, lz);
+        lm.position.set(lx, Y(lx, lz), lz);
         lm.scale.setScalar(sc);
         lm.rotation.y = -a + Math.PI;
         lm.traverse(o => { if (o.isMesh) o.castShadow = true; });
@@ -1391,9 +1409,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       }
       let px = Math.cos(lay.perchA) * r * lay.perchD, pz = Math.sin(lay.perchA) * r * lay.perchD;
       if (polySim) [px, pz] = clampPoly(polySim, px, pz, bw + 1.2);   // 顶面 2.1 宽：边距=墙厚+半宽
-      box(grp, 1.6, 3.2, 1.6, '#C8B898', px, 1.6, pz);
-      box(grp, 2.1, 0.3, 2.1, '#D8CCA8', px, 3.3, pz);
-      colTop(cx + px, cz + pz, 1.15, 3.45);
+      box(grp, 1.6, 3.2, 1.6, '#C8B898', px, Y(px, pz, 1.6), pz);
+      box(grp, 2.1, 0.3, 2.1, '#D8CCA8', px, Y(px, pz, 3.3), pz);
+      colTop(cx + px, cz + pz, 1.15, Y(px, pz, 3.45));
       // 中英文城市名牌：已取消常驻 3D 名牌（城市名由顶栏胶囊与介绍卡表达，拉远后牌面过大不协调）
       // 特产装饰 emoji 撒一圈（随到访版本的城市特色；初始角按城市个性旋转）
       (isl.decos || ['🏮']).forEach((em, i) => {
@@ -1402,7 +1420,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         if (polySim) [dx2, dz2] = clampPoly(polySim, dx2, dz2, bw + 0.5);
         const s = new THREE.Sprite(letterTexture(em, '#FFFDF4', '#6B5844'));
         s.scale.setScalar(0.9);
-        s.position.set(dx2, 0.6, dz2);
+        s.position.set(dx2, Y(dx2, dz2, 0.6), dz2);
         grp.add(s);
       });
       // 手作城市记忆点：layouts.json 逐城摆放的专属装饰（a=方向角 d=半径系数，坐标随城半径缩放）
@@ -1412,7 +1430,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         if (polySim) [px2, pz2] = clampPoly(polySim, px2, pz2, bw + 0.5);
         const s = new THREE.Sprite(letterTexture(p.emoji, '#FFFDF4', '#6B5844'));
         s.scale.setScalar(p.scale || 1.15);
-        s.position.set(px2, p.y || 0.75, pz2);
+        s.position.set(px2, Y(px2, pz2, p.y || 0.75), pz2);
         grp.add(s);
       }
       // 花丛点缀：环路四个象限（随城市个性旋转）
@@ -1421,7 +1439,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         let fz = -dx * r * Math.sin(lay.baseA) + dz * r * Math.cos(lay.baseA);
         if (polySim) [fx, fz] = clampPoly(polySim, fx, fz, bw + 0.7);
         const fp = PROPS.flowerpatch();
-        fp.position.set(fx, 0, fz);
+        fp.position.set(fx, Y(fx, fz, 0), fz);
         grp.add(fp);
       }
 ﻿      // 城市绿化+高楼：内部撒树丛/草丛（装饰不碰撞），中环带立低模高楼（带碰撞）
@@ -1466,7 +1484,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           else if (t2 < 0.55) obj = PROPS.bush(1.1 + rn() * 0.7);
           else obj = PROPS.tree(false);
           obj.scale.setScalar(1.1 + rn() * 0.7);
-          obj.position.set(sp[0], 0, sp[1]);
+          obj.position.set(sp[0], Y(sp[0], sp[1], 0), sp[1]);
           obj.rotation.y = rn() * 3;
           obj.traverse(o => { if (o.isMesh) o.castShadow = true; });
           grp.add(obj);
@@ -1481,7 +1499,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           box(tower, w, h, w, ['#D8E3EC', '#E8DFD2', '#CFE0D8', '#E3D3C2'][i % 4], 0, h / 2, 0);
           box(tower, w * 1.05, 0.5, w * 1.05, '#B9C8D4', 0, h, 0);
           for (let fy = 1.2; fy < h - 0.6; fy += 1.4) box(tower, w * 0.86, 0.5, w * 0.86, 'rgba(160,200,230,1)', 0, fy, 0);
-          tower.position.set(sp[0], 0, sp[1]);
+          tower.position.set(sp[0], Y(sp[0], sp[1], 0), sp[1]);
           tower.rotation.y = rn() * 3;
           tower.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
           grp.add(tower);
@@ -1504,7 +1522,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       else if (isl.style === 'house') obj = PROPS.bush(0.9 + Math.random() * 0.4);
       else obj = PROPS.tree(false);
       // 装饰树收进岛组（局部坐标）：整岛可一键显隐（远处雾里看不清就隐藏，省 draw call）
-      obj.position.set(x - cx, 0, z - cz);
+      obj.position.set(x - cx, Y(x - cx, z - cz, 0), z - cz);
       obj.rotation.y = Math.random() * 3;
       obj.traverse(o => { if (o.isMesh) o.castShadow = true; });
       grp.add(obj);
@@ -1534,9 +1552,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       };
       const [wlx, wlz, wwx, wwz] = put(5, -6.5);
       const [blx, blz, bwx, bwz] = put(-5, -6.5);
-      place(grp, PROPS.well(), wlx, wlz, -0.5);
+      place(grp, PROPS.well(), wlx, wlz, -0.5, Y(wlx, wlz, 0));
       colC(wwx, wwz, 0.85);
-      place(grp, PROPS.signboard(), blx, blz, 0.5);
+      place(grp, PROPS.signboard(), blx, blz, 0.5, Y(blx, blz, 0));
       colC(bwx, bwz, 0.7);
       wellPos = { x: wwx, z: wwz };
       boardPos = { x: bwx, z: bwz };
