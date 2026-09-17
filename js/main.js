@@ -74,10 +74,10 @@ function parseShareLink() {
 }
 const SHARE = parseShareLink();
 if (SHARE.city) {
-  if (!save.getUsername() || !save.isRegistered()) {
-    save.setHomeCity(SHARE.city);                 // 新同学：家乡=分享城市=第一关
-    if (SHARE.semKey) save.setBookSem(SHARE.semKey);
-  }
+  // 好友分享链接的 city 是"去朋友家玩"，不是"搬家"：
+  // 注册与否都不改家乡（家乡 = 自己选的首关城市），分享城一律作为本次会话的临时访问。
+  // 未注册新同学也保持默认家乡，避免点一次链接从此永久从朋友城开始。
+  // 存档里只记"拜访过"：_handleShareCity 负责跳到该城（未解锁给提示）
 } else SHARE.city = '';
 async function begin(name, semKey, gender, password, serverScore, token) {
   if (started) return;

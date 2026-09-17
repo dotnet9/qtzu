@@ -2695,8 +2695,11 @@ export class Game {
       }
     }
     // 圆形与矩形碰撞体
+    // 拉远视图（>45，全国/片区视角）时禁用建筑碰撞：远处视角下碰撞体 = 空气墙，
+    // 点了被建筑挡住的位置会一直被推出，孩子会以为地图坏了。拉远时只留世界边界与河流。
+    const farView = this.camDistTarget > 45;
     let hit = false;   // 本帧有推出动作（配合卡死逃逸：目标点在障碍里就走不进去）
-    for (const c of this.world.colliders) {
+    if (!farView) for (const c of this.world.colliders) {
       if (c.dead) continue;                                   // 机关已开，碰撞体作废
       if (c.top !== undefined) {
         // 有台面高度的物件：站上台面不挡；悬空物件（云、天空岛）从底下走过也不挡
@@ -2729,6 +2732,7 @@ export class Game {
           if (trying) bump = bump || (c.top !== undefined && c.top <= 0.9 ? 'rail' : 'wall');
         }
       }
+    }
     }
     // 卡死逃逸：主动移动中被连续推出 0.8 秒 = 目标点在障碍里（老版点击校门的晃动根源），放弃这步
     if (hit && trying) {
