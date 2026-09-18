@@ -1180,7 +1180,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             if (!inPoly(px2, pz2)) continue;
             const sc = 0.8 + rnd() * 0.9;
             m4.makeScale(sc, sc, sc);
-            m4.setPosition(px2, 0.8 * sc, pz2);
+            m4.setPosition(px2, Y(px2, pz2, 0) + 0.8 * sc, pz2);
             trunks.setMatrixAt(ti, m4);
             m4.makeScale(sc, sc, sc);
             m4.setPosition(px2, 1.6 * sc + 0.5 * sc, pz2);
