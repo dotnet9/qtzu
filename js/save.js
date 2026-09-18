@@ -46,6 +46,7 @@ function fresh() {
     dubCount: 0,       // 完成的配音作品数
     streak: { day: '', n: 0, rewarded: {} },  // 连续打卡：day=最后游玩日 n=连击数 rewarded={3:true,7:true} 已领奖的里程碑
     lastQuizDay: '',   // 最近一次错词周测之日（每周日且距上次 ≥7 天才提醒）
+    spotPicks: {},     // 地形采集：<城市id> -> 采集日期（梯田每城每天可采一次）
   };
 }
 
@@ -669,6 +670,16 @@ export function addStars(n) {
 export function spendStars(n) {
   if (getStars() < n) return false;
   data.profile.stars = getStars() - n;
+  save();
+  return true;
+}
+
+// ---------- 地形采集（梯田）----------
+export function hasSpotPick(cityId) { return data.spotPicks?.[cityId] === todayKey(); }
+export function markSpotPick(cityId) {
+  if (hasSpotPick(cityId)) return false;
+  data.spotPicks = data.spotPicks || {};
+  data.spotPicks[cityId] = todayKey();
   save();
   return true;
 }

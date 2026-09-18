@@ -751,6 +751,7 @@ export class Game {
 
   _savePosition() {
     const p = this.player.position;
+    const po = this._currentStage().key;
     save.savePlayer({
       x: +p.x.toFixed(2), y: +p.y.toFixed(2), z: +p.z.toFixed(2),
       yaw: +this.player.rotation.y.toFixed(2), camYaw: +this.camYaw.toFixed(2),
@@ -2404,6 +2405,15 @@ export class Game {
     // 空中保留操控且带一点冲劲：方向键+空格 = 向前跳；骑词宠快 60%
     if (this.sprinting && performance.now() > this._sprintUntil) this.sprinting = false;
     const speed = PLAYER_SPEED * (this.mount ? 1.6 : 1) * (this.onGround ? 1 : 1.38) * (this.sprinting ? 1.55 : 1);
+    // 沙丘滑行：下坡顺势加速、上坡吃力（按配色判定沙色城市）
+    let speed2 = speed;
+    if (moving && this.onGround && this._isDune()) {
+      const gAhead = this._groundY(this.player.position.x + move.x * 1.2, this.player.position.z + move.z * 1.2);
+      const gHere = this._groundY(this.player.position.x, this.player.position.z);
+      const slope = gAhead - gHere;
+      speed2 = speed * (slope < -0.05 ? 1.35 : (slope > 0.05 ? 0.8 : 1));
+    }
+    if (moving) speed2 = speed2;
     if (moving) {
       if (cameraRelative) {
         // 绕 Y 轴转 camYaw（等价于原 applyAxisAngle，不建临时对象）
@@ -2411,14 +2421,26 @@ export class Game {
         const mx = move.x * c + move.z * s, mz = move.z * c - move.x * s;
         move.x = mx; move.z = mz;
       }
-      this.player.position.x += move.x * speed * dt;
-      this.player.position.z += move.z * speed * dt;
+      // 涉水阻挡：水面（河带/湖椭圆）不能走进去，退回原处并提示一次
+      const _px0 = this.player.position.x, _pz0 = this.player.position.z;
+      this.player.position.x += move.x * speed2 * dt;
+      this.player.position.z += move.z * speed2 * dt;
+      if (this.onGround && this._waterAt(this.player.position.x, this.player.position.z) > 0.55) {
+        this.player.position.x = _px0; this.player.position.z = _pz0;
+        this._waterHint = (this._waterHint || 0) - dt;
+        if (this._waterHint <= 0) { this._waterHint = 3.5; ui.toast(t("g.waterEdge"), 1600); }
+      }
       const targetYaw = Math.atan2(move.x, move.z);
       let dy = targetYaw - this.player.rotation.y;
       while (dy > Math.PI) dy -= Math.PI * 2;
       while (dy < -Math.PI) dy += Math.PI * 2;
       this.player.rotation.y += dy * Math.min(1, dt * 12);
       this.walkT += dt * 9;
+      // 雪线以上留脚印：短生命期贴片，走一步留一个（间隔 0.28s）
+      if (this.onGround && this._onSnow(this.player.position.x, this.player.position.z)) {
+        this._fpT = (this._fpT || 0) + dt;
+        if (this._fpT > 0.28) { this._fpT = 0; this._footprint(); }
+      }
     } else this.walkT += dt * 1.5;
     // 跳跃物理：support = 脚下最高的支撑面（地面或跳跳石台面）
     const pp = this.player.position;
@@ -2612,6 +2634,54 @@ export class Game {
     return (b && b.terrainHeight) ? b.terrainHeight(x, z) : 0;
   }
 
+  /* ================= 地形玩法：涉水 / 沙丘滑行 / 雪线脚印 / 山上视野 / 梯田采集 =================
+     高度场取 world.cityBounds[key].terrainField（js/terrain-field.js 的同一份数值）——
+     渲染、寻高、判定同源，不会出现"看着是水、判定是地"。没有地形配置的城市这些效果自动关闭。 */
+  _fieldAt() {
+    const st = this._currentStage();
+    const b = this.world.cityBounds && this.world.cityBounds[st.key];
+    if (!b || !b.terrainField) return null;
+    return { F: b.terrainField, cx: b.cx, cz: b.cz };
+  }
+  _waterAt(x, z) {
+    const f = this._fieldAt();
+    return f ? f.F.waterAt(x - f.cx, z - f.cz) : 0;
+  }
+  // 沙色城市（敦煌/三亚…）按配色判定，不用再加一份数据：沙色带 R 高、B 低
+  _isDune() {
+    const f = this._fieldAt();
+    if (!f) return false;
+    const g0 = (f.F.features.greens || [])[0];
+    return !!g0 && g0[0] > 0.82 && g0[2] < 0.62;
+  }
+  // 雪线以上的地面：留脚印
+  _onSnow(x, z) {
+    const f = this._fieldAt();
+    if (!f) return false;
+    const sr = f.F.features.snowRange;
+    if (!sr || sr[0] > 90) return false;
+    return this._groundY(x, z) >= sr[0];
+  }
+  // 梯田区内的采集点
+  _terraceAt(x, z) {
+    const f = this._fieldAt();
+    if (!f) return null;
+    const T = f.F.features.terrace;
+    if (!T) return null;
+    const nx = (x - f.cx - T.c[0]) / T.rx, nz = (z - f.cz - T.c[1]) / T.rz;
+    return Math.max(Math.abs(nx), Math.abs(nz)) < 0.75 ? T : null;
+  }
+  // 脚印：短生命期贴片，复用 fx 队列（有寿命、自动回收）
+  _footprint() {
+    const p = this.player.position;
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: softTexture(), color: 0xd8e6f2, transparent: true, depthWrite: false }));
+    s.position.set(p.x, this._groundY(p.x, p.z) + 0.05, p.z);
+    s.scale.set(0.26, 0.16, 1);
+    this.scene.add(s);
+    this.fx.push({ obj: s, t: 0, dur: 1.6, update: (t) => { s.material.opacity = Math.max(0, 0.5 * (1 - t / 1.6)); } });
+  }
+
+
   // 脚下的小尘土
   _puff(color = 0xffffff) {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: softTexture(), color, transparent: true, depthWrite: false }));
@@ -2780,6 +2850,8 @@ export class Game {
     // 镜头动画（通关后飞向新一关蛋区）接管期间：轨道机位公式不覆盖 tween 的机位
     if (this.cinematic) return;
     this.camDist += (this.camDistTarget - this.camDist) * Math.min(1, dt * 7);   // 缩放丝滑过渡
+    // 山上视野更远：镜头距离随脚下高度增加（每米 +0.6，上限 +18），下山自动收回
+    this._viewBoost = (this._viewBoost || 0) + ((this.onIsle ? 0 : Math.min(18, this.player.position.y * 0.6)) - (this._viewBoost || 0)) * Math.min(1, dt * 2);
     const target = this.player.position;
     // 复用临时向量：相机每帧跑 60 次，不能每次都 new（GC 卡顿元凶）
     const v = this._cv = this._cv || new THREE.Vector3();
@@ -2814,7 +2886,7 @@ export class Game {
     // 拉近要快（立刻不被挡），放远要慢（走开后再缓缓回到正常距离）
     const want = this._occK < (this._occSmooth || 1) ? this._occK : Math.min(1, (this._occSmooth || 1) + dt * 1.2);
     this._occSmooth = this._occSmooth === undefined ? want : this._occSmooth + (want - this._occSmooth) * Math.min(1, dt * 10);
-    const dist = this.camDist * this._occSmooth;
+    const dist = (this.camDist + (this._viewBoost || 0)) * this._occSmooth;
     const cp = Math.cos(this.camPitch);
     v.set(
       target.x + Math.sin(this.camYaw) * cp * dist,
@@ -3225,10 +3297,20 @@ export class Game {
   _updatePrompt() {
     if (ui.challengeOpen()) { ui.hidePrompt(); return; }
     const p = this.player.position;
+    const po = this._currentStage().key;
     // 蛋（高台顶上的蛋允许站台下缘按 E，孩子不用精确跳到中心点）
     const egg = this.eggs.nearest(p, 4.2);
     if (egg && egg.group.position.y - p.y <= 1.8) {
       ui.showPrompt(t('x.g354'), 'E'); this.promptAction = () => this._openEgg(egg.word.id); return;
+    }
+    // 梯田采集：走近自家梯田按 E 采一穗（每城每天一次，+1⭐）
+    if (this._terraceAt(p.x, p.z) && !save.hasSpotPick(po)) {
+      ui.showPrompt(t('g.terracePick'), 'E');
+      this.promptAction = () => {
+        if (save.markSpotPick(po)) { save.addStars(1); sfx.pop(); this._puff(0xf0d878); ui.toast(t('g.terracePick'), 1600); }
+        else ui.toast(t('g.terraceDone'), 1400);
+      };
+      return;
     }
     // 饿了的词宠
     const hungry = this._nearHungryPet(p, 2.4);

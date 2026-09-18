@@ -1341,6 +1341,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         pts, sim, coarse, minX, maxX, minZ, maxZ, cx, cz,
         // 微缩地形寻高（世界坐标）：game._supportAt/_groundY 用它让玩家/NPC/词宠走上台地山坡
         terrainHeight: terrain ? (wx, wz) => terrain.heightAtLocal(wx - cx, wz - cz) : null,
+        // 高度场本体（局部坐标）：game 层用它做涉水/沙丘滑行/雪线脚印/梯田采集/地形打卡点
+        terrainField: terrain ? terrain.field : null,
       };
     } else {
       // 兜底：无轮廓时保持圆形岛身

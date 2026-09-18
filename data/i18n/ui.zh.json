@@ -671,5 +671,8 @@
   "prof.bubble": "起个名字吧！",
   "prof.bubbleBack": "欢迎回来！✨",
   "y.firstStop": "📍 第一站：{a1} {a2}！城里藏着会发光的蛋，找到就能孵词宠啦",
-  "mg.hint": "小提示：它说的是「{a}」"
+  "mg.hint": "小提示：它说的是「{a}」",
+  "g.waterEdge": "水边到啦，绕过去吧～",
+  "g.terracePick": "采了一穗稻子！",
+  "g.terraceDone": "这块梯田今天采过啦"
 }

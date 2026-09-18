@@ -671,5 +671,8 @@
   "prof.bubble": "Name me!",
   "prof.bubbleBack": "Welcome back! ✨",
   "y.firstStop": "📍 First stop: {a2}! Glowing eggs are hiding around — hatch them!",
-  "mg.hint": "Hint: it says \"{a}\""
+  "mg.hint": "Hint: it says \"{a}\"",
+  "g.waterEdge": "Water ahead — go around!",
+  "g.terracePick": "You picked a rice ear!",
+  "g.terraceDone": "Already picked here today"
 }
