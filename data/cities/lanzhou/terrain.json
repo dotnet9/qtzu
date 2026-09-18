@@ -155,5 +155,17 @@
       ],
       "w": 2.4
     }
-  ]
+  ],
+  "spot": {
+    "kind": "summit",
+    "name": "山顶瞭望台",
+    "en": "Summit Lookout",
+    "emoji": "⛰️",
+    "at": [
+      0.3214,
+      0.5714
+    ],
+    "r": 6,
+    "stars": 3
+  }
 }

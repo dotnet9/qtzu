@@ -47,6 +47,7 @@ function fresh() {
     streak: { day: '', n: 0, rewarded: {} },  // 连续打卡：day=最后游玩日 n=连击数 rewarded={3:true,7:true} 已领奖的里程碑
     lastQuizDay: '',   // 最近一次错词周测之日（每周日且距上次 ≥7 天才提醒）
     spotPicks: {},     // 地形采集：<城市id> -> 采集日期（梯田每城每天可采一次）
+    spots: {},         // 地形打卡点：<城市id> -> { kind, at }（走近地标自动盖章）
   };
 }
 
@@ -683,6 +684,17 @@ export function markSpotPick(cityId) {
   save();
   return true;
 }
+
+// ---------- 地形打卡点（每城一个：山顶/湖畔/沙丘/梯田/海角/码头）----------
+export function getSpots() { return data.spots || {}; }
+export function markSpot(cityId, kind) {
+  data.spots = data.spots || {};
+  if (data.spots[cityId]) return false;
+  data.spots[cityId] = { kind, at: todayKey() };
+  save();
+  return true;
+}
+export function spotCount() { return Object.keys(data.spots || {}).length; }
 
 // ---------- 装扮（许愿井商店） ----------
 export function getWear() { return data.profile.wear; }

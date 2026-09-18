@@ -13,7 +13,7 @@ import { writeFileSync, existsSync } from 'fs';
 import {
   PALETTES, ROCK, TG, FW, FS,
   mtn, hill, ridge, riv, lake, terrace, farm,
-  baseCfg, cityIds, readCity, makeField, fitPlaza, fitToShape, tuneHeights, auditCity,
+  baseCfg, cityIds, readCity, makeField, fitPlaza, fitToShape, tuneHeights, fitSpot, auditCity,
 } from './terrain-lib.mjs';
 
 /* =====================================================================
@@ -37,6 +37,7 @@ const GEO = {
     farm: farm(0.45, 0.10, 0.14, 0.30),
   }),
   tianjin: () => ({
+    spotKind: 'coast',
     palette: 'GRASS', roll: 0.5,
     // 海河自西北向东南入海；东南角是渤海湾
     rivers: [riv([[-0.35, -0.80], [-0.20, -0.35], [-0.05, 0.05], [0.05, 0.40], [0.12, 0.78]], 1.6)],
@@ -140,6 +141,7 @@ const GEO = {
     rivers: [riv([[-0.80, 0.05], [-0.30, -0.05], [0.30, 0.10], [0.80, 0.20]], 1.6)],              // 拉萨河
   }),
   kunming: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.9,
     lake: lake(-0.38, 0.42, 9, 7),                                                                // 滇池：西南
     ridges: [ridge([-0.45, 0.05], [-0.58, 0.72], 5.0, 0.26)],                                     // 西山
@@ -169,6 +171,7 @@ const GEO = {
     farm: farm(0.10, 0.45, 0.16, 0.32),
   }),
   changchun: () => ({
+    spotKind: 'lakeside',
     palette: 'GRASS', roll: 1.0,
     lake: lake(0.45, 0.42, 6.0, 4.5),                                                             // 净月潭：东南
     hill: hill(-0.45, -0.30, 1.8),
@@ -181,12 +184,14 @@ const GEO = {
     farm: farm(-0.30, -0.20, 0.18, 0.34),
   }),
   dalian: () => ({
+    spotKind: 'coast',
     palette: 'GRASS', roll: 1.0,
     lakes: [lake(0.10, 0.58, 8.5, 5.5), lake(-0.58, 0.28, 5.5, 4.0)],                             // 黄渤海：南
     hills: [hill(-0.28, -0.38, 2.8), hill(0.48, -0.24, 2.4)],
     farm: farm(0.10, -0.50, 0.12, 0.24),
   }),
   chengde: () => ({
+    spotKind: 'lakeside',
     palette: 'GRASS', roll: 0.8, snow: [5.0, 6.2], rock: [3.2, 4.4], rockColor: ROCK.WARM,
     ridges: [ridge([-0.80, -0.52], [0.25, -0.78], 6.0, 0.28)],                                    // 燕山：北
     lakes: [lake(0.15, 0.15, 4.5, 3.2), lake(-0.12, 0.32, 3.0, 2.2)],                             // 避暑山庄湖区
@@ -195,12 +200,14 @@ const GEO = {
 
   /* ---------- 华东 ---------- */
   jinan: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.8,
     hills: [hill(0.12, 0.45, 2.6), hill(-0.42, 0.38, 2.2)],                                       // 千佛山：南
     lake: lake(0.0, -0.02, 4.2, 3.2),                                                             // 大明湖
     rivers: [riv([[-0.70, -0.25], [-0.30, -0.10], [0.10, 0.0], [0.60, 0.06]], 1.2)],              // 小清河
   }),
   qingdao: () => ({
+    spotKind: 'coast',
     palette: 'RICH', roll: 1.0,
     ridges: [ridge([0.25, -0.58], [0.80, -0.28], 5.0, 0.24)],                                     // 崂山：东
     lake: lake(-0.28, 0.52, 6.5, 5.0),                                                            // 胶州湾
@@ -216,6 +223,7 @@ const GEO = {
     farm: farm(-0.52, 0.38, 0.16, 0.32),
   }),
   suzhou: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.7,
     lake: lake(-0.62, 0.28, 7.5, 5.5),                                                            // 太湖：西
     rivers: [riv([[-0.80, 0.0], [-0.30, 0.02], [0.20, 0.0], [0.80, 0.04]], 1.2),
@@ -224,6 +232,7 @@ const GEO = {
     farm: farm(0.40, 0.35, 0.16, 0.32),
   }),
   wuxi: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.7,
     lake: lake(0.05, 0.58, 8, 5),                                                                 // 太湖：南
     rivers: [riv([[-0.80, -0.20], [-0.20, -0.10], [0.40, 0.0], [0.80, 0.06]], 1.1)],
@@ -231,6 +240,7 @@ const GEO = {
     farm: farm(0.30, -0.35, 0.16, 0.32),
   }),
   yangzhou: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.7,
     lake: lake(-0.32, -0.22, 5.0, 3.6),                                                           // 瘦西湖
     rivers: [riv([[-0.80, 0.35], [-0.20, 0.30], [0.40, 0.32], [0.80, 0.30]], 1.8),                // 长江：南
@@ -239,6 +249,7 @@ const GEO = {
     farm: farm(0.45, -0.10, 0.16, 0.32),
   }),
   hangzhou: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.8,
     lake: lake(-0.32, 0.06, 5.5, 4.5),                                                            // 西湖
     ridges: [ridge([-0.80, -0.48], [-0.76, 0.58], 5.5, 0.26)],                                    // 西面群山
@@ -253,12 +264,14 @@ const GEO = {
     farm: farm(-0.50, 0.58, 0.14, 0.28),
   }),
   hefei: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.9,
     lake: lake(0.30, 0.55, 7, 4.8),                                                               // 巢湖：南
     hill: hill(-0.50, -0.35, 2.0),
     farm: farm(-0.28, 0.22, 0.18, 0.36),
   }),
   nanchang: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.9,
     rivers: [riv([[-0.32, 0.80], [-0.20, 0.30], [-0.05, -0.20], [0.05, -0.78]], 1.8)],            // 赣江：南→北
     lake: lake(0.52, -0.50, 6, 4.2),                                                              // 鄱阳湖：东北
@@ -266,24 +279,28 @@ const GEO = {
     farm: farm(0.40, 0.35, 0.14, 0.30),
   }),
   fuzhou: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.9,
     rivers: [riv([[-0.80, -0.10], [-0.30, 0.0], [0.20, 0.10], [0.80, 0.20]], 1.8)],               // 闽江
     hills: [hill(0.52, -0.28, 2.8)],                                                              // 鼓山：东
     lake: lake(-0.52, 0.48, 6, 4.4),
   }),
   xiamen: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.8,
     lakes: [lake(-0.55, -0.35, 7, 5), lake(0.55, 0.42, 6, 4.5)],                                  // 环岛海面
     hill: hill(0.0, 0.10, 2.4),
     farm: farm(-0.20, -0.55, 0.10, 0.22),
   }),
   quanzhou: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.9,
     lakes: [lake(0.12, 0.58, 7, 4.5)],                                                            // 泉州湾：南
     hills: [hill(-0.48, -0.32, 2.6), hill(0.45, -0.28, 2.2)],
     farm: farm(-0.10, 0.18, 0.16, 0.32),
   }),
   shaoxing: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.7,
     lakes: [lake(-0.55, -0.32, 4.5, 3.4), lake(0.48, 0.38, 4.0, 3.0)],                            // 鉴湖 / 水网
     rivers: [riv([[-0.55, -0.12], [-0.20, -0.06], [0.20, -0.08], [0.55, -0.12]], 1.3),
@@ -294,6 +311,7 @@ const GEO = {
 
   /* ---------- 华中 / 华南 ---------- */
   wuhan: () => ({
+    spotKind: 'lakeside',
     palette: 'RICH', roll: 0.8,
     // 长江自西南向东，汉水自北来汇；东湖成片
     rivers: [riv([[-0.80, 0.42], [-0.35, 0.14], [0.10, -0.05], [0.50, -0.20], [0.80, -0.28]], 2.4),
@@ -315,12 +333,14 @@ const GEO = {
     farm: farm(-0.38, 0.48, 0.14, 0.28),
   }),
   shenzhen: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 1.0,
     lakes: [lake(-0.10, 0.60, 8, 5)],                                                             // 南海：南
     hills: [hill(0.25, -0.32, 2.8), hill(-0.48, -0.24, 2.4)],
     farm: farm(-0.52, 0.18, 0.10, 0.22),
   }),
   zhuhai: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 1.0,
     lakes: [lake(0.12, 0.58, 7.5, 4.8)],                                                          // 南海：南
     hills: [hill(-0.38, -0.20, 2.6), hill(0.52, -0.28, 2.2)],
@@ -332,12 +352,14 @@ const GEO = {
     farm: farm(-0.30, 0.35, 0.16, 0.32),
   }),
   haikou: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.9, farmStripe: FS,
     rivers: [riv([[-0.20, -0.80], [0.0, -0.40], [0.15, 0.0], [0.25, 0.45], [0.30, 0.80]], 1.4)],   // 南渡江
     lake: lake(-0.52, -0.50, 6, 4.5),                                                             // 琼州海峡：北
     hill: hill(0.48, 0.32, 1.8),
   }),
   sanya: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.7, farmStripe: FS,
     lake: lake(0.20, -0.55, 7, 4.5),                                                              // 三亚湾
     hills: [hill(-0.55, 0.38, 2.6), hill(0.52, 0.45, 2.0)],
@@ -352,17 +374,20 @@ const GEO = {
     hills: [hill(-0.52, 0.38, 2.2)],
   }),
   kaohsiung: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.9,
     lakes: [lake(0.10, -0.58, 7, 4.5)],                                                           // 高雄港
     hills: [hill(-0.32, 0.32, 2.6), hill(0.48, 0.28, 2.2)],
   }),
   taichung: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.8, farmStripe: FS,
     lakes: [lake(-0.52, 0.18, 6, 4.5)],                                                           // 台湾海峡：西
     hills: [hill(0.45, -0.10, 2.4), hill(0.30, 0.48, 2.0)],                                       // 中央山脉：东
     farm: farm(0.0, 0.0, 0.20, 0.40),
   }),
   tainan: () => ({
+    spotKind: 'coast',
     palette: 'TROPIC', roll: 0.8, farmStripe: FS,
     lakes: [lake(-0.55, -0.12, 6.5, 4.6)],                                                        // 台湾海峡：西
     hills: [hill(0.48, 0.18, 2.0)],
@@ -389,7 +414,7 @@ for (const id of ids) {
   });
   if (g.rock) { cfg.rock = g.rock; cfg.colors.rock = g.rockColor || ROCK.COOL; }
   if (g.farmStripe) cfg.colors.farmStripe = g.farmStripe;
-  for (const k of ['mountain', 'mountains', 'hill', 'hills', 'ridges', 'rivers', 'lake', 'lakes', 'peaks', 'terrace', 'farm']) {
+  for (const k of ['spotKind', 'mountain', 'mountains', 'hill', 'hills', 'ridges', 'rivers', 'lake', 'lakes', 'peaks', 'terrace', 'farm']) {
     if (g[k] !== undefined) cfg[k] = g[k];
   }
   const log = [];
@@ -397,10 +422,11 @@ for (const id of ids) {
   fitPlaza(makeField(id, city, cfg), cfg);
   fitToShape(makeField(id, city, cfg), cfg, log);
   tuneHeights(id, city, cfg, log);
+  fitSpot(id, city, cfg, log);                 // 地形打卡点：由地物自动推导
   const audit = auditCity(id, city, cfg);
   writeFileSync(`data/cities/${id}/terrain.json`, JSON.stringify(cfg, null, 2) + '\n');
   made++;
-  report.push({ id, log, audit });
+  report.push({ id, log, audit, spot: cfg.spot ? `${cfg.spot.emoji}${cfg.spot.kind}` : '无打卡点' });
 }
 
 /* ---- 报表 ---- */
@@ -410,11 +436,7 @@ console.log('─'.repeat(88));
 for (const r of report) {
   if (r.note) { console.log(`  ${r.id.padEnd(12)} ${r.note}`); continue; }
   const { fail: f, warn: w, stats } = r.audit;
-  const feats = [
-    r.log.some(s => s.startsWith('删')) ? '删地物' : '',
-    stats.hasMountain ? '山' : '', '',
-  ].filter(Boolean).join('');
-  console.log(`${f.length ? '✗' : (w.length ? '!' : ' ')} ${r.id.padEnd(12)} ${stats.hi.toFixed(1).padStart(5)}m ${(stats.relief * 100).toFixed(0).padStart(5)}% ${stats.maxStep.toFixed(2).padStart(5)}m  ${feats}`);
+  console.log(`${f.length ? '✗' : (w.length ? '!' : ' ')} ${r.id.padEnd(12)} ${stats.hi.toFixed(1).padStart(5)}m ${(stats.relief * 100).toFixed(0).padStart(5)}% ${stats.maxStep.toFixed(2).padStart(5)}m  ${r.spot}`);
   for (const x of f) console.log(`      ✗ ${x}`);
   for (const x of w) console.log(`      ! ${x}`);
   for (const x of r.log) console.log(`      · ${x}`);

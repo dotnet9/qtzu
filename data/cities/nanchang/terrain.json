@@ -92,6 +92,7 @@
     99,
     100
   ],
+  "spotKind": "lakeside",
   "hill": {
     "center": [
       -0.58,
@@ -140,5 +141,17 @@
     ],
     "r0": 0.14,
     "r1": 0.3
+  },
+  "spot": {
+    "kind": "lakeside",
+    "name": "湖畔栈道",
+    "en": "Lakeside Walk",
+    "emoji": "🌊",
+    "at": [
+      0.2898,
+      -0.2786
+    ],
+    "r": 6,
+    "stars": 3
   }
 }

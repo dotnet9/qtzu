@@ -222,5 +222,17 @@
       6,
       2.8
     ]
-  ]
+  ],
+  "spot": {
+    "kind": "summit",
+    "name": "山顶瞭望台",
+    "en": "Summit Lookout",
+    "emoji": "⛰️",
+    "at": [
+      -0.25,
+      -0.6071
+    ],
+    "r": 6,
+    "stars": 3
+  }
 }

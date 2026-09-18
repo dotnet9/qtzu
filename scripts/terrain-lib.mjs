@@ -242,6 +242,99 @@ export function tuneHeights(id, city, cfg, log = []) {
   return cfg;
 }
 
+/* ================= 地形打卡点：每城一个，由地物自动推导 =================
+   kind 决定名字与图标，at 必须落在"走得到"的位置：界内、离边够远、不在水里。
+   选位规则：有山→山顶；有湖/海→岸边（从湖心朝城内退到水边）；沙色→沙丘脊；
+   有梯田→梯田中心；否则→河边码头。 */
+const SPOT_NAME = {
+  summit: ['山顶瞭望台', 'Summit Lookout', '⛰️'],
+  lakeside: ['湖畔栈道', 'Lakeside Walk', '🌊'],
+  dune: ['沙丘观景', 'Dune View', '🏜️'],
+  terrace: ['梯田边', 'Terrace Edge', '🌾'],
+  coast: ['海角眺望', 'Sea Point', '🏖️'],
+  river: ['河边码头', 'Riverside Pier', '🛶'],
+};
+export function fitSpot(id, city, cfg, log = []) {
+  const F = makeField(id, city, cfg);
+  const pole = interiorPole(F);
+  const dry = (x, z) => F.waterAt(x, z) < 0.08;
+  const walkable = (x, z) => F.inPoly(x, z) && F.dEdge(x, z) >= 2.5 && dry(x, z);
+
+  // 全城扫描：最高点 + 备用可行走点
+  let hi = -1, hiAt = null, bestAny = null, bestD = -1;
+  const N = 56;
+  for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) {
+    const x = F.minX + (F.maxX - F.minX) * i / N, z = F.minZ + (F.maxZ - F.minZ) * j / N;
+    if (!F.inPoly(x, z)) continue;
+    const d = F.dEdge(x, z);
+    if (d > bestD && dry(x, z)) { bestD = d; bestAny = [x, z]; }
+    const y = F.heightAtLocal(x, z);
+    if (y > hi && d >= 2.5 && dry(x, z)) { hi = y; hiAt = [x, z]; }
+  }
+  const hasMtn = !!(cfg.mountain || (cfg.mountains || []).length || (cfg.ridges || []).length || (cfg.peaks || []).length);
+  const sea = F.features.lakes.filter(L => L.rx >= 7);      // 大水面=海（太湖/滇池/海湾）；小的算湖（净月潭/瘦西湖）
+  const ponds = F.features.lakes.filter(L => L.rx < 7);
+  const dune = (() => { const g0 = (cfg.colors?.greens || [])[0]; return !!g0 && g0[0] > 0.82 && g0[2] < 0.62; })();
+
+  // 打卡点类型：cfg.spotKind 显式指定优先（湖/海靠尺寸区分不可靠——太湖 rx=8、黄渤海 8.5），
+  // 其余按地物自动推导
+  const forced = cfg.spotKind && SPOT_NAME[cfg.spotKind] ? cfg.spotKind : null;
+  let kind = forced || 'viewpoint', at = null;
+  const toNorm = w => [+((w[0] - F.CX) / F.RX).toFixed(4), +((w[1] - F.CZ) / F.RZ).toFixed(4)];
+  // 从一处水心朝城内退，退到岸上（走得到）
+  const shoreFrom = L => {
+    const c = L.at;
+    for (let t = 0; t <= 1; t += 0.04) {
+      const x = c[0] + (pole[0] - c[0]) * t, z = c[1] + (pole[1] - c[1]) * t;
+      if (walkable(x, z)) return [x, z];
+    }
+    return null;
+  };
+  const shoreAny = () => {
+    for (const L of [...sea, ...ponds]) { const s = shoreFrom(L); if (s) return s; }
+    return null;
+  };
+  const riverBank = () => {
+    for (const R of F.features.rivers) {
+      for (let i = Math.floor(R.pts.length * 0.3); i < R.pts.length * 0.7; i += 3) {
+        const mid = R.pts[i].p;
+        for (let t = 0; t <= 1; t += 0.05) {
+          const x = mid[0] + (pole[0] - mid[0]) * t, z = mid[1] + (pole[1] - mid[1]) * t;
+          if (walkable(x, z)) return [x, z];
+        }
+      }
+    }
+    return null;
+  };
+  if (forced) {
+    if (kind === 'summit') at = hiAt;
+    else if (kind === 'dune') at = hiAt || bestAny;
+    else if (kind === 'terrace') { const T = F.features.terrace; at = T && walkable(T.c[0], T.c[1]) ? [T.c[0], T.c[1]] : bestAny; }
+    else if (kind === 'coast' || kind === 'lakeside') at = shoreAny();
+    else if (kind === 'river') at = riverBank();
+  }
+  if (!at) {
+    // 自动推导：沙丘优先于山顶（敦煌既有鸣沙山脊线又是沙色，"沙丘观景"更贴）
+    if (dune && hiAt) { kind = 'dune'; at = hiAt; }
+    else if (hasMtn && hiAt && hi >= 2.5) { kind = 'summit'; at = hiAt; }
+    else if (cfg.terrace && F.features.terrace) { kind = 'terrace'; const T = F.features.terrace; at = walkable(T.c[0], T.c[1]) ? [T.c[0], T.c[1]] : bestAny; }
+    else if (sea.length) { kind = 'coast'; at = shoreAny(); }
+    else if (ponds.length) { kind = 'lakeside'; at = shoreAny(); }
+    else if (F.features.rivers.length) { kind = 'river'; at = riverBank(); }
+  }
+  if (!at) at = bestAny || [pole[0], pole[1]];
+  if (!walkable(at[0], at[1])) {                 // 兜底：朝内极点退到可站处
+    for (let t = 0; t <= 1; t += 0.05) {
+      const x = at[0] + (pole[0] - at[0]) * t, z = at[1] + (pole[1] - at[1]) * t;
+      if (walkable(x, z)) { at = [x, z]; break; }
+    }
+  }
+  const [nm, en, emoji] = SPOT_NAME[kind];
+  cfg.spot = { kind, name: nm, en, emoji, at: toNorm(at), r: 6, stars: 3 };
+  if (!F.inPoly(at[0], at[1])) log.push('⚠打卡点落在轮廓外');
+  return cfg;
+}
+
 /* ================= 体检（与 scripts/audit-terrain.mjs 同一口径） ================= */
 export function auditCity(id, city, cfg, opts = {}) {
   const F = makeField(id, city, cfg);

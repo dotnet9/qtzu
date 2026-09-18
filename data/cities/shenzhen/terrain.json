@@ -92,6 +92,7 @@
     99,
     100
   ],
+  "spotKind": "coast",
   "hills": [
     {
       "center": [
@@ -131,5 +132,17 @@
     ],
     "r0": 0.1,
     "r1": 0.22
+  },
+  "spot": {
+    "kind": "coast",
+    "name": "海角眺望",
+    "en": "Sea Point",
+    "emoji": "🏖️",
+    "at": [
+      -0.317,
+      0.3184
+    ],
+    "r": 6,
+    "stars": 3
   }
 }

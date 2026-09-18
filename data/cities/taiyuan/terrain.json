@@ -147,5 +147,17 @@
     "rx": 0.3,
     "rz": 0.22,
     "cell": 5
+  },
+  "spot": {
+    "kind": "summit",
+    "name": "山顶瞭望台",
+    "en": "Summit Lookout",
+    "emoji": "⛰️",
+    "at": [
+      -0.75,
+      -0.1429
+    ],
+    "r": 6,
+    "stars": 3
   }
 }

@@ -850,6 +850,7 @@ export class Game {
     for (const pt of this.pets.all()) {
       if (!pt.flying && pt.group.visible) this._resolvePetWalk(pt);
     }
+    this._stampSpot();
     this._updatePrompt();
     this._placeQuestBubble();
     this._placeNpcBubble();
@@ -2087,6 +2088,25 @@ export class Game {
         this.world.colliders.push({ t: 'c', x: +x.toFixed(2), z: +z.toFixed(2), r: 1.2, fixed: true });   // 立牌占位：树的自动摆放会避开
         sign.scale.setScalar(0.7);   // 立牌同步城市缩放微调
         this._signList.push({ ...it, x, z });
+        // 地形打卡点：每城一个（山顶/湖畔/沙丘/梯田/海角/码头），金色牌面与三类立牌区分
+        const sp = stage.terrain && stage.terrain.spot;
+        if (sp) {
+          const b = this.world.cityBounds && this.world.cityBounds[stage.key];
+          const F = b && b.terrainField;
+          if (F) {
+            const w = F.P2(sp.at);
+            const sx2 = w[0] + b.cx, sz2 = w[1] + b.cz;
+            const it2 = { name: sp.name, zh: sp.name, en: sp.en, emoji: sp.emoji, type: 'spot' };
+            const sg2 = this._makeSign(it2, '#E8C36A');
+            sg2.position.set(sx2, this._groundY(sx2, sz2), sz2);
+            sg2.rotation.y = Math.atan2(stage.cx - sx2, stage.cz - sz2);
+            sg2.scale.setScalar(0.7);
+            grp.add(sg2);
+            this.world.colliders.push({ t: "c", x: +sx2.toFixed(2), z: +sz2.toFixed(2), r: 1.2, fixed: true });
+            this._signList.push({ ...it2, x: sx2, z: sz2 });
+            this._spotAt = { x: sx2, z: sz2, r: sp.r || 6, kind: sp.kind, name: sp.name, stars: sp.stars || 3 };
+          }
+        } else this._spotAt = null;
         if (this._signEggSpots.length < 26) {
           const es2 = { x: x - dx * 0.9 + dz * 0.75, z: z - dz * 0.9 - dx * 0.75 };   // 牌子侧后方（偏移同步缩小）
           const esM2 = this._cityWallMargin(stage, 0.5);
@@ -3294,6 +3314,21 @@ export class Game {
   }
 
   // ================= 交互 =================
+  // 走近地形打卡点自动盖章（每城一次，+3⭐）；集齐 10/25/52 城给称号
+  _stampSpot() {
+    const s = this._spotAt;
+    if (!s || this.onIsle) return;
+    const p = this.player.position;
+    if (Math.hypot(p.x - s.x, p.z - s.z) > s.r) return;
+    const key = this._currentStage().key;
+    if (!save.markSpot(key, s.kind)) return;
+    save.addStars(s.stars || 3);
+    sfx.win && sfx.win();
+    this._puff(0xE8C36A);
+    ui.toast(t("g.spotStamp", { a0: s.name, a1: s.stars || 3 }), 2600);
+    const n = save.spotCount();
+    if (n === 10 || n === 25 || n === 52) ui.toast(t("g.spotAll", { a0: n }), 3600);
+  }
   _updatePrompt() {
     if (ui.challengeOpen()) { ui.hidePrompt(); return; }
     const p = this.player.position;
