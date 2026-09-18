@@ -200,6 +200,92 @@ function chengduTexture(S) {
   tex.anisotropy = 16;
   return tex;
 }
+// 悬浮岛外装：岩裙侧壁 + 底部垂石 + 环岛云海 + 云上暗影。
+// 原先是成都专属试点，现在全城通用——有地形高度场的城市悬起来才成立（"微缩盆景"的整体读感）。
+// 云海 sprite 与暗影挂进 world.anim.floating，由 game.js 按镜头距离显隐：
+// 52 座岛同屏时只让近处几座出云海，远处的岛不留白雾。
+export function buildFloatingIsland(grp, ptsF, cx, cz, anim) {
+  const xsF = ptsF.map(p => p[0]), zsF = ptsF.map(p => p[1]);
+  const mnXF = Math.min(...xsF), mxxXF = Math.max(...xsF), mnZF = Math.min(...zsF), mxxZF = Math.max(...zsF);
+  const ring = polyOffsetRing(ptsF, 0.7);
+  const n = ring.length - 1;
+  if (n < 3) return;
+  let sx = 0, sz = 0;
+  for (let i = 0; i < n; i++) { sx += ring[i][0]; sz += ring[i][1]; }
+  sx /= n; sz /= n;
+  const DEPTH = 9, TAPER = 0.5;
+  const posArr = [], colArr = [], idxArr = [];
+  const cTop = new THREE.Color('#8A6B4A'), cMid = new THREE.Color('#6B5138'), cBot = new THREE.Color('#3A2C1E');
+  const tmpC = new THREE.Color();
+  for (let i = 0; i < n; i++) {
+    const a = ring[i], b = ring[i + 1];
+    const ax = sx + (a[0] - sx) * TAPER, az = sz + (a[1] - sz) * TAPER;
+    const bx = sx + (b[0] - sx) * TAPER, bz = sz + (b[1] - sz) * TAPER;
+    const base = posArr.length / 3;
+    posArr.push(a[0], 0, a[1], b[0], 0, b[1], bx, -DEPTH, bz, ax, -DEPTH, az);
+    for (let k = 0; k < 4; k++) {
+      const t = k < 2 ? 0 : 1;
+      tmpC.copy(cTop).lerp(cMid, t * 0.45).lerp(cBot, t);
+      colArr.push(tmpC.r, tmpC.g, tmpC.b);
+    }
+    idxArr.push(base, base + 1, base + 2, base, base + 2, base + 3);
+  }
+  const skirtGeo = new THREE.BufferGeometry();
+  skirtGeo.setAttribute('position', new THREE.Float32BufferAttribute(posArr, 3));
+  skirtGeo.setAttribute('color', new THREE.Float32BufferAttribute(colArr, 3));
+  skirtGeo.setIndex(idxArr);
+  skirtGeo.computeVertexNormals();
+  grp.add(new THREE.Mesh(skirtGeo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, side: THREE.DoubleSide })));
+  // 底部垂石：数量随城市大小走，小城不糊
+  const spanR = Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2;
+  const nCone = spanR > 40 ? 6 : 4;
+  for (let k = 0; k < nCone; k++) {
+    const a = (k / nCone) * Math.PI * 2 + 0.4;
+    const rr = spanR * (0.3 + 0.1 * (k % 3));
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(1.8 + 0.5 * (k % 2), 3.8 + 0.8 * (k % 3), 7),
+      new THREE.MeshStandardMaterial({ color: '#5A4632', roughness: 1 }));
+    cone.rotation.x = Math.PI;
+    cone.position.set(cx + Math.cos(a) * rr, -DEPTH - 0.9, cz + Math.sin(a) * rr);
+    grp.add(cone);
+  }
+  // 环岛云海（共享一张画布贴图：52 座岛各画一张太浪费）
+  const cloudTex = sharedCloudTexture();
+  const cloudR = spanR + 10;
+  const clouds = [];
+  for (let k = 0; k < 12; k++) {
+    const a = (k / 8) * Math.PI * 2;
+    const cs = new THREE.Sprite(new THREE.SpriteMaterial({ map: cloudTex, transparent: true, opacity: 0.92, depthWrite: false }));
+    cs.scale.set(16, 8, 1);
+    cs.position.set(cx + Math.cos(a) * cloudR, -3.5 + 1.2 * (k % 3), cz + Math.sin(a) * cloudR);
+    grp.add(cs);
+    clouds.push(cs);
+  }
+  // 云海上的投影暗影：悬浮感的画龙点睛
+  const sh = new THREE.Mesh(new THREE.CircleGeometry(1, 40).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: '#2A3040', transparent: true, opacity: 0.16, depthWrite: false }));
+  sh.scale.set((mxxXF - mnXF) * 0.62, 1, (mxxZF - mnZF) * 0.62);
+  sh.position.set(cx, -8.5, cz);
+  grp.add(sh);
+  if (anim) {
+    anim.floating = anim.floating || [];
+    anim.floating.push({ key: null, cx, cz, clouds, shadow: sh });
+  }
+}
+
+let _cloudTex = null;
+function sharedCloudTexture() {
+  if (_cloudTex) return _cloudTex;
+  const cc = document.createElement('canvas');
+  cc.width = 256; cc.height = 128;
+  const ccx = cc.getContext('2d');
+  ccx.fillStyle = 'rgba(255,255,255,.92)';
+  for (const pt of [[70, 80, 46], [128, 64, 56], [190, 84, 44], [100, 96, 38], [160, 100, 34]]) {
+    ccx.beginPath(); ccx.arc(pt[0], pt[1], pt[2], 0, Math.PI * 2); ccx.fill();
+  }
+  _cloudTex = new THREE.CanvasTexture(cc);
+  _cloudTex.colorSpace = THREE.SRGBColorSpace;
+  return _cloudTex;
+}
+
 // 城市岛地面贴图：草底 + 城市色分区（路网已按需求移除，绿化走 3D 树草）
 function cityIslandTexture(color, level, shape, isl) {
   if (isl && isl.key === 'chengdu') return chengduTexture(1024);
@@ -1341,72 +1427,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           lm.add(spr);
         }
       });
-      // 悬浮岛试点（成都）：岩裙侧壁 + 底部垂石 + 环岛云海
-      if (isl.key === 'chengdu' && isl.shape) {
-        const ptsF = isl.shape;
-        const xsF = ptsF.map(p => p[0]), zsF = ptsF.map(p => p[1]);
-        const mnXF = Math.min(...xsF), mxxXF = Math.max(...xsF), mnZF = Math.min(...zsF), mxxZF = Math.max(...zsF);
-        const ring = polyOffsetRing(ptsF, 0.7);
-        const n = ring.length - 1;
-        let sx = 0, sz = 0;
-        for (let i = 0; i < n; i++) { sx += ring[i][0]; sz += ring[i][1]; }
-        sx /= n; sz /= n;
-        const DEPTH = 9, TAPER = 0.5;
-        const posArr = [], colArr = [], idxArr = [];
-        const cTop = new THREE.Color('#8A6B4A'), cMid = new THREE.Color('#6B5138'), cBot = new THREE.Color('#3A2C1E');
-        const tmpC = new THREE.Color();
-        for (let i = 0; i < n; i++) {
-          const a = ring[i], b = ring[i + 1];
-          const ax = sx + (a[0] - sx) * TAPER, az = sz + (a[1] - sz) * TAPER;
-          const bx = sx + (b[0] - sx) * TAPER, bz = sz + (b[1] - sz) * TAPER;
-          const base = posArr.length / 3;
-          posArr.push(a[0], 0, a[1], b[0], 0, b[1], bx, -DEPTH, bz, ax, -DEPTH, az);
-          for (let k = 0; k < 4; k++) {
-            const t = k < 2 ? 0 : 1;
-            tmpC.copy(cTop).lerp(cMid, t * 0.45).lerp(cBot, t);
-            colArr.push(tmpC.r, tmpC.g, tmpC.b);
-          }
-          idxArr.push(base, base + 1, base + 2, base, base + 2, base + 3);
-        }
-        const skirtGeo = new THREE.BufferGeometry();
-        skirtGeo.setAttribute('position', new THREE.Float32BufferAttribute(posArr, 3));
-        skirtGeo.setAttribute('color', new THREE.Float32BufferAttribute(colArr, 3));
-        skirtGeo.setIndex(idxArr);
-        skirtGeo.computeVertexNormals();
-        const skirt = new THREE.Mesh(skirtGeo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, side: THREE.DoubleSide }));
-        grp.add(skirt);
-        for (let k = 0; k < 6; k++) {
-          const a = (k / 6) * Math.PI * 2 + 0.4;
-          const rr = (Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2) * (0.3 + 0.1 * (k % 3));
-          const cone = new THREE.Mesh(new THREE.ConeGeometry(1.8 + 0.5 * (k % 2), 3.8 + 0.8 * (k % 3), 7),
-            new THREE.MeshStandardMaterial({ color: '#5A4632', roughness: 1 }));
-          cone.rotation.x = Math.PI;
-          cone.position.set(cx + Math.cos(a) * rr, -DEPTH - 0.9, cz + Math.sin(a) * rr);
-          grp.add(cone);
-        }
-        const cc = document.createElement('canvas');
-        cc.width = 256; cc.height = 128;
-        const ccx = cc.getContext('2d');
-        ccx.fillStyle = 'rgba(255,255,255,.92)';
-        for (const pt of [[70, 80, 46], [128, 64, 56], [190, 84, 44], [100, 96, 38], [160, 100, 34]]) {
-          ccx.beginPath(); ccx.arc(pt[0], pt[1], pt[2], 0, Math.PI * 2); ccx.fill();
-        }
-        const cloudTex = new THREE.CanvasTexture(cc);
-        cloudTex.colorSpace = THREE.SRGBColorSpace;
-        const cloudR = Math.max(mxxXF - mnXF, mxxZF - mnZF) / 2 + 10;
-        for (let k = 0; k < 12; k++) {
-          const a = (k / 8) * Math.PI * 2;
-          const cs = new THREE.Sprite(new THREE.SpriteMaterial({ map: cloudTex, transparent: true, opacity: 0.92, depthWrite: false }));
-          cs.scale.set(16, 8, 1);
-          cs.position.set(cx + Math.cos(a) * cloudR, -3.5 + 1.2 * (k % 3), cz + Math.sin(a) * cloudR);
-          grp.add(cs);
-        }
-        // 云海上的投影暗影：悬浮感的画龙点睛
-        const sh = new THREE.Mesh(new THREE.CircleGeometry(1, 40).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: '#2A3040', transparent: true, opacity: 0.16, depthWrite: false }));
-        sh.scale.set((mxxXF - mnXF) * 0.62, 1, (mxxZF - mnZF) * 0.62);
-        sh.position.set(cx, -8.5, cz);
-        grp.add(sh);
-      }
+      // 悬浮岛：岩裙侧壁 + 底部垂石 + 环岛云海（原成都专属试点，现已全城通用）
+      if (isl.shape) buildFloatingIsland(grp, isl.shape, cx, cz, world.anim);
       let px = Math.cos(lay.perchA) * r * lay.perchD, pz = Math.sin(lay.perchA) * r * lay.perchD;
       if (polySim) [px, pz] = clampPoly(polySim, px, pz, bw + 1.2);   // 顶面 2.1 宽：边距=墙厚+半宽
       box(grp, 1.6, 3.2, 1.6, '#C8B898', px, Y(px, pz, 1.6), pz);

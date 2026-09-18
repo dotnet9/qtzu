@@ -2907,6 +2907,16 @@ export class Game {
     }
     for (const f of a.foam || []) f.material.opacity = 0.4 + Math.sin(t * 2.2 + f.position.z) * 0.2;
     for (const s2 of a.islandSurf || []) s2.material.opacity = 0.28 + Math.sin(t * 1.6 + s2.position.x) * 0.14;
+    // 悬浮岛云海/暗影按距离显隐：52 座岛同屏时只让近处几座出云海，远处的岛不留白雾
+    for (const fl of a.floating || []) {
+      const d = Math.hypot(this.player.position.x - fl.cx, this.player.position.z - fl.cz);
+      const on = d < 260;
+      fl.shadow.visible = on;
+      for (const c2 of fl.clouds) {
+        c2.visible = on;
+        if (on) c2.material.opacity = 0.86 + Math.sin(t * 1.2 + c2.position.x * 0.1) * 0.06;
+      }
+    }
     // 站进谷仓：墙体变半透明，黑黑的程度也减半——里面亮堂看得见，不黑灯瞎火
     if (a.barn) {
       const p2 = this.player.position;
