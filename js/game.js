@@ -212,7 +212,10 @@ export class Game {
         else if (bonusIds.has(c.id)) statuses[c.id] = t('x.g251');
         else statuses[c.id] = t('x.g252');
       }
-      this.chinaMap = buildChinaMap(this.scene, st0 && st0.key, names, statuses, this.cityRouteList);
+      // 邻城地形浮雕配置（各城 terrain.json）：全国地图按同一份高度场出浮雕
+      const terrains = {};
+      for (const c of CITIES) if (c.terrain) terrains[c.id] = c.terrain;
+      this.chinaMap = buildChinaMap(this.scene, st0 && st0.key, names, statuses, this.cityRouteList, terrains);
       if (st0) this.chinaMap.anchor(st0.key, st0.cx, st0.cz);
     }
     // 各向异性过滤按显卡实际上限收口：手机一般只支持 4~8，写死 16 会被驱动忽略导致远景摩尔条纹
@@ -834,6 +837,7 @@ export class Game {
     this._updatePlayer(dt);
     this._updateCamera(dt);
     if (this.chinaMap) this.chinaMap.setRouteFade(this.camDist);   // 巡游路线虚线：拉远才显现
+    if (this.chinaMap) this.chinaMap.setDetail(this.camDist);   // 邻城地形浮雕：中距才画
     this._updateWorldAnim(dt, t);
     this._updateIdleLife(dt, t);
     this._updateEvents(dt);

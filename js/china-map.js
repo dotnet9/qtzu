@@ -1,14 +1,51 @@
 // 全国地图背景：当前城市以外的城市按真实经纬度平铺在地面上（边界+淡色填充+城市名），
 // 像一张立体中国地图。当前城市由可玩城市场景覆盖，不在背景里重复绘制。
 // 比例：1° 经纬 ≈ UPD 世界单位（非真实比例的温和压缩，保证拉远镜头能看到邻城）。
-import { CITY_SHAPES, CITY_GEO } from './city-shape-data.js';
-import { polyOffsetRing } from './city-shape.js';
+import { CITY_GEO } from './city-shape-data.js';
+import { polyOffsetRing, getCityShape } from './city-shape.js';
+import { makeHeightField } from './terrain-field.js';
 
 const UPD = 420;                                  // 世界单位/度
 const LAT_K = Math.cos(35 * Math.PI / 180);       // 经度方向随纬度收缩（中国中纬度）
 const BASE_Y = -2;                                // 底图高度：大幅低于城市地面(0)，层间距 2 个单位——任何渲染器（含 IDE 预览软渲染）都不会再 z-fighting
 
-﻿// 城市状态浮牌：状态不同颜色不同（待闯关蓝/已攻克绿/奖励金/打造灰）
+﻿// 邻城地形浮雕：把城内那份高度场用"粗网格 + 大台阶"缩到地图尺度。
+// 城内网格是 1.5m/格、0.9m 台阶，52 城直接搬过来要几十万顶点——地图上只求"看得出有山有水"，
+// 所以格距放大到 6、台阶放大到 2，颜色带加宽（色带才是远处真正看得懂的信息）。
+const RELIEF = { grid: 6, step: 2, colorCell: 8, heightScale: 1.0, cap: 8 };
+function buildRelief(pts, cfg, s) {
+  const cheap = { ...cfg, grid: RELIEF.grid, step: RELIEF.step, colorCell: RELIEF.colorCell };
+  const F = makeHeightField({ pts: pts.map(([x, z]) => [x * s, z * s]), cfg: cheap });
+  const { minX, minZ, gsz, nx, nz, qy, hsSm, inPoly, zoneColor } = F;
+  const vid = new Int32Array((nx + 1) * (nz + 1)).fill(-1);
+  const pos = [], col = [], cc = [0, 0, 0];
+  const getV = (i, j) => {
+    const id = j * (nx + 1) + i;
+    if (vid[id] !== -1) return vid[id];
+    const x = minX + i * gsz, z = minZ + j * gsz;
+    const hSm = hsSm[j][i], band = Math.floor(hSm / F.step + 1e-4);
+    vid[id] = pos.length / 3;
+    pos.push(x, Math.min(RELIEF.cap, qy[j][i] * RELIEF.heightScale), z);
+    zoneColor(x, z, hSm, band, cc);
+    col.push(cc[0], cc[1], cc[2]);
+    return vid[id];
+  };
+  const idx = [];
+  for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) {
+    if (!inPoly(minX + (i + 0.5) * gsz, minZ + (j + 0.5) * gsz)) continue;
+    const a = getV(i, j), b = getV(i + 1, j), c = getV(i, j + 1), d = getV(i + 1, j + 1);
+    idx.push(a, c, d, a, d, b);
+  }
+  if (!idx.length) return null;
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+  geo.setIndex(idx);
+  geo.computeVertexNormals();
+  return { mesh: new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide })), verts: pos.length / 3 };
+}
+
+// 城市状态浮牌：状态不同颜色不同（待闯关蓝/已攻克绿/奖励金/打造灰）
 function statusSprite(text) {
   const cv = document.createElement('canvas');
   cv.width = 256; cv.height = 72;
@@ -54,11 +91,14 @@ function nameSprite(name) {
 }
 
 // 建一次全国地图（含所有城市边界与名称），返回 { group, anchor }
-export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, route = []) {
+export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, route = [], terrains = {}) {
   const group = new THREE.Group();
   group.visible = false;   // anchor 定位后才显示
   // 每座城一个子组：换城锚定时把「新城」的背景牌藏掉（不然背景里残留自己城的大名牌）
   const sub = {};
+  // 浮雕顶点预算：52 城同屏，超过就只给"近处/已攻克"的城出浮雕，其余保持纸面
+  let budget = 200000;
+  const reliefMeshes = [];
   // 底图：地图纸色，铺满整个可见范围（拉远到 550 也看不完）
   const base = new THREE.Mesh(
     new THREE.PlaneGeometry(30000, 22000).rotateX(-Math.PI / 2),
@@ -81,8 +121,9 @@ function haloColor(status) {
 // 替代原先的 1px 硬灰线 + 平涂：远处看是柔和的一层层纸面浮雕，近了看线条圆润。
   for (const [cid, geo] of Object.entries(CITY_GEO)) {
     if (cid === currentKey) continue;                     // 当前城由可玩地面覆盖，背景里不重复画
-    const pts = CITY_SHAPES[cid];
-    if (!pts || pts.length < 3) continue;                 // 台湾4城走回退，没有 pts 就跳过
+    // 轮廓走与游戏同一套回退链（真实边界 → 简笔 → 台湾示意 → 有机），台湾 4 城因此也进地图
+    const pts = getCityShape(cid, null);
+    if (!pts || pts.length < 3) continue;
     const s = geo.halfDeg * UPD;
     const sg = new THREE.Group();
     sub[cid] = sg;
@@ -109,9 +150,25 @@ function haloColor(status) {
       new THREE.MeshBasicMaterial({ color: haloColor(statuses[cid]), transparent: true, opacity: 0.3, side: THREE.DoubleSide, depthWrite: false })
     );
     place(halo, 0.02, 0, -4);
-    // 填充：顶点色南北渐变的纸面（替代平涂，远看有地形洗色）
-    const fillGeo = new THREE.ShapeGeometry(shp);
-    {
+    // 填充：有地形配置且预算够 → 邻城地形浮雕（真高度 + 气候带配色）；预算不够才退回纸面渐变
+    const cfgT = terrains[cid];
+    let relief = null;
+    if (cfgT) {
+      const r = buildRelief(pts, cfgT, s);
+      if (r && r.verts <= budget) { relief = r; budget -= r.verts; }
+    }
+    if (relief) {
+      // 浮雕已是世界 xz + y 向上，不能再套 place() 的 rotation.x
+      relief.mesh.position.set(wx, BASE_Y + 0.04, wz);
+      relief.mesh.material.polygonOffset = true;
+      relief.mesh.material.polygonOffsetFactor = -6;
+      relief.mesh.material.polygonOffsetUnits = -6;
+      relief.mesh.visible = false;      // 由 setDetail 按镜头距离打开
+      sg.add(relief.mesh);
+      reliefMeshes.push(relief.mesh);
+    } else {
+      // 无地形配置/预算不足：退回纸面渐变填充（顶点色南北渐变，远看有地形洗色）
+      const fillGeo = new THREE.ShapeGeometry(shp);
       const zs = pts.map(p => p[1]);
       const z0 = Math.min(...zs), z1 = Math.max(...zs);
       const cA = new THREE.Color('#F2EFE4'), cB = new THREE.Color('#DDD8C4');
@@ -123,8 +180,8 @@ function haloColor(status) {
         cols[i * 3] = c.r; cols[i * 3 + 1] = c.g; cols[i * 3 + 2] = c.b;
       }
       fillGeo.setAttribute('color', new THREE.BufferAttribute(cols, 3));
+      place(new THREE.Mesh(fillGeo, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide })), 0.03, 0, -5);
     }
-    place(new THREE.Mesh(fillGeo, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide })), 0.03, 0, -5);
     // 双线描边：外线深一笔（岸线）、内线浅一笔（地图制版的内衬线）——圆润不生硬
     const line = new THREE.LineLoop(
       new THREE.BufferGeometry().setFromPoints(pts.map(([nx, nz]) => new THREE.Vector3(nx * s, 0, nz * s))),
@@ -178,6 +235,12 @@ function haloColor(status) {
   }
 
   // 镜头距离 → 路线虚线透明度：≤70 隐藏（城内玩法），70~130 渐显，≥130 全显（看全国巡游路线）
+  // 镜头距离 → 浮雕显隐：城内（≤60）与极远（≥360）不画，中段是"看全国地形"的主场
+  function setDetail(camDist) {
+    const on = camDist > 60 && camDist < 360;
+    for (const m of reliefMeshes) m.visible = on;
+  }
+
   function setRouteFade(camDist) {
     if (!routeMat || !routeLine) return;
     const k = Math.max(0, Math.min(1, (camDist - 70) / 60));
@@ -199,5 +262,5 @@ function haloColor(status) {
   }
 
   scene.add(group);
-  return { group, anchor, setRouteFade };
+  return { group, anchor, setRouteFade, setDetail };
 }
