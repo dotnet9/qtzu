@@ -498,7 +498,9 @@ function glowTexture(inner = 'rgba(255,244,214,1)', outer = 'rgba(255,244,214,0)
 }
 
 export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
-  const world = { colliders: [], anim: {}, gates: {}, platforms: [] };
+  // decor/blockers：绿化与地标等"不参与碰撞、却会把蛋整个罩住"的装饰登记表，
+  // 供 game 层摆放蛋与打卡点牌时避让（见 game._blockedAt）。
+  const world = { colliders: [], anim: {}, gates: {}, platforms: [], decor: [] };
   const focus = opts.focus ?? -1;   // 只精建 focus±1 的城市，其余轻量占位（大地图性能保护）
   const C = world.colliders;
   // 可站立物件：给碰撞体一个"台面高度"，跳得够高就能落上去站着（站得高看得远）
@@ -865,6 +867,12 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   const palmSpots = [[-14, 41.5], [12, 44], [-22, 44], [20, 41], [2, 49.5], [-28, 40.5]];
   for (const [x, z] of palmSpots) {
     place(scene, PROPS.palm(), x, z, Math.random() * 3);
+      // 这圈树同样登记冠幅：它们离城心 r-3，蛋/牌位若落进来会被树冠罩住
+      {
+        const bb = new THREE.Box3().setFromObject(obj);
+        const rad = Math.max(bb.max.x - bb.min.x, bb.max.z - bb.min.z) / 2;
+        world.decor.push({ x: x - cx, z: z - cz, r: rad + 0.35 });
+      }
     colC(x, z, 0.55);
   }
   for (const [x, z, ry] of [[-6, 43.5, 0.7], [9, 47.5, 2.4]]) {
@@ -1512,6 +1520,12 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           obj.rotation.y = rn() * 3;
           obj.traverse(o => { if (o.isMesh) o.castShadow = true; });
           grp.add(obj);
+          // 登记冠幅（局部坐标）：树冠会把蛋/牌整个罩住，上层要按这个半径避让
+          {
+            const bb = new THREE.Box3().setFromObject(obj);
+            const rad = Math.max(bb.max.x - bb.min.x, bb.max.z - bb.min.z) / 2;
+            world.decor.push({ x: sp[0], z: sp[1], r: rad + 0.35 });
+          }
         }
         // 高楼：2-5 栋低模塔楼（城市感），带碰撞可绕行
         const bN = 8 + Math.floor(rn() * 9);
@@ -1585,7 +1599,33 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     }
     grp.position.set(cx, 0, cz);
     scene.add(grp);
-    world.islands.push({ ...isl, grp, full: true, pad: { x: cx, z: cz - 2.5 }, wellPos, boardPos });
+    // 大件装饰的"真实视觉占地"（局部坐标，按城键控）：碰撞体只覆盖一小圈，网格却大得多。
+    // 蛋/立牌若只按碰撞体判"可站"，就会落进地标实心里——看着在塔里、判定却可站。
+    // 只扫两层（顶层装饰 + 一级子组）：全层级 traverse 对 52 座岛太贵。
+    const blockers = [];
+    {
+      const bb = new THREE.Box3(), ctr = new THREE.Vector3();
+      const seen = new Set();
+      const groups = [];
+      for (const ch of grp.children) {
+        groups.push(ch);
+        if (ch.isGroup) for (const c2 of ch.children) if (c2.isGroup) groups.push(c2);
+      }
+      for (const ch of groups) {
+        let n = 0; ch.traverse(o => { if (o.isMesh) n++; });
+        if (n < 1) continue;
+        bb.setFromObject(ch);
+        const w = Math.max(bb.max.x - bb.min.x, bb.max.z - bb.min.z) / 2;
+        const h = bb.max.y - bb.min.y;
+        if (w < 0.8 || w > 30 || h < 1.0) continue;
+        bb.getCenter(ctr);
+        const key = ctr.x.toFixed(1) + ',' + ctr.z.toFixed(1) + ',' + w.toFixed(0);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        blockers.push({ x: +(ctr.x - cx).toFixed(2), z: +(ctr.z - cz).toFixed(2), r: +w.toFixed(2) });
+      }
+    }
+    world.islands.push({ ...isl, grp, full: true, blockers, pad: { x: cx, z: cz - 2.5 }, wellPos, boardPos });
   };
   for (let si = 0; si < semIslands.length; si++) buildOne(semIslands[si], si);
   // 供奖励城市运行时补建精建岛（复用同一套碰撞/装饰闭包）；返回带 grp 的岛对象

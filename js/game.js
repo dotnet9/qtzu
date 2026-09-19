@@ -370,21 +370,22 @@ export class Game {
       if (cur.has(w.id)) {
         if (brickId === w.id) continue;   // 这颗蛋藏进了悬浮砖块，顶爆才掉出来
         const pos0 = this._cityPos(w);
-        const spot0 = this._eggSpot(pos0.x, pos0.z);
-        const egg = this.eggs.spawnEgg(w, w.zone === 'sky', false, this.currentChapter.words.indexOf(w.id) + 1, spot0);
+        const spot0 = this._freeEggSpot(pos0.x, pos0.z);   // 统一分配：不与已放蛋重叠
+        // y 必须显式算：spawnEgg 里 posOverride.y || 0，只传 {x,z} 会让天空蛋落进石台柱子里、
+        // 普通蛋落在 y=0（有地形的城市直接被山坡埋掉——这正是"看不到的蛋"的另一半原因）。
+        const y0 = this._groundY(spot0.x, spot0.z) + (w.zone === 'sky' ? 3.45 : 0);
+        const egg = this.eggs.spawnEgg(w, w.zone === 'sky', false, this.currentChapter.words.indexOf(w.id) + 1, { x: spot0.x, z: spot0.z, y: y0 });
         egg.group.userData.wordId = w.id;
+        egg.baseY = y0;
         // 本关有一颗蛋放上跳跳石高台：要跳上去才够得着，加点小挑战
         if (perchId === w.id) this._putEggOnPerch(egg);
         else if (this.cityTour && this._signEggSpots && this._signEggSpots.length && w.zone !== 'sky') {
-          // 一部分蛋按 seed 放到牌子旁边：找牌子=找蛋，探索感更强
+          // 一部分蛋按 seed 放到牌子旁边：找牌子=找蛋，探索感更强。
+          // 落点统一走 _freeEggSpot：牌旁点常被钳到同一处，不分配就会多颗蛋叠在一起。
           const st = this._currentStage();
-          // 同一位子不重复放蛋（分散）：从 seed 位起找第一个空闲点
           const spots = this._signEggSpots;
-          const used = (this._usedEggSpots = this._usedEggSpots || new Set());
           let si = this._hashStr(this.sem + ':' + st.key + ':' + w.id) % spots.length;
-          for (let k = 0; k < spots.length && used.has(si); k++) si = (si + 1) % spots.length;
-          used.add(si);
-          const spot = this._eggSpot(spots[si].x, spots[si].z);   // 牌旁点若嵌进碰撞体/城界，内移到可站位
+          const spot = this._freeEggSpot(spots[si].x, spots[si].z);
           const gy1 = this._groundY(spot.x, spot.z);   // 微缩地形：蛋贴山坡
           egg.group.position.set(spot.x, gy1, spot.z);
           egg.baseY = gy1;
@@ -434,13 +435,22 @@ export class Game {
   _putEggOnPerch(egg) {
     if (this.cityTour) {   // 城市巡游：高台蛋放城市舞台的观景石台上
       const st = this._currentStage();
-      const q = { x: st.cx + st.r * 0.3, z: st.cz - st.r * 0.3 };
-      // 与 _cityPos 天空蛋同点同边距同钳制：凹形城市下蛋也不会漂到墙外、离开台面
-      // （静态物件严格边距：floor=margin，不触发窄颈放宽）
+      // 石台位与 world.js 同参（perchA/perchD），台面高度由 world.js 注册进 platforms（= 地形 + 3.45）。
+      // 蛋必须站在真实台面上：写死 3.2 在有地形的城市会悬空或被山坡埋掉（"看不到的蛋"）。
+      const lay = cityLayout(st.key);
+      const want = { x: st.cx + Math.cos(lay.perchA) * st.r * lay.perchD, z: st.cz + Math.sin(lay.perchA) * st.r * lay.perchD };
+      let pf = null, best = Infinity;
+      for (const p of this.world.platforms || []) {
+        const d = Math.hypot(p.x - want.x, p.z - want.z);
+        if (d < best) { best = d; pf = p; }
+      }
+      const onTop = pf && best < st.r * 0.3;
+      const q = onTop ? { x: pf.x, z: pf.z } : want;
       const m = this._cityWallMargin(st, 1.2);
       this._clampCityPos(q, st, m, m);
-      egg.baseY = 3.2;
-      egg.group.position.set(q.x, 3.2, q.z);
+      const top = onTop ? pf.top : this._groundY(q.x, q.z) + 3.45;
+      egg.baseY = top;
+      egg.group.position.set(q.x, top, q.z);
       return;
     }
     const pf = this.world.perch;
@@ -1869,14 +1879,31 @@ export class Game {
     const q = { x, z };
     const m = this._cityWallMargin(stage, word.zone === 'sky' ? 1.2 : 0.5);
     this._clampCityPos(q, stage, m, m);
-    return word.zone === 'sky' ? { x: q.x, z: q.z, y: 3.2 } : { x: q.x, z: q.z, y: 0 };
+    // 天空蛋站观景石台：台面 = 地形高度 + 3.45（写死 3.2 会在有地形的城市悬空或埋进山坡）
+    return word.zone === 'sky' ? { x: q.x, z: q.z, y: this._groundY(q.x, q.z) + 3.45 } : { x: q.x, z: q.z, y: 0 };
   }
   // 蛋位可站性：在城界内（玩家贴墙线）且不与任何碰撞体重叠，孩子才能走到蛋旁按 E。
   // 蛋 spawn 旧逻辑只钳城界不避碰撞体——蛋会刷进碑/树/城墙夹缝，看得见够不着（原地撞墙晃）。
+  // 装饰/大件的视觉遮挡：绿化（world.decor）与地标等大件（isl.blockers）都是"不参与碰撞
+  // 却能把蛋整个罩住"的东西。两者都是岛内局部坐标，按当前城心换算成世界坐标。
+  _blockedAt(x, z, R = 1.0) {
+    const st = this._currentStage();
+    for (const d of this.world.decor || []) {
+      if (Math.hypot(x - (st.cx + d.x), z - (st.cz + d.z)) < d.r + R) return true;
+    }
+    // 世界是所有城的集合，必须按 (cx,cz) 找本城的登记项，否则会拿别城的坐标来判
+    const isl = (this.world.islands || []).find(q => Math.abs(q.cx - st.cx) < 0.5 && Math.abs(q.cz - st.cz) < 0.5);
+    for (const b of (isl && isl.blockers) || []) {
+      if (Math.hypot(x - (st.cx + b.x), z - (st.cz + b.z)) < b.r + R) return true;
+    }
+    return false;
+  }
+
   _eggReachable(x, z) {
     const st = this._currentStage();
     const probe = { x, z };
     if (this._clampCityPos(probe, st, this._cityWallMargin(st), 0.5)) return false;   // 被城界推出 = 站不到
+    if (this._blockedAt(x, z)) return false;   // 被树冠/地标罩住的点不算可站（蛋会看不见）
     const R = 1.0;   // 玩家站位半径（含一点余量）
     for (const c of this.world.colliders) {
       if (c.dead) continue;
@@ -1896,8 +1923,58 @@ export class Game {
       if (this._eggReachable(px, pz)) return { x: px, z: pz };
       px += (st.cx - px) * 0.12; pz += (st.cz - pz) * 0.12;
     }
+    // 兜底：城心往往就是主地标（蛋会被罩住），一圈圈向外找第一个真正可站的点
+    for (let rr = st.r * 0.15; rr <= st.r * 0.85; rr += st.r * 0.07) {
+      for (let k = 0; k < 16; k++) {
+        const a = k / 16 * Math.PI * 2;
+        const px = st.cx + Math.cos(a) * rr, pz = st.cz + Math.sin(a) * rr;
+        if (this._eggReachable(px, pz)) return { x: px, z: pz };
+      }
+    }
     return { x: st.cx, z: st.cz };
   }
+  // 蛋位分配：多颗蛋不许落在同一点（同点会互相套住，孩子只看得见最外面那颗）。
+  // 顺序：指定点 → 其它牌旁点 → 以该点为中心螺旋找第一个"可站且不被遮挡"的空位。
+  _freeEggSpot(x, z) {
+    const placed = (this._placedEggSpots = this._placedEggSpots || []);
+    const st = this._currentStage();
+    const free = q => placed.every(q2 => Math.hypot(q.x - q2.x, q.z - q2.z) > 2.6);
+    // 候选点必须"真正可站"（_eggReachable 已含城界/碰撞体/树冠/地标遮挡），
+    // 否则 _eggSpot 的城心兜底会被接受——城心常是返回台/主地标，蛋就落在道具里了。
+    const ok = (sx, sz) => {
+      const s = this._eggSpot(sx, sz);
+      return (this._eggReachable(s.x, s.z) && free(s)) ? s : null;
+    };
+    let s = ok(x, z);
+    if (!s) {
+      const list = this._signEggSpots || [];
+      const start = list.length ? this._hashStr(st.key + x.toFixed(1) + z.toFixed(1)) % list.length : 0;
+      for (let k = 0; k < list.length && !s; k++) s = ok(list[(start + k) % list.length].x, list[(start + k) % list.length].z);
+    }
+    if (!s) {
+      // 螺旋外扩：一圈圈找第一个可站空位
+      for (let rr = 3; rr <= st.r * 0.7 && !s; rr += 3) {
+        for (let k = 0; k < 12 && !s; k++) {
+          const a = k / 12 * Math.PI * 2 + rr;
+          s = ok(x + Math.cos(a) * rr, z + Math.sin(a) * rr);
+        }
+      }
+    }
+    if (!s) {
+      // 再退一步：放宽"不重叠"，只要求可站（宁可两颗蛋靠近，也不要一颗埋在道具里）
+      for (let rr = 3; rr <= st.r * 0.7 && !s; rr += 3) {
+        for (let k = 0; k < 12 && !s; k++) {
+          const a = k / 12 * Math.PI * 2 + rr * 1.7;
+          const q = this._eggSpot(x + Math.cos(a) * rr, z + Math.sin(a) * rr);
+          if (this._eggReachable(q.x, q.z)) s = q;
+        }
+      }
+    }
+    if (!s) s = this._eggSpot(x, z);   // 实在无解：退回原逻辑（不丢蛋）
+    placed.push(s);
+    return s;
+  }
+
   // 换城：切舞台显隐、词宠全家迁城、玩家落在新城
   // 自动碰撞兜底：扫岛内大件装饰（建筑/树），中心未被任何碰撞体覆盖的注册圆形碰撞体。
   // 装饰生成只给部分元素手写碰撞体，其余大件会被人穿模（穿塔 bug）——这里全量兜底。
@@ -1977,11 +2054,13 @@ export class Game {
     const perchId = this._perchEggId();
     for (const [eid, eg] of this.eggs.eggs) {
       if (!eg.group.visible || !this.currentChapter.words.includes(eid)) continue;
-      if (eid === perchId) { this._putEggOnPerch(eg); continue; }   // 高台蛋回台面
+      if (eid === perchId) { this._putEggOnPerch(eg); continue; }   // 高台蛋位固定，不参与分配
       if (eg.word.zone !== 'sky' && this._eggReachable(eg.group.position.x, eg.group.position.z)) continue;   // 城内/牌旁蛋位不动
       const c2 = this._cityPos(eg.word, cur);
-      const spot = this._eggSpot(c2.x, c2.z);
-      const y = eg.word.zone === 'sky' ? (c2.y || 3.2) : 0;
+      // 用 _freeEggSpot：它带遮挡检查，_eggSpot 只避碰撞体（会把蛋放回道具里）
+      const spot = this._freeEggSpot(c2.x, c2.z);
+      // y 按地形算：写死 0/3.2 会让普通蛋落进山坡里、天空蛋悬空或埋进石台（"看不到的蛋"）
+      const y = eg.word.zone === 'sky' ? this._groundY(spot.x, spot.z) + 3.45 : this._groundY(spot.x, spot.z);
       eg.group.position.set(spot.x, y, spot.z);
       eg.baseY = y;
     }
@@ -2018,6 +2097,7 @@ export class Game {
     while (grp.children.length) grp.remove(grp.children[0]);
     this._signEggSpots = [];
     this._usedEggSpots = null;   // 换城重置蛋位占用
+    this._placedEggSpots = [];   // 换城重置已放蛋位（_freeEggSpot 用）
     this._signList = [];
     if (!this.cityTour || !stage || !stage.city) return;
     const city = stage.city;
@@ -2092,25 +2172,6 @@ export class Game {
         this.world.colliders.push({ t: 'c', x: +x.toFixed(2), z: +z.toFixed(2), r: 1.2, fixed: true });   // 立牌占位：树的自动摆放会避开
         sign.scale.setScalar(0.7);   // 立牌同步城市缩放微调
         this._signList.push({ ...it, x, z });
-        // 地形打卡点：每城一个（山顶/湖畔/沙丘/梯田/海角/码头），金色牌面与三类立牌区分
-        const sp = stage.terrain && stage.terrain.spot;
-        if (sp) {
-          const b = this.world.cityBounds && this.world.cityBounds[stage.key];
-          const F = b && b.terrainField;
-          if (F) {
-            const w = F.P2(sp.at);
-            const sx2 = w[0] + b.cx, sz2 = w[1] + b.cz;
-            const it2 = { name: sp.name, zh: sp.name, en: sp.en, emoji: sp.emoji, type: 'spot' };
-            const sg2 = this._makeSign(it2, '#E8C36A');
-            sg2.position.set(sx2, this._groundY(sx2, sz2), sz2);
-            sg2.rotation.y = Math.atan2(stage.cx - sx2, stage.cz - sz2);
-            sg2.scale.setScalar(0.7);
-            grp.add(sg2);
-            this.world.colliders.push({ t: "c", x: +sx2.toFixed(2), z: +sz2.toFixed(2), r: 1.2, fixed: true });
-            this._signList.push({ ...it2, x: sx2, z: sz2 });
-            this._spotAt = { x: sx2, z: sz2, r: sp.r || 6, kind: sp.kind, name: sp.name, stars: sp.stars || 3 };
-          }
-        } else this._spotAt = null;
         if (this._signEggSpots.length < 26) {
           const es2 = { x: x - dx * 0.9 + dz * 0.75, z: z - dz * 0.9 - dx * 0.75 };   // 牌子侧后方（偏移同步缩小）
           const esM2 = this._cityWallMargin(stage, 0.5);
@@ -2118,6 +2179,28 @@ export class Game {
           this._signEggSpots.push(es2);
         }
       });
+    }
+    // 地形打卡点：每城一块金色牌（山顶/湖畔/沙丘/梯田/海角/码头）。
+    // 必须放在立牌 forEach 之外——放进循环里会每块普通立牌都插一个（曾出现同点位 14 块牌）。
+    this._spotAt = null;
+    const sp = stage.terrain && stage.terrain.spot;
+    const bnd = sp && this.world.cityBounds && this.world.cityBounds[stage.key];
+    const Fld = bnd && bnd.terrainField;
+    if (sp && Fld) {
+      const w = Fld.P2(sp.at);
+      const q = { x: w[0] + bnd.cx, z: w[1] + bnd.cz };
+      const mS = this._cityWallMargin(stage, 0.5);
+      this._clampCityPos(q, stage, mS, mS);
+      const spot2 = this._eggSpot(q.x, q.z);   // 与蛋同一套避让：不嵌进碰撞体/树冠
+      const it2 = { name: sp.name, zh: sp.name, en: sp.en, emoji: sp.emoji, type: 'spot' };
+      const sg2 = this._makeSign(it2, '#E8C36A');
+      sg2.position.set(spot2.x, this._groundY(spot2.x, spot2.z), spot2.z);
+      sg2.rotation.y = Math.atan2(stage.cx - spot2.x, stage.cz - spot2.z);
+      sg2.scale.setScalar(0.7);
+      grp.add(sg2);
+      this.world.colliders.push({ t: 'c', x: +spot2.x.toFixed(2), z: +spot2.z.toFixed(2), r: 1.2, fixed: true });
+      this._signList.push({ ...it2, x: spot2.x, z: spot2.z });
+      this._spotAt = { x: spot2.x, z: spot2.z, r: sp.r || 6, kind: sp.kind, name: sp.name, stars: sp.stars || 3 };
     }
   }
 
