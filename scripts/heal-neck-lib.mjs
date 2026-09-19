@@ -91,3 +91,94 @@ export function healNecks(pts, W) {
   // 精度与生成脚本一致（3 位小数）
   return p.map(([x, z]) => [Math.round(x * 1000) / 1000, Math.round(z * 1000) / 1000]);
 }
+
+/* ================= 可玩区连通性判定（生成器与审计脚本共用同一份实现） =================
+   为什么必须共用：修复是在**高模**上做的，而运行时钳制与判连通用的是 simplifyPoly 的**低模**；
+   简化会重新掐细已被撑开的颈部——这就是"修了 N 城还是断开"的原因。
+   所以判定必须按运行时口径来。
+
+   ★ 判定阈值取 floor 而不是 margin：js/game.js:_clampCityPos 把玩家钳到离边 ≥ margin(1.42)，
+   但挤不出 margin 时只要离边 ≥ floor(默认 0.5) 就**就地放行**（细颈里贴着墙缝也能过），
+   只有连 floor 都不够才朝内极点找位置。所以"走得过去"的条件是 d ≥ floor，
+   用 margin 判会把大量可通行的细颈误判成切断（这正是旧审计报 7 城的原因）。 */
+import { simplifyPoly, polyInside, polyNearest } from '../js/city-shape.js';
+
+export const CITY_SCALE = 0.84;
+export const PLAYER_EXTRA = 0.5;                       // game._cityWallMargin(st) 的 extra 默认值
+export const WALL_MARGIN = 1.42;                       // game._cityWallMargin 的固定返回值
+export const WALK_FLOOR = 0.5;                         // _clampCityPos 的 floor 默认值：能站住的下限
+// 判定为"真死区"的最小面积（世界单位²）：约 2.5×2.5，才塞得下一个蛋(r≈1.2)+可达空间。
+// 更小的碎块（1~3 单位² 的 1×1 栅格）是栅格化噪声，既放不下东西也不值得为此改动轮廓。
+export const MIN_POCKET = 6;
+
+// 网格 BFS：open(x,z) = 在（低模）轮廓内 且 离边界 ≥ floor（= 能站住）
+export function playableComponents(ptsNorm, radius, contents, step = 1.0, floor = WALK_FLOOR) {
+  const r = Math.round(radius * (3 + Math.min(1.3, contents * 0.012)) * CITY_SCALE);
+  const pts = simplifyPoly(ptsNorm.map(([x, z]) => [x * r, z * r]), 0.1);
+  const xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minZ = Math.min(...zs), maxZ = Math.max(...zs);
+  const nx = Math.ceil((maxX - minX) / step) + 1, nz = Math.ceil((maxZ - minZ) / step) + 1;
+  const lab = new Int32Array(nx * nz).fill(-1);
+  const comps = [];
+  for (let i = 0; i < nx; i++) for (let j = 0; j < nz; j++) {
+    const id = i * nz + j;
+    if (lab[id] >= 0) continue;
+    const x = minX + i * step, z = minZ + j * step;
+    if (!polyInside(pts, x, z) || polyNearest(pts, x, z).d < floor) { lab[id] = -2; continue; }
+    const q = [id]; lab[id] = comps.length;
+    const cells = [];
+    while (q.length) {
+      const cur = q.pop(); cells.push(cur);
+      const ci = Math.floor(cur / nz), cj = cur % nz;
+      for (const [di, dj] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const ni = ci + di, nj = cj + dj;
+        if (ni < 0 || nj < 0 || ni >= nx || nj >= nz) continue;
+        const nid = ni * nz + nj;
+        if (lab[nid] >= 0) continue;
+        const px = minX + ni * step, pz = minZ + nj * step;
+        if (!polyInside(pts, px, pz) || polyNearest(pts, px, pz).d < floor) { lab[nid] = -2; continue; }
+        lab[nid] = comps.length; q.push(nid);
+      }
+    }
+    comps.push({ cells });
+  }
+  comps.sort((a, b) => b.cells.length - a.cells.length);
+  const main = comps[0] ? comps[0].cells.length : 0;
+  const total = comps.reduce((s, c) => s + c.cells.length, 0);
+  // 真死区：丢掉 1×1 栅格碎屑后仍有内容的碎块
+  const pockets = comps.slice(1).filter(c => c.cells.length * step * step >= MIN_POCKET);
+  const lost = pockets.reduce((s, c) => s + c.cells.length, 0) * step * step;
+  return {
+    r, margin: WALL_MARGIN, floor, step,
+    comps: comps.length, pockets: pockets.length,          // comps=全部碎块（含噪声），pockets=真死区
+    mainPct: total ? main / total * 100 : 100,
+    lostArea: (total - main) * step * step,                // 含噪声的原始死区面积
+    pocketArea: lost,                                      // 只算真死区
+    main, total,
+  };
+}
+
+// 闭环修复：先看原始轮廓有没有真死区，没有就**原样返回**（不推点）；
+// 有才按 W0 修一次 → 按运行时口径验连通 → 不通过就逐级加大 W 重来。
+// 为什么先判再修：healNecks 对"本来就没问题"的城也会轻微推点，会让 27 城的轮廓无谓变动
+// （还会碰坏既有摆位，例如西安某大学与牌子的间距）。
+export function healUntilConnected(ptsNorm, radius, contents, { maxTries = 6, log = null, id = '' } = {}) {
+  const before = playableComponents(ptsNorm, radius, contents);
+  if (before.pockets === 0) return { pts: ptsNorm, W: 0, tries: 0, info: before, changed: false };
+  const W0 = healWidthForCity({ radius, contents });
+  let best = null;
+  for (let t = 1; t <= maxTries; t++) {
+    const W = W0 * (1 + 0.3 * (t - 1));                 // 1.0 / 1.3 / 1.6 / 1.9 / 2.2 / 2.5 倍
+    const healed = healNecks(ptsNorm, W);
+    const info = playableComponents(healed, radius, contents);
+    if (!best || info.pockets < best.info.pockets || (info.pockets === best.info.pockets && info.pocketArea < best.info.pocketArea)) {
+      best = { pts: healed, W, tries: t, info, changed: true };
+    }
+    if (info.pockets === 0) {
+      if (log) log.push(`${id} 窄颈: W×${(1 + 0.3 * (t - 1)).toFixed(1)} 修好(原 W=${W0.toFixed(3)}, 原死区 ${before.pocketArea.toFixed(1)}u²)`);
+      return best;
+    }
+  }
+  if (log) log.push(`${id} 窄颈: ${maxTries} 次后仍有 ${best.info.pockets} 处死区(${best.info.pocketArea.toFixed(1)}u²，原 ${before.pocketArea.toFixed(1)}u²)`);
+  return best;
+}

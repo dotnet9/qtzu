@@ -7,7 +7,7 @@
 import { writeFileSync, existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { healNecks, healWidthForCity } from './heal-neck-lib.mjs';
+import { healUntilConnected } from './heal-neck-lib.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, '..', 'js', 'city-shape-data.js');
@@ -47,6 +47,55 @@ async function fetchBound(adcode, tries = 3) {
       await new Promise(r => setTimeout(r, 1200 * (i + 1)));
     }
   }
+}
+
+// ---- 台湾 4 城数据源：taiwan-atlas 的 22 县市真实边界（TopoJSON）----
+// 阿里 DataV 没有台湾子级行政边界（710100/710200/710300/710400 全部 404），
+// 若不接这个源，这 4 城会退回手绘 blob（13 点），完全不像真实城市。
+const TW_CACHE = join(__dirname, 'tw-counties.topo.json');
+const TW_URL = 'https://cdn.jsdelivr.net/npm/taiwan-atlas@1/counties-10t.json';
+const TW_COUNTY = {
+  taipei: ['台北市', '臺北市'], kaohsiung: ['高雄市'],
+  taichung: ['台中市', '臺中市'], tainan: ['台南市', '臺南市'],
+};
+async function loadTaiwan() {
+  if (!existsSync(TW_CACHE)) {
+    const res = await fetch(TW_URL, { headers: { 'User-Agent': UA } });
+    if (!res.ok) throw new Error('台湾县市界下载失败 HTTP ' + res.status);
+    writeFileSync(TW_CACHE, Buffer.from(await res.arrayBuffer()));
+  }
+  const topo = JSON.parse(readFileSync(TW_CACHE, 'utf8'));
+  const { scale, translate } = topo.transform;
+  const arcs = topo.arcs.map(arc => {
+    let x = 0, y = 0;
+    return arc.map(([dx, dy]) => { x += dx; y += dy; return [x * scale[0] + translate[0], y * scale[1] + translate[1]]; });
+  });
+  const ringOf = idxs => {
+    const out = [];
+    for (const i of idxs) {
+      const a = i < 0 ? arcs[~i].slice().reverse() : arcs[i];
+      for (const p of a) {
+        const last = out[out.length - 1];
+        if (!last || last[0] !== p[0] || last[1] !== p[1]) out.push(p);
+      }
+    }
+    return out;
+  };
+  const counties = {};
+  for (const g of topo.objects.counties.geometries) {
+    const nm = g.properties && (g.properties.COUNTYNAME || g.properties.COUNTYENG);
+    if (!nm) continue;
+    const polys = g.type === 'Polygon' ? [g.arcs] : (g.type === 'MultiPolygon' ? g.arcs : []);
+    counties[nm] = polys.flatMap(poly => poly.map(ringOf));
+  }
+  const out = {};
+  for (const [cid, names] of Object.entries(TW_COUNTY)) {
+    const key = names.find(n => counties[n]);
+    if (!key) continue;
+    const rings = counties[key].slice().sort((a, b) => ringArea(b) - ringArea(a));
+    out[cid] = rings[0];
+  }
+  return out;
 }
 
 // 鞋带公式面积（绝对值）
@@ -127,6 +176,9 @@ function cityContents(cid) {
   // 全量重生成（高细节版）：不读旧文件做增量，直接覆盖
   const shapes = {};
   const failed = [], missing = [];
+  const healLog = [];
+  let twRings = {};
+  try { twRings = await loadTaiwan(); } catch (e) { console.log('台湾数据源不可用：' + e.message); }
   const entries = Object.entries(ADCODES);
   let done = 0;
   const CONC = 6;
@@ -134,17 +186,22 @@ function cityContents(cid) {
     await Promise.all(entries.slice(i, i + CONC).map(async ([cid, ad]) => {
       try {
         const gj = await fetchBound(ad);
-        if (!gj) { missing.push(cid); return; }
-        const geom = gj.features?.[0]?.geometry;
-        if (!geom) { missing.push(cid); return; }
-        const rings = geom.type === 'Polygon'
-          ? [geom.coordinates[0]]
-          : geom.coordinates.map(poly => poly[0]);
-        rings.sort((a, b) => ringArea(b) - ringArea(a));
+        const geom = gj?.features?.[0]?.geometry;
+        let rings = null;
+        if (geom) {
+          rings = geom.type === 'Polygon' ? [geom.coordinates[0]] : geom.coordinates.map(poly => poly[0]);
+          rings.sort((a, b) => ringArea(b) - ringArea(a));
+        } else if (twRings[cid]) {
+          // 台湾：DataV 无子级边界（710100 等 404），用 taiwan-atlas 县市界兜底
+          rings = [twRings[cid]];
+        } else { missing.push(cid); return; }
         const shape = toShape(rings[0]);
         if (shape) {
           // 窄颈修复：把腐蚀后不连通的细颈撑宽到可通行（见 heal-neck-lib.mjs）
-          shape.pts = healNecks(shape.pts, healWidthForCity(cityContents(cid)));
+          // 窄颈修复改为闭环：按运行时低模口径验连通，不通过就加大 W 重来
+          const cc = cityContents(cid);
+          const healed = healUntilConnected(shape.pts, cc.radius, cc.contents, { log: healLog, id: cid });
+          shape.pts = healed.pts;
           shapes[cid] = shape;
         }
         else missing.push(cid);
@@ -177,6 +234,7 @@ ${geo},
   writeFileSync(OUT, src);
   const nPts = Object.values(shapes).reduce((a, v) => a + v.pts.length, 0);
   console.log(`写入 ${OUT}：${Object.keys(shapes).length} 城，共 ${nPts} 个边缘点（平均 ${Math.round(nPts / Math.max(1, Object.keys(shapes).length))}/城）`);
+  if (healLog.length) { console.log('窄颈修复记录:'); for (const l of healLog) console.log('  ' + l); }
   if (missing.length) console.log('无边界（走回退）:', missing.join(', '));
   if (failed.length) console.log('拉取失败（可重跑补）:', failed.join(', '));
 })();
