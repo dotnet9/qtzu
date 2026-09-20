@@ -256,14 +256,14 @@ assets/models/                    产出的 .glb（提交）
 | 项 | 状态 | 实测 |
 |---|---|---|
 | 烘焙管线 `scripts/bake/`（common/gates/landmarks/specs/run） | ✅ | Blender 4.5.14 LTS，全自动、无人工操作 |
-| 大学校门 GLB | ✅ 356 / 384 | 23.7MB，三角面均值 2797（上限 6000），单座 ≤ 120KB |
+| 大学校门 GLB（19 风格族 + 11 招牌门模板） | ✅ 384 / 384 | 25.3MB，三角面均值 2764（上限 6000），单座 ≤ 120KB |
 | 城市地标 GLB | ✅ 139 / 139 | 5.2MB，三角面均值 1605（上限 10000） |
 | 运行时加载与回退 `js/assets.js` | ✅ | 并发 4、单资产 1.5s 超时、失败/离线/触屏静默回退程序化 |
 | 光照与后处理风格化（§4.5） | ✅ | 主光压低/环境提亮、PMREM 轻环境反射（仅桌面）、辉光 0.32→0.22、shadow.radius 4→6 |
 | PWA 缓存（§4.6） | ✅ | `VER=qtzu-pwa-v18`、`js/assets.js` 进 CORE、`.glb` 归 200MB 大文件桶 |
 | 审计工具 `scripts/audit-assets.mjs` | ✅ | manifest↔磁盘↔代码引用三方一致；0 缺失/0 孤儿/0 超预算 |
 | 回退验收 `scripts/test-fallback.mjs` | ✅ | 两趟全绿（全 404 时照常可玩；正常时 18 门 + 3 地标命中） |
-| 52 城逐城验收 `scripts/verify-cities.mjs` | ✅ | 52 城 0 错误、校门命中 356/386、地标 139/139、0 个 404 资源 |
+| 52 城逐城验收 `scripts/verify-cities.mjs` | ✅ | 52 城 0 错误、校门命中 384/384、地标 139/139、0 个 404 资源 |
 
 ### 10.2 体积结论（§4.2 / §4.6 的决策点）
 
@@ -282,11 +282,10 @@ assets/models/                    产出的 .glb（提交）
 
 ### 10.4 仍走程序化回退（不是缺陷，是没做完的部分）
 
-- **28 座"招牌门"**（`SIGNATURE` 模板：pku / pailou / minguo / jiageng / soviet / garden /
-  erxiao / dunhuang / tibetan / roof 等）：`scripts/bake/gates.py` 只实现了 19 风格族里的
-  10 族 + modern 模板，招牌门模板尚未移植。运行时静默回退，观感与改造前一致。
 - **词宠（~900）、装饰道具（36 类）、玩家部件 / NPC**：烘焙器还没写。
   宠物模板在 `js/models/auto-templates.js`（47KB 参数化造型），是全量里最后一块硬骨头；
   道具里 windmill/pinwheel/beanstalk/gull/owl/barn 等带**动画子节点**（游戏循环要转它们的
   blades/stalk/wings），换 GLB 必须保留节点名，属于要单独设计契约的一类。
+- 校门与地标已 100% 覆盖，所以上面这三类之外的场景物仍按原来的程序化方式渲染，
+  与烘焙资产混排（材质映射在 `js/assets.js` 里统一过一遍，不会出现两套质感）。
 

@@ -1,11 +1,11 @@
 {
  "blender": "4.5.14 LTS",
- "generated": "2026-09-20T11:06:10.824Z",
+ "generated": "2026-09-20T11:58:38.496Z",
  "kinds": {
   "gate": {
    "blender": "4.5.14 LTS",
-   "generated": "2026-09-20T19:06:10",
-   "count": 356
+   "generated": "2026-09-20T19:58:38",
+   "count": 384
   },
   "landmark": {
    "blender": "4.5.14 LTS",
@@ -1260,6 +1260,35 @@
    "verts": 1884,
    "zh": "辅仁大学",
    "v": "af86a08e71"
+  },
+  "11d2dbe2": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.239,
+     2.241
+    ],
+    "y": [
+     -0.009,
+     4.62
+    ],
+    "z": [
+     -0.441,
+     1.003
+    ]
+   },
+   "beamW": 3,
+   "beamY": 4.1,
+   "bytes": 73580,
+   "city": "dunhuang",
+   "file": "gates/11d2dbe2.glb",
+   "fz": 0.28,
+   "style": "dunhuang",
+   "styleKind": "tpl",
+   "tri": 3008,
+   "verts": 1528,
+   "zh": "敦煌学院",
+   "v": "72887e7d6f"
   },
   "11efba59": {
    "kind": "landmark",
@@ -2624,6 +2653,35 @@
    "zh": "辅英科技大学",
    "v": "db0459c330"
   },
+  "2f087745": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.601,
+     3.602
+    ],
+    "y": [
+     -0.001,
+     4.291
+    ],
+    "z": [
+     -0.701,
+     1
+    ]
+   },
+   "beamW": 3.2,
+   "beamY": 2.62,
+   "bytes": 39876,
+   "city": "shanghai",
+   "file": "gates/2f087745.glb",
+   "fz": 0.18,
+   "style": "roof",
+   "styleKind": "tpl",
+   "tri": 1532,
+   "verts": 788,
+   "zh": "复旦大学",
+   "v": "276670310a"
+  },
   "2f6acfbe": {
    "kind": "gate",
    "bbox": {
@@ -3436,6 +3494,35 @@
    "zh": "广西民族大学",
    "v": "7febf6a6d3"
   },
+  "3c917fcc": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.824,
+     3.819
+    ],
+    "y": [
+     -0.008,
+     3.86
+    ],
+    "z": [
+     -0.497,
+     1.001
+    ]
+   },
+   "beamW": 2.3,
+   "beamY": 3.55,
+   "bytes": 56972,
+   "city": "suzhou",
+   "file": "gates/3c917fcc.glb",
+   "fz": 0.15,
+   "style": "garden",
+   "styleKind": "tpl",
+   "tri": 2292,
+   "verts": 1180,
+   "zh": "苏州大学",
+   "v": "352b97a063"
+  },
   "3cc9b745": {
    "kind": "landmark",
    "bbox": {
@@ -3986,6 +4073,35 @@
    "verts": 1244,
    "zh": "中央财经大学",
    "v": "2dc4a8354a"
+  },
+  "44b62f54": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.622,
+     2.632
+    ],
+    "y": [
+     -0.039,
+     4.167
+    ],
+    "z": [
+     -0.365,
+     1.25
+    ]
+   },
+   "beamW": 5.097,
+   "beamY": 3.672,
+   "bytes": 52052,
+   "city": "beijing",
+   "file": "gates/44b62f54.glb",
+   "fz": 0.29,
+   "style": "aero",
+   "styleKind": "fam",
+   "tri": 1996,
+   "verts": 1032,
+   "zh": "北京航空航天大学",
+   "v": "1175b53d97"
   },
   "45235f03": {
    "kind": "landmark",
@@ -4625,6 +4741,64 @@
    "zh": "仰恩大学",
    "v": "ddb095b37d"
   },
+  "5203074a": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.752,
+     2.754
+    ],
+    "y": [
+     -0.006,
+     4.808
+    ],
+    "z": [
+     -0.422,
+     1.004
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66328,
+   "city": "taipei",
+   "file": "gates/5203074a.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "台湾大学",
+   "v": "b885b5af16"
+  },
+  "527f3d3a": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.751,
+     2.753
+    ],
+    "y": [
+     -0.001,
+     6.07
+    ],
+    "z": [
+     -0.95,
+     1
+    ]
+   },
+   "beamW": 3,
+   "beamY": 2.6,
+   "bytes": 48792,
+   "city": "harbin",
+   "file": "gates/527f3d3a.glb",
+   "fz": 0.44,
+   "style": "soviet",
+   "styleKind": "tpl",
+   "tri": 1832,
+   "verts": 950,
+   "zh": "哈尔滨工业大学",
+   "v": "eb21d53e09"
+  },
   "539d4b18": {
    "kind": "gate",
    "bbox": {
@@ -5001,6 +5175,35 @@
    "verts": 952,
    "zh": "昆明医科大学",
    "v": "4cee0b5840"
+  },
+  "5ab26dfe": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.614,
+     2.613
+    ],
+    "y": [
+     -0.041,
+     4.281
+    ],
+    "z": [
+     -0.36,
+     1.252
+    ]
+   },
+   "beamW": 5.068,
+   "beamY": 3.789,
+   "bytes": 51708,
+   "city": "nanchang",
+   "file": "gates/5ab26dfe.glb",
+   "fz": 0.29,
+   "style": "aero",
+   "styleKind": "fam",
+   "tri": 1980,
+   "verts": 1024,
+   "zh": "南昌航空大学",
+   "v": "85c6c8a119"
   },
   "5b9a1fc9": {
    "kind": "gate",
@@ -6945,6 +7148,35 @@
    "zh": "福建医科大学",
    "v": "8df28766f5"
   },
+  "7b305a90": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.483,
+     2.484
+    ],
+    "y": [
+     -0.036,
+     4.244
+    ],
+    "z": [
+     -0.367,
+     1.251
+    ]
+   },
+   "beamW": 4.81,
+   "beamY": 3.747,
+   "bytes": 51708,
+   "city": "shenyang",
+   "file": "gates/7b305a90.glb",
+   "fz": 0.29,
+   "style": "aero",
+   "styleKind": "fam",
+   "tri": 1980,
+   "verts": 1024,
+   "zh": "沈阳航空航天大学",
+   "v": "b752fcf243"
+  },
   "7b6f3820": {
    "kind": "gate",
    "bbox": {
@@ -7583,6 +7815,35 @@
    "zh": "湖南大学",
    "v": "c8b69f449e"
   },
+  "827b3171": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.154,
+     3.154
+    ],
+    "y": [
+     -0.004,
+     4.358
+    ],
+    "z": [
+     -0.601,
+     1.002
+    ]
+   },
+   "beamW": 3.4,
+   "beamY": 3.28,
+   "bytes": 43412,
+   "city": "xiamen",
+   "file": "gates/827b3171.glb",
+   "fz": 0.36,
+   "style": "jiageng",
+   "styleKind": "tpl",
+   "tri": 1628,
+   "verts": 844,
+   "zh": "厦门大学",
+   "v": "f1f2e3cf79"
+  },
   "83599c45": {
    "kind": "gate",
    "bbox": {
@@ -8047,6 +8308,35 @@
    "zh": "青岛农业大学",
    "v": "d6da886329"
   },
+  "8c2dbe23": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.753,
+     2.755
+    ],
+    "y": [
+     -0.008,
+     4.808
+    ],
+    "z": [
+     -0.421,
+     1.001
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66328,
+   "city": "chongqing",
+   "file": "gates/8c2dbe23.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "重庆大学",
+   "v": "1b4c6eec6c"
+  },
   "8c469b47": {
    "kind": "landmark",
    "bbox": {
@@ -8162,6 +8452,35 @@
    "verts": 728,
    "zh": "江南大学",
    "v": "8beabf9670"
+  },
+  "8e727ab3": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.9,
+     2.902
+    ],
+    "y": [
+     -0.015,
+     4.239
+    ],
+    "z": [
+     -0.422,
+     1.005
+    ]
+   },
+   "beamW": 4.4,
+   "beamY": 3.05,
+   "bytes": 59816,
+   "city": "qufu",
+   "file": "gates/8e727ab3.glb",
+   "fz": 0.26,
+   "style": "pailou",
+   "styleKind": "tpl",
+   "tri": 2400,
+   "verts": 1232,
+   "zh": "曲阜师范大学",
+   "v": "a5b11a017b"
   },
   "8eb51d21": {
    "kind": "gate",
@@ -8481,6 +8800,35 @@
    "verts": 1536,
    "zh": "南京林业大学",
    "v": "f8922b7fa6"
+  },
+  "9375a60a": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.751,
+     2.752
+    ],
+    "y": [
+     -0.004,
+     4.808
+    ],
+    "z": [
+     -0.427,
+     1.003
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66332,
+   "city": "xian",
+   "file": "gates/9375a60a.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "西安交通大学",
+   "v": "8fcd9f15a4"
   },
   "937610d5": {
    "kind": "gate",
@@ -9265,6 +9613,64 @@
    "zh": "河北医科大学",
    "v": "0ff9628b5c"
   },
+  "a16ecc8b": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.751,
+     2.753
+    ],
+    "y": [
+     -0.008,
+     6.073
+    ],
+    "z": [
+     -0.954,
+     1.003
+    ]
+   },
+   "beamW": 3,
+   "beamY": 2.6,
+   "bytes": 48780,
+   "city": "dalian",
+   "file": "gates/a16ecc8b.glb",
+   "fz": 0.44,
+   "style": "soviet",
+   "styleKind": "tpl",
+   "tri": 1832,
+   "verts": 950,
+   "zh": "大连理工大学",
+   "v": "60262ed51a"
+  },
+  "a18a3556": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.512,
+     2.512
+    ],
+    "y": [
+     -0.04,
+     4.158
+    ],
+    "z": [
+     -0.362,
+     1.255
+    ]
+   },
+   "beamW": 4.876,
+   "beamY": 3.663,
+   "bytes": 51708,
+   "city": "tianjin",
+   "file": "gates/a18a3556.glb",
+   "fz": 0.29,
+   "style": "aero",
+   "styleKind": "fam",
+   "tri": 1980,
+   "verts": 1024,
+   "zh": "中国民航大学",
+   "v": "3cddbdf23e"
+  },
   "a1c72d08": {
    "kind": "gate",
    "bbox": {
@@ -10019,6 +10425,35 @@
    "zh": "集美大学",
    "v": "80d3fc88d5"
   },
+  "adc0e8c1": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.619,
+     2.63
+    ],
+    "y": [
+     -0.041,
+     4.234
+    ],
+    "z": [
+     -0.363,
+     1.253
+    ]
+   },
+   "beamW": 5.095,
+   "beamY": 3.74,
+   "bytes": 51708,
+   "city": "nanjing",
+   "file": "gates/adc0e8c1.glb",
+   "fz": 0.29,
+   "style": "aero",
+   "styleKind": "fam",
+   "tri": 1980,
+   "verts": 1024,
+   "zh": "南京航空航天大学",
+   "v": "dfa348a2a4"
+  },
   "ae1f98a5": {
    "kind": "gate",
    "bbox": {
@@ -10337,6 +10772,35 @@
    "verts": 952,
    "zh": "曲阜",
    "v": "dca65d4e33"
+  },
+  "b44c0e7b": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.754,
+     2.752
+    ],
+    "y": [
+     -0.011,
+     4.808
+    ],
+    "z": [
+     -0.422,
+     1.005
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66332,
+   "city": "shenyang",
+   "file": "gates/b44c0e7b.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "东北大学",
+   "v": "c0d3cccdc8"
   },
   "b45f20ad": {
    "kind": "gate",
@@ -10685,6 +11149,35 @@
    "verts": 1558,
    "zh": "中央民族大学",
    "v": "c1b03c8020"
+  },
+  "b9565ea5": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.154,
+     3.154
+    ],
+    "y": [
+     -0.008,
+     4.358
+    ],
+    "z": [
+     -0.603,
+     1.006
+    ]
+   },
+   "beamW": 3.4,
+   "beamY": 3.28,
+   "bytes": 43408,
+   "city": "xiamen",
+   "file": "gates/b9565ea5.glb",
+   "fz": 0.36,
+   "style": "jiageng",
+   "styleKind": "tpl",
+   "tri": 1628,
+   "verts": 844,
+   "zh": "华侨大学",
+   "v": "729e8302e5"
   },
   "b9d9fff6": {
    "kind": "gate",
@@ -11817,6 +12310,35 @@
    "zh": "江汉大学",
    "v": "4cfd52c647"
   },
+  "cf1c63cc": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.75,
+     2.751
+    ],
+    "y": [
+     -0.005,
+     4.807
+    ],
+    "z": [
+     -0.424,
+     1.001
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66332,
+   "city": "kunming",
+   "file": "gates/cf1c63cc.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "云南大学",
+   "v": "27f76ce46c"
+  },
   "d02a9971": {
    "kind": "gate",
    "bbox": {
@@ -11903,6 +12425,35 @@
    "verts": 2531,
    "zh": "四川电影电视学院",
    "v": "d2d5e51a22"
+  },
+  "d12d8712": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.91,
+     2.907
+    ],
+    "y": [
+     -0.004,
+     4.24
+    ],
+    "z": [
+     -0.426,
+     0.999
+    ]
+   },
+   "beamW": 4.4,
+   "beamY": 3.05,
+   "bytes": 59816,
+   "city": "kaohsiung",
+   "file": "gates/d12d8712.glb",
+   "fz": 0.26,
+   "style": "pailou",
+   "styleKind": "tpl",
+   "tri": 2400,
+   "verts": 1232,
+   "zh": "中山大学",
+   "v": "b4a4aa8162"
   },
   "d192a054": {
    "kind": "gate",
@@ -12048,6 +12599,35 @@
    "verts": 512,
    "zh": "西宁",
    "v": "79ad01cfef"
+  },
+  "d419ab57": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.902,
+     2.899
+    ],
+    "y": [
+     -0.014,
+     4.239
+    ],
+    "z": [
+     -0.42,
+     0.996
+    ]
+   },
+   "beamW": 4.4,
+   "beamY": 3.05,
+   "bytes": 59820,
+   "city": "wuhan",
+   "file": "gates/d419ab57.glb",
+   "fz": 0.26,
+   "style": "pailou",
+   "styleKind": "tpl",
+   "tri": 2400,
+   "verts": 1232,
+   "zh": "武汉大学",
+   "v": "c223f28008"
   },
   "d43c1405": {
    "kind": "gate",
@@ -12513,6 +13093,35 @@
    "zh": "南昌",
    "v": "35f121f908"
   },
+  "db455bf8": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.402,
+     2.403
+    ],
+    "y": [
+     -0.009,
+     3.872
+    ],
+    "z": [
+     -0.573,
+     1.003
+    ]
+   },
+   "beamW": 2.8,
+   "beamY": 3.1,
+   "bytes": 34668,
+   "city": "lhasa",
+   "file": "gates/db455bf8.glb",
+   "fz": 0.5,
+   "style": "tibetan",
+   "styleKind": "tpl",
+   "tri": 1304,
+   "verts": 676,
+   "zh": "西藏大学",
+   "v": "0f4a36ec39"
+  },
   "dbd01ea1": {
    "kind": "gate",
    "bbox": {
@@ -12628,6 +13237,35 @@
    "verts": 2162,
    "zh": "黑龙江中医药大学",
    "v": "4ef4813524"
+  },
+  "debb91f7": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.823,
+     3.82
+    ],
+    "y": [
+     -0.005,
+     3.859
+    ],
+    "z": [
+     -0.505,
+     1
+    ]
+   },
+   "beamW": 2.3,
+   "beamY": 3.55,
+   "bytes": 56980,
+   "city": "yangzhou",
+   "file": "gates/debb91f7.glb",
+   "fz": 0.15,
+   "style": "garden",
+   "styleKind": "tpl",
+   "tri": 2292,
+   "verts": 1180,
+   "zh": "扬州大学",
+   "v": "33df10ad8c"
   },
   "df2feee1": {
    "kind": "gate",
@@ -13035,6 +13673,35 @@
    "zh": "西北师范大学",
    "v": "4c5c797eb5"
   },
+  "e702c997": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.124,
+     3.121
+    ],
+    "y": [
+     -0.009,
+     4.851
+    ],
+    "z": [
+     -0.5,
+     1.103
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 3.62,
+   "bytes": 118556,
+   "city": "beijing",
+   "file": "gates/e702c997.glb",
+   "fz": 0.29,
+   "style": "erxiao",
+   "styleKind": "tpl",
+   "tri": 5060,
+   "verts": 2560,
+   "zh": "清华大学",
+   "v": "0d74c0d522"
+  },
   "e72f65cf": {
    "kind": "gate",
    "bbox": {
@@ -13354,6 +14021,35 @@
    "zh": "岭东科技大学",
    "v": "519d6554bb"
   },
+  "ecfba476": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.752,
+     2.753
+    ],
+    "y": [
+     -0.009,
+     4.806
+    ],
+    "z": [
+     -0.423,
+     1.007
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66328,
+   "city": "nanjing",
+   "file": "gates/ecfba476.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "南京大学",
+   "v": "5ac24bc77d"
+  },
   "ee42d224": {
    "kind": "gate",
    "bbox": {
@@ -13615,6 +14311,35 @@
    "zh": "中国医药大学",
    "v": "cfbc3ac595"
   },
+  "f0f0378d": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.903,
+     2.9
+    ],
+    "y": [
+     -0.015,
+     4.232
+    ],
+    "z": [
+     -0.549,
+     0.996
+    ]
+   },
+   "beamW": 3.2,
+   "beamY": 2.9,
+   "bytes": 66092,
+   "city": "beijing",
+   "file": "gates/f0f0378d.glb",
+   "fz": 0.32,
+   "style": "pku",
+   "styleKind": "tpl",
+   "tri": 2632,
+   "verts": 1352,
+   "zh": "北京大学",
+   "v": "6be532c24e"
+  },
   "f1d92517": {
    "kind": "gate",
    "bbox": {
@@ -13672,6 +14397,35 @@
    "verts": 1232,
    "zh": "内蒙古农业大学",
    "v": "3a9cbf58ba"
+  },
+  "f226bd1b": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.751,
+     2.751
+    ],
+    "y": [
+     -0.003,
+     4.808
+    ],
+    "z": [
+     -0.423,
+     1.002
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66332,
+   "city": "kaifeng",
+   "file": "gates/f226bd1b.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "河南大学",
+   "v": "35d1d0ff53"
   },
   "f244f930": {
    "kind": "gate",
@@ -13875,6 +14629,35 @@
    "verts": 1114,
    "zh": "西安邮电大学",
    "v": "e22551881d"
+  },
+  "f6e455b1": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.751,
+     2.752
+    ],
+    "y": [
+     -0.007,
+     4.81
+    ],
+    "z": [
+     -0.427,
+     1.004
+    ]
+   },
+   "beamW": 2.9,
+   "beamY": 4.32,
+   "bytes": 66320,
+   "city": "tainan",
+   "file": "gates/f6e455b1.glb",
+   "fz": 0.34,
+   "style": "minguo",
+   "styleKind": "tpl",
+   "tri": 2708,
+   "verts": 1380,
+   "zh": "成功大学",
+   "v": "7cb00740e9"
   },
   "f76bce7f": {
    "kind": "landmark",
@@ -14310,6 +15093,35 @@
    "verts": 1322,
    "zh": "湖南第一师范学院",
    "v": "bf49606ecf"
+  },
+  "fec8fc51": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.523,
+     2.526
+    ],
+    "y": [
+     -0.038,
+     4.368
+    ],
+    "z": [
+     -0.366,
+     1.251
+    ]
+   },
+   "beamW": 4.891,
+   "beamY": 3.875,
+   "bytes": 51704,
+   "city": "zhengzhou",
+   "file": "gates/fec8fc51.glb",
+   "fz": 0.29,
+   "style": "aero",
+   "styleKind": "fam",
+   "tri": 1980,
+   "verts": 1024,
+   "zh": "郑州航空工业管理学院",
+   "v": "2bea03215c"
   },
   "feef7dd1": {
    "kind": "gate",

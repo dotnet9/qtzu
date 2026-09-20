@@ -433,14 +433,211 @@ def fam_media(soup, s, h, px):           # 传媒：摄像机 + 声波
     return h + 0.45, px * 2 + 1.0, 0.29 + 0.03
 
 
+# ---------------------------------------------------------------- 招牌门模板
+# 50 座招牌门（SIGNATURE 里有专属造型的学校）原先只实现了 modern 一款，其余 28 座
+# 一直走程序化回退。这里按 js/uni-gate-models.js 的 TPL 逐条移植：造型与尺寸照抄，
+# 颜色仍由规格给（specs.mjs 从 SIGNATURE 取真实配色），只加倒角与手捏微扰。
+# 返回 (beamY, beamW, fz)，与 js 同义——运行时用它贴校徽匾。
+
+STONE = '#B9B2A2'
+
+
+def tpl_erxiao(soup, s, h, px, rnd):     # 清华二校门：白古典拱门（一大两小门洞 + 顶球）
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-1.55, 1.55):
+        bx(soup, 0.6, 2.6, 0.6, c1, sx, 1.3, 0)
+        bx(soup, 0.78, 0.22, 0.78, c2, sx, 2.7, 0)
+    tor_face(soup, 1.55, 0.3, c1, 0, 2.62, 0)                                   # 大拱
+    bx(soup, 2.6, 0.55, 0.55, c1, 0, 4.05, 0)
+    bx(soup, 3.3, 0.2, 0.66, c2, 0, 4.42, 0)
+    for dx, dy in ((-1.4, 4.6), (0, 4.72), (1.4, 4.6)):
+        ball(soup, 0.13, c1, dx, dy, 0, jitter=0.005)
+    for sx in (-2.55, 2.55):                                                    # 两侧矮翼墙
+        bx(soup, 0.9, 1.5, 0.5, c1, sx, 0.75, 0)
+        tor_face(soup, 0.42, 0.16, c1, sx, 1.45, 0.02)
+        ball(soup, 0.1, STONE, sx, 1.58, 0, jitter=0.004)
+    bx(soup, 3.4, 0.08, 1.6, STONE, 0, 0.04, 0.3)                               # 门内石路
+    return 3.62, 2.9, 0.29
+
+
+def tpl_pku(soup, s, h, px, rnd):        # 北大西门：朱红牌楼（四柱 + 绿斗拱 + 灰庑殿顶）
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-2.1, -0.95, 0.95, 2.1):
+        cy(soup, 0.24, 0.28, 3.1, c1, sx, 1.55, 0, seg=10)
+        bx(soup, 0.66, 0.18, 0.66, c2, sx, 3.2, 0)                              # 斗拱托
+        bx(soup, 0.5, 0.16, 0.6, c3, sx, 2.62, 0.02)                            # 红枋金饰
+    bx(soup, 5.4, 0.2, 0.7, c2, 0, 3.42, 0)
+    bx(soup, 5.8, 0.24, 1.1, '#5B7280', 0, 3.66, 0)                             # 灰顶
+    bx(soup, 4.6, 0.26, 0.9, '#6B8090', 0, 3.94, -0.04)
+    bx(soup, 2.2, 0.14, 0.5, '#5B7280', 0, 4.16, -0.06)                         # 正脊
+    bx(soup, 3.2, 0.08, 1.4, STONE, 0, 0.04, 0.2)
+    return 2.9, 3.2, 0.32
+
+
+def tpl_pailou(soup, s, h, px, rnd):     # 石牌坊：四柱三层（武大/中山/曲阜）
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-2.05, -1.025, 1.025, 2.05):
+        bx(soup, 0.44, 3.2, 0.44, c1, sx, 1.6, 0)
+        cy(soup, 0.36, 0.42, 0.28, STONE, sx, 0.14, 0, seg=10)                  # 柱础鼓
+    bx(soup, 5.2, 0.24, 0.5, c2, 0, 2.55, 0)                                    # 下枋
+    bx(soup, 5.0, 0.24, 0.5, c1, 0, 3.05, 0)                                    # 中枋
+    bx(soup, 5.4, 0.26, 0.6, c2, 0, 3.5, 0)                                     # 上枋
+    bx(soup, 5.8, 0.2, 0.8, c3, 0, 3.74, -0.02)                                 # 顶檐
+    bx(soup, 4.4, 0.16, 0.6, c3, 0, 3.98, -0.04)
+    for sx in (-2.05, 2.05):
+        ball(soup, 0.1, c3, sx, 4.14, -0.04, jitter=0.004)
+    return 3.05, 4.4, 0.26
+
+
+def tpl_soviet(soup, s, h, px, rnd):     # 苏式主楼门（哈工大/大连理工）：中央塔楼 + 尖塔
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-2.2, 2.2):
+        bx(soup, 0.9, 2.7, 0.8, c1, sx, 1.35, 0)
+        bx(soup, 1.1, 0.24, 1.0, c2, sx, 2.78, 0)
+        bx(soup, 0.2, 2.2, 0.08, c2, sx - 0.24, 1.3, 0.42)                      # 壁柱条纹
+        bx(soup, 0.2, 2.2, 0.08, c2, sx + 0.24, 1.3, 0.42)
+    bx(soup, 3.3, 2.9, 0.9, c1, 0, 1.45, -0.5)                                  # 中央主楼体
+    bx(soup, 2.5, 1.1, 0.8, c1, 0, 3.4, -0.5)                                   # 二层收进
+    bx(soup, 1.6, 0.9, 0.7, c2, 0, 4.35, -0.5)                                  # 三层
+    cone_at(soup, 0.34, 1.1, c2, 0, 5.3, -0.5, seg=4)
+    ball(soup, 0.12, c3, 0, 5.95, -0.5, jitter=0.004)                           # 塔尖红星
+    for i in (-1, 0, 1):
+        bx(soup, 0.18, 0.6, 0.06, '#F5F1E8', i * 0.9, 0.9, 0.42, jitter=0.004)
+    return 2.6, 3.0, 0.44
+
+
+def tpl_minguo(soup, s, h, px, rnd):     # 民国砖拱门（南大/重大/台大…）：厚砖柱 + 半圆拱
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-1.85, 1.85):
+        bx(soup, 0.78, 3.1, 0.7, c1, sx, 1.55, 0)
+        bx(soup, 0.94, 0.2, 0.84, c2, sx, 3.16, 0)
+    tor_face(soup, 1.46, 0.28, c1, 0, 3.1, 0)
+    bx(soup, 2.9, 0.62, 0.6, c1, 0, 4.15, 0)                                    # 拱上砖墙
+    bx(soup, 3.3, 0.18, 0.72, c2, 0, 4.55, 0)                                   # 压顶
+    bx(soup, 1.2, 0.3, 0.66, c3, 0, 4.3, 0.03)                                  # 匾额底衬
+    for sx in (-2.6, 2.6):                                                      # 侧门柱灯
+        bx(soup, 0.3, 0.9, 0.3, c1, sx, 0.45, 0.2)
+        ball(soup, 0.12, '#FFE2A8', sx, 0.98, 0.2, emissive='#FFE2A8', ei=0.7)
+    bx(soup, 3.6, 0.08, 1.4, STONE, 0, 0.04, 0.3)
+    return 4.32, 2.9, 0.34
+
+
+def tpl_jiageng(soup, s, h, px, rnd):    # 嘉庚燕尾脊门（厦大/华侨大学）
+    c1, c2, c3, c4 = s['colors']
+    bx(soup, 5.4, 0.5, 0.9, c2, 0, 0.25, 0)                                     # 石砌基座
+    for sx in (-1.9, 1.9):
+        bx(soup, 0.6, 2.5, 0.6, c1, sx, 1.75, 0)
+        bx(soup, 0.66, 0.3, 0.66, '#F5F1E8', sx, 2.2, 0)                        # 砖柱白石带
+        bx(soup, 0.66, 0.3, 0.66, '#F5F1E8', sx, 1.4, 0)
+    bx(soup, 4.7, 0.5, 0.7, c2, 0, 3.2, 0)                                      # 白墙檐带
+    for dx, d in ((-1.55, -1), (1.55, 1)):                                      # 坡屋面 + 燕尾翘角
+        bx(soup, 2.5, 0.16, 1.1, c2, dx, 3.72, -0.05, rot=rot_of(0, 0, d * 0.32))
+        cone_at(soup, 0.14, 0.55, c2, dx + d * 1.35, 4.05, -0.05, seg=4,
+                rot=rot_of(0, 0, d * -0.5))
+    bx(soup, 1.6, 0.2, 0.9, c1, 0, 3.9, -0.05)                                  # 中脊
+    bx(soup, 3.2, 0.08, 1.4, STONE, 0, 0.04, 0.3)
+    return 3.28, 3.4, 0.36
+
+
+def tpl_roof(soup, s, h, px, rnd):       # 中式屋顶门（复旦老校门）：白墙红柱 + 灰瓦双坡顶
+    c1, c2, c3, c4 = s['colors']
+    bx(soup, 5.2, 0.4, 0.8, c1, 0, 0.2, 0)
+    for sx in (-1.95, 1.95):
+        cy(soup, 0.24, 0.28, 2.7, c3, sx, 1.75, 0, seg=10)
+    bx(soup, 3.5, 1.0, 0.3, c1, 0, 2.35, -0.1)                                  # 门楣墙
+    bx(soup, 4.5, 0.2, 0.9, '#6B7280', 0, 3.2, 0)                               # 檐口
+    bx(soup, 3.6, 0.2, 1.2, c2, -1.9, 3.55, -0.1, rot=rot_of(0, 0, 0.34))       # 左坡
+    bx(soup, 3.6, 0.2, 1.2, c2, 1.9, 3.55, -0.1, rot=rot_of(0, 0, -0.34))       # 右坡
+    bx(soup, 1.0, 0.22, 0.7, '#5B6470', 0, 4.18, -0.1)                          # 正脊
+    for sx in (-3.35, 3.35):                                                    # 戗角
+        bx(soup, 0.5, 0.14, 0.6, c2, sx, 3.36, -0.1, rot=rot_of(0, 0, -0.5 if sx > 0 else 0.5),
+           jitter=0.005)
+    return 2.62, 3.2, 0.18
+
+
+def tpl_garden(soup, s, h, px, rnd):     # 园林月亮门（苏大/扬大）：白墙 + 圆洞门 + 花窗 + 黛瓦
+    c1, c2, c3, c4 = s['colors']
+    R = 1.42
+    for sx in (-(R + 1.15), R + 1.15):
+        bx(soup, 2.3, 2.55, 0.26, c1, sx, 1.275, 0)
+        bx(soup, 2.5, 0.16, 0.4, c2, sx, 2.62, 0)                               # 黛瓦墙帽
+    # 圆洞门环：js 把环心放在 R+0.1，环外径 R+0.24 → 下半圈埋进地面 0.14（js 就是这么画的）。
+    # 这里抬到 R+0.24，让环正好落在地面上——观感更"立得住"，也让"校门不得穿地"这条审计
+    # 保持严格（容差只有 0.06）
+    tor_face(soup, R, 0.24, c1, 0, R + 0.24, 0)                                 # 月洞门环
+    bx(soup, R * 2 + 0.5, 0.8, 0.26, c1, 0, 3.3, 0)                             # 环上墙
+    bx(soup, R * 2 + 0.9, 0.16, 0.4, c2, 0, 3.78, 0)
+    for dx in (-(R + 1.15) - 0.55, -(R + 1.15) + 0.55, R + 1.15 - 0.55):        # 花窗
+        bx(soup, 0.5, 0.05, 0.08, c2, dx, 1.7, 0.14, jitter=0.003)
+        bx(soup, 0.05, 0.5, 0.08, c2, dx, 1.7, 0.14, jitter=0.003)
+        bx(soup, 0.66, 0.66, 0.06, c3, dx, 1.7, 0.1, jitter=0.003)
+    bx(soup, 4.4, 0.08, 1.2, '#C9C2B2', 0, 0.04, 0.1)
+    return 3.55, 2.3, 0.15
+
+
+def tpl_tibetan(soup, s, h, px, rnd):    # 藏式门（西藏大学）：梯形白墙 + 红黑窗帏 + 金顶
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-1.7, 1.7):
+        cy(soup, 0.5, 0.78, 2.9, c1, sx, 1.45, 0, rot=rot_of(0, math.pi / 4, 0), seg=4)
+        bx(soup, 0.62, 0.8, 0.12, c2, sx, 2.2, 0.42)                            # 红窗帏
+        bx(soup, 0.4, 0.55, 0.1, '#2A2A2A', sx, 2.2, 0.47)                      # 黑框窗
+    bx(soup, 4.0, 0.5, 0.5, c1, 0, 3.0, 0)
+    bx(soup, 4.4, 0.22, 0.9, c2, 0, 3.32, 0)                                    # 红饰带
+    bx(soup, 4.8, 0.16, 1.1, c3, 0, 3.55, -0.02)                                # 金顶
+    bx(soup, 3.4, 0.18, 0.7, c3, 0, 3.78, -0.06)
+    bx(soup, 3.0, 0.08, 1.2, '#B9A28A', 0, 0.04, 0.3)
+    return 3.1, 2.8, 0.5
+
+
+def tpl_dunhuang(soup, s, h, px, rnd):   # 敦煌门：沙色拱门 + 石宝瓶柱
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-1.8, 1.8):
+        cy(soup, 0.34, 0.44, 2.9, c1, sx, 1.45, 0, seg=12)
+        ball(soup, 0.2, c2, sx, 3.02, 0, jitter=0.005)                          # 宝瓶柱头
+    tor_face(soup, 1.44, 0.26, c2, 0, 2.95, 0)
+    bx(soup, 3.2, 0.7, 0.5, c1, 0, 3.9, 0)
+    bx(soup, 3.6, 0.18, 0.66, c3, 0, 4.32, 0)
+    for i in range(-2, 3):                                                      # 檐上金珠
+        ball(soup, 0.09, c3, i * 0.75, 4.5, 0, jitter=0.004)
+    return 4.1, 3.0, 0.28
+
+
+def fam_aero(soup, s, h, px):            # 航空航天：火箭移出正中 + 发射架喷焰
+    c1, c2, c3, c4 = s['colors']
+    red = '#C24A50'
+    for sx in (-px, px):
+        bx(soup, 0.6, h, 0.6, '#F5F1E8', sx, h / 2, 0)
+        bx(soup, 0.72, 0.3, 0.72, red, sx, h + 0.1, 0)
+    bx(soup, px * 2 + 1.15, 0.42, 0.56, red, 0, h + 0.45, 0)
+    bx(soup, px * 2 + 0.5, 0.2, 0.62, '#FFFDF4', 0, h + 0.17, 0)
+    bx(soup, 0.9, 0.26, 0.62, red, -px + 0.9, h + 0.81, 0)
+    bx(soup, 0.9, 0.26, 0.62, red, px - 0.9, h + 0.81, 0)
+    rx, rz = px - 1.1, 0.75                                                 # 火箭（门内侧，不挡匾额）
+    bx(soup, 1.0, 0.16, 1.0, '#8A8378', rx, 0.08, rz)                       # 发射台
+    cy(soup, 0.2, 0.24, 2.0, '#F5F1E8', rx, 1.16, rz, seg=12)               # 箭体
+    cone_at(soup, 0.2, 0.55, red, rx, 2.44, rz, seg=12)
+    cy(soup, 0.26, 0.26, 0.1, red, rx, 0.28, rz, seg=12)
+    for i in range(3):
+        a = math.pi * 2 * i / 3 + 0.5
+        bx(soup, 0.06, 0.5, 0.32, red, rx + math.cos(a) * 0.22, 0.36, rz + math.sin(a) * 0.22,
+           rot=rot_of(0, -a, 0), jitter=0.004)
+    # 喷焰：js 把锥心放在 -0.08（锥底埋地 0.28）。这里抬到 0.16，锥尖朝下、刚好落在地面上，
+    # 既保留"喷焰"的意思，又让"校门不得穿地"这条审计保持严格
+    soup.add(C.cyl(0.14, 0.001, 0.4, 8), '#FF9A3A', loc=at(rx, 0.16, rz),
+             rot=(math.pi, 0, 0), emissive='#FF9A3A', ei=0.9, bevel=0, jitter=0.004)
+    return h + 0.45, px * 2 + 1.0, 0.29
+
+
 # 风格族总表：放在所有 fam_* 定义之后（字典在求值时就要拿到函数对象）
-TPL = {'modern': tpl_modern}
+TPL = {'modern': tpl_modern, 'erxiao': tpl_erxiao, 'pku': tpl_pku, 'pailou': tpl_pailou,
+       'soviet': tpl_soviet, 'minguo': tpl_minguo, 'jiageng': tpl_jiageng, 'roof': tpl_roof,
+       'garden': tpl_garden, 'tibetan': tpl_tibetan, 'dunhuang': tpl_dunhuang}
 FAM = {'classic': fam_classic, 'chip': fam_chip, 'rail': fam_rail, 'finance': fam_finance,
        'normal': fam_normal, 'folk': fam_folk, 'tcm': fam_tcm, 'art': fam_art,
        'sport': fam_sport, 'medic': fam_medic,
        'agri': fam_agri, 'forest': fam_forest, 'lang': fam_lang, 'post': fam_post,
        'law': fam_law, 'ocean': fam_ocean, 'hydro': fam_hydro, 'petro': fam_petro,
-       'power': fam_power, 'media': fam_media}
+       'power': fam_power, 'media': fam_media, 'aero': fam_aero}
 
 
 def build_one(spec):
