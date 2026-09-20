@@ -104,7 +104,18 @@ function swap(group, scene, entry, opts) {
   const keep = group.children.filter((c) => c.userData && c.userData.keep);
   for (const c of group.children.slice()) group.remove(c);
   const inst = scene.clone(true);   // clone 只复制节点，几何/材质是共享的（同族实例不涨显存）
-  inst.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  inst.traverse((o) => {
+    if (!o.isMesh) return;
+    o.castShadow = true; o.receiveShadow = true;
+    // 统一质感：GLB 过一遍风格映射表（哑光、无金属、环境反射轻），免得出现
+    // "烘焙资产是一种亮、旁边程序化资产是另一种亮"的缝合怪（方案 §4.5）
+    for (const m of (Array.isArray(o.material) ? o.material : [o.material])) {
+      if (!m || !m.isMeshStandardMaterial) continue;
+      m.roughness = Math.max(0.82, m.roughness);
+      m.metalness = 0;
+      m.envMapIntensity = 0.7;
+    }
+  });
   group.add(inst);
   for (const k of keep) group.add(k);
   group.userData.asset = entry.file;

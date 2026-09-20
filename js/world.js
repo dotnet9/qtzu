@@ -574,7 +574,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   sun.shadow.camera.top = 60; sun.shadow.camera.bottom = -60;
   sun.shadow.camera.far = cityOnly0 ? 400 : 110;
   sun.shadow.bias = -0.0004;
-  sun.shadow.radius = 4;          // 阴影边缘更柔，画面更干净
+  sun.shadow.radius = 6;          // 阴影边缘更柔（4→6）：粘土手办风要"糊"一点的接触影，不要刀切边
   scene.add(sun);
   // 昼夜循环：game 层每帧按真实时间移动日月、调光照与雾色
   world.anim.dayNight = { sunCore, sunHalo, moon, sun, hemi, dome, fog: scene.fog };

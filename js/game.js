@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 import { WORD_MAP, ZONE_NAMES, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
 import { buildPet } from './models.js';
@@ -232,9 +233,22 @@ export class Game {
       try {
         this.composer = new EffectComposer(this.renderer);
         this.composer.addPass(new RenderPass(this.scene, this.camera));
-        this.bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.32, 0.65, 0.86);
+        // 粘土手办风：辉光收敛（0.32→0.22）——马卡龙配色本身就亮，泛光一强就糊成一片奶油
+        this.bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.22, 0.5, 0.9);
         this.composer.addPass(this.bloom);
       } catch (e) { this.composer = null; }
+    }
+    // 环境反射：桌面端挂一层极轻的室内环境（PMREM），粘土材质才有"软塑反光"而不是死哑光。
+    // 走 scene.environment，程序化材质与烘焙 GLB 一起受益——不会出现"两种质感并存的缝合怪"。
+    // 触屏跳过：PMREM 要额外渲染与显存，与 Bloom 同一个 lowEnd 判据（方案 §4.5）。
+    if (!lowEnd) {
+      try {
+        const pmrem = new THREE.PMREMGenerator(this.renderer);
+        this.envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+        this.scene.environment = this.envTex;
+        this.scene.environmentIntensity = 0.32;
+        pmrem.dispose();
+      } catch (e) { this.scene.environment = null; }
     }
     this.camYaw = 0; this.camPitch = 0.42; this.camDist = 8.5; this.camDistTarget = 8.5;   // 缩放目标值：滚轮/键盘改它，每帧平滑趋近
     this.gateTries = {};   // 每个机关猜错的次数（一次答对有星星奖励）
@@ -3262,7 +3276,8 @@ export class Game {
       // 夜晚：月亮当班、光照调暗、雾色转深、全岛萤火虫点亮
       dn.sunCore.visible = dn.sunHalo.visible = false;
       dn.moon.visible = true;
-      dn.sun.intensity = 0.55; dn.hemi.intensity = 0.5;
+      // 粘土风：夜里也留一点环境光，否则哑光材质糊成黑块（太阳仍是主光，只是不再压死）
+      dn.sun.intensity = 0.55; dn.hemi.intensity = 0.62;
       dn.fog.color.set(0x39466B);
       dn.dome.material.color.set(0x6B7FB8);
       if (sea) sea.material.color.set('#2E5F8A');
@@ -3276,8 +3291,10 @@ export class Game {
       dn.sunCore.position.set(Math.cos(a) * 118, 20 + Math.sin(a) * 90, 24);
       dn.sunHalo.position.copy(dn.sunCore.position).multiplyScalar(0.98);
       const h = Math.max(0.15, Math.sin(a));
-      dn.sun.intensity = 1.2 + h * 0.9;
-      dn.hemi.intensity = 0.75 + h * 0.35;
+      // 粘土手办风：主光压低、环境提亮 → 低对比柔光（原来的 1.2+0.9h / 0.75+0.35h 会把
+      // 亮面推到过曝、暗面压成硬边，圆润造型的"软"就没了）
+      dn.sun.intensity = 0.95 + h * 0.55;
+      dn.hemi.intensity = 0.95 + h * 0.25;
       dn.fog.color.set(0xDFF3EC);
       dn.dome.material.color.set(0xFFFFFF);
       if (sea) sea.material.color.set('#4A9ED9');
