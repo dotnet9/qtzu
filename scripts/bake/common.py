@@ -338,6 +338,61 @@ class Soup:
             v[i] = Vector((p[0] + n * amp, p[1] + n * amp * 0.9, p[2] + n * amp * 1.1))
 
 
+# ---------------------------------------------------------------- 风格化小件
+# 这些是"粘土手办风"的通用零件，各 kind 的造型文件（gates.py / landmarks.py / …）共用一份。
+#
+# 坐标约定：js 侧写的是 glTF 的 (x 右, y 高, z 前)，Blender 是 (x 右, y 深, z 高)，
+# 所以每个接受 js 坐标的入口都过一次 at()/rot_of()，造型文件里可以直接照抄 js 的数值——
+# 抄错轴是这类烘焙最容易出的错（曾经把"门前空地"烘成一堵 1.2 高的墙）。
+
+FR = lambda z: -z                      # js 的"正面 +Z" → Blender 的"正面 -Y"
+at = lambda x, y, z: (x, FR(z), y)      # js/glTF 坐标 → Blender 坐标
+rot_of = lambda rx, ry, rz: (rx, -rz, ry)   # 单轴旋转下等价（yaw 绕 Z、pitch 绕 X、roll 绕 -Y）
+
+
+def blob(soup, r, color, loc, scale=(1, 1, 1), rough=0.95, emissive=None, ei=0.6, jitter=0.01):
+    """圆胖小件（粘土疙瘩）。分辨率随半径自适应——小疙瘩 12 段看不出区别，却省下上千三角面。
+    scale 是 Blender 轴内顺序 (X 宽, Y 深, Z 高)：要"压扁"压的是 Z。"""
+    seg, ring = (10, 6) if r < 0.15 else ((16, 10) if r < 0.32 else (20, 12))
+    soup.add(sphere(r, seg, ring), color, loc=loc, scale=scale, bevel=0,
+             rough=rough, emissive=emissive, ei=ei, jitter=jitter)
+
+
+def slab(soup, w, h, d, color, loc, rot=(0, 0, 0), rough=0.93, jitter=0.008, **kw):
+    """板件（横梁/檐口/碑面）。(w, h, d) 与 js 的 box() 同义：宽 / 高 / 深。
+    C.box 收的是 Blender 轴内尺寸 (X, Y, Z)，而 Blender 的 Z 才是"高"、Y 是"深"，
+    所以必须把 h/d 对调再传，否则得到"高深互换"的板。"""
+    soup.add(box(w, d, h), color, loc=loc, rot=rot, rough=rough, jitter=jitter, **kw)
+
+
+def ring(soup, R, r, color, loc, rot=(0, 0, 0), major=None, minor=None, jitter=0.005):
+    """小圆环。rot 默认 (0,0,0) = 平躺环绕立柱；要正对观众就传 (pi/2,0,0)。"""
+    major = major or max(12, min(22, int(R * 44)))
+    minor = minor or max(6, min(10, int(r * 90)))
+    soup.add(torus_gltf(R, r, major, minor), color, loc=loc, rot=rot, jitter=jitter)
+
+
+def arc(soup, R, tube, color, loc, rot, major=16, minor=7):
+    """竖起来的半圆拱（默认藏在地面里，靠 rot 立起来）。"""
+    soup.add(arch(R, tube, math.pi, major, minor), color, loc=loc, rot=rot, bevel=0, jitter=0.004)
+
+
+def pillar(soup, x, h, color, kind='round', r=0.33, plinth=None, cap=None, rough=0.93):
+    """立柱：round=圆柱收分 + 圆润柱头 / box=大方柱（倒角很大，读起来是"软块"）。"""
+    if kind == 'round':
+        soup.add(cyl(r * 1.12, r * 0.94, h, 24), color, loc=at(x, h / 2, 0), rough=rough, jitter=0.01)
+        soup.add(sphere(r * 0.94, 20, 12), color, loc=at(x, h, 0), scale=(1, 1, 0.55), bevel=0,
+                 rough=rough, jitter=0.008)
+    else:
+        soup.add(box(r * 2, r * 2, h), color, loc=at(x, h / 2, 0), rough=rough, jitter=0.01)
+        # 柱头/柱础是薄板：厚度必须落在 Z（高）槽，写成 (边长, 0.2, 边长) 会得到
+        # 一根 0.2 厚、0.77 高的窄柱子，柱础还会穿到地面以下 0.3
+        soup.add(box(r * 2.2, r * 2.2, 0.2), cap or color, loc=at(x, h + 0.06, 0),
+                 rough=rough, jitter=0.008)
+    if plinth:
+        soup.add(box(r * 2.5, r * 2.5, 0.26), plinth, loc=at(x, 0.13, 0), rough=rough, jitter=0.006)
+
+
 def build_object(soup, name):
     """Soup → bpy 对象（多材质槽、全平滑着色、单位 transform）。"""
     me = bpy.data.meshes.new(name)
@@ -480,6 +535,20 @@ def export_glb(ob, path):
         export_hierarchy_full_collections=False,
     )
     return os.path.getsize(path)
+
+
+def bpy_version():
+    """写进 manifest 的 Blender 版本（复现性问题第一步就是核对它）。"""
+    import bpy
+    return bpy.app.version_string
+
+
+def bpy_cleanup(ob):
+    """导出后立刻回收对象与网格：一次烘几百个资产，不回收会越烘越慢。"""
+    import bpy
+    me = ob.data
+    bpy.data.objects.remove(ob, do_unlink=True)
+    bpy.data.meshes.remove(me)
 
 
 def reset_scene():

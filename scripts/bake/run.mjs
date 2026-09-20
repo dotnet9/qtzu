@@ -49,8 +49,20 @@ const run = (cmd, argv, opts = {}) => {
 };
 
 const BAKERS = {
-  gate: { script: 'gates.py', kind: 'gate' },
+  gate: { script: 'gates.py', prefix: 'gates' },
+  landmark: { script: 'landmarks.py', prefix: 'landmarks' },
 };
+
+// 递归收集 .glb：产物在 assets/models/<kind>/ 子目录里，只列顶层会让"二次烘焙比对"空转通过
+function walkGlb(dir, base = dir, acc = []) {
+  if (!fs.existsSync(dir)) return acc;
+  for (const n of fs.readdirSync(dir)) {
+    const p = path.join(dir, n);
+    if (fs.statSync(p).isDirectory()) walkGlb(p, base, acc);
+    else if (n.endsWith('.glb')) acc.push(path.relative(base, p));
+  }
+  return acc;
+}
 
 const t0 = Date.now();
 const blender = resolveBlender();
@@ -60,11 +72,9 @@ fs.mkdirSync(CACHE, { recursive: true });
 for (const kind of kinds) {
   const baker = BAKERS[kind];
   if (!baker) throw new Error(`未知类别 ${kind}`);
-  // 1) 规格：校门是"一校一门"，规格由 js/uni-gates.js 的规则生成
-  if (kind === 'gate') {
-    run(process.execPath, ['scripts/bake/specs.mjs', ...(all ? [] : ['--city', city])]);
-  }
-  const specFile = path.join(ROOT, 'scripts/bake/specs', kind === 'gate' ? `gates.${city || 'all'}.json` : `${kind}.${city || 'all'}.json`);
+  // 1) 规格：规则只有一份，specs.mjs 只做搬运（校门=一校一门，地标=一城最多三个）
+  run(process.execPath, ['scripts/bake/specs.mjs', '--kind', kind, ...(all ? [] : ['--city', city])]);
+  const specFile = path.join(ROOT, 'scripts/bake/specs', `${baker.prefix}.${city || 'all'}.json`);
   if (!fs.existsSync(specFile)) throw new Error(`缺少规格文件 ${specFile}`);
 
   // 2) 烘焙（--verify 时烘到临时目录再比哈希）
@@ -80,23 +90,31 @@ for (const kind of kinds) {
     const tmp = path.join(CACHE, `${kind}-rebake`);
     fs.rmSync(tmp, { recursive: true, force: true });
     bakeTo(tmp);
+    // 要比对的文件清单来自本次烘焙的 <kind>.manifest.json，不靠猜目录名（gate→gates/ 是复数）
+    const part = JSON.parse(fs.readFileSync(path.join(CACHE, `${kind}.manifest.json`), 'utf8'));
+    const files = Object.values(part.assets).map((e) => e.file);
+    if (!files.length) throw new Error(`可复现性自检没找到任何产物（规格为空 = 没校验）`);
     const mismatch = [];
-    for (const e of fs.readdirSync(first.outDir)) {
-      if (!e.endsWith('.glb')) continue;
-      const a = path.join(first.outDir, e), b = path.join(tmp, e);
-      if (!fs.existsSync(b)) { mismatch.push(e + '（重烘缺失）'); continue; }
-      if (sha(a) !== sha(b)) mismatch.push(e);
+    for (const rel of files) {
+      const a = path.join(first.outDir, rel), b = path.join(tmp, rel);
+      if (!fs.existsSync(b)) { mismatch.push(rel + '（重烘缺失）'); continue; }
+      if (sha(a) !== sha(b)) mismatch.push(rel);
     }
-    if (mismatch.length) throw new Error(`可复现性自检失败：${mismatch.length} 个文件两次烘焙不一致\n  ${mismatch.slice(0, 5).join('\n  ')}`);
-    console.log(`[verify] ${kind} 二次烘焙全部一致 ✓`);
+    if (mismatch.length) throw new Error(`可复现性自检失败：${mismatch.length}/${files.length} 个文件两次烘焙不一致\n  ${mismatch.slice(0, 5).join('\n  ')}`);
+    console.log(`[verify] ${kind} 二次烘焙 ${files.length} 个全部一致 ✓`);
   }
 }
 
 // 3) 合并 manifest：assets/<id> = {kind, ...}，供 js/assets.js 与校对台共用。
+// 合并的是 .cache/ 里**各类别最近一次**的分册（不是本次跑了哪几类）——否则"只重烘地标"
+// 会把校门从 manifest 里挤掉，产物变成孤儿文件，运行时也换不回来。
 // 每个资产带 v = 文件内容哈希：serve.js:294 给 /models/ 的响应是一年 immutable 缓存，
 // 运行时用 file?v=hash 取，换资产即换 URL，既不破缓存也不会拿到旧模型。
+const kindsInCache = fs.existsSync(CACHE)
+  ? fs.readdirSync(CACHE).filter((f) => f.endsWith('.manifest.json')).map((f) => f.replace('.manifest.json', ''))
+  : [];
 const merged = { blender: path.basename(path.dirname(blender)), generated: new Date().toISOString(), kinds: {}, assets: {} };
-for (const kind of kinds) {
+for (const kind of [...new Set([...kinds, ...kindsInCache])]) {
   const mf = path.join(CACHE, `${kind}.manifest.json`);
   if (!fs.existsSync(mf)) continue;
   const part = JSON.parse(fs.readFileSync(mf, 'utf8'));

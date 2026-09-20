@@ -16,58 +16,11 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common as C  # noqa: E402
 
-FR = lambda z: -z            # js 的"正面 +Z" → Blender 的"正面 -Y"
-TAU = math.pi * 2
-
-
-def blob(soup, r, color, loc, scale=(1, 1, 1), rough=0.95, emissive=None, ei=0.6, jitter=0.01):
-    """圆胖小件（粘土疙瘩）：球体压扁/拉伸后仍无硬边。
-    分辨率随半径自适应——小疙瘩用 12 段看不出区别，却省下成百上千个三角面。
-    scale 与 slab 相反，是 Blender 轴内顺序 (X 宽, Y 深, Z 高)：要"压扁"压的是 Z。"""
-    seg, ring = (10, 6) if r < 0.15 else ((16, 10) if r < 0.32 else (20, 12))
-    soup.add(C.sphere(r, seg, ring), color, loc=loc, scale=scale, bevel=0,
-            rough=rough, emissive=emissive, ei=ei, jitter=jitter)
-
-
-def ring(soup, R, r, color, loc, rot=(0, 0, 0), major=None, minor=None, jitter=0.005):
-    """小圆环（花环/束带/金牌圈）：分辨率随半径自适应。
-    rot 默认 (0,0,0) = 平躺环绕立柱；要正对观众就传 (pi/2,0,0)。"""
-    major = major or max(12, min(22, int(R * 44)))
-    minor = minor or max(6, min(10, int(r * 90)))
-    soup.add(C.torus_gltf(R, r, major, minor), color, loc=loc, rot=rot, jitter=jitter)
-
-
-def arc(soup, R, tube, color, loc, rot, major=16, minor=7):
-    soup.add(C.arch(R, tube, math.pi, major, minor), color, loc=loc, rot=rot, bevel=0, jitter=0.004)
-
-
-def slab(soup, w, h, d, color, loc, rot=(0, 0, 0), rough=0.93, jitter=0.008, **kw):
-    """板件（横梁/檐口/碑面）：倒角放大，免得像切好的豆腐块。
-
-    (w, h, d) 与 js 的 box() 同义：宽 / 高 / 深。C.box 收的是 Blender 轴内的尺寸
-    (X, Y, Z)，而 Blender 的 Z 才是"高"、Y 是"深"，所以这里必须把 h/d 对调再传，
-    否则得到的是"高深互换"的板（门前空地会立成一堵 1.2 高的墙）。
-    """
-    soup.add(C.box(w, d, h), color, loc=loc, rot=rot, rough=rough, jitter=jitter, **kw)
-
-
-def pillar(soup, x, h, color, kind='round', r=0.33, plinth=None, cap=None, rough=0.93):
-    """立柱：round=圆柱收分 + 圆润柱头 / box=大方柱（倒角很大，读起来是"软块"）。"""
-    if kind == 'round':
-        soup.add(C.cyl(r * 1.12, r * 0.94, h, 24), color, loc=(x, 0, h / 2), rough=rough,
-                jitter=0.01)
-        soup.add(C.sphere(r * 0.94, 20, 12), color, loc=(x, 0, h), scale=(1, 1, 0.55), bevel=0,
-                rough=rough, jitter=0.008)
-    else:
-        soup.add(C.box(r * 2, h, r * 2), color, loc=(x, 0, h / 2), rough=rough, jitter=0.01)
-        # 柱头/柱础是薄板：厚度必须落在 Z（高）槽，写成 (边长, 0.2, 边长) 会得到
-        # 一根 0.2 厚、0.77 高的窄柱子，柱础还会穿到地面以下 0.3
-        soup.add(C.box(r * 2.2, r * 2.2, 0.2), cap or color, loc=(x, 0, h + 0.06),
-                rough=rough, jitter=0.008)
-    if plinth:
-        soup.add(C.box(r * 2.5, r * 2.5, 0.26), plinth, loc=(x, 0, 0.13), rough=rough,
-                jitter=0.006)
-
+# 通用零件（blob/slab/ring/arc/pillar）与坐标换算都在 common.py，各 kind 共用一份；
+# TAU 从没被用到，一并删掉。本文件只保留校门特有的"门前空地"。
+FR = C.FR
+at = C.at
+blob, slab, ring, arc, pillar = C.blob, C.slab, C.ring, C.arc, C.pillar
 
 def ground(soup, fz=0.4, w=2.4, color='#D8CCA8'):
     """门前空地：与 js/uni-gate-models.js:731 同位（y=0.05 / 前 0.4）。"""
@@ -311,7 +264,7 @@ def main():
         entries[spec['id']] = dict(info, file=rel, bytes=size, zh=spec['zh'], city=spec['city'],
                                    style=spec['style']['id'], styleKind=spec['style']['kind'],
                                    beamY=round(beam_y, 3), beamW=round(beam_w, 3), fz=round(fz, 3))
-        bpy_cleanup(ob)
+        C.bpy_cleanup(ob)
         print('[gate] %2d/%d %s %s tri=%d %dKB' % (i + 1, len(specs), spec['id'], spec['zh'],
                                                    info['tri'], size // 1024))
     if skipped:
@@ -321,19 +274,8 @@ def main():
         by_style.setdefault(e['style'], []).append(e['tri'])
     print('[gate] 各族三角面 %s' % json.dumps(
         {k: [min(v), round(sum(v) / len(v)), max(v)] for k, v in sorted(by_style.items())}))
-    C.write_manifest(a['manifest'], 'gate', bpy_version(), entries)
+    C.write_manifest(a['manifest'], 'gate', C.bpy_version(), entries)
     print('[gate] 完成 %d 个，跳过 %d 个' % (len(entries), len(skipped)))
-
-
-def bpy_cleanup(ob):
-    me = ob.data
-    bpy.data.objects.remove(ob, do_unlink=True)
-    bpy.data.meshes.remove(me)
-
-
-def bpy_version():
-    import bpy
-    return bpy.app.version_string
 
 
 if __name__ == '__main__':
