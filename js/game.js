@@ -1173,7 +1173,7 @@ export class Game {
     };
   }
 
-  _updateGuide(t) {
+  _updateGuide(nowT) {
     // 新手引导开闸：第一次玩的孩子（还没孵出过词宠、没走过引导）自动进入 3 步引导
     if (!this._guide && !save.isGuideDone() && save.hatchedCount() === 0) this._guide = { step: 0 };
     const obj = this._objective();
@@ -1185,7 +1185,7 @@ export class Game {
       const d = Math.hypot(dx, dz);
       if (d > 3.5) {
         this.guideArrow.visible = true;
-        this.guideArrow.position.set(p.x, p.y + 2.15 + Math.sin(t * 3) * 0.12, p.z);
+        this.guideArrow.position.set(p.x, p.y + 2.15 + Math.sin(nowT * 3) * 0.12, p.z);
         this.guideArrow.rotation.y = Math.atan2(-dz, dx);
       } else this.guideArrow.visible = false;
     } else this.guideArrow.visible = false;
@@ -1202,10 +1202,10 @@ export class Game {
           const dot = this.pathDots[i];
           dot.position.set(
             p.x + (tgt.x - p.x) * k,
-            p.y + 0.22 + Math.sin(t * 4 - i * 0.6) * 0.08,
+            p.y + 0.22 + Math.sin(nowT * 4 - i * 0.6) * 0.08,
             p.z + (tgt.z - p.z) * k
           );
-          dot.material.opacity = 0.3 + 0.45 * (0.5 + 0.5 * Math.sin(t * 5 - i * 0.7));
+          dot.material.opacity = 0.3 + 0.45 * (0.5 + 0.5 * Math.sin(nowT * 5 - i * 0.7));
         }
       }
     } else this.pathDotsGroup.visible = false;
@@ -1735,7 +1735,7 @@ export class Game {
   }
 
   // ---- 天气轮换：晴/雨/雪，纯氛围不拦玩法 ----
-  _updateWeather(dt, t) {
+  _updateWeather(dt, nowT) {
     const w = this._weatherState || (this._weatherState = { cur: 'clear', next: 90 + Math.random() * 90 });
     const rain = this.world.anim.rain, snow = this.world.anim.snow, sunL = this.world.anim.sunLight;
     w.next -= dt;
@@ -1761,7 +1761,7 @@ export class Game {
       for (let i = 0; i < pos.count; i++) {
         let y = pos.getY(i) - dt * 2.2;
         if (y < 0) y += 24;
-        pos.setX(i, pos.getX(i) + Math.sin(t * 0.8 + i) * dt * 0.4);
+        pos.setX(i, pos.getX(i) + Math.sin(nowT * 0.8 + i) * dt * 0.4);
         pos.setY(i, y);
       }
       pos.needsUpdate = true;
