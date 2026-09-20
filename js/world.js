@@ -500,6 +500,35 @@ function glowTexture(inner = 'rgba(255,244,214,1)', outer = 'rgba(255,244,214,0)
   return tex;
 }
 
+// 低模高楼：楼层线 + 四角柱 + 檐口 + 楼顶机房 + 首层门洞。
+// 关键是"凸出"——原先的窗带比塔身窄（w*0.86），塞在里面根本看不见，所以塔楼就是纯方盒。
+// 材质按颜色缓存：world.js 的 box() 每次 new 一个材质，一栋楼十几个零件会白吃十几份材质。
+const _towerMat = new Map();
+const towerMat = (c) => { if (!_towerMat.has(c)) _towerMat.set(c, M(c)); return _towerMat.get(c); };
+const towerBox = (g, w, h, d, c, x, y, z) => {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), towerMat(c));
+  m.position.set(x, y, z); g.add(m); return m;
+};
+function cityTower(w, h, i) {
+  const g = new THREE.Group();
+  const body = ['#D8E3EC', '#E8DFD2', '#CFE0D8', '#E3D3C2'][i % 4];
+  const trim = '#B9C8D4';
+  towerBox(g, w, h, w, body, 0, h / 2, 0);
+  // 楼层线：比塔身略宽 2%，凸出来才看得见（每 2.8 一层，太高太密会糊成条纹）
+  for (let fy = 2.6; fy < h - 1.4; fy += 2.8) towerBox(g, w * 1.02, 0.22, w * 1.02, trim, 0, fy, 0);
+  // 四角柱：给出清晰的竖向轮廓（参考图里楼的边是"立"着的）
+  const cx = w / 2 - 0.22;
+  for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) towerBox(g, 0.5, h, 0.5, trim, sx * cx, h / 2, sz * cx);
+  // 檐口 + 楼顶机房（剪影有起伏，不是一根光柱）
+  towerBox(g, w * 1.1, 0.55, w * 1.1, trim, 0, h + 0.2, 0);
+  towerBox(g, w * 0.46, 1.3, w * 0.46, body, 0, h + 1.05, 0);
+  towerBox(g, w * 0.5, 0.28, w * 0.5, trim, 0, h + 1.8, 0);
+  // 首层：压深一档的基座 + 门洞（正对 +z 的那面）
+  towerBox(g, w * 1.03, 1.7, w * 1.03, '#A9B6C2', 0, 0.85, 0);
+  towerBox(g, w * 0.34, 1.25, 0.24, '#6E7C88', 0, 0.63, w * 0.52);
+  return g;
+}
+
 export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   // decor/blockers：绿化与地标等"不参与碰撞、却会把蛋整个罩住"的装饰登记表，
   // 供 game 层摆放蛋与打卡点牌时避让（见 game._blockedAt）。
@@ -1569,10 +1598,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           const sp = spot(r * 0.2, r * 0.75, r * 0.09, bw + 3.7);   // 塔身最宽 7：留出半宽不压墙
           if (!sp) continue;
           const w = 4 + rn() * 3, h = 14 + rn() * 12;
-          const tower = new THREE.Group();
-          box(tower, w, h, w, ['#D8E3EC', '#E8DFD2', '#CFE0D8', '#E3D3C2'][i % 4], 0, h / 2, 0);
-          box(tower, w * 1.05, 0.5, w * 1.05, '#B9C8D4', 0, h, 0);
-          for (let fy = 1.2; fy < h - 0.6; fy += 1.4) box(tower, w * 0.86, 0.5, w * 0.86, 'rgba(160,200,230,1)', 0, fy, 0);
+          const tower = cityTower(w, h, i);
           tower.position.set(sp[0], Y(sp[0], sp[1], 0), sp[1]);
           tower.rotation.y = rn() * 3;
           tower.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });

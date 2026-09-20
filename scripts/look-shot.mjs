@@ -132,7 +132,18 @@ const perf = await page.evaluate(async (n) => {
 }, FRAMES);
 console.log(`[look] 帧时长中位数 ${perf.median.toFixed(2)}ms（p90 ${perf.p90.toFixed(2)}ms，${perf.n} 帧）`);
 
-const out = { city, tag, at: new Date().toISOString(), view: VIEW, perf, errors: errors.slice(0, 5) };
+// 绘制调用/三角形：帧时长被 60fps 天花板压住时，这两个数才是负载的灵敏指标
+const info = await page.evaluate(() => {
+  // 走 composer 时最后一帧是"全屏 quad"（calls=1）；这里直接渲染场景一帧再读，才是场景负载
+  const g = window.__game, keep = g.composer;
+  g.composer = null;
+  g.renderer.render(g.scene, g.camera);
+  const r = g.renderer.info.render;
+  g.composer = keep;
+  return { calls: r.calls, triangles: r.triangles, programs: window.__game.renderer.info.programs.length, geometries: window.__game.renderer.info.memory.geometries, textures: window.__game.renderer.info.memory.textures };
+});
+console.log(`[look] 绘制调用 ${info.calls}，三角形 ${info.triangles}，几何 ${info.geometries}，材质程序 ${info.programs}`);
+const out = { city, tag, at: new Date().toISOString(), view: VIEW, perf, info, errors: errors.slice(0, 5) };
 fs.writeFileSync(path.join(LOOK, `${tag}.json`), JSON.stringify(out, null, 1));
 
 if (compare) {
