@@ -46,6 +46,11 @@ AO_STRENGTH = 0.9
 AO_TINT = (0.58, 0.55, 0.64)
 # 天空遮蔽：法线越朝下越暗（模拟天光），0 = 关闭
 AO_SKY = 0.16
+# 按角度拆边（等价 Blender 的 Edge Split / 自动平滑）：夹角大于它的边拆开 = 硬棱。
+# 32° 是实测位置：倒角段相邻面约 10~20° 保持平滑，方盒的直角（90°）成为硬棱。
+STYLE_SHARP_ANGLE = math.radians(32)
+# 折缝压暗：落在硬棱上的顶点再乘这个系数（0.88 ≈ -12%），棱线才读得出来
+STYLE_CREASE_DARKEN = 0.88
 
 # 三角面预算（超限即烘焙失败，见 check_budget）
 # ground：一城一份（地形网格 + 城墙 + 垛口 + 岩裙 + 雪峰）。成都实测约 1.1 万面，上限 60000
@@ -408,6 +413,33 @@ def pillar(soup, x, h, color, kind='round', r=0.33, plinth=None, cap=None, rough
         soup.add(box(r * 2.5, r * 2.5, 0.26), plinth, loc=at(x, 0.13, 0), rough=rough, jitter=0.006)
 
 
+# 拆边得到的折缝顶点（按对象名存一份，供 bake_ao 压暗用）：
+# 不挂到 bpy 对象上——IDProperty 不支持 set，序列化会出问题
+CREASE = {}
+
+
+def split_sharp_edges(ob, angle=STYLE_SHARP_ANGLE):
+    """按角度拆边，返回折缝顶点集合。
+
+    bmesh.ops.split_edges 是 Blender 里最稳的做法（headless 不需要任何修改器，
+    也不依赖 4.1 之后删掉的 use_auto_smooth / Smooth by Angle 节点组）。
+    拆边只复制顶点、不改三角形数量，面数预算不受影响（体积略增）。
+    """
+    me = ob.data
+    bm = bmesh.new()
+    bm.from_mesh(me)
+    sharp = [e for e in bm.edges
+             if len(e.link_faces) == 2 and e.calc_face_angle(0.0) > angle]
+    vs = {v.co.to_tuple(4) for e in sharp for v in e.verts}
+    if sharp:
+        bmesh.ops.split_edges(bm, edges=sharp)
+    bm.to_mesh(me)
+    bm.free()
+    me.update()
+    # 拆边会把顶点复制出来（坐标不变），按坐标把新旧折缝顶点一起找回来
+    return {i for i, v in enumerate(me.vertices) if v.co.to_tuple(4) in vs}
+
+
 def build_object(soup, name):
     """Soup → bpy 对象（多材质槽、全平滑着色、单位 transform）。"""
     me = bpy.data.meshes.new(name)
@@ -420,6 +452,7 @@ def build_object(soup, name):
         poly.use_smooth = smooth
     me.update()
     ob = bpy.data.objects.new(name, me)
+    CREASE[name] = split_sharp_edges(ob)
     bpy.context.collection.objects.link(ob)
     return ob
 
@@ -475,6 +508,7 @@ def bake_ao(ob, samples=AO_SAMPLES, distance=AO_DISTANCE, strength=AO_STRENGTH,
     if col is None:
         col = me.color_attributes.new(name='Col', type='FLOAT_COLOR', domain='POINT')
     data = col.data
+    crease = CREASE.get(ob.name) or set()
     eps = 0.004
     inv = 1.0 / distance
     for i, p in enumerate(verts):
@@ -486,9 +520,9 @@ def bake_ao(ob, samples=AO_SAMPLES, distance=AO_DISTANCE, strength=AO_STRENGTH,
         t = (t - n * t.dot(n)).normalized()
         b = n.cross(t)
         occ = 0.0
-        base = (i * 7) % 64
+        bn = (i * 7) % 64   # noqa: 别叫 base——会盖住同名参数（逐顶点底色）
         for k in range(samples):
-            d = dirs_cache[(base + k * 13) % 64]
+            d = dirs_cache[(bn + k * 13) % 64]
             w = t * d.x + b * d.y + n * d.z
             hit = bvh.ray_cast(p + n * eps, w, distance)
             if hit[0] is not None:
@@ -504,6 +538,8 @@ def bake_ao(ob, samples=AO_SAMPLES, distance=AO_DISTANCE, strength=AO_STRENGTH,
         if base is not None:
             b0 = base[i]
             s = (s[0] * b0[0], s[1] * b0[1], s[2] * b0[2])
+        if i in crease:   # 折缝压暗：硬棱上的顶点再暗一档，棱线才"读"得出来（见 split_sharp_edges）
+            s = (s[0] * STYLE_CREASE_DARKEN, s[1] * STYLE_CREASE_DARKEN, s[2] * STYLE_CREASE_DARKEN)
         data[i].color = (s[0], s[1], s[2], 1.0)
     me.color_attributes.active_color_index = me.color_attributes.find('Col')
     me.update()
