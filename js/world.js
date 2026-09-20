@@ -1393,7 +1393,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       const poly = isl.shape || null;
       const polySim = sim;   // 钳制统一用简化轮廓（与 game._clampCityPos 完全同一条边界）
       // 各地标原型的占地半径（未缩放；cityLandmark 里的最大外扩尺寸）
-      const LM_HALF = { gate: 3.6, tower: 1.7, wall: 7.2, panda: 3.2, ice: 2.4, palm: 3.6, dome: 2.8, mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4, 'uni-gate': 3.4 };
+      // wall 7.2→7.5、ice 2.4→2.6：烘焙时按实际顶点量出来比原表大（长城段半宽 7.5、
+      // 冰塔右侧锥 2.5），原表偏小会让摆放边距不够、地标蹭墙——按实测回填
+      const LM_HALF = { gate: 3.6, tower: 1.7, wall: 7.5, panda: 3.2, ice: 2.6, palm: 3.6, dome: 2.8, mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4, 'uni-gate': 3.4 };
       const lmSpots = [[0, 0]];
       const lms = (isl.level && isl.level.landmarks && isl.level.landmarks.length)
         ? isl.level.landmarks : [isl.landmark, 'pavilion'];

@@ -1,0 +1,7725 @@
+{
+ "kind": "gate",
+ "specs": [
+  {
+   "id": "e702c997",
+   "zh": "清华大学",
+   "en": "Tsinghua University",
+   "city": "beijing",
+   "style": {
+    "kind": "tpl",
+    "id": "erxiao"
+   },
+   "colors": [
+    "#f2efe7",
+    "#B9B2A2",
+    "#4A3626",
+    "#3E3A34"
+   ],
+   "prop": null,
+   "span": 3.999,
+   "height": 3.466,
+   "variant": 63889
+  },
+  {
+   "id": "f0f0378d",
+   "zh": "北京大学",
+   "en": "Peking University",
+   "city": "beijing",
+   "style": {
+    "kind": "tpl",
+    "id": "pku"
+   },
+   "colors": [
+    "#9b251f",
+    "#3E6B4F",
+    "#E8C86A",
+    "#7E2A24"
+   ],
+   "prop": null,
+   "span": 4.072,
+   "height": 3.297,
+   "variant": 989550
+  },
+  {
+   "id": "0ba87809",
+   "zh": "中国人民大学",
+   "en": "Renmin University of China",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.65,
+   "height": 3.331,
+   "variant": 230509
+  },
+  {
+   "id": "a0309dcd",
+   "zh": "北京师范大学",
+   "en": "Beijing Normal University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.238,
+   "height": 3.316,
+   "variant": 999435
+  },
+  {
+   "id": "44b62f54",
+   "zh": "北京航空航天大学",
+   "en": "Beihang University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "aero"
+   },
+   "colors": [
+    "#f7f3ec",
+    "#C9555C",
+    "#8FA8C0",
+    "#4A4A52"
+   ],
+   "prop": null,
+   "span": 4.097,
+   "height": 3.222,
+   "variant": 328376
+  },
+  {
+   "id": "d3f24e18",
+   "zh": "北京理工大学",
+   "en": "Beijing Institute of Technology",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7f9dbc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.173,
+   "height": 3.388,
+   "variant": 98134
+  },
+  {
+   "id": "4136e5ae",
+   "zh": "中国农业大学",
+   "en": "China Agricultural University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#9b7753",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.709,
+   "height": 3.623,
+   "variant": 583261
+  },
+  {
+   "id": "b8fbac79",
+   "zh": "中央民族大学",
+   "en": "Minzu University of China",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f1e5d0",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 3.769,
+   "height": 3.222,
+   "variant": 95760
+  },
+  {
+   "id": "f9f4b440",
+   "zh": "北京外国语大学",
+   "en": "Beijing Foreign Studies University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e6e0f2",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 4.32,
+   "height": 3.415,
+   "variant": 94382
+  },
+  {
+   "id": "7941f56e",
+   "zh": "对外经济贸易大学",
+   "en": "University of International Business and Economics",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#447e63",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.304,
+   "height": 3.533,
+   "variant": 990211
+  },
+  {
+   "id": "4431b1ef",
+   "zh": "中央财经大学",
+   "en": "Central University of Finance and Economics",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#407b60",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.454,
+   "height": 3.461,
+   "variant": 972362
+  },
+  {
+   "id": "8985236e",
+   "zh": "北京邮电大学",
+   "en": "Beijing University of Posts and Telecommunications",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "post"
+   },
+   "colors": [
+    "#609c78",
+    "#3E6B4F",
+    "#BFE3D0",
+    "#2F5A41"
+   ],
+   "prop": null,
+   "span": 4.043,
+   "height": 3.272,
+   "variant": 188604
+  },
+  {
+   "id": "1c01aae9",
+   "zh": "北京交通大学",
+   "en": "Beijing Jiaotong University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#91725c",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 3.775,
+   "height": 3.359,
+   "variant": 411336
+  },
+  {
+   "id": "45c9232f",
+   "zh": "北京科技大学",
+   "en": "University of Science and Technology Beijing",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.218,
+   "height": 3.363,
+   "variant": 597248
+  },
+  {
+   "id": "90c4256e",
+   "zh": "北京化工大学",
+   "en": "Beijing University of Chemical Technology",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f2eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.398,
+   "height": 3.521,
+   "variant": 828935
+  },
+  {
+   "id": "0826da64",
+   "zh": "北京林业大学",
+   "en": "Beijing Forestry University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "forest"
+   },
+   "colors": [
+    "#8e7155",
+    "#5FA05F",
+    "#8ED07F",
+    "#4E7A46"
+   ],
+   "prop": null,
+   "span": 3.904,
+   "height": 3.307,
+   "variant": 374680
+  },
+  {
+   "id": "489f09ae",
+   "zh": "北京中医药大学",
+   "en": "Beijing University of Chinese Medicine",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#885841",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.024,
+   "height": 3.218,
+   "variant": 817790
+  },
+  {
+   "id": "817cf107",
+   "zh": "华北电力大学",
+   "en": "North China Electric Power University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "power"
+   },
+   "colors": [
+    "#8f97a4",
+    "#5A6472",
+    "#FFE24E",
+    "#3E4650"
+   ],
+   "prop": null,
+   "span": 3.684,
+   "height": 3.679,
+   "variant": 483229
+  },
+  {
+   "id": "6327e487",
+   "zh": "中国政法大学",
+   "en": "China University of Political Science and Law",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "law"
+   },
+   "colors": [
+    "#e4e0d5",
+    "#A8A196",
+    "#C9A43A",
+    "#7E776C"
+   ],
+   "prop": null,
+   "span": 3.994,
+   "height": 3.357,
+   "variant": 574586
+  },
+  {
+   "id": "d02a9971",
+   "zh": "中国传媒大学",
+   "en": "Communication University of China",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "media"
+   },
+   "colors": [
+    "#e7eff4",
+    "#6E93B8",
+    "#F0D89A",
+    "#4C6E90"
+   ],
+   "prop": null,
+   "span": 3.738,
+   "height": 3.659,
+   "variant": 659328
+  },
+  {
+   "id": "f90e76e8",
+   "zh": "中央音乐学院",
+   "en": "Central Conservatory of Music",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f3e6ef",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 4.029,
+   "height": 3.225,
+   "variant": 565950
+  },
+  {
+   "id": "ba699ccf",
+   "zh": "中央美术学院",
+   "en": "Central Academy of Fine Arts",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f1e3ed",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 3.864,
+   "height": 3.211,
+   "variant": 942352
+  },
+  {
+   "id": "9ce5dd86",
+   "zh": "北京体育大学",
+   "en": "Beijing Sport University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "sport"
+   },
+   "colors": [
+    "#ebf1e7",
+    "#5FA05F",
+    "#E8C86A",
+    "#3E6B4F"
+   ],
+   "prop": null,
+   "span": 4.316,
+   "height": 3.283,
+   "variant": 550595
+  },
+  {
+   "id": "19979eef",
+   "zh": "北京工业大学",
+   "en": "Beijing University of Technology",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7797b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.378,
+   "height": 3.438,
+   "variant": 617551
+  },
+  {
+   "id": "c26d4dd2",
+   "zh": "首都师范大学",
+   "en": "Capital Normal University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.003,
+   "height": 3.312,
+   "variant": 761068
+  },
+  {
+   "id": "9f058b15",
+   "zh": "首都医科大学",
+   "en": "Capital Medical University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee5",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.783,
+   "height": 3.378,
+   "variant": 817438
+  },
+  {
+   "id": "301bd96a",
+   "zh": "北京工商大学",
+   "en": "Beijing Technology and Business University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#3c795c",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.304,
+   "height": 3.627,
+   "variant": 15736
+  },
+  {
+   "id": "a7aacb17",
+   "zh": "北京联合大学",
+   "en": "Beijing Union University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f1e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.084,
+   "height": 3.217,
+   "variant": 126260
+  },
+  {
+   "id": "b5e7c6ad",
+   "zh": "北京建筑大学",
+   "en": "Beijing University of Civil Engineering and Architecture",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#88a4c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.015,
+   "height": 3.449,
+   "variant": 795285
+  },
+  {
+   "id": "b8503fba",
+   "zh": "北京信息科技大学",
+   "en": "Beijing Information Science and Technology University",
+   "city": "beijing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.601,
+   "height": 3.55,
+   "variant": 213569
+  },
+  {
+   "id": "c3eb1e3f",
+   "zh": "吉林大学",
+   "en": "Jilin University",
+   "city": "changchun",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#4f77a8",
+    "#D8D2C4",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "ding",
+   "span": 4.046,
+   "height": 3.293,
+   "variant": 649182
+  },
+  {
+   "id": "40859b83",
+   "zh": "东北师范大学",
+   "en": "Northeast Normal University",
+   "city": "changchun",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f3efe7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.791,
+   "height": 3.517,
+   "variant": 925635
+  },
+  {
+   "id": "2d37cbd6",
+   "zh": "长春理工大学",
+   "en": "Changchun University of Science and Technology",
+   "city": "changchun",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#84a1be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.204,
+   "height": 3.244,
+   "variant": 341418
+  },
+  {
+   "id": "c4aa5ccf",
+   "zh": "吉林农业大学",
+   "en": "Jilin Agricultural University",
+   "city": "changchun",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a17f5d",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.923,
+   "height": 3.329,
+   "variant": 663231
+  },
+  {
+   "id": "cb21d45b",
+   "zh": "长春中医药大学",
+   "en": "Changchun University of Chinese Medicine",
+   "city": "changchun",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8c5c46",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 3.944,
+   "height": 3.645,
+   "variant": 863623
+  },
+  {
+   "id": "6f15711e",
+   "zh": "长春工业大学",
+   "en": "Changchun University of Technology",
+   "city": "changchun",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a1bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.727,
+   "height": 3.557,
+   "variant": 971226
+  },
+  {
+   "id": "641849e8",
+   "zh": "中南大学",
+   "en": "Central South University",
+   "city": "changsha",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#255a9b",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.638,
+   "height": 3.458,
+   "variant": 115415
+  },
+  {
+   "id": "826b921b",
+   "zh": "湖南大学",
+   "en": "Hunan University",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.676,
+   "height": 3.533,
+   "variant": 442358
+  },
+  {
+   "id": "6126cd91",
+   "zh": "湖南师范大学",
+   "en": "Hunan Normal University",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.118,
+   "height": 3.484,
+   "variant": 281986
+  },
+  {
+   "id": "15dd1b66",
+   "zh": "长沙理工大学",
+   "en": "Changsha University of Science and Technology",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7a99b9",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.368,
+   "height": 3.355,
+   "variant": 515651
+  },
+  {
+   "id": "98dc566f",
+   "zh": "湖南农业大学",
+   "en": "Hunan Agricultural University",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a27f5d",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.942,
+   "height": 3.394,
+   "variant": 572620
+  },
+  {
+   "id": "8636c98c",
+   "zh": "湖南中医药大学",
+   "en": "Hunan University of Chinese Medicine",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8a5a44",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 3.813,
+   "height": 3.218,
+   "variant": 856622
+  },
+  {
+   "id": "3bb635bb",
+   "zh": "湖南工商大学",
+   "en": "Hunan University of Technology and Business",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#367457",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.676,
+   "height": 3.587,
+   "variant": 246448
+  },
+  {
+   "id": "32d7afb6",
+   "zh": "中南林业科技大学",
+   "en": "Central South University of Forestry and Technology",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "forest"
+   },
+   "colors": [
+    "#8c6e52",
+    "#5FA05F",
+    "#8ED07F",
+    "#4E7A46"
+   ],
+   "prop": null,
+   "span": 3.793,
+   "height": 3.685,
+   "variant": 526989
+  },
+  {
+   "id": "fb097c91",
+   "zh": "湖南第一师范学院",
+   "en": "Hunan First Normal University",
+   "city": "changsha",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4efe7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.716,
+   "height": 3.479,
+   "variant": 953532
+  },
+  {
+   "id": "5cd3cead",
+   "zh": "河北旅游职业学院",
+   "en": "Chengde Tourism College",
+   "city": "chengde",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.432,
+   "height": 3.424,
+   "variant": 402307
+  },
+  {
+   "id": "c82b9b90",
+   "zh": "承德医学院",
+   "en": "Chengde Medical College",
+   "city": "chengde",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.099,
+   "height": 3.208,
+   "variant": 807192
+  },
+  {
+   "id": "f918adad",
+   "zh": "四川大学",
+   "en": "Sichuan University",
+   "city": "chengdu",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#b13d31",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.805,
+   "height": 3.502,
+   "variant": 671255
+  },
+  {
+   "id": "9f2d2ef6",
+   "zh": "电子科技大学",
+   "en": "University of Electronic Science and Technology of China",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#88a4c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.833,
+   "height": 3.441,
+   "variant": 405681
+  },
+  {
+   "id": "28e9d7f0",
+   "zh": "西南交通大学",
+   "en": "Southwest Jiaotong University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#92755e",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 4.224,
+   "height": 3.604,
+   "variant": 86555
+  },
+  {
+   "id": "41c1d894",
+   "zh": "西南财经大学",
+   "en": "Southwestern University of Finance and Economics",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#347356",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.443,
+   "height": 3.243,
+   "variant": 224162
+  },
+  {
+   "id": "9162a0cf",
+   "zh": "四川师范大学",
+   "en": "Sichuan Normal University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.224,
+   "height": 3.598,
+   "variant": 104053
+  },
+  {
+   "id": "df374e4a",
+   "zh": "成都理工大学",
+   "en": "Chengdu University of Technology",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a1bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.004,
+   "height": 3.375,
+   "variant": 56785
+  },
+  {
+   "id": "e3454c44",
+   "zh": "西南民族大学",
+   "en": "Southwest Minzu University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f2e6d1",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 3.887,
+   "height": 3.676,
+   "variant": 201582
+  },
+  {
+   "id": "315ba304",
+   "zh": "成都中医药大学",
+   "en": "Chengdu University of Traditional Chinese Medicine",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#926651",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.215,
+   "height": 3.297,
+   "variant": 306300
+  },
+  {
+   "id": "0f1656c4",
+   "zh": "西华大学",
+   "en": "Xihua University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.377,
+   "height": 3.633,
+   "variant": 115224
+  },
+  {
+   "id": "25b19532",
+   "zh": "成都信息工程大学",
+   "en": "Chengdu University of Information Technology",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.711,
+   "height": 3.532,
+   "variant": 378408
+  },
+  {
+   "id": "e7e0b341",
+   "zh": "成都大学",
+   "en": "Chengdu University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.122,
+   "height": 3.294,
+   "variant": 710148
+  },
+  {
+   "id": "0adccff5",
+   "zh": "四川音乐学院",
+   "en": "Sichuan Conservatory of Music",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f3e6ef",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 3.841,
+   "height": 3.586,
+   "variant": 25474
+  },
+  {
+   "id": "30f1b96c",
+   "zh": "成都体育学院",
+   "en": "Chengdu Sport University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "sport"
+   },
+   "colors": [
+    "#ebf0e7",
+    "#5FA05F",
+    "#E8C86A",
+    "#3E6B4F"
+   ],
+   "prop": null,
+   "span": 4.485,
+   "height": 3.556,
+   "variant": 735064
+  },
+  {
+   "id": "7d37784a",
+   "zh": "四川旅游学院",
+   "en": "Sichuan Tourism University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.934,
+   "height": 3.598,
+   "variant": 190773
+  },
+  {
+   "id": "d65f6c16",
+   "zh": "成都医学院",
+   "en": "Chengdu Medical College",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe8",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.795,
+   "height": 3.559,
+   "variant": 158591
+  },
+  {
+   "id": "62a8242f",
+   "zh": "成都师范学院",
+   "en": "Chengdu Normal University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.098,
+   "height": 3.503,
+   "variant": 232461
+  },
+  {
+   "id": "d0880348",
+   "zh": "四川电影电视学院",
+   "en": "Sichuan Film and Television University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f2e4ee",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 4.181,
+   "height": 3.427,
+   "variant": 437659
+  },
+  {
+   "id": "01ca31a7",
+   "zh": "电子科技大学成都学院",
+   "en": "Chengdu College of UESTC",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#86a2bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.994,
+   "height": 3.5,
+   "variant": 739984
+  },
+  {
+   "id": "8c2dbe23",
+   "zh": "重庆大学",
+   "en": "Chongqing University",
+   "city": "chongqing",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#655c50",
+    "#9E4A3A",
+    "#E8C86A",
+    "#5F5148"
+   ],
+   "prop": null,
+   "span": 3.646,
+   "height": 3.217,
+   "variant": 256249
+  },
+  {
+   "id": "13d12b0c",
+   "zh": "西南大学",
+   "en": "Southwest University",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f1e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.086,
+   "height": 3.239,
+   "variant": 103469
+  },
+  {
+   "id": "d762108d",
+   "zh": "重庆邮电大学",
+   "en": "Chongqing University of Posts and Telecommunications",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "post"
+   },
+   "colors": [
+    "#56966f",
+    "#3E6B4F",
+    "#BFE3D0",
+    "#2F5A41"
+   ],
+   "prop": null,
+   "span": 4.352,
+   "height": 3.496,
+   "variant": 927643
+  },
+  {
+   "id": "c62d3255",
+   "zh": "重庆交通大学",
+   "en": "Chongqing Jiaotong University",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#896850",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 4.401,
+   "height": 3.685,
+   "variant": 852239
+  },
+  {
+   "id": "e0a420b0",
+   "zh": "重庆医科大学",
+   "en": "Chongqing Medical University",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.485,
+   "height": 3.618,
+   "variant": 726603
+  },
+  {
+   "id": "956d6527",
+   "zh": "西南政法大学",
+   "en": "Southwest University of Political Science and Law",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "law"
+   },
+   "colors": [
+    "#e4e0d5",
+    "#A8A196",
+    "#C9A43A",
+    "#7E776C"
+   ],
+   "prop": null,
+   "span": 4.478,
+   "height": 3.289,
+   "variant": 267230
+  },
+  {
+   "id": "7642648b",
+   "zh": "重庆师范大学",
+   "en": "Chongqing Normal University",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1ea",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.84,
+   "height": 3.615,
+   "variant": 575669
+  },
+  {
+   "id": "7e0a3040",
+   "zh": "四川外国语大学",
+   "en": "Sichuan International Studies University",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e7e1f2",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 3.989,
+   "height": 3.67,
+   "variant": 436848
+  },
+  {
+   "id": "38a6bf3d",
+   "zh": "重庆工商大学",
+   "en": "Chongqing Technology and Business University",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#3f7b5f",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.961,
+   "height": 3.382,
+   "variant": 61381
+  },
+  {
+   "id": "68a3c228",
+   "zh": "重庆科技大学",
+   "en": "Chongqing University of Science and Technology",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7998b9",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.255,
+   "height": 3.428,
+   "variant": 526452
+  },
+  {
+   "id": "c3a61b67",
+   "zh": "四川美术学院",
+   "en": "Sichuan Fine Arts Institute",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f2e4ee",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 4.042,
+   "height": 3.522,
+   "variant": 117284
+  },
+  {
+   "id": "3cdbe8e2",
+   "zh": "重庆三峡学院",
+   "en": "Chongqing Three Gorges University",
+   "city": "chongqing",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.608,
+   "height": 3.364,
+   "variant": 655740
+  },
+  {
+   "id": "a16ecc8b",
+   "zh": "大连理工大学",
+   "en": "Dalian University of Technology",
+   "city": "dalian",
+   "style": {
+    "kind": "tpl",
+    "id": "soviet"
+   },
+   "colors": [
+    "#e5dfd1",
+    "#9A8A6B",
+    "#4E7CA8",
+    "#6E675C"
+   ],
+   "prop": null,
+   "span": 4.054,
+   "height": 3.569,
+   "variant": 300801
+  },
+  {
+   "id": "81bd7e46",
+   "zh": "大连海事大学",
+   "en": "Dalian Maritime University",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "ocean"
+   },
+   "colors": [
+    "#f5f1e7",
+    "#D95555",
+    "#8FC7EA",
+    "#2E6E9E"
+   ],
+   "prop": null,
+   "span": 4.14,
+   "height": 3.541,
+   "variant": 692523
+  },
+  {
+   "id": "a9627f4a",
+   "zh": "东北财经大学",
+   "en": "Dongbei University of Finance and Economics",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#367557",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.196,
+   "height": 3.352,
+   "variant": 324113
+  },
+  {
+   "id": "40dd8bd8",
+   "zh": "大连交通大学",
+   "en": "Dalian Jiaotong University",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#88684f",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 3.968,
+   "height": 3.319,
+   "variant": 284088
+  },
+  {
+   "id": "e949a255",
+   "zh": "大连医科大学",
+   "en": "Dalian Medical University",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.084,
+   "height": 3.266,
+   "variant": 616920
+  },
+  {
+   "id": "cc002a1f",
+   "zh": "辽宁师范大学",
+   "en": "Liaoning Normal University",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.641,
+   "height": 3.579,
+   "variant": 414940
+  },
+  {
+   "id": "dcaa0461",
+   "zh": "大连外国语大学",
+   "en": "Dalian University of Foreign Languages",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e8e3f3",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 3.784,
+   "height": 3.271,
+   "variant": 426266
+  },
+  {
+   "id": "6683e8fc",
+   "zh": "大连工业大学",
+   "en": "Dalian Polytechnic University",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7e9cbb",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.786,
+   "height": 3.227,
+   "variant": 600684
+  },
+  {
+   "id": "2863f6e3",
+   "zh": "大连海洋大学",
+   "en": "Dalian Ocean University",
+   "city": "dalian",
+   "style": {
+    "kind": "fam",
+    "id": "ocean"
+   },
+   "colors": [
+    "#f4efe5",
+    "#D95555",
+    "#8FC7EA",
+    "#2E6E9E"
+   ],
+   "prop": null,
+   "span": 3.737,
+   "height": 3.224,
+   "variant": 462465
+  },
+  {
+   "id": "b7c3e551",
+   "zh": "山西大同大学",
+   "en": "Shanxi Datong University",
+   "city": "datong",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#86633e",
+    "#E4DECF",
+    "#C24A50",
+    "#5A6472"
+   ],
+   "prop": "longbi",
+   "span": 3.871,
+   "height": 3.212,
+   "variant": 533198
+  },
+  {
+   "id": "11d2dbe2",
+   "zh": "敦煌学院",
+   "en": "Dunhuang College",
+   "city": "dunhuang",
+   "style": {
+    "kind": "tpl",
+    "id": "dunhuang"
+   },
+   "colors": [
+    "#dbbb82",
+    "#9E4A3A",
+    "#E8C86A",
+    "#8A5A3A"
+   ],
+   "prop": "jiuceng",
+   "span": 4.118,
+   "height": 3.558,
+   "variant": 808039
+  },
+  {
+   "id": "b9d9fff6",
+   "zh": "福州大学",
+   "en": "Fuzhou University",
+   "city": "fuzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#416b96",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 4.327,
+   "height": 3.525,
+   "variant": 972925
+  },
+  {
+   "id": "5ec82823",
+   "zh": "福建师范大学",
+   "en": "Fujian Normal University",
+   "city": "fuzhou",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1ea",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.852,
+   "height": 3.479,
+   "variant": 775576
+  },
+  {
+   "id": "a46acac7",
+   "zh": "福建农林大学",
+   "en": "Fujian Agriculture and Forestry University",
+   "city": "fuzhou",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a2805d",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.433,
+   "height": 3.451,
+   "variant": 626060
+  },
+  {
+   "id": "7a8b760d",
+   "zh": "福建医科大学",
+   "en": "Fujian Medical University",
+   "city": "fuzhou",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f0ede5",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.115,
+   "height": 3.432,
+   "variant": 141769
+  },
+  {
+   "id": "d893277f",
+   "zh": "福建中医药大学",
+   "en": "Fujian University of Traditional Chinese Medicine",
+   "city": "fuzhou",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#946854",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.142,
+   "height": 3.489,
+   "variant": 655189
+  },
+  {
+   "id": "a6246cf8",
+   "zh": "闽江学院",
+   "en": "Minjiang University",
+   "city": "fuzhou",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.406,
+   "height": 3.331,
+   "variant": 670180
+  },
+  {
+   "id": "d12d8712",
+   "zh": "中山大学",
+   "en": "Sun Yat-sen University",
+   "city": "guangzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "pailou"
+   },
+   "colors": [
+    "#e4ded0",
+    "#3E6B4F",
+    "#9E2B25",
+    "#B9B2A2"
+   ],
+   "prop": null,
+   "span": 3.671,
+   "height": 3.259,
+   "variant": 308066
+  },
+  {
+   "id": "c6fd871e",
+   "zh": "华南理工大学",
+   "en": "South China University of Technology",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#89a4c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.255,
+   "height": 3.407,
+   "variant": 526815
+  },
+  {
+   "id": "5edcf090",
+   "zh": "暨南大学",
+   "en": "Jinan University",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f2eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.248,
+   "height": 3.653,
+   "variant": 668417
+  },
+  {
+   "id": "83599c45",
+   "zh": "华南师范大学",
+   "en": "South China Normal University",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4efe7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.751,
+   "height": 3.549,
+   "variant": 133800
+  },
+  {
+   "id": "04536771",
+   "zh": "广东工业大学",
+   "en": "Guangdong University of Technology",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7797b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.98,
+   "height": 3.593,
+   "variant": 322323
+  },
+  {
+   "id": "3beca55d",
+   "zh": "华南农业大学",
+   "en": "South China Agricultural University",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#9f7c59",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.34,
+   "height": 3.201,
+   "variant": 316290
+  },
+  {
+   "id": "8affac31",
+   "zh": "广州大学",
+   "en": "Guangzhou University",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.88,
+   "height": 3.613,
+   "variant": 844286
+  },
+  {
+   "id": "72f5b873",
+   "zh": "南方医科大学",
+   "en": "Southern Medical University",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee5",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.689,
+   "height": 3.492,
+   "variant": 461996
+  },
+  {
+   "id": "ee42d224",
+   "zh": "广州中医药大学",
+   "en": "Guangzhou University of Chinese Medicine",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8d5f49",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.179,
+   "height": 3.251,
+   "variant": 134968
+  },
+  {
+   "id": "6ca7411a",
+   "zh": "广东外语外贸大学",
+   "en": "Guangdong University of Foreign Studies",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e5dff2",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 4.039,
+   "height": 3.363,
+   "variant": 213111
+  },
+  {
+   "id": "013017ce",
+   "zh": "广州医科大学",
+   "en": "Guangzhou Medical University",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.909,
+   "height": 3.561,
+   "variant": 100774
+  },
+  {
+   "id": "16e90a32",
+   "zh": "星海音乐学院",
+   "en": "Xinghai Conservatory of Music",
+   "city": "guangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f2e4ee",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 3.618,
+   "height": 3.471,
+   "variant": 658181
+  },
+  {
+   "id": "66c4646a",
+   "zh": "贵州大学",
+   "en": "Guizhou University",
+   "city": "guiyang",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#346346",
+    "#E4DECF",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 4.422,
+   "height": 3.376,
+   "variant": 276111
+  },
+  {
+   "id": "592712f3",
+   "zh": "贵州师范大学",
+   "en": "Guizhou Normal University",
+   "city": "guiyang",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.852,
+   "height": 3.408,
+   "variant": 400067
+  },
+  {
+   "id": "f90634dc",
+   "zh": "贵州医科大学",
+   "en": "Guizhou Medical University",
+   "city": "guiyang",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe8",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.674,
+   "height": 3.204,
+   "variant": 15751
+  },
+  {
+   "id": "249f6ffe",
+   "zh": "贵州财经大学",
+   "en": "Guizhou University of Finance and Economics",
+   "city": "guiyang",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#367557",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.858,
+   "height": 3.28,
+   "variant": 330435
+  },
+  {
+   "id": "864af600",
+   "zh": "贵州中医药大学",
+   "en": "Guizhou University of Traditional Chinese Medicine",
+   "city": "guiyang",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8d5e49",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.297,
+   "height": 3.385,
+   "variant": 402473
+  },
+  {
+   "id": "f8d4e948",
+   "zh": "海南大学",
+   "en": "Hainan University",
+   "city": "haikou",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#358161",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "palm",
+   "span": 4.433,
+   "height": 3.443,
+   "variant": 973125
+  },
+  {
+   "id": "a7633e30",
+   "zh": "海南师范大学",
+   "en": "Hainan Normal University",
+   "city": "haikou",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.72,
+   "height": 3.635,
+   "variant": 883410
+  },
+  {
+   "id": "7e8b124b",
+   "zh": "海南医学院",
+   "en": "Hainan Medical College",
+   "city": "haikou",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f0ede5",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.074,
+   "height": 3.648,
+   "variant": 235417
+  },
+  {
+   "id": "d192a054",
+   "zh": "浙江大学",
+   "en": "Zhejiang University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#235aa2",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "bell",
+   "span": 4.141,
+   "height": 3.445,
+   "variant": 678520
+  },
+  {
+   "id": "462198a8",
+   "zh": "中国美术学院",
+   "en": "China Academy of Art",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f2e4ee",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 4.47,
+   "height": 3.623,
+   "variant": 784961
+  },
+  {
+   "id": "f1d92517",
+   "zh": "浙江工业大学",
+   "en": "Zhejiang University of Technology",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7797b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.984,
+   "height": 3.248,
+   "variant": 728392
+  },
+  {
+   "id": "b0449df0",
+   "zh": "杭州电子科技大学",
+   "en": "Hangzhou Dianzi University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#84a1be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.138,
+   "height": 3.364,
+   "variant": 279305
+  },
+  {
+   "id": "6e493787",
+   "zh": "浙江理工大学",
+   "en": "Zhejiang Sci-Tech University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#87a3c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.106,
+   "height": 3.604,
+   "variant": 445252
+  },
+  {
+   "id": "88888d5c",
+   "zh": "浙江工商大学",
+   "en": "Zhejiang Gongshang University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#417c61",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.082,
+   "height": 3.248,
+   "variant": 148024
+  },
+  {
+   "id": "8664f219",
+   "zh": "浙江中医药大学",
+   "en": "Zhejiang Chinese Medical University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#936753",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 3.62,
+   "height": 3.561,
+   "variant": 183657
+  },
+  {
+   "id": "bbc5a5d6",
+   "zh": "杭州师范大学",
+   "en": "Hangzhou Normal University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.381,
+   "height": 3.327,
+   "variant": 1713
+  },
+  {
+   "id": "0a0787be",
+   "zh": "中国计量大学",
+   "en": "China Jiliang University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#89a5c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.797,
+   "height": 3.498,
+   "variant": 434776
+  },
+  {
+   "id": "0e2b5990",
+   "zh": "浙江财经大学",
+   "en": "Zhejiang University of Finance and Economics",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#4c846a",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.4,
+   "height": 3.523,
+   "variant": 200548
+  },
+  {
+   "id": "c492b81c",
+   "zh": "浙江农林大学",
+   "en": "Zhejiang A&F University",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#97714a",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.823,
+   "height": 3.41,
+   "variant": 931936
+  },
+  {
+   "id": "9b1f0b83",
+   "zh": "杭州医学院",
+   "en": "Hangzhou Medical College",
+   "city": "hangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.632,
+   "height": 3.687,
+   "variant": 392659
+  },
+  {
+   "id": "527f3d3a",
+   "zh": "哈尔滨工业大学",
+   "en": "Harbin Institute of Technology",
+   "city": "harbin",
+   "style": {
+    "kind": "tpl",
+    "id": "soviet"
+   },
+   "colors": [
+    "#dbd6c9",
+    "#8A8378",
+    "#C24A50",
+    "#6E675C"
+   ],
+   "prop": null,
+   "span": 4.48,
+   "height": 3.584,
+   "variant": 552096
+  },
+  {
+   "id": "c13207f7",
+   "zh": "哈尔滨工程大学",
+   "en": "Harbin Engineering University",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#83a0be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.219,
+   "height": 3.3,
+   "variant": 942559
+  },
+  {
+   "id": "9257d174",
+   "zh": "东北林业大学",
+   "en": "Northeast Forestry University",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "forest"
+   },
+   "colors": [
+    "#856648",
+    "#5FA05F",
+    "#8ED07F",
+    "#4E7A46"
+   ],
+   "prop": null,
+   "span": 4.102,
+   "height": 3.363,
+   "variant": 360036
+  },
+  {
+   "id": "48170887",
+   "zh": "东北农业大学",
+   "en": "Northeast Agricultural University",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#966f49",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.06,
+   "height": 3.354,
+   "variant": 894879
+  },
+  {
+   "id": "7839dacc",
+   "zh": "黑龙江大学",
+   "en": "Heilongjiang University",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.2,
+   "height": 3.62,
+   "variant": 724072
+  },
+  {
+   "id": "8177ca62",
+   "zh": "哈尔滨医科大学",
+   "en": "Harbin Medical University",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.774,
+   "height": 3.39,
+   "variant": 79648
+  },
+  {
+   "id": "f7dd9d60",
+   "zh": "哈尔滨师范大学",
+   "en": "Harbin Normal University",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.427,
+   "height": 3.388,
+   "variant": 221642
+  },
+  {
+   "id": "dd67788c",
+   "zh": "黑龙江中医药大学",
+   "en": "Heilongjiang University of Chinese Medicine",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8f614c",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.155,
+   "height": 3.249,
+   "variant": 176935
+  },
+  {
+   "id": "df62c722",
+   "zh": "哈尔滨理工大学",
+   "en": "Harbin University of Science and Technology",
+   "city": "harbin",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7696b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.925,
+   "height": 3.684,
+   "variant": 28777
+  },
+  {
+   "id": "5c5d612e",
+   "zh": "中国科学技术大学",
+   "en": "University of Science and Technology of China",
+   "city": "hefei",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#f3efe8",
+    "#9E2B25",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "brick",
+   "span": 4.33,
+   "height": 3.518,
+   "variant": 408875
+  },
+  {
+   "id": "54958542",
+   "zh": "合肥工业大学",
+   "en": "Hefei University of Technology",
+   "city": "hefei",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#829fbd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.627,
+   "height": 3.51,
+   "variant": 422401
+  },
+  {
+   "id": "396760e2",
+   "zh": "安徽大学",
+   "en": "Anhui University",
+   "city": "hefei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.259,
+   "height": 3.604,
+   "variant": 385023
+  },
+  {
+   "id": "ff50b937",
+   "zh": "安徽农业大学",
+   "en": "Anhui Agricultural University",
+   "city": "hefei",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a3815f",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.135,
+   "height": 3.321,
+   "variant": 232096
+  },
+  {
+   "id": "9ac62196",
+   "zh": "安徽医科大学",
+   "en": "Anhui Medical University",
+   "city": "hefei",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee5",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.49,
+   "height": 3.487,
+   "variant": 527579
+  },
+  {
+   "id": "6b4763ca",
+   "zh": "安徽中医药大学",
+   "en": "Anhui University of Chinese Medicine",
+   "city": "hefei",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#84513a",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.043,
+   "height": 3.243,
+   "variant": 723844
+  },
+  {
+   "id": "7d99047c",
+   "zh": "合肥大学",
+   "en": "Hefei University",
+   "city": "hefei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.803,
+   "height": 3.515,
+   "variant": 414501
+  },
+  {
+   "id": "f244f930",
+   "zh": "内蒙古大学",
+   "en": "Inner Mongolia University",
+   "city": "hohhot",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#517a97",
+    "#F2EEE6",
+    "#5FA05F",
+    "#5A6472"
+   ],
+   "prop": "yurt",
+   "span": 4.386,
+   "height": 3.461,
+   "variant": 245400
+  },
+  {
+   "id": "2b2e66e2",
+   "zh": "内蒙古师范大学",
+   "en": "Inner Mongolia Normal University",
+   "city": "hohhot",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.919,
+   "height": 3.291,
+   "variant": 4420
+  },
+  {
+   "id": "f1e745d0",
+   "zh": "内蒙古农业大学",
+   "en": "Inner Mongolia Agricultural University",
+   "city": "hohhot",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a48261",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.628,
+   "height": 3.33,
+   "variant": 522317
+  },
+  {
+   "id": "46e05050",
+   "zh": "内蒙古医科大学",
+   "en": "Inner Mongolia Medical University",
+   "city": "hohhot",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.715,
+   "height": 3.263,
+   "variant": 538337
+  },
+  {
+   "id": "72fdbae4",
+   "zh": "内蒙古工业大学",
+   "en": "Inner Mongolia University of Technology",
+   "city": "hohhot",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7897b8",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.816,
+   "height": 3.482,
+   "variant": 507909
+  },
+  {
+   "id": "21731bc3",
+   "zh": "山东大学",
+   "en": "Shandong University",
+   "city": "jinan",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#991327",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.62,
+   "height": 3.475,
+   "variant": 450797
+  },
+  {
+   "id": "90333f7e",
+   "zh": "山东师范大学",
+   "en": "Shandong Normal University",
+   "city": "jinan",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f3efe7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.858,
+   "height": 3.257,
+   "variant": 423504
+  },
+  {
+   "id": "94c39357",
+   "zh": "济南大学",
+   "en": "University of Jinan",
+   "city": "jinan",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.253,
+   "height": 3.532,
+   "variant": 278741
+  },
+  {
+   "id": "97cc2f68",
+   "zh": "山东财经大学",
+   "en": "Shandong University of Finance and Economics",
+   "city": "jinan",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#3e7a5e",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.485,
+   "height": 3.574,
+   "variant": 20671
+  },
+  {
+   "id": "d9b71995",
+   "zh": "山东中医药大学",
+   "en": "Shandong University of Traditional Chinese Medicine",
+   "city": "jinan",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8a5a45",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.028,
+   "height": 3.428,
+   "variant": 1320
+  },
+  {
+   "id": "9d4289ea",
+   "zh": "齐鲁工业大学",
+   "en": "Qilu University of Technology",
+   "city": "jinan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#829fbd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.924,
+   "height": 3.442,
+   "variant": 228815
+  },
+  {
+   "id": "f226bd1b",
+   "zh": "河南大学",
+   "en": "Henan University",
+   "city": "kaifeng",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#797066",
+    "#D8D2C4",
+    "#2E7D5B",
+    "#5F5148"
+   ],
+   "prop": null,
+   "span": 3.755,
+   "height": 3.598,
+   "variant": 449670
+  },
+  {
+   "id": "743a9c8d",
+   "zh": "开封大学",
+   "en": "Kaifeng University",
+   "city": "kaifeng",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.784,
+   "height": 3.231,
+   "variant": 169063
+  },
+  {
+   "id": "50e4b53d",
+   "zh": "黄河水利职业技术学院",
+   "en": "Yellow River Conservancy Technical Institute",
+   "city": "kaifeng",
+   "style": {
+    "kind": "fam",
+    "id": "hydro"
+   },
+   "colors": [
+    "#b6c1ba",
+    "#8FA69C",
+    "#6FB8E8",
+    "#6E8A82"
+   ],
+   "prop": null,
+   "span": 3.618,
+   "height": 3.52,
+   "variant": 107016
+  },
+  {
+   "id": "d12d8712",
+   "zh": "中山大学",
+   "en": "National Sun Yat-sen University",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "tpl",
+    "id": "pailou"
+   },
+   "colors": [
+    "#e4ded0",
+    "#3E6B4F",
+    "#9E2B25",
+    "#B9B2A2"
+   ],
+   "prop": null,
+   "span": 3.671,
+   "height": 3.259,
+   "variant": 308066
+  },
+  {
+   "id": "f991139b",
+   "zh": "高雄医学大学",
+   "en": "Kaohsiung Medical University",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.708,
+   "height": 3.43,
+   "variant": 431100
+  },
+  {
+   "id": "f7b77763",
+   "zh": "高雄大学",
+   "en": "National University of Kaohsiung",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.119,
+   "height": 3.346,
+   "variant": 795864
+  },
+  {
+   "id": "365b9b08",
+   "zh": "高雄科技大学",
+   "en": "National Kaohsiung University of Science and Technology",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7c9aba",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.84,
+   "height": 3.569,
+   "variant": 886883
+  },
+  {
+   "id": "2ee5462d",
+   "zh": "高雄师范大学",
+   "en": "National Kaohsiung Normal University",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.268,
+   "height": 3.522,
+   "variant": 586221
+  },
+  {
+   "id": "acc26f24",
+   "zh": "义守大学",
+   "en": "I-Shou University",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.184,
+   "height": 3.419,
+   "variant": 224793
+  },
+  {
+   "id": "97b625fd",
+   "zh": "树德科技大学",
+   "en": "Shu-Te University",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#829fbd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.661,
+   "height": 3.397,
+   "variant": 525810
+  },
+  {
+   "id": "2efc2fcd",
+   "zh": "辅英科技大学",
+   "en": "Fooyin University",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#83a0be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.341,
+   "height": 3.21,
+   "variant": 244608
+  },
+  {
+   "id": "bbc49542",
+   "zh": "文藻外语大学",
+   "en": "Wenzao Ursuline University of Languages",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e8e2f3",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 3.635,
+   "height": 3.646,
+   "variant": 903247
+  },
+  {
+   "id": "4b07607f",
+   "zh": "正修科技大学",
+   "en": "Cheng Shiu University",
+   "city": "kaohsiung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a1bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.258,
+   "height": 3.424,
+   "variant": 321787
+  },
+  {
+   "id": "cf1c63cc",
+   "zh": "云南大学",
+   "en": "Yunnan University",
+   "city": "kunming",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#e6e1d3",
+    "#3E6B4F",
+    "#C24A50",
+    "#5F5148"
+   ],
+   "prop": null,
+   "span": 4.281,
+   "height": 3.522,
+   "variant": 631102
+  },
+  {
+   "id": "75d1da4d",
+   "zh": "昆明理工大学",
+   "en": "Kunming University of Science and Technology",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7f9dbc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.21,
+   "height": 3.594,
+   "variant": 874549
+  },
+  {
+   "id": "d7980854",
+   "zh": "云南师范大学",
+   "en": "Yunnan Normal University",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.252,
+   "height": 3.386,
+   "variant": 986652
+  },
+  {
+   "id": "59ff6dbe",
+   "zh": "昆明医科大学",
+   "en": "Kunming Medical University",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2f0e8",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.237,
+   "height": 3.39,
+   "variant": 262702
+  },
+  {
+   "id": "238b4224",
+   "zh": "云南农业大学",
+   "en": "Yunnan Agricultural University",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a07d5a",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.371,
+   "height": 3.596,
+   "variant": 639054
+  },
+  {
+   "id": "a1e0f1e0",
+   "zh": "西南林业大学",
+   "en": "Southwest Forestry University",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "forest"
+   },
+   "colors": [
+    "#91755a",
+    "#5FA05F",
+    "#8ED07F",
+    "#4E7A46"
+   ],
+   "prop": null,
+   "span": 4.044,
+   "height": 3.648,
+   "variant": 832694
+  },
+  {
+   "id": "bf93a749",
+   "zh": "云南民族大学",
+   "en": "Yunnan Minzu University",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f3e8d5",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 3.668,
+   "height": 3.591,
+   "variant": 643316
+  },
+  {
+   "id": "d94f576b",
+   "zh": "云南财经大学",
+   "en": "Yunnan University of Finance and Economics",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#39765a",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.15,
+   "height": 3.247,
+   "variant": 185258
+  },
+  {
+   "id": "a6014ecb",
+   "zh": "昆明学院",
+   "en": "Kunming University",
+   "city": "kunming",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.682,
+   "height": 3.498,
+   "variant": 29414
+  },
+  {
+   "id": "16b18bb9",
+   "zh": "兰州大学",
+   "en": "Lanzhou University",
+   "city": "lanzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#2b7b58",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.721,
+   "height": 3.424,
+   "variant": 843696
+  },
+  {
+   "id": "e6a18f8b",
+   "zh": "西北师范大学",
+   "en": "Northwest Normal University",
+   "city": "lanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.901,
+   "height": 3.312,
+   "variant": 625347
+  },
+  {
+   "id": "f0973598",
+   "zh": "兰州理工大学",
+   "en": "Lanzhou University of Technology",
+   "city": "lanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7897b8",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.989,
+   "height": 3.394,
+   "variant": 156632
+  },
+  {
+   "id": "05b3e4c8",
+   "zh": "兰州交通大学",
+   "en": "Lanzhou Jiaotong University",
+   "city": "lanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#85644b",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 3.877,
+   "height": 3.329,
+   "variant": 642188
+  },
+  {
+   "id": "07c30cbd",
+   "zh": "甘肃农业大学",
+   "en": "Gansu Agricultural University",
+   "city": "lanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a48260",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.92,
+   "height": 3.431,
+   "variant": 477430
+  },
+  {
+   "id": "68ffda7a",
+   "zh": "兰州财经大学",
+   "en": "Lanzhou University of Finance and Economics",
+   "city": "lanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#347356",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.166,
+   "height": 3.482,
+   "variant": 310834
+  },
+  {
+   "id": "5659f105",
+   "zh": "甘肃中医药大学",
+   "en": "Gansu University of Chinese Medicine",
+   "city": "lanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8c5d48",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.289,
+   "height": 3.44,
+   "variant": 36218
+  },
+  {
+   "id": "db455bf8",
+   "zh": "西藏大学",
+   "en": "Tibet University",
+   "city": "lhasa",
+   "style": {
+    "kind": "tpl",
+    "id": "tibetan"
+   },
+   "colors": [
+    "#f5f1e8",
+    "#8A2B22",
+    "#E8C86A",
+    "#6E6A62"
+   ],
+   "prop": null,
+   "span": 3.999,
+   "height": 3.388,
+   "variant": 507846
+  },
+  {
+   "id": "ae95a137",
+   "zh": "西藏藏医药大学",
+   "en": "Tibetan Medical University",
+   "city": "lhasa",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#956a56",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.167,
+   "height": 3.418,
+   "variant": 143418
+  },
+  {
+   "id": "f917f853",
+   "zh": "河南科技大学",
+   "en": "Henan University of Science and Technology",
+   "city": "luoyang",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#745525",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 4.373,
+   "height": 3.551,
+   "variant": 712737
+  },
+  {
+   "id": "a64e783f",
+   "zh": "洛阳师范学院",
+   "en": "Luoyang Normal University",
+   "city": "luoyang",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.847,
+   "height": 3.531,
+   "variant": 242587
+  },
+  {
+   "id": "dbd6fc41",
+   "zh": "洛阳理工学院",
+   "en": "Luoyang Institute of Science and Technology",
+   "city": "luoyang",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#809dbc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.73,
+   "height": 3.263,
+   "variant": 839224
+  },
+  {
+   "id": "5b9a1fc9",
+   "zh": "南昌大学",
+   "en": "Nanchang University",
+   "city": "nanchang",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.394,
+   "height": 3.541,
+   "variant": 278160
+  },
+  {
+   "id": "27e51bab",
+   "zh": "江西财经大学",
+   "en": "Jiangxi University of Finance and Economics",
+   "city": "nanchang",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#367558",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.697,
+   "height": 3.379,
+   "variant": 832555
+  },
+  {
+   "id": "feef7dd1",
+   "zh": "江西师范大学",
+   "en": "Jiangxi Normal University",
+   "city": "nanchang",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.084,
+   "height": 3.431,
+   "variant": 184646
+  },
+  {
+   "id": "5ab26dfe",
+   "zh": "南昌航空大学",
+   "en": "Nanchang Hangkong University",
+   "city": "nanchang",
+   "style": {
+    "kind": "fam",
+    "id": "aero"
+   },
+   "colors": [
+    "#f6f1e9",
+    "#C9555C",
+    "#8FA8C0",
+    "#4A4A52"
+   ],
+   "prop": null,
+   "span": 4.068,
+   "height": 3.339,
+   "variant": 49344
+  },
+  {
+   "id": "e2a7eb50",
+   "zh": "江西农业大学",
+   "en": "Jiangxi Agricultural University",
+   "city": "nanchang",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#98724c",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.762,
+   "height": 3.489,
+   "variant": 898518
+  },
+  {
+   "id": "6f06529b",
+   "zh": "江西中医药大学",
+   "en": "Jiangxi University of Chinese Medicine",
+   "city": "nanchang",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#835039",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.042,
+   "height": 3.634,
+   "variant": 934917
+  },
+  {
+   "id": "ecfba476",
+   "zh": "南京大学",
+   "en": "Nanjing University",
+   "city": "nanjing",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#756c62",
+    "#D8D2C4",
+    "#5FA05F",
+    "#5F5148"
+   ],
+   "prop": "beilou",
+   "span": 3.705,
+   "height": 3.212,
+   "variant": 332886
+  },
+  {
+   "id": "509c7678",
+   "zh": "东南大学",
+   "en": "Southeast University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.749,
+   "height": 3.627,
+   "variant": 589756
+  },
+  {
+   "id": "adc0e8c1",
+   "zh": "南京航空航天大学",
+   "en": "Nanjing University of Aeronautics and Astronautics",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "aero"
+   },
+   "colors": [
+    "#f7f3eb",
+    "#C9555C",
+    "#8FA8C0",
+    "#4A4A52"
+   ],
+   "prop": null,
+   "span": 4.095,
+   "height": 3.29,
+   "variant": 340501
+  },
+  {
+   "id": "3c242afc",
+   "zh": "南京理工大学",
+   "en": "Nanjing University of Science and Technology",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7f9dbb",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.931,
+   "height": 3.699,
+   "variant": 65231
+  },
+  {
+   "id": "315092b0",
+   "zh": "河海大学",
+   "en": "Hohai University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "hydro"
+   },
+   "colors": [
+    "#bbc4be",
+    "#8FA69C",
+    "#6FB8E8",
+    "#6E8A82"
+   ],
+   "prop": null,
+   "span": 3.724,
+   "height": 3.646,
+   "variant": 9507
+  },
+  {
+   "id": "c9e0fe14",
+   "zh": "南京师范大学",
+   "en": "Nanjing Normal University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1ea",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.875,
+   "height": 3.681,
+   "variant": 947095
+  },
+  {
+   "id": "29dbb709",
+   "zh": "南京农业大学",
+   "en": "Nanjing Agricultural University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#9f7c59",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.719,
+   "height": 3.583,
+   "variant": 830492
+  },
+  {
+   "id": "3aaea9c0",
+   "zh": "中国药科大学",
+   "en": "China Pharmaceutical University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.373,
+   "height": 3.476,
+   "variant": 691188
+  },
+  {
+   "id": "4e9f0845",
+   "zh": "南京邮电大学",
+   "en": "Nanjing University of Posts and Telecommunications",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "post"
+   },
+   "colors": [
+    "#589871",
+    "#3E6B4F",
+    "#BFE3D0",
+    "#2F5A41"
+   ],
+   "prop": null,
+   "span": 3.82,
+   "height": 3.222,
+   "variant": 162581
+  },
+  {
+   "id": "92a699be",
+   "zh": "南京林业大学",
+   "en": "Nanjing Forestry University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "forest"
+   },
+   "colors": [
+    "#8e7156",
+    "#5FA05F",
+    "#8ED07F",
+    "#4E7A46"
+   ],
+   "prop": null,
+   "span": 4.335,
+   "height": 3.384,
+   "variant": 951874
+  },
+  {
+   "id": "d8f41725",
+   "zh": "南京信息工程大学",
+   "en": "Nanjing University of Information Science and Technology",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7796b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.635,
+   "height": 3.49,
+   "variant": 506189
+  },
+  {
+   "id": "417c8515",
+   "zh": "南京工业大学",
+   "en": "Nanjing Tech University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819fbd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.321,
+   "height": 3.282,
+   "variant": 404018
+  },
+  {
+   "id": "1e08734c",
+   "zh": "南京医科大学",
+   "en": "Nanjing Medical University",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.865,
+   "height": 3.267,
+   "variant": 171558
+  },
+  {
+   "id": "23789463",
+   "zh": "南京财经大学",
+   "en": "Nanjing University of Finance and Economics",
+   "city": "nanjing",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#417c60",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.851,
+   "height": 3.351,
+   "variant": 564037
+  },
+  {
+   "id": "0b98c852",
+   "zh": "广西大学",
+   "en": "Guangxi University",
+   "city": "nanning",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#4c875c",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.676,
+   "height": 3.591,
+   "variant": 13637
+  },
+  {
+   "id": "1853de9c",
+   "zh": "广西医科大学",
+   "en": "Guangxi Medical University",
+   "city": "nanning",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.136,
+   "height": 3.233,
+   "variant": 455251
+  },
+  {
+   "id": "3c3c34a6",
+   "zh": "广西民族大学",
+   "en": "Guangxi Minzu University",
+   "city": "nanning",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f2e5d0",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 4.194,
+   "height": 3.618,
+   "variant": 850204
+  },
+  {
+   "id": "42a254fa",
+   "zh": "广西师范大学",
+   "en": "Guangxi Normal University",
+   "city": "nanning",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.629,
+   "height": 3.402,
+   "variant": 770100
+  },
+  {
+   "id": "44034a3f",
+   "zh": "南宁师范大学",
+   "en": "Nanning Normal University",
+   "city": "nanning",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.167,
+   "height": 3.457,
+   "variant": 64105
+  },
+  {
+   "id": "6f145494",
+   "zh": "广西中医药大学",
+   "en": "Guangxi University of Chinese Medicine",
+   "city": "nanning",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#956a56",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 3.757,
+   "height": 3.516,
+   "variant": 316006
+  },
+  {
+   "id": "7facd363",
+   "zh": "中国海洋大学",
+   "en": "Ocean University of China",
+   "city": "qingdao",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#2f6b95",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "twin",
+   "span": 4.418,
+   "height": 3.397,
+   "variant": 603236
+  },
+  {
+   "id": "212410b8",
+   "zh": "山东大学（青岛校区）",
+   "en": "Shandong University Qingdao",
+   "city": "qingdao",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.709,
+   "height": 3.603,
+   "variant": 755497
+  },
+  {
+   "id": "2be43a5b",
+   "zh": "中国石油大学（华东）",
+   "en": "China University of Petroleum (East China)",
+   "city": "qingdao",
+   "style": {
+    "kind": "fam",
+    "id": "petro"
+   },
+   "colors": [
+    "#7c8590",
+    "#5A6270",
+    "#E8C86A",
+    "#4A5260"
+   ],
+   "prop": null,
+   "span": 4.17,
+   "height": 3.454,
+   "variant": 406418
+  },
+  {
+   "id": "d43c1405",
+   "zh": "青岛大学",
+   "en": "Qingdao University",
+   "city": "qingdao",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f2eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.758,
+   "height": 3.332,
+   "variant": 605391
+  },
+  {
+   "id": "27f99b9d",
+   "zh": "山东科技大学",
+   "en": "Shandong University of Science and Technology",
+   "city": "qingdao",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7b9ab9",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.057,
+   "height": 3.222,
+   "variant": 141565
+  },
+  {
+   "id": "3cce70a7",
+   "zh": "青岛科技大学",
+   "en": "Qingdao University of Science and Technology",
+   "city": "qingdao",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7797b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.631,
+   "height": 3.46,
+   "variant": 824146
+  },
+  {
+   "id": "5d601d23",
+   "zh": "青岛理工大学",
+   "en": "Qingdao University of Technology",
+   "city": "qingdao",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7e9cbb",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.905,
+   "height": 3.282,
+   "variant": 142149
+  },
+  {
+   "id": "8c1c7df1",
+   "zh": "青岛农业大学",
+   "en": "Qingdao Agricultural University",
+   "city": "qingdao",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#9f7c58",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.761,
+   "height": 3.559,
+   "variant": 359634
+  },
+  {
+   "id": "b9565ea5",
+   "zh": "华侨大学",
+   "en": "Huaqiao University",
+   "city": "quanzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "jiageng"
+   },
+   "colors": [
+    "#904539",
+    "#E4DECF",
+    "#E8C86A",
+    "#7E3A2C"
+   ],
+   "prop": null,
+   "span": 4.482,
+   "height": 3.231,
+   "variant": 796561
+  },
+  {
+   "id": "51d07835",
+   "zh": "仰恩大学",
+   "en": "Yang'en University",
+   "city": "quanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.761,
+   "height": 3.357,
+   "variant": 938959
+  },
+  {
+   "id": "4143b986",
+   "zh": "泉州师范学院",
+   "en": "Quanzhou Normal University",
+   "city": "quanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1ea",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.772,
+   "height": 3.482,
+   "variant": 575389
+  },
+  {
+   "id": "84f1692e",
+   "zh": "闽南理工学院",
+   "en": "Minnan University of Science and Technology",
+   "city": "quanzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#84a0be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.752,
+   "height": 3.254,
+   "variant": 892004
+  },
+  {
+   "id": "8e727ab3",
+   "zh": "曲阜师范大学",
+   "en": "Qufu Normal University",
+   "city": "qufu",
+   "style": {
+    "kind": "tpl",
+    "id": "pailou"
+   },
+   "colors": [
+    "#86633e",
+    "#9E2B25",
+    "#E8C86A",
+    "#B9B2A2"
+   ],
+   "prop": null,
+   "span": 3.703,
+   "height": 3.349,
+   "variant": 909801
+  },
+  {
+   "id": "7b6f3820",
+   "zh": "济宁学院",
+   "en": "Jining University",
+   "city": "qufu",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.477,
+   "height": 3.622,
+   "variant": 947762
+  },
+  {
+   "id": "eb657e6b",
+   "zh": "海南热带海洋学院",
+   "en": "Hainan Tropical Ocean University",
+   "city": "sanya",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#329696",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "lighthouse",
+   "span": 4.228,
+   "height": 3.414,
+   "variant": 59029
+  },
+  {
+   "id": "a02ab0b0",
+   "zh": "三亚学院",
+   "en": "Sanya University",
+   "city": "sanya",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.918,
+   "height": 3.444,
+   "variant": 266114
+  },
+  {
+   "id": "2f087745",
+   "zh": "复旦大学",
+   "en": "Fudan University",
+   "city": "shanghai",
+   "style": {
+    "kind": "tpl",
+    "id": "roof"
+   },
+   "colors": [
+    "#f5f1e9",
+    "#6B7280",
+    "#9E2B25",
+    "#6B7280"
+   ],
+   "prop": null,
+   "span": 3.769,
+   "height": 3.472,
+   "variant": 140503
+  },
+  {
+   "id": "2fafd8d6",
+   "zh": "上海交通大学",
+   "en": "Shanghai Jiao Tong University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#8c6d55",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 3.667,
+   "height": 3.261,
+   "variant": 856633
+  },
+  {
+   "id": "cc40678b",
+   "zh": "同济大学",
+   "en": "Tongji University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.016,
+   "height": 3.392,
+   "variant": 361146
+  },
+  {
+   "id": "48954909",
+   "zh": "华东师范大学",
+   "en": "East China Normal University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.786,
+   "height": 3.641,
+   "variant": 509724
+  },
+  {
+   "id": "fa199a65",
+   "zh": "上海科技大学",
+   "en": "ShanghaiTech University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a1be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.386,
+   "height": 3.48,
+   "variant": 81236
+  },
+  {
+   "id": "876e0a9c",
+   "zh": "上海外国语大学",
+   "en": "Shanghai International Studies University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e6dff2",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 4.446,
+   "height": 3.425,
+   "variant": 498874
+  },
+  {
+   "id": "838513f4",
+   "zh": "上海财经大学",
+   "en": "Shanghai University of Finance and Economics",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#4c8369",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.112,
+   "height": 3.394,
+   "variant": 358248
+  },
+  {
+   "id": "94c4c69b",
+   "zh": "华东理工大学",
+   "en": "East China University of Science and Technology",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7797b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.667,
+   "height": 3.224,
+   "variant": 998608
+  },
+  {
+   "id": "9597818e",
+   "zh": "东华大学",
+   "en": "Donghua University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.231,
+   "height": 3.247,
+   "variant": 408215
+  },
+  {
+   "id": "e72f65cf",
+   "zh": "上海大学",
+   "en": "Shanghai University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.459,
+   "height": 3.688,
+   "variant": 633496
+  },
+  {
+   "id": "519b51fa",
+   "zh": "上海师范大学",
+   "en": "Shanghai Normal University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.964,
+   "height": 3.637,
+   "variant": 586094
+  },
+  {
+   "id": "02956dbf",
+   "zh": "上海理工大学",
+   "en": "University of Shanghai for Science and Technology",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#87a3c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.237,
+   "height": 3.253,
+   "variant": 83231
+  },
+  {
+   "id": "11f527b0",
+   "zh": "上海海事大学",
+   "en": "Shanghai Maritime University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "ocean"
+   },
+   "colors": [
+    "#f4efe5",
+    "#D95555",
+    "#8FC7EA",
+    "#2E6E9E"
+   ],
+   "prop": null,
+   "span": 4.294,
+   "height": 3.314,
+   "variant": 274662
+  },
+  {
+   "id": "626527aa",
+   "zh": "上海中医药大学",
+   "en": "Shanghai University of Traditional Chinese Medicine",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#85543d",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 3.906,
+   "height": 3.69,
+   "variant": 775305
+  },
+  {
+   "id": "1dd2908a",
+   "zh": "上海海洋大学",
+   "en": "Shanghai Ocean University",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "ocean"
+   },
+   "colors": [
+    "#f4efe5",
+    "#D95555",
+    "#8FC7EA",
+    "#2E6E9E"
+   ],
+   "prop": null,
+   "span": 3.879,
+   "height": 3.293,
+   "variant": 757193
+  },
+  {
+   "id": "6100d73e",
+   "zh": "上海对外经贸大学",
+   "en": "Shanghai University of International Business and Economics",
+   "city": "shanghai",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#427d61",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.959,
+   "height": 3.599,
+   "variant": 199086
+  },
+  {
+   "id": "937610d5",
+   "zh": "绍兴文理学院",
+   "en": "Shaoxing University",
+   "city": "shaoxing",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#224264",
+    "#F2EEE6",
+    "#8A6844",
+    "#5A6472"
+   ],
+   "prop": "boat",
+   "span": 4.412,
+   "height": 3.264,
+   "variant": 903667
+  },
+  {
+   "id": "80a4ed8d",
+   "zh": "浙江工业大学之江学院",
+   "en": "Zhijiang College",
+   "city": "shaoxing",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#88a4c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.689,
+   "height": 3.318,
+   "variant": 689710
+  },
+  {
+   "id": "b44c0e7b",
+   "zh": "东北大学",
+   "en": "Northeastern University",
+   "city": "shenyang",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#9d4939",
+    "#6B6257",
+    "#E8C86A",
+    "#5F5148"
+   ],
+   "prop": null,
+   "span": 4.498,
+   "height": 3.695,
+   "variant": 316153
+  },
+  {
+   "id": "dbd01ea1",
+   "zh": "辽宁大学",
+   "en": "Liaoning University",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.807,
+   "height": 3.565,
+   "variant": 552816
+  },
+  {
+   "id": "70b5dd84",
+   "zh": "中国医科大学",
+   "en": "China Medical University",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.079,
+   "height": 3.373,
+   "variant": 741015
+  },
+  {
+   "id": "74a5a999",
+   "zh": "沈阳农业大学",
+   "en": "Shenyang Agricultural University",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#9b7652",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 3.74,
+   "height": 3.31,
+   "variant": 965886
+  },
+  {
+   "id": "05efd279",
+   "zh": "沈阳工业大学",
+   "en": "Shenyang University of Technology",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819fbd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.32,
+   "height": 3.643,
+   "variant": 850079
+  },
+  {
+   "id": "6c22cb3c",
+   "zh": "沈阳师范大学",
+   "en": "Shenyang Normal University",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.1,
+   "height": 3.336,
+   "variant": 818442
+  },
+  {
+   "id": "7b305a90",
+   "zh": "沈阳航空航天大学",
+   "en": "Shenyang Aerospace University",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "aero"
+   },
+   "colors": [
+    "#f7f3ec",
+    "#C9555C",
+    "#8FA8C0",
+    "#4A4A52"
+   ],
+   "prop": null,
+   "span": 3.81,
+   "height": 3.297,
+   "variant": 591914
+  },
+  {
+   "id": "515a75a6",
+   "zh": "沈阳药科大学",
+   "en": "Shenyang Pharmaceutical University",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f0ede5",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.091,
+   "height": 3.487,
+   "variant": 967144
+  },
+  {
+   "id": "e3b1ce45",
+   "zh": "鲁迅美术学院",
+   "en": "Luxun Academy of Fine Arts",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f2e4ee",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 3.859,
+   "height": 3.499,
+   "variant": 326852
+  },
+  {
+   "id": "71f079c2",
+   "zh": "沈阳大学",
+   "en": "Shenyang University",
+   "city": "shenyang",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.654,
+   "height": 3.628,
+   "variant": 384000
+  },
+  {
+   "id": "5d8fd154",
+   "zh": "南方科技大学",
+   "en": "Southern University of Science and Technology",
+   "city": "shenzhen",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#f1ede5",
+    "#35707E",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "snow",
+   "span": 4.292,
+   "height": 3.311,
+   "variant": 355042
+  },
+  {
+   "id": "ab759a65",
+   "zh": "深圳大学",
+   "en": "Shenzhen University",
+   "city": "shenzhen",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.632,
+   "height": 3.422,
+   "variant": 454654
+  },
+  {
+   "id": "8abfae29",
+   "zh": "香港中文大学（深圳）",
+   "en": "CUHK-Shenzhen",
+   "city": "shenzhen",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f2eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.183,
+   "height": 3.514,
+   "variant": 736363
+  },
+  {
+   "id": "0198f73b",
+   "zh": "深圳技术大学",
+   "en": "Shenzhen Technology University",
+   "city": "shenzhen",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#83a0be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.783,
+   "height": 3.412,
+   "variant": 783213
+  },
+  {
+   "id": "0060beaa",
+   "zh": "哈尔滨工业大学（深圳）",
+   "en": "HIT Shenzhen",
+   "city": "shenzhen",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#87a3c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.645,
+   "height": 3.466,
+   "variant": 746335
+  },
+  {
+   "id": "8fd7bf2b",
+   "zh": "中山大学深圳校区",
+   "en": "SYSU Shenzhen",
+   "city": "shenzhen",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.141,
+   "height": 3.363,
+   "variant": 938148
+  },
+  {
+   "id": "0459964c",
+   "zh": "河北师范大学",
+   "en": "Hebei Normal University",
+   "city": "shijiazhuang",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#37727f",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.836,
+   "height": 3.7,
+   "variant": 400033
+  },
+  {
+   "id": "a11fcb0f",
+   "zh": "河北医科大学",
+   "en": "Hebei Medical University",
+   "city": "shijiazhuang",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.674,
+   "height": 3.423,
+   "variant": 968795
+  },
+  {
+   "id": "34035eff",
+   "zh": "河北科技大学",
+   "en": "Hebei University of Science and Technology",
+   "city": "shijiazhuang",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#809dbc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.055,
+   "height": 3.683,
+   "variant": 740588
+  },
+  {
+   "id": "640f5c95",
+   "zh": "河北经贸大学",
+   "en": "Hebei University of Economics and Business",
+   "city": "shijiazhuang",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#478065",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.924,
+   "height": 3.662,
+   "variant": 432903
+  },
+  {
+   "id": "435f2021",
+   "zh": "石家庄铁道大学",
+   "en": "Shijiazhuang Tiedao University",
+   "city": "shijiazhuang",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#896850",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 3.805,
+   "height": 3.365,
+   "variant": 140636
+  },
+  {
+   "id": "3c917fcc",
+   "zh": "苏州大学",
+   "en": "Soochow University",
+   "city": "suzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "garden"
+   },
+   "colors": [
+    "#f5f2e9",
+    "#4A5560",
+    "#C24A50",
+    "#8E8778"
+   ],
+   "prop": null,
+   "span": 4.136,
+   "height": 3.694,
+   "variant": 930219
+  },
+  {
+   "id": "1fb58c28",
+   "zh": "西交利物浦大学",
+   "en": "Xi'an Jiaotong-Liverpool University",
+   "city": "suzhou",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.061,
+   "height": 3.343,
+   "variant": 100371
+  },
+  {
+   "id": "c49815df",
+   "zh": "苏州科技大学",
+   "en": "Suzhou University of Science and Technology",
+   "city": "suzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7d9bbb",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.808,
+   "height": 3.676,
+   "variant": 970198
+  },
+  {
+   "id": "ba7d9ff1",
+   "zh": "昆山杜克大学",
+   "en": "Duke Kunshan University",
+   "city": "suzhou",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.605,
+   "height": 3.633,
+   "variant": 979848
+  },
+  {
+   "id": "ec39071e",
+   "zh": "常熟理工学院",
+   "en": "Changshu Institute of Technology",
+   "city": "suzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#8ba6c2",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.933,
+   "height": 3.601,
+   "variant": 372416
+  },
+  {
+   "id": "c8e6a4ca",
+   "zh": "中兴大学",
+   "en": "National Chung Hsing University",
+   "city": "taichung",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#428053",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 4.052,
+   "height": 3.26,
+   "variant": 89384
+  },
+  {
+   "id": "f0aba5ee",
+   "zh": "中国医药大学",
+   "en": "China Medical University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8a5a44",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.446,
+   "height": 3.541,
+   "variant": 541260
+  },
+  {
+   "id": "a54f9266",
+   "zh": "逢甲大学",
+   "en": "Feng Chia University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.155,
+   "height": 3.555,
+   "variant": 903765
+  },
+  {
+   "id": "ae1f98a5",
+   "zh": "东海大学",
+   "en": "Tunghai University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.928,
+   "height": 3.65,
+   "variant": 439198
+  },
+  {
+   "id": "57acdf02",
+   "zh": "台中教育大学",
+   "en": "National Taichung University of Education",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.327,
+   "height": 3.569,
+   "variant": 405659
+  },
+  {
+   "id": "04514e2a",
+   "zh": "中山医学大学",
+   "en": "Chung Shan Medical University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.261,
+   "height": 3.33,
+   "variant": 316680
+  },
+  {
+   "id": "a3d7fcce",
+   "zh": "静宜大学",
+   "en": "Providence University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f2eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.646,
+   "height": 3.596,
+   "variant": 563865
+  },
+  {
+   "id": "ae966a19",
+   "zh": "亚洲大学",
+   "en": "Asia University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.695,
+   "height": 3.431,
+   "variant": 1593
+  },
+  {
+   "id": "673b1e49",
+   "zh": "侨光科技大学",
+   "en": "Overseas Chinese University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#809ebc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.836,
+   "height": 3.514,
+   "variant": 679507
+  },
+  {
+   "id": "af40c23c",
+   "zh": "勤益科技大学",
+   "en": "National Chin-Yi University of Technology",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.663,
+   "height": 3.243,
+   "variant": 466940
+  },
+  {
+   "id": "8eb51d21",
+   "zh": "弘光科技大学",
+   "en": "Hungkuang University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7a99b9",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.27,
+   "height": 3.443,
+   "variant": 861149
+  },
+  {
+   "id": "ec777c27",
+   "zh": "岭东科技大学",
+   "en": "Ling Tung University",
+   "city": "taichung",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#87a3c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.002,
+   "height": 3.486,
+   "variant": 368210
+  },
+  {
+   "id": "f6e455b1",
+   "zh": "成功大学",
+   "en": "National Cheng Kung University",
+   "city": "tainan",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#9a4232",
+    "#D8D2C4",
+    "#E8C86A",
+    "#5F5148"
+   ],
+   "prop": "phoenix",
+   "span": 4.173,
+   "height": 3.419,
+   "variant": 557243
+  },
+  {
+   "id": "aca4143c",
+   "zh": "台南大学",
+   "en": "National University of Tainan",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.155,
+   "height": 3.468,
+   "variant": 736854
+  },
+  {
+   "id": "2fe031e0",
+   "zh": "南台科技大学",
+   "en": "Southern Taiwan University of Science and Technology",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a2bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.481,
+   "height": 3.421,
+   "variant": 867313
+  },
+  {
+   "id": "13d8a30f",
+   "zh": "长荣大学",
+   "en": "Chang Jung Christian University",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.236,
+   "height": 3.539,
+   "variant": 45013
+  },
+  {
+   "id": "07084cd1",
+   "zh": "嘉南药理大学",
+   "en": "Chia Nan University of Pharmacy and Science",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe8",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.62,
+   "height": 3.43,
+   "variant": 848188
+  },
+  {
+   "id": "d282f666",
+   "zh": "昆山科技大学",
+   "en": "Kun Shan University",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.732,
+   "height": 3.461,
+   "variant": 871327
+  },
+  {
+   "id": "07d839de",
+   "zh": "台南应用科技大学",
+   "en": "Tainan University of Technology",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7d9bba",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.037,
+   "height": 3.205,
+   "variant": 939164
+  },
+  {
+   "id": "373fb8c0",
+   "zh": "中华医事科技大学",
+   "en": "Chung Hwa University of Medical Technology",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe8",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.881,
+   "height": 3.231,
+   "variant": 980387
+  },
+  {
+   "id": "29c813a4",
+   "zh": "真理大学（麻豆校区）",
+   "en": "Aletheia University",
+   "city": "tainan",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.946,
+   "height": 3.504,
+   "variant": 546834
+  },
+  {
+   "id": "5203074a",
+   "zh": "台湾大学",
+   "en": "National Taiwan University",
+   "city": "taipei",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#8e604b",
+    "#D8D2C4",
+    "#E8C86A",
+    "#5F5148"
+   ],
+   "prop": "bell",
+   "span": 3.852,
+   "height": 3.267,
+   "variant": 133530
+  },
+  {
+   "id": "6a0c3739",
+   "zh": "台湾师范大学",
+   "en": "National Taiwan Normal University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.688,
+   "height": 3.559,
+   "variant": 628617
+  },
+  {
+   "id": "68250fba",
+   "zh": "台湾科技大学",
+   "en": "National Taiwan University of Science and Technology",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.851,
+   "height": 3.398,
+   "variant": 289913
+  },
+  {
+   "id": "4e3c9abd",
+   "zh": "政治大学",
+   "en": "National Chengchi University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "law"
+   },
+   "colors": [
+    "#e3dfd3",
+    "#A8A196",
+    "#C9A43A",
+    "#7E776C"
+   ],
+   "prop": null,
+   "span": 4.351,
+   "height": 3.435,
+   "variant": 228885
+  },
+  {
+   "id": "8c12f469",
+   "zh": "阳明交通大学（台北校区）",
+   "en": "National Yang Ming Chiao Tung University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#8a6b53",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 4.333,
+   "height": 3.57,
+   "variant": 608765
+  },
+  {
+   "id": "333271d1",
+   "zh": "台北大学",
+   "en": "National Taipei University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.828,
+   "height": 3.289,
+   "variant": 700055
+  },
+  {
+   "id": "06007246",
+   "zh": "台北科技大学",
+   "en": "National Taipei University of Technology",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#87a3c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.218,
+   "height": 3.254,
+   "variant": 151689
+  },
+  {
+   "id": "11c6c7ee",
+   "zh": "辅仁大学",
+   "en": "Fu Jen Catholic University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.003,
+   "height": 3.43,
+   "variant": 684349
+  },
+  {
+   "id": "f8372a58",
+   "zh": "淡江大学",
+   "en": "Tamkang University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.623,
+   "height": 3.387,
+   "variant": 627003
+  },
+  {
+   "id": "323423ad",
+   "zh": "东吴大学",
+   "en": "Soochow University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.087,
+   "height": 3.345,
+   "variant": 773182
+  },
+  {
+   "id": "9537eb24",
+   "zh": "世新大学",
+   "en": "Shih Hsin University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f2eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.979,
+   "height": 3.623,
+   "variant": 643120
+  },
+  {
+   "id": "664f1074",
+   "zh": "实践大学",
+   "en": "Shih Chien University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f1e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.167,
+   "height": 3.213,
+   "variant": 427296
+  },
+  {
+   "id": "53c708f2",
+   "zh": "铭传大学",
+   "en": "Ming Chuan University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.117,
+   "height": 3.243,
+   "variant": 498203
+  },
+  {
+   "id": "17b1af27",
+   "zh": "中国文化大学",
+   "en": "Chinese Culture University",
+   "city": "taipei",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.273,
+   "height": 3.45,
+   "variant": 735466
+  },
+  {
+   "id": "bf0e23bc",
+   "zh": "山西大学",
+   "en": "Shanxi University",
+   "city": "taiyuan",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#814545",
+    "#E4DECF",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.796,
+   "height": 3.288,
+   "variant": 759990
+  },
+  {
+   "id": "7fbb0834",
+   "zh": "太原理工大学",
+   "en": "Taiyuan University of Technology",
+   "city": "taiyuan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7998b8",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.923,
+   "height": 3.461,
+   "variant": 979180
+  },
+  {
+   "id": "3a7f47d9",
+   "zh": "中北大学",
+   "en": "North University of China",
+   "city": "taiyuan",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.49,
+   "height": 3.247,
+   "variant": 912829
+  },
+  {
+   "id": "8f5545fb",
+   "zh": "山西医科大学",
+   "en": "Shanxi Medical University",
+   "city": "taiyuan",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.25,
+   "height": 3.366,
+   "variant": 382185
+  },
+  {
+   "id": "b23cc482",
+   "zh": "山西财经大学",
+   "en": "Shanxi University of Finance and Economics",
+   "city": "taiyuan",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#3c795d",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.741,
+   "height": 3.531,
+   "variant": 704301
+  },
+  {
+   "id": "7becbac8",
+   "zh": "太原科技大学",
+   "en": "Taiyuan University of Science and Technology",
+   "city": "taiyuan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7998b8",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.461,
+   "height": 3.604,
+   "variant": 610280
+  },
+  {
+   "id": "cc9a30a8",
+   "zh": "南开大学",
+   "en": "Nankai University",
+   "city": "tianjin",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#5f3291",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.884,
+   "height": 3.33,
+   "variant": 559120
+  },
+  {
+   "id": "5479898c",
+   "zh": "天津大学",
+   "en": "Tianjin University",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.177,
+   "height": 3.278,
+   "variant": 106930
+  },
+  {
+   "id": "a95cf281",
+   "zh": "天津医科大学",
+   "en": "Tianjin Medical University",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe7",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.134,
+   "height": 3.2,
+   "variant": 291951
+  },
+  {
+   "id": "d8647f7b",
+   "zh": "河北工业大学",
+   "en": "Hebei University of Technology",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#84a1be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.295,
+   "height": 3.321,
+   "variant": 857516
+  },
+  {
+   "id": "2d43d9a4",
+   "zh": "天津师范大学",
+   "en": "Tianjin Normal University",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.36,
+   "height": 3.665,
+   "variant": 401010
+  },
+  {
+   "id": "0b49a28f",
+   "zh": "天津工业大学",
+   "en": "Tiangong University",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#84a1be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.86,
+   "height": 3.443,
+   "variant": 618312
+  },
+  {
+   "id": "f08093cd",
+   "zh": "天津科技大学",
+   "en": "Tianjin University of Science and Technology",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7d9bba",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.798,
+   "height": 3.36,
+   "variant": 887398
+  },
+  {
+   "id": "f77fddb6",
+   "zh": "天津理工大学",
+   "en": "Tianjin University of Technology",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a1bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.724,
+   "height": 3.567,
+   "variant": 32388
+  },
+  {
+   "id": "a18a3556",
+   "zh": "中国民航大学",
+   "en": "Civil Aviation University of China",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "aero"
+   },
+   "colors": [
+    "#f6f1e9",
+    "#C9555C",
+    "#8FA8C0",
+    "#4A4A52"
+   ],
+   "prop": null,
+   "span": 3.876,
+   "height": 3.213,
+   "variant": 60634
+  },
+  {
+   "id": "04b122e0",
+   "zh": "天津财经大学",
+   "en": "Tianjin University of Finance and Economics",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#498268",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 3.704,
+   "height": 3.562,
+   "variant": 377031
+  },
+  {
+   "id": "98f858ba",
+   "zh": "天津中医药大学",
+   "en": "Tianjin University of Traditional Chinese Medicine",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#8a5a44",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.242,
+   "height": 3.288,
+   "variant": 673252
+  },
+  {
+   "id": "f4aaa3ad",
+   "zh": "天津外国语大学",
+   "en": "Tianjin Foreign Studies University",
+   "city": "tianjin",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e7e1f2",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 4.355,
+   "height": 3.409,
+   "variant": 858827
+  },
+  {
+   "id": "6860a5d2",
+   "zh": "新疆大学",
+   "en": "Xinjiang University",
+   "city": "urumqi",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#a1322c",
+    "#E4DECF",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "snow",
+   "span": 3.881,
+   "height": 3.6,
+   "variant": 524851
+  },
+  {
+   "id": "f4796b8e",
+   "zh": "新疆医科大学",
+   "en": "Xinjiang Medical University",
+   "city": "urumqi",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.241,
+   "height": 3.4,
+   "variant": 774852
+  },
+  {
+   "id": "ab391663",
+   "zh": "新疆师范大学",
+   "en": "Xinjiang Normal University",
+   "city": "urumqi",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4efe7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.957,
+   "height": 3.446,
+   "variant": 50224
+  },
+  {
+   "id": "a1c72d08",
+   "zh": "新疆农业大学",
+   "en": "Xinjiang Agricultural University",
+   "city": "urumqi",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#97714b",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.384,
+   "height": 3.636,
+   "variant": 190687
+  },
+  {
+   "id": "d419ab57",
+   "zh": "武汉大学",
+   "en": "Wuhan University",
+   "city": "wuhan",
+   "style": {
+    "kind": "tpl",
+    "id": "pailou"
+   },
+   "colors": [
+    "#d9d3c6",
+    "#2E5C8C",
+    "#9E2B25",
+    "#B9B2A2"
+   ],
+   "prop": "sakura",
+   "span": 3.861,
+   "height": 3.552,
+   "variant": 299343
+  },
+  {
+   "id": "7eb86cae",
+   "zh": "华中科技大学",
+   "en": "Huazhong University of Science and Technology",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#8aa5c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.103,
+   "height": 3.571,
+   "variant": 258234
+  },
+  {
+   "id": "6925ab0a",
+   "zh": "武汉理工大学",
+   "en": "Wuhan University of Technology",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#87a3c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.711,
+   "height": 3.403,
+   "variant": 61988
+  },
+  {
+   "id": "556c03e8",
+   "zh": "华中师范大学",
+   "en": "Central China Normal University",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 3.656,
+   "height": 3.678,
+   "variant": 170060
+  },
+  {
+   "id": "a7b00672",
+   "zh": "华中农业大学",
+   "en": "Huazhong Agricultural University",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#a17f5c",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.454,
+   "height": 3.543,
+   "variant": 579911
+  },
+  {
+   "id": "05e68182",
+   "zh": "中国地质大学（武汉）",
+   "en": "China University of Geosciences",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "petro"
+   },
+   "colors": [
+    "#868f99",
+    "#5A6270",
+    "#E8C86A",
+    "#4A5260"
+   ],
+   "prop": null,
+   "span": 3.768,
+   "height": 3.513,
+   "variant": 68980
+  },
+  {
+   "id": "45295684",
+   "zh": "中南财经政法大学",
+   "en": "Zhongnan University of Economics and Law",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#417c61",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.137,
+   "height": 3.537,
+   "variant": 882693
+  },
+  {
+   "id": "6ee7d124",
+   "zh": "湖北大学",
+   "en": "Hubei University",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe7",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.425,
+   "height": 3.601,
+   "variant": 168755
+  },
+  {
+   "id": "a682ccf2",
+   "zh": "武汉科技大学",
+   "en": "Wuhan University of Science and Technology",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7797b8",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.335,
+   "height": 3.697,
+   "variant": 626988
+  },
+  {
+   "id": "115d32b6",
+   "zh": "中南民族大学",
+   "en": "South-Central Minzu University",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f3e7d5",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 3.927,
+   "height": 3.595,
+   "variant": 983177
+  },
+  {
+   "id": "1a9b0b8a",
+   "zh": "武汉纺织大学",
+   "en": "Wuhan Textile University",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7d9bba",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.755,
+   "height": 3.606,
+   "variant": 577003
+  },
+  {
+   "id": "ce89b849",
+   "zh": "江汉大学",
+   "en": "Jianghan University",
+   "city": "wuhan",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.397,
+   "height": 3.562,
+   "variant": 370105
+  },
+  {
+   "id": "8e58deda",
+   "zh": "江南大学",
+   "en": "Jiangnan University",
+   "city": "wuxi",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#395484",
+    "#F2EEE6",
+    "#8FD08F",
+    "#5A6472"
+   ],
+   "prop": "rock",
+   "span": 4.429,
+   "height": 3.519,
+   "variant": 282062
+  },
+  {
+   "id": "d5500798",
+   "zh": "无锡学院",
+   "en": "Wuxi University",
+   "city": "wuxi",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f2eee6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.259,
+   "height": 3.408,
+   "variant": 614774
+  },
+  {
+   "id": "7cb519f9",
+   "zh": "无锡职业技术学院",
+   "en": "Wuxi Institute of Technology",
+   "city": "wuxi",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7797b7",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.9,
+   "height": 3.611,
+   "variant": 948960
+  },
+  {
+   "id": "e4e52739",
+   "zh": "太湖学院",
+   "en": "Taihu College",
+   "city": "wuxi",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.947,
+   "height": 3.588,
+   "variant": 496303
+  },
+  {
+   "id": "827b3171",
+   "zh": "厦门大学",
+   "en": "Xiamen University",
+   "city": "xiamen",
+   "style": {
+    "kind": "tpl",
+    "id": "jiageng"
+   },
+   "colors": [
+    "#9c4635",
+    "#D8D2C4",
+    "#E8C86A",
+    "#7E3A2C"
+   ],
+   "prop": "water",
+   "span": 3.798,
+   "height": 3.621,
+   "variant": 520629
+  },
+  {
+   "id": "ad88421d",
+   "zh": "集美大学",
+   "en": "Jimei University",
+   "city": "xiamen",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe6",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.426,
+   "height": 3.581,
+   "variant": 734946
+  },
+  {
+   "id": "b9565ea5",
+   "zh": "华侨大学",
+   "en": "Huaqiao University",
+   "city": "xiamen",
+   "style": {
+    "kind": "tpl",
+    "id": "jiageng"
+   },
+   "colors": [
+    "#904539",
+    "#E4DECF",
+    "#E8C86A",
+    "#7E3A2C"
+   ],
+   "prop": null,
+   "span": 4.482,
+   "height": 3.231,
+   "variant": 796561
+  },
+  {
+   "id": "6b2d4d2e",
+   "zh": "厦门理工学院",
+   "en": "Xiamen University of Technology",
+   "city": "xiamen",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#89a4c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.293,
+   "height": 3.527,
+   "variant": 982022
+  },
+  {
+   "id": "94ab2aa9",
+   "zh": "厦门医学院",
+   "en": "Xiamen Medical College",
+   "city": "xiamen",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f1eee6",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.66,
+   "height": 3.605,
+   "variant": 634032
+  },
+  {
+   "id": "4a2f91f6",
+   "zh": "集美大学诚毅学院",
+   "en": "Chengyi University College",
+   "city": "xiamen",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.2,
+   "height": 3.583,
+   "variant": 527964
+  },
+  {
+   "id": "9375a60a",
+   "zh": "西安交通大学",
+   "en": "Xi'an Jiaotong University",
+   "city": "xian",
+   "style": {
+    "kind": "tpl",
+    "id": "minguo"
+   },
+   "colors": [
+    "#685f54",
+    "#D8D2C4",
+    "#2E7D5B",
+    "#5F5148"
+   ],
+   "prop": "stele",
+   "span": 3.776,
+   "height": 3.262,
+   "variant": 597398
+  },
+  {
+   "id": "18261f0a",
+   "zh": "西北工业大学",
+   "en": "Northwestern Polytechnical University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#809dbc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.759,
+   "height": 3.477,
+   "variant": 518229
+  },
+  {
+   "id": "8c643e51",
+   "zh": "西安电子科技大学",
+   "en": "Xidian University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#829fbd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.192,
+   "height": 3.573,
+   "variant": 827496
+  },
+  {
+   "id": "178ced91",
+   "zh": "西北大学",
+   "en": "Northwest University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3efe8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.434,
+   "height": 3.313,
+   "variant": 853263
+  },
+  {
+   "id": "df2feee1",
+   "zh": "陕西师范大学",
+   "en": "Shaanxi Normal University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f3efe7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.065,
+   "height": 3.205,
+   "variant": 911013
+  },
+  {
+   "id": "e8eed53e",
+   "zh": "长安大学",
+   "en": "Chang'an University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.424,
+   "height": 3.248,
+   "variant": 374264
+  },
+  {
+   "id": "c1ec5aa8",
+   "zh": "西北农林科技大学",
+   "en": "Northwest A&F University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#9a7550",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.48,
+   "height": 3.24,
+   "variant": 967795
+  },
+  {
+   "id": "0cd8a618",
+   "zh": "西安理工大学",
+   "en": "Xi'an University of Technology",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#8aa5c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.37,
+   "height": 3.44,
+   "variant": 499633
+  },
+  {
+   "id": "a8124005",
+   "zh": "西安建筑科技大学",
+   "en": "Xi'an University of Architecture and Technology",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#88a3c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.062,
+   "height": 3.356,
+   "variant": 796981
+  },
+  {
+   "id": "aa9999f1",
+   "zh": "陕西科技大学",
+   "en": "Shaanxi University of Science and Technology",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7f9dbc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.699,
+   "height": 3.692,
+   "variant": 172570
+  },
+  {
+   "id": "f6a1919e",
+   "zh": "西安邮电大学",
+   "en": "Xi'an University of Posts and Telecommunications",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "post"
+   },
+   "colors": [
+    "#68a27f",
+    "#3E6B4F",
+    "#BFE3D0",
+    "#2F5A41"
+   ],
+   "prop": null,
+   "span": 4.087,
+   "height": 3.339,
+   "variant": 379672
+  },
+  {
+   "id": "fa8e4ed7",
+   "zh": "西北政法大学",
+   "en": "Northwest University of Political Science and Law",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "law"
+   },
+   "colors": [
+    "#e1ddd0",
+    "#A8A196",
+    "#C9A43A",
+    "#7E776C"
+   ],
+   "prop": null,
+   "span": 3.83,
+   "height": 3.689,
+   "variant": 931356
+  },
+  {
+   "id": "53d1baf9",
+   "zh": "西安外国语大学",
+   "en": "Xi'an International Studies University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "lang"
+   },
+   "colors": [
+    "#e6e0f2",
+    "#8A7CBF",
+    "#C9BEE8",
+    "#5F5590"
+   ],
+   "prop": null,
+   "span": 4.124,
+   "height": 3.619,
+   "variant": 522197
+  },
+  {
+   "id": "796f4818",
+   "zh": "西安科技大学",
+   "en": "Xi'an University of Science and Technology",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#86a2bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.103,
+   "height": 3.241,
+   "variant": 451707
+  },
+  {
+   "id": "e90d852c",
+   "zh": "西安工业大学",
+   "en": "Xi'an Technological University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#7e9cbb",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.227,
+   "height": 3.589,
+   "variant": 342781
+  },
+  {
+   "id": "91358dcf",
+   "zh": "西安石油大学",
+   "en": "Xi'an Shiyou University",
+   "city": "xian",
+   "style": {
+    "kind": "fam",
+    "id": "petro"
+   },
+   "colors": [
+    "#88909a",
+    "#5A6270",
+    "#E8C86A",
+    "#4A5260"
+   ],
+   "prop": null,
+   "span": 4.2,
+   "height": 3.267,
+   "variant": 430279
+  },
+  {
+   "id": "539d4b18",
+   "zh": "青海大学",
+   "en": "Qinghai University",
+   "city": "xining",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#257787",
+    "#E4DECF",
+    "#5FA05F",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.964,
+   "height": 3.571,
+   "variant": 439332
+  },
+  {
+   "id": "ef25ba38",
+   "zh": "青海师范大学",
+   "en": "Qinghai Normal University",
+   "city": "xining",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f5f1e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.294,
+   "height": 3.651,
+   "variant": 704145
+  },
+  {
+   "id": "2f6acfbe",
+   "zh": "青海民族大学",
+   "en": "Qinghai Minzu University",
+   "city": "xining",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f2e5d1",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 3.952,
+   "height": 3.205,
+   "variant": 225677
+  },
+  {
+   "id": "debb91f7",
+   "zh": "扬州大学",
+   "en": "Yangzhou University",
+   "city": "yangzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "garden"
+   },
+   "colors": [
+    "#f5f1e8",
+    "#5B7280",
+    "#8FD08F",
+    "#8E8778"
+   ],
+   "prop": "boat",
+   "span": 4.128,
+   "height": 3.586,
+   "variant": 852949
+  },
+  {
+   "id": "c916bb64",
+   "zh": "扬州工业职业技术学院",
+   "en": "Yangzhou Polytechnic Institute",
+   "city": "yangzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#89a4c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.717,
+   "height": 3.612,
+   "variant": 447223
+  },
+  {
+   "id": "b11578cf",
+   "zh": "宁夏大学",
+   "en": "Ningxia University",
+   "city": "yinchuan",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#4d6995",
+    "#E4DECF",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.615,
+   "height": 3.641,
+   "variant": 490277
+  },
+  {
+   "id": "b45f20ad",
+   "zh": "北方民族大学",
+   "en": "North Minzu University",
+   "city": "yinchuan",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f2e6d2",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 4.264,
+   "height": 3.527,
+   "variant": 966282
+  },
+  {
+   "id": "48bbeb17",
+   "zh": "宁夏医科大学",
+   "en": "Ningxia Medical University",
+   "city": "yinchuan",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe8",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 4.049,
+   "height": 3.39,
+   "variant": 344835
+  },
+  {
+   "id": "e4b35b2f",
+   "zh": "郑州大学",
+   "en": "Zhengzhou University",
+   "city": "zhengzhou",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#9d1c2f",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 4.269,
+   "height": 3.66,
+   "variant": 158441
+  },
+  {
+   "id": "a78270f9",
+   "zh": "河南农业大学",
+   "en": "Henan Agricultural University",
+   "city": "zhengzhou",
+   "style": {
+    "kind": "fam",
+    "id": "agri"
+   },
+   "colors": [
+    "#99744e",
+    "#E8C86A",
+    "#6FAF6F",
+    "#7A5C3A"
+   ],
+   "prop": null,
+   "span": 4.314,
+   "height": 3.646,
+   "variant": 994225
+  },
+  {
+   "id": "aed2ee7b",
+   "zh": "河南工业大学",
+   "en": "Henan University of Technology",
+   "city": "zhengzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#89a4c1",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.802,
+   "height": 3.275,
+   "variant": 115079
+  },
+  {
+   "id": "b7c85f3e",
+   "zh": "郑州轻工业大学",
+   "en": "Zhengzhou University of Light Industry",
+   "city": "zhengzhou",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a1be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.686,
+   "height": 3.41,
+   "variant": 805558
+  },
+  {
+   "id": "01fdbd60",
+   "zh": "河南中医药大学",
+   "en": "Henan University of Chinese Medicine",
+   "city": "zhengzhou",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#835039",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.397,
+   "height": 3.248,
+   "variant": 151062
+  },
+  {
+   "id": "e46978ca",
+   "zh": "华北水利水电大学",
+   "en": "North China University of Water Resources and Electric Power",
+   "city": "zhengzhou",
+   "style": {
+    "kind": "fam",
+    "id": "hydro"
+   },
+   "colors": [
+    "#bfc8c3",
+    "#8FA69C",
+    "#6FB8E8",
+    "#6E8A82"
+   ],
+   "prop": null,
+   "span": 3.601,
+   "height": 3.582,
+   "variant": 794119
+  },
+  {
+   "id": "fec8fc51",
+   "zh": "郑州航空工业管理学院",
+   "en": "Zhengzhou University of Aeronautics",
+   "city": "zhengzhou",
+   "style": {
+    "kind": "fam",
+    "id": "aero"
+   },
+   "colors": [
+    "#f6f2eb",
+    "#C9555C",
+    "#8FA8C0",
+    "#4A4A52"
+   ],
+   "prop": null,
+   "span": 3.891,
+   "height": 3.425,
+   "variant": 906098
+  },
+  {
+   "id": "4bd07d9a",
+   "zh": "北京师范大学珠海校区",
+   "en": "BNU Zhuhai",
+   "city": "zhuhai",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#2e6b7a",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": "palm",
+   "span": 4.009,
+   "height": 3.4,
+   "variant": 707223
+  },
+  {
+   "id": "75c67296",
+   "zh": "北京理工大学珠海学院",
+   "en": "BIT Zhuhai",
+   "city": "zhuhai",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebd",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.909,
+   "height": 3.252,
+   "variant": 196791
+  },
+  {
+   "id": "ee7d8bbd",
+   "zh": "珠海科技学院",
+   "en": "Zhuhai College of Science and Technology",
+   "city": "zhuhai",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#83a0be",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.979,
+   "height": 3.517,
+   "variant": 814604
+  }
+ ]
+}

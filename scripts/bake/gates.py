@@ -20,7 +20,10 @@ import common as C  # noqa: E402
 # TAU 从没被用到，一并删掉。本文件只保留校门特有的"门前空地"。
 FR = C.FR
 at = C.at
+rot_of = C.rot_of
 blob, slab, ring, arc, pillar = C.blob, C.slab, C.ring, C.arc, C.pillar
+cone_at = C.cone_at
+
 
 def ground(soup, fz=0.4, w=2.4, color='#D8CCA8'):
     """门前空地：与 js/uni-gate-models.js:731 同位（y=0.05 / 前 0.4）。"""
@@ -219,10 +222,225 @@ def tpl_modern(soup, s, h, px, rnd):
     return h + 0.44, px * 2 + 1.1, 0.32 + 0.03
 
 
+# ---------------------------------------------------------------- 补齐的风格族
+# 这 10 族原先没实现（80 座校门被跳过、运行时回退程序化）。补写原则：
+# 元素与尺寸照 js/uni-gate-models.js 的 FAMILY 逐条对齐（造型语言已在游戏里被接受），
+# 只把方角换成倒角、把薄片加厚一点点——即"粘土手办风"这一层。
+# 用 js 语义的助手写（x 右 / y 高 / z 前），抄 js 的数值时不用心算轴，最不容易出错。
+
+def ball(soup, r, color, x, y, z, scale=(1, 1, 1), rough=0.95, emissive=None, ei=0.6,
+         jitter=0.01, bevel=0):
+    """js 的 sph(g, r, c, x, y, z, sx, sy, sz)。"""
+    seg, ring = (10, 6) if r < 0.15 else ((16, 10) if r < 0.32 else (20, 12))
+    soup.add(C.sphere(r, seg, ring), color, loc=at(x, y, z),
+             scale=(scale[0], scale[2], scale[1]), bevel=bevel, rough=rough,
+             emissive=emissive, ei=ei, jitter=jitter)
+
+
+def cy(soup, rb, rt, h, color, x, y, z, rot=(0, 0, 0), seg=14, rough=0.93, jitter=0.01,
+       emissive=None, ei=0.6):
+    """js 的 cyl(g, rt, rb, h, c, x, y, z, …)：竖直圆柱，中心在 (x,y,z)。"""
+    soup.add(C.cyl(rb, rt, h, seg), color, loc=at(x, y, z), rot=rot, rough=rough,
+             jitter=jitter, emissive=emissive, ei=ei)
+
+
+def bx(soup, w, h, d, color, x, y, z, rot=(0, 0, 0), rough=0.93, jitter=0.008, **kw):
+    """js 的 box(g, w, h, d, c, x, y, z, …)。"""
+    soup.add(C.box(w, d, h), color, loc=at(x, y, z), rot=rot, rough=rough, jitter=jitter, **kw)
+
+
+def tor_face(soup, R, r, color, x, y, z, rx=0.0, ry=0.0, rz=0.0, **kw):
+    """正对观众的圆环（js 的 TorusGeometry 默认朝向）：Blender 里先绕 X 立起 90°。
+    本文件里只用到 ry=rz=0 的单轴用法，所以直接把立起角并进 X 分量即可。"""
+    soup.add(C.torus_gltf(R, r, int(kw.pop('major', max(12, min(22, int(R * 44))))),
+                          kw.pop('minor', max(6, min(10, int(r * 90))))),
+             color, loc=at(x, y, z), rot=(math.pi / 2 + rx, -rz, ry),
+             jitter=kw.pop('jitter', 0.005), rough=kw.pop('rough', 0.93),
+             emissive=kw.pop('emissive', None), ei=kw.pop('ei', 0.6), **kw)
+
+
+def fam_agri(soup, s, h, px):            # 农业：麦穗梁 + 小风车
+    c1, c2, c3, c4 = s['colors']
+    wood, gold = '#8A6844', '#E8C86A'
+    for sx in (-px, px):
+        cy(soup, 0.24, 0.3, h, wood, sx, h / 2, 0, seg=12)
+        ball(soup, 0.5, c2, sx, h + 0.3, 0, scale=(1, 0.7, 1))                  # 麦垛顶
+    bx(soup, px * 2 + 1.15, 0.36, 0.52, wood, 0, h + 0.42, 0)                   # 梁
+    for i in range(-2, 3):                                                      # 麦穗
+        cy(soup, 0.03, 0.03, 0.5, gold, i * 0.85, h + 0.82, 0, seg=6, jitter=0.004)
+        ball(soup, 0.09, gold, i * 0.85, h + 1.05, 0, scale=(1, 1.6, 1), jitter=0.004)
+    wx = px - 1.15                                                              # 小风车
+    cy(soup, 0.06, 0.09, 1.5, wood, wx, 0.75, 0.75, seg=8)
+    for i in range(4):
+        a = math.pi / 2 * i
+        bx(soup, 0.5, 0.12, 0.04, '#F5F1E8', wx + math.cos(a) * 0.28, 1.62 + math.sin(a) * 0.28,
+           0.78, rot=rot_of(0, 0, a), jitter=0.004)
+    ball(soup, 0.09, wood, wx, 1.62, 0.78, jitter=0.004)
+    return h + 0.42, px * 2 + 1.0, 0.26 + 0.03
+
+
+def fam_forest(soup, s, h, px):          # 林业：双树冠柱拱
+    c1, c2, c3, c4 = s['colors']
+    wood = '#8A6B4A'
+    for sx in (-px, px):
+        cy(soup, 0.2, 0.26, h, wood, sx, h / 2, 0, seg=12)
+        ball(soup, 0.62, c2, sx, h + 0.35, 0)                                   # 树冠
+        ball(soup, 0.42, c3, sx + 0.3, h + 0.6, 0.15, jitter=0.008)
+    bx(soup, px * 2 + 1.15, 0.34, 0.52, wood, 0, h + 0.4, 0)
+    bx(soup, px * 2 + 0.6, 0.14, 0.56, c2, 0, h + 0.18, 0)
+    for sx, sz in ((-px + 0.6, 0.7), (px - 0.6, 0.7)):                          # 小蘑菇
+        cy(soup, 0.05, 0.06, 0.16, '#F5F1E8', sx, 0.08, sz, seg=8, jitter=0.004)
+        ball(soup, 0.1, '#D95555', sx, 0.19, sz, scale=(1, 0.6, 1), jitter=0.004)
+    return h + 0.4, px * 2 + 1.0, 0.26 + 0.03
+
+
+def fam_lang(soup, s, h, px):            # 外语：地球门
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-px, px):
+        cy(soup, 0.28, 0.34, h, '#F2EEE6', sx, h / 2, 0, seg=14)
+        bx(soup, 0.8, 0.2, 0.8, '#C9BFA9', sx, h + 0.06, 0)                     # 柱头
+    bx(soup, px * 2 + 1.15, 0.34, 0.52, '#E4DECF', 0, h + 0.4, 0)
+    ball(soup, 0.5, '#4E9EE8', 0, h - 0.55, 0.15)                               # 地球仪
+    soup.add(C.torus_gltf(0.56, 0.045, 20, 8), '#E8C86A', loc=at(0, h - 0.55, 0.15),
+             rot=(0, 0.42, 0), jitter=0.004)                                    # 赤道环
+    ball(soup, 0.16, c2, 0.18, h - 0.4, 0.45, scale=(1.3, 0.7, 1), jitter=0.006)  # 陆块
+    ball(soup, 0.13, c2, -0.22, h - 0.72, 0.4, scale=(1.2, 0.6, 1), jitter=0.006)
+    return h + 0.4, px * 2 + 1.0, 0.26 + 0.03
+
+
+def fam_post(soup, s, h, px):            # 邮电：信号塔 + 电波环
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-px, px):
+        bx(soup, 0.6, h, 0.6, c1, sx, h / 2, 0)
+        bx(soup, 0.74, 0.24, 0.74, c2, sx, h + 0.08, 0)
+    bx(soup, px * 2 + 1.15, 0.4, 0.56, c2, 0, h + 0.45, 0)
+    for i in range(-2, 3):                                                      # 梁上摩斯码
+        bx(soup, 0.26, 0.2, 0.64, c3, i * 0.85, h + 0.45, 0.02, jitter=0.004)
+    tx = px - 1.15                                                              # 信号塔
+    cy(soup, 0.06, 0.11, 3.6, '#8A8378', tx, 1.8, 0.75, seg=8)
+    cy(soup, 0.16, 0.16, 0.1, '#4ED0C8', tx, 3.7, 0.75, seg=10, emissive='#4ED0C8', ei=0.9)
+    for i in range(2):                                                          # 电波（正对观众，向上张开）
+        arc(soup, 0.3 + i * 0.28, 0.045, '#4ED0C8', (tx, FR(0.75), 3.7 + 0.02 * i),
+            (math.pi / 2, 0, 0), rough=0.6, emissive='#4ED0C8', ei=0.9)
+    return h + 0.45, px * 2 + 1.0, 0.29 + 0.03
+
+
+def fam_law(soup, s, h, px):             # 政法：天平
+    c1, c2, c3, c4 = s['colors']
+    gold = '#C9A43A'
+    for sx in (-px, px):
+        bx(soup, 0.56, h, 0.56, '#E4DECF', sx, h / 2, 0)
+        bx(soup, 0.7, 0.2, 0.7, '#8A8378', sx, h + 0.07, 0)
+    bx(soup, px * 2 + 1.15, 0.4, 0.56, '#D8D2C4', 0, h + 0.45, 0)
+    cy(soup, 0.05, 0.05, 0.9, gold, 0, h - 0.2, 0.1, seg=8)
+    bx(soup, 1.5, 0.07, 0.07, gold, 0, h + 0.22, 0.1)                           # 横杆
+    for sx in (-0.72, 0.72):
+        bx(soup, 0.03, 0.34, 0.03, gold, sx, h + 0.05, 0.1)
+        cy(soup, 0.2, 0.2, 0.05, gold, sx, h - 0.12, 0.1, rot=(math.pi / 2, 0, 0), seg=14)
+    ball(soup, 0.1, gold, 0, h + 0.34, 0.1, jitter=0.005)
+    return h + 0.45, px * 2 + 1.0, 0.29 + 0.03
+
+
+def fam_ocean(soup, s, h, px):           # 海洋：右柱即灯塔 + 鲸尾拍浪
+    c1, c2, c3, c4 = s['colors']
+    cy(soup, 0.34, 0.42, h, '#FFFDF4', px, h / 2, 0, seg=14)                     # 灯塔柱
+    cy(soup, 0.44, 0.44, 0.3, '#D95555', px, h * 0.42, 0, seg=14)
+    cy(soup, 0.4, 0.4, 0.3, '#D95555', px, h * 0.72, 0, seg=14)
+    ball(soup, 0.3, '#FFE24E', px, h + 0.2, 0, emissive='#FFE24E', ei=0.8)
+    cone_at(soup, 0.36, 0.35, '#D95555', px, h + 0.55, 0, seg=12)
+    bx(soup, 0.6, h, 0.6, '#E4DECF', -px, h / 2, 0)
+    bx(soup, 0.74, 0.26, 0.74, '#1E5F8C', -px, h + 0.08, 0)
+    bx(soup, px * 2 + 1.15, 0.4, 0.56, '#1E5F8C', 0, h + 0.45, 0)
+    bx(soup, px * 2 + 0.4, 0.18, 0.6, '#BFE3F0', 0, h + 0.16, 0)
+    wx = -px + 1.3                                                              # 鲸尾
+    soup.add(C.torus_gltf(0.55, 0.14, 18, 8), '#6FB8E8', loc=at(wx, 0.12, 0.85),
+             jitter=0.005)                                                       # 尾浪圈
+    bx(soup, 0.12, 0.75, 0.3, '#3E5C8C', wx, 0.5, 0.85, rot=rot_of(0, 0, 0.25))
+    bx(soup, 0.5, 0.1, 0.34, '#3E5C8C', wx - 0.24, 0.92, 0.85, rot=rot_of(0, 0, -0.6))
+    bx(soup, 0.5, 0.1, 0.34, '#3E5C8C', wx + 0.26, 0.92, 0.85, rot=rot_of(0, 0, 0.6))
+    return h + 0.45, px * 2 + 1.0, 0.29 + 0.03
+
+
+def fam_hydro(soup, s, h, px):           # 水利：坝顶梁 + 水轮
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-px, px):
+        bx(soup, 0.66, h, 0.66, '#B9BEB4', sx, h / 2, 0)
+        bx(soup, 0.8, 0.22, 0.8, '#8A9188', sx, h + 0.08, 0)
+    bx(soup, px * 2 + 1.15, 0.46, 0.6, '#9AA19A', 0, h + 0.45, 0)               # 坝顶
+    bx(soup, px * 2 + 0.5, 0.16, 0.66, '#4E9EE8', 0, h + 0.16, 0.02)
+    wx = -px + 1.2                                                              # 水轮
+    # 轮心抬到 0.73：环外径 0.71，压到 0.62 会沉到地面下 0.09（js 那边这个环因为 torus 的
+    # arc 传成 0 其实不渲染，所以没有这个问题；我们既然画出来了就得让它离地）
+    tor_face(soup, 0.6, 0.11, '#8A6844', wx, 0.73, 0.85)
+    for i in range(4):
+        bx(soup, 0.1, 1.1, 0.1, '#8A6844', wx, 0.73, 0.85, rot=rot_of(0, 0, math.pi / 2 * i),
+           jitter=0.005)
+    bx(soup, 1.6, 0.24, 0.6, '#6FB8E8', wx, 0.12, 0.85, rough=0.5)              # 水面
+    return h + 0.45, px * 2 + 1.0, 0.29 + 0.03
+
+
+def fam_petro(soup, s, h, px):           # 石油矿业：井架 + 岩层底座
+    c1, c2, c3, c4 = s['colors']
+    steel = '#5A6270'
+    for sx in (-px, px):
+        bx(soup, 0.5, h, 0.5, '#6B7280', sx, h / 2, 0)
+        bx(soup, 0.4, 0.4, 0.06, '#E8C86A', sx, h * 0.55, 0.27, jitter=0.004)
+    bx(soup, px * 2 + 1.15, 0.4, 0.56, steel, 0, h + 0.45, 0)
+    bx(soup, px * 2 + 0.5, 0.14, 0.6, '#E8C86A', 0, h + 0.18, 0)
+    dx = px - 1.2                                                               # 井架
+    for dz in (-0.22, 0.22):
+        cy(soup, 0.04, 0.06, 2.6, steel, dx - 0.3, 1.3, 0.75 + dz, rot=rot_of(0, 0, 0.14), seg=6)
+        cy(soup, 0.04, 0.06, 2.6, steel, dx + 0.3, 1.3, 0.75 + dz, rot=rot_of(0, 0, -0.14), seg=6)
+    bx(soup, 0.5, 0.3, 0.4, '#4A5260', dx, 2.7, 0.75)
+    ball(soup, 0.14, '#2A2A2A', dx, 2.98, 0.75, jitter=0.005)
+    bx(soup, 0.8, 0.2, 0.5, '#8A6844', dx, 0.1, 0.75)                           # 岩层
+    return h + 0.45, px * 2 + 1.0, 0.29 + 0.03
+
+
+def fam_power(soup, s, h, px):           # 电力：输电塔柱 + 闪电
+    c1, c2, c3, c4 = s['colors']
+    steel = '#6B7280'
+    for sx in (-px, px):
+        bx(soup, 0.18, h, 0.18, steel, sx - 0.22, h / 2, 0, rot=rot_of(0, 0, 0.07))
+        bx(soup, 0.18, h, 0.18, steel, sx + 0.22, h / 2, 0, rot=rot_of(0, 0, -0.07))
+        bx(soup, 1.0, 0.14, 0.32, steel, sx, h - 0.25, 0)                       # 横担
+        for ddx in (-0.4, 0.4):
+            ball(soup, 0.07, '#BFE3FF', sx + ddx, h - 0.4, 0, jitter=0.004)
+    bx(soup, px * 2 + 1.15, 0.36, 0.52, '#4E5A66', 0, h + 0.42, 0)
+    for dx2, a in ((-0.5, 0.5), (0.0, -0.5), (0.38, 0.5)):       # 闪电折线
+        bx(soup, 0.5, 0.16, 0.08, '#FFE24E', dx2, h + 0.42, 0.3, rot=rot_of(0, 0, a),
+           emissive='#FFE24E', ei=0.9, jitter=0.003)
+    return h + 0.42, px * 2 + 1.0, 0.29 + 0.03
+
+
+def fam_media(soup, s, h, px):           # 传媒：摄像机 + 声波
+    c1, c2, c3, c4 = s['colors']
+    for sx in (-px, px):
+        bx(soup, 0.58, h, 0.58, '#4A5560', sx, h / 2, 0)
+        bx(soup, 0.72, 0.2, 0.72, '#2E3844', sx, h + 0.07, 0)
+    bx(soup, px * 2 + 1.15, 0.38, 0.56, '#2E3844', 0, h + 0.45, 0)
+    for i in range(3):                                                          # 声波
+        tor_face(soup, 0.18 + i * 0.16, 0.04, '#4ED0C8', -0.4 + i * 0.55, h + 0.45, 0.3,
+                 emissive='#4ED0C8', ei=0.85, jitter=0.003)
+    cx = px - 1.15                                                              # 摄像机
+    for ddx, ddz in ((-0.25, 0.15), (0.25, 0.15), (0, -0.28)):
+        cy(soup, 0.03, 0.03, 0.9, '#3A4450', cx + ddx * 0.5, 0.45, 0.85 + ddz * 0.5,
+           rot=rot_of(0, 0, 0.3), seg=6, jitter=0.004)
+    bx(soup, 0.7, 0.44, 0.5, '#2E3844', cx, 1.12, 0.85)
+    cy(soup, 0.1, 0.13, 0.35, '#1E2630', cx + 0.48, 1.1, 0.85, rot=rot_of(0, math.pi / 2, 0), seg=10)
+    for ddx in (-0.18, 0.18):
+        cy(soup, 0.14, 0.14, 0.06, '#8A9188', cx + ddx, 1.42, 0.85, seg=12)
+    return h + 0.45, px * 2 + 1.0, 0.29 + 0.03
+
+
+# 风格族总表：放在所有 fam_* 定义之后（字典在求值时就要拿到函数对象）
 TPL = {'modern': tpl_modern}
 FAM = {'classic': fam_classic, 'chip': fam_chip, 'rail': fam_rail, 'finance': fam_finance,
        'normal': fam_normal, 'folk': fam_folk, 'tcm': fam_tcm, 'art': fam_art,
-       'sport': fam_sport, 'medic': fam_medic}
+       'sport': fam_sport, 'medic': fam_medic,
+       'agri': fam_agri, 'forest': fam_forest, 'lang': fam_lang, 'post': fam_post,
+       'law': fam_law, 'ocean': fam_ocean, 'hydro': fam_hydro, 'petro': fam_petro,
+       'power': fam_power, 'media': fam_media}
 
 
 def build_one(spec):

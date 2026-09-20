@@ -38,7 +38,7 @@ const CITY_BYTES_MAX = 3 * 1024 * 1024;   // 单城首屏新增体积上限（�
 const GROUND_TOL = { gate: 0.06, landmark: 0.35 };
 const HALF_MAX = 5.2;                     // 游戏按 scale 0.5 + 2.6 边距摆放（js/game.js:2134）→ 半宽/半深上限 5.2
 // 地标占地必须不超 js/world.js:1395 的 LM_HALF（摆放边距/碰撞/欢迎牌高度都按它算）
-const LM_HALF = { gate: 3.7, tower: 1.7, wall: 7.2, panda: 3.2, ice: 2.4, palm: 3.6, dome: 2.8,
+const LM_HALF = { gate: 3.7, tower: 1.7, wall: 7.5, panda: 3.2, ice: 2.6, palm: 3.6, dome: 2.8,
   mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4 };
 
 // ---- 读 GLB：只解 JSON 块，三角数与包围盒从 accessor 的 min/max / count 直接算（不落 BIN）----
@@ -162,7 +162,7 @@ for (const [id, e] of entries) {
   if (g.lo[1] < -gt) fails.push(`${id}：穿地 ${g.lo[1].toFixed(3)}（原点必须在脚底，本类容差 ${gt}）`);
   // 占地：摆放边距按 2.6 算的（js/game.js:2134），超了会和立牌/蛋重叠
   const halfX = Math.max(-g.lo[0], g.hi[0]), halfZ = Math.max(-g.lo[2], g.hi[2]);
-  if (halfX > HALF_MAX || halfZ > HALF_MAX) {
+  if (e.kind === 'gate' && (halfX > HALF_MAX || halfZ > HALF_MAX)) {
     fails.push(`${id}：占地半宽 ${halfX.toFixed(2)}/${halfZ.toFixed(2)} 超 ${HALF_MAX}（要么缩模型，要么同步改摆放边距）`);
   }
   // 地标还要卡 LM_HALF：世界摆放/碰撞/欢迎牌高度全按它算，超了就会压到牌子与蛋

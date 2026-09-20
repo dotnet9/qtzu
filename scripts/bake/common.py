@@ -372,9 +372,15 @@ def ring(soup, R, r, color, loc, rot=(0, 0, 0), major=None, minor=None, jitter=0
     soup.add(torus_gltf(R, r, major, minor), color, loc=loc, rot=rot, jitter=jitter)
 
 
-def arc(soup, R, tube, color, loc, rot, major=16, minor=7):
+def arc(soup, R, tube, color, loc, rot, major=16, minor=7, **kw):
     """竖起来的半圆拱（默认藏在地面里，靠 rot 立起来）。"""
-    soup.add(arch(R, tube, math.pi, major, minor), color, loc=loc, rot=rot, bevel=0, jitter=0.004)
+    soup.add(arch(R, tube, math.pi, major, minor), color, loc=loc, rot=rot, bevel=0,
+             jitter=kw.pop('jitter', 0.004), **kw)
+
+
+def cone_at(soup, r, h, color, x, y, z, seg=12, **kw):
+    """js 的 cone(g, r, h, c, x, y, z)：圆锥（rt≈0），中心在 (x,y,z)。"""
+    soup.add(cyl(0.001, r, h, seg), color, loc=at(x, y, z), **kw)
 
 
 def pillar(soup, x, h, color, kind='round', r=0.33, plinth=None, cap=None, rough=0.93):
