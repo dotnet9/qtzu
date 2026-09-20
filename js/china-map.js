@@ -7,7 +7,7 @@ import { makeHeightField } from './terrain-field.js';
 
 const UPD = 420;                                  // 世界单位/度
 const LAT_K = Math.cos(35 * Math.PI / 180);       // 经度方向随纬度收缩（中国中纬度）
-const BASE_Y = -2;                                // 底图高度：大幅低于城市地面(0)，层间距 2 个单位——任何渲染器（含 IDE 预览软渲染）都不会再 z-fighting
+const BASE_Y = -4.0;                              // 底图高度：压在岩裙(-3.6)/悬浮岛底(-9 的下沉段)之下，整段侧壁才看得见；层间距 2 个单位——任何渲染器（含 IDE 预览软渲染）都不会再 z-fighting
 
 ﻿// 邻城地形浮雕：把城内那份高度场用"粗网格 + 大台阶"缩到地图尺度。
 // 城内网格是 1.5m/格、0.9m 台阶，52 城直接搬过来要几十万顶点——地图上只求"看得出有山有水"，
@@ -16,7 +16,7 @@ const RELIEF = { grid: 6, step: 2, colorCell: 8, heightScale: 1.0, cap: 8 };
 function buildRelief(pts, cfg, s) {
   const cheap = { ...cfg, grid: RELIEF.grid, step: RELIEF.step, colorCell: RELIEF.colorCell };
   const F = makeHeightField({ pts: pts.map(([x, z]) => [x * s, z * s]), cfg: cheap });
-  const { minX, minZ, gsz, nx, nz, qy, hsSm, inPoly, zoneColor } = F;
+  const { minX, minZ, gsz, nx, nz, qy, hsSm, inPoly, zoneColorLinear } = F;
   const vid = new Int32Array((nx + 1) * (nz + 1)).fill(-1);
   const pos = [], col = [], cc = [0, 0, 0];
   const getV = (i, j) => {
@@ -26,7 +26,7 @@ function buildRelief(pts, cfg, s) {
     const hSm = hsSm[j][i], band = Math.floor(hSm / F.step + 1e-4);
     vid[id] = pos.length / 3;
     pos.push(x, Math.min(RELIEF.cap, qy[j][i] * RELIEF.heightScale), z);
-    zoneColor(x, z, hSm, band, cc);
+    zoneColorLinear(x, z, hSm, band, cc);   // 线性色：邻城浮雕与城内地面同一份配色，也必须转线性
     col.push(cc[0], cc[1], cc[2]);
     return vid[id];
   };
@@ -102,7 +102,8 @@ export function buildChinaMap(scene, currentKey, cityNames = {}, statuses = {}, 
   // 底图：地图纸色，铺满整个可见范围（拉远到 550 也看不完）
   const base = new THREE.Mesh(
     new THREE.PlaneGeometry(30000, 22000).rotateX(-Math.PI / 2),
-    new THREE.MeshBasicMaterial({ color: '#EFEAE0', polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 })
+    // 纸色：#EFEAE0 太接近白，加上雾色一洗就是"拉远一片白纸"。换成中性米色，与城市地面、邻城浮雕拉开层次
+    new THREE.MeshBasicMaterial({ color: '#E2D9C6', polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 })
   );
   base.position.y = BASE_Y;   // -0.30：远低于城市地面(0)、高于海面(-0.5)，深度偏置防远处 z-fighting
   group.add(base);

@@ -11,11 +11,11 @@
 //   - 不含城墙/岩裙/云海/地标——那些由 world.js 既有系统负责，本模块只做"地面+山+水"
 //   - 所有数值（高度/配色/水面）都来自 js/terrain-field.js，渲染与寻高/涉水/体检同源
 import * as THREE from 'three';
-import { makeHeightField } from './terrain-field.js';
+import { makeHeightField, srgbToLinear } from './terrain-field.js';
 
 export function createCityTerrain({ pts, cfg }) {
   const F = makeHeightField({ pts, cfg });
-  const { minX, maxX, minZ, maxZ, gsz, nx, nz, qy, hsSm, inPoly, dEdge, heightAtLocal, zoneColor } = F;
+  const { minX, maxX, minZ, maxZ, gsz, nx, nz, qy, hsSm, inPoly, dEdge, heightAtLocal, zoneColorLinear } = F;
   const group = new THREE.Group();
   const rng = mulberry32(cfg.seed ?? 42);
 
@@ -29,7 +29,7 @@ export function createCityTerrain({ pts, cfg }) {
     const hSm = hsSm[j][i], band = Math.floor(hSm / F.step + 1e-4);
     vid[id] = pos.length / 3;
     pos.push(x, qy[j][i], z);
-    zoneColor(x, z, hSm, band, cc);
+    zoneColorLinear(x, z, hSm, band, cc);   // 线性色：顶点色不走颜色管理，必须自己转
     col.push(cc[0], cc[1], cc[2]);
     return vid[id];
   };
@@ -49,10 +49,12 @@ export function createCityTerrain({ pts, cfg }) {
     vertexColors: true, flatShading: true, roughness: 0.94, metalness: 0, side: THREE.DoubleSide,
   }));
   mesh.receiveShadow = true; mesh.castShadow = true;
+  mesh.name = 'city-ground';   // 名字供"换装时隐藏程序化地面"用（js/world.js 的 ground-slot）
   group.add(mesh);
 
   /* ---- 雪山峰（圆锥 + 雪顶渐变的顶点色） ---- */
   const peaksOut = [];
+  const peakMeshes = [];
   if (F.features.peaks.length) {
     const pkMat = new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1 });
     for (const def of F.features.peaks) {
@@ -66,14 +68,18 @@ export function createCityTerrain({ pts, cfg }) {
         const vy = pa.getY(i) + ph / 2;
         const sn = smoothstep(ph * 0.42, ph * 0.62, vy);
         const j = 0.95 + 0.1 * rng();
-        colA.push((0.26 + (0.95 - 0.26) * sn) * j, (0.22 + (0.97 - 0.22) * sn) * j, (0.20 + (1.0 - 0.20) * sn) * j);
+        // 顶点色按线性写：0.26/0.95 这些是按人眼挑的 sRGB 值（雪顶近白），不转换就会被当线性值乘进去
+        // → 整座雪峰发白。与地面发白是同一个根因（见 js/terrain-field.js 的 srgbToLinear 注释）
+        colA.push(srgbToLinear((0.26 + (0.95 - 0.26) * sn) * j), srgbToLinear((0.22 + (0.97 - 0.22) * sn) * j), srgbToLinear((0.20 + (1.0 - 0.20) * sn) * j));
       }
       geo2.setAttribute('color', new THREE.Float32BufferAttribute(colA, 3));
       const m = new THREE.Mesh(geo2, pkMat);
       m.position.set(px, baseY + ph / 2 - 0.4, pz);
       m.rotation.y = rng() * Math.PI;
       m.castShadow = true;
+      m.name = 'city-peak';   // 同上：换装后由 world.js 隐藏（雪峰已包含在烘焙地面里）
       group.add(m);
+      peakMeshes.push(m);
       peaksOut.push({ x: px, z: pz, r: pr });
     }
   }
@@ -168,7 +174,9 @@ export function createCityTerrain({ pts, cfg }) {
   return {
     group,
     peaks: peaksOut,
+    peakMeshes,     // 换装烘焙地面时要隐藏的两类（见 js/world.js 的 ground-slot 与 js/assets.js）
     field: F,
+    groundMesh: mesh,
     heightAtLocal,                                    // 局部坐标（相对岛心）
     heightAtWorld: (wx, wz) => heightAtLocal(wx, wz), // world.js 负责换成世界坐标包装
   };

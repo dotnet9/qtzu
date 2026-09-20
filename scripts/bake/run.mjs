@@ -51,6 +51,7 @@ const run = (cmd, argv, opts = {}) => {
 const BAKERS = {
   gate: { script: 'gates.py', prefix: 'gates' },
   landmark: { script: 'landmarks.py', prefix: 'landmarks' },
+  ground: { script: 'ground.py', prefix: 'ground' },   // 城市地面/院墙/岩裙/雪峰（一城一个 GLB）
 };
 
 // 递归收集 .glb：产物在 assets/models/<kind>/ 子目录里，只列顶层会让"二次烘焙比对"空转通过

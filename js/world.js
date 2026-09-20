@@ -246,7 +246,9 @@ export function buildFloatingIsland(grp, ptsF, cx, cz, anim) {
     const cone = new THREE.Mesh(new THREE.ConeGeometry(1.8 + 0.5 * (k % 2), 3.8 + 0.8 * (k % 3), 7),
       new THREE.MeshStandardMaterial({ color: '#5A4632', roughness: 1 }));
     cone.rotation.x = Math.PI;
-    cone.position.set(cx + Math.cos(a) * rr, -DEPTH - 0.9, cz + Math.sin(a) * rr);
+    // 注意：grp 自己已经摆在 (cx, cz) 上（world.js:1609），这里的坐标必须全用**局部**值。
+    // 旧写法在局部坐标上又加了一次 cx/cz，垂石与云海被摆到 2×(cx,cz) 的海面上（被地图纸挡住才一直没人发现）
+    cone.position.set(Math.cos(a) * rr, -DEPTH - 0.9, Math.sin(a) * rr);
     grp.add(cone);
   }
   // 环岛云海（共享一张画布贴图：52 座岛各画一张太浪费）
@@ -257,14 +259,14 @@ export function buildFloatingIsland(grp, ptsF, cx, cz, anim) {
     const a = (k / 8) * Math.PI * 2;
     const cs = new THREE.Sprite(new THREE.SpriteMaterial({ map: cloudTex, transparent: true, opacity: 0.92, depthWrite: false }));
     cs.scale.set(16, 8, 1);
-    cs.position.set(cx + Math.cos(a) * cloudR, -3.5 + 1.2 * (k % 3), cz + Math.sin(a) * cloudR);
+    cs.position.set(Math.cos(a) * cloudR, -3.5 + 1.2 * (k % 3), Math.sin(a) * cloudR);   // 局部坐标（见上）
     grp.add(cs);
     clouds.push(cs);
   }
   // 云海上的投影暗影：悬浮感的画龙点睛
   const sh = new THREE.Mesh(new THREE.CircleGeometry(1, 40).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: '#2A3040', transparent: true, opacity: 0.16, depthWrite: false }));
   sh.scale.set((mxxXF - mnXF) * 0.62, 1, (mxxZF - mnZF) * 0.62);
-  sh.position.set(cx, -8.5, cz);
+  sh.position.set(0, -8.5, 0);   // 局部坐标（见上）
   grp.add(sh);
   if (anim) {
     anim.floating = anim.floating || [];
@@ -535,7 +537,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     new THREE.MeshBasicMaterial({ map: skyTex, side: THREE.BackSide, fog: false }));
   scene.add(dome);
   const cityOnly0 = !!semIslands.length && semIslands[0].level != null;
-  scene.fog = cityOnly0 ? new THREE.Fog(0xDFF3EC, 90, 420) : new THREE.Fog(0xDFF3EC, 42, 150);
+  // 两种模式的雾色都调成"大气"而不是"白纸"：近白雾色（0xDFF3EC）在成都尺度上会把城对面整片洗白
+  scene.fog = cityOnly0 ? new THREE.Fog(0xCBE6F2, 90, 420) : new THREE.Fog(0xDFF3EC, 42, 150);
 
   // ---- 太阳（亮核 + 光晕） ----
   const sunDir = new THREE.Vector3(18, 30, 12).normalize();
@@ -544,6 +547,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     depthWrite: false, transparent: true,
   }));
   sunCore.position.copy(sunDir).multiplyScalar(118);
+  // 尺寸与轨道只是初值：进游戏后由 js/game.js 的 _updateDayNight 按当前城半径重设
+  // （成都是半径 86 的大图，写死 26/64 的 sprite 正好悬在地图上方 = 一团白光罩住半张图）
   sunCore.scale.setScalar(26);
   scene.add(sunCore);
   const sunHalo = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -564,9 +569,11 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   scene.add(moon);
 
   // ---- 光照 ----
-  const hemi = new THREE.HemisphereLight(0xFFF6E8, 0x9CC98F, 1.05);
+  // 基调（起点值，靠 scripts/check-render.mjs 的截图指标收敛）：主光压低 + 环境补亮 = 低对比柔光。
+  // 原来的 hemi 1.05 + sun 2.1 会把浅色马卡龙表面（草地/奶油墙/纸面）推过曝，整体发白。
+  const hemi = new THREE.HemisphereLight(0xFFF6E8, 0x9CC98F, 0.62);
   scene.add(hemi);
-  const sun = new THREE.DirectionalLight(0xFFF2DC, 2.1);
+  const sun = new THREE.DirectionalLight(0xFFF2DC, 1.35);
   sun.position.set(18, 30, 12);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
@@ -1108,9 +1115,13 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       const minX = Math.min(...xs), maxX = Math.max(...xs), minZ = Math.min(...zs), maxZ = Math.max(...zs);
       // 微缩分层地形（data/cities/<id>/terrain.json 有配置的城市）：真 3D 高度场替代平面贴图
       let terrain = null;
+      // 程序化地面部件（地形网格 + 雪峰 + 院墙 + 垛口 + 岩裙）：烘焙 GLB 到位后隐藏它们，
+      // 只切 visible、不 dispose —— 加载失败/超时/触屏回退时立刻可用（见本文件末尾的 ground-slot）
+      const procGround = [];
       if (isl.terrain) {
         terrain = createCityTerrain({ pts, cfg: isl.terrain });
         grp.add(terrain.group);
+        procGround.push(terrain.groundMesh, ...terrain.peakMeshes);   // 换装后由 ground-slot 隐藏
         TY = (x, z) => terrain.heightAtLocal(x, z);
       }
       if (!terrain) {
@@ -1152,6 +1163,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         const outerSign = ptIn(samples[0].x + normals[0][0] * 2, samples[0].z + normals[0][1] * 2) ? -1 : 1;
         const wall = new THREE.Mesh(wallGeo, new THREE.MeshStandardMaterial({ map: brickTexture(), roughness: 0.95, side: THREE.DoubleSide }));
         grp.add(wall);
+        procGround.push(wall);
         // 垛口：沿墙顶外侧等距小块（InstancedMesh，节奏感的关键）
         const merlonGap = 3.4;
         const merlonN = Math.max(2, Math.floor(len / merlonGap));
@@ -1182,6 +1194,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           merlons.instanceMatrix.needsUpdate = true;
         }
         grp.add(merlons);
+        procGround.push(merlons);
         // 烽火台：弧长均分 3~4 座，落在窄域（塔内侧净空不足）就顺延错位或跳过
         const beacons = [];
         {
@@ -1304,6 +1317,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       sg.computeVertexNormals();
       const skirt = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: 0x87928F, roughness: 1, side: THREE.DoubleSide }));
       grp.add(skirt);
+      procGround.push(skirt);
       // 沿边浪花：白色小圆点贴着轮廓边外侧撒一圈（合并成单 mesh，随 islandSurf 呼吸闪烁）
       {
         const unit = Math.max(0.55, r * 0.02);          // 尺度随城市大小走
@@ -1345,6 +1359,15 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           world.anim.islandSurf.push(foam);
         }
       }
+      // 烘焙地面挂点（成都试点，见美术升级方案 §五）：程序化地面先顶上，GLB 到位后原地换掉。
+      // 只清 slot 自己的 children —— 地标/立牌/树/蛋都挂在 grp 上，换装绝不会误删（js/assets.js 的契约）；
+      // 加载失败/超时/离线/触屏（assets.js 的 LOW_END）什么都不发生，程序化地面照旧可玩。
+      const gslot = new THREE.Group();
+      gslot.name = 'ground-slot';
+      grp.add(gslot);
+      assets.apply(gslot, 'ground', key, {
+        onSwap: () => { for (const o of procGround) o.visible = false; },
+      });
       world.cityBounds = world.cityBounds || {};
       world.cityBounds[key] = {
         pts, sim, coarse, minX, maxX, minZ, maxZ, cx, cz,

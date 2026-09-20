@@ -6,7 +6,7 @@
 //   音频 mp3                          → 缓存优先 + 按字节限量（边玩边攒，只留最近听过的）
 //   大模型 onnx/wasm/glb                 → 缓存优先 + 独立大文件桶（不受音频上限挤兑，也不挤占音频）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v18';   // v18：粘土手办风校门 GLB（新增 js/assets.js 必须预缓存，否则离线 import 404 白屏）；.glb 归大文件桶
+const VER = 'qtzu-pwa-v19';   // v19：修"地图发白"（顶点色色空间/雾距/纸面色/太阳光晕/后期补 OutputPass）+ 新增 scripts/check-render.mjs（不入包）；.glb 仍归大文件桶
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动

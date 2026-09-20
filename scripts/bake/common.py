@@ -48,7 +48,16 @@ AO_TINT = (0.58, 0.55, 0.64)
 AO_SKY = 0.16
 
 # 三角面预算（超限即烘焙失败，见 check_budget）
-BUDGET = {'gate': 9000, 'pet': 3500, 'landmark': 14000, 'prop': 4000, 'npc': 4000, 'player': 8000}
+# ground：一城一份（地形网格 + 城墙 + 垛口 + 岩裙 + 雪峰）。成都实测约 1.1 万面，上限 60000
+# 是给体量更大的城市留余量，同时守住"单城 +3MB"总上限（美术升级方案 §4.2）
+BUDGET = {'gate': 9000, 'pet': 3500, 'landmark': 14000, 'prop': 4000, 'npc': 4000, 'player': 8000,
+          'ground': 60000}
+
+
+def srgb_f_to_lin(v):
+    """单个 0..1 的 sRGB 分量 → 线性。与 js/terrain-field.js 的 SRGB_TO_LIN 同一公式：
+    地形色值是按人眼挑的 sRGB，两边必须用同一条转换，否则又会烘出"发白的地面"。"""
+    return v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4
 
 
 def srgb_to_lin(c):
@@ -440,7 +449,7 @@ def clay_material(color, rough=0.92, emissive=None, ei=0.6):
 # ---------------------------------------------------------------- 顶点色 AO
 
 def bake_ao(ob, samples=AO_SAMPLES, distance=AO_DISTANCE, strength=AO_STRENGTH,
-            tint=AO_TINT, sky=AO_SKY, seed=7):
+            tint=AO_TINT, sky=AO_SKY, seed=7, base=None):
     """逐顶点半球采样烘焙 AO 写进 'Col' 顶点色（POINT/FLOAT_COLOR）。
 
     glTF 规定 COLOR_0 与 baseColor 相乘，three.js 会自动启用 vertexColors，
@@ -489,7 +498,13 @@ def bake_ao(ob, samples=AO_SAMPLES, distance=AO_DISTANCE, strength=AO_STRENGTH,
         if sky > 0:
             f = 1.0 - sky * (1.0 - max(0.0, n.z))
             shade = (shade[0] * f, shade[1] * f, shade[2] * f)
-        data[i].color = (max(0.35, shade[0]), max(0.35, shade[1]), max(0.35, shade[2]), 1.0)
+        # base 给"自身带逐顶点颜色"的资产（城市地面：地形反照率 + 城墙/岩裙单色）用：
+        # glTF 只有一条 COLOR_0，颜色与 AO 必须乘在一起，材质底色留白 —— 一条属性同时承载两者
+        s = (max(0.35, shade[0]), max(0.35, shade[1]), max(0.35, shade[2]))
+        if base is not None:
+            b0 = base[i]
+            s = (s[0] * b0[0], s[1] * b0[1], s[2] * b0[2])
+        data[i].color = (s[0], s[1], s[2], 1.0)
     me.color_attributes.active_color_index = me.color_attributes.find('Col')
     me.update()
 

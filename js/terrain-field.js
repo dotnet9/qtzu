@@ -15,6 +15,14 @@ const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b
 const fract = x => x - Math.floor(x);
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
+// sRGB → 线性（渲染侧用）。本模块与 terrain.json 里的色值都是**按人眼挑的 sRGB 数值**
+// （PALETTES 的 [0.49,0.78,0.47] = #7DC777 草绿），而 three r152+ 把 geometry.color 当**线性值**
+// 直接乘进着色器：不转换就等于"亮一整个 gamma"——0.49 显示成 0.68，通道差被压平，
+// 草地变淡薄荷、雪顶变纯白、纸面变白纸。这是"地图发白"的根因之一。
+// 约定：zoneColor 输出 sRGB（体检/审计脚本按人眼看数），渲染一律用 zoneColorLinear。
+const SRGB_TO_LIN = v => (v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+export const srgbToLinear = v => SRGB_TO_LIN(v);
+
 // 与 THREE.CatmullRomCurve3(curveType='catmullrom', tension=0.5) 完全一致的 2D 求值：
 // 河流网格与涉水判定必须踩在同一条曲线上，不能一边用 THREE 一边用别的插值
 export function catmullRom2D(P, t) {
@@ -282,6 +290,11 @@ export function makeHeightField({ pts, cfg }) {
     return 1 - smoothstep(0.7, 1.0, Math.max(Math.abs(nx2), Math.abs(nz2)));
   };
   const farmMask = (x, z) => FRM ? 1 - smoothstep(FRM.r0, FRM.r1, Math.hypot(x - FRM.c[0], z - FRM.c[1])) : 0;
+  // 线性版配色（渲染专用）：只做一次 sRGB→线性，配色规则与 zoneColor 共用同一份，不会漂移
+  function zoneColorLinear(x, z, hSm, band, out) {
+    zoneColor(x, z, hSm, band, out);
+    out[0] = SRGB_TO_LIN(out[0]); out[1] = SRGB_TO_LIN(out[1]); out[2] = SRGB_TO_LIN(out[2]);
+  }
   function zoneColor(x, z, hSm, band, out) {
     const sx = Math.round(x / colorCell) * colorCell, sz = Math.round(z / colorCell) * colorCell;
     let r, g, b;
@@ -318,7 +331,7 @@ export function makeHeightField({ pts, cfg }) {
     // 几何/尺度
     pts, minX, maxX, minZ, maxZ, W, H, RX, RZ, CX, CZ, N, P2, gsz, nx, nz, step,
     // 采样
-    qy, hs, hsSm, inPoly, dEdge, hRaw, quant, heightAtLocal, waterAt, zoneColor,
+    qy, hs, hsSm, inPoly, dEdge, hRaw, quant, heightAtLocal, waterAt, zoneColor, zoneColorLinear,
     // 地物（渲染与体检都要用）
     features: {
       mountains: MNT, ridges: RDG, hills: HIL, plaza: PLZ, terrace: TER, farm: FRM,

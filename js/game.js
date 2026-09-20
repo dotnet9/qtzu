@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 import { WORD_MAP, ZONE_NAMES, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
@@ -26,6 +27,10 @@ import { CURRICULUM } from './curriculum.js';
 
 const PLAYER_SPEED = 3.65;  // 移速同步城市缩 1/2（7.3 的一半），穿城节奏不变
 const CITY_SCALE = 0.84;   // 城市地图尺度倍率（×5 后缩 1/3≈1.67，再按反馈缩 1/2）
+// 环境（PMREM RoomEnvironment）的调暗系数：影棚灯阵原强度 17~100，直接挂上去等于给全场景加了一层
+// 中性顶光——浅色马卡龙表面被抬白、绿被压成灰绿，这就是"地图发白"的核心来源之一。
+// 0.10 是实测值：草地亮度/饱和度两个指标同时落进目标区间（scripts/check-render.mjs）
+const ENV_ROOM_DIM = 0.10;
 // 情景单词点：词与场景实物绑定记忆（走近弹气泡并念一遍；只启用词库里真实存在的词）
 const SCENE_WORDS = [
   { x: -20, z: -14, en: 'apple', emoji: '🍎' },
@@ -188,7 +193,7 @@ export class Game {
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.05;
+    this.renderer.toneMappingExposure = 0.98;
   }
 
   _initScene() {
@@ -234,8 +239,17 @@ export class Game {
         this.composer = new EffectComposer(this.renderer);
         this.composer.addPass(new RenderPass(this.scene, this.camera));
         // 粘土手办风：辉光收敛（0.32→0.22）——马卡龙配色本身就亮，泛光一强就糊成一片奶油
-        this.bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.22, 0.5, 0.9);
+        // 粘土手办风：辉光只留给"发光物"（词宠蛋/词宠/灯）——强度 0.22→0.10，门槛抬到 0.92
+        this.bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.10, 0.45, 0.92);
         this.composer.addPass(this.bloom);
+        // OutputPass 必须是最后一层：r160 的色调映射与色域转换只在"渲染到画布"时生效
+        // （WebGLPrograms.getParameters：currentRenderTarget !== null 时 toneMapping=NoToneMapping、
+        //  outputColorSpace=LinearSRGBColorSpace），RenderPass 写进 RT 的是未 tonemap 的线性值。
+        // 少了它，UnrealBloomPass 末尾会把**未编码的线性辉光**直接加在已经编码过的底图上
+        // （它自己用 MeshBasicMaterial 重绘底图那一步会被 tonemap+编码，辉光那一步不会），
+        // 结果辉光强度远大于配置值、与底图不同色彩空间 = 一片白雾；低端机 _fpsWatch 关掉后期后又突变。
+        // 加回 OutputPass：辉光在线性空间合成，最后统一 ACES + sRGB 输出，开/关后期颜色一致。
+        this.composer.addPass(new OutputPass());
       } catch (e) { this.composer = null; }
     }
     // 环境反射：桌面端挂一层极轻的室内环境（PMREM），粘土材质才有"软塑反光"而不是死哑光。
@@ -244,9 +258,19 @@ export class Game {
     if (!lowEnd) {
       try {
         const pmrem = new THREE.PMREMGenerator(this.renderer);
-        this.envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-        this.scene.environment = this.envTex;
-        this.scene.environmentIntensity = 0.32;
+        // RoomEnvironment 是"影棚灯阵"：自发光面片强度 17~100，原样挂上去会通过 IBL 给所有哑光面补一大笔
+        // 中性光——地面被抬白、绿色被压成灰绿（实测：环境全强度时草地饱和 0.22，关掉后 0.31）。
+        // 正确做法是从**源头**调暗（面片材质是 MeshBasicMaterial，乘 color 即可）：游戏进行中才建出来的
+        // 词宠/蛋/NPC 也一起吃这个亮度，不会出现"老资产暗、新资产亮"的缝合怪。
+        // 另注：r160 还没有 scene.environmentIntensity（r163 才加），写那行等于没写。
+        const room = new RoomEnvironment();
+        const roomMats = new Set();
+        room.traverse((o) => { if (o.isMesh && o.material && o.material.color) roomMats.add(o.material); });
+        for (const m of roomMats) m.color.multiplyScalar(ENV_ROOM_DIM);
+        this.envTex = pmrem.fromScene(room, 0.04).texture;
+        room.dispose();
+        this.scene.environment = this.envTex;   // 环境反射：粘土材质的"软塑感"来源（此前被一行 DEBUG 关掉）
+    // 环境亮度就走 ENV_ROOM_DIM（game.js 顶部的常量），不用 scene.environmentIntensity：r160 没这个属性
         pmrem.dispose();
       } catch (e) { this.scene.environment = null; }
     }
@@ -1711,7 +1735,14 @@ export class Game {
       }
       pos.needsUpdate = true;
     }
-    if (sunL) sunL.intensity += ((w.cur === 'rain' ? 1.5 : w.cur === 'snow' ? 1.9 : 2.1) - sunL.intensity) * Math.min(1, dt * 2);
+    // 天气只按**比例**打折主光强度：此前这里每帧把 sun.intensity 拉回 2.1（绝对值），
+    // 把 _updateDayNight 的"白天压低主光 / 夜里调暗"整套调参全都覆盖掉了——夜里也拉不暗、
+    // 白天永远是老亮度（这也是"发白"的一环）。现在以 dn.baseSun 为基准乘天气系数。
+    if (sunL) {
+      const dn = this.world.anim.dayNight;
+      const k = w.cur === 'rain' ? 0.62 : w.cur === 'snow' ? 0.78 : 1;
+      sunL.intensity += (((dn && dn.baseSun) || 1.35) * k - sunL.intensity) * Math.min(1, dt * 2);
+    }
   }
 
   // 碰撞提示：顶到什么东西时给一句小朋友听得懂的话（按类型限频，不会刷屏）
@@ -3020,8 +3051,11 @@ export class Game {
     if (!this.onIsle && v.y < 1.2) v.y = 1.2;
     // 雾距离跟着镜头远近走（×2/×4 斜率：拉远到 550 也能看清 2000+ 单位外的全国地图背景）
     if (this.scene.fog) {
-      this.scene.fog.near = 34 + dist * 2;
-      this.scene.fog.far = 142 + dist * 4;
+      // 雾距必须跟着"城尺度"走：城市是 radius×(3+…)×0.84 的大图（成都半宽≈86、整图≈170），
+      // 老的 34+2d 在默认玩法机位只有 51 → 城对面（~172）吃雾 ~97%，整片被拉进近白雾色 = "发白看不清"
+      const fogR = (this._currentStage() && this._currentStage().r) || 52;
+      this.scene.fog.near = Math.max(fogR * 1.35, 34 + dist * 2);
+      this.scene.fog.far = Math.max(fogR * 5.0, 142 + dist * 4);
     }
     this.camera.position.lerp(v, Math.min(1, dt * 7));
     this.camera.lookAt(target.x, target.y + 1.0, target.z);
@@ -3031,9 +3065,10 @@ export class Game {
     // 日月光晕随拉远渐隐：sprite 屏幕大小不随距离缩，拉远后会变成罩住地图的巨大光圈
     const dn = this.world.anim.dayNight;
     if (dn && (dn.sunCore || dn.moon)) {
-      const fade = Math.max(0, Math.min(1, (300 - dist) / 120));   // 180 开始渐隐，300 全隐
+      const fade = Math.max(0, Math.min(1, (140 - dist) / 80));   // ≤60 全显、≥140 全隐（原先到 300 都全亮 = 大光球罩着地图）
+      dn.sunFade = fade;   // 昼夜那一趟也按它决定显隐，否则每 12 分钟会把太阳"叫回来"
       if (dn.sunCore) { dn.sunCore.material.opacity = fade; dn.sunCore.visible = fade > 0.01; }
-      if (dn.sunHalo) { dn.sunHalo.material.opacity = fade * 0.55; dn.sunHalo.visible = fade > 0.01; }
+      if (dn.sunHalo) { dn.sunHalo.material.opacity = fade * 0.35; dn.sunHalo.visible = fade > 0.01; }
       if (dn.moon) { dn.moon.material.opacity = fade; dn.moon.visible = fade > 0.01; }
     }
   }
@@ -3272,30 +3307,38 @@ export class Game {
     if (bucket === this._dnBucket) return;
     this._dnBucket = bucket;
     const sea = this.world.anim.sea;
+    // 舞台半径：太阳轨道与光晕尺寸都按它走（城市是 radius×(3+…)×0.84 的大图，写死 118/64 的
+    // 太阳会正好挂在地图上方，一团白光罩住半张图）
+    const stageR = (this._currentStage() && this._currentStage().r) || 52;
+    const sunR = Math.max(150, stageR * 2.6);
     if (hr < 6 || hr >= 18) {
       // 夜晚：月亮当班、光照调暗、雾色转深、全岛萤火虫点亮
       dn.sunCore.visible = dn.sunHalo.visible = false;
-      dn.moon.visible = true;
+      dn.moon.visible = (dn.sunFade ?? 1) > 0.01;   // 显隐统一由镜头距离那趟决定（别每 12 分钟抢写 visible）
       // 粘土风：夜里也留一点环境光，否则哑光材质糊成黑块（太阳仍是主光，只是不再压死）
-      dn.sun.intensity = 0.55; dn.hemi.intensity = 0.62;
+      dn.baseSun = 0.35; dn.sun.intensity = 0.35; dn.hemi.intensity = 0.45;   // baseSun 供天气按比例打折
       dn.fog.color.set(0x39466B);
       dn.dome.material.color.set(0x6B7FB8);
       if (sea) sea.material.color.set('#2E5F8A');
       if (this.world.anim.nightFire) this.world.anim.nightFire.material.opacity = 0.85;
     } else {
       // 白天：太阳东升西落，清晨/黄昏偏金，正午最亮
-      dn.sunCore.visible = dn.sunHalo.visible = true;
+      dn.sunCore.visible = dn.sunHalo.visible = (dn.sunFade ?? 1) > 0.01;   // 显隐由镜头距离那趟决定
       dn.moon.visible = false;
       const a = Math.PI * (1 - (hr - 6) / 12);
       dn.sun.position.set(Math.cos(a) * 60, 16 + Math.sin(a) * 34, 14);
-      dn.sunCore.position.set(Math.cos(a) * 118, 20 + Math.sin(a) * 90, 24);
+      dn.sunCore.position.set(Math.cos(a) * sunR, 20 + Math.sin(a) * sunR * 0.76, sunR * 0.2);
+      // 太阳 sprite 按舞台半径放大轨道、按城尺度收小尺寸：成都（r≈86）从"离城心 118 的 64 单位光球"
+      // 变成"离城心 224 的 34 单位光晕"，光斑回到天上而不是罩住地图
+      dn.sunCore.scale.setScalar(Math.max(6, Math.min(14, stageR * 0.14)));
+      dn.sunHalo.scale.setScalar(Math.max(16, Math.min(40, stageR * 0.40)));
       dn.sunHalo.position.copy(dn.sunCore.position).multiplyScalar(0.98);
       const h = Math.max(0.15, Math.sin(a));
       // 粘土手办风：主光压低、环境提亮 → 低对比柔光（原来的 1.2+0.9h / 0.75+0.35h 会把
       // 亮面推到过曝、暗面压成硬边，圆润造型的"软"就没了）
-      dn.sun.intensity = 0.95 + h * 0.55;
-      dn.hemi.intensity = 0.95 + h * 0.25;
-      dn.fog.color.set(0xDFF3EC);
+      dn.baseSun = 0.85 + h * 0.30; dn.sun.intensity = dn.baseSun;   // baseSun 是"天气打折"的基准
+      dn.hemi.intensity = 0.62 + h * 0.20;
+      dn.fog.color.set(0xCBE6F2);   // 与天空同色系的浅蓝：远处是"大气"，不是"白纸"（近白雾色是发白的主因之一）
       dn.dome.material.color.set(0xFFFFFF);
       if (sea) sea.material.color.set('#4A9ED9');
       if (this.world.anim.nightFire) this.world.anim.nightFire.material.opacity = 0;

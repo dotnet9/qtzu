@@ -6,6 +6,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { familyFor, SIGNATURE } from '../../js/uni-gates.js';
+import { readCity, radiusOf, worldPtsOf, makeField } from '../terrain-lib.mjs';
+import { simplifyPoly } from '../../js/city-shape.js';
 
 const ROOT = path.resolve(import.meta.dirname, '../..');
 const argOf = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
@@ -137,16 +139,86 @@ export function allLandmarks(only) {
   return out;
 }
 
+// ---- 城市地面：地形高度场 + 城墙 + 岩裙 + 雪峰（美术升级方案 §五 B1） ----
+// 关键原则：**规则只有一份**。高度场、逐顶点配色、峰值、城墙参数全部在 Node 侧用
+// js/terrain-field.js（与游戏运行时同一份实现）算好整段倒出去，Blender 只做几何与风格化，
+// 绝不重算地形——js/terrain-field.js 的注释就写着"各写一套必然漂移"。
+//
+// 城墙/岩裙/雪峰这几个参数直接照抄 js/world.js 的常量（那里是权威值）：
+const WALL = { H: 3.0, thick: 1.0, merlonGap: 3.4, brick: '#8C9C9F', merlon: '#A9B8B7' };   // world.js:1137,1156
+const SKIRT = { sink: -3.6, tuck: 0.94, color: '#87928F' };                                  // world.js:1294,1305
+// 雪峰配色与 terrain.js:66-69 同一套（sRGB，Blender 侧转线性）
+const PEAK_ROCK = [0.26, 0.22, 0.20], PEAK_SNOW = [0.95, 0.97, 1.0];
+
+export function groundSpec(cityKey) {
+  const city = readCity(cityKey);
+  const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, `data/cities/${cityKey}/terrain.json`), 'utf8'));
+  const pts = worldPtsOf(cityKey, city);                 // 局部世界坐标（与 isl.shape 同一份）
+  const F = makeField(cityKey, city, cfg);               // 与运行时同源的高度场
+  const { minX, minZ, gsz, nx, nz, qy, inPoly, zoneColor } = F;
+
+  // 逐顶点配色：整段照抄 terrain.js 的 getV（band 由平滑高度取，色值走 zoneColor）
+  const color = [];
+  for (let j = 0; j <= nz; j++) {
+    const row = [];
+    for (let i = 0; i <= nx; i++) {
+      const x = minX + i * gsz, z = minZ + j * gsz;
+      const hSm = F.hsSm[j][i];
+      const c = [0, 0, 0];
+      zoneColor(x, z, hSm, Math.floor(hSm / F.step + 1e-4), c);
+      row.push(c.map((v) => +v.toFixed(4)));
+    }
+    color.push(row);
+  }
+  // 每格是否出三角形：与 terrain.js:37-39 同一判据（格心在轮廓内）
+  const cellIn = [];
+  for (let j = 0; j < nz; j++) {
+    const row = [];
+    for (let i = 0; i < nx; i++) row.push(inPoly(minX + (i + 0.5) * gsz, minZ + (j + 0.5) * gsz) ? 1 : 0);
+    cellIn.push(row);
+  }
+  // 城墙走**简化轮廓**：原始行政边界有几万个点（烘焙会直接爆面数），而墙是沿边的一条带子，
+  // 容差 1.0 以内的形状差异看不出来；游戏侧碰撞用的是 simplifyPoly(pts, 0.1)，偏差仍在墙厚以内
+  const wallOutline = simplifyPoly(pts, 1.0);
+  const peaks = F.features.peaks.map((d) => {
+    const [px, pz] = F.P2(d);
+    // base = 峰脚下的地形高度（js/terrain.js:64 的 baseY），不带上就是"雪峰浮在半空/陷进地里"
+    return { at: [+px.toFixed(2), +pz.toFixed(2)], h: d[2], r: d[3], base: +F.heightAtLocal(px, pz).toFixed(3) };
+  });
+  return {
+    id: crypto.createHash('sha1').update(cityKey).digest('hex').slice(0, 8),
+    city: cityKey, key: cityKey, zh: city.name || cityKey,
+    radius: radiusOf(cityKey, city), seed: cfg.seed ?? 42,
+    outline: pts.map(([x, z]) => [+x.toFixed(3), +z.toFixed(3)]),
+    wall: { outline: wallOutline.map(([x, z]) => [+x.toFixed(3), +z.toFixed(3)]), ...WALL },
+    skirt: SKIRT,
+    peaks, peakColors: { rock: PEAK_ROCK, snow: PEAK_SNOW, snowRange: cfg.snow ?? [5.2, 6.6] },
+    grid: { minX, minZ, gsz, nx, nz }, step: F.step,
+    qy, cellIn, color,
+  };
+}
+
+export function allGround(only) {
+  return (only ? [only] : cityIds()).map((id) => groundSpec(id));
+}
+
 if (import.meta.filename === process.argv[1]) {
   const kind = argOf('--kind') || 'gate';
-  const build = kind === 'landmark' ? allLandmarks : allGates;
+  const build = kind === 'landmark' ? allLandmarks : kind === 'ground' ? allGround : allGates;
+  const prefix = kind === 'landmark' ? 'landmarks' : kind === 'ground' ? 'ground' : 'gates';
   const specs = build(city);
-  const outPath = path.join(ROOT, 'scripts/bake/specs', `${kind === 'landmark' ? 'landmarks' : 'gates'}.${city || 'all'}.json`);
+  const outPath = path.join(ROOT, 'scripts/bake/specs', `${prefix}.${city || 'all'}.json`);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, JSON.stringify({ kind, specs }, null, 1));
   const uniq = new Set(specs.map((s) => s.id));
   console.log(`${kind} 规格 ${specs.length} 条（唯一 id ${uniq.size}）→ ${path.relative(ROOT, outPath)}`);
-  if (kind === 'landmark') {
+  if (kind === 'ground') {
+    for (const s of specs) {
+      const cells = s.cellIn.reduce((n, row) => n + row.reduce((m, v) => m + v, 0), 0);
+      console.log(`  ${s.key}: 网格 ${s.grid.nx}×${s.grid.nz}（格距 ${s.grid.gsz}）出格 ${cells}，`
+        + `轮廓 ${s.outline.length} 点 → 城墙 ${s.wall.outline.length} 点，雪峰 ${s.peaks.length} 座`);
+    }
+  } else if (kind === 'landmark') {
     const by = {};
     for (const s of specs) by[s.type] = (by[s.type] || 0) + 1;
     console.log('地标类型分布', JSON.stringify(by));
