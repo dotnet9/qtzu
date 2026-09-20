@@ -29,6 +29,7 @@ import { CURRICULUM } from './curriculum.js';
 import { AUTO_SPECS, WORDS, chaptersFor } from './words.js';
 import { setAutoSpecs, buildPet, petThumbnail } from './models.js';
 import { CITIES, initCities } from './cities.js';
+import * as assets from './assets.js';   // GLB 资产加载器（烘焙模型可选增强，见 js/assets.js）
 import { loadAppConfig } from './data.js';
 
 // 应用名从 game/data/app.json 读（fork 换皮不用改代码）：加载屏文案随之更新
@@ -49,6 +50,7 @@ window.__ui = ui;     // 调试句柄
 window.__words = WORDS; // 调试句柄
 window.__buildPet = buildPet; // 调试句柄
 window.__petThumb = petThumbnail; // 调试句柄
+window.__assets = assets; // 调试句柄（GLB 命中/回退统计，见 scripts/test-fallback.mjs）
 
 const canvas = document.getElementById('scene');
 // 全局错误兜底（别让小朋友卡在黑屏）

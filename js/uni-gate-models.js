@@ -4,6 +4,7 @@
 import * as THREE from 'three';
 import { PROPS } from './models.js';
 import { familyFor, SIGNATURE } from './uni-gates.js';
+import * as assets from './assets.js';
 
 const M = (color, o = {}) => new THREE.MeshStandardMaterial({
   color, roughness: o.rough ?? 0.9, metalness: 0,
@@ -675,7 +676,8 @@ const FAMILY = {
 // 校徽/校名匾：横梁正面贴白底校徽图（本地 img，contain 缩进）
 // 图片必须带 crossOrigin 拉（维基图床等跨域源）：否则 canvas 被污染，three 每帧
 // 抛 texSubImage2D SecurityError。拉不到（断网/无 CORS/404）就画校名文字兜底。
-function plaque(g, img, beamY, beamW, fz, zh) {
+// 导出给 GLB 换装用（js/assets.js）：匾额是动态图，永远在运行时画，不进烘焙资产。
+export function attachPlaque(g, img, beamY, beamW, fz, zh) {
   const cv = document.createElement('canvas');
   cv.width = 512; cv.height = 128;
   const c2 = cv.getContext('2d');
@@ -727,7 +729,19 @@ export function buildUniGate(g, zh, img) {
     const span = 3.6 + rnd() * 0.9, px = span / 2, h = 3.2 + rnd() * 0.5;
     [beamY, beamW, fz] = (FAMILY[familyFor(zh)] || FAMILY.classic)(g, rnd, h, px);
   }
-  plaque(g, img, beamY, beamW, fz, zh);
+  attachPlaque(g, img, beamY, beamW, fz, zh);
   box(g, 2.4, 0.1, 1.2, '#D8CCA8', 0, 0.05, 0.4);   // 门前空地
   return { beamY, beamW };
+}
+
+// GLB 换装：程序化门先立着（它同时是回退实现），烘焙资产到位后原地替换（js/assets.js）。
+// 换装会清掉全部子件（含刚贴好的匾额），所以要用 manifest 里的 beamY/beamW/fz 重贴一遍；
+// opts.onSwap 交给调用方补自己的挂件与打标（js/game.js 的 userData.sign）。
+export function attachGateAsset(g, zh, img, opts = {}) {
+  assets.apply(g, 'gate', zh, {
+    onSwap: (grp, e) => {
+      attachPlaque(grp, img, e.beamY, e.beamW, e.fz, zh);
+      if (opts.onSwap) opts.onSwap(grp);
+    },
+  });
 }

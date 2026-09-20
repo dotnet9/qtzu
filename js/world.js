@@ -2,9 +2,10 @@
 import * as THREE from 'three';
 import { PROPS, badge, letterTexture } from './models.js';
 import { ISLANDS } from './words.js';
-import { buildUniGate } from './uni-gate-models.js';
+import { buildUniGate, attachGateAsset } from './uni-gate-models.js';
 import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 import { createCityTerrain } from './terrain.js';
+import * as assets from './assets.js';
 
 const M = (color, o = {}) => new THREE.MeshStandardMaterial({
   color, roughness: o.rough ?? 0.9, metalness: 0,
@@ -1409,7 +1410,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         let lx = Math.cos(a) * rr, lz = Math.sin(a) * rr;
         if (i > 0 && polySim) [lx, lz] = clampPoly(polySim, lx, lz, bw + (LM_HALF[type] || 2.8) * sc + 0.3);
         lmSpots.push([lx, lz]);
-        const lm = cityLandmark(type, color);
+        const lm = cityLandmark(type, color, null, null, { key: `${key}#${i}` });   // key 对上 scripts/bake/landmarks.py 的槽位
         lm.position.set(lx, Y(lx, lz), lz);
         lm.scale.setScalar(sc);
         lm.rotation.y = -a + Math.PI;
@@ -1432,6 +1433,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           const wtex = new THREE.CanvasTexture(cv);
           const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: wtex, transparent: true, depthWrite: false, fog: false }));
           spr.name = 'welcome-sign';
+          spr.userData.keep = true;   // GLB 换装时保留（约定见 js/assets.js）
           spr.scale.set(4.2, 1.5, 1);
           spr.position.set(0, (LM_HALF[type] || 2.8) * 1.75 + 1.1, 0);
           lm.add(spr);
@@ -1808,13 +1810,16 @@ function bigMushroom(s = 1) {
 }
 
 // ============ 城市地标原型：9 种程序化低模拼装（cities.js 按 landmark 类型选用） ============
-export function cityLandmark(type, color, seedStr, img) {
+// opts（可选）：{ key, onSwap(group) }。key = "城市#槽位"，用于查烘焙资产（scripts/bake/landmarks.py）；
+// 下面这些程序化拼装是占位 + 回退实现，GLB 到位后原地替换（见 js/assets.js）
+export function cityLandmark(type, color, seedStr, img, opts) {
   const g = new THREE.Group();
   const glow = () => M(color, { emissive: color, ei: 0.35 });
   // 大学校门：一校一门（招牌门 + 风格族），造型库 js/uni-gate-models.js / 数据 js/uni-gates.js
   // 构建完直接返回：不落入下方地标 else 链的 harbor 兜底（否则每座校门会被塞进一座灯塔）
   if (type === 'uni-gate') {
-    buildUniGate(g, seedStr, img);
+    buildUniGate(g, seedStr, img);             // 程序化门身：GLB 未到位/载入失败时它就是最终形态
+    attachGateAsset(g, seedStr, img, opts);    // 烘焙资产到位后原地替换（只换 children，Group 不动）
     g.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
     return g;
   }
@@ -1903,5 +1908,10 @@ export function cityLandmark(type, color, seedStr, img) {
     box(g, 0.9, 0.75, 0.5, '#F5F1E8', 2.4, 0.65, 1.2);
   }
   g.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  // 烘焙资产到位后原地替换（只换 children；调用方挂在 lm 上的欢迎牌 sprite 标了 keep 不会被清）
+  if (opts && opts.key) {
+    g.userData.lm = { key: opts.key, type };   // 运行时标记：换装自检/调试能直接认出地标组
+    assets.apply(g, 'landmark', opts.key, opts);
+  }
   return g;
 }

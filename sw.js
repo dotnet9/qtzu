@@ -4,9 +4,9 @@
 //     （保证部署后第一屏就是新代码，绝不出现"新 HTML 配旧 JS"的混搭崩溃）
 //   跨域（three.js CDN、维基图片等）       → 缓存优先（版本化 URL 内容不变）
 //   音频 mp3                          → 缓存优先 + 按字节限量（边玩边攒，只留最近听过的）
-//   大模型 onnx/wasm                     → 缓存优先 + 独立大文件桶（不受音频上限挤兑，也不挤占音频）
+//   大模型 onnx/wasm/glb                 → 缓存优先 + 独立大文件桶（不受音频上限挤兑，也不挤占音频）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v17';   // v17：成都微缩分层地形（terrain.js 新模块必须让旧缓存失效，防 import 404 白屏）；game 层牌子/校门/蛋贴山坡
+const VER = 'qtzu-pwa-v18';   // v18：粘土手办风校门 GLB（新增 js/assets.js 必须预缓存，否则离线 import 404 白屏）；.glb 归大文件桶
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动
@@ -16,7 +16,7 @@ const CORE = [
   'favicon.ico', 'favicon.png', 'apple-touch-icon.png',
   'js/compat.js', 'js/version.js', 'js/main.js', 'js/game.js', 'js/ui.js',
   'js/save.js', 'js/words.js', 'js/cities.js', 'js/curriculum.js', 'js/data.js',
-  'js/models.js', 'js/pets.js', 'js/world.js', 'js/audio.js', 'js/speech.js',
+  'js/models.js', 'js/assets.js', 'js/pets.js', 'js/world.js', 'js/audio.js', 'js/speech.js',
   'js/npcs.js', 'js/china-base.js', 'js/china-map.js', 'js/city-shape.js',
   'js/city-shape-data.js', 'js/pep-extra.js', 'js/uni-gate-models.js',
   'js/uni-gates.js', 'js/whisper.js', 'js/track.js', 'js/festival.js',
@@ -109,7 +109,7 @@ self.addEventListener('fetch', e => {
   if (url.origin === location.origin) {
     // 大文件（音频/模型）缓存优先；小代码文件网络优先，更新即时生效
     if (/\.mp3$/i.test(url.pathname)) e.respondWith(cacheFirst(req, 'audio'));
-    else if (/\.(onnx|wasm)$/i.test(url.pathname)) e.respondWith(cacheFirst(req, 'big'));
+    else if (/\.(onnx|wasm|glb)$/i.test(url.pathname)) e.respondWith(cacheFirst(req, 'big'));
     else e.respondWith(networkFirst(req));
     return;
   }

@@ -2147,7 +2147,9 @@ export class Game {
         }
         placedSigns.push({ x, z });
         if (it.type === 'uni') {
-          const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name, it.img);
+          // 校门 GLB 换装后新挂进来的 mesh 不带 sign：onSwap 里补打标，否则点校门会 fallthrough 成走过去
+          const gate = cityLandmark('uni-gate', colorOf.uni, it.zh || it.name, it.img,
+            { onSwap: (g) => g.traverse(o => { o.userData.sign = it; }) });
           gate.position.set(x, this._groundY(x, z), z);   // 微缩地形：校门贴山坡
           gate.rotation.y = Math.atan2(stage.cx - x, stage.cz - z);
           gate.scale.setScalar(0.5);   // 校门同步城市缩 1/2（名牌 sprite 为子对象自动跟随）
@@ -2155,6 +2157,7 @@ export class Game {
             map: this._signNameTexture(it.name || it.zh || ''), transparent: true, depthWrite: false,
           }));
           nm.scale.set(4.2, 0.94, 1); nm.position.set(0, 4.6, 0); gate.add(nm);
+          nm.userData.keep = true;   // GLB 换装时保留（约定见 js/assets.js：标了 keep 的子件不被清掉）
           gate.traverse(o => { o.userData.sign = it; });   // 缺这个：点校门会 fallthrough 成走过去，玩家卡进碰撞体来回晃
           grp.add(gate);
           this.world.colliders.push({ t: 'c', x: +x.toFixed(2), z: +z.toFixed(2), r: 2.2, fixed: true });   // 校门占位
