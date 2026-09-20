@@ -525,8 +525,11 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
     grad.addColorStop(0, '#3E97E8');
     grad.addColorStop(0.42, '#7EC8F5');
     grad.addColorStop(0.62, '#BDE9FF');
-    grad.addColorStop(0.82, '#FDF3D8');
-    grad.addColorStop(1, '#FFE3EC');
+    // 地平线附近压深一档：原来的 #FDF3D8 / #FFE3EC 亮度 0.95+，正好越过辉光门槛（0.92），
+    // 整条地平线会泛光 → check-render 的 composerDiff（开/关后期亮度差）直接 0.20 超标。
+    // 压到 0.90 以下既保住暖调，又让辉光只留给真正的发光物（蛋/词宠/灯）。
+    grad.addColorStop(0.82, '#EFE0BE');
+    grad.addColorStop(1, '#EDD9E0');
     c.fillStyle = grad;
     c.fillRect(0, 0, 2, 256);
   }
@@ -576,15 +579,21 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   const sun = new THREE.DirectionalLight(0xFFF2DC, 1.35);
   sun.position.set(18, 30, 12);
   sun.castShadow = true;
+  // 阴影框跟着玩家走（js/game.js 的 _updateShadowFollow 每帧挪 sun.target 与 sun.position）：
+  // 原来固定 ±60，而成都舞台半径 87，城的外圈**一点投影都没有**；框小了 texel 密度才够，
+  // 接触影才"坐得住"（2048 铺满 120×120 时约 17 texel/单位，铺 52×52 是 79 texel/单位）。
   sun.shadow.mapSize.set(2048, 2048);
-  sun.shadow.camera.left = -60; sun.shadow.camera.right = 60;
-  sun.shadow.camera.top = 60; sun.shadow.camera.bottom = -60;
-  sun.shadow.camera.far = cityOnly0 ? 400 : 110;
-  sun.shadow.bias = -0.0004;
-  sun.shadow.radius = 6;          // 阴影边缘更柔（4→6）：粘土手办风要"糊"一点的接触影，不要刀切边
+  sun.shadow.camera.left = -26; sun.shadow.camera.right = 26;
+  sun.shadow.camera.top = 26; sun.shadow.camera.bottom = -26;
+  sun.shadow.camera.near = 1;
+  sun.shadow.camera.far = cityOnly0 ? 460 : 160;   // 跟随后天光距离随玩家走，远平面要留够
+  sun.shadow.bias = -0.0006;
+  sun.shadow.radius = 3;          // 框小了：不必再靠 radius 糊（6 会把接触影糊没）
   scene.add(sun);
+  scene.add(sun.target);          // 跟随要改 target.position；不进场景的话它的世界矩阵不更新
   // 昼夜循环：game 层每帧按真实时间移动日月、调光照与雾色
-  world.anim.dayNight = { sunCore, sunHalo, moon, sun, hemi, dome, fog: scene.fog };
+  // sunDir：太阳的"方向"（单位向量）。跟随逻辑按 dir 把光源放到玩家上方，保证光照方向不变
+  world.anim.dayNight = { sunCore, sunHalo, moon, sun, hemi, dome, fog: scene.fog, sunDir: sunDir.clone() };
   // 夜晚全岛萤火虫（白天 opacity 0 隐藏）
   {
     const n = 50;

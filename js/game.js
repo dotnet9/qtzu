@@ -4,6 +4,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 import { WORD_MAP, ZONE_NAMES, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
@@ -198,7 +199,7 @@ export class Game {
 
   _initScene() {
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 1, 6000);   // near 1 提升远距深度精度（防大平面 z-fighting），远平面 6000 见全国地图
+    this.camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 1, 6000);   // FOV 42：主体更大、纵深更强（参考图那种低角度构图）；near 1 提升远距深度精度，远平面 6000 见全国地图
     this.world = buildWorld(this.scene, this.islands, { focus: Math.max(0, this.chapterIndex(this.hatchedInScope())) });   // 只精建当前关±1 的城市，其余轻量占位
     this._ranchPets = [];   // 🐾 词宠乐园：迷你分身（最近孵出的 6 只）
     this.syncRanch();
@@ -236,12 +237,39 @@ export class Game {
     const lowEnd = matchMedia('(pointer: coarse)').matches;
     if (!lowEnd) {
       try {
-        this.composer = new EffectComposer(this.renderer);
+        // MSAA 必须挂在 composer 的离屏 RT 上：renderer 的 antialias 只作用于"渲染到默认帧缓冲"，
+        // 走 EffectComposer 时场景先渲进 RT，那一步的 antialias 设置**根本不生效** → 桌面端全屏锯齿
+        // （树冠、屋檐、栏杆最明显，越精致的模型越显脏）。r160 支持给 RT 设 samples（WebGL2 多重采样），
+        // 这是后期链里拿到 MSAA 的唯一办法；低端/触屏仍走"不进后期"的分支。
+        // 采样数可调（?msaa=0|2|4）：headless/软件渲染下 4x 的代价被放大，
+        // 真机上便宜得多——用 scripts/look-shot.mjs 的帧时长中位数实测后再定默认值
+        // 多重采样在这里是"整帧的代价"：本机 Intel UHD 730 / D3D11 / 1280x760 实测
+        // MSAA 2x 与 4x 都把帧时长中位数从 16.7ms 顶到 33.2ms（掉到 30fps），而收益只是抗锯齿。
+        // 所以默认 0 采样，抗锯齿交给下面的 SMAAPass（桌面端，几次纹理采样，代价 <1ms）。
+        // ?msaa=N 保留为旋钮：大独显上想开多重采样自己开。
+        const gl = this.renderer.getContext();
+        const dbgInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        const glName = dbgInfo ? String(gl.getParameter(dbgInfo.UNMASKED_RENDERER_WEBGL) || '') : '';
+        const msaaQ = /[?&]msaa=(\d+)/.exec(location.search);
+        const msaaN = msaaQ ? Number(msaaQ[1]) : 0;
+        this._glName = glName; this._msaaN = msaaN;
+        const msaaRT = new THREE.WebGLRenderTarget(
+          Math.floor(innerWidth * this.renderer.getPixelRatio()),
+          Math.floor(innerHeight * this.renderer.getPixelRatio()),
+          { samples: msaaN, type: THREE.HalfFloatType });
+        this.composer = new EffectComposer(this.renderer, msaaRT);
         this.composer.addPass(new RenderPass(this.scene, this.camera));
         // 粘土手办风：辉光收敛（0.32→0.22）——马卡龙配色本身就亮，泛光一强就糊成一片奶油
         // 粘土手办风：辉光只留给"发光物"（词宠蛋/词宠/灯）——强度 0.22→0.10，门槛抬到 0.92
-        this.bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.10, 0.45, 0.92);
+        // 门槛 0.92 → 0.98：threshold 比的是**线性**亮度，白墙/广场/天空在线性空间轻松过 0.92，
+        // 于是"开后期"整幅被加了一层辉光——check-render 的 composerDiff（开/关后期亮度差）
+        // 一直是 0.19（门槛 0.02），草地饱和也被辉光从 0.42 拉到 0.26。抬到 0.98 后只有
+        // 真正的发光物（蛋/词宠 emissive/灯）越过门槛，辉光回到"点缀"而不是"滤镜"。
+        this.bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.10, 0.45, 0.98);
         this.composer.addPass(this.bloom);
+        // SMAA：后期链里的抗锯齿（MSAA 在 iGPU 上太贵，见上）。
+        // 放在 OutputPass 之前，这样它处理的是已经合成好的线性画面。
+        this.composer.addPass(new SMAAPass(innerWidth * this.renderer.getPixelRatio(), innerHeight * this.renderer.getPixelRatio()));
         // OutputPass 必须是最后一层：r160 的色调映射与色域转换只在"渲染到画布"时生效
         // （WebGLPrograms.getParameters：currentRenderTarget !== null 时 toneMapping=NoToneMapping、
         //  outputColorSpace=LinearSRGBColorSpace），RenderPass 写进 RT 的是未 tonemap 的线性值。
@@ -274,7 +302,9 @@ export class Game {
         pmrem.dispose();
       } catch (e) { this.scene.environment = null; }
     }
-    this.camYaw = 0; this.camPitch = 0.42; this.camDist = 8.5; this.camDistTarget = 8.5;   // 缩放目标值：滚轮/键盘改它，每帧平滑趋近
+    // 默认机位按参考图定：俯角 0.42→0.30、距离 8.5→6.6 —— 低角度、主体大、纵深强；
+    // 缩放范围（2.8~550）与双击拉远一律保留，孩子随时能拉远看全景
+    this.camYaw = 0; this.camPitch = 0.30; this.camDist = 6.6; this.camDistTarget = 6.6;   // 缩放目标值：滚轮/键盘改它，每帧平滑趋近
     this.gateTries = {};   // 每个机关猜错的次数（一次答对有星星奖励）
     this.lockInput = false;   // 通关卡/演出期间锁操作
     this.cinematic = false;   // 镜头动画接管中（不再按轨道公式覆盖机位）
@@ -884,6 +914,7 @@ export class Game {
     const t = this.clock.elapsedTime;
     this._updatePlayer(dt);
     this._updateCamera(dt);
+    this._updateShadowFollow();   // 阴影框跟人（见该函数注释：固定 ±60 时城的外圈没有投影）
     if (this.chinaMap) this.chinaMap.setRouteFade(this.camDist);   // 巡游路线虚线：拉远才显现
     if (this.chinaMap) this.chinaMap.setDetail(this.camDist);   // 邻城地形浮雕：中距才画
     this._updateWorldAnim(dt, t);
@@ -3058,7 +3089,7 @@ export class Game {
       this.scene.fog.far = Math.max(fogR * 5.0, 142 + dist * 4);
     }
     this.camera.position.lerp(v, Math.min(1, dt * 7));
-    this.camera.lookAt(target.x, target.y + 1.0, target.z);
+    this.camera.lookAt(target.x, target.y + 0.88, target.z);   // 0.88：低角度下主体落在画面中偏上
     // 天空穹顶水平跟随镜头（穹顶半径大于缩放上限，相机永远在球内，地平线不偏）
     const dnDome = this.world.anim.dayNight && this.world.anim.dayNight.dome;
     if (dnDome) dnDome.position.set(v.x, 0, v.z);
@@ -3292,6 +3323,29 @@ export class Game {
     }
   }
 
+  // 阴影跟随：光源与太阳 target 一起挪到玩家（相机焦点）上方，阴影框随缩放放大。
+  // 收益：外圈也有投影了（框不再固定 ±60）、texel 密度高一个量级（接触影"坐得住"）。
+  // 只在"框该变"时才 updateProjectionMatrix，避免每帧重算阴影投影矩阵。
+  _updateShadowFollow() {
+    const dn = this.world && this.world.anim && this.world.anim.dayNight;
+    if (!dn || !dn.sun || !dn.sun.target) return;
+    const p = this.player ? this.player.position : null;
+    if (!p) return;
+    const dir = dn.sunDir || (dn.sunDir = new THREE.Vector3(0.4, 1, 0.3).normalize());
+    const dist = Math.max(6, this.camDist || 8);
+    // 近景小框（26）→ 拉远时线性放大到 95：拉远看全景时全城也都有影
+    const half = Math.min(95, 26 + Math.max(0, dist - 20) * 1.15);
+    dn.sun.target.position.set(p.x, 0, p.z);
+    dn.sun.target.updateMatrixWorld();
+    dn.sun.position.set(p.x + dir.x * 70, Math.max(24, dir.y * 70), p.z + dir.z * 70);
+    dn.sun.updateMatrixWorld();
+    const cam = dn.sun.shadow.camera;
+    if (Math.abs(cam.right - half) > half * 0.06) {
+      cam.left = -half; cam.right = half; cam.top = half; cam.bottom = -half;
+      cam.updateProjectionMatrix();
+    }
+  }
+
   // 昼夜循环：按真实时间移动日月、调光照与雾色（18:00-6:00 进夜晚模式）
   _updateDayNight() {
     const dn = this.world.anim.dayNight;
@@ -3327,6 +3381,7 @@ export class Game {
       dn.moon.visible = false;
       const a = Math.PI * (1 - (hr - 6) / 12);
       dn.sun.position.set(Math.cos(a) * 60, 16 + Math.sin(a) * 34, 14);
+      (dn.sunDir || (dn.sunDir = new THREE.Vector3())).copy(dn.sun.position).normalize();   // 跟随逻辑按这个方向摆光源
       dn.sunCore.position.set(Math.cos(a) * sunR, 20 + Math.sin(a) * sunR * 0.76, sunR * 0.2);
       // 太阳 sprite 按舞台半径放大轨道、按城尺度收小尺寸：成都（r≈86）从"离城心 118 的 64 单位光球"
       // 变成"离城心 224 的 34 单位光晕"，光斑回到天上而不是罩住地图
@@ -3336,8 +3391,11 @@ export class Game {
       const h = Math.max(0.15, Math.sin(a));
       // 粘土手办风：主光压低、环境提亮 → 低对比柔光（原来的 1.2+0.9h / 0.75+0.35h 会把
       // 亮面推到过曝、暗面压成硬边，圆润造型的"软"就没了）
-      dn.baseSun = 0.85 + h * 0.30; dn.sun.intensity = dn.baseSun;   // baseSun 是"天气打折"的基准
-      dn.hemi.intensity = 0.62 + h * 0.20;
+      // 明暗配比：既要"圆润不死黑"，又要"影子读得出来"。之前是 1.15 : 0.82（环境 71%、
+      // 影子只有 ~30% 深）→ 物体像贴在地面上的纸片；现在 1.45 : 0.66（环境 46%）：
+      // 接触影清楚"坐"在地上，暗部仍是柔的。动这两个数必须回跑 check-render（草地亮度上限 0.70）。
+      dn.baseSun = 1.05 + h * 0.40; dn.sun.intensity = dn.baseSun;   // baseSun 是"天气打折"的基准
+      dn.hemi.intensity = 0.50 + h * 0.16;
       dn.fog.color.set(0xCBE6F2);   // 与天空同色系的浅蓝：远处是"大气"，不是"白纸"（近白雾色是发白的主因之一）
       dn.dome.material.color.set(0xFFFFFF);
       if (sea) sea.material.color.set('#4A9ED9');

@@ -149,9 +149,25 @@ const drive = (page, cam) => page.evaluate(({ dist, pitch, at }) => {
   if (g.world.anim.rain) g.world.anim.rain.visible = false;
   if (g.world.anim.snow) g.world.anim.snow.visible = false;
   if (g.world.anim.dayNight && g.world.anim.dayNight.baseSun) g.world.anim.dayNight.sun.intensity = g.world.anim.dayNight.baseSun;
+  // 日月与光晕是天空装饰 sprite：视角一歪就有一大团亮斑进画面（实测过曝面积在 0.002~0.187 之间跳），
+  // 把它排除掉，量的才是"场景本身"的过曝
+  if (g.world.anim.dayNight) {
+    const d = g.world.anim.dayNight;
+    if (d.sunCore) d.sunCore.visible = false;
+    if (d.sunHalo) d.sunHalo.visible = false;
+    if (d.moon) d.moon.visible = false;
+  }
   g.camYaw = 0; g.camPitch = pitch; g.camDist = g.camDistTarget = dist;
   g.player.position.set(at.x, g._groundY(at.x, at.z), at.z);
   g._occK = 1; g._occSmooth = 1; g._occLowN = 0;
+  // DOM 叠层每张图都收一次：城市卡（#city-card）是进城的异步弹窗，脚本开头收一次收不住，
+  // 它会带着一张白卡进画，把"过曝面积"从 0.002 顶到 0.187（近景指标就是这么假超标的）
+  for (const sel of ['#hud', '#leaderboard-widget', '#brand-badge', '#vignette', '#quest', '#daily',
+    '#city-pill', '#prompt', '#toast', '#cheer', '#pet-fact', '#npc-bubble', '#intro', '#update-bar',
+    '#word-game', '#travel-card', '#help-card', '#city-card', '#shop-card', '#daily-card', '#about-card']) {
+    document.querySelectorAll(sel).forEach((el) => el.classList.add('hidden'));
+  }
+  document.querySelectorAll('.overlay').forEach((el) => el.classList.add('hidden'));
   g._updateDayNight();
   g._updateCamera(1);                       // dt=1 → 插值系数 1，直接到目标机位
   const t = g.player.position, d = g.camDist + (g._viewBoost || 0);
