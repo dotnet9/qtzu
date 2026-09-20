@@ -1,0 +1,535 @@
+{
+ "blender": "4.5.14 LTS",
+ "generated": "2026-09-20T09:45:53.074Z",
+ "kinds": {
+  "gate": {
+   "blender": "4.5.14 LTS",
+   "generated": "2026-09-20T17:45:52",
+   "count": 18
+  }
+ },
+ "assets": {
+  "01ca31a7": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.575,
+     2.575
+    ],
+    "y": [
+     -0.008,
+     4.347
+    ],
+    "z": [
+     -1.754,
+     1.755
+    ]
+   },
+   "beamW": 4.994,
+   "beamY": 3.95,
+   "bytes": 70240,
+   "city": "chengdu",
+   "file": "gates/01ca31a7.glb",
+   "fz": 0.33,
+   "style": "chip",
+   "styleKind": "fam",
+   "tri": 2744,
+   "verts": 1410,
+   "zh": "电子科技大学成都学院",
+   "v": "b32e0b29bd"
+  },
+  "0adccff5": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.504,
+     2.499
+    ],
+    "y": [
+     -0.038,
+     4.787
+    ],
+    "z": [
+     -0.377,
+     1.002
+    ]
+   },
+   "beamW": 4.841,
+   "beamY": 4.006,
+   "bytes": 120016,
+   "city": "chengdu",
+   "file": "gates/0adccff5.glb",
+   "fz": 0.3,
+   "style": "art",
+   "styleKind": "fam",
+   "tri": 5006,
+   "verts": 2531,
+   "zh": "四川音乐学院",
+   "v": "9a0048e299"
+  },
+  "0f1656c4": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.412,
+     3.412
+    ],
+    "y": [
+     -0.009,
+     4.445
+    ],
+    "z": [
+     -0.418,
+     1
+    ]
+   },
+   "beamW": 5.377,
+   "beamY": 4.013,
+   "bytes": 89164,
+   "city": "chengdu",
+   "file": "gates/0f1656c4.glb",
+   "fz": 0.34,
+   "style": "classic",
+   "styleKind": "fam",
+   "tri": 3704,
+   "verts": 1884,
+   "zh": "西华大学",
+   "v": "0d65885237"
+  },
+  "25b19532": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.433,
+     2.433
+    ],
+    "y": [
+     -0.001,
+     4.373
+    ],
+    "z": [
+     -1.771,
+     1.771
+    ]
+   },
+   "beamW": 4.711,
+   "beamY": 3.982,
+   "bytes": 70256,
+   "city": "chengdu",
+   "file": "gates/25b19532.glb",
+   "fz": 0.33,
+   "style": "chip",
+   "styleKind": "fam",
+   "tri": 2744,
+   "verts": 1410,
+   "zh": "成都信息工程大学",
+   "v": "7b152c328c"
+  },
+  "28e9d7f0": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.69,
+     2.691
+    ],
+    "y": [
+     -0.002,
+     4.28
+    ],
+    "z": [
+     -1.808,
+     1.807
+    ]
+   },
+   "beamW": 5.224,
+   "beamY": 4.054,
+   "bytes": 80884,
+   "city": "chengdu",
+   "file": "gates/28e9d7f0.glb",
+   "fz": 0.33,
+   "style": "rail",
+   "styleKind": "fam",
+   "tri": 3072,
+   "verts": 1598,
+   "zh": "西南交通大学",
+   "v": "ce426f4fb4"
+  },
+  "30f1b96c": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.82,
+     2.82
+    ],
+    "y": [
+     -0.005,
+     4.721
+    ],
+    "z": [
+     -0.362,
+     1.001
+    ]
+   },
+   "beamW": 5.485,
+   "beamY": 3.996,
+   "bytes": 109704,
+   "city": "chengdu",
+   "file": "gates/30f1b96c.glb",
+   "fz": 0.31,
+   "style": "sport",
+   "styleKind": "fam",
+   "tri": 4608,
+   "verts": 2320,
+   "zh": "成都体育学院",
+   "v": "c99ca9fb30"
+  },
+  "315ba304": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.681,
+     2.689
+    ],
+    "y": [
+     -0.007,
+     3.988
+    ],
+    "z": [
+     -0.306,
+     1.073
+    ]
+   },
+   "beamW": 5.215,
+   "beamY": 3.697,
+   "bytes": 102804,
+   "city": "chengdu",
+   "file": "gates/315ba304.glb",
+   "fz": 0.29,
+   "style": "tcm",
+   "styleKind": "fam",
+   "tri": 4236,
+   "verts": 2162,
+   "zh": "成都中医药大学",
+   "v": "7124c34e7c"
+  },
+  "41c1d894": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.798,
+     2.799
+    ],
+    "y": [
+     -0.002,
+     4.244
+    ],
+    "z": [
+     -1.625,
+     1.626
+    ]
+   },
+   "beamW": 5.443,
+   "beamY": 3.693,
+   "bytes": 60536,
+   "city": "chengdu",
+   "file": "gates/41c1d894.glb",
+   "fz": 0.33,
+   "style": "finance",
+   "styleKind": "fam",
+   "tri": 2412,
+   "verts": 1244,
+   "zh": "西南财经大学",
+   "v": "b9cb735930"
+  },
+  "62a8242f": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.627,
+     2.632
+    ],
+    "y": [
+     -0.005,
+     4.608
+    ],
+    "z": [
+     -0.313,
+     1.002
+    ]
+   },
+   "beamW": 5.098,
+   "beamY": 3.903,
+   "bytes": 64556,
+   "city": "chengdu",
+   "file": "gates/62a8242f.glb",
+   "fz": 0.29,
+   "style": "normal",
+   "styleKind": "fam",
+   "tri": 2596,
+   "verts": 1322,
+   "zh": "成都师范学院",
+   "v": "38928e9f89"
+  },
+  "7d37784a": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.193,
+     3.19
+    ],
+    "y": [
+     -0.009,
+     4.408
+    ],
+    "z": [
+     -0.417,
+     1.005
+    ]
+   },
+   "beamW": 4.934,
+   "beamY": 3.978,
+   "bytes": 89172,
+   "city": "chengdu",
+   "file": "gates/7d37784a.glb",
+   "fz": 0.34,
+   "style": "classic",
+   "styleKind": "fam",
+   "tri": 3704,
+   "verts": 1884,
+   "zh": "四川旅游学院",
+   "v": "d0063f9b79"
+  },
+  "9162a0cf": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.686,
+     2.687
+    ],
+    "y": [
+     -0.001,
+     4.694
+    ],
+    "z": [
+     -0.311,
+     1
+    ]
+   },
+   "beamW": 5.224,
+   "beamY": 3.998,
+   "bytes": 64560,
+   "city": "chengdu",
+   "file": "gates/9162a0cf.glb",
+   "fz": 0.29,
+   "style": "normal",
+   "styleKind": "fam",
+   "tri": 2596,
+   "verts": 1322,
+   "zh": "四川师范大学",
+   "v": "199b785dfb"
+  },
+  "9f2d2ef6": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.497,
+     2.496
+    ],
+    "y": [
+     -0.007,
+     4.286
+    ],
+    "z": [
+     -1.725,
+     1.725
+    ]
+   },
+   "beamW": 4.833,
+   "beamY": 3.891,
+   "bytes": 70248,
+   "city": "chengdu",
+   "file": "gates/9f2d2ef6.glb",
+   "fz": 0.33,
+   "style": "chip",
+   "styleKind": "fam",
+   "tri": 2744,
+   "verts": 1410,
+   "zh": "电子科技大学",
+   "v": "d10a672cfe"
+  },
+  "d0880348": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.666,
+     2.666
+    ],
+    "y": [
+     -0.04,
+     4.626
+    ],
+    "z": [
+     -0.379,
+     1.002
+    ]
+   },
+   "beamW": 5.181,
+   "beamY": 3.847,
+   "bytes": 120012,
+   "city": "chengdu",
+   "file": "gates/d0880348.glb",
+   "fz": 0.3,
+   "style": "art",
+   "styleKind": "fam",
+   "tri": 5006,
+   "verts": 2531,
+   "zh": "四川电影电视学院",
+   "v": "d2d5e51a22"
+  },
+  "d65f6c16": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.483,
+     2.481
+    ],
+    "y": [
+     -0.002,
+     4.36
+    ],
+    "z": [
+     -1.782,
+     1.788
+    ]
+   },
+   "beamW": 4.795,
+   "beamY": 4.009,
+   "bytes": 46936,
+   "city": "chengdu",
+   "file": "gates/d65f6c16.glb",
+   "fz": 0.33,
+   "style": "medic",
+   "styleKind": "fam",
+   "tri": 1836,
+   "verts": 952,
+   "zh": "成都医学院",
+   "v": "74beb33bce"
+  },
+  "df374e4a": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.584,
+     2.577
+    ],
+    "y": [
+     -0.006,
+     4.221
+    ],
+    "z": [
+     -1.694,
+     1.69
+    ]
+   },
+   "beamW": 5.004,
+   "beamY": 3.825,
+   "bytes": 70256,
+   "city": "chengdu",
+   "file": "gates/df374e4a.glb",
+   "fz": 0.33,
+   "style": "chip",
+   "styleKind": "fam",
+   "tri": 2744,
+   "verts": 1410,
+   "zh": "成都理工大学",
+   "v": "2a98fd6709"
+  },
+  "e3454c44": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.522,
+     2.519
+    ],
+    "y": [
+     -0.007,
+     5.051
+    ],
+    "z": [
+     -1.844,
+     1.846
+    ]
+   },
+   "beamW": 4.887,
+   "beamY": 4.116,
+   "bytes": 75988,
+   "city": "chengdu",
+   "file": "gates/e3454c44.glb",
+   "fz": 0.33,
+   "style": "folk",
+   "styleKind": "fam",
+   "tri": 3032,
+   "verts": 1558,
+   "zh": "西南民族大学",
+   "v": "55c88d19b3"
+  },
+  "e7e0b341": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -3.284,
+     3.283
+    ],
+    "y": [
+     -0.002,
+     4.108
+    ],
+    "z": [
+     -0.415,
+     1
+    ]
+   },
+   "beamW": 5.122,
+   "beamY": 3.674,
+   "bytes": 89172,
+   "city": "chengdu",
+   "file": "gates/e7e0b341.glb",
+   "fz": 0.34,
+   "style": "classic",
+   "styleKind": "fam",
+   "tri": 3704,
+   "verts": 1884,
+   "zh": "成都大学",
+   "v": "458f8b1231"
+  },
+  "f918adad": {
+   "kind": "gate",
+   "bbox": {
+    "x": [
+     -2.536,
+     2.528
+    ],
+    "y": [
+     -0.007,
+     5.45
+    ],
+    "z": [
+     -1.753,
+     1.754
+    ]
+   },
+   "beamW": 4.905,
+   "beamY": 3.942,
+   "bytes": 35888,
+   "city": "chengdu",
+   "file": "gates/f918adad.glb",
+   "fz": 0.35,
+   "style": "modern",
+   "styleKind": "tpl",
+   "tri": 1404,
+   "verts": 728,
+   "zh": "四川大学",
+   "v": "575176d00b"
+  }
+ }
+}

@@ -1,0 +1,365 @@
+{
+ "kind": "gate",
+ "specs": [
+  {
+   "id": "f918adad",
+   "zh": "四川大学",
+   "en": "Sichuan University",
+   "city": "chengdu",
+   "style": {
+    "kind": "tpl",
+    "id": "modern"
+   },
+   "colors": [
+    "#b13d31",
+    "#F2EEE6",
+    "#E8C86A",
+    "#5A6472"
+   ],
+   "prop": null,
+   "span": 3.805,
+   "height": 3.502,
+   "variant": 671255
+  },
+  {
+   "id": "9f2d2ef6",
+   "zh": "电子科技大学",
+   "en": "University of Electronic Science and Technology of China",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#88a4c0",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.833,
+   "height": 3.441,
+   "variant": 405681
+  },
+  {
+   "id": "28e9d7f0",
+   "zh": "西南交通大学",
+   "en": "Southwest Jiaotong University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "rail"
+   },
+   "colors": [
+    "#92755e",
+    "#4F4A46",
+    "#E8C86A",
+    "#3A3634"
+   ],
+   "prop": null,
+   "span": 4.224,
+   "height": 3.604,
+   "variant": 86555
+  },
+  {
+   "id": "41c1d894",
+   "zh": "西南财经大学",
+   "en": "Southwestern University of Finance and Economics",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "finance"
+   },
+   "colors": [
+    "#347356",
+    "#E8C86A",
+    "#F5E7B8",
+    "#2A5A44"
+   ],
+   "prop": null,
+   "span": 4.443,
+   "height": 3.243,
+   "variant": 224162
+  },
+  {
+   "id": "9162a0cf",
+   "zh": "四川师范大学",
+   "en": "Sichuan Normal University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.224,
+   "height": 3.598,
+   "variant": 104053
+  },
+  {
+   "id": "df374e4a",
+   "zh": "成都理工大学",
+   "en": "Chengdu University of Technology",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#85a1bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 4.004,
+   "height": 3.375,
+   "variant": 56785
+  },
+  {
+   "id": "e3454c44",
+   "zh": "西南民族大学",
+   "en": "Southwest Minzu University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "folk"
+   },
+   "colors": [
+    "#f2e6d1",
+    "#C0503E",
+    "#E8C86A",
+    "#8A5A34"
+   ],
+   "prop": null,
+   "span": 3.887,
+   "height": 3.676,
+   "variant": 201582
+  },
+  {
+   "id": "315ba304",
+   "zh": "成都中医药大学",
+   "en": "Chengdu University of Traditional Chinese Medicine",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "tcm"
+   },
+   "colors": [
+    "#926651",
+    "#C99A4A",
+    "#D8B87C",
+    "#6E4230"
+   ],
+   "prop": null,
+   "span": 4.215,
+   "height": 3.297,
+   "variant": 306300
+  },
+  {
+   "id": "0f1656c4",
+   "zh": "西华大学",
+   "en": "Xihua University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f3f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.377,
+   "height": 3.633,
+   "variant": 115224
+  },
+  {
+   "id": "25b19532",
+   "zh": "成都信息工程大学",
+   "en": "Chengdu University of Information Technology",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#819ebc",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.711,
+   "height": 3.532,
+   "variant": 378408
+  },
+  {
+   "id": "e7e0b341",
+   "zh": "成都大学",
+   "en": "Chengdu University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e9",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 4.122,
+   "height": 3.294,
+   "variant": 710148
+  },
+  {
+   "id": "0adccff5",
+   "zh": "四川音乐学院",
+   "en": "Sichuan Conservatory of Music",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f3e6ef",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 3.841,
+   "height": 3.586,
+   "variant": 25474
+  },
+  {
+   "id": "30f1b96c",
+   "zh": "成都体育学院",
+   "en": "Chengdu Sport University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "sport"
+   },
+   "colors": [
+    "#ebf0e7",
+    "#5FA05F",
+    "#E8C86A",
+    "#3E6B4F"
+   ],
+   "prop": null,
+   "span": 4.485,
+   "height": 3.556,
+   "variant": 735064
+  },
+  {
+   "id": "7d37784a",
+   "zh": "四川旅游学院",
+   "en": "Sichuan Tourism University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "classic"
+   },
+   "colors": [
+    "#f4f0e8",
+    "#CFC5B0",
+    "#6FA36F",
+    "#B9B0A0"
+   ],
+   "prop": null,
+   "span": 3.934,
+   "height": 3.598,
+   "variant": 190773
+  },
+  {
+   "id": "d65f6c16",
+   "zh": "成都医学院",
+   "en": "Chengdu Medical College",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "medic"
+   },
+   "colors": [
+    "#f2efe8",
+    "#D95555",
+    "#CFE3F2",
+    "#3F6E8C"
+   ],
+   "prop": null,
+   "span": 3.795,
+   "height": 3.559,
+   "variant": 158591
+  },
+  {
+   "id": "62a8242f",
+   "zh": "成都师范学院",
+   "en": "Chengdu Normal University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "normal"
+   },
+   "colors": [
+    "#f4f0e7",
+    "#D8D2C4",
+    "#E0A85A",
+    "#B4AC9C"
+   ],
+   "prop": null,
+   "span": 4.098,
+   "height": 3.503,
+   "variant": 232461
+  },
+  {
+   "id": "d0880348",
+   "zh": "四川电影电视学院",
+   "en": "Sichuan Film and Television University",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "art"
+   },
+   "colors": [
+    "#f2e4ee",
+    "#C97BA8",
+    "#F5DFA8",
+    "#8A5A80"
+   ],
+   "prop": null,
+   "span": 4.181,
+   "height": 3.427,
+   "variant": 437659
+  },
+  {
+   "id": "01ca31a7",
+   "zh": "电子科技大学成都学院",
+   "en": "Chengdu College of UESTC",
+   "city": "chengdu",
+   "style": {
+    "kind": "fam",
+    "id": "chip"
+   },
+   "colors": [
+    "#86a2bf",
+    "#4E7CA8",
+    "#AEE0FF",
+    "#3D6288"
+   ],
+   "prop": null,
+   "span": 3.994,
+   "height": 3.5,
+   "variant": 739984
+  }
+ ]
+}
