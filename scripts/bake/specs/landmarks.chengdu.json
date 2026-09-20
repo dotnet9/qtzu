@@ -1,0 +1,44 @@
+{
+ "kind": "landmark",
+ "specs": [
+  {
+   "id": "5d329268",
+   "city": "chengdu",
+   "i": 0,
+   "type": "panda",
+   "zh": "成都",
+   "color": "#B85A7A",
+   "colors": [
+    "#dfb5c3",
+    "#B85A7A",
+    "#994f66"
+   ]
+  },
+  {
+   "id": "8cca9597",
+   "city": "chengdu",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "成都",
+   "color": "#B85A7A",
+   "colors": [
+    "#dfb5c3",
+    "#B85A7A",
+    "#994f66"
+   ]
+  },
+  {
+   "id": "b808f3be",
+   "city": "chengdu",
+   "i": 2,
+   "type": "bridge",
+   "zh": "成都",
+   "color": "#B85A7A",
+   "colors": [
+    "#dfb5c3",
+    "#B85A7A",
+    "#994f66"
+   ]
+  }
+ ]
+}

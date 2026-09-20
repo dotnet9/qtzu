@@ -1,0 +1,1812 @@
+{
+ "kind": "landmark",
+ "specs": [
+  {
+   "id": "9f414018",
+   "city": "beijing",
+   "i": 0,
+   "type": "gate",
+   "zh": "北京",
+   "color": "#C8402F",
+   "colors": [
+    "#e6a9a1",
+    "#C8402F",
+    "#a53c2d"
+   ]
+  },
+  {
+   "id": "d835e4c6",
+   "city": "beijing",
+   "i": 1,
+   "type": "wall",
+   "zh": "北京",
+   "color": "#C8402F",
+   "colors": [
+    "#e6a9a1",
+    "#C8402F",
+    "#a53c2d"
+   ]
+  },
+  {
+   "id": "552d2624",
+   "city": "beijing",
+   "i": 2,
+   "type": "temple",
+   "zh": "北京",
+   "color": "#C8402F",
+   "colors": [
+    "#e6a9a1",
+    "#C8402F",
+    "#a53c2d"
+   ]
+  },
+  {
+   "id": "7f77cb8d",
+   "city": "beijing",
+   "i": 3,
+   "type": "tower",
+   "zh": "北京",
+   "color": "#C8402F",
+   "colors": [
+    "#e6a9a1",
+    "#C8402F",
+    "#a53c2d"
+   ]
+  },
+  {
+   "id": "7feda526",
+   "city": "changchun",
+   "i": 0,
+   "type": "gate",
+   "zh": "长春",
+   "color": "#8A9E5A",
+   "colors": [
+    "#cad3b5",
+    "#8A9E5A",
+    "#76824e"
+   ]
+  },
+  {
+   "id": "e1928029",
+   "city": "changchun",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "长春",
+   "color": "#8A9E5A",
+   "colors": [
+    "#cad3b5",
+    "#8A9E5A",
+    "#76824e"
+   ]
+  },
+  {
+   "id": "15f14b85",
+   "city": "changchun",
+   "i": 2,
+   "type": "tower",
+   "zh": "长春",
+   "color": "#8A9E5A",
+   "colors": [
+    "#cad3b5",
+    "#8A9E5A",
+    "#76824e"
+   ]
+  },
+  {
+   "id": "3942f0e3",
+   "city": "changsha",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "长沙",
+   "color": "#D46A4A",
+   "colors": [
+    "#ecbcae",
+    "#D46A4A",
+    "#ae5b42"
+   ]
+  },
+  {
+   "id": "123c154a",
+   "city": "changsha",
+   "i": 2,
+   "type": "tower",
+   "zh": "长沙",
+   "color": "#D46A4A",
+   "colors": [
+    "#ecbcae",
+    "#D46A4A",
+    "#ae5b42"
+   ]
+  },
+  {
+   "id": "288dee37",
+   "city": "chengde",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "承德",
+   "color": "#7A9E5A",
+   "colors": [
+    "#c3d3b5",
+    "#7A9E5A",
+    "#6a824e"
+   ]
+  },
+  {
+   "id": "6c04546c",
+   "city": "chengde",
+   "i": 2,
+   "type": "tower",
+   "zh": "承德",
+   "color": "#7A9E5A",
+   "colors": [
+    "#c3d3b5",
+    "#7A9E5A",
+    "#6a824e"
+   ]
+  },
+  {
+   "id": "5d329268",
+   "city": "chengdu",
+   "i": 0,
+   "type": "panda",
+   "zh": "成都",
+   "color": "#B85A7A",
+   "colors": [
+    "#dfb5c3",
+    "#B85A7A",
+    "#994f66"
+   ]
+  },
+  {
+   "id": "8cca9597",
+   "city": "chengdu",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "成都",
+   "color": "#B85A7A",
+   "colors": [
+    "#dfb5c3",
+    "#B85A7A",
+    "#994f66"
+   ]
+  },
+  {
+   "id": "b808f3be",
+   "city": "chengdu",
+   "i": 2,
+   "type": "bridge",
+   "zh": "成都",
+   "color": "#B85A7A",
+   "colors": [
+    "#dfb5c3",
+    "#B85A7A",
+    "#994f66"
+   ]
+  },
+  {
+   "id": "a4d54764",
+   "city": "chongqing",
+   "i": 0,
+   "type": "mountain",
+   "zh": "重庆",
+   "color": "#B4533A",
+   "colors": [
+    "#ddb2a6",
+    "#B4533A",
+    "#964a36"
+   ]
+  },
+  {
+   "id": "08929265",
+   "city": "chongqing",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "重庆",
+   "color": "#B4533A",
+   "colors": [
+    "#ddb2a6",
+    "#B4533A",
+    "#964a36"
+   ]
+  },
+  {
+   "id": "bfc9d9c0",
+   "city": "chongqing",
+   "i": 2,
+   "type": "tower",
+   "zh": "重庆",
+   "color": "#B4533A",
+   "colors": [
+    "#ddb2a6",
+    "#B4533A",
+    "#964a36"
+   ]
+  },
+  {
+   "id": "19ff6fb4",
+   "city": "dalian",
+   "i": 0,
+   "type": "harbor",
+   "zh": "大连",
+   "color": "#4E9EE8",
+   "colors": [
+    "#afd3f5",
+    "#4E9EE8",
+    "#4982b8"
+   ]
+  },
+  {
+   "id": "4de2ad8c",
+   "city": "dalian",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "大连",
+   "color": "#4E9EE8",
+   "colors": [
+    "#afd3f5",
+    "#4E9EE8",
+    "#4982b8"
+   ]
+  },
+  {
+   "id": "687d4c51",
+   "city": "dalian",
+   "i": 2,
+   "type": "tower",
+   "zh": "大连",
+   "color": "#4E9EE8",
+   "colors": [
+    "#afd3f5",
+    "#4E9EE8",
+    "#4982b8"
+   ]
+  },
+  {
+   "id": "6d3812ad",
+   "city": "datong",
+   "i": 0,
+   "type": "gate",
+   "zh": "大同",
+   "color": "#9A8A7A",
+   "colors": [
+    "#d2cac3",
+    "#9A8A7A",
+    "#827366"
+   ]
+  },
+  {
+   "id": "bdee95d4",
+   "city": "datong",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "大同",
+   "color": "#9A8A7A",
+   "colors": [
+    "#d2cac3",
+    "#9A8A7A",
+    "#827366"
+   ]
+  },
+  {
+   "id": "5ba80205",
+   "city": "datong",
+   "i": 2,
+   "type": "tower",
+   "zh": "大同",
+   "color": "#9A8A7A",
+   "colors": [
+    "#d2cac3",
+    "#9A8A7A",
+    "#827366"
+   ]
+  },
+  {
+   "id": "16d9adc0",
+   "city": "dunhuang",
+   "i": 0,
+   "type": "gate",
+   "zh": "敦煌",
+   "color": "#C09858",
+   "colors": [
+    "#e3d1b4",
+    "#C09858",
+    "#9f7e4c"
+   ]
+  },
+  {
+   "id": "255f493a",
+   "city": "dunhuang",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "敦煌",
+   "color": "#C09858",
+   "colors": [
+    "#e3d1b4",
+    "#C09858",
+    "#9f7e4c"
+   ]
+  },
+  {
+   "id": "10ca7d8f",
+   "city": "dunhuang",
+   "i": 2,
+   "type": "tower",
+   "zh": "敦煌",
+   "color": "#C09858",
+   "colors": [
+    "#e3d1b4",
+    "#C09858",
+    "#9f7e4c"
+   ]
+  },
+  {
+   "id": "e9489952",
+   "city": "fuzhou",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "福州",
+   "color": "#4E9E7F",
+   "colors": [
+    "#afd3c5",
+    "#4E9E7F",
+    "#498269"
+   ]
+  },
+  {
+   "id": "df51fc9d",
+   "city": "fuzhou",
+   "i": 2,
+   "type": "tower",
+   "zh": "福州",
+   "color": "#4E9E7F",
+   "colors": [
+    "#afd3c5",
+    "#4E9E7F",
+    "#498269"
+   ]
+  },
+  {
+   "id": "7fb9fc5c",
+   "city": "guangzhou",
+   "i": 0,
+   "type": "tower",
+   "zh": "广州",
+   "color": "#C9803E",
+   "colors": [
+    "#e7c6a8",
+    "#C9803E",
+    "#a56c39"
+   ]
+  },
+  {
+   "id": "f394fd6d",
+   "city": "guangzhou",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "广州",
+   "color": "#C9803E",
+   "colors": [
+    "#e7c6a8",
+    "#C9803E",
+    "#a56c39"
+   ]
+  },
+  {
+   "id": "6dbfcecb",
+   "city": "guiyang",
+   "i": 0,
+   "type": "mountain",
+   "zh": "贵阳",
+   "color": "#5AB88A",
+   "colors": [
+    "#b5dfca",
+    "#5AB88A",
+    "#529672"
+   ]
+  },
+  {
+   "id": "3130ec50",
+   "city": "guiyang",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "贵阳",
+   "color": "#5AB88A",
+   "colors": [
+    "#b5dfca",
+    "#5AB88A",
+    "#529672"
+   ]
+  },
+  {
+   "id": "9c95de91",
+   "city": "guiyang",
+   "i": 2,
+   "type": "tower",
+   "zh": "贵阳",
+   "color": "#5AB88A",
+   "colors": [
+    "#b5dfca",
+    "#5AB88A",
+    "#529672"
+   ]
+  },
+  {
+   "id": "31a469cf",
+   "city": "haikou",
+   "i": 0,
+   "type": "harbor",
+   "zh": "海口",
+   "color": "#4EA8C0",
+   "colors": [
+    "#afd8e3",
+    "#4EA8C0",
+    "#498a9a"
+   ]
+  },
+  {
+   "id": "65281b62",
+   "city": "haikou",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "海口",
+   "color": "#4EA8C0",
+   "colors": [
+    "#afd8e3",
+    "#4EA8C0",
+    "#498a9a"
+   ]
+  },
+  {
+   "id": "b57a726a",
+   "city": "haikou",
+   "i": 2,
+   "type": "tower",
+   "zh": "海口",
+   "color": "#4EA8C0",
+   "colors": [
+    "#afd8e3",
+    "#4EA8C0",
+    "#498a9a"
+   ]
+  },
+  {
+   "id": "726f2675",
+   "city": "hangzhou",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "杭州",
+   "color": "#4E9E7F",
+   "colors": [
+    "#afd3c5",
+    "#4E9E7F",
+    "#498269"
+   ]
+  },
+  {
+   "id": "3b0220b0",
+   "city": "hangzhou",
+   "i": 2,
+   "type": "tower",
+   "zh": "杭州",
+   "color": "#4E9E7F",
+   "colors": [
+    "#afd3c5",
+    "#4E9E7F",
+    "#498269"
+   ]
+  },
+  {
+   "id": "f76bce7f",
+   "city": "harbin",
+   "i": 0,
+   "type": "ice",
+   "zh": "哈尔滨",
+   "color": "#7EA8D8",
+   "colors": [
+    "#c5d8ed",
+    "#7EA8D8",
+    "#6d8aac"
+   ]
+  },
+  {
+   "id": "912ca3f7",
+   "city": "harbin",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "哈尔滨",
+   "color": "#7EA8D8",
+   "colors": [
+    "#c5d8ed",
+    "#7EA8D8",
+    "#6d8aac"
+   ]
+  },
+  {
+   "id": "001a8453",
+   "city": "harbin",
+   "i": 2,
+   "type": "tower",
+   "zh": "哈尔滨",
+   "color": "#7EA8D8",
+   "colors": [
+    "#c5d8ed",
+    "#7EA8D8",
+    "#6d8aac"
+   ]
+  },
+  {
+   "id": "11efba59",
+   "city": "hefei",
+   "i": 0,
+   "type": "tower",
+   "zh": "合肥",
+   "color": "#5A8FBF",
+   "colors": [
+    "#b5cde2",
+    "#5A8FBF",
+    "#527799"
+   ]
+  },
+  {
+   "id": "bafae5ee",
+   "city": "hefei",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "合肥",
+   "color": "#5A8FBF",
+   "colors": [
+    "#b5cde2",
+    "#5A8FBF",
+    "#527799"
+   ]
+  },
+  {
+   "id": "594f9145",
+   "city": "hohhot",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "呼和浩特",
+   "color": "#7AA8C0",
+   "colors": [
+    "#c3d8e3",
+    "#7AA8C0",
+    "#6a8a9a"
+   ]
+  },
+  {
+   "id": "0247f596",
+   "city": "hohhot",
+   "i": 2,
+   "type": "tower",
+   "zh": "呼和浩特",
+   "color": "#7AA8C0",
+   "colors": [
+    "#c3d8e3",
+    "#7AA8C0",
+    "#6a8a9a"
+   ]
+  },
+  {
+   "id": "8360e96d",
+   "city": "jinan",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "济南",
+   "color": "#5A9EC0",
+   "colors": [
+    "#b5d3e3",
+    "#5A9EC0",
+    "#52829a"
+   ]
+  },
+  {
+   "id": "b2ef230a",
+   "city": "jinan",
+   "i": 2,
+   "type": "tower",
+   "zh": "济南",
+   "color": "#5A9EC0",
+   "colors": [
+    "#b5d3e3",
+    "#5A9EC0",
+    "#52829a"
+   ]
+  },
+  {
+   "id": "0a6983b3",
+   "city": "kaifeng",
+   "i": 0,
+   "type": "gate",
+   "zh": "开封",
+   "color": "#B08A3E",
+   "colors": [
+    "#dbcaa8",
+    "#B08A3E",
+    "#937339"
+   ]
+  },
+  {
+   "id": "cd0760ac",
+   "city": "kaifeng",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "开封",
+   "color": "#B08A3E",
+   "colors": [
+    "#dbcaa8",
+    "#B08A3E",
+    "#937339"
+   ]
+  },
+  {
+   "id": "6f4f755c",
+   "city": "kaifeng",
+   "i": 2,
+   "type": "tower",
+   "zh": "开封",
+   "color": "#B08A3E",
+   "colors": [
+    "#dbcaa8",
+    "#B08A3E",
+    "#937339"
+   ]
+  },
+  {
+   "id": "efa89257",
+   "city": "kaohsiung",
+   "i": 0,
+   "type": "harbor",
+   "zh": "高雄",
+   "color": "#B4533A",
+   "colors": [
+    "#ddb2a6",
+    "#B4533A",
+    "#964a36"
+   ]
+  },
+  {
+   "id": "5ce43b91",
+   "city": "kaohsiung",
+   "i": 1,
+   "type": "tower",
+   "zh": "高雄",
+   "color": "#B4533A",
+   "colors": [
+    "#ddb2a6",
+    "#B4533A",
+    "#964a36"
+   ]
+  },
+  {
+   "id": "a4a46817",
+   "city": "kaohsiung",
+   "i": 2,
+   "type": "pavilion",
+   "zh": "高雄",
+   "color": "#B4533A",
+   "colors": [
+    "#ddb2a6",
+    "#B4533A",
+    "#964a36"
+   ]
+  },
+  {
+   "id": "42db8cb9",
+   "city": "kunming",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "昆明",
+   "color": "#8FBC5A",
+   "colors": [
+    "#cde1b5",
+    "#8FBC5A",
+    "#7a994e"
+   ]
+  },
+  {
+   "id": "c6bd4205",
+   "city": "kunming",
+   "i": 2,
+   "type": "tower",
+   "zh": "昆明",
+   "color": "#8FBC5A",
+   "colors": [
+    "#cde1b5",
+    "#8FBC5A",
+    "#7a994e"
+   ]
+  },
+  {
+   "id": "8379820b",
+   "city": "lanzhou",
+   "i": 0,
+   "type": "mountain",
+   "zh": "兰州",
+   "color": "#C08A3E",
+   "colors": [
+    "#e3caa8",
+    "#C08A3E",
+    "#9f7339"
+   ]
+  },
+  {
+   "id": "d35f7e12",
+   "city": "lanzhou",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "兰州",
+   "color": "#C08A3E",
+   "colors": [
+    "#e3caa8",
+    "#C08A3E",
+    "#9f7339"
+   ]
+  },
+  {
+   "id": "16d61877",
+   "city": "lanzhou",
+   "i": 2,
+   "type": "tower",
+   "zh": "兰州",
+   "color": "#C08A3E",
+   "colors": [
+    "#e3caa8",
+    "#C08A3E",
+    "#9f7339"
+   ]
+  },
+  {
+   "id": "79e63648",
+   "city": "lhasa",
+   "i": 0,
+   "type": "mountain",
+   "zh": "拉萨",
+   "color": "#C05A5A",
+   "colors": [
+    "#e3b5b5",
+    "#C05A5A",
+    "#9f4f4e"
+   ]
+  },
+  {
+   "id": "45235f03",
+   "city": "lhasa",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "拉萨",
+   "color": "#C05A5A",
+   "colors": [
+    "#e3b5b5",
+    "#C05A5A",
+    "#9f4f4e"
+   ]
+  },
+  {
+   "id": "27caa4e7",
+   "city": "lhasa",
+   "i": 2,
+   "type": "tower",
+   "zh": "拉萨",
+   "color": "#C05A5A",
+   "colors": [
+    "#e3b5b5",
+    "#C05A5A",
+    "#9f4f4e"
+   ]
+  },
+  {
+   "id": "2e8d9da6",
+   "city": "luoyang",
+   "i": 0,
+   "type": "gate",
+   "zh": "洛阳",
+   "color": "#A8769C",
+   "colors": [
+    "#d8c1d2",
+    "#A8769C",
+    "#8d647f"
+   ]
+  },
+  {
+   "id": "8c469b47",
+   "city": "luoyang",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "洛阳",
+   "color": "#A8769C",
+   "colors": [
+    "#d8c1d2",
+    "#A8769C",
+    "#8d647f"
+   ]
+  },
+  {
+   "id": "b730956a",
+   "city": "luoyang",
+   "i": 2,
+   "type": "tower",
+   "zh": "洛阳",
+   "color": "#A8769C",
+   "colors": [
+    "#d8c1d2",
+    "#A8769C",
+    "#8d647f"
+   ]
+  },
+  {
+   "id": "db159c08",
+   "city": "nanchang",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "南昌",
+   "color": "#C05A5A",
+   "colors": [
+    "#e3b5b5",
+    "#C05A5A",
+    "#9f4f4e"
+   ]
+  },
+  {
+   "id": "7ea555d2",
+   "city": "nanchang",
+   "i": 2,
+   "type": "tower",
+   "zh": "南昌",
+   "color": "#C05A5A",
+   "colors": [
+    "#e3b5b5",
+    "#C05A5A",
+    "#9f4f4e"
+   ]
+  },
+  {
+   "id": "724ab8ac",
+   "city": "nanjing",
+   "i": 0,
+   "type": "wall",
+   "zh": "南京",
+   "color": "#7B6BA8",
+   "colors": [
+    "#c4bcd8",
+    "#7B6BA8",
+    "#6b5c88"
+   ]
+  },
+  {
+   "id": "79b9c30e",
+   "city": "nanjing",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "南京",
+   "color": "#7B6BA8",
+   "colors": [
+    "#c4bcd8",
+    "#7B6BA8",
+    "#6b5c88"
+   ]
+  },
+  {
+   "id": "427ef898",
+   "city": "nanjing",
+   "i": 2,
+   "type": "tower",
+   "zh": "南京",
+   "color": "#7B6BA8",
+   "colors": [
+    "#c4bcd8",
+    "#7B6BA8",
+    "#6b5c88"
+   ]
+  },
+  {
+   "id": "8a67f2bf",
+   "city": "nanning",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "南宁",
+   "color": "#4EA85A",
+   "colors": [
+    "#afd8b5",
+    "#4EA85A",
+    "#498a4e"
+   ]
+  },
+  {
+   "id": "ae302c9f",
+   "city": "nanning",
+   "i": 2,
+   "type": "tower",
+   "zh": "南宁",
+   "color": "#4EA85A",
+   "colors": [
+    "#afd8b5",
+    "#4EA85A",
+    "#498a4e"
+   ]
+  },
+  {
+   "id": "2b168894",
+   "city": "qingdao",
+   "i": 0,
+   "type": "harbor",
+   "zh": "青岛",
+   "color": "#4E9EE8",
+   "colors": [
+    "#afd3f5",
+    "#4E9EE8",
+    "#4982b8"
+   ]
+  },
+  {
+   "id": "3e7dc2c0",
+   "city": "qingdao",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "青岛",
+   "color": "#4E9EE8",
+   "colors": [
+    "#afd3f5",
+    "#4E9EE8",
+    "#4982b8"
+   ]
+  },
+  {
+   "id": "d6421cbd",
+   "city": "qingdao",
+   "i": 2,
+   "type": "tower",
+   "zh": "青岛",
+   "color": "#4E9EE8",
+   "colors": [
+    "#afd3f5",
+    "#4E9EE8",
+    "#4982b8"
+   ]
+  },
+  {
+   "id": "3e7dbabf",
+   "city": "quanzhou",
+   "i": 0,
+   "type": "harbor",
+   "zh": "泉州",
+   "color": "#C08040",
+   "colors": [
+    "#e3c6a9",
+    "#C08040",
+    "#9f6c3a"
+   ]
+  },
+  {
+   "id": "9fc6dcdf",
+   "city": "quanzhou",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "泉州",
+   "color": "#C08040",
+   "colors": [
+    "#e3c6a9",
+    "#C08040",
+    "#9f6c3a"
+   ]
+  },
+  {
+   "id": "9cd252ec",
+   "city": "quanzhou",
+   "i": 2,
+   "type": "tower",
+   "zh": "泉州",
+   "color": "#C08040",
+   "colors": [
+    "#e3c6a9",
+    "#C08040",
+    "#9f6c3a"
+   ]
+  },
+  {
+   "id": "202cc0a7",
+   "city": "qufu",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "曲阜",
+   "color": "#8A6B4A",
+   "colors": [
+    "#cabcae",
+    "#8A6B4A",
+    "#765c42"
+   ]
+  },
+  {
+   "id": "b30a6ed1",
+   "city": "qufu",
+   "i": 2,
+   "type": "tower",
+   "zh": "曲阜",
+   "color": "#8A6B4A",
+   "colors": [
+    "#cabcae",
+    "#8A6B4A",
+    "#765c42"
+   ]
+  },
+  {
+   "id": "3cc9b745",
+   "city": "sanya",
+   "i": 0,
+   "type": "harbor",
+   "zh": "三亚",
+   "color": "#40B8B0",
+   "colors": [
+    "#a9dfdb",
+    "#40B8B0",
+    "#3f968e"
+   ]
+  },
+  {
+   "id": "3ff08cc6",
+   "city": "sanya",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "三亚",
+   "color": "#40B8B0",
+   "colors": [
+    "#a9dfdb",
+    "#40B8B0",
+    "#3f968e"
+   ]
+  },
+  {
+   "id": "b7885bde",
+   "city": "sanya",
+   "i": 2,
+   "type": "tower",
+   "zh": "三亚",
+   "color": "#40B8B0",
+   "colors": [
+    "#a9dfdb",
+    "#40B8B0",
+    "#3f968e"
+   ]
+  },
+  {
+   "id": "bbd7e095",
+   "city": "shanghai",
+   "i": 0,
+   "type": "tower",
+   "zh": "上海",
+   "color": "#3E7CB1",
+   "colors": [
+    "#a8c4dc",
+    "#3E7CB1",
+    "#3d698f"
+   ]
+  },
+  {
+   "id": "a6642cb8",
+   "city": "shanghai",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "上海",
+   "color": "#3E7CB1",
+   "colors": [
+    "#a8c4dc",
+    "#3E7CB1",
+    "#3d698f"
+   ]
+  },
+  {
+   "id": "8f6443a2",
+   "city": "shaoxing",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "绍兴",
+   "color": "#7A9E7A",
+   "colors": [
+    "#c3d3c3",
+    "#7A9E7A",
+    "#6a8266"
+   ]
+  },
+  {
+   "id": "c60c7649",
+   "city": "shaoxing",
+   "i": 2,
+   "type": "tower",
+   "zh": "绍兴",
+   "color": "#7A9E7A",
+   "colors": [
+    "#c3d3c3",
+    "#7A9E7A",
+    "#6a8266"
+   ]
+  },
+  {
+   "id": "0f512ad9",
+   "city": "shenyang",
+   "i": 0,
+   "type": "gate",
+   "zh": "沈阳",
+   "color": "#8A7A5A",
+   "colors": [
+    "#cac3b5",
+    "#8A7A5A",
+    "#76674e"
+   ]
+  },
+  {
+   "id": "bae1ecdf",
+   "city": "shenyang",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "沈阳",
+   "color": "#8A7A5A",
+   "colors": [
+    "#cac3b5",
+    "#8A7A5A",
+    "#76674e"
+   ]
+  },
+  {
+   "id": "515f142b",
+   "city": "shenyang",
+   "i": 2,
+   "type": "tower",
+   "zh": "沈阳",
+   "color": "#8A7A5A",
+   "colors": [
+    "#cac3b5",
+    "#8A7A5A",
+    "#76674e"
+   ]
+  },
+  {
+   "id": "38ec5686",
+   "city": "shenzhen",
+   "i": 0,
+   "type": "tower",
+   "zh": "深圳",
+   "color": "#3EA89E",
+   "colors": [
+    "#a8d8d3",
+    "#3EA89E",
+    "#3d8a81"
+   ]
+  },
+  {
+   "id": "da378ff2",
+   "city": "shenzhen",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "深圳",
+   "color": "#3EA89E",
+   "colors": [
+    "#a8d8d3",
+    "#3EA89E",
+    "#3d8a81"
+   ]
+  },
+  {
+   "id": "1f52c9bf",
+   "city": "shijiazhuang",
+   "i": 0,
+   "type": "gate",
+   "zh": "石家庄",
+   "color": "#8A8A5A",
+   "colors": [
+    "#cacab5",
+    "#8A8A5A",
+    "#76734e"
+   ]
+  },
+  {
+   "id": "c07fb2d3",
+   "city": "shijiazhuang",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "石家庄",
+   "color": "#8A8A5A",
+   "colors": [
+    "#cacab5",
+    "#8A8A5A",
+    "#76734e"
+   ]
+  },
+  {
+   "id": "99d1f91b",
+   "city": "shijiazhuang",
+   "i": 2,
+   "type": "tower",
+   "zh": "石家庄",
+   "color": "#8A8A5A",
+   "colors": [
+    "#cacab5",
+    "#8A8A5A",
+    "#76734e"
+   ]
+  },
+  {
+   "id": "7c5e6ec8",
+   "city": "suzhou",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "苏州",
+   "color": "#6B9EA8",
+   "colors": [
+    "#bcd3d8",
+    "#6B9EA8",
+    "#5f8288"
+   ]
+  },
+  {
+   "id": "58c76278",
+   "city": "suzhou",
+   "i": 2,
+   "type": "tower",
+   "zh": "苏州",
+   "color": "#6B9EA8",
+   "colors": [
+    "#bcd3d8",
+    "#6B9EA8",
+    "#5f8288"
+   ]
+  },
+  {
+   "id": "f4ecc00f",
+   "city": "taichung",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "台中",
+   "color": "#4E9E7F",
+   "colors": [
+    "#afd3c5",
+    "#4E9E7F",
+    "#498269"
+   ]
+  },
+  {
+   "id": "775308d3",
+   "city": "taichung",
+   "i": 1,
+   "type": "bridge",
+   "zh": "台中",
+   "color": "#4E9E7F",
+   "colors": [
+    "#afd3c5",
+    "#4E9E7F",
+    "#498269"
+   ]
+  },
+  {
+   "id": "09692f3a",
+   "city": "taichung",
+   "i": 2,
+   "type": "tower",
+   "zh": "台中",
+   "color": "#4E9E7F",
+   "colors": [
+    "#afd3c5",
+    "#4E9E7F",
+    "#498269"
+   ]
+  },
+  {
+   "id": "beca8d6e",
+   "city": "tainan",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "台南",
+   "color": "#C6A5F0",
+   "colors": [
+    "#e5d7f8",
+    "#C6A5F0",
+    "#a387be"
+   ]
+  },
+  {
+   "id": "c16de11b",
+   "city": "tainan",
+   "i": 1,
+   "type": "gate",
+   "zh": "台南",
+   "color": "#C6A5F0",
+   "colors": [
+    "#e5d7f8",
+    "#C6A5F0",
+    "#a387be"
+   ]
+  },
+  {
+   "id": "e07b293b",
+   "city": "tainan",
+   "i": 2,
+   "type": "harbor",
+   "zh": "台南",
+   "color": "#C6A5F0",
+   "colors": [
+    "#e5d7f8",
+    "#C6A5F0",
+    "#a387be"
+   ]
+  },
+  {
+   "id": "b608616f",
+   "city": "taipei",
+   "i": 0,
+   "type": "tower",
+   "zh": "台北",
+   "color": "#3E7CB1",
+   "colors": [
+    "#a8c4dc",
+    "#3E7CB1",
+    "#3d698f"
+   ]
+  },
+  {
+   "id": "5d3d0e56",
+   "city": "taipei",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "台北",
+   "color": "#3E7CB1",
+   "colors": [
+    "#a8c4dc",
+    "#3E7CB1",
+    "#3d698f"
+   ]
+  },
+  {
+   "id": "d078405e",
+   "city": "taipei",
+   "i": 2,
+   "type": "harbor",
+   "zh": "台北",
+   "color": "#3E7CB1",
+   "colors": [
+    "#a8c4dc",
+    "#3E7CB1",
+    "#3d698f"
+   ]
+  },
+  {
+   "id": "7c2f7c00",
+   "city": "taiyuan",
+   "i": 0,
+   "type": "gate",
+   "zh": "太原",
+   "color": "#A08A5A",
+   "colors": [
+    "#d4cab5",
+    "#A08A5A",
+    "#87734e"
+   ]
+  },
+  {
+   "id": "4e0048bc",
+   "city": "taiyuan",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "太原",
+   "color": "#A08A5A",
+   "colors": [
+    "#d4cab5",
+    "#A08A5A",
+    "#87734e"
+   ]
+  },
+  {
+   "id": "4a7048de",
+   "city": "taiyuan",
+   "i": 2,
+   "type": "tower",
+   "zh": "太原",
+   "color": "#A08A5A",
+   "colors": [
+    "#d4cab5",
+    "#A08A5A",
+    "#87734e"
+   ]
+  },
+  {
+   "id": "788c23e5",
+   "city": "tianjin",
+   "i": 0,
+   "type": "harbor",
+   "zh": "天津",
+   "color": "#5B8C5A",
+   "colors": [
+    "#b5cbb5",
+    "#5B8C5A",
+    "#53754e"
+   ]
+  },
+  {
+   "id": "47beac92",
+   "city": "tianjin",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "天津",
+   "color": "#5B8C5A",
+   "colors": [
+    "#b5cbb5",
+    "#5B8C5A",
+    "#53754e"
+   ]
+  },
+  {
+   "id": "da20ede8",
+   "city": "tianjin",
+   "i": 2,
+   "type": "tower",
+   "zh": "天津",
+   "color": "#5B8C5A",
+   "colors": [
+    "#b5cbb5",
+    "#5B8C5A",
+    "#53754e"
+   ]
+  },
+  {
+   "id": "cb95a362",
+   "city": "urumqi",
+   "i": 0,
+   "type": "mountain",
+   "zh": "乌鲁木齐",
+   "color": "#C08A60",
+   "colors": [
+    "#e3cab7",
+    "#C08A60",
+    "#9f7352"
+   ]
+  },
+  {
+   "id": "f0162323",
+   "city": "urumqi",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "乌鲁木齐",
+   "color": "#C08A60",
+   "colors": [
+    "#e3cab7",
+    "#C08A60",
+    "#9f7352"
+   ]
+  },
+  {
+   "id": "f06d63c1",
+   "city": "urumqi",
+   "i": 2,
+   "type": "tower",
+   "zh": "乌鲁木齐",
+   "color": "#C08A60",
+   "colors": [
+    "#e3cab7",
+    "#C08A60",
+    "#9f7352"
+   ]
+  },
+  {
+   "id": "57ec2790",
+   "city": "wuhan",
+   "i": 0,
+   "type": "tower",
+   "zh": "武汉",
+   "color": "#5B8C5A",
+   "colors": [
+    "#b5cbb5",
+    "#5B8C5A",
+    "#53754e"
+   ]
+  },
+  {
+   "id": "7698fe18",
+   "city": "wuhan",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "武汉",
+   "color": "#5B8C5A",
+   "colors": [
+    "#b5cbb5",
+    "#5B8C5A",
+    "#53754e"
+   ]
+  },
+  {
+   "id": "d6a0583d",
+   "city": "wuxi",
+   "i": 0,
+   "type": "harbor",
+   "zh": "无锡",
+   "color": "#5A8FBF",
+   "colors": [
+    "#b5cde2",
+    "#5A8FBF",
+    "#527799"
+   ]
+  },
+  {
+   "id": "98ef0bd8",
+   "city": "wuxi",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "无锡",
+   "color": "#5A8FBF",
+   "colors": [
+    "#b5cde2",
+    "#5A8FBF",
+    "#527799"
+   ]
+  },
+  {
+   "id": "3f55a529",
+   "city": "wuxi",
+   "i": 2,
+   "type": "tower",
+   "zh": "无锡",
+   "color": "#5A8FBF",
+   "colors": [
+    "#b5cde2",
+    "#5A8FBF",
+    "#527799"
+   ]
+  },
+  {
+   "id": "21f346c6",
+   "city": "xiamen",
+   "i": 0,
+   "type": "harbor",
+   "zh": "厦门",
+   "color": "#4EB8B0",
+   "colors": [
+    "#afdfdb",
+    "#4EB8B0",
+    "#49968e"
+   ]
+  },
+  {
+   "id": "492e7f2d",
+   "city": "xiamen",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "厦门",
+   "color": "#4EB8B0",
+   "colors": [
+    "#afdfdb",
+    "#4EB8B0",
+    "#49968e"
+   ]
+  },
+  {
+   "id": "a025ae3d",
+   "city": "xiamen",
+   "i": 2,
+   "type": "tower",
+   "zh": "厦门",
+   "color": "#4EB8B0",
+   "colors": [
+    "#afdfdb",
+    "#4EB8B0",
+    "#49968e"
+   ]
+  },
+  {
+   "id": "380ebd26",
+   "city": "xian",
+   "i": 0,
+   "type": "gate",
+   "zh": "西安",
+   "color": "#A0522D",
+   "colors": [
+    "#d4b1a1",
+    "#A0522D",
+    "#87492c"
+   ]
+  },
+  {
+   "id": "61786aa7",
+   "city": "xian",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "西安",
+   "color": "#A0522D",
+   "colors": [
+    "#d4b1a1",
+    "#A0522D",
+    "#87492c"
+   ]
+  },
+  {
+   "id": "076989c7",
+   "city": "xian",
+   "i": 2,
+   "type": "tower",
+   "zh": "西安",
+   "color": "#A0522D",
+   "colors": [
+    "#d4b1a1",
+    "#A0522D",
+    "#87492c"
+   ]
+  },
+  {
+   "id": "d4040f9c",
+   "city": "xining",
+   "i": 0,
+   "type": "mountain",
+   "zh": "西宁",
+   "color": "#8AB0C0",
+   "colors": [
+    "#cadbe3",
+    "#8AB0C0",
+    "#76909a"
+   ]
+  },
+  {
+   "id": "0109ad4b",
+   "city": "xining",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "西宁",
+   "color": "#8AB0C0",
+   "colors": [
+    "#cadbe3",
+    "#8AB0C0",
+    "#76909a"
+   ]
+  },
+  {
+   "id": "7d97f466",
+   "city": "xining",
+   "i": 2,
+   "type": "tower",
+   "zh": "西宁",
+   "color": "#8AB0C0",
+   "colors": [
+    "#cadbe3",
+    "#8AB0C0",
+    "#76909a"
+   ]
+  },
+  {
+   "id": "0e30bc47",
+   "city": "yangzhou",
+   "i": 0,
+   "type": "pavilion",
+   "zh": "扬州",
+   "color": "#9EB07A",
+   "colors": [
+    "#d3dbc3",
+    "#9EB07A",
+    "#859066"
+   ]
+  },
+  {
+   "id": "5c6c08df",
+   "city": "yangzhou",
+   "i": 2,
+   "type": "tower",
+   "zh": "扬州",
+   "color": "#9EB07A",
+   "colors": [
+    "#d3dbc3",
+    "#9EB07A",
+    "#859066"
+   ]
+  },
+  {
+   "id": "c0ccb36c",
+   "city": "yinchuan",
+   "i": 0,
+   "type": "gate",
+   "zh": "银川",
+   "color": "#C0A860",
+   "colors": [
+    "#e3d8b7",
+    "#C0A860",
+    "#9f8a52"
+   ]
+  },
+  {
+   "id": "63cfd523",
+   "city": "yinchuan",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "银川",
+   "color": "#C0A860",
+   "colors": [
+    "#e3d8b7",
+    "#C0A860",
+    "#9f8a52"
+   ]
+  },
+  {
+   "id": "76fdd28f",
+   "city": "yinchuan",
+   "i": 2,
+   "type": "tower",
+   "zh": "银川",
+   "color": "#C0A860",
+   "colors": [
+    "#e3d8b7",
+    "#C0A860",
+    "#9f8a52"
+   ]
+  },
+  {
+   "id": "f2e607a2",
+   "city": "zhengzhou",
+   "i": 0,
+   "type": "gate",
+   "zh": "郑州",
+   "color": "#B08A5A",
+   "colors": [
+    "#dbcab5",
+    "#B08A5A",
+    "#93734e"
+   ]
+  },
+  {
+   "id": "e8423c6e",
+   "city": "zhengzhou",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "郑州",
+   "color": "#B08A5A",
+   "colors": [
+    "#dbcab5",
+    "#B08A5A",
+    "#93734e"
+   ]
+  },
+  {
+   "id": "b7e0965a",
+   "city": "zhengzhou",
+   "i": 2,
+   "type": "tower",
+   "zh": "郑州",
+   "color": "#B08A5A",
+   "colors": [
+    "#dbcab5",
+    "#B08A5A",
+    "#93734e"
+   ]
+  },
+  {
+   "id": "e842d168",
+   "city": "zhuhai",
+   "i": 0,
+   "type": "harbor",
+   "zh": "珠海",
+   "color": "#50A8B8",
+   "colors": [
+    "#b0d8df",
+    "#50A8B8",
+    "#4b8a94"
+   ]
+  },
+  {
+   "id": "a3502481",
+   "city": "zhuhai",
+   "i": 1,
+   "type": "pavilion",
+   "zh": "珠海",
+   "color": "#50A8B8",
+   "colors": [
+    "#b0d8df",
+    "#50A8B8",
+    "#4b8a94"
+   ]
+  },
+  {
+   "id": "3a0ee85d",
+   "city": "zhuhai",
+   "i": 2,
+   "type": "tower",
+   "zh": "珠海",
+   "color": "#50A8B8",
+   "colors": [
+    "#b0d8df",
+    "#50A8B8",
+    "#4b8a94"
+   ]
+  }
+ ]
+}

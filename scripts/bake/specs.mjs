@@ -11,6 +11,8 @@ const ROOT = path.resolve(import.meta.dirname, '../..');
 const argOf = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
 const city = argOf('--city');
 
+// 色卡混合：js/world.js 的亮部/暗部就是这么从城市色推出来的，这里保持一致（模型与程序化回退同色系）
+
 // 19 个风格族的粘土色板 {c1 柱身 / c2 强调 / c3 点缀 / c4 屋顶·暗部}
 // 与 js/uni-gate-models.js 的 FAMILY 配色同源，但整体提亮降饱和到"软塑"区间
 const PALETTES = {
@@ -98,14 +100,59 @@ export function allGates(only) {
   return out;
 }
 
+// ---- 城市地标：一城最多 3 个（主地标 + 两个副地标），造型与配色照 js/world.js:1397-1412 ----
+// 主地标 = level.landmarks[0]（没有就 landmark），副地标按同表逐个出；
+// 与 js/world.js:1401 一样跳过与主地标同类型的副地标（那种位置本来就不建）。
+// 占地半径表与 js/world.js:1395 的 LM_HALF 同源（audit-assets.mjs 会用它卡上界）。
+export const LM_HALF = { gate: 3.6, tower: 1.7, wall: 7.2, panda: 3.2, ice: 2.4, palm: 3.6,
+  dome: 2.8, mountain: 4.5, pavilion: 2.8, bridge: 3.4, grotto: 2.5, harbor: 3.4, 'uni-gate': 3.4 };
+
+// 三类色卡：与 js/world.js 的 landmark 配色习惯对齐（城市色 + 中性辅色）
+function paletteFor(color) {
+  return [mix(color, '#FFFFFF', 0.55), color, mix(color, '#3A2E28', 0.25)];
+}
+
+export function landmarkSpec(cityKey, type, i, color, zh) {
+  return {
+    id: crypto.createHash('sha1').update(`${cityKey}#${i}:${type}`).digest('hex').slice(0, 8),
+    city: cityKey, i, type, zh, color, colors: paletteFor(color),
+  };
+}
+
+export function allLandmarks(only) {
+  const dir = path.join(ROOT, 'data/cities');
+  const out = [];
+  for (const c of fs.readdirSync(dir).filter((d) => fs.statSync(path.join(dir, d)).isDirectory())) {
+    if (only && c !== only) continue;
+    const f = path.join(dir, c, 'city.json');
+    if (!fs.existsSync(f)) continue;
+    const j = JSON.parse(fs.readFileSync(f, 'utf8'));
+    const lv = j.level || {};
+    const lms = (lv.landmarks && lv.landmarks.length) ? lv.landmarks : [j.landmark, 'pavilion'];
+    lms.forEach((type, i) => {
+      if (i > 0 && type === lms[0]) return;                    // 同 js/world.js:1401
+      out.push(landmarkSpec(c, type, i, j.color || '#B85A7A', j.name || c));
+    });
+  }
+  return out;
+}
+
 if (import.meta.filename === process.argv[1]) {
-  const specs = allGates(city);
-  const outPath = path.join(ROOT, 'scripts/bake/specs', `gates.${city || 'all'}.json`);
+  const kind = argOf('--kind') || 'gate';
+  const build = kind === 'landmark' ? allLandmarks : allGates;
+  const specs = build(city);
+  const outPath = path.join(ROOT, 'scripts/bake/specs', `${kind === 'landmark' ? 'landmarks' : 'gates'}.${city || 'all'}.json`);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, JSON.stringify({ kind: 'gate', specs }, null, 1));
+  fs.writeFileSync(outPath, JSON.stringify({ kind, specs }, null, 1));
   const uniq = new Set(specs.map((s) => s.id));
-  console.log(`校门规格 ${specs.length} 条（唯一 id ${uniq.size}）→ ${path.relative(ROOT, outPath)}`);
-  const by = {};
-  for (const s of specs) by[s.style.id] = (by[s.style.id] || 0) + 1;
-  console.log('风格分布', JSON.stringify(by));
+  console.log(`${kind} 规格 ${specs.length} 条（唯一 id ${uniq.size}）→ ${path.relative(ROOT, outPath)}`);
+  if (kind === 'landmark') {
+    const by = {};
+    for (const s of specs) by[s.type] = (by[s.type] || 0) + 1;
+    console.log('地标类型分布', JSON.stringify(by));
+  } else {
+    const by = {};
+    for (const s of specs) by[s.style.id] = (by[s.style.id] || 0) + 1;
+    console.log('风格分布', JSON.stringify(by));
+  }
 }
