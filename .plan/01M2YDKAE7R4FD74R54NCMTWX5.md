@@ -246,3 +246,47 @@ assets/models/                    产出的 .glb（提交）
 - 地形 / 城墙 / 全国地图做 GLB（数据驱动 + `InstancedMesh` 已够用）。
 - 城市轮廓精度、DEM 真实高程（既有 `.plan/01M2TA8SWBXP1K79E21SDY9X5C.md` 的范畴）。
 - 音效/BGM 升级（`js/audio.js` 程序化 BGM 不在本次美术范围）。
+
+---
+
+## 十、实施记录（本轮已完成，实测数字）
+
+### 10.1 已落地
+
+| 项 | 状态 | 实测 |
+|---|---|---|
+| 烘焙管线 `scripts/bake/`（common/gates/landmarks/specs/run） | ✅ | Blender 4.5.14 LTS，全自动、无人工操作 |
+| 大学校门 GLB | ✅ 356 / 384 | 23.7MB，三角面均值 2797（上限 6000），单座 ≤ 120KB |
+| 城市地标 GLB | ✅ 139 / 139 | 5.2MB，三角面均值 1605（上限 10000） |
+| 运行时加载与回退 `js/assets.js` | ✅ | 并发 4、单资产 1.5s 超时、失败/离线/触屏静默回退程序化 |
+| 光照与后处理风格化（§4.5） | ✅ | 主光压低/环境提亮、PMREM 轻环境反射（仅桌面）、辉光 0.32→0.22、shadow.radius 4→6 |
+| PWA 缓存（§4.6） | ✅ | `VER=qtzu-pwa-v18`、`js/assets.js` 进 CORE、`.glb` 归 200MB 大文件桶 |
+| 审计工具 `scripts/audit-assets.mjs` | ✅ | manifest↔磁盘↔代码引用三方一致；0 缺失/0 孤儿/0 超预算 |
+| 回退验收 `scripts/test-fallback.mjs` | ✅ | 两趟全绿（全 404 时照常可玩；正常时 18 门 + 3 地标命中） |
+| 52 城逐城验收 `scripts/verify-cities.mjs` | ✅ | 52 城 0 错误、校门命中 356/386、地标 139/139、0 个 404 资源 |
+
+### 10.2 体积结论（§4.2 / §4.6 的决策点）
+
+单城首屏新增**最大 2.01MB（北京）**，全部 52 城都在 3MB 上限内 → **不需要启用 Draco/Meshopt**，
+因此 §4.6 里"解码器预热 + 无网回退"这一支不做。仓库新增二进制合计约 29MB。
+
+### 10.3 本轮修掉的三个烘焙 bug（都是"轴映射"这一类，靠数值审计才抓出来）
+
+1. `slab()` 高深互换：门前空地烘成 1.2 高 0.1 厚的墙，每座门穿地 0.55。
+2. `pillar(kind='box')` 柱身：C.box 收 Blender 轴序，写成 `(宽, 高, 深)` 会得到横躺的长条
+   （9 座门的立柱变成躺板）；同时柱头/柱础也高深互换（柱础穿地 0.31）。
+3. `run.mjs` 的两处空转：`--verify` 只扫产物目录顶层（子目录里的 GLB 一个都没比 → 等于没校验）、
+   manifest 合并只看"本次跑了哪几类"（只重烘地标会把校门挤成孤儿）。两处都已修并加了断言。
+
+另外发现 `LM_HALF` 表比它自己的几何还小（wall 7.2 < 实测 7.5、ice 2.4 < 2.5），已按实测回填。
+
+### 10.4 仍走程序化回退（不是缺陷，是没做完的部分）
+
+- **28 座"招牌门"**（`SIGNATURE` 模板：pku / pailou / minguo / jiageng / soviet / garden /
+  erxiao / dunhuang / tibetan / roof 等）：`scripts/bake/gates.py` 只实现了 19 风格族里的
+  10 族 + modern 模板，招牌门模板尚未移植。运行时静默回退，观感与改造前一致。
+- **词宠（~900）、装饰道具（36 类）、玩家部件 / NPC**：烘焙器还没写。
+  宠物模板在 `js/models/auto-templates.js`（47KB 参数化造型），是全量里最后一块硬骨头；
+  道具里 windmill/pinwheel/beanstalk/gull/owl/barn 等带**动画子节点**（游戏循环要转它们的
+  blades/stalk/wings），换 GLB 必须保留节点名，属于要单独设计契约的一类。
+
