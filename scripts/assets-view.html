@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>资产校对台 · Q淘族</title>
+<!-- 与 index.html 同一份 importmap：确保用游戏里那个 three 实例渲染 -->
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<style>
+  body { margin: 0; background: #EDE7DC; font: 13px/1.4 "Microsoft YaHei", sans-serif; }
+  #sheet { display: block; }
+  #labels { position: absolute; inset: 0; pointer-events: none; }
+  #labels div { position: absolute; transform: translate(-50%, -100%); color: #4A4038;
+                background: rgba(255,253,248,.86); border-radius: 7px; padding: 1px 7px;
+                white-space: nowrap; font-weight: 700; }
+  #status { position: absolute; left: 10px; top: 8px; color: #6B6058; font-weight: 700; }
+</style>
+</head>
+<body>
+<canvas id="sheet"></canvas>
+<div id="labels"></div>
+<div id="status">正在加载资产…</div>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+// ?kind=gate&city=chengdu&ids=a,b&cols=5&cell=460&zoom=1.15&dir=0.55,0.62,1&ground=1&pair=1
+// pair=1：每格左右并排"烘焙 GLB | 程序化回退"，同一机位直接比精致度（验收用）
+const Q = new URLSearchParams(location.search);
+const num = (k, d) => (Q.has(k) ? Number(Q.get(k)) : d);
+const KIND = Q.get('kind') || 'gate';
+const COLS = num('cols', 5);
+const CELL = num('cell', 460);            // 每格像素
+const ZOOM = num('zoom', 1.12);           // 留边系数
+const DIR = (Q.get('dir') || '0.5,0.5,1').split(',').map(Number);
+const GROUND = Q.get('ground') !== '0';
+const PAIR = Q.get('pair') === '1';       // 并排显示"烘焙资产 / 程序化门"
+
+const layout = await fetch('/assets/models/manifest.json').then((r) => r.json());
+let items = Object.entries(layout.assets)
+  .filter(([, v]) => v.kind === KIND)
+  .map(([id, v]) => ({ id, ...v }));
+if (Q.get('city')) items = items.filter((v) => v.city === Q.get('city'));
+if (Q.get('ids')) {
+  const ids = Q.get('ids').split(',');
+  items = ids.map((id) => items.find((v) => v.id === id)).filter(Boolean);
+}
+if (Q.get('sort') !== '0') items.sort((a, b) => (a.city || '').localeCompare(b.city || '') || (a.zh || a.id).localeCompare(b.zh || b.id));
+
+const rows = Math.ceil(items.length / COLS);
+const W = COLS * CELL, H = rows * CELL;
+const cv = document.getElementById('sheet');
+cv.width = W; cv.height = H;
+cv.style.width = W + 'px'; cv.style.height = H + 'px';
+
+// 与游戏同款渲染设定（js/game.js:170-191），否则看不出"换到游戏里是什么样"
+// ?qa=1：透明底 + 不出地面 + 无阴影，便于把剪影读成文字（没有眼睛时的自检手段）
+const QA = Q.get('qa') === '1';
+const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, preserveDrawingBuffer: true, alpha: QA });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = !QA;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+if (QA) renderer.setClearColor(0xFF00FF, 1);   // 品红抠像：RGB 判据比 alpha 稳（alpha 读回不可靠）
+
+const scene = new THREE.Scene();
+if (!QA) scene.background = new THREE.Color('#EDE7DC');
+scene.add(new THREE.HemisphereLight(0xffffff, 0xE8E2D8, 0.95));
+const sun = new THREE.DirectionalLight(0xFFF3E0, 1.55);
+sun.position.set(4, 7.5, 5);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.radius = 3;
+Object.assign(sun.shadow.camera, { left: -12, right: 12, top: 12, bottom: -12, near: 0.5, far: 40 });
+scene.add(sun);
+
+// 每格模型统一缩放：最长边 = 1 格（1.0 单位），格子间距 1.5
+const SPACING = 1.5;
+const loader = new GLTFLoader();
+const cells = [];
+const missing = [];
+const loadOne = (v) => new Promise((res) => {
+  // ?v=内容哈希：/assets/models/ 的响应是一年 immutable 缓存（scripts/serve.js:294）
+  loader.load(`/assets/models/${v.file}?v=${v.v || 0}`, (g) => res(g.scene), undefined, () => { missing.push(v.file); res(null); });
+});
+
+const grid = new THREE.Group();
+scene.add(grid);
+// 一格内摆一个模型：统一缩放到"最长边 = span"，贴地、居中（原点在脚底的契约顺带被验证）
+function fitInto(object3d, span) {
+  const box = new THREE.Box3().setFromObject(object3d);
+  const size = box.getSize(new THREE.Vector3());
+  const k = span / Math.max(size.x, size.y, size.z, 1e-4);
+  object3d.scale.setScalar(k);
+  box.setFromObject(object3d);
+  object3d.position.y -= box.min.y;
+  object3d.position.x -= (box.min.x + box.max.x) / 2;
+  object3d.position.z -= (box.min.z + box.max.z) / 2;
+  object3d.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  return size.y * k;
+}
+
+let idx = 0;
+for (const v of items) {
+  const col = idx % COLS, row = Math.floor(idx / COLS);
+  const root = new THREE.Group();
+  const object3d = await loadOne(v);
+  const cx = (col - (COLS - 1) / 2) * SPACING;
+  const cz = (row - (rows - 1) / 2) * SPACING;
+  let h = 1;
+  if (PAIR) {
+    // 左 = 烘焙 GLB，右 = 程序化回退：同一格、同一机位、同一缩放基准，直接比造型
+    const proc = await import('../js/uni-gate-models.js').then((m) => {
+      const g = new THREE.Group();
+      m.buildUniGate(g, v.zh || v.id, null);   // img=null：匾额走校名文字兜底，位置仍是真的
+      return g;
+    });
+    const half = SPACING * 0.46;
+    if (object3d) { h = Math.max(h, fitInto(object3d, half * 0.95)); object3d.position.x -= half * 0.52; root.add(object3d); }
+    h = Math.max(h, fitInto(proc, half * 0.95));
+    proc.position.x += half * 0.52;
+    root.add(proc);
+  } else if (object3d) {
+    h = fitInto(object3d, 1);
+    root.add(object3d);
+  }
+  root.position.set(cx, 0, cz);
+  grid.add(root);
+  cells.push({ v, x: cx, z: cz, h });
+  idx++;
+}
+
+if (GROUND && !QA) {
+  const gp = new THREE.Mesh(
+    new THREE.PlaneGeometry(COLS * SPACING + 2, rows * SPACING + 2),
+    new THREE.MeshStandardMaterial({ color: '#DED6C6', roughness: 1 }));
+  gp.rotation.x = -Math.PI / 2;
+  gp.receiveShadow = true;
+  scene.add(gp);
+}
+
+// 正交 3/4 视角：剪影、比例、贴地都能一眼看准（透视留给游戏内截图）
+const spanX = COLS * SPACING, spanZ = rows * SPACING;
+const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 200);
+const dir = new THREE.Vector3(...DIR).normalize();
+cam.position.copy(dir.multiplyScalar(60));
+cam.lookAt(0, 0.35, 0);
+// 必须先把相机世界矩阵刷新：project() 不会自己更新它（矩阵还是单位阵），
+// 用陈旧矩阵算出来的正交框会大十倍，整张对照图里的模型只有十几个像素高
+cam.updateMatrixWorld(true);
+cam.matrixWorldInverse.copy(cam.matrixWorld).invert();
+// 用投影后的四角算正交框，任何方向都不会切边
+const corners = [];
+for (const sx of [-spanX / 2, spanX / 2]) for (const sz of [-spanZ / 2, spanZ / 2]) for (const y of [0, 1.05]) {
+  const p = new THREE.Vector3(sx, y, sz).project(cam);
+  corners.push(p);
+}
+const maxX = Math.max(...corners.map((p) => Math.abs(p.x)));
+const maxY = Math.max(...corners.map((p) => Math.abs(p.y)));
+const aspect = W / H;
+// 正交框：宽度先满足 X 投影，再按画布宽高比推出高度；若 Y 投影更需要空间就取 Y。
+const halfW = maxX * ZOOM;
+cam.left = -halfW; cam.right = halfW;
+cam.top = Math.max(maxY * ZOOM, halfW / aspect);
+cam.bottom = -cam.top;
+cam.updateProjectionMatrix();
+
+renderer.render(scene, cam);
+
+// 标签：把格子顶部投影到屏幕，落在对应位置
+const labels = document.getElementById('labels');
+const tmp = new THREE.Vector3();
+for (const c of cells) {
+  const p = tmp.set(c.x, c.h + 0.12, c.z).project(cam);
+  const d = document.createElement('div');
+  d.textContent = (c.v.zh ? `${c.v.zh}${c.v.style ? ' · ' + c.v.style : ''}` : c.v.id)
+    + (PAIR ? '　（左 烘焙 / 右 程序化）' : '');
+  d.style.left = ((p.x + 1) / 2 * W) + 'px';
+  d.style.top = ((1 - (p.y + 1) / 2) * H) + 'px';
+  labels.appendChild(d);
+}
+document.getElementById('status').textContent =
+  `${items.length} 个 ${KIND}${missing.length ? ' · 缺失 ' + missing.length : ''}`;
+window.__ready = true;
+window.__missing = missing;
+window.__dbg = { renderer, scene, cam, cells, THREE, W, H, CELL, COLS };   // 调试句柄（同游戏风格）
+
+// ---- 自检钩子：把每个格子的剪影读成等宽文字 + 量出关键尺寸 ----
+// 用途：模型有问题时不必靠眼睛——对称性、悬空件、贴地、牌匾位置都能从文字里看出来。
+// 注意：不能读默认帧缓冲（drawImage(webglCanvas) 拿到的是已合成的空缓冲，实测全背景），
+// 必须渲染到 WebGLRenderTarget 再 readRenderTargetPixels。
+let _px = null;
+const pixels = () => {
+  if (_px) return _px;
+  const rt = new THREE.WebGLRenderTarget(W, H);
+  const prev = renderer.getRenderTarget();
+  renderer.setRenderTarget(rt);
+  renderer.render(scene, cam);
+  const buf = new Uint8Array(W * H * 4);
+  renderer.readRenderTargetPixels(rt, 0, 0, W, H, buf);
+  renderer.setRenderTarget(prev);
+  rt.dispose();
+  _px = buf;                              // OpenGL 行序自下而上，取像素时要翻 Y
+  return _px;
+};
+const bgOf = (im, x, y) => {              // 背景色取该格左上角（模型居中，四角必是底）
+  const k = ((H - 1 - y) * W + x) * 4;
+  return [im[k], im[k + 1], im[k + 2]];
+};
+const diff = (a, b) => Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]) + Math.abs(a[2] - b[2]);
+window.__ascii = (i, cols = 44, rowsN = 24) => {
+  const im = pixels();
+  const col = i % COLS, row = Math.floor(i / COLS);
+  const x0 = col * CELL, y0 = row * CELL;
+  const bg = bgOf(im, x0 + 2, y0 + 2);
+  const out = [];
+  for (let ry = 0; ry < rowsN; ry++) {
+    let line = '';
+    for (let rx = 0; rx < cols; rx++) {
+      let hit = 0, n = 0;
+      const xa = x0 + Math.floor(rx * CELL / cols), xb = x0 + Math.floor((rx + 1) * CELL / cols);
+      const ya = y0 + Math.floor(ry * CELL / rowsN), yb = y0 + Math.floor((ry + 1) * CELL / rowsN);
+      for (let y = ya; y < yb; y += 2) for (let x = xa; x < xb; x += 2) {
+        const k = ((H - 1 - y) * W + x) * 4;
+        n++; if (diff([im[k], im[k + 1], im[k + 2]], bg) > 40) hit++;
+      }
+      const c = n ? hit / n : 0;
+      line += c > 0.75 ? '#' : c > 0.45 ? '+' : c > 0.15 ? '.' : ' ';
+    }
+    out.push(line.replace(/\s+$/, ''));
+  }
+  return out.join('\n');
+};
+// 每个格子的实测尺寸（像素）：宽高比 + 覆盖占比，用来抓"太瘦/太扁/空壳"
+window.__cells = () => {
+  const im = pixels();
+  return cells.map((c, i) => {
+    const col = i % COLS, row = Math.floor(i / COLS);
+    const x0 = col * CELL, y0 = row * CELL;
+    const bg = bgOf(im, x0 + 2, y0 + 2);
+    let minX = 1e9, maxX = -1, minY = 1e9, maxY = -1, hit = 0;
+    for (let y = y0; y < y0 + CELL; y++) {
+      for (let x = x0; x < x0 + CELL; x++) {
+        const k = ((H - 1 - y) * W + x) * 4;
+        if (diff([im[k], im[k + 1], im[k + 2]], bg) > 40) {
+          hit++;
+          if (x < minX) minX = x; if (x > maxX) maxX = x;
+          if (y < minY) minY = y; if (y > maxY) maxY = y;
+        }
+      }
+    }
+    const w = maxX < 0 ? 0 : maxX - minX + 1, h = maxY < 0 ? 0 : maxY - minY + 1;
+    return { zh: c.v.zh || c.v.id, style: c.v.style, cover: +(hit / (CELL * CELL)).toFixed(3),
+      pxW: w, pxH: h, aspect: +(w / Math.max(1, h)).toFixed(2),
+      bottomGap: maxY < 0 ? -1 : (y0 + CELL - 1 - maxY) };   // 底部留白：>2 说明模型没贴地
+  });
+};
+</script>
+</body>
+</html>

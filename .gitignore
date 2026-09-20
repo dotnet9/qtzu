@@ -29,3 +29,6 @@ scripts/sessions.json
 
 # 自动化测试浏览器档案
 .pw-profile/
+
+# 烘焙与校对中间产物（manifest 分片、对照图、坐标探针）
+.cache/
