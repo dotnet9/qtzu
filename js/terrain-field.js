@@ -284,6 +284,11 @@ export function makeHeightField({ pts, cfg }) {
   const rockRange = cfg.rock ?? null;               // 裸岩带（米）：高山/喀斯特在雪线之下先露岩
   const colorCell = cfg.colorCell ?? 2.5;
   const jitter = CL.jitter ?? 0.05;
+  // 城尺度（bbox 中心与半跨）：主街铺装按它定宽，窄城/长条城都不会溢出
+  const cx0 = (minX + maxX) / 2, cz0 = (minZ + maxZ) / 2;
+  const HX = (maxX - minX) / 2, HZ = (maxZ - minZ) / 2;
+  const AV_W = Math.max(1.4, Math.min(1.6, Math.min(HX, HZ) * 0.035));   // 主街半宽
+  const AV_K = 0.6;                                                     // 缘石宽
   const terraceMask = (x, z) => {
     if (!TER) return 0;
     const nx2 = (x - TER.c[0]) / TER.rx, nz2 = (z - TER.c[1]) / TER.rz;
@@ -316,6 +321,20 @@ export function makeHeightField({ pts, cfg }) {
     }
     const st = smoothstep(snowRange[0], snowRange[1], quant(hSm));
     if (st > 0 && CL.snow) { r += (CL.snow[0] - r) * st; g += (CL.snow[1] - g) * st; b += (CL.snow[2] - b) * st; }
+    // 迎宾主街：与 world.js 的迎宾主街同向（沿 z），从城心铺到边缘；两侧各一条深缘石
+    if (CL.plaza && Math.abs(sz - cz0) < HZ * 0.98) {
+      const lx = Math.abs(sx - cx0);
+      const onRoad = 1 - smoothstep(AV_W, AV_W + 0.7, lx);
+      if (onRoad > 0) {
+        r += (CL.plaza[0] - r) * onRoad; g += (CL.plaza[1] - g) * onRoad; b += (CL.plaza[2] - b) * onRoad;
+      } else {
+        const kerb = 1 - smoothstep(AV_W, AV_W + AV_K, lx);
+        if (kerb > 0) {   // 缘石：铺装色压暗 35%，读起来就是"路沿"
+          const kr = CL.plaza[0] * 0.65, kg = CL.plaza[1] * 0.65, kb = CL.plaza[2] * 0.65;
+          r += (kr - r) * kerb; g += (kg - g) * kerb; b += (kb - b) * kerb;
+        }
+      }
+    }
     if (PLZ && CL.plaza) {
       const dp = Math.hypot(sx - PLZ.c[0], sz - PLZ.c[1]);
       if (dp < PLZ.inner + 1) {
