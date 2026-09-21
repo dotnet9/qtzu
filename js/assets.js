@@ -10,8 +10,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const BASE = 'assets/models/';
 const MANIFEST = BASE + 'manifest.json';
-const TIMEOUT = 1500;      // 单资产超时：到点就先用程序化的，GLB 到货后下次进城再换
-const CONCURRENCY = 4;     // 并发上限：一口气几十个 GLB 会和首屏代码抢带宽
+const TIMEOUT = 2000;      // 单资产超时：到点先保持程序化，但到货后补换（见 drainLate）——不补就等于"排队靠后=永久程序化"
+const CONCURRENCY = 6;     // 并发上限：一口气几十个 GLB 会和首屏代码抢带宽（地面加入后 4 偏紧）
 // 触屏设备（手机/平板）直接用程序化版本：GLB 是"桌面优先"的加分项，
 // 不该让老手机为它冒崩上下文的险（方案 §八.8，与 js/game.js:230 的 lowEnd 同一判据）
 const LOW_END = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
@@ -20,6 +20,8 @@ let manifest;              // undefined=还没加载 / null=没有或加载失�
 let booting = null;
 const index = new Map();   // kind → Map(key → entry)
 const cache = new Map();   // url → Promise<Group|null>（同族实例共用几何/材质）
+// 超时（这一次没赶上）的组：等资产真正加载完成后补换，避免"排队靠后 = 永久程序化"
+const lateSwap = [];
 const warned = new Set();
 let active = 0;
 const queue = [];
@@ -84,7 +86,11 @@ function load(entry) {
       (g) => res(g.scene),
       undefined,
       () => { warnOnce(entry.file, '载入失败'); res(null); });
-  })).then((v) => { release(); return v; }, () => { release(); warnOnce(entry.file, '载入异常'); return null; });
+  })).then((v) => {
+    release();
+    if (v) drainLate(entry.file, v);   // 到货后补换之前超时的那些组
+    return v;
+  }, () => { release(); warnOnce(entry.file, '载入异常'); return null; });
   cache.set(url, p);
   return p;
 }
@@ -96,6 +102,17 @@ function fitted(entry) {
     const t = setTimeout(() => res(null), TIMEOUT);
     load(entry).then((v) => { clearTimeout(t); state.pending--; res(v); });
   });
+}
+
+// 资产到货后，把之前超时的组补换上（group 还在场景里才换，城市重建后就不管了）
+function drainLate(file, scene) {
+  for (let i = lateSwap.length - 1; i >= 0; i--) {
+    const rec = lateSwap[i];
+    if (rec.entry.file !== file) continue;
+    lateSwap.splice(i, 1);
+    if (!rec.group || !rec.group.parent) continue;
+    swap(rec.group, scene, rec.entry, rec.opts);
+  }
 }
 
 function swap(group, scene, entry, opts) {
@@ -132,7 +149,11 @@ export function apply(group, kind, key, opts = {}) {
     if (!e) { state.misses++; return false; }
     if (group.userData.asset === e.file) return false;   // 同一个门被反复 build 时不重复换
     return fitted(e).then((scene) => {
-      if (!scene) return false;
+      if (!scene) {
+        // 超时：这次先保持程序化，但登记下来，等真正到货后补换（见 drainLate）
+        lateSwap.push({ group, entry: e, opts });
+        return false;
+      }
       swap(group, scene, e, opts);
       return true;
     });

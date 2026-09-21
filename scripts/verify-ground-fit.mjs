@@ -16,7 +16,17 @@ const N = Number(optOf('--n', '48'));
 const PORT = 6190 + Math.floor(Math.random() * 9);
 
 // 从规格里挑格点：cellIn=1（在轮廓内）+ 跳过靠近轮廓的（避墙）
-const spec = JSON.parse(fs.readFileSync(path.join(ROOT, `scripts/bake/specs/ground.${city}.json`), 'utf8')).specs[0];
+const specOf = (c) => {
+  const one = path.join(ROOT, `scripts/bake/specs/ground.${c}.json`);
+  if (fs.existsSync(one)) return JSON.parse(fs.readFileSync(one, 'utf8')).specs[0];
+  const all = path.join(ROOT, 'scripts/bake/specs/ground.all.json');
+  if (fs.existsSync(all)) {
+    const hit = JSON.parse(fs.readFileSync(all, 'utf8')).specs.find((x) => x.city === c || x.id === c);
+    if (hit) return hit;
+  }
+  throw new Error(`找不到 ${c} 的地面规格（逐城与合并文件都没有）—— 先跑 run.mjs --kinds ground`);
+};
+const spec = specOf(city);
 const g0 = spec.grid;
 const cells = [];
 for (let j = 0; j < g0.nz; j++) {

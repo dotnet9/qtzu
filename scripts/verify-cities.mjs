@@ -57,13 +57,63 @@ await page.evaluate(() => {
   [...document.querySelectorAll('.overlay')].forEach((o) => o.classList.add('hidden'));
 });
 
+// 等资产加载稳定。只等 busy()===0 不够：换城后请求是异步排队的，
+// 在"新城请求还没发起"的那一刻 busy() 也是 0（实测会量到 0 命中）。
+// 所以每 400ms 看一次累计计数（hits+misses+failed），连续两次相同才算稳定。
+async function settled() {
+  let lastCount = -1;
+  for (let i = 0; i < 30; i++) {
+    await page.waitForFunction(() => window.__assets && window.__assets.busy() === 0, null, { timeout: 6000 }).catch(() => {});
+    await page.waitForTimeout(400);
+    const n = await page.evaluate(() => {
+      const s2 = window.__assets.stats();
+      return s2.hits + s2.misses + s2.failed.length;
+    });
+    if (n === lastCount) return n;
+    lastCount = n;
+  }
+  return lastCount;
+}
+
+// 期望值：manifest 里每座城烘了多少门/地标（同一次烘焙的产物）→ 用它做"换装完成"的判据
+const MF = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets/models/manifest.json'), 'utf8'));
+const EXPECT = {};
+for (const e of Object.values(MF.assets)) {
+  if (e.kind !== 'gate' && e.kind !== 'landmark') continue;
+  const c = e.city;
+  if (!c) continue;
+  EXPECT[c] = EXPECT[c] || { gate: 0, lm: 0 };
+  if (e.kind === 'gate') EXPECT[c].gate++;
+  else EXPECT[c].lm++;
+}
+
 const rows = [];
 for (const id of cities) {
   const before = errors.length;
   await page.evaluate((cid) => window.__game._handleShareCity(cid, true), id);
   await page.waitForFunction((cid) => (window.__game._currentStage() || {}).key === cid, id, { timeout: 30000 })
     .catch(() => {});
-  await page.waitForTimeout(SETTLE);
+  const want = EXPECT[id] || { gate: 0, lm: 0 };
+  // 等"该城已换装的门数 = 清单里的门数"（确定性判据）。每 500ms 查一次，最多 40 次（20s）。
+  const swappedOf = () => page.evaluate((cid) => {
+    const g = window.__game;
+    let gates = 0, lm = 0;
+    g.scene.traverse((o) => {
+      if (!o.isGroup) return;
+      if (o.userData.lm && String(o.userData.lm.key).startsWith(cid + '#')) { if (o.userData.asset) lm++; }
+      else if (o.userData.sign && o.userData.sign.type === 'uni' && o.userData.asset) {
+        if (o.parent && o.parent.userData.sign === o.userData.sign) return;
+        gates++;
+      }
+    });
+    return { gates, lm };
+  }, id);
+  let got = { gates: 0, lm: 0 };
+  for (let k = 0; k < 40; k++) {
+    got = await swappedOf();
+    if (got.gates >= want.gate && got.lm >= want.lm) break;
+    await page.waitForTimeout(500);
+  }
   const unis = (() => {
     try {
       return (JSON.parse(fs.readFileSync(path.join(ROOT, `data/cities/${id}/universities.json`), 'utf8')).unis || [])

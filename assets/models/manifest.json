@@ -1,11 +1,11 @@
 {
  "blender": "4.5.14 LTS",
- "generated": "2026-09-21T08:15:14.575Z",
+ "generated": "2026-09-21T09:20:32.043Z",
  "kinds": {
   "ground": {
    "blender": "4.5.14 LTS",
-   "generated": "2026-09-21T16:15:14",
-   "count": 1
+   "generated": "2026-09-21T17:20:30",
+   "count": 52
   },
   "gate": {
    "blender": "4.5.14 LTS",
@@ -424,6 +424,32 @@
    "verts": 2786,
    "zh": "上海理工大学",
    "v": "f01d34549d"
+  },
+  "044bda5c": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -64.054,
+     63.432
+    ],
+    "y": [
+     -3.6,
+     4.114
+    ],
+    "z": [
+     -77.843,
+     78.256
+    ]
+   },
+   "bytes": 2683452,
+   "city": "hefei",
+   "file": "ground/044bda5c.glb",
+   "key": "hefei",
+   "radius": 77,
+   "tri": 14180,
+   "verts": 11110,
+   "zh": "合肥",
+   "v": "8a96a79097"
   },
   "04514e2a": {
    "kind": "gate",
@@ -1063,6 +1089,32 @@
    "zh": "西安理工大学",
    "v": "39313dd22f"
   },
+  "0d35d5d9": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.614,
+     77.228
+    ],
+    "y": [
+     -3.6,
+     9.031
+    ],
+    "z": [
+     -77.182,
+     77.306
+    ]
+   },
+   "bytes": 2927284,
+   "city": "hohhot",
+   "file": "ground/0d35d5d9.glb",
+   "key": "hohhot",
+   "radius": 76,
+   "tri": 16546,
+   "verts": 11971,
+   "zh": "呼和浩特",
+   "v": "d3027e5f21"
+  },
   "0e2b5990": {
    "kind": "gate",
    "bbox": {
@@ -1440,6 +1492,58 @@
    "zh": "长荣大学",
    "v": "20a7c16438"
   },
+  "147db7ee": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -82.221,
+     83.857
+    ],
+    "y": [
+     -3.6,
+     8.975
+    ],
+    "z": [
+     -40.717,
+     40.739
+    ]
+   },
+   "bytes": 1764604,
+   "city": "xian",
+   "file": "ground/147db7ee.glb",
+   "key": "xian",
+   "radius": 81,
+   "tri": 9264,
+   "verts": 8557,
+   "zh": "西安",
+   "v": "aefa8f911a"
+  },
+  "14867c7f": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.305,
+     78.198
+    ],
+    "y": [
+     -3.6,
+     9.032
+    ],
+    "z": [
+     -56.721,
+     57.044
+    ]
+   },
+   "bytes": 2313908,
+   "city": "lanzhou",
+   "file": "ground/14867c7f.glb",
+   "key": "lanzhou",
+   "radius": 77,
+   "tri": 13688,
+   "verts": 12961,
+   "zh": "兰州",
+   "v": "5f02457fc2"
+  },
   "15dd1b66": {
    "kind": "gate",
    "bbox": {
@@ -1729,6 +1833,32 @@
    "verts": 2368,
    "zh": "广西医科大学",
    "v": "310d4d5422"
+  },
+  "188c6cab": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -79.217,
+     78.94
+    ],
+    "y": [
+     -3.6,
+     4.106
+    ],
+    "z": [
+     -28.607,
+     27.765
+    ]
+   },
+   "bytes": 1816780,
+   "city": "changsha",
+   "file": "ground/188c6cab.glb",
+   "key": "changsha",
+   "radius": 78,
+   "tri": 9948,
+   "verts": 10599,
+   "zh": "长沙",
+   "v": "b4d2afff03"
   },
   "19979eef": {
    "kind": "gate",
@@ -2194,6 +2324,32 @@
    "zh": "成都信息工程大学",
    "v": "54a3b094b8"
   },
+  "269a8c5d": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -70.04,
+     70.247
+    ],
+    "y": [
+     -3.6,
+     4.109
+    ],
+    "z": [
+     -79.725,
+     80.621
+    ]
+   },
+   "bytes": 2240552,
+   "city": "kaohsiung",
+   "file": "ground/269a8c5d.glb",
+   "key": "kaohsiung",
+   "radius": 79,
+   "tri": 11172,
+   "verts": 10385,
+   "zh": "高雄",
+   "v": "e85d6577f0"
+  },
   "27caa4e7": {
    "kind": "landmark",
    "bbox": {
@@ -2425,6 +2581,32 @@
    "verts": 2488,
    "zh": "南京农业大学",
    "v": "d0fad9a220"
+  },
+  "2b0a4041": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.287,
+     77.289
+    ],
+    "y": [
+     -3.6,
+     4.111
+    ],
+    "z": [
+     -47.237,
+     46.287
+    ]
+   },
+   "bytes": 2055264,
+   "city": "kaifeng",
+   "file": "ground/2b0a4041.glb",
+   "key": "kaifeng",
+   "radius": 76,
+   "tri": 11282,
+   "verts": 9507,
+   "zh": "开封",
+   "v": "beb9fb9bb2"
   },
   "2b168894": {
    "kind": "landmark",
@@ -3064,6 +3246,32 @@
    "zh": "河北科技大学",
    "v": "f25adb7a1f"
   },
+  "359cac3a": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.373,
+     77.441
+    ],
+    "y": [
+     -3.6,
+     4.549
+    ],
+    "z": [
+     -75.183,
+     75.303
+    ]
+   },
+   "bytes": 3061632,
+   "city": "haikou",
+   "file": "ground/359cac3a.glb",
+   "key": "haikou",
+   "radius": 76,
+   "tri": 16536,
+   "verts": 11441,
+   "zh": "海口",
+   "v": "6147980baa"
+  },
   "365b9b08": {
    "kind": "gate",
    "bbox": {
@@ -3237,6 +3445,32 @@
    "verts": 1270,
    "zh": "长沙",
    "v": "61642df499"
+  },
+  "39669e92": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -65.451,
+     65.277
+    ],
+    "y": [
+     -3.6,
+     9.02
+    ],
+    "z": [
+     -77.219,
+     77.301
+    ]
+   },
+   "bytes": 2625232,
+   "city": "xining",
+   "file": "ground/39669e92.glb",
+   "key": "xining",
+   "radius": 76,
+   "tri": 14944,
+   "verts": 11061,
+   "zh": "西宁",
+   "v": "8788376125"
   },
   "396760e2": {
    "kind": "gate",
@@ -3760,6 +3994,32 @@
    "zh": "东北师范大学",
    "v": "bff4598a2d"
   },
+  "40c06011": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.342,
+     78.301
+    ],
+    "y": [
+     -3.6,
+     4.505
+    ],
+    "z": [
+     -68.877,
+     69.474
+    ]
+   },
+   "bytes": 2550532,
+   "city": "jinan",
+   "file": "ground/40c06011.glb",
+   "key": "jinan",
+   "radius": 77,
+   "tri": 13802,
+   "verts": 12648,
+   "zh": "济南",
+   "v": "c4d92bdcd6"
+  },
   "40dd8bd8": {
    "kind": "gate",
    "bbox": {
@@ -3788,6 +4048,32 @@
    "verts": 3190,
    "zh": "大连交通大学",
    "v": "afa37fae51"
+  },
+  "411a69f9": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.261,
+     78.158
+    ],
+    "y": [
+     -3.6,
+     5.403
+    ],
+    "z": [
+     -38.663,
+     38.608
+    ]
+   },
+   "bytes": 2059392,
+   "city": "zhengzhou",
+   "file": "ground/411a69f9.glb",
+   "key": "zhengzhou",
+   "radius": 77,
+   "tri": 11470,
+   "verts": 9488,
+   "zh": "郑州",
+   "v": "f882b7409f"
   },
   "4136e5ae": {
    "kind": "gate",
@@ -3992,6 +4278,32 @@
    "zh": "昆明",
    "v": "53da2c457b"
   },
+  "4358a3ca": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -76.208,
+     76.316
+    ],
+    "y": [
+     -3.6,
+     9.041
+    ],
+    "z": [
+     -54.383,
+     52.924
+    ]
+   },
+   "bytes": 1888508,
+   "city": "dunhuang",
+   "file": "ground/4358a3ca.glb",
+   "key": "dunhuang",
+   "radius": 75,
+   "tri": 9646,
+   "verts": 6185,
+   "zh": "敦煌",
+   "v": "290c8ba205"
+  },
   "435f2021": {
    "kind": "gate",
    "bbox": {
@@ -4194,6 +4506,32 @@
    "verts": 3799,
    "zh": "中国美术学院",
    "v": "1cfc45dea3"
+  },
+  "46ac39e9": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -81.458,
+     81.157
+    ],
+    "y": [
+     -3.6,
+     7.237
+    ],
+    "z": [
+     -47.701,
+     47.692
+    ]
+   },
+   "bytes": 2268288,
+   "city": "hangzhou",
+   "file": "ground/46ac39e9.glb",
+   "key": "hangzhou",
+   "radius": 80,
+   "tri": 12128,
+   "verts": 11442,
+   "zh": "杭州",
+   "v": "03bcf8e31e"
   },
   "46e05050": {
    "kind": "gate",
@@ -4398,6 +4736,32 @@
    "zh": "太原",
    "v": "79754fe7b7"
   },
+  "4ac88df3": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.072,
+     78.128
+    ],
+    "y": [
+     -3.6,
+     4.53
+    ],
+    "z": [
+     -66.39,
+     67.902
+    ]
+   },
+   "bytes": 2997960,
+   "city": "nanchang",
+   "file": "ground/4ac88df3.glb",
+   "key": "nanchang",
+   "radius": 77,
+   "tri": 16482,
+   "verts": 12251,
+   "zh": "南昌",
+   "v": "e4a8996735"
+  },
   "4b07607f": {
    "kind": "gate",
    "bbox": {
@@ -4455,6 +4819,32 @@
    "verts": 1984,
    "zh": "北京师范大学珠海校区",
    "v": "852e41dab5"
+  },
+  "4d227097": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -65.323,
+     65.19
+    ],
+    "y": [
+     -3.6,
+     4.108
+    ],
+    "z": [
+     -80.677,
+     81.361
+    ]
+   },
+   "bytes": 2832968,
+   "city": "tianjin",
+   "file": "ground/4d227097.glb",
+   "key": "tianjin",
+   "radius": 80,
+   "tri": 16492,
+   "verts": 13146,
+   "zh": "天津",
+   "v": "c447fc2683"
   },
   "4de2ad8c": {
    "kind": "landmark",
@@ -5081,7 +5471,7 @@
      62.8
     ]
    },
-   "bytes": 2613824,
+   "bytes": 2959036,
    "city": "chengdu",
    "file": "ground/58c74cc3.glb",
    "key": "chengdu",
@@ -5089,7 +5479,7 @@
    "tri": 16308,
    "verts": 13623,
    "zh": "成都",
-   "v": "9059ebccd8"
+   "v": "68b3ebd405"
   },
   "58c76278": {
    "kind": "landmark",
@@ -5642,6 +6032,32 @@
    "zh": "湖南师范大学",
    "v": "99d73203ae"
   },
+  "6170aac5": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -60.97,
+     60.151
+    ],
+    "y": [
+     -3.6,
+     4.104
+    ],
+    "z": [
+     -79.23,
+     79.217
+    ]
+   },
+   "bytes": 2630116,
+   "city": "shenyang",
+   "file": "ground/6170aac5.glb",
+   "key": "shenyang",
+   "radius": 78,
+   "tri": 15062,
+   "verts": 12426,
+   "zh": "沈阳",
+   "v": "8543164a15"
+  },
   "61786aa7": {
    "kind": "landmark",
    "bbox": {
@@ -5757,6 +6173,32 @@
    "verts": 1801,
    "zh": "中国政法大学",
    "v": "eab0a23c1c"
+  },
+  "636a5212": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.423,
+     77.027
+    ],
+    "y": [
+     -3.6,
+     10.833
+    ],
+    "z": [
+     -49.363,
+     49.178
+    ]
+   },
+   "bytes": 2006496,
+   "city": "lhasa",
+   "file": "ground/636a5212.glb",
+   "key": "lhasa",
+   "radius": 76,
+   "tri": 10992,
+   "verts": 8723,
+   "zh": "拉萨",
+   "v": "1b7a484c1b"
   },
   "63cfd523": {
    "kind": "landmark",
@@ -6338,6 +6780,32 @@
    "zh": "广东外语外贸大学",
    "v": "9fcb219aec"
   },
+  "6d1a757e": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.317,
+     77.191
+    ],
+    "y": [
+     -3.6,
+     4.114
+    ],
+    "z": [
+     -63.201,
+     63.061
+    ]
+   },
+   "bytes": 2432356,
+   "city": "wuxi",
+   "file": "ground/6d1a757e.glb",
+   "key": "wuxi",
+   "radius": 76,
+   "tri": 12594,
+   "verts": 9645,
+   "zh": "无锡",
+   "v": "b84900d2bc"
+  },
   "6d3812ad": {
    "kind": "landmark",
    "bbox": {
@@ -6424,6 +6892,32 @@
    "verts": 2786,
    "zh": "浙江理工大学",
    "v": "80adf0ce64"
+  },
+  "6e8f1710": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -63.081,
+     63.819
+    ],
+    "y": [
+     -3.6,
+     4.107
+    ],
+    "z": [
+     -81.017,
+     80.94
+    ]
+   },
+   "bytes": 2467492,
+   "city": "guangzhou",
+   "file": "ground/6e8f1710.glb",
+   "key": "guangzhou",
+   "radius": 80,
+   "tri": 12874,
+   "verts": 10841,
+   "zh": "广州",
+   "v": "804f16154e"
   },
   "6ee7d124": {
    "kind": "gate",
@@ -6569,6 +7063,32 @@
    "verts": 1056,
    "zh": "开封",
    "v": "ccee84339f"
+  },
+  "703ea133": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.814,
+     77.378
+    ],
+    "y": [
+     -3.6,
+     4.112
+    ],
+    "z": [
+     -61.331,
+     61.247
+    ]
+   },
+   "bytes": 2644796,
+   "city": "shaoxing",
+   "file": "ground/703ea133.glb",
+   "key": "shaoxing",
+   "radius": 76,
+   "tri": 14246,
+   "verts": 11496,
+   "zh": "绍兴",
+   "v": "cc42d5af77"
   },
   "70b5dd84": {
    "kind": "gate",
@@ -6975,6 +7495,32 @@
    "verts": 756,
    "zh": "台中",
    "v": "a546e3b653"
+  },
+  "77617e4b": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -79.098,
+     79.568
+    ],
+    "y": [
+     -3.6,
+     4.107
+    ],
+    "z": [
+     -62.786,
+     62.835
+    ]
+   },
+   "bytes": 2592784,
+   "city": "nanning",
+   "file": "ground/77617e4b.glb",
+   "key": "nanning",
+   "radius": 77,
+   "tri": 14062,
+   "verts": 12490,
+   "zh": "南宁",
+   "v": "a735118baf"
   },
   "7839dacc": {
    "kind": "gate",
@@ -7991,6 +8537,32 @@
    "zh": "上海财经大学",
    "v": "99aa71c0b9"
   },
+  "8386d03d": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.145,
+     78.807
+    ],
+    "y": [
+     -3.6,
+     4.531
+    ],
+    "z": [
+     -75.248,
+     74.599
+    ]
+   },
+   "bytes": 2956152,
+   "city": "quanzhou",
+   "file": "ground/8386d03d.glb",
+   "key": "quanzhou",
+   "radius": 76,
+   "tri": 16544,
+   "verts": 14128,
+   "zh": "泉州",
+   "v": "ab5047f348"
+  },
   "84f1692e": {
    "kind": "gate",
    "bbox": {
@@ -8135,6 +8707,32 @@
    "verts": 2393,
    "zh": "上海外国语大学",
    "v": "5399f16517"
+  },
+  "8820c6af": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.132,
+     77.318
+    ],
+    "y": [
+     -3.6,
+     4.526
+    ],
+    "z": [
+     -75.582,
+     75.65
+    ]
+   },
+   "bytes": 2622868,
+   "city": "zhuhai",
+   "file": "ground/8820c6af.glb",
+   "key": "zhuhai",
+   "radius": 76,
+   "tri": 13394,
+   "verts": 8935,
+   "zh": "珠海",
+   "v": "945bf0c294"
   },
   "88888d5c": {
    "kind": "gate",
@@ -8455,6 +9053,32 @@
    "zh": "成都",
    "v": "04a1bab64b"
   },
+  "8d11eea0": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -52.024,
+     53.032
+    ],
+    "y": [
+     -3.6,
+     4.113
+    ],
+    "z": [
+     -81.579,
+     80.884
+    ]
+   },
+   "bytes": 2525724,
+   "city": "nanjing",
+   "file": "ground/8d11eea0.glb",
+   "key": "nanjing",
+   "radius": 80,
+   "tri": 13596,
+   "verts": 11699,
+   "zh": "南京",
+   "v": "9e41e82172"
+  },
   "8e58deda": {
    "kind": "gate",
    "bbox": {
@@ -8658,6 +9282,32 @@
    "zh": "山东师范大学",
    "v": "74c60d61b7"
   },
+  "904c106b": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.011,
+     77.042
+    ],
+    "y": [
+     -3.6,
+     8.136
+    ],
+    "z": [
+     -77.02,
+     77.026
+    ]
+   },
+   "bytes": 2223500,
+   "city": "urumqi",
+   "file": "ground/904c106b.glb",
+   "key": "urumqi",
+   "radius": 76,
+   "tri": 11870,
+   "verts": 9663,
+   "zh": "乌鲁木齐",
+   "v": "785917dafd"
+  },
   "90c4256e": {
    "kind": "gate",
    "bbox": {
@@ -8773,6 +9423,32 @@
    "verts": 2420,
    "zh": "四川师范大学",
    "v": "fa51db3c03"
+  },
+  "9190d601": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -76.391,
+     76.572
+    ],
+    "y": [
+     -3.6,
+     6.353
+    ],
+    "z": [
+     -65.121,
+     64.501
+    ]
+   },
+   "bytes": 2191684,
+   "city": "datong",
+   "file": "ground/9190d601.glb",
+   "key": "datong",
+   "radius": 75,
+   "tri": 12228,
+   "verts": 9584,
+   "zh": "大同",
+   "v": "ebb8cd4ea9"
   },
   "9257d174": {
    "kind": "gate",
@@ -9238,6 +9914,32 @@
    "zh": "石家庄",
    "v": "4f49b2e1d4"
   },
+  "9aaa892e": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.173,
+     78.855
+    ],
+    "y": [
+     -3.6,
+     8.138
+    ],
+    "z": [
+     -62.89,
+     62.729
+    ]
+   },
+   "bytes": 2453660,
+   "city": "luoyang",
+   "file": "ground/9aaa892e.glb",
+   "key": "luoyang",
+   "radius": 76,
+   "tri": 14046,
+   "verts": 11113,
+   "zh": "洛阳",
+   "v": "3818ef53c1"
+  },
   "9ac62196": {
    "kind": "gate",
    "bbox": {
@@ -9411,6 +10113,32 @@
    "verts": 2786,
    "zh": "齐鲁工业大学",
    "v": "102590cf65"
+  },
+  "9d793b68": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -66.617,
+     66.501
+    ],
+    "y": [
+     -3.6,
+     10.82
+    ],
+    "z": [
+     -77.295,
+     77.015
+    ]
+   },
+   "bytes": 2487488,
+   "city": "yinchuan",
+   "file": "ground/9d793b68.glb",
+   "key": "yinchuan",
+   "radius": 76,
+   "tri": 13414,
+   "verts": 9326,
+   "zh": "银川",
+   "v": "b61e038615"
   },
   "9f058b15": {
    "kind": "gate",
@@ -9962,6 +10690,32 @@
    "verts": 3076,
    "zh": "昆明学院",
    "v": "cf5569aacf"
+  },
+  "a6152dbe": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.281,
+     77.434
+    ],
+    "y": [
+     -3.6,
+     4.111
+    ],
+    "z": [
+     -68.721,
+     68.963
+    ]
+   },
+   "bytes": 2430648,
+   "city": "suzhou",
+   "file": "ground/a6152dbe.glb",
+   "key": "suzhou",
+   "radius": 76,
+   "tri": 12348,
+   "verts": 9534,
+   "zh": "苏州",
+   "v": "3a756f5009"
   },
   "a6246cf8": {
    "kind": "gate",
@@ -10746,6 +11500,32 @@
    "zh": "山西财经大学",
    "v": "699b53f95f"
   },
+  "b2514c10": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -72.946,
+     73.513
+    ],
+    "y": [
+     -3.6,
+     7.236
+    ],
+    "z": [
+     -78.261,
+     77.981
+    ]
+   },
+   "bytes": 2967472,
+   "city": "qingdao",
+   "file": "ground/b2514c10.glb",
+   "key": "qingdao",
+   "radius": 77,
+   "tri": 16566,
+   "verts": 13473,
+   "zh": "青岛",
+   "v": "b630bbea6a"
+  },
   "b2ef230a": {
    "kind": "landmark",
    "bbox": {
@@ -10804,6 +11584,32 @@
    "zh": "曲阜",
    "v": "421f0d8592"
   },
+  "b3823dde": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.166,
+     77.441
+    ],
+    "y": [
+     -3.6,
+     4.502
+    ],
+    "z": [
+     -67.863,
+     68.173
+    ]
+   },
+   "bytes": 2553096,
+   "city": "qufu",
+   "file": "ground/b3823dde.glb",
+   "key": "qufu",
+   "radius": 76,
+   "tri": 13894,
+   "verts": 9276,
+   "zh": "曲阜",
+   "v": "5ca1d75128"
+  },
   "b44c0e7b": {
    "kind": "gate",
    "bbox": {
@@ -10861,6 +11667,32 @@
    "verts": 3094,
    "zh": "北方民族大学",
    "v": "73d6ce32a4"
+  },
+  "b4b15b05": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -58.777,
+     58.147
+    ],
+    "y": [
+     -3.6,
+     4.113
+    ],
+    "z": [
+     -77.296,
+     78.847
+    ]
+   },
+   "bytes": 2583056,
+   "city": "yangzhou",
+   "file": "ground/b4b15b05.glb",
+   "key": "yangzhou",
+   "radius": 76,
+   "tri": 13396,
+   "verts": 9736,
+   "zh": "扬州",
+   "v": "13b27da03c"
   },
   "b57a726a": {
    "kind": "landmark",
@@ -10949,6 +11781,32 @@
    "zh": "台北",
    "v": "f45398d823"
   },
+  "b61b2d5f": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.14,
+     77.456
+    ],
+    "y": [
+     -3.6,
+     6.32
+    ],
+    "z": [
+     -45.871,
+     46.524
+    ]
+   },
+   "bytes": 1814920,
+   "city": "taiyuan",
+   "file": "ground/b61b2d5f.glb",
+   "key": "taiyuan",
+   "radius": 77,
+   "tri": 10048,
+   "verts": 8752,
+   "zh": "太原",
+   "v": "5e260935ae"
+  },
   "b730956a": {
    "kind": "landmark",
    "bbox": {
@@ -11006,6 +11864,32 @@
    "verts": 1056,
    "zh": "三亚",
    "v": "a337cb478c"
+  },
+  "b79397b8": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -56.124,
+     55.996
+    ],
+    "y": [
+     -3.6,
+     10.831
+    ],
+    "z": [
+     -81.834,
+     80.223
+    ]
+   },
+   "bytes": 2781712,
+   "city": "kunming",
+   "file": "ground/b79397b8.glb",
+   "key": "kunming",
+   "radius": 79,
+   "tri": 15322,
+   "verts": 12733,
+   "zh": "昆明",
+   "v": "00e8b59336"
   },
   "b7c3e551": {
    "kind": "gate",
@@ -11123,6 +12007,32 @@
    "zh": "成都",
    "v": "5365ece397"
   },
+  "b847bee1": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.902,
+     79.46
+    ],
+    "y": [
+     -3.6,
+     5.408
+    ],
+    "z": [
+     -48.711,
+     48.008
+    ]
+   },
+   "bytes": 1948472,
+   "city": "dalian",
+   "file": "ground/b847bee1.glb",
+   "key": "dalian",
+   "radius": 79,
+   "tri": 10560,
+   "verts": 10149,
+   "zh": "大连",
+   "v": "2d12cf7a06"
+  },
   "b8503fba": {
    "kind": "gate",
    "bbox": {
@@ -11151,6 +12061,32 @@
    "verts": 2786,
    "zh": "北京信息科技大学",
    "v": "190bdca195"
+  },
+  "b8bbedc5": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.367,
+     77.757
+    ],
+    "y": [
+     -3.6,
+     6.313
+    ],
+    "z": [
+     -52.876,
+     52.725
+    ]
+   },
+   "bytes": 2320856,
+   "city": "shijiazhuang",
+   "file": "ground/b8bbedc5.glb",
+   "key": "shijiazhuang",
+   "radius": 76,
+   "tri": 13000,
+   "verts": 11200,
+   "zh": "石家庄",
+   "v": "a1a81d8933"
   },
   "b8fbac79": {
    "kind": "gate",
@@ -11325,6 +12261,32 @@
    "verts": 1270,
    "zh": "沈阳",
    "v": "14ef286d26"
+  },
+  "bafa26ad": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.286,
+     78.254
+    ],
+    "y": [
+     -3.6,
+     4.504
+    ],
+    "z": [
+     -37.626,
+     37.868
+    ]
+   },
+   "bytes": 1936156,
+   "city": "shenzhen",
+   "file": "ground/bafa26ad.glb",
+   "key": "shenzhen",
+   "radius": 77,
+   "tri": 10046,
+   "verts": 9133,
+   "zh": "深圳",
+   "v": "f1fc0478bc"
   },
   "bafae5ee": {
    "kind": "landmark",
@@ -11645,6 +12607,32 @@
    "zh": "银川",
    "v": "abe71ac019"
   },
+  "c0d583c4": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -68.051,
+     68.483
+    ],
+    "y": [
+     -3.6,
+     8.146
+    ],
+    "z": [
+     -80.819,
+     81.217
+    ]
+   },
+   "bytes": 2516400,
+   "city": "taipei",
+   "file": "ground/c0d583c4.glb",
+   "key": "taipei",
+   "radius": 80,
+   "tri": 12706,
+   "verts": 8688,
+   "zh": "台北",
+   "v": "9102990680"
+  },
   "c13207f7": {
    "kind": "gate",
    "bbox": {
@@ -11819,6 +12807,32 @@
    "zh": "吉林大学",
    "v": "fb6fb2e07e"
   },
+  "c3f69a44": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -79.111,
+     79.909
+    ],
+    "y": [
+     -3.6,
+     4.112
+    ],
+    "z": [
+     -45.899,
+     45.939
+    ]
+   },
+   "bytes": 2235764,
+   "city": "harbin",
+   "file": "ground/c3f69a44.glb",
+   "key": "harbin",
+   "radius": 78,
+   "tri": 13212,
+   "verts": 13849,
+   "zh": "哈尔滨",
+   "v": "9167458de7"
+  },
   "c492b81c": {
    "kind": "gate",
    "bbox": {
@@ -11964,6 +12978,32 @@
    "zh": "重庆交通大学",
    "v": "bcb123a979"
   },
+  "c64a02f0": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -76.444,
+     75.528
+    ],
+    "y": [
+     -3.6,
+     7.898
+    ],
+    "z": [
+     -77.115,
+     77.087
+    ]
+   },
+   "bytes": 2943388,
+   "city": "guiyang",
+   "file": "ground/c64a02f0.glb",
+   "key": "guiyang",
+   "radius": 76,
+   "tri": 16100,
+   "verts": 11657,
+   "zh": "贵阳",
+   "v": "79976687ba"
+  },
   "c6bd4205": {
    "kind": "landmark",
    "bbox": {
@@ -12021,6 +13061,32 @@
    "verts": 2786,
    "zh": "华南理工大学",
    "v": "1a0e0725e2"
+  },
+  "c75491c8": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.405,
+     77.305
+    ],
+    "y": [
+     -3.6,
+     4.511
+    ],
+    "z": [
+     -43.15,
+     42.697
+    ]
+   },
+   "bytes": 1853056,
+   "city": "sanya",
+   "file": "ground/c75491c8.glb",
+   "key": "sanya",
+   "radius": 76,
+   "tri": 8880,
+   "verts": 6744,
+   "zh": "三亚",
+   "v": "267e5d56d3"
   },
   "c82b9b90": {
    "kind": "gate",
@@ -12311,6 +13377,32 @@
    "verts": 1270,
    "zh": "开封",
    "v": "0370b968c0"
+  },
+  "cdc90249": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.631,
+     78.382
+    ],
+    "y": [
+     -3.6,
+     4.108
+    ],
+    "z": [
+     -53.362,
+     53.647
+    ]
+   },
+   "bytes": 2243016,
+   "city": "changchun",
+   "file": "ground/cdc90249.glb",
+   "key": "changchun",
+   "radius": 77,
+   "tri": 12890,
+   "verts": 12852,
+   "zh": "长春",
+   "v": "4f91de8c98"
   },
   "ce89b849": {
    "kind": "gate",
@@ -12659,6 +13751,32 @@
    "verts": 2628,
    "zh": "武汉大学",
    "v": "21546b5407"
+  },
+  "d43ad24e": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -82.619,
+     82.092
+    ],
+    "y": [
+     -3.6,
+     4.108
+    ],
+    "z": [
+     -60.693,
+     60.387
+    ]
+   },
+   "bytes": 2633668,
+   "city": "shanghai",
+   "file": "ground/d43ad24e.glb",
+   "key": "shanghai",
+   "radius": 81,
+   "tri": 13648,
+   "verts": 9541,
+   "zh": "上海",
+   "v": "fd18cb3cca"
   },
   "d43c1405": {
    "kind": "gate",
@@ -13095,6 +14213,32 @@
    "zh": "深圳",
    "v": "8d7258abdf"
   },
+  "da9faa63": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -81.903,
+     81.389
+    ],
+    "y": [
+     -3.6,
+     5.429
+    ],
+    "z": [
+     -37.016,
+     36.854
+    ]
+   },
+   "bytes": 1764564,
+   "city": "taichung",
+   "file": "ground/da9faa63.glb",
+   "key": "taichung",
+   "radius": 80,
+   "tri": 8776,
+   "verts": 8111,
+   "zh": "台中",
+   "v": "8c266c895b"
+  },
   "db159c08": {
    "kind": "landmark",
    "bbox": {
@@ -13240,6 +14384,32 @@
    "zh": "大连外国语大学",
    "v": "360355e922"
   },
+  "dcb5da27": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -78.512,
+     78.385
+    ],
+    "y": [
+     -3.6,
+     4.101
+    ],
+    "z": [
+     -76.969,
+     76.811
+    ]
+   },
+   "bytes": 3094780,
+   "city": "xiamen",
+   "file": "ground/dcb5da27.glb",
+   "key": "xiamen",
+   "radius": 77,
+   "tri": 16626,
+   "verts": 10882,
+   "zh": "厦门",
+   "v": "6bb7d0fffb"
+  },
   "dd67788c": {
    "kind": "gate",
    "bbox": {
@@ -13268,6 +14438,32 @@
    "verts": 3440,
    "zh": "黑龙江中医药大学",
    "v": "345bf3330c"
+  },
+  "dd71a25e": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.315,
+     76.741
+    ],
+    "y": [
+     -3.6,
+     7.245
+    ],
+    "z": [
+     -56.632,
+     56.627
+    ]
+   },
+   "bytes": 2412320,
+   "city": "chengde",
+   "file": "ground/dd71a25e.glb",
+   "key": "chengde",
+   "radius": 76,
+   "tri": 13726,
+   "verts": 12237,
+   "zh": "承德",
+   "v": "13a4b66172"
   },
   "debb91f7": {
    "kind": "gate",
@@ -13413,6 +14609,32 @@
    "verts": 2786,
    "zh": "哈尔滨理工大学",
    "v": "3de7d4cd3d"
+  },
+  "df9557c1": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -81.21,
+     81.124
+    ],
+    "y": [
+     -3.6,
+     4.54
+    ],
+    "z": [
+     -66.979,
+     67.124
+    ]
+   },
+   "bytes": 2671032,
+   "city": "chongqing",
+   "file": "ground/df9557c1.glb",
+   "key": "chongqing",
+   "radius": 80,
+   "tri": 15404,
+   "verts": 14922,
+   "zh": "重庆",
+   "v": "3cb7d432a9"
   },
   "e07b293b": {
    "kind": "landmark",
@@ -14284,6 +15506,32 @@
    "zh": "天津科技大学",
    "v": "d49a770187"
   },
+  "f083e394": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -80.325,
+     80.246
+    ],
+    "y": [
+     -3.6,
+     4.513
+    ],
+    "z": [
+     -67.327,
+     67.09
+    ]
+   },
+   "bytes": 2933488,
+   "city": "tainan",
+   "file": "ground/f083e394.glb",
+   "key": "tainan",
+   "radius": 79,
+   "tri": 15710,
+   "verts": 11492,
+   "zh": "台南",
+   "v": "3ad2ea8b9f"
+  },
   "f0973598": {
    "kind": "gate",
    "bbox": {
@@ -14487,6 +15735,32 @@
    "zh": "内蒙古大学",
    "v": "a424ade755"
   },
+  "f2bd049d": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -80.215,
+     80.791
+    ],
+    "y": [
+     -3.6,
+     4.11
+    ],
+    "z": [
+     -81.369,
+     81.538
+    ]
+   },
+   "bytes": 2847408,
+   "city": "wuhan",
+   "file": "ground/f2bd049d.glb",
+   "key": "wuhan",
+   "radius": 80,
+   "tri": 15302,
+   "verts": 12394,
+   "zh": "武汉",
+   "v": "f2fc92353b"
+  },
   "f2e607a2": {
    "kind": "landmark",
    "bbox": {
@@ -14544,6 +15818,32 @@
    "verts": 1270,
    "zh": "广州",
    "v": "cca394c7bd"
+  },
+  "f3f5368e": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -77.068,
+     75.91
+    ],
+    "y": [
+     -3.6,
+     4.103
+    ],
+    "z": [
+     -64.118,
+     68.739
+    ]
+   },
+   "bytes": 2878124,
+   "city": "fuzhou",
+   "file": "ground/f3f5368e.glb",
+   "key": "fuzhou",
+   "radius": 77,
+   "tri": 15966,
+   "verts": 13747,
+   "zh": "福州",
+   "v": "fe9eeb40f6"
   },
   "f4796b8e": {
    "kind": "gate",
@@ -15153,6 +16453,32 @@
    "verts": 2484,
    "zh": "郑州航空工业管理学院",
    "v": "8e4aa54a70"
+  },
+  "feecd450": {
+   "kind": "ground",
+   "bbox": {
+    "x": [
+     -104.306,
+     104.983
+    ],
+    "y": [
+     -3.6,
+     8.127
+    ],
+    "z": [
+     -81.097,
+     81.009
+    ]
+   },
+   "bytes": 3746284,
+   "city": "beijing",
+   "file": "ground/feecd450.glb",
+   "key": "beijing",
+   "radius": 103,
+   "tri": 22510,
+   "verts": 17063,
+   "zh": "北京",
+   "v": "3d7eba340a"
   },
   "feef7dd1": {
    "kind": "gate",
