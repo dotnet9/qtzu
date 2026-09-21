@@ -6,6 +6,7 @@ import { buildUniGate, attachGateAsset } from './uni-gate-models.js';
 import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 import { createCityTerrain } from './terrain.js';
 import { brickNormal } from './textures.js';
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 import * as assets from './assets.js';
 
 const M = (color, o = {}) => new THREE.MeshStandardMaterial({
@@ -24,7 +25,9 @@ export const CITY_WALL_BW = r => Math.max(1.2, r * 0.035);
 export function cityLayout(key) {
   let h = 5381;
   for (const ch of String(key || '')) h = ((h * 33) ^ ch.charCodeAt(0)) >>> 0;
-  const rn = () => { h = (Math.imul(h, 48271) + 11) % 2147483647; return h / 2147483647; };
+  // 注意：h 会溢出为负、JS 的 % 保留符号 → 本函数返回值域是 (-1, 1)，**不保证非负**。
+// 既有用法（角度、阈值比较）不受影响；需要 [0,1) 语义的地方请用 wrngOf()。
+const rn = () => { h = (Math.imul(h, 48271) + 11) % 2147483647; return h / 2147483647; };
   const baseA = rn() * Math.PI * 2;                                  // 城内布置整体初始角
   const style = ['ring', 'twin', 'line', 'cross'][Math.floor(rn() * 4)];   // 副地标摆法
   const perchA = baseA + 1.9 + rn() * 1.4;                           // 观景石台方向
@@ -71,6 +74,61 @@ function brickTexture() {
   tex.colorSpace = THREE.SRGBColorSpace;
   _brickTex = tex;
   return tex;
+}
+
+// 地面散点原型：草簇（3~5 片细叶合并成一个几何）/ 石头（低模多面体，切面随机）/ 花（茎 + 花瓣）
+// 合并成一个几何是 InstancedMesh 的前提：几百个实例只占 1 个 draw call。
+// 合并前统一切成非索引几何：three 的 IcosahedronGeometry 是非索引、Cone/Cylinder 是索引，
+// 混着合会直接失败（"index attribute exists among all geometries, or in none of them"）。
+function mergeParts(parts) {
+  const flat = parts.map((g) => (g.index ? g.toNonIndexed() : g));
+  return BufferGeometryUtils.mergeGeometries(flat) || flat[0];   // 兜底：绝不给 Mesh 传 null
+}
+
+function tuftGeometry(rand) {
+  const parts = [];
+  const n = 3 + Math.floor(rand() * 3);
+  for (let i = 0; i < n; i++) {
+    const h = 0.32 + rand() * 0.34, r = 0.045 + rand() * 0.03;
+    const g = new THREE.ConeGeometry(r, h, 3, 1);            // 三棱锥叶：面数极低，剪影仍是"叶"
+    g.translate(0, h / 2, 0);
+    g.rotateZ((rand() - 0.5) * 0.55);                        // 稍微外倾，像一撮草
+    g.rotateY(rand() * Math.PI);
+    g.translate((rand() - 0.5) * 0.16, 0, (rand() - 0.5) * 0.16);
+    parts.push(g);
+  }
+  if (!parts.length || !parts[0]) console.log('[dbg] tuft 异常 parts=' + parts.length + ' n=' + n + ' randType=' + typeof rand + ' first=' + String(parts[0]));
+  return mergeParts(parts);
+}
+
+function stoneGeometry(rand) {
+  const g = new THREE.IcosahedronGeometry(0.17 + rand() * 0.12, 0);   // 20 面，低模石头
+  const pa = g.attributes.position;
+  for (let i = 0; i < pa.count; i++) {                                 // 顶点抖动：不是完美球
+    const k = 0.75 + rand() * 0.5;
+    pa.setXYZ(i, pa.getX(i) * k, pa.getY(i) * k * 0.72, pa.getZ(i) * k);   // 压扁一点，像卧石
+  }
+  g.computeVertexNormals();
+  return g;
+}
+
+function flowerGeometry(rand) {
+  const parts = [];
+  const h = 0.24 + rand() * 0.16;
+  const stem = new THREE.CylinderGeometry(0.012, 0.016, h, 4, 1);
+  stem.translate(0, h / 2, 0);
+  parts.push(stem);
+  for (let i = 0; i < 5; i++) {                     // 5 片花瓣摊开
+    const a = Math.PI * 2 * i / 5;
+    const pet = new THREE.IcosahedronGeometry(0.055, 0);
+    pet.scale(1, 0.45, 1);
+    pet.translate(Math.cos(a) * 0.05, h + 0.01, Math.sin(a) * 0.05);
+    parts.push(pet);
+  }
+  const core = new THREE.IcosahedronGeometry(0.04, 0);
+  core.translate(0, h + 0.02, 0);
+  parts.push(core);
+  return mergeParts(parts);
 }
 
 // 确定性 PRNG（同种子同序列）：城墙垛口/岩裙这类"看起来随机"的细节用它，
@@ -1177,7 +1235,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       if (isl.terrain) {
         terrain = createCityTerrain({ pts, cfg: isl.terrain });
         grp.add(terrain.group);
-        procGround.push(terrain.groundMesh, ...terrain.peakMeshes);   // 换装后由 ground-slot 隐藏
+        procGround.push(terrain.groundMesh, ...terrain.peakMeshes);
+    // 水面法线材质交给游戏每帧滚动（湖/河才有波纹）
+    world.anim.waterMats = (world.anim.waterMats || []).concat(terrain.waterMats || []);   // 换装后由 ground-slot 隐藏
         TY = (x, z) => terrain.heightAtLocal(x, z);
       }
       if (!terrain) {
@@ -1439,7 +1499,12 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       gslot.name = 'ground-slot';
       grp.add(gslot);
       assets.apply(gslot, 'ground', key, {
-        onSwap: () => { for (const o of procGround) o.visible = false; },
+        onSwap: () => {
+          for (const o of procGround) o.visible = false;
+          // 地面散点（草簇/石头/花）挂在绿化块的作用域里，拿不到 procGround 列表，按名字收：
+          // 烘焙地面自带这些细节，程序化的必须一起隐藏，否则会"插在烘焙地面上"穿模
+          grp.traverse((o) => { if (o.name === 'ground-scatter') o.visible = false; });
+        },
       });
       world.cityBounds = world.cityBounds || {};
       world.cityBounds[key] = {
@@ -1626,6 +1691,52 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             const rad = Math.max(bb.max.x - bb.min.x, bb.max.z - bb.min.z) / 2;
             world.decor.push({ x: sp[0], z: sp[1], r: rad + 0.35 });
           }
+        }
+        // 地面散点：草簇 / 石头 / 花丛（见文件头的原型函数）。
+        // 之所以放在绿化之后、用同一个 spot()：自动继承"不压地标、不挡迎宾主街、
+        // 与树保持间距"的规则，不需要再维护第二套避让逻辑。
+        {
+          const scatter = (geo, count, dMin, dMax, gap, margin, colorOpts) => {
+            const mesh = new THREE.InstancedMesh(
+              geo,
+              new THREE.MeshStandardMaterial({ vertexColors: false, roughness: 0.94, metalness: 0 }),
+              count);
+            const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
+            const pos = new THREE.Vector3(), sc = new THREE.Vector3();
+            const col = new THREE.Color();
+            let placedN = 0;
+            for (let i = 0; i < count; i++) {
+              const sp = spot(dMin, dMax, gap, margin);
+              if (!sp) continue;
+              const k = 0.8 + rn2() * 0.55;
+              pos.set(sp[0], Y(sp[0], sp[1], 0), sp[1]);
+              q.setFromAxisAngle(up, rn2() * Math.PI * 2);
+              sc.set(k, 0.85 + rn2() * 0.4, k);
+              m4.compose(pos, q, sc);
+              mesh.setMatrixAt(placedN, m4);
+              const c = colorOpts[(Math.floor(rn2() * colorOpts.length)) % colorOpts.length];
+              mesh.setColorAt(placedN, col.set(c).multiplyScalar(0.86 + rn2() * 0.28));
+              placedN++;
+            }
+            mesh.count = placedN;                       // 只渲染真正放下的那些
+            mesh.instanceMatrix.needsUpdate = true;
+            if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+            mesh.name = 'ground-scatter';
+            // 换装烘焙地面时由 ground-slot 的 onSwap 按名字隐藏（见上面的注释）
+            grp.add(mesh);
+          };
+          // 散点用自己的确定性流：rn2() 值域是 (-1,1)（见文件头注释），不能当 [0,1) 用；
+          // 独立流也更稳——它不与树/楼的取数顺序耦合，将来调整绿化数量不会改变石头的位置
+          const rn2 = wrngOf(seedOfPoints(poly || []) ^ 0x9e3779b9);
+          // 草簇（最多，贴着地面看最明显）
+          scatter(tuftGeometry(rn2), Math.round(Math.min(150, r * 2.0)), r * 0.12, r * 0.92, r * 0.022, bw + 0.6,
+            ['#7FC46F', '#8FD08F', '#6FB863', '#A8E1A2']);
+          // 石头
+          scatter(stoneGeometry(rn2), Math.round(Math.min(60, r * 0.8)), r * 0.12, r * 0.92, r * 0.03, bw + 0.5,
+            ['#B8B2A6', '#A8A296', '#C4BEB2', '#9E988C']);
+          // 花丛（城市气质色，少量）
+          scatter(flowerGeometry(rn2), Math.round(Math.min(70, r * 0.9)), r * 0.15, r * 0.9, r * 0.03, bw + 0.6,
+            ['#FF9FBE', '#FFD166', '#C9A7EB', '#8ED8F8', '#FFF3B0']);
         }
         // 高楼：2-5 栋低模塔楼（城市感），带碰撞可绕行
         const bN = 8 + Math.floor(rn() * 9);

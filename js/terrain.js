@@ -12,7 +12,7 @@
 //   - 所有数值（高度/配色/水面）都来自 js/terrain-field.js，渲染与寻高/涉水/体检同源
 import * as THREE from 'three';
 import { makeHeightField, srgbToLinear } from './terrain-field.js';
-import { grassDetail, rockDetail } from './textures.js';
+import { grassDetail, rockDetail, waterNormal } from './textures.js';
 
 export function createCityTerrain({ pts, cfg }) {
   const F = makeHeightField({ pts, cfg });
@@ -65,6 +65,7 @@ export function createCityTerrain({ pts, cfg }) {
   /* ---- 雪山峰：噪声位移的岩体 + 岩理贴图 + 雪线混合 ---- */
   const peaksOut = [];
   const peakMeshes = [];
+  const waterMats = [];   // 水面材质：游戏每帧滚动它们的法线 UV（见 js/game.js 的 _updateWorldAnim）
   if (F.features.peaks.length) {
     const rk = rockDetail(256, 71);
     const pkMat = new THREE.MeshStandardMaterial({
@@ -122,12 +123,16 @@ export function createCityTerrain({ pts, cfg }) {
   /* ---- 河流（贴地 + 台级瀑布）与湖 ---- */
   const rivers = F.features.rivers;
   if (rivers.length) {
-    const watMat = new THREE.MeshStandardMaterial({ color: 0x5fb6ef, transparent: true, opacity: 0.92, roughness: 0.18, metalness: 0.05 });
+    const wn = waterNormal(256, 211);
+    const wn2 = wn.normalMap.clone();          // 第二层：不同速度/方向滚动，波纹不会看出重复
+    wn2.needsUpdate = true;
+    const watMat = new THREE.MeshStandardMaterial({ color: 0x5fb6ef, transparent: true, opacity: 0.92, roughness: 0.18, metalness: 0.05, normalMap: wn.normalMap, normalScale: new THREE.Vector2(0.45, 0.45) });
+    waterMats.push(watMat);
     const foamMat = new THREE.MeshStandardMaterial({ color: 0xeaf6ff, transparent: true, opacity: 0.85, roughness: 0.4 });
     for (const R of rivers) {
       const strip = (extraW, yOff) => {           // 沿河采样生成三角带；出界段断开
-        const p2 = [], i2 = [];
-        let vi = 0, prev = null;
+        const p2 = [], i2 = [], u2 = [];
+        let vi = 0, prev = null, arclen = 0;
         for (const s of R.pts) {
           const p = s.p, w = s.w + extraW;
           // 河面只在轮廓内铺：长条形城市按统一 R 换算会整条飘到城外/海面上
@@ -135,12 +140,17 @@ export function createCityTerrain({ pts, cfg }) {
           const y = heightAtLocal(p[0], p[1]) + yOff;
           const nx2 = -s.tan[1], nz2 = s.tan[0];   // 河面法线（垂直于流向）
           const l = [p[0] + nx2 * w, y, p[1] + nz2 * w], r = [p[0] - nx2 * w, y, p[1] - nz2 * w];
+          // 水面 UV：横向 0/1，纵向按累计弧长（每 6 世界单位一个周期）→ 法线图不会被拉成一团
+          if (prev) arclen += Math.hypot(p[0] - prev.l[0], p[1] - prev.l[2]);
+          const v0 = arclen / 6, v1 = v0 + w / 3;
           if (prev) {
             if (prev.y - y > F.step * 0.6) {       // 台地落差 → 瀑布立面
               p2.push(prev.l[0], prev.l[1], prev.l[2], prev.r[0], prev.r[1], prev.r[2], r[0], prev.y, r[2], l[0], prev.y, l[2]);
+              u2.push(0, v0, 1, v0, 1, v0, 0, v0);
               i2.push(vi, vi + 1, vi + 2, vi, vi + 2, vi + 3); vi += 4;
             }
             p2.push(prev.l[0], prev.l[1], prev.l[2], prev.r[0], prev.r[1], prev.r[2], r[0], r[1], r[2], l[0], l[1], l[2]);
+            u2.push(0, v0, 1, v0, 1, v1, 0, v1);
             i2.push(vi, vi + 1, vi + 2, vi, vi + 2, vi + 3); vi += 4;
           }
           prev = { l, r, y };
@@ -148,6 +158,7 @@ export function createCityTerrain({ pts, cfg }) {
         if (!i2.length) return null;
         const g = new THREE.BufferGeometry();
         g.setAttribute('position', new THREE.Float32BufferAttribute(p2, 3));
+        g.setAttribute('uv', new THREE.Float32BufferAttribute(u2, 2));
         g.setIndex(i2); g.computeVertexNormals();
         return g;
       };
@@ -195,7 +206,9 @@ export function createCityTerrain({ pts, cfg }) {
     }
   }
   if (F.features.lakes.length) {
-    const watMat = new THREE.MeshStandardMaterial({ color: 0x5fb6ef, transparent: true, opacity: 0.92, roughness: 0.18, metalness: 0.05 });
+    const lakeMat = new THREE.MeshStandardMaterial({ color: 0x5fb6ef, transparent: true, opacity: 0.92, roughness: 0.18, metalness: 0.05, normalMap: waterNormal(256, 211).normalMap, normalScale: new THREE.Vector2(0.4, 0.4) });
+    waterMats.push(lakeMat);
+    const watMat = lakeMat;
     for (const L of F.features.lakes) {
       const [lx, lz] = L.at;
       if (!inPoly(lx, lz) || dEdge(lx, lz) < 1.0) { console.warn('[terrain] 湖心在轮廓外，已跳过:', L.at); continue; }
@@ -209,6 +222,7 @@ export function createCityTerrain({ pts, cfg }) {
   return {
     group,
     peaks: peaksOut,
+    waterMats,
     peakMeshes,     // 换装烘焙地面时要隐藏的两类（见 js/world.js 的 ground-slot 与 js/assets.js）
     field: F,
     groundMesh: mesh,

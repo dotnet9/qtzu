@@ -926,6 +926,16 @@ export class Game {
     this._updateZoneHint(dt);
     this._updateFx(dt);
     this._updateIslandLOD();
+    // 水面法线 UV 滚动：两层不同速度/方向 → 波纹在动，且看不出平铺重复。
+    // 每帧只改 offset（不重传纹理），代价可忽略。
+    const wm = this.world.anim.waterMats;
+    if (wm && wm.length) {
+      const nt = this.clock ? this.clock.elapsedTime : performance.now() / 1000;
+      for (const m of wm) {
+        if (!m.normalMap) continue;
+        m.normalMap.offset.set(nt * 0.02, nt * 0.013);
+      }
+    }
     this._updateDayNight();
     this.eggs.update(dt, t);
     this.pets.update(dt, t, this.player.position);
