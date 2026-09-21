@@ -1,10 +1,10 @@
 {
  "blender": "4.5.14 LTS",
- "generated": "2026-09-21T07:52:17.445Z",
+ "generated": "2026-09-21T08:15:14.575Z",
  "kinds": {
   "ground": {
    "blender": "4.5.14 LTS",
-   "generated": "2026-09-21T15:52:17",
+   "generated": "2026-09-21T16:15:14",
    "count": 1
   },
   "gate": {
@@ -5081,7 +5081,7 @@
      62.8
     ]
    },
-   "bytes": 1478948,
+   "bytes": 2613824,
    "city": "chengdu",
    "file": "ground/58c74cc3.glb",
    "key": "chengdu",
@@ -5089,7 +5089,7 @@
    "tri": 16308,
    "verts": 13623,
    "zh": "成都",
-   "v": "7cf9c911a3"
+   "v": "9059ebccd8"
   },
   "58c76278": {
    "kind": "landmark",

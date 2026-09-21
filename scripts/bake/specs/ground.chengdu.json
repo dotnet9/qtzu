@@ -75426,7 +75426,9 @@
       0.4613
      ]
     ]
-   ]
+   ],
+   "uvTile": 4.5,
+   "albedo": "E:\\github\\Apps\\qtzu\\.cache\\bake\\ground-chengdu-albedo.png"
   }
  ]
 }

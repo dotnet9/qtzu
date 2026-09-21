@@ -5,7 +5,7 @@ import { ISLANDS } from './words.js';
 import { buildUniGate, attachGateAsset } from './uni-gate-models.js';
 import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 import { createCityTerrain } from './terrain.js';
-import { brickNormal } from './textures.js';
+import { brickNormal, grainNormal } from './textures.js';
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 import * as assets from './assets.js';
 
@@ -1499,11 +1499,23 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       gslot.name = 'ground-slot';
       grp.add(gslot);
       assets.apply(gslot, 'ground', key, {
-        onSwap: () => {
+        onSwap: (slotG) => {
           for (const o of procGround) o.visible = false;
-          // 地面散点（草簇/石头/花）挂在绿化块的作用域里，拿不到 procGround 列表，按名字收：
-          // 烘焙地面自带这些细节，程序化的必须一起隐藏，否则会"插在烘焙地面上"穿模
-          grp.traverse((o) => { if (o.name === 'ground-scatter') o.visible = false; });
+          // 地面散点（草簇/石头/花）**保留**：烘焙地面不含这些（ground.py 只出地形面/院墙/岩裙/雪峰），
+          // 而它们是近景细节的主要来源。散点按程序化高度场贴地，与烘焙地面同高
+          // （verify-ground-fit.mjs 实测最大偏差 0.030），既不会插进去也不会浮空。
+          // 共享法线：GLB 只带 TEXCOORD_0，法线图用运行时那张共享贴图（每城省一份体积）。
+          // 改材质后必须 needsUpdate —— three 不会自动重编着色器（漏了就白挂）。
+          const gn = grainNormal(256, 131).normalMap;
+          (slotG || grp).traverse((o) => {
+            if (!o.isMesh) return;
+            for (const m of (Array.isArray(o.material) ? o.material : [o.material])) {
+              if (!m || !m.isMeshStandardMaterial) continue;
+              m.normalMap = gn;
+              m.normalScale = new THREE.Vector2(0.5, 0.5);
+              m.needsUpdate = true;
+            }
+          });
         },
       });
       world.cityBounds = world.cityBounds || {};

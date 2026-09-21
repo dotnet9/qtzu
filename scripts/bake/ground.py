@@ -57,6 +57,9 @@ class Lay:
         self.f = []
         self.c = []          # sRGB 0..1，写 COLOR_0 前统一转线性
         self.smooth = []
+        self.mat = []        # 逐面材质槽：0 = 地形面（带 albedo 贴图），1 = 其它部件（纯顶点色）
+        self.ranges = []     # 每次 push 的顶点区间 (起, 止)：用来区分 AO 的 base
+        self.cur_mat = 0     # 下一个 push 用哪个槽（build_one 里按部件切换，避免改各部件函数）
 
     def push(self, verts, faces, color, smooth=False, jitter=0.0, seed=None):
         base = len(self.v)
@@ -66,6 +69,8 @@ class Lay:
         self.v.extend(gv)
         self.f.extend([[base + i for i in fc] for fc in faces])
         self.smooth.extend([smooth] * len(faces))
+        self.mat.extend([self.cur_mat] * len(faces))
+        self.ranges.append((base, base + len(verts)))
         if isinstance(color, (tuple, list)) and color and isinstance(color[0], (int, float)):
             self.c.extend([tuple(color)] * len(verts))
         else:
@@ -274,9 +279,31 @@ def peaks(lay, spec):
 
 # ---------------------------------------------------------------- 组装
 
+def albedo_material(spec):
+    """地形面材质：绿底白图的 albedo 贴图 → Base Color。法线不内嵌（运行时挂共享贴图）。"""
+    mat = bpy.data.materials.new('ground_terrain_' + spec['id'])
+    mat.use_nodes = True
+    nt = mat.node_tree
+    for nd in list(nt.nodes):
+        nt.nodes.remove(nd)
+    out = nt.nodes.new('ShaderNodeOutputMaterial'); out.location = (420, 0)
+    bsdf = nt.nodes.new('ShaderNodeBsdfPrincipled'); bsdf.location = (140, 0)
+    nt.links.new(bsdf.outputs['BSDF'], out.inputs['Surface'])
+    bsdf.inputs['Roughness'].default_value = 0.95
+    bsdf.inputs['Metallic'].default_value = 0.0
+    tex = nt.nodes.new('ShaderNodeTexImage'); tex.location = (-180, 60)
+    tex.image = bpy.data.images.load(spec['albedo'])
+    tex.image.colorspace_settings.name = 'sRGB'
+    nt.links.new(tex.outputs['Color'], bsdf.inputs['Base Color'])
+    return mat
+
+
 def build_one(spec):
     lay = Lay()
+    # 槽 0 只给地形面：贴图投到竖直的院墙/雪峰会沿高度拉伸，那些部件继续用顶点色
+    lay.cur_mat = 0
     terrain(lay, spec)
+    lay.cur_mat = 1
     wall(lay, spec)
     skirt(lay, spec)
     peaks(lay, spec)
@@ -284,14 +311,27 @@ def build_one(spec):
     me = bpy.data.meshes.new(name)
     me.from_pydata([tuple(v) for v in lay.v], [], [list(f) for f in lay.f])
     me.validate(verbose=False)
-    me.materials.append(C.clay_material('#FFFFFF', 0.94))
-    for poly, smooth in zip(me.polygons, lay.smooth):
+    me.materials.append(albedo_material(spec))          # 槽 0：地形面
+    me.materials.append(C.clay_material('#FFFFFF', 0.94))  # 槽 1：院墙/垛口/岩裙/雪峰
+    for poly, smooth, mi in zip(me.polygons, lay.smooth, lay.mat):
         poly.use_smooth = smooth
+        poly.material_index = mi
+    # TEXCOORD_0：世界/uvTile（平铺）。地形面用它取 albedo（一次性映射）与法线（平铺）；
+    # 其它部件也带上 UV，这样运行时能统一给所有材质挂同一张微起伏法线。
+    uvl = me.uv_layers.new(name='UVMap')
+    tile = float(spec.get('uvTile', 4.5))
+    for loop in me.loops:
+        co = me.vertices[loop.vertex_index].co
+        uvl.data[loop.index].uv = (co.x / tile, co.z / tile)
     me.update()
     ob = bpy.data.objects.new(name, me)
     bpy.context.collection.objects.link(ob)
     # AO 与反照率相乘写进 COLOR_0（base 已是线性），材质底色留白 —— 见文件头的约定 2
-    C.bake_ao(ob, base=lay.linear_colors(), seed=int(spec['id'][:4], 16), **GROUND_AO)
+    # 地形面的 base 留白：颜色由贴图给，COLOR_0 只承载 AO（否则贴图 × 顶点色 = 颜色乘两遍）
+    lin = lay.linear_colors()
+    t0, t1 = lay.ranges[0]
+    base = [(1.0, 1.0, 1.0) if t0 <= i < t1 else lin[i] for i in range(len(lin))]
+    C.bake_ao(ob, base=base, seed=int(spec['id'][:4], 16), **GROUND_AO)
     return ob
 
 
@@ -309,7 +349,7 @@ def main():
         rel = 'ground/%s.glb' % spec['id']
         out = os.path.join(a['out'], rel.replace('/', os.sep))
         info = C.check_budget('ground', C.stats(ob), rel)
-        size = C.export_glb(ob, out)
+        size = C.export_glb(ob, out, textures=True)
         entries[spec['id']] = dict(info, file=rel, bytes=size, city=spec['city'],
                                    key=spec['key'], zh=spec['zh'], radius=spec['radius'])
         C.bpy_cleanup(ob)

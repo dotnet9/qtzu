@@ -6,8 +6,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { familyFor, SIGNATURE } from '../../js/uni-gates.js';
-import { readCity, radiusOf, worldPtsOf, makeField } from '../terrain-lib.mjs';
+import { readCity, radiusOf, worldPtsOf, makeField, cityIds } from '../terrain-lib.mjs';
 import { simplifyPoly } from '../../js/city-shape.js';
+import { writePng } from '../png.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '../..');
 const argOf = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
@@ -150,6 +151,57 @@ const SKIRT = { sink: -3.6, tuck: 0.94, color: '#87928F' };                     
 // 雪峰配色与 terrain.js:66-69 同一套（sRGB，Blender 侧转线性）
 const PEAK_ROCK = [0.26, 0.22, 0.20], PEAK_SNOW = [0.95, 0.97, 1.0];
 
+// ---- 地面区域色贴图（1024²）----
+// 从 spec 的逐顶点 color 双线性采样 + 细节噪声。color 来自运行时 zoneColor（唯一配色源），
+// 所以贴图与顶点色/程序化地面同色系。双线性把"逐格色"的 1.5 单位台阶铺成渐变
+// （等效 0.17 单位/px）——这正是"硬边黄块"的解药。
+const ALB_SIZE = 1024;
+const n2 = (x, y, s) => { const v = Math.sin(x * 127.1 + y * 311.7 + s * 74.7) * 43758.5453; return v - Math.floor(v); };
+const vn = (x, y, s) => {
+  const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+  const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+  return (n2(xi, yi, s) * (1 - u) + n2(xi + 1, yi, s) * u) * (1 - v)
+    + (n2(xi, yi + 1, s) * (1 - u) + n2(xi + 1, yi + 1, s) * u) * v;
+};
+const fbm = (x, y, s, oct = 4) => {
+  let sum = 0, amp = 0.5, f = 1;
+  for (let k = 0; k < oct; k++) { sum += vn(x * f, y * f, s + k * 7) * amp; amp *= 0.5; f *= 2.1; }
+  return sum;
+};
+
+export function albedoOf(cityKey, color, grid) {
+  const { minX, minZ, gsz, nx, nz } = grid;
+  const buf = Buffer.alloc(ALB_SIZE * ALB_SIZE * 3);
+  const sample = (fx, fz) => {
+    const gx = Math.max(0, Math.min(nx, fx)), gz = Math.max(0, Math.min(nz, fz));
+    const i0 = Math.min(nx - 1, Math.floor(gx)), j0 = Math.min(nz - 1, Math.floor(gz));
+    const tx = gx - i0, tz = gz - j0;
+    const a = color[j0][i0], b = color[j0][i0 + 1], c = color[j0 + 1][i0], d = color[j0 + 1][i0 + 1];
+    return [0, 1, 2].map((k) => (a[k] * (1 - tx) + b[k] * tx) * (1 - tz) + (c[k] * (1 - tx) + d[k] * tx) * tz);
+  };
+  for (let py = 0; py < ALB_SIZE; py++) {
+    const z = minZ + (py + 0.5) / ALB_SIZE * nz * gsz;
+    const fz = (py + 0.5) / ALB_SIZE * nz;
+    for (let px = 0; px < ALB_SIZE; px++) {
+      const x = minX + (px + 0.5) / ALB_SIZE * nx * gsz;
+      const c = sample((px + 0.5) / ALB_SIZE * nx, fz);
+      // 细节：低频斑驳（±7%）+ 高频颗粒（±3%）；偏绿的像素多一层"草叶"笔触（±5%）
+      const greenish = Math.max(0, Math.min(1, (c[1] - Math.max(c[0], c[2])) * 2.4));
+      const low = 0.93 + fbm(x * 0.09, z * 0.09, 11, 3) * 0.14;
+      const fine = 0.97 + fbm(x * 1.6, z * 1.6, 23, 2) * 0.06;
+      const stroke = 1 + (fbm(x * 3.2 + z * 0.7, z * 3.2 - x * 0.5, 37, 2) - 0.5) * 0.1 * greenish;
+      const k = low * fine * stroke;
+      const o = (py * ALB_SIZE + px) * 3;
+      for (let ch = 0; ch < 3; ch++) buf[o + ch] = Math.max(0, Math.min(255, c[ch] * k * 255));
+    }
+  }
+  const CACHE = path.join(ROOT, '.cache/bake');
+  fs.mkdirSync(CACHE, { recursive: true });
+  const file = path.join(CACHE, `ground-${cityKey}-albedo.png`);
+  writePng(file, ALB_SIZE, ALB_SIZE, buf);
+  return file;
+}
+
 export function groundSpec(cityKey) {
   const city = readCity(cityKey);
   const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, `data/cities/${cityKey}/terrain.json`), 'utf8'));
@@ -195,6 +247,8 @@ export function groundSpec(cityKey) {
     peaks, peakColors: { rock: PEAK_ROCK, snow: PEAK_SNOW, snowRange: cfg.snow ?? [5.2, 6.6] },
     grid: { minX, minZ, gsz, nx, nz }, step: F.step,
     qy, cellIn, color,
+    uvTile: 4.5,                                                     // 与 js/terrain.js 的 UV_TILE 同值
+    albedo: albedoOf(cityKey, color, { minX, minZ, gsz, nx, nz }),   // 1024² 区域色（内嵌进 GLB）
   };
 }
 
