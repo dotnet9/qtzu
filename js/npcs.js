@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import * as ui from './ui.js';
 import { markNpcChat } from './save.js';
 import { t, getGameRes } from './i18n.js';
+import { buildNPC } from './models/npc.js';   // NPC 造型（复用 kit，见该文件注释）
 
 const ROLES = {
   tourist: { zh: 'x.g457', emoji: '🧳', shirts: ['#FF9FBE', '#7EC4F2', '#FFD34E'] },
@@ -60,14 +61,9 @@ function wrap(text, n = 15) {
   return out;
 }
 
-function buildNPC(role, shirt) {
-  const g = new THREE.Group();
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 0.42, 4, 8),
-    new THREE.MeshStandardMaterial({ color: shirt, roughness: 0.85 }));
-  body.position.y = 0.5; body.castShadow = true; g.add(body);
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.19, 12, 10),
-    new THREE.MeshStandardMaterial({ color: 0xFFE0C2, roughness: 0.7 }));
-  head.position.y = 1.02; head.castShadow = true; g.add(head);
+// 两个 Sprite：表情招牌（emoji）+ 角色名牌。它们承载"逐城特色角色"的身份，
+// 所以重建造型时也保留（画布纹理在 js/npcs.js 里做，因为要用 t() 与 role.emoji）。
+function attachSprites(g, role) {
   const cv = document.createElement('canvas');
   cv.width = cv.height = 96;
   const c = cv.getContext('2d');
@@ -78,7 +74,6 @@ function buildNPC(role, shirt) {
   tex.colorSpace = THREE.SRGBColorSpace;
   const hat = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
   hat.scale.setScalar(0.48); hat.position.y = 1.44; g.add(hat);
-  // 头顶角色名牌：底要实（旧版太透，文字都看不清），整体略降不透明度保住"远看不抢戏"
   const nv = document.createElement('canvas');
   nv.width = 256; nv.height = 64;
   const nc = nv.getContext('2d');
@@ -95,15 +90,7 @@ function buildNPC(role, shirt) {
   ntex.colorSpace = THREE.SRGBColorSpace;
   const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: ntex, transparent: true, depthWrite: false, fog: false, opacity: 0.95 }));
   tag.scale.set(1.28, 0.32, 1); tag.position.y = 1.82; g.add(tag);
-  const legGeo = new THREE.CapsuleGeometry(0.07, 0.18, 3, 6);
-  const legM = new THREE.MeshStandardMaterial({ color: 0x5B4632, roughness: 0.9 });
-  const legL = new THREE.Mesh(legGeo, legM); legL.position.set(-0.1, 0.16, 0);
-  const legR = new THREE.Mesh(legGeo, legM); legR.position.set(0.1, 0.16, 0);
-  legL.castShadow = legR.castShadow = true;
-  g.add(legL, legR);
-  return { group: g, legL, legR };
 }
-
 export class NPCManager {
   constructor(scene) {
     this.scene = scene;
@@ -193,7 +180,9 @@ export class NPCManager {
       const r = roles[i % roles.length];
       const role = r.special ? special[r.i] : ROLES[r];
       const shirt = role.shirts[i % role.shirts.length];
-      const { group, legL, legR } = buildNPC(role, shirt);
+      // id 决定发型/帽子/道具（js/models/npc.js 的 prop/hair）；逐城特色角色走 'local'（草帽 + 篮子）
+      const { group, legL, legR } = buildNPC({ ...role, id: r.special ? 'local' : r }, shirt);
+      attachSprites(group, role);   // 表情招牌 + 名牌（见该函数注释）
       const a = (i / count) * Math.PI * 2 + 0.4;
       const p = { x: stage.cx + Math.cos(a) * stage.r * 0.55, z: stage.cz + Math.sin(a) * stage.r * 0.55 };
       if (clampFn) { const q = { x: p.x, z: p.z }; clampFn(q, stage); p.x = q.x; p.z = q.z; }
