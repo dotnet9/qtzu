@@ -48,13 +48,32 @@ const out = await page.evaluate(async ({ kind, limit }) => {
   const m = await import(new URL('js/models.js', location.href).href);
   // 提取器：把一棵 Object3D 树压成图元数组（矩阵 = 该图元到根的变换）
   const ROUND = (v) => Math.round(v * 1e4) / 1e4;
-  function extract(root) {
+  // skipRoots：其它部件的根。提取某个部件时要跳过它们的子树，
+  // 否则"父部件"会把"子部件"的几何也算一遍（head 是 body 的子节点 → 头被烘两次、游戏里重叠）
+  function extract(root, skipRoots = []) {
+    const insideOtherPart = (o) => {
+      // 向上遍历：先遇到 root 说明属于本部件（不是"别人的子树"）；
+      // 先遇到别的部件根才跳过。少了"先遇到 root"这一步，head（body 的子节点）会被整格丢掉。
+      let q = o;
+      while (q) {
+        if (q === root) return false;
+        for (const sr of skipRoots) if (sr && sr !== root && q === sr) return true;
+        q = q.parent;
+      }
+      return false;
+    };
     root.updateMatrixWorld(true);
     const inv = new THREE.Matrix4().copy(root.matrixWorld).invert();
     const prims = [];
     let nanDropped = 0;
+    let keptDropped = 0;
+    let partDropped = 0;
     root.traverse((o) => {
       if (!o.isMesh && !o.isSprite) return;
+      // keep = 运行时自己管（名牌/欢迎牌/脸部小件），不进烘焙资产：
+      // 脸部若被烘进 GLB，就会出现"GLB 的脸 + 程序化的脸"两层，且眨眼引用指向程序化那份
+      if (o.userData && o.userData.keep) { keptDropped++; return; }
+      if (insideOtherPart(o)) { partDropped++; return; }
       const mat = Array.isArray(o.material) ? o.material[0] : o.material;
       const g = o.geometry;
       if (!g || !g.type) return;
@@ -84,6 +103,8 @@ const out = await page.evaluate(async ({ kind, limit }) => {
       });
     });
     root.userData.__nanDropped = nanDropped;
+    root.userData.__keptDropped = keptDropped;
+    root.userData.__partDropped = partDropped;
     // 源造型的精确包围盒（three 算的，含旋转/缩放）：审计用它做"烘焙 == 源"的对账
     const bb = new THREE.Box3().setFromObject(root);
     root.userData.__bbox = { minY: bb.min.y, maxY: bb.max.y, minX: bb.min.x, maxX: bb.max.x };
@@ -98,39 +119,33 @@ const out = await page.evaluate(async ({ kind, limit }) => {
     for (const w of list) {
       const g = m.buildPet(w.pet);
       const prims = extract(g);
-      cells.push({ key: w.id, pet: w.pet, zh: w.zh, en: w.en, prims, nanDropped: g.userData.__nanDropped || 0, bbox: g.userData.__bbox });
+      cells.push({ key: w.id, pet: w.pet, zh: w.zh, en: w.en, prims, nanDropped: g.userData.__nanDropped || 0, keptDropped: g.userData.__keptDropped || 0, bbox: g.userData.__bbox });
     }
   } else if (kind === 'player') {
     // 按部件提取：动画只驱动 parts 里的这些 Group（腿/手/头/气球），
     // 换装时对每个部件单独换 children，Group 的 transform 与引用都不动。
     const PART_NAMES = ['legL', 'legR', 'armL', 'armR', 'body', 'head', 'balloon'];
+    let PART_ROOTS = [];
     for (const gender of ['boy', 'girl']) {
       for (const wear of [{}, { hat: 'wizard' }, { hat: 'flower' }, { balloon: true, wand: true }]) {
         const tag = [gender, wear.hat || '', wear.balloon ? 'balloon' : '', wear.wand ? 'wand' : ''].filter(Boolean).join('-');
         const built = m.buildPlayer(gender, wear);
         const g = built && built.group ? built.group : built;
         const parts = (built && built.parts) || {};
+        PART_ROOTS = Object.values(parts).filter((x) => x && x.isObject3D);
         // 先把所有部件从 group 里摘出来单独提取（避免整棵树重复计入）
         const done = new Set();
-        const donePart = new Set();
         for (const pn of PART_NAMES) {
           const part = parts[pn];
           if (!part || done.has(part)) continue;
           done.add(part);
-          const prims = extract(part);          // 相对"部件自身"的局部坐标
+          const prims = extract(part, PART_ROOTS);   // 相对"部件自身"的局部坐标（跳过其它部件的子树）
           if (!prims.length) continue;
-          cells.push({ key: tag + ':' + pn, variant: tag, part: pn, prims, nanDropped: part.userData.__nanDropped || 0, bbox: part.userData.__bbox });
+          cells.push({ key: tag + ':' + pn, variant: tag, part: pn, prims, nanDropped: part.userData.__nanDropped || 0, keptDropped: part.userData.__keptDropped || 0, bbox: part.userData.__bbox });
         }
         // 剩下的（不在 parts 里的散件，如气球绳/魔杖星）按"整棵树的差集"提取一次
-        // 部件指纹（矩阵+类型）收集一次，用来把"整树提取"里的部件图元剔除
-        const fp = new Set();
-        for (const pn of PART_NAMES) {
-          const part = parts[pn];
-          if (!part || donePart.has(part)) continue;
-          donePart.add(part);
-          for (const q of extract(part)) fp.add(JSON.stringify(q.matrix) + q.type);
-        }
-        const rest = extract(g).filter((pr) => !fp.has(JSON.stringify(pr.matrix) + pr.type));
+        // rest：直接排除所有部件子树（skipRoots 语义准确；之前的"矩阵指纹"法因基准不同永远匹配不上）
+        const rest = extract(g, PART_ROOTS);
         if (rest.length) cells.push({ key: tag + ':rest', variant: tag, part: 'rest', prims: rest });
       }
     }
@@ -142,9 +157,9 @@ const out = await page.evaluate(async ({ kind, limit }) => {
       const n = list[i];
       // 只提取"腿"（动画驱动 legL/legR 的 position.z）与"其余"两部分：
       // 其余部分作为一个部件（NPC 的身体不再细分，动画不碰它）
-      const legPrims = extract(n.legL);
+      const legPrims = extract(n.legL, [n.legR]);
       if (legPrims.length) cells.push({ key: 'npc' + i + ':leg', variant: 'npc' + i, part: 'leg', prims: legPrims, bbox: n.legL.userData.__bbox });
-      const all = extract(n.group);
+      const all = extract(n.group, [n.legL, n.legR]);
       // 去掉两条腿的图元（腿已单独成格）：按"是否属于 legL/legR 子树"过滤
       const legCount = legPrims.length * 2;
       const bodyPrims = all.slice(0, Math.max(0, all.length - legCount));

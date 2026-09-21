@@ -111,14 +111,22 @@ export function buildPlayer(gender = 'boy', wear = {}) {
     armR.add(core);
     wandTip = tip;
   }
+  // 脸部小件一律标 userData.keep：换装时保留（js/assets.js 的 swap 会留下标了 keep 的子件）。
+  // 眨眼靠 parts.eyes 这个引用（game.js 改 scale.y），而换装会清空 head 的 children ——
+  // 不标 keep 的话引用会指向已被移除的网格，眨眼**静默失效**（实测踩过这个坑）。
   const eyes = [];
   for (const sx of [-1, 1]) {
     const eye = sph(head, 0.03, '#4A4046', 0.068 * sx, 0.012, 0.158, 1, 1.35, 0.55);
     eye.userData.eyeH = eye.scale.y;
+    eye.userData.keep = true;
     eyes.push(eye);
-    sph(head, 0.01, '#FFFFFF', 0.079 * sx, 0.044, 0.172);
-    sph(head, 0.036, '#FFB3C1', 0.118 * sx, -0.048, 0.138, 1, 0.7, 0.4);
+    sph(head, 0.01, '#FFFFFF', 0.079 * sx, 0.044, 0.172).userData.keep = true;
+    sph(head, 0.036, '#FFB3C1', 0.118 * sx, -0.048, 0.138, 1, 0.7, 0.4).userData.keep = true;
   }
-  return { group: g, parts: { legL, legR, armL, armR, body, head, eyes, balloon, wandTip } };
+  // 嘴：微笑弧（与螃蟹词宠同款做法 —— 半圈细环）。同样标 keep 并放进 parts，
+  // 给后续"表情系统"留接口（孵蛋成功/被表扬时缩放或旋转它）。
+  const mouth = tor(head, 0.032, 0.009, '#C06A5A', 0, -0.012, 0.170, 0.4);
+  mouth.userData.keep = true;
+  return { group: g, parts: { legL, legR, armL, armR, body, head, eyes, mouth, balloon, wandTip } };
 }
 

@@ -170,6 +170,13 @@ export function apply(group, kind, key, opts = {}) {
 //   opts.rest —— "不在 parts 里的散件"（花帽/魔杖星等）挂在外层 group 上，用 additive 追加
 export function applyParts(group, parts, kind, keyOf, opts = {}) {
   if (LOW_END || !parts) return Promise.resolve(0);
+  // 部件是**嵌套**的（head/armL/armR 在 body 下，legL/legR 在最外层 group 下）。
+  // 换装 body 时 swap() 会清空它的 children —— 不先给部件自己打 keep 的话，
+  // head 会被从树上摘下来变成孤儿（里面的眼睛/嘴跟着脱离场景，眨眼就白改了）。
+  // 所以：先给所有部件 Group 打 keep，再逐个换装。
+  for (const obj of Object.values(parts)) {
+    if (obj && obj.isObject3D) obj.userData.keep = true;
+  }
   const jobs = [];
   for (const [name, obj] of Object.entries(parts)) {
     if (!obj || !obj.isObject3D) continue;
