@@ -16,6 +16,11 @@
    "blender": "4.5.14 LTS",
    "generated": "2026-09-21T08:16:26",
    "count": 139
+  },
+  "pet": {
+   "blender": "4.5.14 LTS",
+   "generated": "2026-09-21T19:01:41",
+   "count": 358
   }
  },
  "assets": {
@@ -16537,6 +16542,11320 @@
    "verts": 2488,
    "zh": "安徽农业大学",
    "v": "1705269f93"
+  },
+  "p01b02a70": {
+   "kind": "pet",
+   "aliases": [
+    "playground"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.41
+    ],
+    "z": [
+     -0.149,
+     0.08
+    ]
+   },
+   "bytes": 50420,
+   "en": "playground",
+   "file": "pets/p01b02a70.glb",
+   "key": "p01b02a70",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "操场",
+   "v": "482135a549"
+  },
+  "p022266d5": {
+   "kind": "pet",
+   "aliases": [
+    "mushroom"
+   ],
+   "bbox": {
+    "x": [
+     -0.167,
+     0.167
+    ],
+    "y": [
+     -0.069,
+     0.365
+    ],
+    "z": [
+     -0.167,
+     0.167
+    ]
+   },
+   "bytes": 83232,
+   "en": "mushroom",
+   "file": "pets/p022266d5.glb",
+   "key": "p022266d5",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2304,
+   "verts": 1904,
+   "zh": "蘑菇",
+   "v": "a1eb066411"
+  },
+  "p02665715": {
+   "kind": "pet",
+   "aliases": [
+    "pencil"
+   ],
+   "bbox": {
+    "x": [
+     -0.279,
+     0.2
+    ],
+    "y": [
+     -0.068,
+     0.289
+    ],
+    "z": [
+     -0.03,
+     0.061
+    ]
+   },
+   "bytes": 57232,
+   "en": "pencil",
+   "file": "pets/p02665715.glb",
+   "key": "p02665715",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1612,
+   "verts": 1294,
+   "zh": "铅笔",
+   "v": "e5d471e262"
+  },
+  "p02d3dbe5": {
+   "kind": "pet",
+   "aliases": [
+    "running"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81052,
+   "en": "running",
+   "file": "pets/p02d3dbe5.glb",
+   "key": "p02d3dbe5",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在跑",
+   "v": "65f0797954"
+  },
+  "p05258e44": {
+   "kind": "pet",
+   "aliases": [
+    "hamburger"
+   ],
+   "bbox": {
+    "x": [
+     -0.18,
+     0.18
+    ],
+    "y": [
+     -0.075,
+     0.354
+    ],
+    "z": [
+     -0.18,
+     0.18
+    ]
+   },
+   "bytes": 57564,
+   "en": "hamburger",
+   "file": "pets/p05258e44.glb",
+   "key": "p05258e44",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1488,
+   "verts": 1254,
+   "zh": "汉堡包",
+   "v": "1bddefb893"
+  },
+  "p0726ff75": {
+   "kind": "pet",
+   "aliases": [
+    "season"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71448,
+   "en": "season",
+   "file": "pets/p0726ff75.glb",
+   "key": "p0726ff75",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "季节",
+   "v": "73daab72ac"
+  },
+  "p089f24ff": {
+   "kind": "pet",
+   "aliases": [
+    "star"
+   ],
+   "bbox": {
+    "x": [
+     -0.253,
+     0.253
+    ],
+    "y": [
+     -0.069,
+     0.532
+    ],
+    "z": [
+     -0.077,
+     0.111
+    ]
+   },
+   "bytes": 53480,
+   "en": "star",
+   "file": "pets/p089f24ff.glb",
+   "key": "p089f24ff",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1464,
+   "verts": 1202,
+   "zh": "星星",
+   "v": "a7b753c7fc"
+  },
+  "p08d9ec25": {
+   "kind": "pet",
+   "aliases": [
+    "cycling"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81072,
+   "en": "cycling",
+   "file": "pets/p08d9ec25.glb",
+   "key": "p08d9ec25",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "骑自行车运动",
+   "v": "cbc06d816a"
+  },
+  "p093cb41b": {
+   "kind": "pet",
+   "aliases": [
+    "she",
+    "degree",
+    "email",
+    "win",
+    "second",
+    "evening",
+    "use",
+    "fixed"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "she",
+   "file": "pets/p093cb41b.glb",
+   "key": "p093cb41b",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "她",
+   "v": "f61b6dd464"
+  },
+  "p0aef361e": {
+   "kind": "pet",
+   "aliases": [
+    "floor"
+   ],
+   "bbox": {
+    "x": [
+     -0.25,
+     0.25
+    ],
+    "y": [
+     -0.068,
+     0.119
+    ],
+    "z": [
+     -0.25,
+     0.25
+    ]
+   },
+   "bytes": 43276,
+   "en": "floor",
+   "file": "pets/p0aef361e.glb",
+   "key": "p0aef361e",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1212,
+   "verts": 936,
+   "zh": "地板",
+   "v": "ae107f52e2"
+  },
+  "p0d7a5740": {
+   "kind": "pet",
+   "aliases": [
+    "girl"
+   ],
+   "bbox": {
+    "x": [
+     -0.178,
+     0.178
+    ],
+    "y": [
+     -0.034,
+     0.497
+    ],
+    "z": [
+     -0.178,
+     0.178
+    ]
+   },
+   "bytes": 89988,
+   "en": "girl",
+   "file": "pets/p0d7a5740.glb",
+   "key": "p0d7a5740",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2104,
+   "zh": "女孩",
+   "v": "474699b102"
+  },
+  "p0d8636d7": {
+   "kind": "pet",
+   "aliases": [
+    "windy"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "windy",
+   "file": "pets/p0d8636d7.glb",
+   "key": "p0d8636d7",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "有风的",
+   "v": "016021d243"
+  },
+  "p0de62998": {
+   "kind": "pet",
+   "aliases": [
+    "nose"
+   ],
+   "bbox": {
+    "x": [
+     -0.148,
+     0.148
+    ],
+    "y": [
+     -0.07,
+     0.279
+    ],
+    "z": [
+     -0.138,
+     0.159
+    ]
+   },
+   "bytes": 51712,
+   "en": "nose",
+   "file": "pets/p0de62998.glb",
+   "key": "p0de62998",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1176,
+   "zh": "鼻子",
+   "v": "7db31932e3"
+  },
+  "p0e3fb828": {
+   "kind": "pet",
+   "aliases": [
+    "zoo"
+   ],
+   "bbox": {
+    "x": [
+     -0.221,
+     0.221
+    ],
+    "y": [
+     -0.068,
+     0.44
+    ],
+    "z": [
+     -0.061,
+     0.101
+    ]
+   },
+   "bytes": 53040,
+   "en": "zoo",
+   "file": "pets/p0e3fb828.glb",
+   "key": "p0e3fb828",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 1436,
+   "verts": 1124,
+   "zh": "动物园",
+   "v": "f511443cc9"
+  },
+  "p0e98100e": {
+   "kind": "pet",
+   "aliases": [
+    "tomato"
+   ],
+   "bbox": {
+    "x": [
+     -0.197,
+     0.197
+    ],
+    "y": [
+     -0.075,
+     0.415
+    ],
+    "z": [
+     -0.197,
+     0.204
+    ]
+   },
+   "bytes": 78960,
+   "en": "tomato",
+   "file": "pets/p0e98100e.glb",
+   "key": "p0e98100e",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2352,
+   "verts": 1834,
+   "zh": "西红柿",
+   "v": "5502670646"
+  },
+  "p0f983f50": {
+   "kind": "pet",
+   "aliases": [
+    "shirt"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.07,
+     0.382
+    ],
+    "z": [
+     -0.17,
+     0.17
+    ]
+   },
+   "bytes": 51712,
+   "en": "shirt",
+   "file": "pets/p0f983f50.glb",
+   "key": "p0f983f50",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1344,
+   "verts": 1208,
+   "zh": "衬衫",
+   "v": "537aa76cf3"
+  },
+  "p1013c2d8": {
+   "kind": "pet",
+   "aliases": [
+    "eraser"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.162
+    ],
+    "z": [
+     -0.05,
+     0.081
+    ]
+   },
+   "bytes": 40632,
+   "en": "eraser",
+   "file": "pets/p1013c2d8.glb",
+   "key": "p1013c2d8",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1176,
+   "verts": 864,
+   "zh": "橡皮",
+   "v": "e77d28a19b"
+  },
+  "p1035b8c6": {
+   "kind": "pet",
+   "aliases": [
+    "crossing"
+   ],
+   "bbox": {
+    "x": [
+     -0.17,
+     0.17
+    ],
+    "y": [
+     -0.068,
+     0.149
+    ],
+    "z": [
+     -0.17,
+     0.181
+    ]
+   },
+   "bytes": 41364,
+   "en": "crossing",
+   "file": "pets/p1035b8c6.glb",
+   "key": "p1035b8c6",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1200,
+   "verts": 912,
+   "zh": "十字路口",
+   "v": "bd79a4238d"
+  },
+  "p1098e248": {
+   "kind": "pet",
+   "aliases": [
+    "bottle"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.31
+    ],
+    "z": [
+     -0.07,
+     0.081
+    ]
+   },
+   "bytes": 48356,
+   "en": "bottle",
+   "file": "pets/p1098e248.glb",
+   "key": "p1098e248",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1280,
+   "verts": 1078,
+   "zh": "瓶子",
+   "v": "2564fd65db"
+  },
+  "p11f70d7a": {
+   "kind": "pet",
+   "aliases": [
+    "on",
+    "under",
+    "front",
+    "above",
+    "beside",
+    "behind"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.07,
+     0.428
+    ],
+    "z": [
+     -0.16,
+     0.192
+    ]
+   },
+   "bytes": 79816,
+   "en": "on",
+   "file": "pets/p11f70d7a.glb",
+   "key": "p11f70d7a",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2520,
+   "verts": 1800,
+   "zh": "在……上",
+   "v": "01ec11b3c3"
+  },
+  "p11fbc6dd": {
+   "kind": "pet",
+   "aliases": [
+    "hen"
+   ],
+   "bbox": {
+    "x": [
+     -0.159,
+     0.159
+    ],
+    "y": [
+     0.005,
+     0.605
+    ],
+    "z": [
+     -0.231,
+     0.27
+    ]
+   },
+   "bytes": 75840,
+   "en": "hen",
+   "file": "pets/p11fbc6dd.glb",
+   "key": "p11fbc6dd",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2256,
+   "verts": 1718,
+   "zh": "母鸡",
+   "v": "ee567c271e"
+  },
+  "p12242c0d": {
+   "kind": "pet",
+   "aliases": [
+    "wind"
+   ],
+   "bbox": {
+    "x": [
+     -0.238,
+     0.279
+    ],
+    "y": [
+     -0.071,
+     0.379
+    ],
+    "z": [
+     -0.148,
+     0.152
+    ]
+   },
+   "bytes": 88744,
+   "en": "wind",
+   "file": "pets/p12242c0d.glb",
+   "key": "p12242c0d",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2368,
+   "verts": 2136,
+   "zh": "风",
+   "v": "156ddddbca"
+  },
+  "p13818edb": {
+   "kind": "pet",
+   "aliases": [
+    "wood"
+   ],
+   "bbox": {
+    "x": [
+     -0.25,
+     0.327
+    ],
+    "y": [
+     -0.071,
+     0.347
+    ],
+    "z": [
+     -0.22,
+     0.19
+    ]
+   },
+   "bytes": 62104,
+   "en": "wood",
+   "file": "pets/p13818edb.glb",
+   "key": "p13818edb",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1480,
+   "verts": 1398,
+   "zh": "木头",
+   "v": "3d2d774551"
+  },
+  "p14e4ead1": {
+   "kind": "pet",
+   "aliases": [
+    "school",
+    "welcome",
+    "way",
+    "dear",
+    "italian",
+    "bus",
+    "attention",
+    "easy"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "school",
+   "file": "pets/p14e4ead1.glb",
+   "key": "p14e4ead1",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "学校",
+   "v": "b3aa69d626"
+  },
+  "p163504bb": {
+   "kind": "pet",
+   "aliases": [
+    "some",
+    "london",
+    "late",
+    "munich",
+    "germany",
+    "ferry"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81020,
+   "en": "some",
+   "file": "pets/p163504bb.glb",
+   "key": "p163504bb",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "一些",
+   "v": "5f8f35e6be"
+  },
+  "p1647b8d3": {
+   "kind": "pet",
+   "aliases": [
+    "five",
+    "eleven",
+    "seventeen"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.071,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82168,
+   "en": "five",
+   "file": "pets/p1647b8d3.glb",
+   "key": "p1647b8d3",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "五",
+   "v": "4c760a7c4d"
+  },
+  "p166c096b": {
+   "kind": "pet",
+   "aliases": [
+    "now",
+    "wash",
+    "twentieth",
+    "washed"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "now",
+   "file": "pets/p166c096b.glb",
+   "key": "p166c096b",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "现在",
+   "v": "cf00e25774"
+  },
+  "p178a3b0d": {
+   "kind": "pet",
+   "aliases": [
+    "fork"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.345
+    ],
+    "z": [
+     -0.018,
+     0.05
+    ]
+   },
+   "bytes": 55160,
+   "en": "fork",
+   "file": "pets/p178a3b0d.glb",
+   "key": "p178a3b0d",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1392,
+   "verts": 1306,
+   "zh": "叉子",
+   "v": "7bb311b0f9"
+  },
+  "p190de250": {
+   "kind": "pet",
+   "aliases": [
+    "bowl"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.15
+    ],
+    "y": [
+     -0.071,
+     0.19
+    ],
+    "z": [
+     -0.15,
+     0.162
+    ]
+   },
+   "bytes": 46040,
+   "en": "bowl",
+   "file": "pets/p190de250.glb",
+   "key": "p190de250",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1248,
+   "verts": 1012,
+   "zh": "碗",
+   "v": "86c7777999"
+  },
+  "p1934d6de": {
+   "kind": "pet",
+   "aliases": [
+    "man"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "man",
+   "file": "pets/p1934d6de.glb",
+   "key": "p1934d6de",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "男人",
+   "v": "7a36e1937a"
+  },
+  "p1a3db74e": {
+   "kind": "pet",
+   "aliases": [
+    "parents"
+   ],
+   "bbox": {
+    "x": [
+     -0.293,
+     0.33
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.21,
+     0.21
+    ]
+   },
+   "bytes": 158148,
+   "en": "parents",
+   "file": "pets/p1a3db74e.glb",
+   "key": "p1a3db74e",
+   "prims": 27,
+   "skipped": 0,
+   "tri": 4288,
+   "verts": 3838,
+   "zh": "父母",
+   "v": "3468c694aa"
+  },
+  "p1a56aa57": {
+   "kind": "pet",
+   "aliases": [
+    "chair"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.41
+    ],
+    "z": [
+     -0.12,
+     0.12
+    ]
+   },
+   "bytes": 54564,
+   "en": "chair",
+   "file": "pets/p1a56aa57.glb",
+   "key": "p1a56aa57",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1368,
+   "verts": 1256,
+   "zh": "椅子",
+   "v": "3abba5897e"
+  },
+  "p1ba32084": {
+   "kind": "pet",
+   "aliases": [
+    "swim"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "swim",
+   "file": "pets/p1ba32084.glb",
+   "key": "p1ba32084",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "游泳",
+   "v": "2c61d4726d"
+  },
+  "p1bfc18aa": {
+   "kind": "pet",
+   "aliases": [
+    "mouth"
+   ],
+   "bbox": {
+    "x": [
+     -0.155,
+     0.155
+    ],
+    "y": [
+     -0.068,
+     0.335
+    ],
+    "z": [
+     -0.126,
+     0.163
+    ]
+   },
+   "bytes": 55444,
+   "en": "mouth",
+   "file": "pets/p1bfc18aa.glb",
+   "key": "p1bfc18aa",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1216,
+   "zh": "嘴巴",
+   "v": "7ad2eb06e0"
+  },
+  "p1cca9a88": {
+   "kind": "pet",
+   "aliases": [
+    "sheep"
+   ],
+   "bbox": {
+    "x": [
+     -0.268,
+     0.268
+    ],
+    "y": [
+     0,
+     0.62
+    ],
+    "z": [
+     -0.395,
+     0.414
+    ]
+   },
+   "bytes": 110636,
+   "en": "sheep",
+   "file": "pets/p1cca9a88.glb",
+   "key": "p1cca9a88",
+   "prims": 20,
+   "skipped": 0,
+   "tri": 3292,
+   "verts": 2648,
+   "zh": "绵羊",
+   "v": "7c51402cd9"
+  },
+  "p1e0d7ec1": {
+   "kind": "pet",
+   "aliases": [
+    "spoon"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.363
+    ],
+    "z": [
+     -0.024,
+     0.05
+    ]
+   },
+   "bytes": 47476,
+   "en": "spoon",
+   "file": "pets/p1e0d7ec1.glb",
+   "key": "p1e0d7ec1",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1392,
+   "verts": 1066,
+   "zh": "勺子",
+   "v": "5f39570fb9"
+  },
+  "p1f5e511a": {
+   "kind": "pet",
+   "aliases": [
+    "pen"
+   ],
+   "bbox": {
+    "x": [
+     -0.279,
+     0.2
+    ],
+    "y": [
+     -0.068,
+     0.289
+    ],
+    "z": [
+     -0.032,
+     0.061
+    ]
+   },
+   "bytes": 61832,
+   "en": "pen",
+   "file": "pets/p1f5e511a.glb",
+   "key": "p1f5e511a",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1660,
+   "verts": 1392,
+   "zh": "钢笔",
+   "v": "e4eca01db1"
+  },
+  "p2078e6e9": {
+   "kind": "pet",
+   "aliases": [
+    "cat"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     0,
+     0.607
+    ],
+    "z": [
+     -0.343,
+     0.41
+    ]
+   },
+   "bytes": 86780,
+   "en": "cat",
+   "file": "pets/p2078e6e9.glb",
+   "key": "p2078e6e9",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 2122,
+   "zh": "小猫",
+   "v": "ae2adaba5a"
+  },
+  "p22d07222": {
+   "kind": "pet",
+   "aliases": [
+    "may"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50416,
+   "en": "May",
+   "file": "pets/p22d07222.glb",
+   "key": "p22d07222",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "五月",
+   "v": "f64e8ca2ab"
+  },
+  "p24822eee": {
+   "kind": "pet",
+   "aliases": [
+    "duck"
+   ],
+   "bbox": {
+    "x": [
+     -0.167,
+     0.167
+    ],
+    "y": [
+     0,
+     0.56
+    ],
+    "z": [
+     -0.241,
+     0.275
+    ]
+   },
+   "bytes": 59508,
+   "en": "duck",
+   "file": "pets/p24822eee.glb",
+   "key": "p24822eee",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1680,
+   "verts": 1354,
+   "zh": "鸭子",
+   "v": "0b8f692565"
+  },
+  "p257150c6": {
+   "kind": "pet",
+   "aliases": [
+    "cousin",
+    "kid",
+    "any",
+    "everywhere",
+    "why",
+    "kitten",
+    "ill"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "cousin",
+   "file": "pets/p257150c6.glb",
+   "key": "p257150c6",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "堂表兄妹",
+   "v": "c649e832b4"
+  },
+  "p27871f12": {
+   "kind": "pet",
+   "aliases": [
+    "pet",
+    "fast",
+    "last",
+    "twelfth",
+    "its"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "pet",
+   "file": "pets/p27871f12.glb",
+   "key": "p27871f12",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "宠物",
+   "v": "934c974c5a"
+  },
+  "p27a7192b": {
+   "kind": "pet",
+   "aliases": [
+    "grandpa",
+    "sleep",
+    "yuan",
+    "really",
+    "ping-pong",
+    "still",
+    "must",
+    "half",
+    "university",
+    "hurt",
+    "dinosaur",
+    "fell"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "grandpa",
+   "file": "pets/p27a7192b.glb",
+   "key": "p27a7192b",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "爷爷",
+   "v": "cfc734b380"
+  },
+  "p27e8f972": {
+   "kind": "pet",
+   "aliases": [
+    "help",
+    "sometime"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "help",
+   "file": "pets/p27e8f972.glb",
+   "key": "p27e8f972",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "帮助",
+   "v": "0751ace672"
+  },
+  "p2805ab1f": {
+   "kind": "pet",
+   "aliases": [
+    "tonight"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.404
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "tonight",
+   "file": "pets/p2805ab1f.glb",
+   "key": "p2805ab1f",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "今晚",
+   "v": "72fd97bdda"
+  },
+  "p280f219b": {
+   "kind": "pet",
+   "aliases": [
+    "plant"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.315
+    ],
+    "z": [
+     -0.09,
+     0.091
+    ]
+   },
+   "bytes": 72712,
+   "en": "plant",
+   "file": "pets/p280f219b.glb",
+   "key": "p280f219b",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2160,
+   "verts": 1674,
+   "zh": "植物",
+   "v": "0d7cf877c3"
+  },
+  "p293518cb": {
+   "kind": "pet",
+   "aliases": [
+    "grandmother"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.21,
+     0.21
+    ]
+   },
+   "bytes": 96684,
+   "en": "grandmother",
+   "file": "pets/p293518cb.glb",
+   "key": "p293518cb",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2552,
+   "verts": 2240,
+   "zh": "奶奶",
+   "v": "cd46b4d8bb"
+  },
+  "p2a64510e": {
+   "kind": "pet",
+   "aliases": [
+    "grandfather"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 87744,
+   "en": "grandfather",
+   "file": "pets/p2a64510e.glb",
+   "key": "p2a64510e",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2312,
+   "verts": 2006,
+   "zh": "爷爷",
+   "v": "05db0bfc68"
+  },
+  "p2b61e8c9": {
+   "kind": "pet",
+   "aliases": [
+    "cinema"
+   ],
+   "bbox": {
+    "x": [
+     -0.23,
+     0.23
+    ],
+    "y": [
+     -0.068,
+     0.35
+    ],
+    "z": [
+     -0.18,
+     0.201
+    ]
+   },
+   "bytes": 45152,
+   "en": "cinema",
+   "file": "pets/p2b61e8c9.glb",
+   "key": "p2b61e8c9",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1224,
+   "verts": 960,
+   "zh": "电影院",
+   "v": "75a4232751"
+  },
+  "p2d53b992": {
+   "kind": "pet",
+   "aliases": [
+    "mouse"
+   ],
+   "bbox": {
+    "x": [
+     -0.179,
+     0.179
+    ],
+    "y": [
+     0,
+     0.44
+    ],
+    "z": [
+     -0.18,
+     0.235
+    ]
+   },
+   "bytes": 90448,
+   "en": "mouse",
+   "file": "pets/p2d53b992.glb",
+   "key": "p2d53b992",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2320,
+   "verts": 2126,
+   "zh": "老鼠",
+   "v": "a7f4f0419a"
+  },
+  "p2dc87089": {
+   "kind": "pet",
+   "aliases": [
+    "ago"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.404
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71440,
+   "en": "ago",
+   "file": "pets/p2dc87089.glb",
+   "key": "p2dc87089",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "以前",
+   "v": "abd61abbf2"
+  },
+  "p2dcfdaa7": {
+   "kind": "pet",
+   "aliases": [
+    "world",
+    "problem",
+    "anything",
+    "price",
+    "if",
+    "sit",
+    "magazine"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "world",
+   "file": "pets/p2dcfdaa7.glb",
+   "key": "p2dcfdaa7",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "世界",
+   "v": "7b8ea16903"
+  },
+  "p2e97f7c5": {
+   "kind": "pet",
+   "aliases": [
+    "uk"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.58
+    ],
+    "z": [
+     -0.08,
+     0.1
+    ]
+   },
+   "bytes": 46776,
+   "en": "UK",
+   "file": "pets/p2e97f7c5.glb",
+   "key": "p2e97f7c5",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1368,
+   "verts": 984,
+   "zh": "英国",
+   "v": "359b5c2b44"
+  },
+  "p2f6ef811": {
+   "kind": "pet",
+   "aliases": [
+    "hair"
+   ],
+   "bbox": {
+    "x": [
+     -0.155,
+     0.155
+    ],
+    "y": [
+     -0.07,
+     0.363
+    ],
+    "z": [
+     -0.133,
+     0.152
+    ]
+   },
+   "bytes": 92536,
+   "en": "hair",
+   "file": "pets/p2f6ef811.glb",
+   "key": "p2f6ef811",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2444,
+   "verts": 2240,
+   "zh": "头发",
+   "v": "249ac83be4"
+  },
+  "p2fde0da3": {
+   "kind": "pet",
+   "aliases": [
+    "cloudy"
+   ],
+   "bbox": {
+    "x": [
+     -0.253,
+     0.228
+    ],
+    "y": [
+     -0.071,
+     0.388
+    ],
+    "z": [
+     -0.158,
+     0.162
+    ]
+   },
+   "bytes": 52988,
+   "en": "cloudy",
+   "file": "pets/p2fde0da3.glb",
+   "key": "p2fde0da3",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1176,
+   "zh": "多云的",
+   "v": "f5f7d221c9"
+  },
+  "p2ffdb687": {
+   "kind": "pet",
+   "aliases": [
+    "mountain"
+   ],
+   "bbox": {
+    "x": [
+     -0.24,
+     0.24
+    ],
+    "y": [
+     -0.068,
+     0.435
+    ],
+    "z": [
+     -0.24,
+     0.24
+    ]
+   },
+   "bytes": 42612,
+   "en": "mountain",
+   "file": "pets/p2ffdb687.glb",
+   "key": "p2ffdb687",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1216,
+   "verts": 948,
+   "zh": "高山",
+   "v": "d9a20cb51e"
+  },
+  "p30729b34": {
+   "kind": "pet",
+   "aliases": [
+    "computer"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.068,
+     0.41
+    ],
+    "z": [
+     -0.1,
+     0.121
+    ]
+   },
+   "bytes": 42464,
+   "en": "computer",
+   "file": "pets/p30729b34.glb",
+   "key": "p30729b34",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1188,
+   "verts": 888,
+   "zh": "计算机",
+   "v": "96addaa273"
+  },
+  "p30a03dba": {
+   "kind": "pet",
+   "aliases": [
+    "cold"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "cold",
+   "file": "pets/p30a03dba.glb",
+   "key": "p30a03dba",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "寒冷的",
+   "v": "0387f21f04"
+  },
+  "p30a32a15": {
+   "kind": "pet",
+   "aliases": [
+    "bridge"
+   ],
+   "bbox": {
+    "x": [
+     -0.275,
+     0.275
+    ],
+    "y": [
+     -0.16,
+     0.44
+    ],
+    "z": [
+     -0.3,
+     0.3
+    ]
+   },
+   "bytes": 49472,
+   "en": "bridge",
+   "file": "pets/p30a32a15.glb",
+   "key": "p30a32a15",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1296,
+   "verts": 1110,
+   "zh": "桥",
+   "v": "571d36c1e9"
+  },
+  "p30cbdb4d": {
+   "kind": "pet",
+   "aliases": [
+    "flower"
+   ],
+   "bbox": {
+    "x": [
+     -0.209,
+     0.209
+    ],
+    "y": [
+     0,
+     0.634
+    ],
+    "z": [
+     -0.04,
+     0.113
+    ]
+   },
+   "bytes": 96364,
+   "en": "flower",
+   "file": "pets/p30cbdb4d.glb",
+   "key": "p30cbdb4d",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2928,
+   "verts": 2234,
+   "zh": "花",
+   "v": "bcefb41147"
+  },
+  "p323b56ba": {
+   "kind": "pet",
+   "aliases": [
+    "rice"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.15
+    ],
+    "y": [
+     -0.07,
+     0.272
+    ],
+    "z": [
+     -0.15,
+     0.162
+    ]
+   },
+   "bytes": 63364,
+   "en": "rice",
+   "file": "pets/p323b56ba.glb",
+   "key": "p323b56ba",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1968,
+   "verts": 1418,
+   "zh": "米饭",
+   "v": "170b04f6e1"
+  },
+  "p337a14b8": {
+   "kind": "pet",
+   "aliases": [
+    "listen",
+    "every",
+    "open",
+    "each",
+    "hear",
+    "laughed"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "listen",
+   "file": "pets/p337a14b8.glb",
+   "key": "p337a14b8",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "听",
+   "v": "53f604938c"
+  },
+  "p33cdf5e3": {
+   "kind": "pet",
+   "aliases": [
+    "sunglasses"
+   ],
+   "bbox": {
+    "x": [
+     -0.17,
+     0.17
+    ],
+    "y": [
+     -0.066,
+     0.302
+    ],
+    "z": [
+     -0.081,
+     0.081
+    ]
+   },
+   "bytes": 63008,
+   "en": "sunglasses",
+   "file": "pets/p33cdf5e3.glb",
+   "key": "p33cdf5e3",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1580,
+   "verts": 1516,
+   "zh": "太阳镜",
+   "v": "de529eede4"
+  },
+  "p33d2c495": {
+   "kind": "pet",
+   "aliases": [
+    "bathroom"
+   ],
+   "bbox": {
+    "x": [
+     -0.214,
+     0.214
+    ],
+    "y": [
+     -0.068,
+     0.395
+    ],
+    "z": [
+     -0.214,
+     0.214
+    ]
+   },
+   "bytes": 43176,
+   "en": "bathroom",
+   "file": "pets/p33d2c495.glb",
+   "key": "p33d2c495",
+   "prims": 10,
+   "skipped": 1,
+   "tri": 1192,
+   "verts": 898,
+   "zh": "浴室",
+   "v": "45318b6ff9"
+  },
+  "p345c04ea": {
+   "kind": "pet",
+   "aliases": [
+    "chicken"
+   ],
+   "bbox": {
+    "x": [
+     -0.219,
+     0.219
+    ],
+    "y": [
+     -0.075,
+     0.342
+    ],
+    "z": [
+     -0.237,
+     0.204
+    ]
+   },
+   "bytes": 61072,
+   "en": "chicken",
+   "file": "pets/p345c04ea.glb",
+   "key": "p345c04ea",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1776,
+   "verts": 1346,
+   "zh": "鸡肉",
+   "v": "a037e0a372"
+  },
+  "p34e165eb": {
+   "kind": "pet",
+   "aliases": [
+    "wall"
+   ],
+   "bbox": {
+    "x": [
+     -0.25,
+     0.25
+    ],
+    "y": [
+     -0.069,
+     0.46
+    ],
+    "z": [
+     -0.062,
+     0.091
+    ]
+   },
+   "bytes": 42460,
+   "en": "wall",
+   "file": "pets/p34e165eb.glb",
+   "key": "p34e165eb",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1200,
+   "verts": 912,
+   "zh": "墙壁",
+   "v": "e5f8aa865d"
+  },
+  "p364abed9": {
+   "kind": "pet",
+   "aliases": [
+    "term"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.404
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "term",
+   "file": "pets/p364abed9.glb",
+   "key": "p364abed9",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "学期",
+   "v": "c84dafc8de"
+  },
+  "p36a09cf9": {
+   "kind": "pet",
+   "aliases": [
+    "water"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.376
+    ],
+    "z": [
+     -0.1,
+     0.111
+    ]
+   },
+   "bytes": 56832,
+   "en": "water",
+   "file": "pets/p36a09cf9.glb",
+   "key": "p36a09cf9",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1468,
+   "verts": 1272,
+   "zh": "水",
+   "v": "ac736d061e"
+  },
+  "p3795803b": {
+   "kind": "pet",
+   "aliases": [
+    "sandwich"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.15
+    ],
+    "y": [
+     -0.07,
+     0.21
+    ],
+    "z": [
+     -0.15,
+     0.182
+    ]
+   },
+   "bytes": 44264,
+   "en": "sandwich",
+   "file": "pets/p3795803b.glb",
+   "key": "p3795803b",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1200,
+   "verts": 912,
+   "zh": "三明治",
+   "v": "461ee49b7d"
+  },
+  "p3823c95a": {
+   "kind": "pet",
+   "aliases": [
+    "warm"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71432,
+   "en": "warm",
+   "file": "pets/p3823c95a.glb",
+   "key": "p3823c95a",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "温暖的",
+   "v": "ad8fa8c251"
+  },
+  "p3abba7c7": {
+   "kind": "pet",
+   "aliases": [
+    "feel",
+    "canadian",
+    "camp"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "feel",
+   "file": "pets/p3abba7c7.glb",
+   "key": "p3abba7c7",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "感觉",
+   "v": "35600e3e9a"
+  },
+  "p3c1e3de7": {
+   "kind": "pet",
+   "aliases": [
+    "best"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.6
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 92004,
+   "en": "best",
+   "file": "pets/p3c1e3de7.glb",
+   "key": "p3c1e3de7",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2704,
+   "verts": 2102,
+   "zh": "最好的",
+   "v": "88e8bd633e"
+  },
+  "p3cc05cd4": {
+   "kind": "pet",
+   "aliases": [
+    "carrot"
+   ],
+   "bbox": {
+    "x": [
+     -0.148,
+     0.148
+    ],
+    "y": [
+     -0.07,
+     0.57
+    ],
+    "z": [
+     -0.13,
+     0.132
+    ]
+   },
+   "bytes": 71536,
+   "en": "carrot",
+   "file": "pets/p3cc05cd4.glb",
+   "key": "p3cc05cd4",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1860,
+   "verts": 1694,
+   "zh": "胡萝卜",
+   "v": "5e1d43c6ac"
+  },
+  "p3ccae02c": {
+   "kind": "pet",
+   "aliases": [
+    "them",
+    "colour",
+    "singapore",
+    "those",
+    "paint",
+    "fool",
+    "show",
+    "hotel"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "them",
+   "file": "pets/p3ccae02c.glb",
+   "key": "p3ccae02c",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "他们",
+   "v": "e967fe20e7"
+  },
+  "p3d900d33": {
+   "kind": "pet",
+   "aliases": [
+    "green"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.187,
+     0.187
+    ]
+   },
+   "bytes": 53520,
+   "en": "green",
+   "file": "pets/p3d900d33.glb",
+   "key": "p3d900d33",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1192,
+   "zh": "绿色",
+   "v": "eba6389ab2"
+  },
+  "p3e73eb50": {
+   "kind": "pet",
+   "aliases": [
+    "april"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50432,
+   "en": "April",
+   "file": "pets/p3e73eb50.glb",
+   "key": "p3e73eb50",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "四月",
+   "v": "1637ac4e70"
+  },
+  "p3e80ba50": {
+   "kind": "pet",
+   "aliases": [
+    "rainy"
+   ],
+   "bbox": {
+    "x": [
+     -0.253,
+     0.228
+    ],
+    "y": [
+     -0.071,
+     0.388
+    ],
+    "z": [
+     -0.158,
+     0.162
+    ]
+   },
+   "bytes": 69144,
+   "en": "rainy",
+   "file": "pets/p3e80ba50.glb",
+   "key": "p3e80ba50",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2304,
+   "verts": 1536,
+   "zh": "下雨的",
+   "v": "03a55d2a5a"
+  },
+  "p3f6f296a": {
+   "kind": "pet",
+   "aliases": [
+    "write",
+    "smarter"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "write",
+   "file": "pets/p3f6f296a.glb",
+   "key": "p3f6f296a",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "写",
+   "v": "8c701f939b"
+  },
+  "p41a1fe62": {
+   "kind": "pet",
+   "aliases": [
+    "bread"
+   ],
+   "bbox": {
+    "x": [
+     -0.252,
+     0.252
+    ],
+    "y": [
+     -0.075,
+     0.32
+    ],
+    "z": [
+     -0.161,
+     0.189
+    ]
+   },
+   "bytes": 55492,
+   "en": "bread",
+   "file": "pets/p41a1fe62.glb",
+   "key": "p41a1fe62",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1756,
+   "verts": 1288,
+   "zh": "面包",
+   "v": "97fa8fb6b5"
+  },
+  "p41d1767e": {
+   "kind": "pet",
+   "aliases": [
+    "rain"
+   ],
+   "bbox": {
+    "x": [
+     -0.258,
+     0.268
+    ],
+    "y": [
+     -0.129,
+     0.448
+    ],
+    "z": [
+     -0.158,
+     0.158
+    ]
+   },
+   "bytes": 67984,
+   "en": "rain",
+   "file": "pets/p41d1767e.glb",
+   "key": "p41d1767e",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2304,
+   "verts": 1536,
+   "zh": "雨",
+   "v": "6347afd12e"
+  },
+  "p42759484": {
+   "kind": "pet",
+   "aliases": [
+    "singing"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81052,
+   "en": "singing",
+   "file": "pets/p42759484.glb",
+   "key": "p42759484",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在唱歌",
+   "v": "4c1999bfdf"
+  },
+  "p43ebf047": {
+   "kind": "pet",
+   "aliases": [
+    "between"
+   ],
+   "bbox": {
+    "x": [
+     -0.269,
+     0.269
+    ],
+    "y": [
+     -0.066,
+     0.26
+    ],
+    "z": [
+     -0.089,
+     0.09
+    ]
+   },
+   "bytes": 52724,
+   "en": "between",
+   "file": "pets/p43ebf047.glb",
+   "key": "p43ebf047",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1176,
+   "zh": "之间",
+   "v": "1745c9ee5e"
+  },
+  "p4519e338": {
+   "kind": "pet",
+   "aliases": [
+    "scarf"
+   ],
+   "bbox": {
+    "x": [
+     -0.175,
+     0.175
+    ],
+    "y": [
+     -0.069,
+     0.426
+    ],
+    "z": [
+     -0.045,
+     0.151
+    ]
+   },
+   "bytes": 47512,
+   "en": "scarf",
+   "file": "pets/p4519e338.glb",
+   "key": "p4519e338",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1324,
+   "verts": 1080,
+   "zh": "围巾",
+   "v": "f614e7d411"
+  },
+  "p451fb120": {
+   "kind": "pet",
+   "aliases": [
+    "ph-nicetomeetyou",
+    "ph-newfriend",
+    "ph-pencilbox",
+    "ph-livingroom",
+    "ph-footballplayer",
+    "ph-musicroom",
+    "ph-readbooks",
+    "ph-wouldlike",
+    "ph-dokungfu",
+    "ph-haveclass",
+    "ph-aprilfool-sday",
+    "ph-nationalday",
+    "ph-turnright",
+    "ph-seeafilm",
+    "ph-comicbook",
+    "ph-watchedtv",
+    "ph-sawafilm",
+    "ph-hadacold",
+    "ph-dininghall",
+    "ph-what-syourname",
+    "ph-anewstudent",
+    "ph-feelhappy",
+    "ph-closethewindow",
+    "ph-haveanap",
+    "ph-passmethebowl",
+    "ph-firstfloor",
+    "ph-teacher-soffice",
+    "ph-becareful",
+    "ph-howabout",
+    "ph-playsport",
+    "ph-noproblem",
+    "ph-goboating",
+    "ph-sportsmeet",
+    "ph-eachother",
+    "ph-taketurns",
+    "ph-payattentionto",
+    "ph-gotothecinema",
+    "ph-domoreexercise",
+    "ph-gocycling",
+    "ph-lastmonth"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82180,
+   "en": "nice to meet you",
+   "file": "pets/p451fb120.glb",
+   "key": "p451fb120",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "很高兴认识你",
+   "v": "6b5e6579cc"
+  },
+  "p456981d3": {
+   "kind": "pet",
+   "aliases": [
+    "kitchen"
+   ],
+   "bbox": {
+    "x": [
+     -0.214,
+     0.214
+    ],
+    "y": [
+     -0.068,
+     0.395
+    ],
+    "z": [
+     -0.214,
+     0.214
+    ]
+   },
+   "bytes": 43160,
+   "en": "kitchen",
+   "file": "pets/p456981d3.glb",
+   "key": "p456981d3",
+   "prims": 10,
+   "skipped": 1,
+   "tri": 1192,
+   "verts": 898,
+   "zh": "厨房",
+   "v": "ba8c302fb1"
+  },
+  "p45c081f3": {
+   "kind": "pet",
+   "aliases": [
+    "fat"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 48236,
+   "en": "fat",
+   "file": "pets/p45c081f3.glb",
+   "key": "p45c081f3",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1536,
+   "verts": 1100,
+   "zh": "胖的",
+   "v": "492b217e5b"
+  },
+  "p46002de3": {
+   "kind": "pet",
+   "aliases": [
+    "bed"
+   ],
+   "bbox": {
+    "x": [
+     -0.22,
+     0.22
+    ],
+    "y": [
+     -0.068,
+     0.22
+    ],
+    "z": [
+     -0.338,
+     0.3
+    ]
+   },
+   "bytes": 47544,
+   "en": "bed",
+   "file": "pets/p46002de3.glb",
+   "key": "p46002de3",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1368,
+   "verts": 1008,
+   "zh": "床",
+   "v": "2f8982dbb5"
+  },
+  "p463b09ec": {
+   "kind": "pet",
+   "aliases": [
+    "desk"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.069,
+     0.301
+    ],
+    "z": [
+     -0.15,
+     0.151
+    ]
+   },
+   "bytes": 53708,
+   "en": "desk",
+   "file": "pets/p463b09ec.glb",
+   "key": "p463b09ec",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1356,
+   "verts": 1232,
+   "zh": "书桌",
+   "v": "520a34e546"
+  },
+  "p46929e70": {
+   "kind": "pet",
+   "aliases": [
+    "garden"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.15
+    ],
+    "y": [
+     -0.066,
+     0.232
+    ],
+    "z": [
+     -0.024,
+     0.089
+    ]
+   },
+   "bytes": 65040,
+   "en": "garden",
+   "file": "pets/p46929e70.glb",
+   "key": "p46929e70",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 1884,
+   "verts": 1494,
+   "zh": "花园",
+   "v": "41443c8b84"
+  },
+  "p469da8fd": {
+   "kind": "pet",
+   "aliases": [
+    "ph-doyoulikepears",
+    "ph-musicclass",
+    "ph-greenbeans",
+    "ph-dohomework",
+    "ph-goshopping",
+    "ph-pickapples",
+    "ph-goswimming",
+    "ph-playingwitheachother",
+    "ph-cleaningtheroom",
+    "ph-postoffice",
+    "ph-gostraight",
+    "ph-takeatrip",
+    "ph-goeshiking",
+    "ph-wearwarmclothes",
+    "ph-takeadeepbreath",
+    "ph-washedmyclothes",
+    "ph-readabook",
+    "ph-lastweekend",
+    "ph-wentcamping",
+    "ph-rodeabike",
+    "ph-pointtoyourear",
+    "ph-onthedesk",
+    "ph-teacher-sdesk",
+    "ph-mathsbook",
+    "ph-turnonthelight",
+    "ph-putupthepicture",
+    "ph-passmetheknife",
+    "ph-secondfloor",
+    "ph-infrontof",
+    "ph-afew",
+    "ph-treeplantingday",
+    "ph-havealook",
+    "ph-keeptotheright",
+    "ph-papawestray"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "do you like pears",
+   "file": "pets/p469da8fd.glb",
+   "key": "p469da8fd",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "你喜欢梨吗",
+   "v": "654e72ddcb"
+  },
+  "p48410924": {
+   "kind": "pet",
+   "aliases": [
+    "beef"
+   ],
+   "bbox": {
+    "x": [
+     -0.193,
+     0.193
+    ],
+    "y": [
+     -0.071,
+     0.262
+    ],
+    "z": [
+     -0.167,
+     0.172
+    ]
+   },
+   "bytes": 50600,
+   "en": "beef",
+   "file": "pets/p48410924.glb",
+   "key": "p48410924",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1536,
+   "verts": 1100,
+   "zh": "牛肉",
+   "v": "ea32054e76"
+  },
+  "p49054725": {
+   "kind": "pet",
+   "aliases": [
+    "nest"
+   ],
+   "bbox": {
+    "x": [
+     -0.205,
+     0.205
+    ],
+    "y": [
+     -0.104,
+     0.344
+    ],
+    "z": [
+     -0.191,
+     0.191
+    ]
+   },
+   "bytes": 63824,
+   "en": "nest",
+   "file": "pets/p49054725.glb",
+   "key": "p49054725",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 1804,
+   "verts": 1466,
+   "zh": "鸟窝",
+   "v": "dbc6d66cf1"
+  },
+  "p4a659837": {
+   "kind": "pet",
+   "aliases": [
+    "air",
+    "pass",
+    "cartoon",
+    "shop",
+    "work",
+    "meet",
+    "together",
+    "join",
+    "secretary"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "air",
+   "file": "pets/p4a659837.glb",
+   "key": "p4a659837",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "空气",
+   "v": "3611f77d04"
+  },
+  "p4b0c4178": {
+   "kind": "pet",
+   "aliases": [
+    "wednesday"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "Wednesday",
+   "file": "pets/p4b0c4178.glb",
+   "key": "p4b0c4178",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "星期三",
+   "v": "ba2c15533d"
+  },
+  "p4db9dce8": {
+   "kind": "pet",
+   "aliases": [
+    "woman"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.21,
+     0.21
+    ]
+   },
+   "bytes": 90008,
+   "en": "woman",
+   "file": "pets/p4db9dce8.glb",
+   "key": "p4db9dce8",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2104,
+   "zh": "女人",
+   "v": "51f90becf2"
+  },
+  "p4ded25e2": {
+   "kind": "pet",
+   "aliases": [
+    "forest"
+   ],
+   "bbox": {
+    "x": [
+     -0.334,
+     0.343
+    ],
+    "y": [
+     -0.066,
+     0.288
+    ],
+    "z": [
+     -0.276,
+     0.203
+    ]
+   },
+   "bytes": 56400,
+   "en": "forest",
+   "file": "pets/p4ded25e2.glb",
+   "key": "p4ded25e2",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1392,
+   "verts": 1308,
+   "zh": "森林",
+   "v": "2514616480"
+  },
+  "p4f03d88f": {
+   "kind": "pet",
+   "aliases": [
+    "dad",
+    "make",
+    "snow",
+    "third",
+    "quickly"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "dad",
+   "file": "pets/p4f03d88f.glb",
+   "key": "p4f03d88f",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "爸爸",
+   "v": "a827add821"
+  },
+  "p5070e762": {
+   "kind": "pet",
+   "aliases": [
+    "bear"
+   ],
+   "bbox": {
+    "x": [
+     -0.214,
+     0.214
+    ],
+    "y": [
+     0,
+     0.67
+    ],
+    "z": [
+     -0.382,
+     0.548
+    ]
+   },
+   "bytes": 101844,
+   "en": "bear",
+   "file": "pets/p5070e762.glb",
+   "key": "p5070e762",
+   "prims": 19,
+   "skipped": 0,
+   "tri": 3100,
+   "verts": 2448,
+   "zh": "熊",
+   "v": "e77b520041"
+  },
+  "p515cd8f1": {
+   "kind": "pet",
+   "aliases": [
+    "gloves"
+   ],
+   "bbox": {
+    "x": [
+     -0.191,
+     0.191
+    ],
+    "y": [
+     -0.068,
+     0.413
+    ],
+    "z": [
+     -0.049,
+     0.111
+    ]
+   },
+   "bytes": 126180,
+   "en": "gloves",
+   "file": "pets/p515cd8f1.glb",
+   "key": "p515cd8f1",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 3296,
+   "verts": 3168,
+   "zh": "手套",
+   "v": "623c085495"
+  },
+  "p51c64d7a": {
+   "kind": "pet",
+   "aliases": [
+    "weather"
+   ],
+   "bbox": {
+    "x": [
+     -0.253,
+     0.228
+    ],
+    "y": [
+     -0.071,
+     0.44
+    ],
+    "z": [
+     -0.158,
+     0.162
+    ]
+   },
+   "bytes": 74080,
+   "en": "weather",
+   "file": "pets/p51c64d7a.glb",
+   "key": "p51c64d7a",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2496,
+   "verts": 1656,
+   "zh": "天气",
+   "v": "ed09733f1d"
+  },
+  "p5254c5d4": {
+   "kind": "pet",
+   "aliases": [
+    "dog"
+   ],
+   "bbox": {
+    "x": [
+     -0.219,
+     0.219
+    ],
+    "y": [
+     0,
+     0.6
+    ],
+    "z": [
+     -0.356,
+     0.513
+    ]
+   },
+   "bytes": 91968,
+   "en": "dog",
+   "file": "pets/p5254c5d4.glb",
+   "key": "p5254c5d4",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2524,
+   "verts": 2172,
+   "zh": "小狗",
+   "v": "4d635cbb47"
+  },
+  "p531de6a3": {
+   "kind": "pet",
+   "aliases": [
+    "give",
+    "many",
+    "ready",
+    "finish",
+    "few",
+    "thanksgiving",
+    "noise",
+    "gave",
+    "slow",
+    "count",
+    "had",
+    "loud",
+    "gift",
+    "race"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "give",
+   "file": "pets/p531de6a3.glb",
+   "key": "p531de6a3",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "给",
+   "v": "f8d182395b"
+  },
+  "p5625ee5b": {
+   "kind": "pet",
+   "aliases": [
+    "helmet"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "helmet",
+   "file": "pets/p5625ee5b.glb",
+   "key": "p5625ee5b",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "头盔",
+   "v": "7a565a226a"
+  },
+  "p57d13781": {
+   "kind": "pet",
+   "aliases": [
+    "student"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.034,
+     0.497
+    ],
+    "z": [
+     -0.143,
+     0.136
+    ]
+   },
+   "bytes": 81916,
+   "en": "student",
+   "file": "pets/p57d13781.glb",
+   "key": "p57d13781",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2132,
+   "verts": 1894,
+   "zh": "学生",
+   "v": "c558773222"
+  },
+  "p57fcbf1b": {
+   "kind": "pet",
+   "aliases": [
+    "icecream"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.47
+    ],
+    "z": [
+     -0.123,
+     0.131
+    ]
+   },
+   "bytes": 61876,
+   "en": "ice cream",
+   "file": "pets/p57fcbf1b.glb",
+   "key": "p57fcbf1b",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 1824,
+   "verts": 1370,
+   "zh": "冰淇淋",
+   "v": "f563b1b21e"
+  },
+  "p585d31cb": {
+   "kind": "pet",
+   "aliases": [
+    "starfish"
+   ],
+   "bbox": {
+    "x": [
+     -0.158,
+     0.195
+    ],
+    "y": [
+     -0.068,
+     0.142
+    ],
+    "z": [
+     -0.186,
+     0.186
+    ]
+   },
+   "bytes": 93176,
+   "en": "starfish",
+   "file": "pets/p585d31cb.glb",
+   "key": "p585d31cb",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2736,
+   "verts": 2170,
+   "zh": "海星",
+   "v": "61e0c2bfef"
+  },
+  "p598fb9cc": {
+   "kind": "pet",
+   "aliases": [
+    "moon"
+   ],
+   "bbox": {
+    "x": [
+     -0.174,
+     0.174
+    ],
+    "y": [
+     -0.068,
+     0.512
+    ],
+    "z": [
+     -0.233,
+     0.233
+    ]
+   },
+   "bytes": 55476,
+   "en": "moon",
+   "file": "pets/p598fb9cc.glb",
+   "key": "p598fb9cc",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1696,
+   "verts": 1296,
+   "zh": "月亮",
+   "v": "c4e6b9fc56"
+  },
+  "p59d8f245": {
+   "kind": "pet",
+   "aliases": [
+    "christmas"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.404
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71440,
+   "en": "Christmas",
+   "file": "pets/p59d8f245.glb",
+   "key": "p59d8f245",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "圣诞节",
+   "v": "4c8116e633"
+  },
+  "p5aa48391": {
+   "kind": "pet",
+   "aliases": [
+    "can",
+    "today",
+    "train",
+    "our",
+    "fifth",
+    "cheetah"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "can",
+   "file": "pets/p5aa48391.glb",
+   "key": "p5aa48391",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "可以",
+   "v": "adf474bcac"
+  },
+  "p5ab3e1a9": {
+   "kind": "pet",
+   "aliases": [
+    "glasses"
+   ],
+   "bbox": {
+    "x": [
+     -0.17,
+     0.17
+    ],
+    "y": [
+     -0.066,
+     0.302
+    ],
+    "z": [
+     -0.081,
+     0.081
+    ]
+   },
+   "bytes": 63004,
+   "en": "glasses",
+   "file": "pets/p5ab3e1a9.glb",
+   "key": "p5ab3e1a9",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1580,
+   "verts": 1516,
+   "zh": "眼镜",
+   "v": "efa8ff3954"
+  },
+  "p5ac8e959": {
+   "kind": "pet",
+   "aliases": [
+    "drinking"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "drinking",
+   "file": "pets/p5ac8e959.glb",
+   "key": "p5ac8e959",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在喝",
+   "v": "d023660506"
+  },
+  "p5b27b376": {
+   "kind": "pet",
+   "aliases": [
+    "umbrella"
+   ],
+   "bbox": {
+    "x": [
+     -0.18,
+     0.18
+    ],
+    "y": [
+     -0.068,
+     0.4
+    ],
+    "z": [
+     -0.171,
+     0.171
+    ]
+   },
+   "bytes": 48912,
+   "en": "umbrella",
+   "file": "pets/p5b27b376.glb",
+   "key": "p5b27b376",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1288,
+   "verts": 1094,
+   "zh": "雨伞",
+   "v": "880734a4b5"
+  },
+  "p5c41b8ff": {
+   "kind": "pet",
+   "aliases": [
+    "monkey"
+   ],
+   "bbox": {
+    "x": [
+     -0.229,
+     0.229
+    ],
+    "y": [
+     0,
+     0.575
+    ],
+    "z": [
+     -0.343,
+     0.427
+    ]
+   },
+   "bytes": 121216,
+   "en": "monkey",
+   "file": "pets/p5c41b8ff.glb",
+   "key": "p5c41b8ff",
+   "prims": 21,
+   "skipped": 0,
+   "tri": 3452,
+   "verts": 2948,
+   "zh": "猴子",
+   "v": "0e08c63c7a"
+  },
+  "p5ca0eea9": {
+   "kind": "pet",
+   "aliases": [
+    "spain",
+    "spanish",
+    "left",
+    "subway",
+    "before",
+    "faster"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "Spain",
+   "file": "pets/p5ca0eea9.glb",
+   "key": "p5ca0eea9",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "西班牙",
+   "v": "9341af02d8"
+  },
+  "p5d1956ae": {
+   "kind": "pet",
+   "aliases": [
+    "one",
+    "seven",
+    "thirteen",
+    "nineteen"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.071,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82168,
+   "en": "one",
+   "file": "pets/p5d1956ae.glb",
+   "key": "p5d1956ae",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "一",
+   "v": "5b81bfa7ad"
+  },
+  "p5d258c61": {
+   "kind": "pet",
+   "aliases": [
+    "table"
+   ],
+   "bbox": {
+    "x": [
+     -0.25,
+     0.25
+    ],
+    "y": [
+     -0.069,
+     0.301
+    ],
+    "z": [
+     -0.15,
+     0.151
+    ]
+   },
+   "bytes": 53680,
+   "en": "table",
+   "file": "pets/p5d258c61.glb",
+   "key": "p5d258c61",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1356,
+   "verts": 1232,
+   "zh": "桌子",
+   "v": "b00de6a364"
+  },
+  "p5e233213": {
+   "kind": "pet",
+   "aliases": [
+    "say",
+    "day",
+    "bamboo",
+    "science"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "say",
+   "file": "pets/p5e233213.glb",
+   "key": "p5e233213",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "说",
+   "v": "6d5469494e"
+  },
+  "p5e582f76": {
+   "kind": "pet",
+   "aliases": [
+    "picnic"
+   ],
+   "bbox": {
+    "x": [
+     -0.155,
+     0.155
+    ],
+    "y": [
+     -0.069,
+     0.39
+    ],
+    "z": [
+     -0.105,
+     0.131
+    ]
+   },
+   "bytes": 50444,
+   "en": "picnic",
+   "file": "pets/p5e582f76.glb",
+   "key": "p5e582f76",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "野餐",
+   "v": "85506dde95"
+  },
+  "p5edb9421": {
+   "kind": "pet",
+   "aliases": [
+    "cake"
+   ],
+   "bbox": {
+    "x": [
+     -0.205,
+     0.205
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.205,
+     0.209
+    ]
+   },
+   "bytes": 59628,
+   "en": "cake",
+   "file": "pets/p5edb9421.glb",
+   "key": "p5edb9421",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1512,
+   "verts": 1280,
+   "zh": "蛋糕",
+   "v": "3aaf8127b2"
+  },
+  "p5f586a11": {
+   "kind": "pet",
+   "aliases": [
+    "lion",
+    "fly",
+    "breath",
+    "both"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "lion",
+   "file": "pets/p5f586a11.glb",
+   "key": "p5f586a11",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "狮子",
+   "v": "e35389f813"
+  },
+  "p5f8b9e6b": {
+   "kind": "pet",
+   "aliases": [
+    "cap"
+   ],
+   "bbox": {
+    "x": [
+     -0.158,
+     0.158
+    ],
+    "y": [
+     -0.069,
+     0.35
+    ],
+    "z": [
+     -0.158,
+     0.275
+    ]
+   },
+   "bytes": 52484,
+   "en": "cap",
+   "file": "pets/p5f8b9e6b.glb",
+   "key": "p5f8b9e6b",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1584,
+   "verts": 1154,
+   "zh": "鸭舌帽",
+   "v": "d8100c8103"
+  },
+  "p5fe458d4": {
+   "kind": "pet",
+   "aliases": [
+    "september"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "September",
+   "file": "pets/p5fe458d4.glb",
+   "key": "p5fe458d4",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "九月",
+   "v": "3f807b07a3"
+  },
+  "p60585c21": {
+   "kind": "pet",
+   "aliases": [
+    "hi"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.205
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "hi",
+   "file": "pets/p60585c21.glb",
+   "key": "p60585c21",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "嗨",
+   "v": "037d32d408"
+  },
+  "p60b2d2cc": {
+   "kind": "pet",
+   "aliases": [
+    "study"
+   ],
+   "bbox": {
+    "x": [
+     -0.214,
+     0.214
+    ],
+    "y": [
+     -0.068,
+     0.395
+    ],
+    "z": [
+     -0.214,
+     0.214
+    ]
+   },
+   "bytes": 43176,
+   "en": "study",
+   "file": "pets/p60b2d2cc.glb",
+   "key": "p60b2d2cc",
+   "prims": 10,
+   "skipped": 1,
+   "tri": 1192,
+   "verts": 898,
+   "zh": "书房",
+   "v": "821e1fc34c"
+  },
+  "p60b7fd60": {
+   "kind": "pet",
+   "aliases": [
+    "six",
+    "twelve",
+    "eighteen"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.071,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82168,
+   "en": "six",
+   "file": "pets/p60b7fd60.glb",
+   "key": "p60b7fd60",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "六",
+   "v": "d30d1cf60f"
+  },
+  "p60dfc96f": {
+   "kind": "pet",
+   "aliases": [
+    "body"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.537
+    ],
+    "z": [
+     -0.115,
+     0.131
+    ]
+   },
+   "bytes": 53180,
+   "en": "body",
+   "file": "pets/p60dfc96f.glb",
+   "key": "p60dfc96f",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1564,
+   "verts": 1176,
+   "zh": "身体",
+   "v": "aecc7bc7e9"
+  },
+  "p61209408": {
+   "kind": "pet",
+   "aliases": [
+    "winter"
+   ],
+   "bbox": {
+    "x": [
+     -0.148,
+     0.148
+    ],
+    "y": [
+     -0.068,
+     0.435
+    ],
+    "z": [
+     -0.148,
+     0.148
+    ]
+   },
+   "bytes": 57612,
+   "en": "winter",
+   "file": "pets/p61209408.glb",
+   "key": "p61209408",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1776,
+   "verts": 1274,
+   "zh": "冬天",
+   "v": "c64425489c"
+  },
+  "p6133b1d0": {
+   "kind": "pet",
+   "aliases": [
+    "coat"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.07,
+     0.382
+    ],
+    "z": [
+     -0.17,
+     0.17
+    ]
+   },
+   "bytes": 52884,
+   "en": "coat",
+   "file": "pets/p6133b1d0.glb",
+   "key": "p6133b1d0",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1344,
+   "verts": 1208,
+   "zh": "外套",
+   "v": "0248769eb2"
+  },
+  "p622a1e59": {
+   "kind": "pet",
+   "aliases": [
+    "lake"
+   ],
+   "bbox": {
+    "x": [
+     -0.22,
+     0.22
+    ],
+    "y": [
+     -0.068,
+     0.109
+    ],
+    "z": [
+     -0.22,
+     0.22
+    ]
+   },
+   "bytes": 47580,
+   "en": "lake",
+   "file": "pets/p622a1e59.glb",
+   "key": "p622a1e59",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1392,
+   "verts": 1070,
+   "zh": "湖泊",
+   "v": "b9b3a046e2"
+  },
+  "p62dec475": {
+   "kind": "pet",
+   "aliases": [
+    "brown"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.187,
+     0.187
+    ]
+   },
+   "bytes": 53520,
+   "en": "brown",
+   "file": "pets/p62dec475.glb",
+   "key": "p62dec475",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1192,
+   "zh": "棕色",
+   "v": "fcaad1e894"
+  },
+  "p642d92f7": {
+   "kind": "pet",
+   "aliases": [
+    "stop"
+   ],
+   "bbox": {
+    "x": [
+     -0.18,
+     0.18
+    ],
+    "y": [
+     -0.068,
+     0.329
+    ],
+    "z": [
+     -0.18,
+     0.18
+    ]
+   },
+   "bytes": 44904,
+   "en": "stop",
+   "file": "pets/p642d92f7.glb",
+   "key": "p642d92f7",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1232,
+   "verts": 980,
+   "zh": "停下",
+   "v": "d82d1c9b5a"
+  },
+  "p6645a122": {
+   "kind": "pet",
+   "aliases": [
+    "autumn"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71448,
+   "en": "autumn",
+   "file": "pets/p6645a122.glb",
+   "key": "p6645a122",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "秋天",
+   "v": "19f0190100"
+  },
+  "p66f6226b": {
+   "kind": "pet",
+   "aliases": [
+    "jumping"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "jumping",
+   "file": "pets/p66f6226b.glb",
+   "key": "p66f6226b",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在跳",
+   "v": "b6daa07778"
+  },
+  "p67d83d37": {
+   "kind": "pet",
+   "aliases": [
+    "elephant"
+   ],
+   "bbox": {
+    "x": [
+     -0.229,
+     0.229
+    ],
+    "y": [
+     0,
+     0.599
+    ],
+    "z": [
+     -0.33,
+     0.473
+    ]
+   },
+   "bytes": 97008,
+   "en": "elephant",
+   "file": "pets/p67d83d37.glb",
+   "key": "p67d83d37",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2580,
+   "verts": 2392,
+   "zh": "大象",
+   "v": "5ff5515de3"
+  },
+  "p68552151": {
+   "kind": "pet",
+   "aliases": [
+    "teacher"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.2
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.186
+    ]
+   },
+   "bytes": 100356,
+   "en": "teacher",
+   "file": "pets/p68552151.glb",
+   "key": "p68552151",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2452,
+   "verts": 2374,
+   "zh": "老师",
+   "v": "28110fcf83"
+  },
+  "p688c5b78": {
+   "kind": "pet",
+   "aliases": [
+    "family"
+   ],
+   "bbox": {
+    "x": [
+     -0.279,
+     0.279
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 229744,
+   "en": "family",
+   "file": "pets/p688c5b78.glb",
+   "key": "p688c5b78",
+   "prims": 39,
+   "skipped": 0,
+   "tri": 6360,
+   "verts": 5610,
+   "zh": "家庭",
+   "v": "337348d1e5"
+  },
+  "p689d90e2": {
+   "kind": "pet",
+   "aliases": [
+    "nurse"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.595
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 87900,
+   "en": "nurse",
+   "file": "pets/p689d90e2.glb",
+   "key": "p689d90e2",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2216,
+   "verts": 2066,
+   "zh": "护士",
+   "v": "4c062d41b5"
+  },
+  "p69207944": {
+   "kind": "pet",
+   "aliases": [
+    "eating"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "eating",
+   "file": "pets/p69207944.glb",
+   "key": "p69207944",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在吃",
+   "v": "547767a162"
+  },
+  "p6a51277f": {
+   "kind": "pet",
+   "aliases": [
+    "ice-skate"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "ice-skate",
+   "file": "pets/p6a51277f.glb",
+   "key": "p6a51277f",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "滑冰",
+   "v": "3d1e49bb0e"
+  },
+  "p6c3f362a": {
+   "kind": "pet",
+   "aliases": [
+    "egg"
+   ],
+   "bbox": {
+    "x": [
+     -0.156,
+     0.156
+    ],
+    "y": [
+     -0.075,
+     0.402
+    ],
+    "z": [
+     -0.156,
+     0.179
+    ]
+   },
+   "bytes": 52312,
+   "en": "egg",
+   "file": "pets/p6c3f362a.glb",
+   "key": "p6c3f362a",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1504,
+   "verts": 1160,
+   "zh": "鸡蛋",
+   "v": "791fa983f8"
+  },
+  "p6cc88e25": {
+   "kind": "pet",
+   "aliases": [
+    "boy"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.034,
+     0.497
+    ],
+    "z": [
+     -0.143,
+     0.136
+    ]
+   },
+   "bytes": 81072,
+   "en": "boy",
+   "file": "pets/p6cc88e25.glb",
+   "key": "p6cc88e25",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "男孩",
+   "v": "71ab6b5365"
+  },
+  "p6dd562f6": {
+   "kind": "pet",
+   "aliases": [
+    "sunny"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71432,
+   "en": "sunny",
+   "file": "pets/p6dd562f6.glb",
+   "key": "p6dd562f6",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "晴朗的",
+   "v": "8c7509eaae"
+  },
+  "p6e9aa89f": {
+   "kind": "pet",
+   "aliases": [
+    "postman"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.595
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 89920,
+   "en": "postman",
+   "file": "pets/p6e9aa89f.glb",
+   "key": "p6e9aa89f",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2228,
+   "verts": 2090,
+   "zh": "邮递员",
+   "v": "0357ac915c"
+  },
+  "p6fef44a8": {
+   "kind": "pet",
+   "aliases": [
+    "thursday",
+    "march"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50432,
+   "en": "Thursday",
+   "file": "pets/p6fef44a8.glb",
+   "key": "p6fef44a8",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "星期四",
+   "v": "bb58146f02"
+  },
+  "p7086e33f": {
+   "kind": "pet",
+   "aliases": [
+    "cute",
+    "need",
+    "play",
+    "lovely",
+    "by",
+    "metre"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "cute",
+   "file": "pets/p7086e33f.glb",
+   "key": "p7086e33f",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "可爱的",
+   "v": "13993f8fc4"
+  },
+  "p71b7e2ad": {
+   "kind": "pet",
+   "aliases": [
+    "kite"
+   ],
+   "bbox": {
+    "x": [
+     -0.17,
+     0.17
+    ],
+    "y": [
+     -0.502,
+     0.65
+    ],
+    "z": [
+     -0.054,
+     0.097
+    ]
+   },
+   "bytes": 67044,
+   "en": "kite",
+   "file": "pets/p71b7e2ad.glb",
+   "key": "p71b7e2ad",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 1848,
+   "verts": 1492,
+   "zh": "风筝",
+   "v": "dcbfd7bfdf"
+  },
+  "p72487aa5": {
+   "kind": "pet",
+   "aliases": [
+    "like",
+    "yours",
+    "excited",
+    "interesting",
+    "puzzle",
+    "amazing"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "like",
+   "file": "pets/p72487aa5.glb",
+   "key": "p72487aa5",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "喜欢",
+   "v": "7cc47e6264"
+  },
+  "p725fd4a7": {
+   "kind": "pet",
+   "aliases": [
+    "bike"
+   ],
+   "bbox": {
+    "x": [
+     -0.22,
+     0.22
+    ],
+    "y": [
+     -0.066,
+     0.294
+    ],
+    "z": [
+     -0.08,
+     0.08
+    ]
+   },
+   "bytes": 87668,
+   "en": "bike",
+   "file": "pets/p725fd4a7.glb",
+   "key": "p725fd4a7",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 1952,
+   "verts": 2180,
+   "zh": "自行车",
+   "v": "c76ef801e6"
+  },
+  "p72a61787": {
+   "kind": "pet",
+   "aliases": [
+    "cool"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71448,
+   "en": "cool",
+   "file": "pets/p72a61787.glb",
+   "key": "p72a61787",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "凉爽的",
+   "v": "d2761fc39a"
+  },
+  "p73675005": {
+   "kind": "pet",
+   "aliases": [
+    "us",
+    "doll",
+    "people",
+    "their",
+    "theirs",
+    "other"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82180,
+   "en": "us",
+   "file": "pets/p73675005.glb",
+   "key": "p73675005",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "我们",
+   "v": "1df3a4dd63"
+  },
+  "p742579e7": {
+   "kind": "pet",
+   "aliases": [
+    "park",
+    "thirsty",
+    "diary",
+    "wear",
+    "broken"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "park",
+   "file": "pets/p742579e7.glb",
+   "key": "p742579e7",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "公园",
+   "v": "b86d1bce9a"
+  },
+  "p745e02c8": {
+   "kind": "pet",
+   "aliases": [
+    "driver"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.595
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 87928,
+   "en": "driver",
+   "file": "pets/p745e02c8.glb",
+   "key": "p745e02c8",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2216,
+   "verts": 2066,
+   "zh": "司机",
+   "v": "37d105e83f"
+  },
+  "p746ce7f0": {
+   "kind": "pet",
+   "aliases": [
+    "ship"
+   ],
+   "bbox": {
+    "x": [
+     -0.25,
+     0.25
+    ],
+    "y": [
+     -0.075,
+     0.884
+    ],
+    "z": [
+     -0.47,
+     0.47
+    ]
+   },
+   "bytes": 64484,
+   "en": "ship",
+   "file": "pets/p746ce7f0.glb",
+   "key": "p746ce7f0",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 1692,
+   "verts": 1372,
+   "zh": "轮船",
+   "v": "3b2db2745e"
+  },
+  "p74be67e7": {
+   "kind": "pet",
+   "aliases": [
+    "dictionary"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.29
+    ],
+    "z": [
+     -0.04,
+     0.131
+    ]
+   },
+   "bytes": 40648,
+   "en": "dictionary",
+   "file": "pets/p74be67e7.glb",
+   "key": "p74be67e7",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1176,
+   "verts": 864,
+   "zh": "词典",
+   "v": "82c2442de5"
+  },
+  "p75d08333": {
+   "kind": "pet",
+   "aliases": [
+    "angry"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.216
+    ]
+   },
+   "bytes": 84116,
+   "en": "angry",
+   "file": "pets/p75d08333.glb",
+   "key": "p75d08333",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2488,
+   "verts": 1932,
+   "zh": "生气的",
+   "v": "3f9440eaf4"
+  },
+  "p777550e2": {
+   "kind": "pet",
+   "aliases": [
+    "share",
+    "have",
+    "piece",
+    "key",
+    "take"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "share",
+   "file": "pets/p777550e2.glb",
+   "key": "p777550e2",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "分享",
+   "v": "0ff8b7796f"
+  },
+  "p79249dd3": {
+   "kind": "pet",
+   "aliases": [
+    "healthy",
+    "tomorrow",
+    "special",
+    "helpful",
+    "shorter",
+    "younger",
+    "heavier",
+    "thinner",
+    "smaller",
+    "quietly"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.434
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71428,
+   "en": "healthy",
+   "file": "pets/p79249dd3.glb",
+   "key": "p79249dd3",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "健康的",
+   "v": "6656fe9e98"
+  },
+  "p7981a0b5": {
+   "kind": "pet",
+   "aliases": [
+    "goat"
+   ],
+   "bbox": {
+    "x": [
+     -0.177,
+     0.177
+    ],
+    "y": [
+     0,
+     0.625
+    ],
+    "z": [
+     -0.356,
+     0.47
+    ]
+   },
+   "bytes": 92012,
+   "en": "goat",
+   "file": "pets/p7981a0b5.glb",
+   "key": "p7981a0b5",
+   "prims": 17,
+   "skipped": 0,
+   "tri": 2284,
+   "verts": 2218,
+   "zh": "山羊",
+   "v": "e8354d0bd8"
+  },
+  "p79c3ba4e": {
+   "kind": "pet",
+   "aliases": [
+    "sad"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.226
+    ]
+   },
+   "bytes": 87432,
+   "en": "sad",
+   "file": "pets/p79c3ba4e.glb",
+   "key": "p79c3ba4e",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2656,
+   "verts": 2004,
+   "zh": "难过的",
+   "v": "07f962828b"
+  },
+  "p7acad96a": {
+   "kind": "pet",
+   "aliases": [
+    "horse"
+   ],
+   "bbox": {
+    "x": [
+     -0.19,
+     0.19
+    ],
+    "y": [
+     0,
+     0.682
+    ],
+    "z": [
+     -0.465,
+     0.608
+    ]
+   },
+   "bytes": 115412,
+   "en": "horse",
+   "file": "pets/p7acad96a.glb",
+   "key": "p7acad96a",
+   "prims": 20,
+   "skipped": 0,
+   "tri": 3292,
+   "verts": 2760,
+   "zh": "马",
+   "v": "29bc5d7e5f"
+  },
+  "p7b4fca23": {
+   "kind": "pet",
+   "aliases": [
+    "father"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81072,
+   "en": "father",
+   "file": "pets/p7b4fca23.glb",
+   "key": "p7b4fca23",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "爸爸",
+   "v": "be0631dd7b"
+  },
+  "p7cba7142": {
+   "kind": "pet",
+   "aliases": [
+    "boat"
+   ],
+   "bbox": {
+    "x": [
+     -0.25,
+     0.25
+    ],
+    "y": [
+     -0.074,
+     0.975
+    ],
+    "z": [
+     -0.45,
+     0.463
+    ]
+   },
+   "bytes": 55980,
+   "en": "boat",
+   "file": "pets/p7cba7142.glb",
+   "key": "p7cba7142",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1620,
+   "verts": 1228,
+   "zh": "小船",
+   "v": "5d3e061852"
+  },
+  "p7d982cd5": {
+   "kind": "pet",
+   "aliases": [
+    "farm"
+   ],
+   "bbox": {
+    "x": [
+     -0.204,
+     0.204
+    ],
+    "y": [
+     -0.068,
+     0.367
+    ],
+    "z": [
+     -0.204,
+     0.204
+    ]
+   },
+   "bytes": 43152,
+   "en": "farm",
+   "file": "pets/p7d982cd5.glb",
+   "key": "p7d982cd5",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1192,
+   "verts": 898,
+   "zh": "农场",
+   "v": "35439274c1"
+  },
+  "p7d9ebcc9": {
+   "kind": "pet",
+   "aliases": [
+    "breakfast"
+   ],
+   "bbox": {
+    "x": [
+     -0.2,
+     0.2
+    ],
+    "y": [
+     -0.068,
+     0.14
+    ],
+    "z": [
+     -0.2,
+     0.2
+    ]
+   },
+   "bytes": 57956,
+   "en": "breakfast",
+   "file": "pets/p7d9ebcc9.glb",
+   "key": "p7d9ebcc9",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1632,
+   "verts": 1276,
+   "zh": "早餐",
+   "v": "70fd092795"
+  },
+  "p7e31a59f": {
+   "kind": "pet",
+   "aliases": [
+    "leaf"
+   ],
+   "bbox": {
+    "x": [
+     -0.17,
+     0.17
+    ],
+    "y": [
+     -0.069,
+     0.271
+    ],
+    "z": [
+     -0.23,
+     0.263
+    ]
+   },
+   "bytes": 68088,
+   "en": "leaf",
+   "file": "pets/p7e31a59f.glb",
+   "key": "p7e31a59f",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 1840,
+   "verts": 1556,
+   "zh": "树叶",
+   "v": "0e2bdca636"
+  },
+  "p7e5c68af": {
+   "kind": "pet",
+   "aliases": [
+    "notebook"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.26
+    ],
+    "z": [
+     -0.04,
+     0.131
+    ]
+   },
+   "bytes": 40648,
+   "en": "notebook",
+   "file": "pets/p7e5c68af.glb",
+   "key": "p7e5c68af",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1176,
+   "verts": 864,
+   "zh": "笔记本",
+   "v": "08bbf5d24f"
+  },
+  "p7eec9b13": {
+   "kind": "pet",
+   "aliases": [
+    "animal"
+   ],
+   "bbox": {
+    "x": [
+     -0.184,
+     0.184
+    ],
+    "y": [
+     0,
+     0.581
+    ],
+    "z": [
+     -0.33,
+     0.373
+    ]
+   },
+   "bytes": 86856,
+   "en": "animal",
+   "file": "pets/p7eec9b13.glb",
+   "key": "p7eec9b13",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2116,
+   "zh": "动物",
+   "v": "01fa6fbaa8"
+  },
+  "p804a44ce": {
+   "kind": "pet",
+   "aliases": [
+    "pick",
+    "jasmine",
+    "basket"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "pick",
+   "file": "pets/p804a44ce.glb",
+   "key": "p804a44ce",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "摘",
+   "v": "555f8a7599"
+  },
+  "p80dd3d3b": {
+   "kind": "pet",
+   "aliases": [
+    "pear"
+   ],
+   "bbox": {
+    "x": [
+     -0.167,
+     0.167
+    ],
+    "y": [
+     -0.075,
+     0.48
+    ],
+    "z": [
+     -0.167,
+     0.174
+    ]
+   },
+   "bytes": 59832,
+   "en": "pear",
+   "file": "pets/p80dd3d3b.glb",
+   "key": "p80dd3d3b",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1776,
+   "verts": 1310,
+   "zh": "梨",
+   "v": "eb14766c45"
+  },
+  "p81673c98": {
+   "kind": "pet",
+   "aliases": [
+    "yesterday"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.404
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "yesterday",
+   "file": "pets/p81673c98.glb",
+   "key": "p81673c98",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "昨天",
+   "v": "5a1b428391"
+  },
+  "p83d45ffe": {
+   "kind": "pet",
+   "aliases": [
+    "stone"
+   ],
+   "bbox": {
+    "x": [
+     -0.209,
+     0.209
+    ],
+    "y": [
+     -0.071,
+     0.278
+    ],
+    "z": [
+     -0.167,
+     0.178
+    ]
+   },
+   "bytes": 63308,
+   "en": "stone",
+   "file": "pets/p83d45ffe.glb",
+   "key": "p83d45ffe",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1920,
+   "verts": 1352,
+   "zh": "石头",
+   "v": "4fa25d7c76"
+  },
+  "p83fcb5ef": {
+   "kind": "pet",
+   "aliases": [
+    "easter"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.404
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "Easter",
+   "file": "pets/p83fcb5ef.glb",
+   "key": "p83fcb5ef",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "复活节",
+   "v": "0c74fdcd4c"
+  },
+  "p8428b2d2": {
+   "kind": "pet",
+   "aliases": [
+    "outside",
+    "sushi",
+    "turn",
+    "type",
+    "become",
+    "enjoy",
+    "fishing"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "outside",
+   "file": "pets/p8428b2d2.glb",
+   "key": "p8428b2d2",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "在户外",
+   "v": "0283db496a"
+  },
+  "p843acce3": {
+   "kind": "pet",
+   "aliases": [
+    "shell"
+   ],
+   "bbox": {
+    "x": [
+     -0.19,
+     0.19
+    ],
+    "y": [
+     -0.07,
+     0.33
+    ],
+    "z": [
+     -0.19,
+     0.19
+    ]
+   },
+   "bytes": 62124,
+   "en": "shell",
+   "file": "pets/p843acce3.glb",
+   "key": "p843acce3",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 1668,
+   "verts": 1328,
+   "zh": "贝壳",
+   "v": "49f6ef57c7"
+  },
+  "p85976684": {
+   "kind": "pet",
+   "aliases": [
+    "banana"
+   ],
+   "bbox": {
+    "x": [
+     -0.235,
+     0.235
+    ],
+    "y": [
+     -0.069,
+     0.31
+    ],
+    "z": [
+     -0.223,
+     0.223
+    ]
+   },
+   "bytes": 55380,
+   "en": "banana",
+   "file": "pets/p85976684.glb",
+   "key": "p85976684",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1696,
+   "verts": 1296,
+   "zh": "香蕉",
+   "v": "24a33661fb"
+  },
+  "p86b2ef59": {
+   "kind": "pet",
+   "aliases": [
+    "tv",
+    "thirty",
+    "watched"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "TV",
+   "file": "pets/p86b2ef59.glb",
+   "key": "p86b2ef59",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "电视",
+   "v": "458ed47795"
+  },
+  "p86b8b731": {
+   "kind": "pet",
+   "aliases": [
+    "purple",
+    "fall",
+    "follow"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "purple",
+   "file": "pets/p86b8b731.glb",
+   "key": "p86b8b731",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "紫色",
+   "v": "c3021d8382"
+  },
+  "p86e8db59": {
+   "kind": "pet",
+   "aliases": [
+    "milk"
+   ],
+   "bbox": {
+    "x": [
+     -0.155,
+     0.155
+    ],
+    "y": [
+     -0.075,
+     0.61
+    ],
+    "z": [
+     -0.15,
+     0.182
+    ]
+   },
+   "bytes": 45512,
+   "en": "milk",
+   "file": "pets/p86e8db59.glb",
+   "key": "p86e8db59",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1224,
+   "verts": 964,
+   "zh": "牛奶",
+   "v": "4232b099a8"
+  },
+  "p874039cc": {
+   "kind": "pet",
+   "aliases": [
+    "dancing"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.21,
+     0.21
+    ]
+   },
+   "bytes": 90008,
+   "en": "dancing",
+   "file": "pets/p874039cc.glb",
+   "key": "p874039cc",
+   "prims": 16,
+   "skipped": 1,
+   "tri": 2360,
+   "verts": 2104,
+   "zh": "正在跳舞",
+   "v": "66dd2bf521"
+  },
+  "p8833bd9b": {
+   "kind": "pet",
+   "aliases": [
+    "fisherman"
+   ],
+   "bbox": {
+    "x": [
+     -0.2,
+     0.253
+    ],
+    "y": [
+     -0.04,
+     0.631
+    ],
+    "z": [
+     -0.2,
+     0.2
+    ]
+   },
+   "bytes": 95608,
+   "en": "fisherman",
+   "file": "pets/p8833bd9b.glb",
+   "key": "p8833bd9b",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2408,
+   "verts": 2210,
+   "zh": "渔民",
+   "v": "9e8b35b139"
+  },
+  "p8982e882": {
+   "kind": "pet",
+   "aliases": [
+    "rabbit"
+   ],
+   "bbox": {
+    "x": [
+     -0.158,
+     0.158
+    ],
+    "y": [
+     0,
+     0.699
+    ],
+    "z": [
+     -0.254,
+     0.26
+    ]
+   },
+   "bytes": 106184,
+   "en": "rabbit",
+   "file": "pets/p8982e882.glb",
+   "key": "p8982e882",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2936,
+   "verts": 2540,
+   "zh": "兔子",
+   "v": "eeb07bb77b"
+  },
+  "p89e341d0": {
+   "kind": "pet",
+   "aliases": [
+    "february"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "February",
+   "file": "pets/p89e341d0.glb",
+   "key": "p89e341d0",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "二月",
+   "v": "9a3c69609f"
+  },
+  "p8a0a7396": {
+   "kind": "pet",
+   "aliases": [
+    "river"
+   ],
+   "bbox": {
+    "x": [
+     -0.231,
+     0.231
+    ],
+    "y": [
+     -0.108,
+     0.348
+    ],
+    "z": [
+     -0.238,
+     0.306
+    ]
+   },
+   "bytes": 61024,
+   "en": "river",
+   "file": "pets/p8a0a7396.glb",
+   "key": "p8a0a7396",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1664,
+   "verts": 1436,
+   "zh": "河流",
+   "v": "58f228cf29"
+  },
+  "p8a92006c": {
+   "kind": "pet",
+   "aliases": [
+    "afraid"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 87956,
+   "en": "afraid",
+   "file": "pets/p8a92006c.glb",
+   "key": "p8a92006c",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2880,
+   "verts": 2052,
+   "zh": "害怕的",
+   "v": "9adc9e2d75"
+  },
+  "p8ad4b659": {
+   "kind": "pet",
+   "aliases": [
+    "clock"
+   ],
+   "bbox": {
+    "x": [
+     -0.17,
+     0.17
+    ],
+    "y": [
+     -0.068,
+     0.354
+    ],
+    "z": [
+     -0.17,
+     0.17
+    ]
+   },
+   "bytes": 52876,
+   "en": "clock",
+   "file": "pets/p8ad4b659.glb",
+   "key": "p8ad4b659",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1344,
+   "verts": 1208,
+   "zh": "时钟",
+   "v": "6438d3247a"
+  },
+  "p8afd1f81": {
+   "kind": "pet",
+   "aliases": [
+    "car"
+   ],
+   "bbox": {
+    "x": [
+     -0.22,
+     0.22
+    ],
+    "y": [
+     -0.07,
+     0.32
+    ],
+    "z": [
+     -0.18,
+     0.18
+    ]
+   },
+   "bytes": 61236,
+   "en": "car",
+   "file": "pets/p8afd1f81.glb",
+   "key": "p8afd1f81",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 1560,
+   "verts": 1392,
+   "zh": "小汽车",
+   "v": "efce553990"
+  },
+  "p8b8b0867": {
+   "kind": "pet",
+   "aliases": [
+    "bag",
+    "twenty-first",
+    "poem",
+    "ant"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81020,
+   "en": "bag",
+   "file": "pets/p8b8b0867.glb",
+   "key": "p8b8b0867",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "书包",
+   "v": "cafd5d8b4b"
+  },
+  "p8b9c4cc8": {
+   "kind": "pet",
+   "aliases": [
+    "saturday"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "Saturday",
+   "file": "pets/p8b9c4cc8.glb",
+   "key": "p8b9c4cc8",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "星期六",
+   "v": "85b4486805"
+  },
+  "p8bd71a8c": {
+   "kind": "pet",
+   "aliases": [
+    "fan",
+    "basketball",
+    "know",
+    "snowman",
+    "idea",
+    "lamp"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82180,
+   "en": "fan",
+   "file": "pets/p8bd71a8c.glb",
+   "key": "p8bd71a8c",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "风扇",
+   "v": "c06018fff2"
+  },
+  "p8c4596c7": {
+   "kind": "pet",
+   "aliases": [
+    "bee"
+   ],
+   "bbox": {
+    "x": [
+     -0.199,
+     0.199
+    ],
+    "y": [
+     -0.068,
+     0.352
+    ],
+    "z": [
+     -0.225,
+     0.241
+    ]
+   },
+   "bytes": 89144,
+   "en": "bee",
+   "file": "pets/p8c4596c7.glb",
+   "key": "p8c4596c7",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2384,
+   "verts": 2146,
+   "zh": "蜜蜂",
+   "v": "55776c662b"
+  },
+  "p8d40ab47": {
+   "kind": "pet",
+   "aliases": [
+    "goodbye"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.205
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "goodbye",
+   "file": "pets/p8d40ab47.glb",
+   "key": "p8d40ab47",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "再见",
+   "v": "eb6d0c333d"
+  },
+  "p8d79a322": {
+   "kind": "pet",
+   "aliases": [
+    "long"
+   ],
+   "bbox": {
+    "x": [
+     -0.324,
+     0.324
+    ],
+    "y": [
+     -0.07,
+     0.24
+    ],
+    "z": [
+     -0.095,
+     0.122
+    ]
+   },
+   "bytes": 47668,
+   "en": "long",
+   "file": "pets/p8d79a322.glb",
+   "key": "p8d79a322",
+   "prims": 7,
+   "skipped": 0,
+   "tri": 1372,
+   "verts": 1076,
+   "zh": "长的",
+   "v": "f725b7e93f"
+  },
+  "p8e113873": {
+   "kind": "pet",
+   "aliases": [
+    "village"
+   ],
+   "bbox": {
+    "x": [
+     -0.312,
+     0.272
+    ],
+    "y": [
+     -0.066,
+     0.282
+    ],
+    "z": [
+     -0.192,
+     0.31
+    ]
+   },
+   "bytes": 53460,
+   "en": "village",
+   "file": "pets/p8e113873.glb",
+   "key": "p8e113873",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 1272,
+   "verts": 1062,
+   "zh": "村庄",
+   "v": "d05697f65d"
+  },
+  "p8e56373c": {
+   "kind": "pet",
+   "aliases": [
+    "juice"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.376
+    ],
+    "z": [
+     -0.1,
+     0.111
+    ]
+   },
+   "bytes": 56820,
+   "en": "juice",
+   "file": "pets/p8e56373c.glb",
+   "key": "p8e56373c",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1468,
+   "verts": 1272,
+   "zh": "果汁",
+   "v": "31811e4863"
+  },
+  "p8edae8a1": {
+   "kind": "pet",
+   "aliases": [
+    "good",
+    "miss",
+    "time",
+    "lost",
+    "there",
+    "teach",
+    "get",
+    "feature",
+    "film",
+    "mooncake",
+    "better",
+    "woke"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "good",
+   "file": "pets/p8edae8a1.glb",
+   "key": "p8edae8a1",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "好的",
+   "v": "267c8e7588"
+  },
+  "p90239df7": {
+   "kind": "pet",
+   "aliases": [
+    "baby",
+    "go",
+    "friendly",
+    "puppy",
+    "schedule",
+    "boating",
+    "walk",
+    "pizza",
+    "went",
+    "felt"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "baby",
+   "file": "pets/p90239df7.glb",
+   "key": "p90239df7",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "婴儿",
+   "v": "14a9a4d9cc"
+  },
+  "p912ac785": {
+   "kind": "pet",
+   "aliases": [
+    "nice",
+    "size",
+    "near",
+    "kind"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.434
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "nice",
+   "file": "pets/p912ac785.glb",
+   "key": "p912ac785",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "好看的",
+   "v": "f6460bbae3"
+  },
+  "p912fd065": {
+   "kind": "pet",
+   "aliases": [
+    "sweet"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.23
+    ],
+    "z": [
+     -0.14,
+     0.141
+    ]
+   },
+   "bytes": 52476,
+   "en": "sweet",
+   "file": "pets/p912fd065.glb",
+   "key": "p912fd065",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1584,
+   "verts": 1154,
+   "zh": "甜的",
+   "v": "f6fdaea4f6"
+  },
+  "p91327f69": {
+   "kind": "pet",
+   "aliases": [
+    "eye"
+   ],
+   "bbox": {
+    "x": [
+     -0.169,
+     0.169
+    ],
+    "y": [
+     -0.065,
+     0.379
+    ],
+    "z": [
+     -0.151,
+     0.245
+    ]
+   },
+   "bytes": 68900,
+   "en": "eye",
+   "file": "pets/p91327f69.glb",
+   "key": "p91327f69",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2304,
+   "verts": 1568,
+   "zh": "眼睛",
+   "v": "c840b9f1a9"
+  },
+  "p91bced29": {
+   "kind": "pet",
+   "aliases": [
+    "shorts",
+    "pack",
+    "vacation",
+    "trip",
+    "keep",
+    "bought",
+    "beach"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "shorts",
+   "file": "pets/p91bced29.glb",
+   "key": "p91bced29",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "短裤",
+   "v": "cf3c5088c6"
+  },
+  "p9255b50b": {
+   "kind": "pet",
+   "aliases": [
+    "food"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81020,
+   "en": "food",
+   "file": "pets/p9255b50b.glb",
+   "key": "p9255b50b",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "食物",
+   "v": "d7aaa2c02d"
+  },
+  "p92ed5d34": {
+   "kind": "pet",
+   "aliases": [
+    "knife"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.384
+    ],
+    "z": [
+     -0.018,
+     0.05
+    ]
+   },
+   "bytes": 42296,
+   "en": "knife",
+   "file": "pets/p92ed5d34.glb",
+   "key": "p92ed5d34",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1212,
+   "verts": 938,
+   "zh": "刀",
+   "v": "3a61859186"
+  },
+  "p9356729c": {
+   "kind": "pet",
+   "aliases": [
+    "dance"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.21,
+     0.21
+    ]
+   },
+   "bytes": 89992,
+   "en": "dance",
+   "file": "pets/p9356729c.glb",
+   "key": "p9356729c",
+   "prims": 16,
+   "skipped": 1,
+   "tri": 2360,
+   "verts": 2104,
+   "zh": "跳舞",
+   "v": "ec1ec11151"
+  },
+  "p93dc9f28": {
+   "kind": "pet",
+   "aliases": [
+    "friday"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "Friday",
+   "file": "pets/p93dc9f28.glb",
+   "key": "p93dc9f28",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "星期五",
+   "v": "7ce7958723"
+  },
+  "p94d3471d": {
+   "kind": "pet",
+   "aliases": [
+    "little",
+    "favourite",
+    "exhibition",
+    "museum",
+    "far",
+    "comic",
+    "mice",
+    "hall",
+    "thought"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "little",
+   "file": "pets/p94d3471d.glb",
+   "key": "p94d3471d",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "小的",
+   "v": "4102e5d404"
+  },
+  "p95edc30c": {
+   "kind": "pet",
+   "aliases": [
+    "sun"
+   ],
+   "bbox": {
+    "x": [
+     -0.325,
+     0.325
+    ],
+    "y": [
+     -0.073,
+     0.645
+    ],
+    "z": [
+     -0.187,
+     0.193
+    ]
+   },
+   "bytes": 62668,
+   "en": "sun",
+   "file": "pets/p95edc30c.glb",
+   "key": "p95edc30c",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 1600,
+   "verts": 1464,
+   "zh": "太阳",
+   "v": "2d87231b0a"
+  },
+  "p96d3208d": {
+   "kind": "pet",
+   "aliases": [
+    "homework",
+    "internet",
+    "when",
+    "whose",
+    "which",
+    "stronger"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.434
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "homework",
+   "file": "pets/p96d3208d.glb",
+   "key": "p96d3208d",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "作业",
+   "v": "ccd0634d7b"
+  },
+  "p971f0834": {
+   "kind": "pet",
+   "aliases": [
+    "playing"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81052,
+   "en": "playing",
+   "file": "pets/p971f0834.glb",
+   "key": "p971f0834",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在玩",
+   "v": "c7733034fb"
+  },
+  "p97702374": {
+   "kind": "pet",
+   "aliases": [
+    "aunt"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.21,
+     0.21
+    ]
+   },
+   "bytes": 90008,
+   "en": "aunt",
+   "file": "pets/p97702374.glb",
+   "key": "p97702374",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2104,
+   "zh": "姑姑",
+   "v": "4a695d2d27"
+  },
+  "p978e9c10": {
+   "kind": "pet",
+   "aliases": [
+    "window"
+   ],
+   "bbox": {
+    "x": [
+     -0.235,
+     0.235
+    ],
+    "y": [
+     -0.068,
+     0.487
+    ],
+    "z": [
+     -0.025,
+     0.061
+    ]
+   },
+   "bytes": 41680,
+   "en": "window",
+   "file": "pets/p978e9c10.glb",
+   "key": "p978e9c10",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1188,
+   "verts": 888,
+   "zh": "窗户",
+   "v": "12f1bc2422"
+  },
+  "p9878310c": {
+   "kind": "pet",
+   "aliases": [
+    "two",
+    "eight",
+    "fourteen",
+    "twenty"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.071,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "two",
+   "file": "pets/p9878310c.glb",
+   "key": "p9878310c",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "二",
+   "v": "40cfd0479d"
+  },
+  "p9c96b431": {
+   "kind": "pet",
+   "aliases": [
+    "climbing"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81068,
+   "en": "climbing",
+   "file": "pets/p9c96b431.glb",
+   "key": "p9c96b431",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在攀爬",
+   "v": "76fc05f3c4"
+  },
+  "p9f7a5149": {
+   "kind": "pet",
+   "aliases": [
+    "ph-goodmorning",
+    "ph-babybrother",
+    "ph-gotoschool",
+    "ph-tryon",
+    "ph-singenglishsongs",
+    "ph-speakenglish",
+    "ph-playsports",
+    "ph-mother-sday",
+    "ph-father-sday",
+    "ph-eatinglunch",
+    "ph-bybus",
+    "ph-seeadoctor",
+    "ph-counttoten",
+    "ph-wentfishing",
+    "ph-rodeahorse",
+    "ph-hurtmyfoot",
+    "ph-boughtgifts",
+    "ph-writeaword",
+    "ph-healthyfood",
+    "ph-englishbook",
+    "ph-chinesebook",
+    "ph-helpyourself",
+    "ph-haveasnack",
+    "ph-makeasalad",
+    "ph-cutthevegetables",
+    "ph-usethefork",
+    "ph-newyork",
+    "ph-waterbottle",
+    "ph-talkquietly",
+    "ph-gettogether",
+    "ph-haveanartlesson"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "good morning",
+   "file": "pets/p9f7a5149.glb",
+   "key": "p9f7a5149",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "早上好",
+   "v": "97b559f8ac"
+  },
+  "p9f81626e": {
+   "kind": "pet",
+   "aliases": [
+    "mum",
+    "ms",
+    "national",
+    "hers",
+    "mrs",
+    "wrong",
+    "different"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "mum",
+   "file": "pets/p9f81626e.glb",
+   "key": "p9f81626e",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "妈妈",
+   "v": "9db37e0e5e"
+  },
+  "pa0082e8a": {
+   "kind": "pet",
+   "aliases": [
+    "ball"
+   ],
+   "bbox": {
+    "x": [
+     -0.222,
+     0.222
+    ],
+    "y": [
+     -0.075,
+     0.42
+    ],
+    "z": [
+     -0.211,
+     0.211
+    ]
+   },
+   "bytes": 70232,
+   "en": "ball",
+   "file": "pets/pa0082e8a.glb",
+   "key": "pa0082e8a",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 2048,
+   "verts": 1656,
+   "zh": "皮球",
+   "v": "835e19578a"
+  },
+  "pa23e08bc": {
+   "kind": "pet",
+   "aliases": [
+    "bookstore"
+   ],
+   "bbox": {
+    "x": [
+     -0.23,
+     0.23
+    ],
+    "y": [
+     -0.068,
+     0.35
+    ],
+    "z": [
+     -0.18,
+     0.201
+    ]
+   },
+   "bytes": 43344,
+   "en": "bookstore",
+   "file": "pets/pa23e08bc.glb",
+   "key": "pa23e08bc",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1212,
+   "verts": 936,
+   "zh": "书店",
+   "v": "8b3528c49e"
+  },
+  "pa27f595e": {
+   "kind": "pet",
+   "aliases": [
+    "crab"
+   ],
+   "bbox": {
+    "x": [
+     -0.259,
+     0.259
+    ],
+    "y": [
+     0.012,
+     0.375
+    ],
+    "z": [
+     -0.158,
+     0.203
+    ]
+   },
+   "bytes": 93736,
+   "en": "crab",
+   "file": "pets/pa27f595e.glb",
+   "key": "pa27f595e",
+   "prims": 20,
+   "skipped": 0,
+   "tri": 2368,
+   "verts": 2332,
+   "zh": "螃蟹",
+   "v": "4814ad99e4"
+  },
+  "pa2fd3895": {
+   "kind": "pet",
+   "aliases": [
+    "blackboard"
+   ],
+   "bbox": {
+    "x": [
+     -0.273,
+     0.273
+    ],
+    "y": [
+     -0.069,
+     0.494
+    ],
+    "z": [
+     -0.015,
+     0.061
+    ]
+   },
+   "bytes": 40640,
+   "en": "blackboard",
+   "file": "pets/pa2fd3895.glb",
+   "key": "pa2fd3895",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1176,
+   "verts": 864,
+   "zh": "黑板",
+   "v": "d70a659a67"
+  },
+  "pa3e1918e": {
+   "kind": "pet",
+   "aliases": [
+    "funny",
+    "short",
+    "small",
+    "these",
+    "fresh",
+    "class",
+    "cheap",
+    "young",
+    "hard-working",
+    "quiet",
+    "older",
+    "hobby"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.434
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71428,
+   "en": "funny",
+   "file": "pets/pa3e1918e.glb",
+   "key": "pa3e1918e",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "滑稽的",
+   "v": "1a3c3987bb"
+  },
+  "pa658836d": {
+   "kind": "pet",
+   "aliases": [
+    "soup"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.07,
+     0.175
+    ],
+    "z": [
+     -0.16,
+     0.162
+    ]
+   },
+   "bytes": 58728,
+   "en": "soup",
+   "file": "pets/pa658836d.glb",
+   "key": "pa658836d",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1632,
+   "verts": 1300,
+   "zh": "汤",
+   "v": "2ff95c8db3"
+  },
+  "pa70df44f": {
+   "kind": "pet",
+   "aliases": [
+    "candy"
+   ],
+   "bbox": {
+    "x": [
+     -0.249,
+     0.249
+    ],
+    "y": [
+     -0.07,
+     0.416
+    ],
+    "z": [
+     -0.092,
+     0.122
+    ]
+   },
+   "bytes": 60288,
+   "en": "candy",
+   "file": "pets/pa70df44f.glb",
+   "key": "pa70df44f",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1776,
+   "verts": 1322,
+   "zh": "糖果",
+   "v": "9603f50606"
+  },
+  "pa84646e9": {
+   "kind": "pet",
+   "aliases": [
+    "hand"
+   ],
+   "bbox": {
+    "x": [
+     -0.167,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.394
+    ],
+    "z": [
+     -0.071,
+     0.121
+    ]
+   },
+   "bytes": 91724,
+   "en": "hand",
+   "file": "pets/pa84646e9.glb",
+   "key": "pa84646e9",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2444,
+   "verts": 2252,
+   "zh": "手",
+   "v": "912dc28d73"
+  },
+  "pa863aecf": {
+   "kind": "pet",
+   "aliases": [
+    "new",
+    "year",
+    "sydney",
+    "sock",
+    "sing",
+    "fourth",
+    "down",
+    "canberra",
+    "lower",
+    "off",
+    "licked"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "new",
+   "file": "pets/pa863aecf.glb",
+   "key": "pa863aecf",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "新的",
+   "v": "4233dec493"
+  },
+  "pa86bd221": {
+   "kind": "pet",
+   "aliases": [
+    "businessman"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.23
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 83088,
+   "en": "businessman",
+   "file": "pets/pa86bd221.glb",
+   "key": "pa86bd221",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2132,
+   "verts": 1894,
+   "zh": "商人",
+   "v": "05a87c4c9b"
+  },
+  "pa873451b": {
+   "kind": "pet",
+   "aliases": [
+    "door"
+   ],
+   "bbox": {
+    "x": [
+     -0.18,
+     0.18
+    ],
+    "y": [
+     -0.068,
+     0.58
+    ],
+    "z": [
+     -0.025,
+     0.07
+    ]
+   },
+   "bytes": 45004,
+   "en": "door",
+   "file": "pets/pa873451b.glb",
+   "key": "pa873451b",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1356,
+   "verts": 960,
+   "zh": "门",
+   "v": "75338d38cf"
+  },
+  "pa89e7d3d": {
+   "kind": "pet",
+   "aliases": [
+    "plane",
+    "hurry",
+    "onion",
+    "send",
+    "word",
+    "travel",
+    "goal",
+    "chase",
+    "mud",
+    "active",
+    "dream"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "plane",
+   "file": "pets/pa89e7d3d.glb",
+   "key": "pa89e7d3d",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "飞机",
+   "v": "1e9bbd0248"
+  },
+  "pa8dcf30a": {
+   "kind": "pet",
+   "aliases": [
+    "june"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "June",
+   "file": "pets/pa8dcf30a.glb",
+   "key": "pa8dcf30a",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "六月",
+   "v": "a0cfc709d4"
+  },
+  "pa947ce1c": {
+   "kind": "pet",
+   "aliases": [
+    "october"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "October",
+   "file": "pets/pa947ce1c.glb",
+   "key": "pa947ce1c",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "十月",
+   "v": "8880bf9968"
+  },
+  "pa95f5208": {
+   "kind": "pet",
+   "aliases": [
+    "vegetable"
+   ],
+   "bbox": {
+    "x": [
+     -0.161,
+     0.161
+    ],
+    "y": [
+     -0.07,
+     0.335
+    ],
+    "z": [
+     -0.134,
+     0.152
+    ]
+   },
+   "bytes": 79080,
+   "en": "vegetable",
+   "file": "pets/pa95f5208.glb",
+   "key": "pa95f5208",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2388,
+   "verts": 1956,
+   "zh": "蔬菜",
+   "v": "66313a45a2"
+  },
+  "pa97da13e": {
+   "kind": "pet",
+   "aliases": [
+    "cooking"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81072,
+   "en": "cooking",
+   "file": "pets/pa97da13e.glb",
+   "key": "pa97da13e",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在做饭",
+   "v": "6ac6b22b08"
+  },
+  "paa1bbaff": {
+   "kind": "pet",
+   "aliases": [
+    "potato"
+   ],
+   "bbox": {
+    "x": [
+     -0.218,
+     0.215
+    ],
+    "y": [
+     -0.075,
+     0.331
+    ],
+    "z": [
+     -0.187,
+     0.194
+    ]
+   },
+   "bytes": 51752,
+   "en": "potato",
+   "file": "pets/paa1bbaff.glb",
+   "key": "paa1bbaff",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1176,
+   "zh": "土豆",
+   "v": "805d5a4496"
+  },
+  "paa48f411": {
+   "kind": "pet",
+   "aliases": [
+    "ear"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.35
+    ],
+    "z": [
+     -0.077,
+     0.151
+    ]
+   },
+   "bytes": 48908,
+   "en": "ear",
+   "file": "pets/paa48f411.glb",
+   "key": "paa48f411",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1536,
+   "verts": 1088,
+   "zh": "耳朵",
+   "v": "524916c9ca"
+  },
+  "paab2d033": {
+   "kind": "pet",
+   "aliases": [
+    "often",
+    "live",
+    "usually",
+    "ours",
+    "stay",
+    "pull",
+    "stayed"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81020,
+   "en": "often",
+   "file": "pets/paab2d033.glb",
+   "key": "paab2d033",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "经常",
+   "v": "c20d0a3687"
+  },
+  "paaf20edf": {
+   "kind": "pet",
+   "aliases": [
+    "tractor"
+   ],
+   "bbox": {
+    "x": [
+     -0.25,
+     0.25
+    ],
+    "y": [
+     -0.07,
+     0.63
+    ],
+    "z": [
+     -0.17,
+     0.212
+    ]
+   },
+   "bytes": 64988,
+   "en": "tractor",
+   "file": "pets/paaf20edf.glb",
+   "key": "paaf20edf",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 1592,
+   "verts": 1474,
+   "zh": "拖拉机",
+   "v": "8e560ae4f8"
+  },
+  "pac00307f": {
+   "kind": "pet",
+   "aliases": [
+    "ph-howoldareyou",
+    "ph-allright",
+    "ph-washmyclothes",
+    "ph-icecream",
+    "ph-playbasketball",
+    "ph-eatdinner",
+    "ph-makeasnowman",
+    "ph-doingthedishes",
+    "ph-turnleft",
+    "ph-bysubway",
+    "ph-slowdown",
+    "ph-visitmygrandparents",
+    "ph-nextweek",
+    "ph-readingstories",
+    "ph-studieschinese",
+    "ph-headteacher",
+    "ph-cleanedmyroom",
+    "ph-redpanda",
+    "ph-myname-s",
+    "ph-likedogs",
+    "ph-whattime",
+    "ph-sweepthefloor",
+    "ph-cleantheboard",
+    "ph-ofcourse",
+    "ph-wordbook",
+    "ph-labourday",
+    "ph-lastyear"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "how old are you",
+   "file": "pets/pac00307f.glb",
+   "key": "pac00307f",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "你几岁了",
+   "v": "0ec6ab196a"
+  },
+  "pac4bf591": {
+   "kind": "pet",
+   "aliases": [
+    "grandma",
+    "robot",
+    "grandparent"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "grandma",
+   "file": "pets/pac4bf591.glb",
+   "key": "pac4bf591",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "奶奶",
+   "v": "dc45a621d6"
+  },
+  "pacff6478": {
+   "kind": "pet",
+   "aliases": [
+    "fruit"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.07,
+     0.4
+    ],
+    "z": [
+     -0.16,
+     0.16
+    ]
+   },
+   "bytes": 57348,
+   "en": "fruit",
+   "file": "pets/pacff6478.glb",
+   "key": "pacff6478",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1776,
+   "verts": 1274,
+   "zh": "水果",
+   "v": "54026e4a0b"
+  },
+  "pb0cc8e7e": {
+   "kind": "pet",
+   "aliases": [
+    "uncle"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81072,
+   "en": "uncle",
+   "file": "pets/pb0cc8e7e.glb",
+   "key": "pb0cc8e7e",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "叔叔",
+   "v": "ed6627a521"
+  },
+  "pb12d67ad": {
+   "kind": "pet",
+   "aliases": [
+    "arm",
+    "leg"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.174
+    ],
+    "y": [
+     -0.068,
+     0.375
+    ],
+    "z": [
+     -0.074,
+     0.101
+    ]
+   },
+   "bytes": 52632,
+   "en": "arm",
+   "file": "pets/pb12d67ad.glb",
+   "key": "pb12d67ad",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1564,
+   "verts": 1196,
+   "zh": "手臂",
+   "v": "99a1c9eb87"
+  },
+  "pb16c7903": {
+   "kind": "pet",
+   "aliases": [
+    "coach"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.595
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 92796,
+   "en": "coach",
+   "file": "pets/pb16c7903.glb",
+   "key": "pb16c7903",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2408,
+   "verts": 2186,
+   "zh": "教练",
+   "v": "a2e4cd3348"
+  },
+  "pb19440a7": {
+   "kind": "pet",
+   "aliases": [
+    "pink",
+    "love",
+    "read",
+    "moscow",
+    "pants",
+    "song",
+    "cave",
+    "lesson",
+    "studies",
+    "than",
+    "kilogram"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "pink",
+   "file": "pets/pb19440a7.glb",
+   "key": "pb19440a7",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "粉色",
+   "v": "f78cfcd8ae"
+  },
+  "pb1ef1dd3": {
+   "kind": "pet",
+   "aliases": [
+    "he",
+    "speak",
+    "box",
+    "him",
+    "high",
+    "start",
+    "contest",
+    "thing",
+    "first",
+    "straight",
+    "street",
+    "tell",
+    "early",
+    "traffic"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81020,
+   "en": "he",
+   "file": "pets/pb1ef1dd3.glb",
+   "key": "pb1ef1dd3",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "他",
+   "v": "76325f9f81"
+  },
+  "pb2e558e0": {
+   "kind": "pet",
+   "aliases": [
+    "noodles"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.07,
+     0.277
+    ],
+    "z": [
+     -0.16,
+     0.162
+    ]
+   },
+   "bytes": 90820,
+   "en": "noodles",
+   "file": "pets/pb2e558e0.glb",
+   "key": "pb2e558e0",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2300,
+   "verts": 2214,
+   "zh": "面条",
+   "v": "cd4d6cb281"
+  },
+  "pb3ef13e5": {
+   "kind": "pet",
+   "aliases": [
+    "sport",
+    "learn",
+    "lot",
+    "move"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "sport",
+   "file": "pets/pb3ef13e5.glb",
+   "key": "pb3ef13e5",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "运动",
+   "v": "57695276ef"
+  },
+  "pb46188b6": {
+   "kind": "pet",
+   "aliases": [
+    "gym"
+   ],
+   "bbox": {
+    "x": [
+     -0.22,
+     0.22
+    ],
+    "y": [
+     -0.068,
+     0.394
+    ],
+    "z": [
+     -0.16,
+     0.191
+    ]
+   },
+   "bytes": 44984,
+   "en": "gym",
+   "file": "pets/pb46188b6.glb",
+   "key": "pb46188b6",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1356,
+   "verts": 960,
+   "zh": "体育馆",
+   "v": "2e8ea041fd"
+  },
+  "pb6d000bb": {
+   "kind": "pet",
+   "aliases": [
+    "cook"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.595
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 86752,
+   "en": "cook",
+   "file": "pets/pb6d000bb.glb",
+   "key": "pb6d000bb",
+   "prims": 16,
+   "skipped": 1,
+   "tri": 2216,
+   "verts": 2066,
+   "zh": "烹饪",
+   "v": "2e04270cff"
+  },
+  "pb74b839f": {
+   "kind": "pet",
+   "aliases": [
+    "deer"
+   ],
+   "bbox": {
+    "x": [
+     -0.167,
+     0.167
+    ],
+    "y": [
+     0,
+     0.667
+    ],
+    "z": [
+     -0.343,
+     0.446
+    ]
+   },
+   "bytes": 139872,
+   "en": "deer",
+   "file": "pets/pb74b839f.glb",
+   "key": "pb74b839f",
+   "prims": 26,
+   "skipped": 0,
+   "tri": 3868,
+   "verts": 3380,
+   "zh": "鹿",
+   "v": "4407ce2c0e"
+  },
+  "pb802e516": {
+   "kind": "pet",
+   "aliases": [
+    "drink",
+    "glove",
+    "letter",
+    "stuck",
+    "drank"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "drink",
+   "file": "pets/pb802e516.glb",
+   "key": "pb802e516",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "喝",
+   "v": "c5e053b152"
+  },
+  "pb9f3d8bf": {
+   "kind": "pet",
+   "aliases": [
+    "summer"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71448,
+   "en": "summer",
+   "file": "pets/pb9f3d8bf.glb",
+   "key": "pb9f3d8bf",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "夏天",
+   "v": "7c8e79b5fd"
+  },
+  "pba3b3f7d": {
+   "kind": "pet",
+   "aliases": [
+    "fox"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     0,
+     0.683
+    ],
+    "z": [
+     -0.419,
+     0.468
+    ]
+   },
+   "bytes": 111320,
+   "en": "fox",
+   "file": "pets/pba3b3f7d.glb",
+   "key": "pba3b3f7d",
+   "prims": 21,
+   "skipped": 0,
+   "tri": 2936,
+   "verts": 2736,
+   "zh": "狐狸",
+   "v": "84a51a0621"
+  },
+  "pbac73bb1": {
+   "kind": "pet",
+   "aliases": [
+    "dinner"
+   ],
+   "bbox": {
+    "x": [
+     -0.2,
+     0.2
+    ],
+    "y": [
+     -0.068,
+     0.14
+    ],
+    "z": [
+     -0.2,
+     0.2
+    ]
+   },
+   "bytes": 57976,
+   "en": "dinner",
+   "file": "pets/pbac73bb1.glb",
+   "key": "pbac73bb1",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1632,
+   "verts": 1276,
+   "zh": "晚餐",
+   "v": "de7e6551a2"
+  },
+  "pbbe89d4d": {
+   "kind": "pet",
+   "aliases": [
+    "tiger"
+   ],
+   "bbox": {
+    "x": [
+     -0.184,
+     0.184
+    ],
+    "y": [
+     0,
+     0.581
+    ],
+    "z": [
+     -0.33,
+     0.373
+    ]
+   },
+   "bytes": 113960,
+   "en": "tiger",
+   "file": "pets/pbbe89d4d.glb",
+   "key": "pbbe89d4d",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2840,
+   "verts": 2836,
+   "zh": "老虎",
+   "v": "19b548f9f7"
+  },
+  "pbc46ebcf": {
+   "kind": "pet",
+   "aliases": [
+    "sled",
+    "worker",
+    "took"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "sled",
+   "file": "pets/pbc46ebcf.glb",
+   "key": "pbc46ebcf",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "雪橇",
+   "v": "aadd214d38"
+  },
+  "pbc9259d5": {
+   "kind": "pet",
+   "aliases": [
+    "frog"
+   ],
+   "bbox": {
+    "x": [
+     -0.196,
+     0.196
+    ],
+    "y": [
+     -0.032,
+     0.315
+    ],
+    "z": [
+     -0.206,
+     0.206
+    ]
+   },
+   "bytes": 69536,
+   "en": "frog",
+   "file": "pets/pbc9259d5.glb",
+   "key": "pbc9259d5",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2304,
+   "verts": 1584,
+   "zh": "青蛙",
+   "v": "b3bcbab073"
+  },
+  "pbcbc459c": {
+   "kind": "pet",
+   "aliases": [
+    "mother"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.21,
+     0.21
+    ]
+   },
+   "bytes": 90008,
+   "en": "mother",
+   "file": "pets/pbcbc459c.glb",
+   "key": "pbcbc459c",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2104,
+   "zh": "妈妈",
+   "v": "7ebb0423df"
+  },
+  "pbd098301": {
+   "kind": "pet",
+   "aliases": [
+    "happy"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.228
+    ]
+   },
+   "bytes": 81248,
+   "en": "happy",
+   "file": "pets/pbd098301.glb",
+   "key": "pbd098301",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2464,
+   "verts": 1884,
+   "zh": "高兴的",
+   "v": "41c3e7bea9"
+  },
+  "pbdac2a2f": {
+   "kind": "pet",
+   "aliases": [
+    "right",
+    "island",
+    "because",
+    "deep",
+    "nothing"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "right",
+   "file": "pets/pbdac2a2f.glb",
+   "key": "pbdac2a2f",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "右边",
+   "v": "b4a743c25b"
+  },
+  "pbe554a94": {
+   "kind": "pet",
+   "aliases": [
+    "orange"
+   ],
+   "bbox": {
+    "x": [
+     -0.191,
+     0.191
+    ],
+    "y": [
+     -0.075,
+     0.414
+    ],
+    "z": [
+     -0.187,
+     0.194
+    ]
+   },
+   "bytes": 94712,
+   "en": "orange",
+   "file": "pets/pbe554a94.glb",
+   "key": "pbe554a94",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2336,
+   "verts": 2292,
+   "zh": "橙色",
+   "v": "5ac158b96a"
+  },
+  "pbefd6a55": {
+   "kind": "pet",
+   "aliases": [
+    "and",
+    "too",
+    "also",
+    "else",
+    "more",
+    "shadow",
+    "rode"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "and",
+   "file": "pets/pbefd6a55.glb",
+   "key": "pbefd6a55",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "和",
+   "v": "23a4ff2aa4"
+  },
+  "pbf2b068b": {
+   "kind": "pet",
+   "aliases": [
+    "busy",
+    "hiking"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81004,
+   "en": "busy",
+   "file": "pets/pbf2b068b.glb",
+   "key": "pbf2b068b",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "忙的",
+   "v": "af2d0e9c52"
+  },
+  "pbf6241b4": {
+   "kind": "pet",
+   "aliases": [
+    "hello"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.205
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81052,
+   "en": "hello",
+   "file": "pets/pbf6241b4.glb",
+   "key": "pbf6241b4",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "你好",
+   "v": "a8c8550f93"
+  },
+  "pbf7fc1f6": {
+   "kind": "pet",
+   "aliases": [
+    "or",
+    "watch",
+    "wonderful",
+    "space",
+    "saw",
+    "turpan"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "or",
+   "file": "pets/pbf7fc1f6.glb",
+   "key": "pbf7fc1f6",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "或者",
+   "v": "cdffadda65"
+  },
+  "pc015354d": {
+   "kind": "pet",
+   "aliases": [
+    "fridge"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.15
+    ],
+    "y": [
+     -0.07,
+     0.56
+    ],
+    "z": [
+     -0.13,
+     0.162
+    ]
+   },
+   "bytes": 41680,
+   "en": "fridge",
+   "file": "pets/pc015354d.glb",
+   "key": "pc015354d",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1188,
+   "verts": 888,
+   "zh": "冰箱",
+   "v": "7505d8a64a"
+  },
+  "pc0a14b4b": {
+   "kind": "pet",
+   "aliases": [
+    "white"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.187,
+     0.187
+    ]
+   },
+   "bytes": 53500,
+   "en": "white",
+   "file": "pets/pc0a14b4b.glb",
+   "key": "pc0a14b4b",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1192,
+   "zh": "白色",
+   "v": "fc396e37c4"
+  },
+  "pc0bc2994": {
+   "kind": "pet",
+   "aliases": [
+    "sister"
+   ],
+   "bbox": {
+    "x": [
+     -0.178,
+     0.178
+    ],
+    "y": [
+     -0.034,
+     0.497
+    ],
+    "z": [
+     -0.178,
+     0.178
+    ]
+   },
+   "bytes": 89988,
+   "en": "sister",
+   "file": "pets/pc0bc2994.glb",
+   "key": "pc0bc2994",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2104,
+   "zh": "姐妹",
+   "v": "6f6978c3df"
+  },
+  "pc101e8ef": {
+   "kind": "pet",
+   "aliases": [
+    "chopsticks"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.43
+    ],
+    "z": [
+     -0.014,
+     0.05
+    ]
+   },
+   "bytes": 44888,
+   "en": "chopsticks",
+   "file": "pets/pc101e8ef.glb",
+   "key": "pc101e8ef",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1248,
+   "verts": 1012,
+   "zh": "筷子",
+   "v": "3f88eebd36"
+  },
+  "pc11faa8a": {
+   "kind": "pet",
+   "aliases": [
+    "sea"
+   ],
+   "bbox": {
+    "x": [
+     -0.236,
+     0.236
+    ],
+    "y": [
+     -0.075,
+     0.37
+    ],
+    "z": [
+     -0.207,
+     0.207
+    ]
+   },
+   "bytes": 60508,
+   "en": "sea",
+   "file": "pets/pc11faa8a.glb",
+   "key": "pc11faa8a",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1888,
+   "verts": 1384,
+   "zh": "大海",
+   "v": "a0d856b87d"
+  },
+  "pc37701f9": {
+   "kind": "pet",
+   "aliases": [
+    "canada"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.48
+    ],
+    "z": [
+     -0.12,
+     0.131
+    ]
+   },
+   "bytes": 48112,
+   "en": "Canada",
+   "file": "pets/pc37701f9.glb",
+   "key": "pc37701f9",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1392,
+   "verts": 1050,
+   "zh": "加拿大",
+   "v": "7aa42fadab"
+  },
+  "pc38c4245": {
+   "kind": "pet",
+   "aliases": [
+    "snowy"
+   ],
+   "bbox": {
+    "x": [
+     -0.253,
+     0.228
+    ],
+    "y": [
+     -0.071,
+     0.388
+    ],
+    "z": [
+     -0.158,
+     0.162
+    ]
+   },
+   "bytes": 52988,
+   "en": "snowy",
+   "file": "pets/pc38c4245.glb",
+   "key": "pc38c4245",
+   "prims": 12,
+   "skipped": 3,
+   "tri": 1728,
+   "verts": 1176,
+   "zh": "下雪的",
+   "v": "c72a9b0cda"
+  },
+  "pc4995b48": {
+   "kind": "pet",
+   "aliases": [
+    "building"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.068,
+     0.689
+    ],
+    "z": [
+     -0.14,
+     0.155
+    ]
+   },
+   "bytes": 46724,
+   "en": "building",
+   "file": "pets/pc4995b48.glb",
+   "key": "pc4995b48",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 1260,
+   "verts": 1032,
+   "zh": "建筑物",
+   "v": "99dec7b9c2"
+  },
+  "pc4a024f0": {
+   "kind": "pet",
+   "aliases": [
+    "pilot"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.595
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 95764,
+   "en": "pilot",
+   "file": "pets/pc4a024f0.glb",
+   "key": "pc4a024f0",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2408,
+   "verts": 2202,
+   "zh": "飞行员",
+   "v": "8aa328152d"
+  },
+  "pc4b77b7d": {
+   "kind": "pet",
+   "aliases": [
+    "spring"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71432,
+   "en": "spring",
+   "file": "pets/pc4b77b7d.glb",
+   "key": "pc4b77b7d",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "春天",
+   "v": "2844cf42fb"
+  },
+  "pc5a1b856": {
+   "kind": "pet",
+   "aliases": [
+    "picture"
+   ],
+   "bbox": {
+    "x": [
+     -0.165,
+     0.165
+    ],
+    "y": [
+     -0.068,
+     0.496
+    ],
+    "z": [
+     -0.015,
+     0.056
+    ]
+   },
+   "bytes": 47304,
+   "en": "picture",
+   "file": "pets/pc5a1b856.glb",
+   "key": "pc5a1b856",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1368,
+   "verts": 1000,
+   "zh": "图画",
+   "v": "207f7b0cf1"
+  },
+  "pc5d16ba7": {
+   "kind": "pet",
+   "aliases": [
+    "pupil",
+    "find",
+    "factory",
+    "bad",
+    "part"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "pupil",
+   "file": "pets/pc5d16ba7.glb",
+   "key": "pc5d16ba7",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "小学生",
+   "v": "5be66ce8d7"
+  },
+  "pc6006421": {
+   "kind": "pet",
+   "aliases": [
+    "watermelon"
+   ],
+   "bbox": {
+    "x": [
+     -0.225,
+     0.225
+    ],
+    "y": [
+     -0.075,
+     0.403
+    ],
+    "z": [
+     -0.225,
+     0.225
+    ]
+   },
+   "bytes": 78764,
+   "en": "watermelon",
+   "file": "pets/pc6006421.glb",
+   "key": "pc6006421",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1984,
+   "verts": 1896,
+   "zh": "西瓜",
+   "v": "b7723c4a18"
+  },
+  "pc67ba833": {
+   "kind": "pet",
+   "aliases": [
+    "photo"
+   ],
+   "bbox": {
+    "x": [
+     -0.145,
+     0.145
+    ],
+    "y": [
+     -0.068,
+     0.37
+    ],
+    "z": [
+     -0.01,
+     0.051
+    ]
+   },
+   "bytes": 47844,
+   "en": "photo",
+   "file": "pets/pc67ba833.glb",
+   "key": "pc67ba833",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1368,
+   "verts": 1016,
+   "zh": "照片",
+   "v": "b6a86b734d"
+  },
+  "pc6f1eeda": {
+   "kind": "pet",
+   "aliases": [
+    "bird"
+   ],
+   "bbox": {
+    "x": [
+     -0.182,
+     0.182
+    ],
+    "y": [
+     -0.075,
+     0.372
+    ],
+    "z": [
+     -0.219,
+     0.205
+    ]
+   },
+   "bytes": 77104,
+   "en": "bird",
+   "file": "pets/pc6f1eeda.glb",
+   "key": "pc6f1eeda",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2256,
+   "verts": 1758,
+   "zh": "小鸟",
+   "v": "dc3d306555"
+  },
+  "pc70877eb": {
+   "kind": "pet",
+   "aliases": [
+    "o-clock",
+    "skirt",
+    "wait",
+    "we-ll",
+    "for",
+    "till"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "o'clock",
+   "file": "pets/pc70877eb.glb",
+   "key": "pc70877eb",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "点钟",
+   "v": "76c5e5a38c"
+  },
+  "pc70ab3b5": {
+   "kind": "pet",
+   "aliases": [
+    "apple"
+   ],
+   "bbox": {
+    "x": [
+     -0.197,
+     0.197
+    ],
+    "y": [
+     -0.075,
+     0.46
+    ],
+    "z": [
+     -0.187,
+     0.214
+    ]
+   },
+   "bytes": 57488,
+   "en": "apple",
+   "file": "pets/pc70ab3b5.glb",
+   "key": "pc70ab3b5",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1776,
+   "verts": 1310,
+   "zh": "苹果",
+   "v": "02f3d4b97b"
+  },
+  "pc800bbef": {
+   "kind": "pet",
+   "aliases": [
+    "book"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.26
+    ],
+    "z": [
+     -0.04,
+     0.131
+    ]
+   },
+   "bytes": 40648,
+   "en": "book",
+   "file": "pets/pc800bbef.glb",
+   "key": "pc800bbef",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1176,
+   "verts": 864,
+   "zh": "书",
+   "v": "6ba67265ed"
+  },
+  "pc891841b": {
+   "kind": "pet",
+   "aliases": [
+    "head"
+   ],
+   "bbox": {
+    "x": [
+     -0.192,
+     0.192
+    ],
+    "y": [
+     -0.075,
+     0.394
+    ],
+    "z": [
+     -0.212,
+     0.194
+    ]
+   },
+   "bytes": 47884,
+   "en": "head",
+   "file": "pets/pc891841b.glb",
+   "key": "pc891841b",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1536,
+   "verts": 1056,
+   "zh": "头",
+   "v": "3564a9a078"
+  },
+  "pc8d15671": {
+   "kind": "pet",
+   "aliases": [
+    "tall",
+    "thin"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 48236,
+   "en": "tall",
+   "file": "pets/pc8d15671.glb",
+   "key": "pc8d15671",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1536,
+   "verts": 1100,
+   "zh": "高的",
+   "v": "8ce5a93572"
+  },
+  "pc983bd16": {
+   "kind": "pet",
+   "aliases": [
+    "sunday"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50432,
+   "en": "Sunday",
+   "file": "pets/pc983bd16.glb",
+   "key": "pc983bd16",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "星期日",
+   "v": "4b17a55357"
+  },
+  "pca62ace1": {
+   "kind": "pet",
+   "aliases": [
+    "blue"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.187,
+     0.187
+    ]
+   },
+   "bytes": 53520,
+   "en": "blue",
+   "file": "pets/pca62ace1.glb",
+   "key": "pca62ace1",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1192,
+   "zh": "蓝色",
+   "v": "9cf91999d9"
+  },
+  "pcae02157": {
+   "kind": "pet",
+   "aliases": [
+    "smile",
+    "nature",
+    "sound",
+    "sir"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81020,
+   "en": "smile",
+   "file": "pets/pcae02157.glb",
+   "key": "pcae02157",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "微笑",
+   "v": "5f3533456d"
+  },
+  "pcb928250": {
+   "kind": "pet",
+   "aliases": [
+    "august"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50420,
+   "en": "August",
+   "file": "pets/pcb928250.glb",
+   "key": "pcb928250",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "八月",
+   "v": "9a42da2483"
+  },
+  "pcbc88521": {
+   "kind": "pet",
+   "aliases": [
+    "ph-byebye",
+    "ph-goodafternoon",
+    "ph-mynameis",
+    "ph-computerroom",
+    "ph-nextto",
+    "ph-englishclass",
+    "ph-getup",
+    "ph-gohome",
+    "ph-playthepipa",
+    "ph-drawcartoons",
+    "ph-eatbreakfast",
+    "ph-cleanmyroom",
+    "ph-goforawalk",
+    "ph-teachers-day",
+    "ph-onfoot",
+    "ph-bytaxi",
+    "ph-byship",
+    "ph-penpal",
+    "ph-doingkungfu",
+    "ph-wentswimming",
+    "ph-tookpictures",
+    "ph-lookup",
+    "ph-showmeyourpencil",
+    "ph-befrom",
+    "ph-toybox",
+    "ph-somuch",
+    "ph-openthedoor",
+    "ph-usethespoon",
+    "ph-comeon",
+    "ph-kungfu",
+    "ph-lotsof",
+    "ph-mid-autumnfestival"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82180,
+   "en": "bye bye",
+   "file": "pets/pcbc88521.glb",
+   "key": "pcbc88521",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "拜拜",
+   "v": "d0ab2f55cd"
+  },
+  "pcbf6c7b6": {
+   "kind": "pet",
+   "aliases": [
+    "monday",
+    "january"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "Monday",
+   "file": "pets/pcbf6c7b6.glb",
+   "key": "pcbf6c7b6",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "星期一",
+   "v": "9c005206b1"
+  },
+  "pcc8301fd": {
+   "kind": "pet",
+   "aliases": [
+    "cut",
+    "tired",
+    "try",
+    "party",
+    "visit",
+    "well",
+    "could"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "cut",
+   "file": "pets/pcc8301fd.glb",
+   "key": "pcc8301fd",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "切",
+   "v": "7984d0bc48"
+  },
+  "pcd590c4a": {
+   "kind": "pet",
+   "aliases": [
+    "tea"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.376
+    ],
+    "z": [
+     -0.1,
+     0.111
+    ]
+   },
+   "bytes": 56836,
+   "en": "tea",
+   "file": "pets/pcd590c4a.glb",
+   "key": "pcd590c4a",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1468,
+   "verts": 1272,
+   "zh": "茶",
+   "v": "89a9b5274f"
+  },
+  "pcd5e0c88": {
+   "kind": "pet",
+   "aliases": [
+    "cow"
+   ],
+   "bbox": {
+    "x": [
+     -0.238,
+     0.248
+    ],
+    "y": [
+     0,
+     0.676
+    ],
+    "z": [
+     -0.444,
+     0.568
+    ]
+   },
+   "bytes": 111360,
+   "en": "cow",
+   "file": "pets/pcd5e0c88.glb",
+   "key": "pcd5e0c88",
+   "prims": 21,
+   "skipped": 0,
+   "tri": 3196,
+   "verts": 2692,
+   "zh": "奶牛",
+   "v": "64eacb35a9"
+  },
+  "pce2cb345": {
+   "kind": "pet",
+   "aliases": [
+    "me",
+    "eat",
+    "want",
+    "hungry",
+    "yum",
+    "mine",
+    "ask",
+    "restaurant",
+    "shall",
+    "club",
+    "ate"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "me",
+   "file": "pets/pce2cb345.glb",
+   "key": "pce2cb345",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "我",
+   "v": "f3407ae121"
+  },
+  "pce4dc924": {
+   "kind": "pet",
+   "aliases": [
+    "salad"
+   ],
+   "bbox": {
+    "x": [
+     -0.167,
+     0.167
+    ],
+    "y": [
+     -0.07,
+     0.234
+    ],
+    "z": [
+     -0.167,
+     0.167
+    ]
+   },
+   "bytes": 64584,
+   "en": "salad",
+   "file": "pets/pce4dc924.glb",
+   "key": "pce4dc924",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 2112,
+   "verts": 1440,
+   "zh": "沙拉",
+   "v": "6f5f72125c"
+  },
+  "pd0bd08ff": {
+   "kind": "pet",
+   "aliases": [
+    "dress",
+    "exercise",
+    "american",
+    "fur",
+    "alaska"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "dress",
+   "file": "pets/pd0bd08ff.glb",
+   "key": "pd0bd08ff",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "连衣裙",
+   "v": "2d164b8fe4"
+  },
+  "pd112b166": {
+   "kind": "pet",
+   "aliases": [
+    "lunch"
+   ],
+   "bbox": {
+    "x": [
+     -0.2,
+     0.2
+    ],
+    "y": [
+     -0.068,
+     0.14
+    ],
+    "z": [
+     -0.2,
+     0.2
+    ]
+   },
+   "bytes": 57972,
+   "en": "lunch",
+   "file": "pets/pd112b166.glb",
+   "key": "pd112b166",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1632,
+   "verts": 1276,
+   "zh": "午餐",
+   "v": "9bb3069446"
+  },
+  "pd192ac80": {
+   "kind": "pet",
+   "aliases": [
+    "november"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "November",
+   "file": "pets/pd192ac80.glb",
+   "key": "pd192ac80",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "十一月",
+   "v": "e70bbbf54f"
+  },
+  "pd2822067": {
+   "kind": "pet",
+   "aliases": [
+    "owl"
+   ],
+   "bbox": {
+    "x": [
+     -0.181,
+     0.181
+    ],
+    "y": [
+     0,
+     0.463
+    ],
+    "z": [
+     -0.168,
+     0.195
+    ]
+   },
+   "bytes": 76044,
+   "en": "owl",
+   "file": "pets/pd2822067.glb",
+   "key": "pd2822067",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2160,
+   "verts": 1782,
+   "zh": "猫头鹰",
+   "v": "ded712ce04"
+  },
+  "pd3c2351a": {
+   "kind": "pet",
+   "aliases": [
+    "tuesday",
+    "july"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50436,
+   "en": "Tuesday",
+   "file": "pets/pd3c2351a.glb",
+   "key": "pd3c2351a",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "星期二",
+   "v": "e730342b94"
+  },
+  "pd3f3da09": {
+   "kind": "pet",
+   "aliases": [
+    "sand"
+   ],
+   "bbox": {
+    "x": [
+     -0.225,
+     0.225
+    ],
+    "y": [
+     -0.071,
+     0.308
+    ],
+    "z": [
+     -0.225,
+     0.225
+    ]
+   },
+   "bytes": 74180,
+   "en": "sand",
+   "file": "pets/pd3f3da09.glb",
+   "key": "pd3f3da09",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1984,
+   "verts": 1684,
+   "zh": "沙子",
+   "v": "9c1d20c22d"
+  },
+  "pd495844f": {
+   "kind": "pet",
+   "aliases": [
+    "shoe"
+   ],
+   "bbox": {
+    "x": [
+     -0.153,
+     0.15
+    ],
+    "y": [
+     -0.068,
+     0.169
+    ],
+    "z": [
+     -0.087,
+     0.111
+    ]
+   },
+   "bytes": 46488,
+   "en": "shoe",
+   "file": "pets/pd495844f.glb",
+   "key": "pd495844f",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1368,
+   "verts": 1004,
+   "zh": "鞋子",
+   "v": "3ebb1292d2"
+  },
+  "pd52f9061": {
+   "kind": "pet",
+   "aliases": [
+    "hat"
+   ],
+   "bbox": {
+    "x": [
+     -0.2,
+     0.2
+    ],
+    "y": [
+     -0.069,
+     0.335
+    ],
+    "z": [
+     -0.2,
+     0.2
+    ]
+   },
+   "bytes": 52596,
+   "en": "hat",
+   "file": "pets/pd52f9061.glb",
+   "key": "pd52f9061",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1584,
+   "verts": 1154,
+   "zh": "帽子",
+   "v": "4a1287f965"
+  },
+  "pd6940596": {
+   "kind": "pet",
+   "aliases": [
+    "pig"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     0,
+     0.585
+    ],
+    "z": [
+     -0.356,
+     0.455
+    ]
+   },
+   "bytes": 95116,
+   "en": "pig",
+   "file": "pets/pd6940596.glb",
+   "key": "pd6940596",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2444,
+   "verts": 2362,
+   "zh": "小猪",
+   "v": "05cf7c06c2"
+  },
+  "pd7659edd": {
+   "kind": "pet",
+   "aliases": [
+    "yellow"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.187,
+     0.187
+    ]
+   },
+   "bytes": 53500,
+   "en": "yellow",
+   "file": "pets/pd7659edd.glb",
+   "key": "pd7659edd",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1192,
+   "zh": "黄色",
+   "v": "66ee7ab750"
+  },
+  "pd7776bb2": {
+   "kind": "pet",
+   "aliases": [
+    "house"
+   ],
+   "bbox": {
+    "x": [
+     -0.224,
+     0.224
+    ],
+    "y": [
+     -0.069,
+     0.423
+    ],
+    "z": [
+     -0.224,
+     0.224
+    ]
+   },
+   "bytes": 43140,
+   "en": "house",
+   "file": "pets/pd7776bb2.glb",
+   "key": "pd7776bb2",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1192,
+   "verts": 898,
+   "zh": "房屋",
+   "v": "f5efd6dc7e"
+  },
+  "pd806683a": {
+   "kind": "pet",
+   "aliases": [
+    "hot"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71448,
+   "en": "hot",
+   "file": "pets/pd806683a.glb",
+   "key": "pd806683a",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "炎热的",
+   "v": "ac4e7b185f"
+  },
+  "pd83ca632": {
+   "kind": "pet",
+   "aliases": [
+    "jacket"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.07,
+     0.382
+    ],
+    "z": [
+     -0.17,
+     0.17
+    ]
+   },
+   "bytes": 52884,
+   "en": "jacket",
+   "file": "pets/pd83ca632.glb",
+   "key": "pd83ca632",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1344,
+   "verts": 1208,
+   "zh": "夹克",
+   "v": "deb974e021"
+  },
+  "pd9ebddf3": {
+   "kind": "pet",
+   "aliases": [
+    "slept"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.404
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "slept",
+   "file": "pets/pd9ebddf3.glb",
+   "key": "pd9ebddf3",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "睡觉了",
+   "v": "5a1c1f358e"
+  },
+  "pd9f6a04b": {
+   "kind": "pet",
+   "aliases": [
+    "clean",
+    "but",
+    "dirty",
+    "cleaned"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82200,
+   "en": "clean",
+   "file": "pets/pd9f6a04b.glb",
+   "key": "pd9f6a04b",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "打扫",
+   "v": "da1eefbc54"
+  },
+  "pdb95d4d4": {
+   "kind": "pet",
+   "aliases": [
+    "supermarket"
+   ],
+   "bbox": {
+    "x": [
+     -0.23,
+     0.23
+    ],
+    "y": [
+     -0.068,
+     0.35
+    ],
+    "z": [
+     -0.18,
+     0.201
+    ]
+   },
+   "bytes": 43344,
+   "en": "supermarket",
+   "file": "pets/pdb95d4d4.glb",
+   "key": "pdb95d4d4",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1212,
+   "verts": 936,
+   "zh": "超市",
+   "v": "d547579c8a"
+  },
+  "pdbd740eb": {
+   "kind": "pet",
+   "aliases": [
+    "from",
+    "wow",
+    "will",
+    "always",
+    "postcard",
+    "country"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82196,
+   "en": "from",
+   "file": "pets/pdbd740eb.glb",
+   "key": "pdbd740eb",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "来自",
+   "v": "4e7c7f872e"
+  },
+  "pdc4c9350": {
+   "kind": "pet",
+   "aliases": [
+    "draw"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82180,
+   "en": "draw",
+   "file": "pets/pdc4c9350.glb",
+   "key": "pdc4c9350",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "画",
+   "v": "f495bf61e0"
+  },
+  "pdc5f2def": {
+   "kind": "pet",
+   "aliases": [
+    "china"
+   ],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.069,
+     0.47
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 56484,
+   "en": "China",
+   "file": "pets/pdc5f2def.glb",
+   "key": "pdc5f2def",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 1376,
+   "verts": 1278,
+   "zh": "中国",
+   "v": "f6b17d0bf6"
+  },
+  "pdd38717e": {
+   "kind": "pet",
+   "aliases": [
+    "fish"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.075,
+     0.424
+    ],
+    "z": [
+     -0.31,
+     0.197
+    ]
+   },
+   "bytes": 68684,
+   "en": "fish",
+   "file": "pets/pdd38717e.glb",
+   "key": "pdd38717e",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2016,
+   "verts": 1540,
+   "zh": "鱼",
+   "v": "1d94305f7d"
+  },
+  "pddb70cf4": {
+   "kind": "pet",
+   "aliases": [
+    "four",
+    "ten",
+    "sixteen",
+    "forty"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.071,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "four",
+   "file": "pets/pddb70cf4.glb",
+   "key": "pddb70cf4",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "四",
+   "v": "fb37efa1b4"
+  },
+  "pdefa290d": {
+   "kind": "pet",
+   "aliases": [
+    "seed"
+   ],
+   "bbox": {
+    "x": [
+     -0.193,
+     0.193
+    ],
+    "y": [
+     -0.068,
+     0.361
+    ],
+    "z": [
+     -0.193,
+     0.206
+    ]
+   },
+   "bytes": 74256,
+   "en": "seed",
+   "file": "pets/pdefa290d.glb",
+   "key": "pdefa290d",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 2140,
+   "verts": 1652,
+   "zh": "种子",
+   "v": "700bcf0371"
+  },
+  "pdfe3b50d": {
+   "kind": "pet",
+   "aliases": [
+    "red"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.187,
+     0.187
+    ]
+   },
+   "bytes": 53520,
+   "en": "red",
+   "file": "pets/pdfe3b50d.glb",
+   "key": "pdfe3b50d",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1192,
+   "zh": "红色",
+   "v": "3da8f9e964"
+  },
+  "pe05c9c6e": {
+   "kind": "pet",
+   "aliases": [
+    "doctor"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.605
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 93948,
+   "en": "doctor",
+   "file": "pets/pe05c9c6e.glb",
+   "key": "pe05c9c6e",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2408,
+   "verts": 2218,
+   "zh": "医生",
+   "v": "14f935c2b8"
+  },
+  "pe09ebe1b": {
+   "kind": "pet",
+   "aliases": [
+    "squirrel"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.167
+    ],
+    "y": [
+     0.005,
+     0.609
+    ],
+    "z": [
+     -0.335,
+     0.221
+    ]
+   },
+   "bytes": 94056,
+   "en": "squirrel",
+   "file": "pets/pe09ebe1b.glb",
+   "key": "pe09ebe1b",
+   "prims": 17,
+   "skipped": 0,
+   "tri": 2976,
+   "verts": 2152,
+   "zh": "松鼠",
+   "v": "99589b4b05"
+  },
+  "pe183de4d": {
+   "kind": "pet",
+   "aliases": [
+    "in"
+   ],
+   "bbox": {
+    "x": [
+     -0.16,
+     0.16
+    ],
+    "y": [
+     -0.07,
+     0.33
+    ],
+    "z": [
+     -0.16,
+     0.192
+    ]
+   },
+   "bytes": 81620,
+   "en": "in",
+   "file": "pets/pe183de4d.glb",
+   "key": "pe183de4d",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2532,
+   "verts": 1824,
+   "zh": "在……里",
+   "v": "3bfa7902fc"
+  },
+  "pe27dad82": {
+   "kind": "pet",
+   "aliases": [
+    "three",
+    "nine",
+    "fifteen"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.071,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "three",
+   "file": "pets/pe27dad82.glb",
+   "key": "pe27dad82",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "三",
+   "v": "13aa1b4c48"
+  },
+  "pe31de7c7": {
+   "kind": "pet",
+   "aliases": [
+    "hill"
+   ],
+   "bbox": {
+    "x": [
+     -0.24,
+     0.24
+    ],
+    "y": [
+     -0.068,
+     0.24
+    ],
+    "z": [
+     -0.24,
+     0.24
+    ]
+   },
+   "bytes": 46476,
+   "en": "hill",
+   "file": "pets/pe31de7c7.glb",
+   "key": "pe31de7c7",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1376,
+   "verts": 1002,
+   "zh": "小山",
+   "v": "516da7d656"
+  },
+  "pe39d74f3": {
+   "kind": "pet",
+   "aliases": [
+    "should",
+    "all",
+    "gps"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 81020,
+   "en": "should",
+   "file": "pets/pe39d74f3.glb",
+   "key": "pe39d74f3",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "应该",
+   "v": "f7204f8f7d"
+  },
+  "pe3c49feb": {
+   "kind": "pet",
+   "aliases": [
+    "sweater"
+   ],
+   "bbox": {
+    "x": [
+     -0.21,
+     0.21
+    ],
+    "y": [
+     -0.07,
+     0.382
+    ],
+    "z": [
+     -0.17,
+     0.17
+    ]
+   },
+   "bytes": 71344,
+   "en": "sweater",
+   "file": "pets/pe3c49feb.glb",
+   "key": "pe3c49feb",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1664,
+   "verts": 1688,
+   "zh": "毛衣",
+   "v": "59802166c5"
+  },
+  "pe3ece78b": {
+   "kind": "pet",
+   "aliases": [
+    "schoolbag"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.069,
+     0.4
+    ],
+    "z": [
+     -0.07,
+     0.12
+    ]
+   },
+   "bytes": 47732,
+   "en": "schoolbag",
+   "file": "pets/pe3ece78b.glb",
+   "key": "pe3ece78b",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1368,
+   "verts": 1012,
+   "zh": "书包",
+   "v": "317640d88d"
+  },
+  "pe490d8e1": {
+   "kind": "pet",
+   "aliases": [
+    "panda"
+   ],
+   "bbox": {
+    "x": [
+     -0.209,
+     0.329
+    ],
+    "y": [
+     0,
+     0.665
+    ],
+    "z": [
+     -0.382,
+     0.547
+    ]
+   },
+   "bytes": 116380,
+   "en": "panda",
+   "file": "pets/pe490d8e1.glb",
+   "key": "pe490d8e1",
+   "prims": 21,
+   "skipped": 0,
+   "tri": 3340,
+   "verts": 2782,
+   "zh": "熊猫",
+   "v": "9d82c16ffa"
+  },
+  "pe4b2dbd6": {
+   "kind": "pet",
+   "aliases": [
+    "mule"
+   ],
+   "bbox": {
+    "x": [
+     -0.184,
+     0.184
+    ],
+    "y": [
+     0,
+     0.6
+    ],
+    "z": [
+     -0.33,
+     0.373
+    ]
+   },
+   "bytes": 104552,
+   "en": "mule",
+   "file": "pets/pe4b2dbd6.glb",
+   "key": "pe4b2dbd6",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2936,
+   "verts": 2524,
+   "zh": "骡子",
+   "v": "53d7236be0"
+  },
+  "pe4c7968b": {
+   "kind": "pet",
+   "aliases": [
+    "sofa"
+   ],
+   "bbox": {
+    "x": [
+     -0.27,
+     0.27
+    ],
+    "y": [
+     -0.07,
+     0.35
+    ],
+    "z": [
+     -0.15,
+     0.162
+    ]
+   },
+   "bytes": 42248,
+   "en": "sofa",
+   "file": "pets/pe4c7968b.glb",
+   "key": "pe4c7968b",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1200,
+   "verts": 912,
+   "zh": "沙发",
+   "v": "a4dffc4e32"
+  },
+  "pe591f0ee": {
+   "kind": "pet",
+   "aliases": [
+    "december"
+   ],
+   "bbox": {
+    "x": [
+     -0.143,
+     0.143
+    ],
+    "y": [
+     -0.066,
+     0.56
+    ],
+    "z": [
+     -0.089,
+     0.08
+    ]
+   },
+   "bytes": 50432,
+   "en": "December",
+   "file": "pets/pe591f0ee.glb",
+   "key": "pe591f0ee",
+   "prims": 11,
+   "skipped": 1,
+   "tri": 1416,
+   "verts": 1082,
+   "zh": "十二月",
+   "v": "f6baf1ccb2"
+  },
+  "pe6070e7d": {
+   "kind": "pet",
+   "aliases": [
+    "storybook",
+    "clothes",
+    "taxi",
+    "scotland"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "storybook",
+   "file": "pets/pe6070e7d.glb",
+   "key": "pe6070e7d",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "故事书",
+   "v": "c728700110"
+  },
+  "pe688cfc5": {
+   "kind": "pet",
+   "aliases": [
+    "next",
+    "after",
+    "worry",
+    "countryside"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82184,
+   "en": "next",
+   "file": "pets/pe688cfc5.glb",
+   "key": "pe688cfc5",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "下一个",
+   "v": "92958d0d9a"
+  },
+  "pe814048e": {
+   "kind": "pet",
+   "aliases": [
+    "library"
+   ],
+   "bbox": {
+    "x": [
+     -0.3,
+     0.3
+    ],
+    "y": [
+     0,
+     0.38
+    ],
+    "z": [
+     -0.3,
+     0.3
+    ]
+   },
+   "bytes": 16700,
+   "en": "library",
+   "file": "pets/pe814048e.glb",
+   "key": "pe814048e",
+   "prims": 5,
+   "skipped": 0,
+   "tri": 180,
+   "verts": 368,
+   "zh": "图书馆",
+   "v": "8286aebbda"
+  },
+  "pe9257480": {
+   "kind": "pet",
+   "aliases": [
+    "grape"
+   ],
+   "bbox": {
+    "x": [
+     -0.148,
+     0.148
+    ],
+    "y": [
+     -0.07,
+     0.468
+    ],
+    "z": [
+     -0.124,
+     0.124
+    ]
+   },
+   "bytes": 86060,
+   "en": "grape",
+   "file": "pets/pe9257480.glb",
+   "key": "pe9257480",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2736,
+   "verts": 1910,
+   "zh": "葡萄",
+   "v": "a0be07cf62"
+  },
+  "pe961954d": {
+   "kind": "pet",
+   "aliases": [
+    "face"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.08,
+     0.4
+    ],
+    "z": [
+     -0.178,
+     0.248
+    ]
+   },
+   "bytes": 52820,
+   "en": "face",
+   "file": "pets/pe961954d.glb",
+   "key": "pe961954d",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1504,
+   "verts": 1176,
+   "zh": "脸",
+   "v": "f2429762c9"
+  },
+  "pec46accf": {
+   "kind": "pet",
+   "aliases": [
+    "classroom"
+   ],
+   "bbox": {
+    "x": [
+     -0.214,
+     0.214
+    ],
+    "y": [
+     -0.068,
+     0.395
+    ],
+    "z": [
+     -0.214,
+     0.214
+    ]
+   },
+   "bytes": 43176,
+   "en": "classroom",
+   "file": "pets/pec46accf.glb",
+   "key": "pec46accf",
+   "prims": 10,
+   "skipped": 1,
+   "tri": 1192,
+   "verts": 898,
+   "zh": "教室",
+   "v": "8a290ce4ef"
+  },
+  "ped274439": {
+   "kind": "pet",
+   "aliases": [
+    "sleeping"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.173
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 81064,
+   "en": "sleeping",
+   "file": "pets/ped274439.glb",
+   "key": "ped274439",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "正在睡觉",
+   "v": "bc2da4a67a"
+  },
+  "ped38a744": {
+   "kind": "pet",
+   "aliases": [
+    "phone"
+   ],
+   "bbox": {
+    "x": [
+     -0.141,
+     0.141
+    ],
+    "y": [
+     -0.065,
+     0.33
+    ],
+    "z": [
+     -0.015,
+     0.05
+    ]
+   },
+   "bytes": 40672,
+   "en": "phone",
+   "file": "pets/ped38a744.glb",
+   "key": "ped38a744",
+   "prims": 8,
+   "skipped": 0,
+   "tri": 1176,
+   "verts": 864,
+   "zh": "电话",
+   "v": "c1094d5674"
+  },
+  "ped6fd2af": {
+   "kind": "pet",
+   "aliases": [
+    "black"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.532
+    ],
+    "z": [
+     -0.187,
+     0.187
+    ]
+   },
+   "bytes": 53520,
+   "en": "black",
+   "file": "pets/ped6fd2af.glb",
+   "key": "ped6fd2af",
+   "prims": 9,
+   "skipped": 0,
+   "tri": 1728,
+   "verts": 1192,
+   "zh": "黑色",
+   "v": "db5bb50c2d"
+  },
+  "peda05214": {
+   "kind": "pet",
+   "aliases": [
+    "reporter"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.218
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.16
+    ]
+   },
+   "bytes": 89372,
+   "en": "reporter",
+   "file": "pets/peda05214.glb",
+   "key": "peda05214",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2088,
+   "zh": "记者",
+   "v": "4e5f06ef01"
+  },
+  "peee9bdcc": {
+   "kind": "pet",
+   "aliases": [
+    "light"
+   ],
+   "bbox": {
+    "x": [
+     -0.259,
+     0.259
+    ],
+    "y": [
+     -0.071,
+     0.59
+    ],
+    "z": [
+     -0.17,
+     0.17
+    ]
+   },
+   "bytes": 60212,
+   "en": "light",
+   "file": "pets/peee9bdcc.glb",
+   "key": "peee9bdcc",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 1668,
+   "verts": 1338,
+   "zh": "灯",
+   "v": "94938d0764"
+  },
+  "pf12c5e45": {
+   "kind": "pet",
+   "aliases": [
+    "sale",
+    "over"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.59
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 76028,
+   "en": "sale",
+   "file": "pets/pf12c5e45.glb",
+   "key": "pf12c5e45",
+   "prims": 14,
+   "skipped": 1,
+   "tri": 2352,
+   "verts": 1742,
+   "zh": "特价",
+   "v": "c1af2d71a8"
+  },
+  "pf1b626ef": {
+   "kind": "pet",
+   "aliases": [
+    "big",
+    "delicious",
+    "toy",
+    "expensive",
+    "job",
+    "old",
+    "shy",
+    "his",
+    "her",
+    "badminton"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71444,
+   "en": "big",
+   "file": "pets/pf1b626ef.glb",
+   "key": "pf1b626ef",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "大的",
+   "v": "d7cd46a2fb"
+  },
+  "pf23c75a7": {
+   "kind": "pet",
+   "aliases": [
+    "ph-happybirthday",
+    "ph-howmany",
+    "ph-artroom",
+    "ph-peclass",
+    "ph-gotobed",
+    "ph-justaminute",
+    "ph-howmuch",
+    "ph-watchtv",
+    "ph-playping-pong",
+    "ph-domorningexercises",
+    "ph-takeadancingclass",
+    "ph-children-sday",
+    "ph-readingabook",
+    "ph-havingaclass",
+    "ph-sciencemuseum",
+    "ph-byplane",
+    "ph-bytrain",
+    "ph-trafficlights",
+    "ph-factoryworker",
+    "ph-policeofficer",
+    "ph-stayedathome",
+    "ph-waveyourhand",
+    "ph-hurryup",
+    "ph-playfootball",
+    "ph-goonapicnic",
+    "ph-goodjob",
+    "ph-thegreatwall",
+    "ph-keepyourdeskclean",
+    "ph-felloff",
+    "ph-atefreshfood",
+    "ph-playbadminton"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.56
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 82168,
+   "en": "happy birthday",
+   "file": "pets/pf23c75a7.glb",
+   "key": "pf23c75a7",
+   "prims": 15,
+   "skipped": 1,
+   "tri": 2544,
+   "verts": 1862,
+   "zh": "生日快乐",
+   "v": "e7092fac19"
+  },
+  "pf25fb370": {
+   "kind": "pet",
+   "aliases": [
+    "ruler"
+   ],
+   "bbox": {
+    "x": [
+     -0.22,
+     0.22
+    ],
+    "y": [
+     -0.068,
+     0.2
+    ],
+    "z": [
+     -0.01,
+     0.051
+    ]
+   },
+   "bytes": 44232,
+   "en": "ruler",
+   "file": "pets/pf25fb370.glb",
+   "key": "pf25fb370",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1224,
+   "verts": 960,
+   "zh": "尺子",
+   "v": "13acfc0573"
+  },
+  "pf3763663": {
+   "kind": "pet",
+   "aliases": [
+    "bedroom"
+   ],
+   "bbox": {
+    "x": [
+     -0.214,
+     0.214
+    ],
+    "y": [
+     -0.068,
+     0.395
+    ],
+    "z": [
+     -0.214,
+     0.214
+    ]
+   },
+   "bytes": 43160,
+   "en": "bedroom",
+   "file": "pets/pf3763663.glb",
+   "key": "pf3763663",
+   "prims": 10,
+   "skipped": 1,
+   "tri": 1192,
+   "verts": 898,
+   "zh": "卧室",
+   "v": "6e9193bf9b"
+  },
+  "pf59e8bec": {
+   "kind": "pet",
+   "aliases": [
+    "wave"
+   ],
+   "bbox": {
+    "x": [
+     -0.179,
+     0.199
+    ],
+    "y": [
+     -0.07,
+     0.435
+    ],
+    "z": [
+     -0.209,
+     0.209
+    ]
+   },
+   "bytes": 75112,
+   "en": "wave",
+   "file": "pets/pf59e8bec.glb",
+   "key": "pf59e8bec",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 2272,
+   "verts": 1728,
+   "zh": "浪花",
+   "v": "bee2e0ec73"
+  },
+  "pf5c9bc78": {
+   "kind": "pet",
+   "aliases": [
+    "whale"
+   ],
+   "bbox": {
+    "x": [
+     -0.217,
+     0.217
+    ],
+    "y": [
+     -0.075,
+     0.645
+    ],
+    "z": [
+     -0.379,
+     0.265
+    ]
+   },
+   "bytes": 89156,
+   "en": "whale",
+   "file": "pets/pf5c9bc78.glb",
+   "key": "pf5c9bc78",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2880,
+   "verts": 2016,
+   "zh": "鲸鱼",
+   "v": "a60889cb6c"
+  },
+  "pf795875f": {
+   "kind": "pet",
+   "aliases": [
+    "corn"
+   ],
+   "bbox": {
+    "x": [
+     -0.151,
+     0.151
+    ],
+    "y": [
+     -0.071,
+     0.54
+    ],
+    "z": [
+     -0.103,
+     0.132
+    ]
+   },
+   "bytes": 71360,
+   "en": "corn",
+   "file": "pets/pf795875f.glb",
+   "key": "pf795875f",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 2140,
+   "verts": 1636,
+   "zh": "玉米",
+   "v": "3e533883bf"
+  },
+  "pf82dea88": {
+   "kind": "pet",
+   "aliases": [
+    "grass"
+   ],
+   "bbox": {
+    "x": [
+     -0.189,
+     0.189
+    ],
+    "y": [
+     -0.073,
+     0.382
+    ],
+    "z": [
+     -0.189,
+     0.189
+    ]
+   },
+   "bytes": 56372,
+   "en": "grass",
+   "file": "pets/pf82dea88.glb",
+   "key": "pf82dea88",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 1484,
+   "verts": 1254,
+   "zh": "草",
+   "v": "268cdcc542"
+  },
+  "pf9a96b19": {
+   "kind": "pet",
+   "aliases": [
+    "pretty",
+    "weekend",
+    "strict",
+    "polite",
+    "clever",
+    "strong",
+    "taller",
+    "bigger",
+    "longer",
+    "loudly"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.07,
+     0.434
+    ],
+    "z": [
+     -0.187,
+     0.215
+    ]
+   },
+   "bytes": 71428,
+   "en": "pretty",
+   "file": "pets/pf9a96b19.glb",
+   "key": "pf9a96b19",
+   "prims": 13,
+   "skipped": 1,
+   "tri": 2304,
+   "verts": 1644,
+   "zh": "美观的",
+   "v": "f4a8a8f6a6"
+  },
+  "pf9d52826": {
+   "kind": "pet",
+   "aliases": [
+    "worried"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     -0.075,
+     0.394
+    ],
+    "z": [
+     -0.187,
+     0.22
+    ]
+   },
+   "bytes": 84116,
+   "en": "worried",
+   "file": "pets/pf9d52826.glb",
+   "key": "pf9d52826",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2488,
+   "verts": 1932,
+   "zh": "担心的",
+   "v": "c08d5647fe"
+  },
+  "pfa20d934": {
+   "kind": "pet",
+   "aliases": [
+    "giraffe"
+   ],
+   "bbox": {
+    "x": [
+     -0.184,
+     0.184
+    ],
+    "y": [
+     0,
+     1.204
+    ],
+    "z": [
+     -0.33,
+     0.29
+    ]
+   },
+   "bytes": 151800,
+   "en": "giraffe",
+   "file": "pets/pfa20d934.glb",
+   "key": "pfa20d934",
+   "prims": 27,
+   "skipped": 0,
+   "tri": 4404,
+   "verts": 3764,
+   "zh": "长颈鹿",
+   "v": "98fb694e70"
+  },
+  "pfa7e63ad": {
+   "kind": "pet",
+   "aliases": [
+    "brother"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.147
+    ],
+    "y": [
+     -0.034,
+     0.497
+    ],
+    "z": [
+     -0.143,
+     0.136
+    ]
+   },
+   "bytes": 81068,
+   "en": "brother",
+   "file": "pets/pfa7e63ad.glb",
+   "key": "pfa7e63ad",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 1870,
+   "zh": "兄弟",
+   "v": "b87f894135"
+  },
+  "pfb599946": {
+   "kind": "pet",
+   "aliases": [
+    "friend"
+   ],
+   "bbox": {
+    "x": [
+     -0.147,
+     0.153
+    ],
+    "y": [
+     -0.034,
+     0.497
+    ],
+    "z": [
+     -0.143,
+     0.136
+    ]
+   },
+   "bytes": 90788,
+   "en": "friend",
+   "file": "pets/pfb599946.glb",
+   "key": "pfb599946",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2504,
+   "verts": 2142,
+   "zh": "朋友",
+   "v": "37eb4f6610"
+  },
+  "pfbbf297d": {
+   "kind": "pet",
+   "aliases": [
+    "scientist"
+   ],
+   "bbox": {
+    "x": [
+     -0.173,
+     0.18
+    ],
+    "y": [
+     -0.04,
+     0.585
+    ],
+    "z": [
+     -0.169,
+     0.186
+    ]
+   },
+   "bytes": 101780,
+   "en": "scientist",
+   "file": "pets/pfbbf297d.glb",
+   "key": "pfbbf297d",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2488,
+   "verts": 2448,
+   "zh": "科学家",
+   "v": "08335acd72"
+  },
+  "pfc973710": {
+   "kind": "pet",
+   "aliases": [
+    "hospital"
+   ],
+   "bbox": {
+    "x": [
+     -0.224,
+     0.224
+    ],
+    "y": [
+     -0.066,
+     0.479
+    ],
+    "z": [
+     -0.224,
+     0.224
+    ]
+   },
+   "bytes": 45688,
+   "en": "hospital",
+   "file": "pets/pfc973710.glb",
+   "key": "pfc973710",
+   "prims": 12,
+   "skipped": 0,
+   "tri": 1228,
+   "verts": 970,
+   "zh": "医院",
+   "v": "5fca614de5"
+  },
+  "pfe379d0e": {
+   "kind": "pet",
+   "aliases": [
+    "farmer"
+   ],
+   "bbox": {
+    "x": [
+     -0.2,
+     0.2
+    ],
+    "y": [
+     -0.04,
+     0.631
+    ],
+    "z": [
+     -0.2,
+     0.2
+    ]
+   },
+   "bytes": 91432,
+   "en": "farmer",
+   "file": "pets/pfe379d0e.glb",
+   "key": "pfe379d0e",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2360,
+   "verts": 2112,
+   "zh": "农民",
+   "v": "bd21d3552c"
+  },
+  "pfec6a9d9": {
+   "kind": "pet",
+   "aliases": [
+    "tree"
+   ],
+   "bbox": {
+    "x": [
+     -0.288,
+     0.297
+    ],
+    "y": [
+     -0.07,
+     0.83
+    ],
+    "z": [
+     -0.236,
+     0.247
+    ]
+   },
+   "bytes": 57364,
+   "en": "tree",
+   "file": "pets/pfec6a9d9.glb",
+   "key": "pfec6a9d9",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 1776,
+   "verts": 1274,
+   "zh": "大树",
+   "v": "e3e6a81833"
+  },
+  "pffdf9b22": {
+   "kind": "pet",
+   "aliases": [
+    "usa"
+   ],
+   "bbox": {
+    "x": [
+     -0.204,
+     0.204
+    ],
+    "y": [
+     -0.068,
+     0.31
+    ],
+    "z": [
+     -0.204,
+     0.204
+    ]
+   },
+   "bytes": 47720,
+   "en": "USA",
+   "file": "pets/pffdf9b22.glb",
+   "key": "pffdf9b22",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1272,
+   "verts": 1062,
+   "zh": "美国",
+   "v": "4b4824f6e9"
   }
  }
 }

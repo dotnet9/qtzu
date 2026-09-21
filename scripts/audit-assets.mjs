@@ -30,11 +30,13 @@ const BUDGET = {
   gate: { tri: 7000, bytes: 200 * 1024 },
   // ground：几何守对方方案的 60000 面；体积因加了内嵌贴图（1024² albedo + 512² 法线）放到 4.5MB
   ground: { tri: 60000, bytes: 4500 * 1024 },
-  pet: { tri: 2500, bytes: 40 * 1024 },
+  // 词宠/玩家/NPC：图元化 + 按角度拆边（每面一套法线）后实测 1700~6400 面 / 49~92KB
+  // （细分已从球 18x14 压到 12x9；词宠同屏最多 6 个，见 js/game.js 的 slice(-6)）
+  pet: { tri: 8000, bytes: 260 * 1024 },
   landmark: { tri: 10000, bytes: 200 * 1024 },
   prop: { tri: 3000, bytes: 60 * 1024 },
-  npc: { tri: 3000, bytes: 60 * 1024 },
-  player: { tri: 6000, bytes: 150 * 1024 },
+  npc: { tri: 6000, bytes: 240 * 1024 },
+  player: { tri: 10000, bytes: 260 * 1024 },
 };
 // 单城首屏新增体积上限：用户在方案答疑里批准"允许小尺寸贴图、放宽到 8MB/城"；
 // 实测最大 3.71MB（北京），仍留了一倍余量给后续贴图
@@ -42,7 +44,7 @@ const CITY_BYTES_MAX = 8 * 1024 * 1024;
 // 脚底容差按类别给：校门立在城心山坡上，必须贴地；城市地标沿用 js/world.js 的原始造型
 // （熊猫肚子本来就坐进地面 0.2，程序化版本一模一样），所以放宽——它仍拦得住真事故
 // （曾经的"门前空地立成一堵 1.2 高的墙"是 -0.55）
-const GROUND_TOL = { gate: 0.06, landmark: 0.35 };
+const GROUND_TOL = { gate: 0.06, landmark: 0.35, pet: 0.12 };   // pet：原始 JS 模型自身就沉 ~0.075（已实测比对）
 const HALF_MAX = 5.2;                     // 游戏按 scale 0.5 + 2.6 边距摆放（js/game.js:2134）→ 半宽/半深上限 5.2
 // 地标占地必须不超 js/world.js:1395 的 LM_HALF（摆放边距/碰撞/欢迎牌高度都按它算）
 const LM_HALF = { gate: 3.7, tower: 1.7, wall: 7.5, panda: 3.2, ice: 2.6, palm: 3.6, dome: 2.8,
@@ -104,9 +106,28 @@ function cityKeys() {
   const idx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/cities/index.json'), 'utf8'));
   return new Set((idx.cities || []).map((c) => c.id));
 }
+// 词宠：条目 key 是外观哈希，别名表存着它代表的 petId（js/words.js 的 w.pet）；
+// 用一个别名代表该条目去做引用检查即可（能查到 petId 就说明运行时找得到）
+function petKeys() {
+  // words.js 的 pet id 是动态生成的（pet: id），正则抓不到 → 读 pet-aliases 导出的词表
+  const f = path.join(ROOT, '.cache/bake/pets-words.json');
+  if (!fs.existsSync(f)) return null;      // 没有词表就跳过这项检查
+  return new Set(JSON.parse(fs.readFileSync(f, 'utf8')).petIds);
+}
+// 词宠源最低点：从提取的图元（含局部矩阵）算出来，用于"烘焙 == 源"的对账。
+// 图元都是球/柱/胶囊/方盒等规则体，取"中心 ± 半径"的粗略下界即可（误差 < 0.02）。
+function petSourceMinY() {
+  const f = path.join(ROOT, '.cache/bake/prims.pet.uniq.json');
+  if (!fs.existsSync(f)) return null;
+  const j = JSON.parse(fs.readFileSync(f, 'utf8'));
+  const out = new Map();
+  for (const cell of j.cells) if (cell.bbox) out.set(cell.key, cell.bbox.minY);
+  return out;
+}
 const REFS = {
   gate: { keyOf: (e) => e.zh, keys: uniNames, what: '校名' },
   ground: { keyOf: (e) => e.key, keys: cityKeys, what: '城市' },
+  pet: { keyOf: (e) => (e.aliases || [])[0], keys: petKeys, what: '词宠 id' },
   landmark: { keyOf: (e) => e.key, keys: landmarkKeys, what: '城市地标位' },
 };
 
@@ -130,6 +151,7 @@ const mf = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 const entries = Object.entries(mf.assets).filter(([, e]) => !only || e.kind === only);
 const sha = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const fails = [], warns = [];
+let PET_SRC_MIN = null;
 const perCity = new Map();   // 城市 → 新增体积
 
 console.log(`manifest：blender ${mf.blender}，${Object.keys(mf.assets).length} 个资产`
@@ -172,7 +194,14 @@ for (const [id, e] of entries) {
   }
   // 原点在脚底：游戏用 _groundY 贴地（js/game.js:2151），穿地就是"校门陷进山坡"。
   // ground 豁免：地面本身就从岩裙 -3.6 到峰顶 +13.9，用这条会误报（见 §五 B4）
-  if (e.kind !== 'ground') {
+  if (e.kind === 'pet') {
+    // 与源对账：烘焙 GLB 的最低点必须与提取图元算出的源最低点一致（容差 0.02）
+    const src = PET_SRC_MIN || (PET_SRC_MIN = petSourceMinY());
+    const want = src && src.get(e.key);
+    if (want != null && Math.abs(g.lo[1] - want) > 0.02) {
+      fails.push(`${id}：最低点 ${g.lo[1].toFixed(3)} 与源 ${want.toFixed(3)} 差超 0.02（烘歪了？）`);
+    }
+  } else if (e.kind !== 'ground') {
     const gt = GROUND_TOL[e.kind] ?? 0.06;
     if (g.lo[1] < -gt) fails.push(`${id}：穿地 ${g.lo[1].toFixed(3)}（原点必须在脚底，本类容差 ${gt}）`);
   } else {
@@ -239,6 +268,7 @@ for (const kind of new Set(entries.map(([, e]) => e.kind))) {
   const ref = REFS[kind];
   if (!ref) { warns.push(`${kind}：还没有代码引用检查规则（REFS 里补一条）`); continue; }
   const keys = ref.keys();
+  if (!keys) { warns.push(`${kind}：没有词表（.cache/bake/pets-words.json），跳过引用检查`); continue; }
   for (const [id, e] of entries.filter(([, x]) => x.kind === kind)) {
     const k = ref.keyOf(e);
     if (!keys.has(k)) fails.push(`孤儿资产：${kind} ${id}「${k}」在 data/cities 里找不到对应${ref.what}（游戏永远不会取它）`);
@@ -248,10 +278,13 @@ for (const kind of new Set(entries.map(([, e]) => e.kind))) {
 // ---- 汇总 ----
 for (const [kind, s] of Object.entries(byKind)) {
   const ref = REFS[kind];
-  const total = ref ? ref.keys().size : null;
+  let total = ref ? ref.keys().size : null;
+  // 词宠去重：一个外观覆盖多个 petId（932 词宠 → 358 外观），覆盖率要按 petId 算
+  let covered = s.n;
+  if (kind === 'pet') covered = entries.filter(([, e]) => e.kind === 'pet').reduce((a, [, e]) => a + ((e.aliases || []).length || 1), 0);
   console.log(`\n【${kind}】${s.n} 个，合计 ${(s.bytes / 1048576).toFixed(1)}MB，`
     + `三角面 ${s.tri}（均值 ${Math.round(s.tri / s.n)}）`
-    + (total ? `；已烘 ${s.n}/${total}（其余 ${total - s.n} 个继续走程序化回退）` : ''));
+    + (total ? `；已烘 ${covered}/${total}${kind === 'pet' ? '（外观去重：一个 GLB 覆盖多个 petId）' : ''}${total - covered > 0 ? `，其余 ${total - covered} 个继续走程序化回退` : ''}` : ''));
   const b = BUDGET[kind];
   if (b) console.log(`  预算：三角面 ≤ ${b.tri}，单个 ≤ ${(b.bytes / 1024).toFixed(0)}KB`);
 }

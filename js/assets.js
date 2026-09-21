@@ -61,7 +61,8 @@ export function ready() {
           index.set(e.kind, m2);
           m2.set(id, e);
           // 运行时用的 key 是"实体身份"（校门=校名），不是文件 id：见 scripts/bake/specs.mjs
-          for (const k of [e.zh, e.name, e.key]) if (k != null) m2.set(k, e);
+          // aliases：词宠去重后一个 GLB 代表多个 petId（932 词宠 → 358 种外观）
+          for (const k of [e.zh, e.name, e.key, ...(e.aliases || [])]) if (k != null) m2.set(k, e);
         }
         state.ready = true;
       }

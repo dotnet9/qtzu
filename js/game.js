@@ -9,6 +9,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 import { WORD_MAP, ZONE_NAMES, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
 import { buildPet } from './models.js';
+import * as assets from './assets.js';   // 词宠 GLB 换装（见 _refreshRanchPets）
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
@@ -973,6 +974,9 @@ export class Game {
     latest.forEach((id, i) => {
       const g = buildPet(WORD_MAP[id].pet);
       g.scale.setScalar(0.55);
+      // 原地换成烘焙好的词宠 GLB（只换 children，动画用的 position/rotation 不受影响）。
+      // 932 个词宠去重成 358 种外观，key 用 petId（assets 的别名表会命中同一份 GLB）。
+      assets.apply(g, 'pet', WORD_MAP[id].pet);
       const a = (i / Math.max(latest.length, 1)) * Math.PI * 2;
       g.position.set(zone.x + Math.cos(a) * zone.r * 0.55, 0.14, zone.z + Math.sin(a) * zone.r * 0.55);
       g.rotation.y = Math.random() * Math.PI * 2;
