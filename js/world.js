@@ -602,6 +602,15 @@ function cityTower(w, h, i) {
   // 首层：压深一档的基座 + 门洞（正对 +z 的那面）
   towerBox(g, w * 1.03, 1.7, w * 1.03, '#A9B6C2', 0, 0.85, 0);
   towerBox(g, w * 0.34, 1.25, 0.24, '#6E7C88', 0, 0.63, w * 0.52);
+  // 雨棚 + 招牌 + 侧招牌 + 分隔带：首层有"店"的样子，近景走到楼下才不是一片平墙。
+  // 屋顶水箱 + 天线：剪影从"一根光柱"变成"真楼顶"。
+  // 只加 6 个低模零件（约 +60 面/栋）——一栋楼多几个零件、全城 8~16 栋都要付，必须克制。
+  towerBox(g, w * 0.5, 0.12, 0.9, '#5E6B77', 0, 1.78, w * 0.52);
+  towerBox(g, w * 0.46, 0.42, 0.1, ['#E8C86A', '#D98A6A', '#7EC4F2'][i % 3], 0, 1.3, w * 0.55);
+  towerBox(g, 0.1, 0.5, w * 0.42, ['#7EC4F2', '#E8C86A', '#D98A6A'][i % 3], w * 0.53, 1.2, 0);
+  towerBox(g, w * 1.04, 0.1, w * 1.04, '#9AA6B2', 0, 1.75, 0);
+  towerBox(g, 0.6, 0.7, 0.6, '#B9C8D4', w * 0.28, h + 2.2, -w * 0.24);
+  towerBox(g, 0.08, 1.1, 0.08, '#8A96A2', -w * 0.3, h + 2.4, w * 0.28);
   return g;
 }
 
@@ -1767,6 +1776,69 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           // 花丛（城市气质色，少量）
           scatter(flowerGeometry(rn2), Math.round(Math.min(70, r * 0.9)), r * 0.15, r * 0.9, r * 0.03, bw + 0.6,
             ['#FF9FBE', '#FFD166', '#C9A7EB', '#8ED8F8', '#FFF3B0']);
+        }
+        // 街道家具：沿迎宾主街成排 + 广场周边（见 js/models/props-street.js）。
+        // 摆在绿化之后、复用同一套约束：轮廓内 → 钳制 → 避地标 → 避树。
+        {
+          const fx = (px, pz, minGap = 1.4) => {
+            let q = [px, pz];
+            if (!inPt(q[0], q[1])) return null;
+            if (polySim) q = clampPoly(polySim, q[0], q[1], bw + 0.5);
+            if (!lmFar(q[0], q[1])) return null;
+            if (placed.some(r => Math.hypot(r[0] - q[0], r[1] - q[1]) < minGap)) return null;
+            placed.push(q);
+            return q;
+          };
+          const put = (obj, px, pz, ry = 0, colR = 0, opts = {}) => {
+            const q = fx(px, pz, opts.gap || 1.4);
+            if (!q) return null;
+            obj.position.set(q[0], Y(q[0], q[1], 0), q[1]);
+            obj.rotation.y = ry;
+            obj.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+            grp.add(obj);
+            if (colR > 0) colC(q[0], q[1], colR);
+            return obj;
+          };
+          const side = r * 0.05 + 1.0;          // 主街两侧的家具带（与"主街留空"规则对齐）
+          const z0 = -r * 0.08, z1 = -r * 0.86; // 从城心广场外侧一直排到城门
+          const nLamp = Math.max(3, Math.round((z0 - z1) / (r * 0.115)));
+          for (let i = 0; i <= nLamp; i++) {
+            const t = i / nLamp;
+            const z = z0 + (z1 - z0) * t;
+            // 路灯：两侧交错半格，成排但不呆板；灯头朝街心
+            for (const sgn of [-1, 1]) {
+              const zz = z + (sgn > 0 ? r * 0.055 : 0);
+              put(PROPS.streetLamp(), sgn * side, zz, sgn > 0 ? -Math.PI / 2 : Math.PI / 2, 0.3, { gap: 1.2 });
+            }
+            // 长椅：每两档插一把，背街面向主街
+            if (i % 2 === 1) {
+              const sgn = (i % 4 === 1) ? 1 : -1;
+              put(PROPS.bench(), sgn * (side + 0.15), z + r * 0.03, sgn > 0 ? -Math.PI / 2 : Math.PI / 2, 0.55, { gap: 1.8 });
+            }
+            // 花箱：靠街心一侧
+            if (i % 3 === 0) {
+              const sgn = (i % 6 === 0) ? -1 : 1;
+              put(PROPS.planter(color), sgn * (side - 0.55), z + r * 0.05, 0, 0.45, { gap: 1.6 });
+            }
+          }
+          // 城门口：指路牌 + 邮筒 + 垃圾桶 + 一排路桩（"这里是个城市"的信号最集中）
+          const zGate = -r * 0.9;
+          put(PROPS.signpost(), side + 0.7, zGate + r * 0.06, -Math.PI / 2, 0.3, { gap: 1.2 });
+          put(PROPS.signpost(), -(side + 0.7), zGate + r * 0.12, Math.PI / 2, 0.3, { gap: 1.2 });
+          put(PROPS.mailbox(), side - 0.2, zGate + r * 0.02, 0.6, 0.4, { gap: 1.2 });
+          put(PROPS.trashbin(), -(side - 0.1), zGate + r * 0.03, 0, 0.35, { gap: 1.2 });
+          for (let k = -3; k <= 3; k++) {
+            if (k === 0) continue;                                   // 中间留出通行口
+            put(PROPS.bollard(), k * r * 0.03, zGate + r * 0.16, 0, 0.22, { gap: 0.9 });
+          }
+          // 广场一角的小集市：三把伞 + 长椅 + 花箱（城市里最"有人气"的一块）
+          for (let i = 0; i < 3; i++) {
+            const a = -0.55 + i * 0.5;
+            const rr2 = r * 0.2;
+            put(PROPS.parasol(['#FF8F6B', '#7EC4F2', '#FFD166'][i]), Math.cos(a) * rr2, Math.sin(a) * rr2 - r * 0.12, a, 0.45, { gap: 2.0 });
+          }
+          put(PROPS.bench(), r * 0.06, -r * 0.3, Math.PI, 0.55, { gap: 1.8 });
+          put(PROPS.trashbin(), -r * 0.08, -r * 0.28, 0, 0.35, { gap: 1.2 });
         }
         // 高楼：2-5 栋低模塔楼（城市感），带碰撞可绕行
         const bN = 8 + Math.floor(rn() * 9);
