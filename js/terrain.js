@@ -12,6 +12,7 @@
 //   - 所有数值（高度/配色/水面）都来自 js/terrain-field.js，渲染与寻高/涉水/体检同源
 import * as THREE from 'three';
 import { makeHeightField, srgbToLinear } from './terrain-field.js';
+import { grassDetail } from './textures.js';
 
 export function createCityTerrain({ pts, cfg }) {
   const F = makeHeightField({ pts, cfg });
@@ -21,7 +22,9 @@ export function createCityTerrain({ pts, cfg }) {
 
   /* ---- 地面网格（顶点色 + 台地刻面） ---- */
   const vid = new Int32Array((nx + 1) * (nz + 1)).fill(-1);
-  const pos = [], col = [], cc = [0, 0, 0];
+  const pos = [], col = [], uv = [], cc = [0, 0, 0];
+  // 一个贴图周期 = 4.5 世界单位：256px 的细节图 ≈ 57 像素/单位，近景够细、远景靠 mipmap+各向异性
+  const UV_TILE = 4.5;
   const getV = (i, j) => {
     const id = j * (nx + 1) + i;
     if (vid[id] !== -1) return vid[id];
@@ -29,6 +32,7 @@ export function createCityTerrain({ pts, cfg }) {
     const hSm = hsSm[j][i], band = Math.floor(hSm / F.step + 1e-4);
     vid[id] = pos.length / 3;
     pos.push(x, qy[j][i], z);
+    uv.push(x / UV_TILE, z / UV_TILE);
     zoneColorLinear(x, z, hSm, band, cc);   // 线性色：顶点色不走颜色管理，必须自己转
     col.push(cc[0], cc[1], cc[2]);
     return vid[id];
@@ -43,10 +47,16 @@ export function createCityTerrain({ pts, cfg }) {
   const geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
   geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+  geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
   geo.setIndex(idx);
   geo.computeVertexNormals();
+  // 地面材质：细节贴图（近中性灰度）× 顶点色（分区配色）= "写实纹理 + 游戏配色"。
+  // 去掉 flatShading：台地的层次由高度与色带表达，表面靠法线细节，不再是"刻出来的一层层硬面片"。
+  const gTex = grassDetail(256, 11);
   const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
-    vertexColors: true, flatShading: true, roughness: 0.94, metalness: 0, side: THREE.DoubleSide,
+    vertexColors: true, map: gTex.map, normalMap: gTex.normalMap,
+    normalScale: new THREE.Vector2(0.55, 0.55),
+    roughness: 0.95, metalness: 0, side: THREE.DoubleSide,
   }));
   mesh.receiveShadow = true; mesh.castShadow = true;
   mesh.name = 'city-ground';   // 名字供"换装时隐藏程序化地面"用（js/world.js 的 ground-slot）

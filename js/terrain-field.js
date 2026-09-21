@@ -301,13 +301,29 @@ export function makeHeightField({ pts, cfg }) {
     out[0] = SRGB_TO_LIN(out[0]); out[1] = SRGB_TO_LIN(out[1]); out[2] = SRGB_TO_LIN(out[2]);
   }
   function zoneColor(x, z, hSm, band, out) {
-    const sx = Math.round(x / colorCell) * colorCell, sz = Math.round(z / colorCell) * colorCell;
+    // 遮罩坐标加低频噪声扰动：台地/农田/主街/广场的边界不再是解析曲线（直边），
+    // 像被地形自然"啃"过。幅度 3.2 单位 ≈ 2~3 个网格，肉眼可见但不破坏分区。
+    const wx = (n2(x * 0.043 + 21.7, z * 0.043 + 9.1) - 0.5) * 3.2;
+    const wz = (n2(x * 0.043 - 13.3, z * 0.043 - 6.7) - 0.5) * 3.2;
+    const sx = x + wx, sz = z + wz;
     let r, g, b;
-    const gi = Math.min(band, greens.length - 1);
-    [r, g, b] = greens[Math.max(0, gi)];
+    // 带间软过渡：原来 Math.floor(hSm/step) 是硬切换，远景就是一条条直线色带；
+    // 现在在每条带的上缘 45% 内渐变到下一带（既不丢分带感，又不留硬边）
+    const bandF = hSm / step;
+    const gi = Math.max(0, Math.min(greens.length - 1, Math.floor(bandF)));
+    const gn = Math.min(gi + 1, greens.length - 1);
+    const tb = smoothstep(0.55, 1, bandF - Math.floor(bandF));
+    const A = greens[gi], B2 = greens[gn];
+    r = A[0] + (B2[0] - A[0]) * tb; g = A[1] + (B2[1] - A[1]) * tb; b = A[2] + (B2[2] - A[2]) * tb;
     const tm = terraceMask(sx, sz);
     if (tm > 0.15 && band >= 1 && CL.terraceGold) {
-      const gold = CL.terraceGold[(Math.floor((sx * 0.7 + sz * 0.7) / (TER ? TER.cell : 5)) % 2 + 2) % 2 ? 1 : 0];
+      // 条纹：原来是 floor((sx+sz)/cell)%2 的棋盘奇偶 → 每格都是一个方块、边界笔直。
+      // 改成正弦 + smoothstep 的软条纹（边界由上面的 warp 再扭一次），读起来才是"田垄/梯田"
+      const cell = TER ? TER.cell : 5;
+      const ph = Math.sin((sx + sz) * 0.7 / cell * Math.PI);
+      const k = smoothstep(-0.4, 0.4, ph);
+      const g0 = CL.terraceGold[0], g1 = CL.terraceGold[1];
+      const gold = [g0[0] + (g1[0] - g0[0]) * k, g0[1] + (g1[1] - g0[1]) * k, g0[2] + (g1[2] - g0[2]) * k];
       r += (gold[0] - r) * tm; g += (gold[1] - g) * tm; b += (gold[2] - b) * tm;
     }
     const fm = farmMask(sx, sz);
@@ -342,7 +358,9 @@ export function makeHeightField({ pts, cfg }) {
         r += (CL.plaza[0] - r) * m; g += (CL.plaza[1] - g) * m; b += (CL.plaza[2] - b) * m;
       }
     }
-    const j = 1 - jitter / 2 + jitter * fract(Math.sin(sx * 127.1 + sz * 311.7) * 43758.5453);
+    // 抖动：原来按 colorCell 网格吸附算随机（格子本身就是 2.5 单位的色块），
+    // 现在用连续（已 warp）坐标 → 与网格分辨率同级的细颗粒
+    const j = 1 - jitter / 2 + jitter * fract(Math.sin(x * 127.1 + z * 311.7) * 43758.5453);
     out[0] = r * j; out[1] = g * j; out[2] = b * j;
   }
 
