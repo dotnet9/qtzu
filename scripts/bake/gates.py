@@ -640,6 +640,29 @@ FAM = {'classic': fam_classic, 'chip': fam_chip, 'rail': fam_rail, 'finance': fa
        'power': fam_power, 'media': fam_media, 'aero': fam_aero}
 
 
+def gate_details(soup, s, px):
+    """每座校门共享的"门前细节"：石基座 + 两级台阶 + 两侧石灯。
+
+    只依赖 px（横跨半宽）与配色，不假设各家族的梁高/柱高——19 个风格族的梁高差异很大，
+    按家族写会重复 19 遍且必然有漏。细节对"精致度"的贡献全在近景：基座让门"落"在地上、
+    台阶把视线引进门、石灯给夜景与辉光一个落点。
+
+    零件数刻意压到 8 个：第一版加了花箱与花团（14 个零件），把门的三角面从均值 2764 顶到
+    6016（超 6000 预算）、体积 174KB（超 160KB）——细节要"少而准"，多一个零件全城 384 座门都要付。
+    """
+    c1, c2, c3, c4 = s['colors']
+    stone, stone_d = '#B9B2A2', '#9E978A'
+    # 石基座：整座门站在一块略宽的石板上（压在门前空地之上）
+    slab(soup, px * 2 + 1.5, 0.16, 2.1, stone_d, (0, FR(0.5), 0.08), jitter=0.005)
+    # 两级台阶：从基座前沿往外铺
+    slab(soup, px * 2 + 1.2, 0.12, 0.34, stone, (0, FR(1.22), 0.06), jitter=0.004)
+    slab(soup, px * 2 + 1.35, 0.12, 0.34, stone_d, (0, FR(1.54), 0.06), jitter=0.004)
+    # 两侧石灯：细杆 + 发光灯头（夜里与辉光都有东西可抓）
+    for sx in (-px - 0.62, px + 0.62):
+        cy(soup, 0.07, 0.09, 0.86, stone_d, sx, 0.43, FR(0.72), seg=8)
+        ball(soup, 0.12, '#FFE2A8', sx, 1.02, FR(0.72), emissive='#FFE2A8', ei=0.5, jitter=0.004)
+
+
 def build_one(spec):
     rnd = C.Rnd(spec['zh'])
     soup = C.Soup(spec['id'])
@@ -650,6 +673,7 @@ def build_one(spec):
         return None                          # 该风格族尚未实现 → 运行时回退程序化门
     beam_y, beam_w, fz = fn(soup, spec, h, px, rnd) if kind == 'tpl' else fn(soup, spec, h, px)
     ground(soup, 0.4, 2.4)
+    gate_details(soup, spec, px)          # 共享细节件（见函数注释）
     ob = C.build_object(soup, 'gate_' + spec['id'])
     # 注意：不能用 python 内置 hash()——它按进程随机加盐，会让烘焙结果不可复现
     C.bake_ao(ob, seed=int(spec['id'][:4], 16))
