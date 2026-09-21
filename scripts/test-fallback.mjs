@@ -234,6 +234,26 @@ async function run(label, { blockGlb }) {
     blockGlb ? '地标保持程序化（回退生效）' : '地标全部换成烘焙资产',
     `命中 ${lms.filter((x) => x.asset).length}/${lms.length}`);
 
+  // 5c) 地面换装（成都）：程序化地面与烘焙地面必须"恰好显示一个"
+  const ground = await page.evaluate(() => {
+    let slot = null, terrainMesh = null;
+    window.__game.scene.traverse((o) => {
+      if (o.name === 'ground-slot') slot = o;
+      if (o.name === 'city-ground') terrainMesh = o;
+    });
+    return {
+      slotChildren: slot ? slot.children.length : -1,
+      procVisible: terrainMesh ? terrainMesh.visible : null,
+    };
+  });
+  if (blockGlb) {
+    check(ground.slotChildren === 0, '回退趟：ground-slot 为空（没换装）', `子节点 ${ground.slotChildren}`);
+    check(ground.procVisible !== false, '回退趟：程序化地面仍然可见（不是空城）', String(ground.procVisible));
+  } else {
+    check(ground.slotChildren > 0, '正常趟：烘焙地面已挂上', `子节点 ${ground.slotChildren}`);
+    check(ground.procVisible === false, '正常趟：程序化地面已隐藏（不双向重叠）', String(ground.procVisible));
+  }
+
   // 6) 同镜头截图：fallback=改造前，glb=改造后
   const tag = blockGlb ? 'fallback' : 'glb';
   await frame(page, false);
