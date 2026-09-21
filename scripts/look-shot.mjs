@@ -77,6 +77,17 @@ const shot = async (name, cam) => {
       g.player.position.set(st.cx, 0, st.cz + st.r * 0.16);
       g.player.rotation.y = Math.PI;
       g.camYaw = 0; g.camPitch = 0.30; g.camDist = g.camDistTarget = 6.6;
+    } else if (c.kind === 'ground') {
+      // 贴地俯视：站在城外圈的空地上往城心看，画面里几乎全是地面（散点/纹理/法线都在这张里）
+      g.player.position.set(st.cx + st.r * 0.42, 0, st.cz + st.r * 0.42);
+      g.camYaw = 2.35; g.camPitch = u(c.pitch); g.camDist = g.camDistTarget = u(c.dist);
+    } else if (c.kind === 'edge') {
+      // 台地/农田边界特写：取地形配置里的 terrace 中心（没有就退到城外圈），斜看色带过渡
+      const F = (g.world.cityBounds && g.world.cityBounds[st.key] || {}).terrainField;
+      const t = F && F.features && F.features.terrace;
+      const c0 = (t && t.c) ? t.c : [st.cx + st.r * 0.3, st.cz - st.r * 0.3];   // t.c 是 [x,z] 数组（见 terrain-field.js 的 TER）
+      g.player.position.set(c0[0], 0, c0[1]);
+      g.camYaw = 2.2; g.camPitch = u(c.pitch); g.camDist = g.camDistTarget = u(c.dist);
     } else if (c.kind === 'street') {
       // 迎宾主街：站在城心南侧回看主地标（默认游玩机位，最能代表日常观感）
       g.player.position.set(st.cx, 0, st.cz + st.r * 0.16);
@@ -107,6 +118,8 @@ const shot = async (name, cam) => {
 const CAMS = {
   // default：不动相机，量的是游戏自己的默认机位（俯角/距离/FOV 改动看这张）
   default: { kind: 'default' },
+  ground: { kind: 'ground', pitch: 1.02, dist: 9 },    // 贴地俯视：纹理颗粒/散点
+  edge: { kind: 'edge', pitch: 0.40, dist: 17 },       // 台地/农田边界：色带过渡
   street: { kind: 'street', yaw: 0, pitch: 0.30, dist: 6.6 },
   gate: { kind: 'gate', pitch: 0.26, dist: 7.0 },
   city: { kind: 'city', yaw: 0.6, pitch: 0.95, dist: 78 },
