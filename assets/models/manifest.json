@@ -21,6 +21,11 @@
    "blender": "4.5.14 LTS",
    "generated": "2026-09-21T19:01:41",
    "count": 358
+  },
+  "player": {
+   "blender": "4.5.14 LTS",
+   "generated": "2026-09-21T19:26:20",
+   "count": 58
   }
  },
  "assets": {
@@ -27856,6 +27861,1630 @@
    "verts": 1062,
    "zh": "美国",
    "v": "4b4824f6e9"
+  },
+  "boy-balloon-wand:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27040,
+   "en": null,
+   "file": "players/boy-balloon-wand-armL.glb",
+   "key": "boy-balloon-wand:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "f834bd1190"
+  },
+  "boy-balloon-wand:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     -0.324,
+     0.557
+    ],
+    "z": [
+     -0.108,
+     0.179
+    ]
+   },
+   "bytes": 61724,
+   "en": null,
+   "file": "players/boy-balloon-wand-armR.glb",
+   "key": "boy-balloon-wand:armR",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 1228,
+   "verts": 1404,
+   "zh": null,
+   "v": "e03d474c57"
+  },
+  "boy-balloon-wand:balloon": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     0,
+     0.726
+    ],
+    "z": [
+     -0.108,
+     0.108
+    ]
+   },
+   "bytes": 15304,
+   "en": null,
+   "file": "players/boy-balloon-wand-balloon.glb",
+   "key": "boy-balloon-wand:balloon",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 288,
+   "verts": 316,
+   "zh": null,
+   "v": "63a4750b6d"
+  },
+  "boy-balloon-wand:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.26,
+     0.26
+    ],
+    "y": [
+     -0.124,
+     0.757
+    ],
+    "z": [
+     -0.26,
+     0.26
+    ]
+   },
+   "bytes": 177208,
+   "en": null,
+   "file": "players/boy-balloon-wand-body.glb",
+   "key": "boy-balloon-wand:body",
+   "prims": 34,
+   "skipped": 0,
+   "tri": 4524,
+   "verts": 4118,
+   "zh": null,
+   "v": "ea6fb274bc"
+  },
+  "boy-balloon-wand:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.26,
+     0.26
+    ],
+    "y": [
+     -0.176,
+     0.261
+    ],
+    "z": [
+     -0.26,
+     0.26
+    ]
+   },
+   "bytes": 80552,
+   "en": null,
+   "file": "players/boy-balloon-wand-head.glb",
+   "key": "boy-balloon-wand:head",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2400,
+   "verts": 1800,
+   "zh": null,
+   "v": "1ece735cc9"
+  },
+  "boy-balloon-wand:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18168,
+   "en": null,
+   "file": "players/boy-balloon-wand-legL.glb",
+   "key": "boy-balloon-wand:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "2d90484abd"
+  },
+  "boy-balloon-wand:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18168,
+   "en": null,
+   "file": "players/boy-balloon-wand-legR.glb",
+   "key": "boy-balloon-wand:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "3fa9459004"
+  },
+  "boy-balloon-wand:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.26,
+     0.26
+    ],
+    "y": [
+     -0.021,
+     1.056
+    ],
+    "z": [
+     -0.26,
+     0.26
+    ]
+   },
+   "bytes": 209184,
+   "en": null,
+   "file": "players/boy-balloon-wand-rest.glb",
+   "key": "boy-balloon-wand:rest",
+   "prims": 38,
+   "skipped": 0,
+   "tri": 5348,
+   "verts": 4926,
+   "zh": null,
+   "v": "77f911fd87"
+  },
+  "boy-flower:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27028,
+   "en": null,
+   "file": "players/boy-flower-armL.glb",
+   "key": "boy-flower:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "96622410ed"
+  },
+  "boy-flower:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27028,
+   "en": null,
+   "file": "players/boy-flower-armR.glb",
+   "key": "boy-flower:armR",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "e4ab2d4a63"
+  },
+  "boy-flower:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.24,
+     0.24
+    ],
+    "y": [
+     -0.053,
+     0.783
+    ],
+    "z": [
+     -0.24,
+     0.24
+    ]
+   },
+   "bytes": 280064,
+   "en": null,
+   "file": "players/boy-flower-body.glb",
+   "key": "boy-flower:body",
+   "prims": 52,
+   "skipped": 0,
+   "tri": 9560,
+   "verts": 6878,
+   "zh": null,
+   "v": "56d837eebc"
+  },
+  "boy-flower:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.209,
+     0.209
+    ],
+    "y": [
+     -0.176,
+     0.323
+    ],
+    "z": [
+     -0.219,
+     0.213
+    ]
+   },
+   "bytes": 217700,
+   "en": null,
+   "file": "players/boy-flower-head.glb",
+   "key": "boy-flower:head",
+   "prims": 42,
+   "skipped": 0,
+   "tri": 8032,
+   "verts": 5324,
+   "zh": null,
+   "v": "d60c3c3272"
+  },
+  "boy-flower:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18156,
+   "en": null,
+   "file": "players/boy-flower-legL.glb",
+   "key": "boy-flower:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "18563ed634"
+  },
+  "boy-flower:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18156,
+   "en": null,
+   "file": "players/boy-flower-legR.glb",
+   "key": "boy-flower:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "20336d7c9f"
+  },
+  "boy-flower:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.24,
+     0.24
+    ],
+    "y": [
+     -0.021,
+     1.083
+    ],
+    "z": [
+     -0.24,
+     0.24
+    ]
+   },
+   "bytes": 312048,
+   "en": null,
+   "file": "players/boy-flower-rest.glb",
+   "key": "boy-flower:rest",
+   "prims": 56,
+   "skipped": 0,
+   "tri": 10384,
+   "verts": 7686,
+   "zh": null,
+   "v": "41f6e16b25"
+  },
+  "boy-wizard:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27028,
+   "en": null,
+   "file": "players/boy-wizard-armL.glb",
+   "key": "boy-wizard:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "447cd21ba5"
+  },
+  "boy-wizard:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27028,
+   "en": null,
+   "file": "players/boy-wizard-armR.glb",
+   "key": "boy-wizard:armR",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "02aebdda2f"
+  },
+  "boy-wizard:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.053,
+     1.048
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 162936,
+   "en": null,
+   "file": "players/boy-wizard-body.glb",
+   "key": "boy-wizard:body",
+   "prims": 28,
+   "skipped": 0,
+   "tri": 4408,
+   "verts": 3854,
+   "zh": null,
+   "v": "40a2c7a81d"
+  },
+  "boy-wizard:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.176,
+     0.588
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 100544,
+   "en": null,
+   "file": "players/boy-wizard-head.glb",
+   "key": "boy-wizard:head",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2880,
+   "verts": 2300,
+   "zh": null,
+   "v": "4063acf36e"
+  },
+  "boy-wizard:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18156,
+   "en": null,
+   "file": "players/boy-wizard-legL.glb",
+   "key": "boy-wizard:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "15a12c554d"
+  },
+  "boy-wizard:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18156,
+   "en": null,
+   "file": "players/boy-wizard-legR.glb",
+   "key": "boy-wizard:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "d4b525e28b"
+  },
+  "boy-wizard:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.021,
+     1.348
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 194924,
+   "en": null,
+   "file": "players/boy-wizard-rest.glb",
+   "key": "boy-wizard:rest",
+   "prims": 32,
+   "skipped": 0,
+   "tri": 5232,
+   "verts": 4662,
+   "zh": null,
+   "v": "05286bde7e"
+  },
+  "boy:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27012,
+   "en": null,
+   "file": "players/boy-armL.glb",
+   "key": "boy:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "ea70cf9bc0"
+  },
+  "boy:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27012,
+   "en": null,
+   "file": "players/boy-armR.glb",
+   "key": "boy:armR",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "21f9d02b01"
+  },
+  "boy:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.26,
+     0.26
+    ],
+    "y": [
+     -0.053,
+     0.721
+    ],
+    "z": [
+     -0.26,
+     0.26
+    ]
+   },
+   "bytes": 142900,
+   "en": null,
+   "file": "players/boy-body.glb",
+   "key": "boy:body",
+   "prims": 24,
+   "skipped": 0,
+   "tri": 3928,
+   "verts": 3354,
+   "zh": null,
+   "v": "0d45e7e473"
+  },
+  "boy:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.26,
+     0.26
+    ],
+    "y": [
+     -0.176,
+     0.261
+    ],
+    "z": [
+     -0.26,
+     0.26
+    ]
+   },
+   "bytes": 80528,
+   "en": null,
+   "file": "players/boy-head.glb",
+   "key": "boy:head",
+   "prims": 14,
+   "skipped": 0,
+   "tri": 2400,
+   "verts": 1800,
+   "zh": null,
+   "v": "a9d09390a7"
+  },
+  "boy:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18140,
+   "en": null,
+   "file": "players/boy-legL.glb",
+   "key": "boy:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "4a8e7cf2e4"
+  },
+  "boy:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18140,
+   "en": null,
+   "file": "players/boy-legR.glb",
+   "key": "boy:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "6975cb1e9c"
+  },
+  "boy:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.26,
+     0.26
+    ],
+    "y": [
+     -0.021,
+     1.021
+    ],
+    "z": [
+     -0.26,
+     0.26
+    ]
+   },
+   "bytes": 174892,
+   "en": null,
+   "file": "players/boy-rest.glb",
+   "key": "boy:rest",
+   "prims": 28,
+   "skipped": 0,
+   "tri": 4752,
+   "verts": 4162,
+   "zh": null,
+   "v": "1a4ca3dc5a"
+  },
+  "girl-balloon-wand:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27024,
+   "en": null,
+   "file": "players/girl-balloon-wand-armL.glb",
+   "key": "girl-balloon-wand:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "be2f6d2c54"
+  },
+  "girl-balloon-wand:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     -0.324,
+     0.557
+    ],
+    "z": [
+     -0.108,
+     0.179
+    ]
+   },
+   "bytes": 61712,
+   "en": null,
+   "file": "players/girl-balloon-wand-armR.glb",
+   "key": "girl-balloon-wand:armR",
+   "prims": 13,
+   "skipped": 0,
+   "tri": 1228,
+   "verts": 1404,
+   "zh": null,
+   "v": "fc59bba9f1"
+  },
+  "girl-balloon-wand:balloon": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     0,
+     0.726
+    ],
+    "z": [
+     -0.108,
+     0.108
+    ]
+   },
+   "bytes": 15304,
+   "en": null,
+   "file": "players/girl-balloon-wand-balloon.glb",
+   "key": "girl-balloon-wand:balloon",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 288,
+   "verts": 316,
+   "zh": null,
+   "v": "990c918b0f"
+  },
+  "girl-balloon-wand:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.27,
+     0.27
+    ],
+    "y": [
+     -0.124,
+     0.757
+    ],
+    "z": [
+     -0.27,
+     0.27
+    ]
+   },
+   "bytes": 190848,
+   "en": null,
+   "file": "players/girl-balloon-wand-body.glb",
+   "key": "girl-balloon-wand:body",
+   "prims": 36,
+   "skipped": 0,
+   "tri": 5268,
+   "verts": 4542,
+   "zh": null,
+   "v": "82b0d9fb3b"
+  },
+  "girl-balloon-wand:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.248,
+     0.248
+    ],
+    "y": [
+     -0.176,
+     0.22
+    ],
+    "z": [
+     -0.219,
+     0.199
+    ]
+   },
+   "bytes": 93764,
+   "en": null,
+   "file": "players/girl-balloon-wand-head.glb",
+   "key": "girl-balloon-wand:head",
+   "prims": 17,
+   "skipped": 0,
+   "tri": 3264,
+   "verts": 2204,
+   "zh": null,
+   "v": "da68140424"
+  },
+  "girl-balloon-wand:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18152,
+   "en": null,
+   "file": "players/girl-balloon-wand-legL.glb",
+   "key": "girl-balloon-wand:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "4131f88cc0"
+  },
+  "girl-balloon-wand:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18152,
+   "en": null,
+   "file": "players/girl-balloon-wand-legR.glb",
+   "key": "girl-balloon-wand:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "c4600caee6"
+  },
+  "girl-balloon-wand:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.27,
+     0.27
+    ],
+    "y": [
+     -0.021,
+     1.056
+    ],
+    "z": [
+     -0.27,
+     0.27
+    ]
+   },
+   "bytes": 224072,
+   "en": null,
+   "file": "players/girl-balloon-wand-rest.glb",
+   "key": "girl-balloon-wand:rest",
+   "prims": 40,
+   "skipped": 0,
+   "tri": 6092,
+   "verts": 5350,
+   "zh": null,
+   "v": "1bb716a84d"
+  },
+  "girl-flower:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27012,
+   "en": null,
+   "file": "players/girl-flower-armL.glb",
+   "key": "girl-flower:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "0bf08fca93"
+  },
+  "girl-flower:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27012,
+   "en": null,
+   "file": "players/girl-flower-armR.glb",
+   "key": "girl-flower:armR",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "51405dd76f"
+  },
+  "girl-flower:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.27,
+     0.27
+    ],
+    "y": [
+     -0.053,
+     0.783
+    ],
+    "z": [
+     -0.27,
+     0.27
+    ]
+   },
+   "bytes": 307484,
+   "en": null,
+   "file": "players/girl-flower-body.glb",
+   "key": "girl-flower:body",
+   "prims": 57,
+   "skipped": 0,
+   "tri": 10592,
+   "verts": 7618,
+   "zh": null,
+   "v": "5d4bc4caf0"
+  },
+  "girl-flower:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.248,
+     0.248
+    ],
+    "y": [
+     -0.176,
+     0.323
+    ],
+    "z": [
+     -0.219,
+     0.213
+    ]
+   },
+   "bytes": 245108,
+   "en": null,
+   "file": "players/girl-flower-head.glb",
+   "key": "girl-flower:head",
+   "prims": 48,
+   "skipped": 0,
+   "tri": 9184,
+   "verts": 6044,
+   "zh": null,
+   "v": "a770cd10ca"
+  },
+  "girl-flower:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18140,
+   "en": null,
+   "file": "players/girl-flower-legL.glb",
+   "key": "girl-flower:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "ae63c9fea1"
+  },
+  "girl-flower:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18140,
+   "en": null,
+   "file": "players/girl-flower-legR.glb",
+   "key": "girl-flower:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "529d134fd4"
+  },
+  "girl-flower:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.27,
+     0.27
+    ],
+    "y": [
+     -0.021,
+     1.083
+    ],
+    "z": [
+     -0.27,
+     0.27
+    ]
+   },
+   "bytes": 340712,
+   "en": null,
+   "file": "players/girl-flower-rest.glb",
+   "key": "girl-flower:rest",
+   "prims": 61,
+   "skipped": 0,
+   "tri": 11416,
+   "verts": 8426,
+   "zh": null,
+   "v": "6eb5f65888"
+  },
+  "girl-wizard:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27012,
+   "en": null,
+   "file": "players/girl-wizard-armL.glb",
+   "key": "girl-wizard:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "894ad6432d"
+  },
+  "girl-wizard:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 27012,
+   "en": null,
+   "file": "players/girl-wizard-armR.glb",
+   "key": "girl-wizard:armR",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "b75f40f9ac"
+  },
+  "girl-wizard:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.053,
+     1.048
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 190360,
+   "en": null,
+   "file": "players/girl-wizard-body.glb",
+   "key": "girl-wizard:body",
+   "prims": 33,
+   "skipped": 0,
+   "tri": 5440,
+   "verts": 4594,
+   "zh": null,
+   "v": "92c1232f74"
+  },
+  "girl-wizard:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.176,
+     0.588
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 127956,
+   "en": null,
+   "file": "players/girl-wizard-head.glb",
+   "key": "girl-wizard:head",
+   "prims": 24,
+   "skipped": 0,
+   "tri": 4032,
+   "verts": 3020,
+   "zh": null,
+   "v": "822a60aa21"
+  },
+  "girl-wizard:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18140,
+   "en": null,
+   "file": "players/girl-wizard-legL.glb",
+   "key": "girl-wizard:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "b5544bd583"
+  },
+  "girl-wizard:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18140,
+   "en": null,
+   "file": "players/girl-wizard-legR.glb",
+   "key": "girl-wizard:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "cb650157b4"
+  },
+  "girl-wizard:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.021,
+     1.348
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 223588,
+   "en": null,
+   "file": "players/girl-wizard-rest.glb",
+   "key": "girl-wizard:rest",
+   "prims": 37,
+   "skipped": 0,
+   "tri": 6264,
+   "verts": 5402,
+   "zh": null,
+   "v": "6ab3805ca8"
+  },
+  "girl:armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 26996,
+   "en": null,
+   "file": "players/girl-armL.glb",
+   "key": "girl:armL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "f7fd48c5be"
+  },
+  "girl:armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.253,
+     -0.004
+    ],
+    "z": [
+     -0.045,
+     0.069
+    ]
+   },
+   "bytes": 26996,
+   "en": null,
+   "file": "players/girl-armR.glb",
+   "key": "girl:armR",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 632,
+   "verts": 640,
+   "zh": null,
+   "v": "4b3ab8f802"
+  },
+  "girl:body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.27,
+     0.27
+    ],
+    "y": [
+     -0.053,
+     0.68
+    ],
+    "z": [
+     -0.27,
+     0.27
+    ]
+   },
+   "bytes": 156128,
+   "en": null,
+   "file": "players/girl-body.glb",
+   "key": "girl:body",
+   "prims": 26,
+   "skipped": 0,
+   "tri": 4672,
+   "verts": 3778,
+   "zh": null,
+   "v": "ece2d16d4c"
+  },
+  "girl:head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.248,
+     0.248
+    ],
+    "y": [
+     -0.176,
+     0.22
+    ],
+    "z": [
+     -0.219,
+     0.199
+    ]
+   },
+   "bytes": 93740,
+   "en": null,
+   "file": "players/girl-head.glb",
+   "key": "girl:head",
+   "prims": 17,
+   "skipped": 0,
+   "tri": 3264,
+   "verts": 2204,
+   "zh": null,
+   "v": "d801300c22"
+  },
+  "girl:legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18124,
+   "en": null,
+   "file": "players/girl-legL.glb",
+   "key": "girl:legL",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "94bb2ff484"
+  },
+  "girl:legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.321,
+     -0.028
+    ],
+    "z": [
+     -0.051,
+     0.091
+    ]
+   },
+   "bytes": 18124,
+   "en": null,
+   "file": "players/girl-legR.glb",
+   "key": "girl:legR",
+   "prims": 2,
+   "skipped": 0,
+   "tri": 412,
+   "verts": 404,
+   "zh": null,
+   "v": "126375cfac"
+  },
+  "girl:rest": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.27,
+     0.27
+    ],
+    "y": [
+     -0.021,
+     0.98
+    ],
+    "z": [
+     -0.27,
+     0.27
+    ]
+   },
+   "bytes": 189356,
+   "en": null,
+   "file": "players/girl-rest.glb",
+   "key": "girl:rest",
+   "prims": 30,
+   "skipped": 0,
+   "tri": 5496,
+   "verts": 4586,
+   "zh": null,
+   "v": "3f59511dfd"
   }
  }
 }

@@ -9,6 +9,12 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 import { WORD_MAP, ZONE_NAMES, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
 import { buildPet } from './models.js';
+// 玩家部件 GLB 的变体名：与 scripts/extract-prims.mjs 的 tag 规则一致
+// （性别 + 帽子 + 气球 + 魔杖 → boy / boy-flower / boy-balloon-wand …）
+function playerVariantTag(gender, wear) {
+  return [gender, wear.hat || '', wear.balloon ? 'balloon' : '', wear.wand ? 'wand' : '']
+    .filter(Boolean).join('-');
+}
 import * as assets from './assets.js';   // 词宠 GLB 换装（见 _refreshRanchPets）
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
@@ -321,6 +327,11 @@ export class Game {
 
   _initPlayer() {
     const p = buildPlayer(save.getGender(), save.getWear());
+    // 玩家部件换装：只换每个部件的 children —— 动画驱动的是 legL/legR/armL/armR/head 这些
+    // Group 引用（js/game.js 的 playerParts.*），Group 自身的 transform 与引用必须保留。
+    // rest 指"不在 parts 里的散件"（花帽、魔杖星），用 additive 追加到外层 group。
+    assets.applyParts(p.group, p.parts, 'player',
+      (name) => playerVariantTag(save.getGender(), save.getWear()) + ':' + name, { rest: true });
     this.player = p.group;
     this.playerParts = p.parts;
     this.player.rotation.y = Math.PI; // 面朝北（河流方向）
@@ -5185,6 +5196,11 @@ export class Game {
   _refreshPlayerLook() {
     const old = this.player;
     const p = buildPlayer(save.getGender(), save.getWear());
+    // 玩家部件换装：只换每个部件的 children —— 动画驱动的是 legL/legR/armL/armR/head 这些
+    // Group 引用（js/game.js 的 playerParts.*），Group 自身的 transform 与引用必须保留。
+    // rest 指"不在 parts 里的散件"（花帽、魔杖星），用 additive 追加到外层 group。
+    assets.applyParts(p.group, p.parts, 'player',
+      (name) => playerVariantTag(save.getGender(), save.getWear()) + ':' + name, { rest: true });
     this.player = p.group;
     this.playerParts = p.parts;
     this.player.position.copy(old.position);

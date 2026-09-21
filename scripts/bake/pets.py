@@ -223,7 +223,9 @@ def main():
     failed = []
     for i, cell in enumerate(cells):
         key = cell['key']
-        rel = f'{kind}s/{key}.glb'
+        # 文件名不能带 ':'（Windows 会当成 ADS 流，写不出文件）——文件名用 '-'，逻辑 key 保留
+        safe = key.replace(':', '-')
+        rel = f'{kind}s/{safe}.glb'
         out = os.path.join(a['out'], rel.replace('/', os.sep))
         try:
             built = build_cell(cell, f'{kind}_{key}')

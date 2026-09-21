@@ -61,7 +61,7 @@ STYLE_CREASE_DARKEN = 0.88
 #   npc 4000→6000 / player 8000→10000：同因（玩家带装扮件更多）
 #   ground 60000：对方方案 §五 B2 的定值（含内嵌贴图，见 §十）
 BUDGET = {'gate': 9000, 'pet': 8000, 'landmark': 14000, 'prop': 4000, 'npc': 6000,
-          'player': 10000, 'ground': 60000}
+          'player': 12000, 'ground': 60000}
 
 
 def srgb_f_to_lin(v):

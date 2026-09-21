@@ -101,13 +101,37 @@ const out = await page.evaluate(async ({ kind, limit }) => {
       cells.push({ key: w.id, pet: w.pet, zh: w.zh, en: w.en, prims, nanDropped: g.userData.__nanDropped || 0, bbox: g.userData.__bbox });
     }
   } else if (kind === 'player') {
+    // 按部件提取：动画只驱动 parts 里的这些 Group（腿/手/头/气球），
+    // 换装时对每个部件单独换 children，Group 的 transform 与引用都不动。
+    const PART_NAMES = ['legL', 'legR', 'armL', 'armR', 'body', 'head', 'balloon'];
     for (const gender of ['boy', 'girl']) {
       for (const wear of [{}, { hat: 'wizard' }, { hat: 'flower' }, { balloon: true, wand: true }]) {
         const tag = [gender, wear.hat || '', wear.balloon ? 'balloon' : '', wear.wand ? 'wand' : ''].filter(Boolean).join('-');
-        // buildPlayer 返回 { group, parts }（parts 是腿/手/头的轴心引用，运行时动画要用）
         const built = m.buildPlayer(gender, wear);
         const g = built && built.group ? built.group : built;
-        cells.push({ key: tag, gender, wear, prims: extract(g) });
+        const parts = (built && built.parts) || {};
+        // 先把所有部件从 group 里摘出来单独提取（避免整棵树重复计入）
+        const done = new Set();
+        const donePart = new Set();
+        for (const pn of PART_NAMES) {
+          const part = parts[pn];
+          if (!part || done.has(part)) continue;
+          done.add(part);
+          const prims = extract(part);          // 相对"部件自身"的局部坐标
+          if (!prims.length) continue;
+          cells.push({ key: tag + ':' + pn, variant: tag, part: pn, prims, nanDropped: part.userData.__nanDropped || 0, bbox: part.userData.__bbox });
+        }
+        // 剩下的（不在 parts 里的散件，如气球绳/魔杖星）按"整棵树的差集"提取一次
+        // 部件指纹（矩阵+类型）收集一次，用来把"整树提取"里的部件图元剔除
+        const fp = new Set();
+        for (const pn of PART_NAMES) {
+          const part = parts[pn];
+          if (!part || donePart.has(part)) continue;
+          donePart.add(part);
+          for (const q of extract(part)) fp.add(JSON.stringify(q.matrix) + q.type);
+        }
+        const rest = extract(g).filter((pr) => !fp.has(JSON.stringify(pr.matrix) + pr.type));
+        if (rest.length) cells.push({ key: tag + ':rest', variant: tag, part: 'rest', prims: rest });
       }
     }
   } else if (kind === 'npc') {
@@ -116,7 +140,15 @@ const out = await page.evaluate(async ({ kind, limit }) => {
     const list = (mgr && mgr.npcs) || [];
     for (let i = 0; i < list.length; i++) {
       const n = list[i];
-      cells.push({ key: 'npc' + i, prims: extract(n.group) });
+      // 只提取"腿"（动画驱动 legL/legR 的 position.z）与"其余"两部分：
+      // 其余部分作为一个部件（NPC 的身体不再细分，动画不碰它）
+      const legPrims = extract(n.legL);
+      if (legPrims.length) cells.push({ key: 'npc' + i + ':leg', variant: 'npc' + i, part: 'leg', prims: legPrims, bbox: n.legL.userData.__bbox });
+      const all = extract(n.group);
+      // 去掉两条腿的图元（腿已单独成格）：按"是否属于 legL/legR 子树"过滤
+      const legCount = legPrims.length * 2;
+      const bodyPrims = all.slice(0, Math.max(0, all.length - legCount));
+      if (bodyPrims.length) cells.push({ key: 'npc' + i + ':body', variant: 'npc' + i, part: 'body', prims: bodyPrims });
     }
   }
   return { kind, cells };

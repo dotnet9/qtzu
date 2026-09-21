@@ -120,7 +120,8 @@ function swap(group, scene, entry, opts) {
   // 运行时挂件（名牌 sprite 等标了 userData.keep 的）必须留下：它们由调用方后挂，
   // 不在烘焙资产里，清掉就"校门没名字了"
   const keep = group.children.filter((c) => c.userData && c.userData.keep);
-  for (const c of group.children.slice()) group.remove(c);
+  // additive：只加不清（玩家/NPC 的"散件"挂在外层 group 上，清空会把部件 Group 一起清掉）
+  if (!opts.additive) for (const c of group.children.slice()) group.remove(c);
   const inst = scene.clone(true);   // clone 只复制节点，几何/材质是共享的（同族实例不涨显存）
   inst.traverse((o) => {
     if (!o.isMesh) return;
@@ -135,7 +136,7 @@ function swap(group, scene, entry, opts) {
     }
   });
   group.add(inst);
-  for (const k of keep) group.add(k);
+  if (!opts.additive) for (const k of keep) group.add(k);
   group.userData.asset = entry.file;
   state.hits++;
   if (opts.onSwap) { try { opts.onSwap(group, entry); } catch (e) { console.warn('[assets] onSwap 失败', e); } }
@@ -161,6 +162,24 @@ export function apply(group, kind, key, opts = {}) {
   }).catch(() => false);
 }
 
+// 按部件换装（玩家/NPC）：动画驱动的是 parts 里的 Group 引用
+// （js/game.js 的 playerParts.legL.rotation.x），所以只能对每个部件单独换 children，
+// Group 自身的 transform 与引用必须原样保留。
+//   parts   —— { legL, legR, armL, armR, body, head, balloon, ... }
+//   keyOf   —— (部件名) => 资产 key（不存在的部件自动跳过）
+//   opts.rest —— "不在 parts 里的散件"（花帽/魔杖星等）挂在外层 group 上，用 additive 追加
+export function applyParts(group, parts, kind, keyOf, opts = {}) {
+  if (LOW_END || !parts) return Promise.resolve(0);
+  const jobs = [];
+  for (const [name, obj] of Object.entries(parts)) {
+    if (!obj || !obj.isObject3D) continue;
+    jobs.push(apply(obj, kind, keyOf(name), opts).then((ok) => (ok ? 1 : 0)));
+  }
+  if (opts.rest && group) {
+    jobs.push(apply(group, kind, keyOf('rest'), { ...opts, additive: true }).then((ok) => (ok ? 1 : 0)));
+  }
+  return Promise.all(jobs).then((a) => a.reduce((x, y) => x + y, 0));
+}
 // 预热：进城/换关前把本城要用的资产拉进缓存（不阻塞、失败静默）
 export function preload(kind, keys = []) {
   return ready().then(() => {
