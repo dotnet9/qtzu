@@ -53,11 +53,38 @@ export function createCityTerrain({ pts, cfg }) {
   // 地面材质：细节贴图（近中性灰度）× 顶点色（分区配色）= "写实纹理 + 游戏配色"。
   // 去掉 flatShading：台地的层次由高度与色带表达，表面靠法线细节，不再是"刻出来的一层层硬面片"。
   const gTex = grassDetail(256, 11);
-  const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+  const mat = new THREE.MeshStandardMaterial({
     vertexColors: true, map: gTex.map, normalMap: gTex.normalMap,
     normalScale: new THREE.Vector2(0.55, 0.55),
     roughness: 0.95, metalness: 0, side: THREE.DoubleSide,
-  }));
+  });
+  // 区域色贴图：顶点色只到网格分辨率（≈1.16 单位），1024² 贴图是 0.17 单位/texel（细 7 倍），
+  // 台地/农田/主街/广场的边界因此不再有"网格级锯齿"。触屏跳过（省内存与构建时间）。
+  const coarse = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+  const regTex = coarse ? null : buildRegionTexture(F, 1024, minX, minZ, F.step);
+  if (regTex) {
+    mat.vertexColors = false;      // 区域色改由贴图提供，否则与顶点色相乘 = 双重着色
+    mat.needsUpdate = true;        // 必须显式失效：three 不会因为改 vertexColors 自动重编着色器
+                                   //（漏了这一行 → 顶点色与区域色同时生效 = 乘两遍，暗 10%、饱和 +60%）
+    mat.onBeforeCompile = (shader) => {
+      shader.uniforms.uRegion = { value: regTex };
+      shader.uniforms.uRegMin = { value: new THREE.Vector2(minX, minZ) };
+      shader.uniforms.uRegSize = { value: new THREE.Vector2(maxX - minX, maxZ - minZ) };
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>',
+          '#include <common>\nuniform sampler2D uRegion;\nuniform vec2 uRegMin;\nuniform vec2 uRegSize;')
+        .replace('#include <map_fragment>', [
+          '#include <map_fragment>',
+          '  {',
+          '    // 由"平铺 UV"反推局部世界坐标（uv = x / UV_TILE），再映射到区域色贴图',
+          '    vec2 regUv = (vMapUv * ' + UV_TILE.toFixed(3) + ' - uRegMin) / uRegSize;',
+          '    diffuseColor.rgb *= texture2D(uRegion, clamp(regUv, 0.0, 1.0)).rgb;',
+          '  }',
+        ].join('\n'));
+    };
+    mat.customProgramCacheKey = () => 'terrain-region-v1';
+  }
+  const mesh = new THREE.Mesh(geo, mat);
   mesh.receiveShadow = true; mesh.castShadow = true;
   mesh.name = 'city-ground';   // 名字供"换装时隐藏程序化地面"用（js/world.js 的 ground-slot）
   group.add(mesh);
@@ -229,6 +256,51 @@ export function createCityTerrain({ pts, cfg }) {
     heightAtLocal,                                    // 局部坐标（相对岛心）
     heightAtWorld: (wx, wz) => heightAtLocal(wx, wz), // world.js 负责换成世界坐标包装
   };
+}
+
+// 逐像素烘焙"区域色"贴图：直接用 terrain-field 的 zoneColor（与体检/顶点色同源的一份配色函数），
+// 所以贴图与顶点色的**颜色规则完全一致**，只是分辨率高了 7 倍。返回 null 表示这一步跳过（触屏/失败）。
+function buildRegionTexture(F, size, gx0, gz0, step) {
+  try {
+    const cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    const c = cv.getContext('2d');
+    const img = c.createImageData(size, size);
+    const { minX, maxX, minZ, maxZ, hsSm, nx, nz, zoneColor } = F;
+    const spanX = maxX - minX, spanZ = maxZ - minZ;
+    const out = [0, 0, 0];
+    const gsz = spanX / nx;                       // 与网格同尺度：高度从 hsSm 取值，省掉逐像素的高度场求值
+    // 双线性采样 hsSm：就近取值会让台地带在边界处"涨大"（带位置与顶点色那条路径不一致，
+    // 实测表现为整帧饱和 +60%、亮度 -10%）。插值后带边界落回原处。
+    const hAt = (fx, fz) => {
+      const gx = Math.max(0, Math.min(nx, (fx - gx0) / gsz));
+      const gz = Math.max(0, Math.min(nz, (fz - gz0) / gsz));
+      const i0 = Math.min(nx - 1, Math.floor(gx)), j0 = Math.min(nz - 1, Math.floor(gz));
+      const tx = gx - i0, tz = gz - j0;
+      const a = hsSm[j0][i0], b = hsSm[j0][i0 + 1], c = hsSm[j0 + 1][i0], d = hsSm[j0 + 1][i0 + 1];
+      return (a * (1 - tx) + b * tx) * (1 - tz) + (c * (1 - tx) + d * tx) * tz;
+    };
+    for (let py = 0; py < size; py++) {
+      const z = minZ + (py + 0.5) / size * spanZ;
+      for (let px = 0; px < size; px++) {
+        const x = minX + (px + 0.5) / size * spanX;
+        const hSm = hAt(x, z);
+        zoneColor(x, z, hSm, Math.floor(hSm / step + 1e-4), out);
+        // 写成线性值（与顶点色的 zoneColorLinear 同一套数值），贴图标 NoColorSpace 不被解码
+        out[0] = srgbToLinear(out[0]); out[1] = srgbToLinear(out[1]); out[2] = srgbToLinear(out[2]);
+        const k = (py * size + px) * 4;
+        img.data[k] = out[0] * 255; img.data[k + 1] = out[1] * 255; img.data[k + 2] = out[2] * 255; img.data[k + 3] = 255;
+      }
+    }
+    c.putImageData(img, 0, 0);
+    const t = new THREE.CanvasTexture(cv);
+    t.colorSpace = THREE.NoColorSpace;     // 上面写的是线性值：标 sRGB 会被再解一次 gamma（颜色会暗且过饱和）
+    t.minFilter = THREE.LinearFilter;      // 世界范围一次性映射，不重复平铺，不需要 mipmap
+    t.magFilter = THREE.LinearFilter;
+    t.generateMipmaps = false;
+    t.anisotropy = 4;
+    return t;
+  } catch (e) { console.warn('[terrain] 区域色贴图生成失败，回退顶点色:', e && e.message); return null; }
 }
 
 const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a || 1))); return t * t * (3 - 2 * t); };

@@ -72,8 +72,11 @@ const shot = async (name, cam) => {
     const st = g._currentStage();
     const u = (v) => v;   // 便于读
     if (c.kind === 'default') {
+      // 显式设成"游戏默认取景"（与 game.js 的默认俯角/距离一致）：不这么做就得等相机平滑收敛，
+      // 两次运行差几像素就会让分带统计（scripts/img.mjs）不可比
       g.player.position.set(st.cx, 0, st.cz + st.r * 0.16);
       g.player.rotation.y = Math.PI;
+      g.camYaw = 0; g.camPitch = 0.30; g.camDist = g.camDistTarget = 6.6;
     } else if (c.kind === 'street') {
       // 迎宾主街：站在城心南侧回看主地标（默认游玩机位，最能代表日常观感）
       g.player.position.set(st.cx, 0, st.cz + st.r * 0.16);
