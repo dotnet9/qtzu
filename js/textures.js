@@ -263,6 +263,28 @@ export function snowDetail(size = 256, seed = 97) {
   });
 }
 
+// 砖墙法线：布局与 js/world.js 的 brickTexture() 严格对齐（4 行 × 2 列错缝、缝宽 2px、
+// 底部 4.5px 墙帽带），所以两者共用同一套 UV 空间、尺度不会错位。
+// 之所以从"你调过的 albedo"反推法线，而不是换成我库里的 brickDetail：那套灰绿砖色是你调好的。
+export function brickNormal(size = 128) {
+  return cached(`brickN:${size}`, () => {
+    const hgt = canvasOf(size);
+    const c = hgt.getContext('2d');
+    const rowH = size / 4, colW = size / 2;
+    c.fillStyle = '#333333'; c.fillRect(0, 0, size, size);        // 缝：低
+    for (let row = 0; row < 4; row++) {
+      const off = row % 2 ? colW / 2 : 0;
+      for (let k = 0; k < 2; k++) {
+        const x = (k * colW + off) % size;
+        c.fillStyle = row % 2 ? '#DDDDDD' : '#C8C8C8';            // 砖面：高（错缝略亮/暗）
+        c.fillRect(x + 1, row * rowH + 2, colW - 2, rowH - 4);
+      }
+    }
+    c.fillStyle = '#F0F0F0'; c.fillRect(0, size - 4.5, size, 4.5); // 墙帽带：最高
+    return { normalMap: mkTex(normalFromHeight(hgt, 2.2, size), false) };
+  });
+}
+
 // 通用细节法线（没有明确分区的地方给地面补微起伏：只有法线，不占 albedo 槽）
 export function grainNormal(size = 256, seed = 131) {
   return cached(`grain:${size}:${seed}`, () => {

@@ -12,7 +12,7 @@
 //   - 所有数值（高度/配色/水面）都来自 js/terrain-field.js，渲染与寻高/涉水/体检同源
 import * as THREE from 'three';
 import { makeHeightField, srgbToLinear } from './terrain-field.js';
-import { grassDetail } from './textures.js';
+import { grassDetail, rockDetail } from './textures.js';
 
 export function createCityTerrain({ pts, cfg }) {
   const F = makeHeightField({ pts, cfg });
@@ -62,27 +62,52 @@ export function createCityTerrain({ pts, cfg }) {
   mesh.name = 'city-ground';   // 名字供"换装时隐藏程序化地面"用（js/world.js 的 ground-slot）
   group.add(mesh);
 
-  /* ---- 雪山峰（圆锥 + 雪顶渐变的顶点色） ---- */
+  /* ---- 雪山峰：噪声位移的岩体 + 岩理贴图 + 雪线混合 ---- */
   const peaksOut = [];
   const peakMeshes = [];
   if (F.features.peaks.length) {
-    const pkMat = new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1 });
+    const rk = rockDetail(256, 71);
+    const pkMat = new THREE.MeshStandardMaterial({
+      vertexColors: true, map: rk.map, normalMap: rk.normalMap,
+      normalScale: new THREE.Vector2(0.9, 0.9), roughness: 0.97, metalness: 0,
+    });
     for (const def of F.features.peaks) {
       const [px, pz] = F.P2(def), ph = def[2], pr = def[3];
-      // 雪峰锥体是独立几何、不吃地形沙化，但必须整座落在轮廓内，否则会挂在城外
+      // 雪峰是独立几何、不吃地形沙化，但必须整座落在轮廓内，否则会挂在城外
       if (!inPoly(px, pz) || dEdge(px, pz) < 6) { console.warn('[terrain] 雪峰在轮廓外，已跳过:', def); continue; }
-      const geo2 = new THREE.ConeGeometry(pr, ph, 6);
-      const pa = geo2.attributes.position, colA = [];
+      // 12 边 8 段：够做出岩脊起伏，面数仍很低（一座 ≈ 200 面）
+      const geo2 = new THREE.ConeGeometry(pr, ph, 12, 8);
+      const pa = geo2.attributes.position, colA = [], uvA = [];
       const baseY = heightAtLocal(px, pz);
+      const sd = def[0] * 1.7 + def[1] * 0.9;          // 每座峰的噪声相位（同一城每次一致）
       for (let i = 0; i < pa.count; i++) {
-        const vy = pa.getY(i) + ph / 2;
-        const sn = smoothstep(ph * 0.42, ph * 0.62, vy);
-        const j = 0.95 + 0.1 * rng();
-        // 顶点色按线性写：0.26/0.95 这些是按人眼挑的 sRGB 值（雪顶近白），不转换就会被当线性值乘进去
-        // → 整座雪峰发白。与地面发白是同一个根因（见 js/terrain-field.js 的 srgbToLinear 注释）
-        colA.push(srgbToLinear((0.26 + (0.95 - 0.26) * sn) * j), srgbToLinear((0.22 + (0.97 - 0.22) * sn) * j), srgbToLinear((0.20 + (1.0 - 0.20) * sn) * j));
+        const x0 = pa.getX(i), y0 = pa.getY(i), z0 = pa.getZ(i);
+        const t = Math.min(1, Math.max(0, (y0 + ph / 2) / ph));   // 0 底 / 1 顶
+        const w = Math.sin(Math.PI * t);                          // 底与顶位移 0，中段最大
+        const ang = Math.atan2(z0, x0);
+        // 多段正弦噪声：低频定山脊走向、中频定岩壁凹凸、高频定碎石细节
+        const n = Math.sin(ang * 3.1 + sd) * 0.5
+          + Math.sin(ang * 7.3 + y0 * 0.9 + sd * 1.3) * 0.3
+          + Math.sin(ang * 13.7 - y0 * 2.1 + sd * 0.7) * 0.2;
+        const k = 1 + n * 0.22 * w;
+        pa.setX(i, x0 * k);
+        pa.setZ(i, z0 * k);
+        pa.setY(i, y0 + n * ph * 0.05 * w);
+        // UV：绕峰 6 圈、竖向 4 圈（岩理贴图平铺；峰体是独立投影，接缝在背面）
+        uvA.push((ang / (Math.PI * 2) + 0.5) * 6, t * 4);
+        // 顶点色：雪线以下岩色（受噪声调制，像岩缝的明暗）→ 以上雪色，平滑过渡。
+        // 必须 srgbToLinear：0.26/0.95 这些是按人眼挑的 sRGB 值，不转换会被当线性值乘进去 → 整座发白
+        const sn = smoothstep(0.40, 0.66, t + n * 0.06);
+        const shade = 0.86 + 0.28 * n;
+        colA.push(
+          srgbToLinear((0.30 * shade + (0.95 - 0.30 * shade) * sn)),
+          srgbToLinear((0.26 * shade + (0.97 - 0.26 * shade) * sn)),
+          srgbToLinear((0.24 * shade + (1.0 - 0.24 * shade) * sn)));
       }
+      geo2.setAttribute('position', pa);
       geo2.setAttribute('color', new THREE.Float32BufferAttribute(colA, 3));
+      geo2.setAttribute('uv', new THREE.Float32BufferAttribute(uvA, 2));
+      geo2.computeVertexNormals();
       const m = new THREE.Mesh(geo2, pkMat);
       m.position.set(px, baseY + ph / 2 - 0.4, pz);
       m.rotation.y = rng() * Math.PI;

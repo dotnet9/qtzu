@@ -5,6 +5,7 @@ import { ISLANDS } from './words.js';
 import { buildUniGate, attachGateAsset } from './uni-gate-models.js';
 import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 import { createCityTerrain } from './terrain.js';
+import { brickNormal } from './textures.js';
 import * as assets from './assets.js';
 
 const M = (color, o = {}) => new THREE.MeshStandardMaterial({
@@ -71,6 +72,23 @@ function brickTexture() {
   _brickTex = tex;
   return tex;
 }
+
+// 确定性 PRNG（同种子同序列）：城墙垛口/岩裙这类"看起来随机"的细节用它，
+// 避免 Math.random 导致每次进城都不一样（视觉上像在抖）。
+const wrngOf = (seed) => {
+  let a = (seed | 0) || 1;
+  return () => {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+};
+const seedOfPoints = (list) => {
+  let h = 2166136261;
+  for (const q of list) h = Math.imul(h ^ Math.round(q[0] * 97 + q[1] * 131), 16777619);
+  return h | 0;
+};
 
 // 沿闭合曲线挤出的墙体几何：外壁/内壁/顶面三幅独立顶点（法线分面更硬朗）
 function buildWallGeometry(curve, H, THICK) {
@@ -1199,11 +1217,17 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         const { geo: wallGeo, samples, normals, arcs, len } = buildWallGeometry(curve, H, THICK);
         // 外侧方向：取一个样本点测试内外，整条边界绕向一致
         const outerSign = ptIn(samples[0].x + normals[0][0] * 2, samples[0].z + normals[0][1] * 2) ? -1 : 1;
-        const wall = new THREE.Mesh(wallGeo, new THREE.MeshStandardMaterial({ map: brickTexture(), roughness: 0.95, side: THREE.DoubleSide }));
+        // 法线与 albedo 同 UV 空间（见 textures.js 的 brickNormal）：砖块因此有了凹凸，
+        // 原来只有平面贴图，远看就是一条平墙
+        const wall = new THREE.Mesh(wallGeo, new THREE.MeshStandardMaterial({
+          map: brickTexture(), normalMap: brickNormal().normalMap,
+          normalScale: new THREE.Vector2(0.75, 0.75), roughness: 0.95, side: THREE.DoubleSide,
+        }));
         grp.add(wall);
         procGround.push(wall);
         // 垛口：沿墙顶外侧等距小块（InstancedMesh，节奏感的关键）
         const merlonGap = 3.4;
+        const rng = wrngOf(seedOfPoints(pts));   // 垛口细节的确定性随机源
         const merlonN = Math.max(2, Math.floor(len / merlonGap));
         const merlons = new THREE.InstancedMesh(
           new THREE.BoxGeometry(1.5, 1.1, 1.0),
@@ -1212,8 +1236,15 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         );
         {
           const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), sc = new THREE.Vector3(1, 1, 1);
+          // 尺寸/位置抖动：等距等大的垛口是"灰色拉链"的来源。±13% 的尺寸 + ±0.35 的错位，
+          // 再加约 8% 的缺失与轻微色差，读起来才是"人手砌的旧城墙"。
+          const mCol = new THREE.Color();
           for (let k = 0; k < merlonN; k++) {
-            const target = (k + 0.5) * merlonGap;
+            // 少数垛口塌了/被拆过：规模缩到极小（InstancedMesh 不能真的删实例，缩到看不见最省）
+            const broken = rng() < 0.08;
+            const jw = 0.87 + rng() * 0.26, jh = 0.86 + rng() * 0.3, jd = 0.9 + rng() * 0.2;
+            sc.set(broken ? 0.05 : jw, broken ? 0.05 : jh, broken ? 0.05 : jd);
+            const target = (k + 0.5) * merlonGap + (rng() - 0.5) * 0.7;
             // 找弧长最近的采样点
             let i = Math.round(target / (len / (samples.length - 1)));
             i = Math.max(0, Math.min(samples.length - 1, i));
@@ -1228,8 +1259,12 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
               q, sc
             );
             merlons.setMatrixAt(k, m4);
+            // 每块轻微色差（旧砖的深浅不匀）
+            const tone = 0.88 + rng() * 0.24;
+            merlons.setColorAt(k, mCol.setRGB(tone, tone * 1.01, tone * 1.005));
           }
           merlons.instanceMatrix.needsUpdate = true;
+          if (merlons.instanceColor) merlons.instanceColor.needsUpdate = true;
         }
         grp.add(merlons);
         procGround.push(merlons);
