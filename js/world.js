@@ -5,7 +5,7 @@ import { ISLANDS } from './words.js';
 import { buildUniGate, attachGateAsset } from './uni-gate-models.js';
 import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 import { createCityTerrain } from './terrain.js';
-import { brickNormal, grainNormal } from './textures.js';
+import { brickNormal, grainNormal, grassDetail } from './textures.js';
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 import * as assets from './assets.js';
 
@@ -1507,12 +1507,30 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           // 共享法线：GLB 只带 TEXCOORD_0，法线图用运行时那张共享贴图（每城省一份体积）。
           // 改材质后必须 needsUpdate —— three 不会自动重编着色器（漏了就白挂）。
           const gn = grainNormal(256, 131).normalMap;
+          // 平铺细节（草叶颗粒）：与程序化地面用的是同一张图，所以两条路径的近景质感一致。
+          // 注意采样坐标：色图走 TEXCOORD_1（整城归一化），平铺细节必须走 TEXCOORD_0
+          // —— 在着色器里就是 vNormalMapUv（法线用的那一套），拿 vMapUv 去采会得到一团糊。
+          const gd = grassDetail(256, 11).map;
+          const DETAIL_KEY = 'ground-detail-v1';
           (slotG || grp).traverse((o) => {
             if (!o.isMesh) return;
             for (const m of (Array.isArray(o.material) ? o.material : [o.material])) {
               if (!m || !m.isMeshStandardMaterial) continue;
               m.normalMap = gn;
               m.normalScale = new THREE.Vector2(0.5, 0.5);
+              if (m.map) {   // 只有地层面（带区域色图）才叠平铺细节
+                m.onBeforeCompile = (shader) => {
+                  shader.uniforms.uDetail = { value: gd };
+                  shader.fragmentShader = shader.fragmentShader
+                    .replace('#include <common>', '#include <common>\nuniform sampler2D uDetail;')
+                    .replace('#include <map_fragment>',
+                      '#include <map_fragment>\n'
+                      // 1.12 是补偿：烘焙地面的 COLOR_0 是 AO（均值约 0.95），比程序化那条路径多压一层，
+                      // 乘上增益后两条路径的整体亮度对齐（实测差从 -12% 收到 ±3%）
+                      + '  diffuseColor.rgb *= texture2D(uDetail, vNormalMapUv).rgb * 1.12;');
+                };
+                m.customProgramCacheKey = () => DETAIL_KEY;
+              }
               m.needsUpdate = true;
             }
           });

@@ -294,6 +294,9 @@ def albedo_material(spec):
     tex = nt.nodes.new('ShaderNodeTexImage'); tex.location = (-180, 60)
     tex.image = bpy.data.images.load(spec['albedo'])
     tex.image.colorspace_settings.name = 'sRGB'
+    # 必须显式接 AlbedoUV：不接就用默认（第一层 = 平铺 UV）→ 色图被重复平铺
+    uvm = nt.nodes.new('ShaderNodeUVMap'); uvm.location = (-400, 60); uvm.uv_map = 'AlbedoUV'
+    nt.links.new(uvm.outputs['UV'], tex.inputs['Vector'])
     nt.links.new(tex.outputs['Color'], bsdf.inputs['Base Color'])
     return mat
 
@@ -316,13 +319,23 @@ def build_one(spec):
     for poly, smooth, mi in zip(me.polygons, lay.smooth, lay.mat):
         poly.use_smooth = smooth
         poly.material_index = mi
-    # TEXCOORD_0：世界/uvTile（平铺）。地形面用它取 albedo（一次性映射）与法线（平铺）；
-    # 其它部件也带上 UV，这样运行时能统一给所有材质挂同一张微起伏法线。
-    uvl = me.uv_layers.new(name='UVMap')
+    # 两套 UV（层的顺序即 TEXCOORD_0 / TEXCOORD_1）：
+    #   DetailUV = 世界/uvTile（平铺）→ 运行时挂的共享法线用
+    #   AlbedoUV = 包围盒归一化（整城一次）→ 区域色图用
+    # 必须分开：色图若跟着平铺 UV 走，整城配色会被每 4.5 单位重复一次（马赛克）——
+    # 这正是第一次烘焙后"右侧观感很差"的原因。
     tile = float(spec.get('uvTile', 4.5))
+    g0 = spec['grid']
+    span_x = max(1e-6, g0['nx'] * g0['gsz'])
+    span_z = max(1e-6, g0['nz'] * g0['gsz'])
+    uv_detail = me.uv_layers.new(name='DetailUV')
+    uv_albedo = me.uv_layers.new(name='AlbedoUV')
     for loop in me.loops:
         co = me.vertices[loop.vertex_index].co
-        uvl.data[loop.index].uv = (co.x / tile, co.z / tile)
+        # 注意：Blender 的 co.z 是高度，水平深度是 co.y（导出 Y-up 后 co.y → glTF -z）。
+        # 第一版把 V 轴写成 co.z，导致整城贴着贴图的一条水平线采样（uv1.v 恒为 0.494）。
+        uv_detail.data[loop.index].uv = (co.x / tile, -co.y / tile)
+        uv_albedo.data[loop.index].uv = ((co.x - g0['minX']) / span_x, (-co.y - g0['minZ']) / span_z)
     me.update()
     ob = bpy.data.objects.new(name, me)
     bpy.context.collection.objects.link(ob)
