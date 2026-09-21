@@ -24,7 +24,7 @@
   },
   "player": {
    "blender": "4.5.14 LTS",
-   "generated": "2026-09-21T21:18:47",
+   "generated": "2026-09-21T21:27:04",
    "count": 50
   }
  },
@@ -27871,24 +27871,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27040,
+   "bytes": 32156,
    "en": null,
    "file": "players/boy-balloon-wand-armL.glb",
    "key": "boy-balloon-wand:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "f834bd1190"
+   "v": "55fdad529d"
   },
   "boy-balloon-wand:armR": {
    "kind": "player",
@@ -27903,20 +27903,20 @@
      0.037
     ],
     "z": [
-     -0.045,
+     -0.049,
      0.179
     ]
    },
-   "bytes": 46368,
+   "bytes": 51484,
    "en": null,
    "file": "players/boy-balloon-wand-armR.glb",
    "key": "boy-balloon-wand:armR",
-   "prims": 10,
+   "prims": 11,
    "skipped": 0,
-   "tri": 940,
-   "verts": 1088,
+   "tri": 1132,
+   "verts": 1212,
    "zh": null,
-   "v": "b277f39c6c"
+   "v": "42be4c8387"
   },
   "boy-balloon-wand:balloon": {
    "kind": "player",
@@ -27991,16 +27991,16 @@
      0.26
     ]
    },
-   "bytes": 44084,
+   "bytes": 67696,
    "en": null,
    "file": "players/boy-balloon-wand-head.glb",
    "key": "boy-balloon-wand:head",
-   "prims": 8,
+   "prims": 12,
    "skipped": 0,
-   "tri": 1248,
-   "verts": 984,
+   "tri": 2016,
+   "verts": 1504,
    "zh": null,
-   "v": "af549259f2"
+   "v": "ea9fa5ab87"
   },
   "boy-balloon-wand:legL": {
    "kind": "player",
@@ -28067,24 +28067,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27028,
+   "bytes": 32144,
    "en": null,
    "file": "players/boy-flower-armL.glb",
    "key": "boy-flower:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "96622410ed"
+   "v": "bd02ef2bbd"
   },
   "boy-flower:armR": {
    "kind": "player",
@@ -28095,24 +28095,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27028,
+   "bytes": 32144,
    "en": null,
    "file": "players/boy-flower-armR.glb",
    "key": "boy-flower:armR",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "e4ab2d4a63"
+   "v": "5503ef7e3a"
   },
   "boy-flower:body": {
    "kind": "player",
@@ -28159,16 +28159,16 @@
      0.213
     ]
    },
-   "bytes": 181216,
+   "bytes": 204832,
    "en": null,
    "file": "players/boy-flower-head.glb",
    "key": "boy-flower:head",
-   "prims": 36,
+   "prims": 40,
    "skipped": 0,
-   "tri": 6880,
-   "verts": 4508,
+   "tri": 7648,
+   "verts": 5028,
    "zh": null,
-   "v": "6951fe2877"
+   "v": "9c15405757"
   },
   "boy-flower:legL": {
    "kind": "player",
@@ -28235,24 +28235,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27028,
+   "bytes": 32144,
    "en": null,
    "file": "players/boy-wizard-armL.glb",
    "key": "boy-wizard:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "447cd21ba5"
+   "v": "da028764b7"
   },
   "boy-wizard:armR": {
    "kind": "player",
@@ -28263,24 +28263,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27028,
+   "bytes": 32144,
    "en": null,
    "file": "players/boy-wizard-armR.glb",
    "key": "boy-wizard:armR",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "02aebdda2f"
+   "v": "3a4fba0878"
   },
   "boy-wizard:body": {
    "kind": "player",
@@ -28327,16 +28327,16 @@
      0.28
     ]
    },
-   "bytes": 64076,
+   "bytes": 87684,
    "en": null,
    "file": "players/boy-wizard-head.glb",
    "key": "boy-wizard:head",
-   "prims": 12,
+   "prims": 16,
    "skipped": 0,
-   "tri": 1728,
-   "verts": 1484,
+   "tri": 2496,
+   "verts": 2004,
    "zh": null,
-   "v": "64fffa4e05"
+   "v": "a20c68bf22"
   },
   "boy-wizard:legL": {
    "kind": "player",
@@ -28403,24 +28403,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27012,
+   "bytes": 32132,
    "en": null,
    "file": "players/boy-armL.glb",
    "key": "boy:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "ea70cf9bc0"
+   "v": "ed82e3b32d"
   },
   "boy:armR": {
    "kind": "player",
@@ -28431,24 +28431,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27012,
+   "bytes": 32132,
    "en": null,
    "file": "players/boy-armR.glb",
    "key": "boy:armR",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "21f9d02b01"
+   "v": "0caf54f10f"
   },
   "boy:body": {
    "kind": "player",
@@ -28495,16 +28495,16 @@
      0.26
     ]
    },
-   "bytes": 44060,
+   "bytes": 67668,
    "en": null,
    "file": "players/boy-head.glb",
    "key": "boy:head",
-   "prims": 8,
+   "prims": 12,
    "skipped": 0,
-   "tri": 1248,
-   "verts": 984,
+   "tri": 2016,
+   "verts": 1504,
    "zh": null,
-   "v": "58c0959543"
+   "v": "2b2e54e3e3"
   },
   "boy:legL": {
    "kind": "player",
@@ -28571,24 +28571,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27024,
+   "bytes": 32144,
    "en": null,
    "file": "players/girl-balloon-wand-armL.glb",
    "key": "girl-balloon-wand:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "be2f6d2c54"
+   "v": "5455ec36cb"
   },
   "girl-balloon-wand:armR": {
    "kind": "player",
@@ -28603,20 +28603,20 @@
      0.037
     ],
     "z": [
-     -0.045,
+     -0.049,
      0.179
     ]
    },
-   "bytes": 46352,
+   "bytes": 51472,
    "en": null,
    "file": "players/girl-balloon-wand-armR.glb",
    "key": "girl-balloon-wand:armR",
-   "prims": 10,
+   "prims": 11,
    "skipped": 0,
-   "tri": 940,
-   "verts": 1088,
+   "tri": 1132,
+   "verts": 1212,
    "zh": null,
-   "v": "29e3b3ea62"
+   "v": "a03fbaadef"
   },
   "girl-balloon-wand:balloon": {
    "kind": "player",
@@ -28691,16 +28691,16 @@
      0.199
     ]
    },
-   "bytes": 59732,
+   "bytes": 83348,
    "en": null,
    "file": "players/girl-balloon-wand-head.glb",
    "key": "girl-balloon-wand:head",
-   "prims": 11,
+   "prims": 15,
    "skipped": 0,
-   "tri": 2112,
-   "verts": 1388,
+   "tri": 2880,
+   "verts": 1908,
    "zh": null,
-   "v": "3acf552324"
+   "v": "8b0a5ee600"
   },
   "girl-balloon-wand:legL": {
    "kind": "player",
@@ -28767,24 +28767,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27012,
+   "bytes": 32132,
    "en": null,
    "file": "players/girl-flower-armL.glb",
    "key": "girl-flower:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "0bf08fca93"
+   "v": "0b80d940b3"
   },
   "girl-flower:armR": {
    "kind": "player",
@@ -28795,24 +28795,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27012,
+   "bytes": 32132,
    "en": null,
    "file": "players/girl-flower-armR.glb",
    "key": "girl-flower:armR",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "51405dd76f"
+   "v": "61e5677ac1"
   },
   "girl-flower:body": {
    "kind": "player",
@@ -28859,16 +28859,16 @@
      0.213
     ]
    },
-   "bytes": 211064,
+   "bytes": 234680,
    "en": null,
    "file": "players/girl-flower-head.glb",
    "key": "girl-flower:head",
-   "prims": 42,
+   "prims": 46,
    "skipped": 0,
-   "tri": 8032,
-   "verts": 5228,
+   "tri": 8800,
+   "verts": 5748,
    "zh": null,
-   "v": "2f192d7700"
+   "v": "833aab4a33"
   },
   "girl-flower:legL": {
    "kind": "player",
@@ -28935,24 +28935,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27012,
+   "bytes": 32132,
    "en": null,
    "file": "players/girl-wizard-armL.glb",
    "key": "girl-wizard:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "894ad6432d"
+   "v": "eb8307af89"
   },
   "girl-wizard:armR": {
    "kind": "player",
@@ -28963,24 +28963,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 27012,
+   "bytes": 32132,
    "en": null,
    "file": "players/girl-wizard-armR.glb",
    "key": "girl-wizard:armR",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "b75f40f9ac"
+   "v": "3f9564ebff"
   },
   "girl-wizard:body": {
    "kind": "player",
@@ -29027,16 +29027,16 @@
      0.28
     ]
    },
-   "bytes": 93916,
+   "bytes": 117532,
    "en": null,
    "file": "players/girl-wizard-head.glb",
    "key": "girl-wizard:head",
-   "prims": 18,
+   "prims": 22,
    "skipped": 0,
-   "tri": 2880,
-   "verts": 2204,
+   "tri": 3648,
+   "verts": 2724,
    "zh": null,
-   "v": "13a1fb70b7"
+   "v": "acf8a44120"
   },
   "girl-wizard:legL": {
    "kind": "player",
@@ -29103,24 +29103,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 26996,
+   "bytes": 32116,
    "en": null,
    "file": "players/girl-armL.glb",
    "key": "girl:armL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "f7fd48c5be"
+   "v": "35d8811589"
   },
   "girl:armR": {
    "kind": "player",
@@ -29131,24 +29131,24 @@
      0.057
     ],
     "y": [
-     -0.253,
+     -0.248,
      -0.004
     ],
     "z": [
-     -0.045,
-     0.069
+     -0.049,
+     0.08
     ]
    },
-   "bytes": 26996,
+   "bytes": 32116,
    "en": null,
    "file": "players/girl-armR.glb",
    "key": "girl:armR",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 632,
-   "verts": 640,
+   "tri": 824,
+   "verts": 764,
    "zh": null,
-   "v": "4b3ab8f802"
+   "v": "f94ee457dd"
   },
   "girl:body": {
    "kind": "player",
@@ -29195,16 +29195,16 @@
      0.199
     ]
    },
-   "bytes": 59708,
+   "bytes": 83320,
    "en": null,
    "file": "players/girl-head.glb",
    "key": "girl:head",
-   "prims": 11,
+   "prims": 15,
    "skipped": 0,
-   "tri": 2112,
-   "verts": 1388,
+   "tri": 2880,
+   "verts": 1908,
    "zh": null,
-   "v": "0067fc8018"
+   "v": "735d591d26"
   },
   "girl:legL": {
    "kind": "player",
