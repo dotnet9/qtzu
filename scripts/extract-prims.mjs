@@ -67,6 +67,7 @@ const out = await page.evaluate(async ({ kind, limit }) => {
     const prims = [];
     let nanDropped = 0;
     let keptDropped = 0;
+    const localBox = new THREE.Box3();
     let partDropped = 0;
     root.traverse((o) => {
       if (!o.isMesh && !o.isSprite) return;
@@ -84,6 +85,9 @@ const out = await page.evaluate(async ({ kind, limit }) => {
       // 但会让 Blender 侧整格失败 → 这里直接丢掉并记数
       const raw = local.elements.map((v) => Math.round(v * 1e4) / 1e4);
       if (raw.some((v) => !Number.isFinite(v))) { nanDropped++; return; }
+      // 局部系包围盒（与图元矩阵同一基准）：审计用它做"烘焙 == 源"的对账
+      if (!g.boundingBox) g.computeBoundingBox();
+      if (g.boundingBox) localBox.union(g.boundingBox.clone().applyMatrix4(local));
       prims.push({
         type: g.type,
         params: {
@@ -94,6 +98,18 @@ const out = await page.evaluate(async ({ kind, limit }) => {
           arc: p.arc, seg: p.segments, ri: p.innerRadius, ro: p.outerRadius,
           ws: p.widthSegments, hs: p.heightSegments, detail: p.detail,
         },
+        // 自定义几何（BufferGeometry）：顶点在 JS 里现算，必须把顶点/索引一起带走，
+        // 否则 Blender 侧无法重建（这是"按图元重建"唯一需要特例的一类）
+        // 逐顶点用 getX/getY/getZ：若是交错缓冲，.array 是整个交错数组（长度不是 3 的倍数），
+        // 直接读会把其它属性的数值当成坐标（实测踩过：长度 20 的数组 → IndexError）
+        customVerts: (g.type === 'BufferGeometry' && g.attributes && g.attributes.position)
+          ? (() => {
+            const pa = g.attributes.position; const a = [];
+            for (let i = 0; i < pa.count; i++) a.push(ROUND(pa.getX(i)), ROUND(pa.getY(i)), ROUND(pa.getZ(i)));
+            return a;
+          })() : null,
+        customIdx: g.type === 'BufferGeometry' && g.index
+          ? Array.from(g.index.array) : null,
         color: mat && mat.color && mat.color.getHexString ? '#' + mat.color.getHexString() : '#CCCCCC',
         emissive: mat && mat.emissive && mat.emissive.getHexString ? '#' + mat.emissive.getHexString() : null,
         ei: mat && mat.emissiveIntensity != null ? mat.emissiveIntensity : 0,
@@ -105,9 +121,10 @@ const out = await page.evaluate(async ({ kind, limit }) => {
     root.userData.__nanDropped = nanDropped;
     root.userData.__keptDropped = keptDropped;
     root.userData.__partDropped = partDropped;
-    // 源造型的精确包围盒（three 算的，含旋转/缩放）：审计用它做"烘焙 == 源"的对账
-    const bb = new THREE.Box3().setFromObject(root);
-    root.userData.__bbox = { minY: bb.min.y, maxY: bb.max.y, minX: bb.min.x, maxX: bb.max.x };
+    // 源造型的包围盒：用**局部系**（与 GLB 同基准）——setFromObject 给的是世界坐标，
+    // 对部件（如 head 挂在 body 下）会差出一个偏移，审计就会误报"烘歪了"
+    const bb = localBox.isEmpty() ? null : localBox;
+    root.userData.__bbox = bb ? { minY: bb.min.y, maxY: bb.max.y, minX: bb.min.x, maxX: bb.max.x } : null;
     return prims;
   }
 

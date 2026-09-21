@@ -159,6 +159,22 @@ def prim_geo(p):
                       (3, 9, 4), (3, 4, 2), (3, 2, 6), (3, 6, 8), (3, 8, 9),
                       (4, 9, 5), (2, 4, 11), (6, 2, 10), (8, 6, 7), (9, 8, 1)])
 
+    elif t == 'BufferGeometry':
+        # 自定义几何：顶点/索引由提取器从 three 里带出来（顶点在 JS 里现算，无法参数化重建）
+        raw = p.get('customVerts')
+        idx = p.get('customIdx')
+        if not raw:
+            return None
+        base = len(verts)          # 顶点是跨图元累积的：索引必须加这个偏移
+        for i in range(0, len(raw), 3):
+            verts.append((raw[i], raw[i + 1], raw[i + 2]))
+        n = len(raw) // 3
+        if idx:
+            for i in range(0, len(idx), 3):
+                faces.append((base + int(idx[i]), base + int(idx[i + 1]), base + int(idx[i + 2])))
+        else:
+            for i in range(0, n - 2, 3):
+                faces.append((base + i, base + i + 1, base + i + 2))
     elif t == 'PlaneGeometry':
         w = float(q.get('w') or 1) / 2
         h = float(q.get('h') or 1) / 2
@@ -230,6 +246,8 @@ def main():
         try:
             built = build_cell(cell, f'{kind}_{key}')
         except Exception as e:            # 单个资产出错不该毁掉整批（记录后跳过）
+            import traceback
+            traceback.print_exc()
             failed.append((key, repr(e)[:120]))
             built = None
         if built is None:

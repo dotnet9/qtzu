@@ -117,12 +117,14 @@ function petKeys() {
 // 词宠源最低点：从提取的图元（含局部矩阵）算出来，用于"烘焙 == 源"的对账。
 // 图元都是球/柱/胶囊/方盒等规则体，取"中心 ± 半径"的粗略下界即可（误差 < 0.02）。
 function petSourceMinY() {
-  const f = path.join(ROOT, '.cache/bake/prims.pet.uniq.json');
-  if (!fs.existsSync(f)) return null;
-  const j = JSON.parse(fs.readFileSync(f, 'utf8'));
   const out = new Map();
-  for (const cell of j.cells) if (cell.bbox) out.set(cell.key, cell.bbox.minY);
-  return out;
+  for (const rel of ['.cache/bake/prims.pet.uniq.json', '.cache/bake/prims.player.json']) {
+    const f = path.join(ROOT, rel);
+    if (!fs.existsSync(f)) continue;
+    const j = JSON.parse(fs.readFileSync(f, 'utf8'));
+    for (const cell of j.cells) if (cell.bbox) out.set(cell.key, cell.bbox.minY);
+  }
+  return out.size ? out : null;
 }
 const REFS = {
   gate: { keyOf: (e) => e.zh, keys: uniNames, what: '校名' },
@@ -194,8 +196,9 @@ for (const [id, e] of entries) {
   }
   // 原点在脚底：游戏用 _groundY 贴地（js/game.js:2151），穿地就是"校门陷进山坡"。
   // ground 豁免：地面本身就从岩裙 -3.6 到峰顶 +13.9，用这条会误报（见 §五 B4）
-  if (e.kind === 'pet') {
+  if (e.kind === 'pet' || e.kind === 'player') {
     // 与源对账：烘焙 GLB 的最低点必须与提取图元算出的源最低点一致（容差 0.02）
+    // 词宠与玩家部件都按"与源 bbox 对账"（部件是相对自身提取的，脚底规则不适用）
     const src = PET_SRC_MIN || (PET_SRC_MIN = petSourceMinY());
     const want = src && src.get(e.key);
     if (want != null && Math.abs(g.lo[1] - want) > 0.02) {
