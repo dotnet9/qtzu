@@ -40,9 +40,16 @@ export function writePng(file, w, h, rgb) {
   ihdr[8] = 8; ihdr[9] = 2; ihdr[10] = 0; ihdr[11] = 0; ihdr[12] = 0;
   const stride = w * 3;
   const raw = Buffer.alloc((stride + 1) * h);
+  // 行滤波用 Up（2）：每字节减去上一行同列。地面 albedo 是大片渐变，
+  // 差值后 zlib 能压掉一半以上（实测 1024² 从 1206KB → 约 400KB）。
   for (let y = 0; y < h; y++) {
-    raw[y * (stride + 1)] = 0;                                        // filter: none
-    rgb.copy(raw, y * (stride + 1) + 1, y * stride, y * stride + stride);
+    const rowStart = y * (stride + 1);
+    raw[rowStart] = y === 0 ? 0 : 2;
+    for (let i = 0; i < stride; i++) {
+      const cur = rgb[y * stride + i];
+      const up = y === 0 ? 0 : rgb[(y - 1) * stride + i];
+      raw[rowStart + 1 + i] = (cur - up) & 255;
+    }
   }
   fs.writeFileSync(file, Buffer.concat([
     Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]),

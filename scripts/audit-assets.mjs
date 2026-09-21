@@ -28,6 +28,8 @@ const BUDGET = {
   // +25~35%、三角面不变；单城首屏实测 2.79MB（北京）仍低于 3MB 上限。方案 §4.2 的表已同步。
   // 门前细节件（石基座/台阶/石灯）实测 +1000 面、+30KB：三角面 6000→7000、体积 160KB→200KB
   gate: { tri: 7000, bytes: 200 * 1024 },
+  // ground：几何守对方方案的 60000 面；体积因加了内嵌贴图（1024² albedo + 512² 法线）放到 4.5MB
+  ground: { tri: 60000, bytes: 4500 * 1024 },
   pet: { tri: 2500, bytes: 40 * 1024 },
   landmark: { tri: 10000, bytes: 200 * 1024 },
   prop: { tri: 3000, bytes: 60 * 1024 },
@@ -97,8 +99,14 @@ function landmarkKeys() {
   }
   return out;
 }
+// 地面：key 是城市 id（js/world.js 的 ground-slot 用城市 key 查）
+function cityKeys() {
+  const idx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/cities/index.json'), 'utf8'));
+  return new Set((idx.cities || []).map((c) => c.id));
+}
 const REFS = {
   gate: { keyOf: (e) => e.zh, keys: uniNames, what: '校名' },
+  ground: { keyOf: (e) => e.key, keys: cityKeys, what: '城市' },
   landmark: { keyOf: (e) => e.key, keys: landmarkKeys, what: '城市地标位' },
 };
 
@@ -162,9 +170,36 @@ for (const [id, e] of entries) {
       fails.push(`${id}：bbox.${ax} manifest ${e.bbox[ax]} ≠ 实测 [${g.lo[i].toFixed(3)}, ${g.hi[i].toFixed(3)}]`);
     }
   }
-  // 原点在脚底：游戏用 _groundY 贴地（js/game.js:2151），穿地就是"校门陷进山坡"
-  const gt = GROUND_TOL[e.kind] ?? 0.06;
-  if (g.lo[1] < -gt) fails.push(`${id}：穿地 ${g.lo[1].toFixed(3)}（原点必须在脚底，本类容差 ${gt}）`);
+  // 原点在脚底：游戏用 _groundY 贴地（js/game.js:2151），穿地就是"校门陷进山坡"。
+  // ground 豁免：地面本身就从岩裙 -3.6 到峰顶 +13.9，用这条会误报（见 §五 B4）
+  if (e.kind !== 'ground') {
+    const gt = GROUND_TOL[e.kind] ?? 0.06;
+    if (g.lo[1] < -gt) fails.push(`${id}：穿地 ${g.lo[1].toFixed(3)}（原点必须在脚底，本类容差 ${gt}）`);
+  } else {
+    // ground 专属：与规格（同一个仓库里的 specs/ground.<city>.json）对账，
+    // 防"山被烘平/烘反""轴映射错导致整城镜像"这两类只能靠数值发现的事故
+    const sp = path.join(ROOT, 'scripts/bake/specs', `ground.${e.city}.json`);
+    if (!fs.existsSync(sp)) warns.push(`${id}：找不到规格 ${path.basename(sp)}，跳过 ground 专属断言`);
+    else {
+      const spec = JSON.parse(fs.readFileSync(sp, 'utf8')).specs[0];
+      const topPeak = Math.max(...(spec.peaks || [[0, 0, 0, 0]]).map((q) => q[2] + (q[4] || 0)), 0);
+      if (topPeak > 0 && g.hi[1] < topPeak - 0.5) {
+        fails.push(`${id}：最高点 ${g.hi[1].toFixed(2)} 低于规格里的峰高 ${topPeak}（山被烘平/烘反了？）`);
+      }
+      // 基准 = 轮廓 ∪ 地形网格：网格铺到 grid 边界，墙再往外加厚 1.0 + miter + 抖动
+      const ox = spec.outline.map((q) => q[0]), oz = spec.outline.map((q) => q[1]);
+      const gx = [spec.grid.minX, spec.grid.minX + spec.grid.nx * spec.grid.gsz];
+      const gz = [spec.grid.minZ, spec.grid.minZ + spec.grid.nz * spec.grid.gsz];
+      const bx = [Math.min(...ox, gx[0]), Math.max(...ox, gx[1])];
+      const bz = [Math.min(...oz, gz[0]), Math.max(...oz, gz[1])];
+      const TOL = 4;   // 墙厚 1 + miter ≤2.9 + 抖动 0.02
+      if (Math.abs(g.lo[0] - bx[0]) > TOL || Math.abs(g.hi[0] - bx[1]) > TOL
+        || Math.abs(g.lo[2] - bz[0]) > TOL || Math.abs(g.hi[2] - bz[1]) > TOL) {
+        fails.push(`${id}：XZ 包围盒 [${g.lo[0].toFixed(1)},${g.hi[0].toFixed(1)}]/[${g.lo[2].toFixed(1)},${g.hi[2].toFixed(1)}]`
+          + `与轮廓∪网格 [${bx[0].toFixed(1)},${bx[1].toFixed(1)}]/[${bz[0].toFixed(1)},${bz[1].toFixed(1)}] 差超 4（轴映射错？）`);
+      }
+    }
+  }
   // 占地：摆放边距按 2.6 算的（js/game.js:2134），超了会和立牌/蛋重叠
   const halfX = Math.max(-g.lo[0], g.hi[0]), halfZ = Math.max(-g.lo[2], g.hi[2]);
   if (e.kind === 'gate' && (halfX > HALF_MAX || halfZ > HALF_MAX)) {

@@ -164,6 +164,9 @@ def _miter_normals(pts):
         cos_half = mx * n0[0] + mz * n0[1]
         k = 1.0 / max(0.35, abs(cos_half))          # 尖角处限制 miter 长度，避免长刺
         out.append((mx * k, mz * k))
+    # 闭合环补齐：pts 末尾与首点重合（len = N+1），而 wall() 会取 normals[i+1]，
+    # 不补这一项就会在最后一段越界（IndexError: list index out of range）
+    out.append(out[0])
     return out
 
 
@@ -211,7 +214,9 @@ def wall(lay, spec):
     for m in range(n_m):
         target = (m + 0.5) * gap
         i = min(len(arcs) - 2, max(0, int(target / (total / (len(arcs) - 1)))))
-        t = (target - arcs[i]) / max(1e-6, arcs[i + 1] - arcs[i])
+        # 钳到 [0,1]：轮廓简化后可能有近重合点（段长≈0），分母兜底 1e-6 会让 t 变成天文数字，
+        # 垛口就被甩到岛外几十米（实测 x=-113.6，轮廓只有 ±76）——audit 的 bbox 断言抓到的就是这个
+        t = min(1.0, max(0.0, (target - arcs[i]) / max(1e-6, arcs[i + 1] - arcs[i])))
         px = pts[i][0] + (pts[i + 1][0] - pts[i][0]) * t
         pz = pts[i][1] + (pts[i + 1][1] - pts[i][1]) * t
         nx = normals[i][0] * sign + (normals[i + 1][0] * sign - normals[i][0] * sign) * t

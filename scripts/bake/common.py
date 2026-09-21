@@ -55,7 +55,11 @@ STYLE_CREASE_DARKEN = 0.88
 # 三角面预算（超限即烘焙失败，见 check_budget）
 # ground：一城一份（地形网格 + 城墙 + 垛口 + 岩裙 + 雪峰）。成都实测约 1.1 万面，上限 60000
 # 是给体量更大的城市留余量，同时守住"单城 +3MB"总上限（美术升级方案 §4.2）
-BUDGET = {'gate': 9000, 'pet': 3500, 'landmark': 14000, 'prop': 4000, 'npc': 4000, 'player': 8000,
+BUDGET = {
+    # 地面：对方方案（01M2ZJ81…§五 B2）定的是 三角 ≤60000 / 1.5MB（顶点色 + AO，零贴图）。
+    # 本轮按用户批准的口径加了内嵌贴图（1024² albedo + 512² 平铺法线），
+    # 体积上限因此放到 4.5MB —— 但三角面仍守 60000（几何不变，只是多了贴图）。
+    'ground': {'tri': 60000, 'bytes': 4500 * 1024},'gate': 9000, 'pet': 3500, 'landmark': 14000, 'prop': 4000, 'npc': 4000, 'player': 8000,
           'ground': 60000}
 
 
@@ -576,7 +580,7 @@ def check_budget(kind, info, path):
     return info
 
 
-def export_glb(ob, path):
+def export_glb(ob, path, textures=False):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     bpy.ops.object.select_all(action='DESELECT')
     ob.select_set(True)
@@ -585,10 +589,14 @@ def export_glb(ob, path):
         filepath=path, export_format='GLB', use_selection=True,
         export_apply=True, export_yup=True,
         export_vertex_color='ACTIVE', export_all_vertex_colors=False,
-        export_normals=True, export_tangents=False, export_texcoords=False,
+        export_normals=True, export_tangents=False,
+        # textures=True：地面这类"要贴图"的资产才导出 UV 与图片（其余资产零贴图，
+        # 关掉能省体积、也避免把 Blender 的默认 UV 名写进 GLB）
+        export_texcoords=textures,
         export_materials='EXPORT', export_cameras=False, export_lights=False,
         export_animations=False, export_extras=False, export_skins=False,
-        export_draco_mesh_compression_enable=False, export_image_format='NONE',
+        export_draco_mesh_compression_enable=False,
+        export_image_format='AUTO' if textures else 'NONE',
         export_hierarchy_full_collections=False,
     )
     return os.path.getsize(path)

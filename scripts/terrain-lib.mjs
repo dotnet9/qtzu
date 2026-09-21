@@ -43,9 +43,21 @@ export function cityIds() {
 export function readCity(id) { return JSON.parse(readFileSync(`data/cities/${id}/city.json`, 'utf8')); }
 
 const CITY_SCALE = 0.84;                      // js/game.js:27
-export function radiusOf(id, city) {          // js/game.js:111 的同一公式
+// 三个数组在 game 里来自独立文件（js/data.js:64-79 的 loadCityData 合并），
+// 只读 city.json 的话它们恒为空 → 半径偏小（成都 76 vs 实际 87）、烘焙地面比城小一圈。
+const jsonOf = (f) => { try { return JSON.parse(readFileSync(`data/cities/${f}`, 'utf8')); } catch { return null; } };
+export function countsOf(id, city) {
+  const pick = (field, file) => {
+    const inline = city && city[field];
+    if (Array.isArray(inline) && inline.length) return inline.length;
+    const j = jsonOf(`${id}/${file}.json`);
+    return ((j && (j.unis || j.items)) || []).length;
+  };
+  return pick('unis', 'universities') + pick('foods', 'foods') + pick('scenes', 'scenes');
+}
+export function radiusOf(id, city) {          // js/game.js:118 的同一公式
   const lv = city.level || {};
-  const n = (city.unis || []).length + (city.foods || []).length + (city.scenes || []).length;
+  const n = countsOf(id, city);
   return Math.round((lv.radius || 28) * (3 + Math.min(1.3, n * 0.012)) * CITY_SCALE);
 }
 export function normShapeOf(id, city) { return getCityShape(id, city.level && city.level.shape); }
