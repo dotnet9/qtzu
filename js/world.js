@@ -1799,27 +1799,54 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             if (colR > 0) colC(q[0], q[1], colR);
             return obj;
           };
-          const side = r * 0.05 + 1.0;          // 主街两侧的家具带（与"主街留空"规则对齐）
-          const z0 = -r * 0.08, z1 = -r * 0.86; // 从城心广场外侧一直排到城门
-          const nLamp = Math.max(3, Math.round((z0 - z1) / (r * 0.115)));
-          for (let i = 0; i <= nLamp; i++) {
-            const t = i / nLamp;
-            const z = z0 + (z1 - z0) * t;
-            // 路灯：两侧交错半格，成排但不呆板；灯头朝街心
-            for (const sgn of [-1, 1]) {
-              const zz = z + (sgn > 0 ? r * 0.055 : 0);
-              put(PROPS.streetLamp(), sgn * side, zz, sgn > 0 ? -Math.PI / 2 : Math.PI / 2, 0.3, { gap: 1.2 });
+          const side = r * 0.05 + 1.0;          // 街道两侧的家具带（与"主街留空"规则对齐）
+          // 沿一条街摆家具（抽成函数是为了复用到副街）：
+          //   axis='z' → 街道沿 z 延伸、家具落在 x 两侧；axis='x' 反之
+          //   off = 街道中心线偏移；s0/s1 = 街道两端的另一轴坐标
+          const furnishStreet = (axis, off, s0, s1, benchEvery = 2, planterEvery = 3) => {
+            const nLamp = Math.max(2, Math.round(Math.abs(s1 - s0) / (r * 0.115)));
+            for (let i = 0; i <= nLamp; i++) {
+              const t = i / nLamp;
+              const sm = s0 + (s1 - s0) * t;
+              // 路灯：两侧交错半格，成排但不呆板；灯头朝街心
+              for (const sgn of [-1, 1]) {
+                const ss = sm + (sgn > 0 ? r * 0.055 : 0);
+                const px = axis === 'z' ? sgn * (off + side) : ss;
+                const pz = axis === 'z' ? ss : sgn * (off + side);
+                const ry = axis === 'z' ? (sgn > 0 ? -Math.PI / 2 : Math.PI / 2) : (sgn > 0 ? Math.PI : 0);
+                put(PROPS.streetLamp(), px, pz, ry, 0.3, { gap: 1.2 });
+              }
+              // 长椅：每隔几档插一把，背街面向街心
+              if (i % benchEvery === 1) {
+                const sgn = (i % 4 === 1) ? 1 : -1;
+                const ss = sm + r * 0.03;
+                const px = axis === 'z' ? sgn * (off + side + 0.15) : ss;
+                const pz = axis === 'z' ? ss : sgn * (off + side + 0.15);
+                const ry = axis === 'z' ? (sgn > 0 ? -Math.PI / 2 : Math.PI / 2) : (sgn > 0 ? Math.PI : 0);
+                put(PROPS.bench(), px, pz, ry, 0.55, { gap: 1.8 });
+              }
+              // 花箱：靠街心一侧
+              if (i % planterEvery === 0) {
+                const sgn = (i % 6 === 0) ? -1 : 1;
+                const ss = sm + r * 0.05;
+                const px = axis === 'z' ? sgn * (off + side - 0.55) : ss;
+                const pz = axis === 'z' ? ss : sgn * (off + side - 0.55);
+                put(PROPS.planter(color), px, pz, 0, 0.45, { gap: 1.6 });
+              }
             }
-            // 长椅：每两档插一把，背街面向主街
-            if (i % 2 === 1) {
-              const sgn = (i % 4 === 1) ? 1 : -1;
-              put(PROPS.bench(), sgn * (side + 0.15), z + r * 0.03, sgn > 0 ? -Math.PI / 2 : Math.PI / 2, 0.55, { gap: 1.8 });
-            }
-            // 花箱：靠街心一侧
-            if (i % 3 === 0) {
-              const sgn = (i % 6 === 0) ? -1 : 1;
-              put(PROPS.planter(color), sgn * (side - 0.55), z + r * 0.05, 0, 0.45, { gap: 1.6 });
-            }
+          };
+          // 主街：从城心广场外侧一直排到城门
+          furnishStreet('z', 0, -r * 0.08, -r * 0.86);
+          // 两条副街：沿 x 方向、z≈±r·0.35（不穿过城心，避免与广场/地标挤在一起）
+          furnishStreet('x', -r * 0.35, -r * 0.6, r * 0.6, 3, 4);
+          furnishStreet('x', r * 0.35, r * 0.6, -r * 0.6, 3, 4);
+          // 居民区：花箱 + 路桩（"有人住"的信号），抽样撒、密度克制（碰撞体预算 ≤260）
+          for (let i = 0; i < 10; i++) {
+            const a = Math.PI * 2 * i / 10 + 0.7;
+            const rr3 = r * (0.5 + rn() * 0.28);
+            const px = Math.cos(a) * rr3, pz = Math.sin(a) * rr3;
+            put(PROPS.planter(color), px, pz, rn() * Math.PI * 2, 0.45, { gap: 2.2 });
+            put(PROPS.bollard(), px + 1.1, pz + 0.7, 0, 0.22, { gap: 1.0 });
           }
           // 城门口：指路牌 + 邮筒 + 垃圾桶 + 一排路桩（"这里是个城市"的信号最集中）
           const zGate = -r * 0.9;
