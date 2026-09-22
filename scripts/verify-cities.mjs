@@ -181,5 +181,5 @@ if (bad.length) {
   console.log(`✗ ${bad.length} 城有问题：` + bad.map((r) => r.id).join(', '));
   process.exitCode = 1;
 } else {
-  console.log('✓ 52 城逐城 0 错误');
+  console.log(`✓ ${rows.length} 城逐城 0 错误`);
 }

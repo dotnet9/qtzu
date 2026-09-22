@@ -1661,6 +1661,10 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         world.perchPos = world.perchPos || {};
         world.perchPos[key] = { x: +(cx + px).toFixed(2), z: +(cz + pz).toFixed(2), top: +perchTopAbs.toFixed(3) };
         // 从台顶往外退：每级水平退 1.7、目标顶面降 1.35（相邻高差恒定，单跳 1.85 够用）
+        // 形态按城轮换：约 1/3 的城用**云梯**（小朋友点名要的那种），其余用石阶。
+        // 云朵造型复用农场岛的 PROPS.cloud，力学与石阶完全一致（水平 1.7 / 顶面降 1.35）。
+        const rnd2 = (() => { let h = 0; for (const ch of key) h = (Math.imul(h, 31) + ch.charCodeAt(0)) | 0; return () => { h = (Math.imul(h, 48271) + 11) % 2147483647; return Math.abs(h) / 2147483647; }; })();
+        const useClouds = rnd2() < 0.34;
         const steps = [];
         for (let k = 1; k <= 5; k++) {
           const dist = dPerch - k * 1.7;
@@ -1671,16 +1675,32 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           const want = perchTopAbs - 1.35 * k;             // 这一级的目标顶面
           if (want < g + 0.3) break;                       // 地形已经爬到这儿了 → 剩下交给坡道
           const h = want - g;
-          const stone = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 1.0, h, 12), M('#BCC8B4'));
-          stone.position.set(sx2, g + h / 2, sz2);
-          stone.castShadow = true;
-          stone.receiveShadow = true;
-          grp.add(stone);
-          colTop(cx + sx2, cz + sz2, 0.85, want);          // 世界坐标（碰撞体表用世界系）
-          steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 0.85, ground: +g.toFixed(3) });
+          if (useClouds) {
+            const c2 = PROPS.cloud(1.15);
+            c2.position.set(sx2, want - 0.6, sz2);
+            c2.traverse((o) => { if (o.isMesh) { o.material.transparent = true; o.material.opacity = 0.82; o.castShadow = true; } });
+            grp.add(c2);
+            addPlatform(cx + sx2, cz + sz2, 1.35, want);   // 云是纯平台：跳穿了就落上去，不挡路
+            const pf = world.platforms[world.platforms.length - 1];
+            pf.baseTop = want;
+            pf.bob = { amp: 0.12, speed: 1.0, phase: k * 1.7 };   // 轻微上下浮动（与农场云梯同款）
+            world.anim.cloudStair = world.anim.cloudStair || [];
+            world.anim.cloudStair.push({ mesh: c2, pf, baseY: want - 0.6 });
+            steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 1.35, ground: +g.toFixed(3) });
+          } else {
+            const stone = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 1.0, h, 12), M('#BCC8B4'));
+            stone.position.set(sx2, g + h / 2, sz2);
+            stone.castShadow = true;
+            stone.receiveShadow = true;
+            grp.add(stone);
+            colTop(cx + sx2, cz + sz2, 0.85, want);        // 世界坐标（碰撞体表用世界系）
+            steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 0.85, ground: +g.toFixed(3) });
+          }
         }
         steps.reverse();   // 由远及近（校验器按这个顺序看"逐级上升"）
         world.jumpSteps[key] = steps;
+        world.jumpKind = world.jumpKind || {};
+        world.jumpKind[key] = useClouds ? 'clouds' : 'stairs';
       }
 
       // ---- 每关跳跃挑战②：城市版悬浮砖块（顶爆掉蛋）----

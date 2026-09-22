@@ -80,6 +80,7 @@ for (const id of cities) {
       chain: chain.map((c) => ({ x: +c.x.toFixed(1), z: +c.z.toFixed(1), top: +c.top.toFixed(2) })),
       rises, gaps, maxRise: rises.length ? Math.max(...rises) : null, maxGap: gaps.length ? Math.max(...gaps) : null,
       perchEgg, brickEgg, cityBricks: cityBricks.length,
+      kind: (W.jumpKind && W.jumpKind[id]) || null,
       brickTop: cityBricks[0] ? +cityBricks[0].top.toFixed(2) : null,
       brickInPlatforms: cityBricks.length ? (W.platforms || []).some((p) => Math.abs(p.x - cityBricks[0].x) < 0.1 && Math.abs(p.top - cityBricks[0].top) < 0.05) : null,
       groundAtPerch: perchPos ? +g._groundY(perchPos.x, perchPos.z).toFixed(2) : null,
@@ -88,7 +89,7 @@ for (const id of cities) {
   }, { id });
   const okRise = r.maxRise === null || r.maxRise <= MAX_RISE;
   const okGap = r.maxGap === null || r.maxGap <= MAX_GAP;
-  console.log(`${id.padEnd(11)} 台阶 ${r.steps} 级 | 最大高差 ${r.maxRise ?? '—'} | 间距 ${r.maxGap ?? '—'} | 台顶高出地形 ${r.perchRel ?? '—'} | 砖块 ${r.cityBricks} 块`);
+  console.log(`${id.padEnd(11)} 台阶 ${r.steps} 级 | 最大高差 ${r.maxRise ?? '—'} | 间距 ${r.maxGap ?? '—'} | 台顶高出地形 ${r.perchRel ?? '—'} | ${r.kind === 'clouds' ? '云梯' : '石阶'} | 砖块 ${r.cityBricks} 块`);
   if (!okRise) fails.push(`${id}：台阶高差 ${r.maxRise} > ${MAX_RISE}（跳不上去）`);
   if (!okGap) fails.push(`${id}：台阶间距 ${r.maxGap} > ${MAX_GAP}（跨不过去）`);
   // 陡坡城地形本身已爬高 → 1 级台阶 + 坡道就是正确设计，只在 0 级时报失败
