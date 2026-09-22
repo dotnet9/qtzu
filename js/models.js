@@ -10,7 +10,7 @@ export { PET_COLORS, PETS } from './models/pets-shapes.js';
 export { badge, letterTexture, speechBubbleTexture, addLetterTag, addPhraseTag } from './models/tags.js';
 export { AUTO_TEMPLATES } from './models/auto-templates.js';
 export { buildPlayer } from './models/player.js';
-export { setAutoSpecs, buildPet, petThumbnail } from './models/build.js';
+export { setAutoSpecs, buildPet, petThumbnail, playerThumbnail, thumbCacheSize, THUMB_PX } from './models/build.js';
 
 // 场景物总表：nature + build + street 三半合并（对外仍是同一个 PROPS）
 export const PROPS = { ...nature, ...build, ...street };
