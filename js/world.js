@@ -1796,7 +1796,9 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             obj.rotation.y = ry;
             obj.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
             grp.add(obj);
-            if (colR > 0) colC(q[0], q[1], colR);
+            // 碰撞体表是世界坐标（game.js 的 _clampCityPos 用世界 pos 判定），
+            // 而 q 是城市局部坐标 → 必须加城心偏移，否则会在岛心生成一圈看不见的墙
+            if (colR > 0) colC(cx + q[0], cz + q[1], colR);
             return obj;
           };
           const side = r * 0.05 + 1.0;          // 街道两侧的家具带（与"主街留空"规则对齐）
