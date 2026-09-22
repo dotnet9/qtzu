@@ -2034,3 +2034,121 @@ body.touch #brand-badge{display:none}
 }
 #charsel-shop:active { transform: translateY(3px); box-shadow: 0 1px 0 color-mix(in srgb, var(--c-primary-deep, #7C68A8) 30%, transparent); }
 /* ===== 角色选择卡 结束 ===== */
+
+
+/* ===== ⑨ 面板深度换皮（附加式：删掉本块即回退） =====
+   驱动来源：scripts/audit-panels.mjs 量出的数字，不是感觉。换皮前的问题：
+
+   1) **所有面板长得一模一样**：`.overlay > div { border-radius: 30px !important; border: 4px solid #FFDCE8 !important }`
+      把 8 个面板的个性圆角全抹平了（`#pet-card-card` 写的是 22px，实测 30px）。
+      4px 粉边 + 30px 圆角 + 同一条彩虹顶带 → 没有信息层级，也没有"面板身份"。
+   2) **点击区过小（触屏 < 44px）**：`#pwd-fold` 16px、`#profile-city` 25px、
+      `.mini-btn` 20px、`.cat-page-btn` 30px、`#btn-switch-spell` 12px、
+      `.round-btn.small` 30px、`.gender-btn`/`#profile-start` 41px、`#levelup-next` 37px。
+   3) **说明文字过小 + 对比度不足**：`#map-legend` 11px（对比 3.2）、
+      `#levelup-words-tip` 12px、`.cs-title` 12px。
+   4) **标题不统一**：`#catalog-head` 16px / `#map-head` 16px 绿色 / `#levelup-title` 24px /
+      `#picker-title` 16px 渐变字 —— 同一层级四种做法。
+   5) **长列表溢出**：`#catalog-grid` / `#picker-grid` 没有滚动上限，词宠多了会把面板撑破。
+
+   做法：三档圆角（弹层 26 / 卡片 18 / 控件 12）+ 中性暖描边 + 每面板语义顶带
+   （金=奖励 / 天蓝=地图 / 紫=图鉴 / 薄荷=召唤 / 粉=行动），可点控件一律 ≥ 36px、
+   主操作 ≥ 46px，说明文字 ≥ 12.5px 且对比 ≥ 4.5:1。 */
+
+/* --- 1) 弹层卡：统一圆角档 + 中性描边（覆盖上面那条 !important 的 30px/粉边） --- */
+.overlay > div {
+  border-radius: var(--r-lg, 26px) !important;
+  border: 3px solid #F0E2D8 !important;
+  box-shadow: 0 18px 44px rgba(91, 81, 72, .16), 0 4px 12px rgba(91, 81, 72, .08), inset 0 2px 0 rgba(255, 255, 255, .95) !important;
+}
+/* 顶带按面板语义上色（原来 8 个面板共用同一条彩虹带 = 没有身份） */
+#profile-card::before, #pet-card-card::before, #modal-card::before { background: var(--grad-cta); }
+#levelup-card::before { background: var(--grad-sun); }
+#map-card::before { background: var(--c-sky); }
+#catalog-card::before { background: var(--c-grape); }
+#picker-card::before { background: var(--c-success); }
+#intro-card::before { background: var(--grad-title); }
+/* 内部小卡/控件不再各自 12~15px，收成 --r-md / --r-sm 两档 */
+#word-display, #map-canvas, #pet-card-share, .prof-bubble { border-radius: var(--r-md, 18px); }
+#profile-card .fake-select, .gender-btn { border-radius: var(--r-md, 18px); }
+
+/* --- 2) 可点控件：触屏最小尺寸（这是"小孩手指点不中"的直接修复） --- */
+.mini-btn { padding: 9px 14px; font-size: 13.5px; min-height: 40px; }
+.round-btn.small { width: 36px; height: 36px; font-size: 15px; }
+.cat-page-btn { width: 40px; height: 38px; }
+.gender-btn { min-height: 46px; }
+#profile-start, #intro-next, #levelup-next, #btn-play, #btn-mic, #pet-card-share { min-height: 46px; }
+/* 纯文字链接型按钮原来只有 12~16px 高，手指根本点不中 */
+#pwd-fold {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 40px; padding: 8px 12px; border-radius: var(--r-md, 18px);
+  background: #FFFBF4; border: 2px dashed #EBD9C8; color: #7A6E63; font-weight: 700;
+}
+#profile-city { min-height: 40px; padding: 10px 30px 10px 14px; font-size: 14px; font-weight: 700; }
+#profile-switch { min-height: 40px; padding: 10px 14px; font-size: 13px; font-weight: 700; }
+#profile-logout { min-height: 38px; padding: 8px 12px; font-size: 12.5px; }
+#btn-switch-spell {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 8px 12px; font-size: 13.5px;
+}
+
+/* --- 3) 说明文字：放大 + 提对比（原来 11~12px / 对比 3.2） --- */
+#map-legend { font-size: 12.5px; line-height: 1.55; color: #7A6E63; font-weight: 600; }
+#levelup-words-tip {
+  font-size: 13px; color: #7A6E63; font-weight: 700; letter-spacing: .5px;
+  margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--c-line);
+}
+.cs-title { font-size: 12.5px; }
+
+/* --- 4) 面板标题统一（同一层级一套做法：19px / 900 / 渐变字 + 细分隔线） --- */
+#catalog-head, #map-head {
+  font-size: 19px; font-weight: 900; letter-spacing: .5px; color: var(--c-text);
+  padding-bottom: 10px; margin-bottom: 12px; border-bottom: 2px solid var(--c-line);
+}
+#catalog-head > span:first-child, #map-head > span:first-child {
+  background: var(--grad-title); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+#picker-title { font-size: 19px; letter-spacing: .5px; padding-bottom: 8px; }
+#levelup-title { font-size: 26px; font-weight: 900; }
+#profile-card h2 { font-weight: 900; letter-spacing: .5px; }
+
+/* --- 5) 面板内距统一（原来 12~46px 各不相同，视觉重量乱） --- */
+#modal-card, #picker-card, #catalog-card, #map-card, #levelup-card, #intro-card, #pet-card-card {
+  padding: 20px 20px 18px;
+}
+
+/* --- 7) 主 CTA 对比度：白字压在浅粉 `--grad-cta` 上只有 **2.6:1**，远低于 WCAG AA 的 4.5:1
+   （小孩在户外/阳光下更看不清）。给"带白字的按钮"单独一条更深的渐变 ≈4.4:1；
+   装饰用途的浅粉（顶带、页签、药丸）**保持不变**，所以糖果感不丢。 --- */
+:root { --grad-cta-deep: linear-gradient(180deg, #E8487F, #CB2E63 55%, #B02450); }
+#profile-start, #intro-next, #levelup-next, #pet-card-share, .book-go, #book-quick, .shop-buy {
+  background: var(--grad-cta-deep) !important;
+}
+/* 单色按钮（麦克风）单独处理：不用 !important，否则会盖掉 .listening 的红色录音态 */
+#btn-mic { background: #D6336C; }
+
+/* --- 8) 说明文字提对比：`--c-text-2` #9C8C7A 在奶油底上只有 3.2:1 --- */
+#map-legend, #levelup-words-tip, #modal-title, #profile-card .profile-tip, #profile-card p { color: #7A6E63; }
+#word-zh { color: #A8455F; }
+/* 次级文字型按钮原来 #C4A78F 只有 2.23:1（几乎看不见），提到 4.6:1 */
+#btn-skip, #btn-switch-spell, #btn-replay-letters, #btn-show-help-word, #btn-replay { color: #8A7264; }
+#btn-replay-letters, #btn-show-help-word { font-size: 13.5px; font-weight: 700; }
+#listen-tip { color: #8A5A0A; font-size: 15px; }
+#spell-title { color: #7A6E63; font-size: 15px; }
+/* 通关标题 #B4436F 只有 4.06:1 → 加深一档到 4.8:1 */
+#levelup-title { color: #A03B63; }
+/* "我的城市"未选状态 1.79:1 → 提到 4.6:1（它是要孩子注意的必填项，不是装饰） */
+#profile-card .fake-select.placeholder { color: #7E6E5E; }
+#profile-switch { color: #7A6E63; }
+.pgroup { opacity: 1; }   /* .85 的透明度把 #E8487F 稀释到 3.65:1 */
+#profile-logout { color: #7A6E63; }
+
+/* --- 9) 长列表不撑破面板：给滚动上限（竖屏；横屏保留原折叠方案） --- */
+@media (orientation: portrait) {
+  #catalog-grid, #picker-grid {
+    max-height: min(52vh, 420px);
+    overflow-y: auto; overscroll-behavior: contain;
+    scrollbar-width: thin; scrollbar-color: #F0BFCE transparent;
+  }
+}
+/* ===== ⑨ 面板深度换皮 结束 ===== */
