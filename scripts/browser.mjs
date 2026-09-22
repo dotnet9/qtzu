@@ -48,10 +48,24 @@ export function resolveChrome() {
 }
 
 export async function launch(opts = {}) {
-  const { viewport = { width: 1280, height: 900 }, profile = '.pw-profile', ...rest } = opts;
-  const ctx = await chromium.launchPersistentContext(profile, {
-    headless: true, executablePath: resolveChrome(), viewport, ...rest,
+  // 默认用**每次独立**的临时 profile：serve.js 给 js/ 设了一年 immutable 缓存，
+  // 复用 profile 会让下一次运行继续用旧模块（实测：改了源码却"提取不到"新内容）。
+  // 传 profile 可显式复用（需要登录态时）。
+  const { viewport = { width: 1280, height: 900 }, profile, keepProfile = false, ...rest } = opts;
+  const dir = profile || fs.mkdtempSync(path.join(os.tmpdir(), 'pw-qtzu-'));
+  const ctx = await chromium.launchPersistentContext(dir, {
+    headless: true, executablePath: resolveChrome(), viewport,
+    args: ['--disable-application-cache', '--disk-cache-size=1', '--media-cache-size=1'],
+    ...rest,
   });
+  if (!profile && !keepProfile) {
+    // 关闭时清掉临时目录（best-effort：Windows 上可能被占用，失败就算了）
+    const origClose = ctx.close.bind(ctx);
+    ctx.close = async (...a) => {
+      await origClose(...a);
+      try { fs.rmSync(dir, { recursive: true, force: true }); } catch { /* 忽略 */ }
+    };
+  }
   return ctx;
 }
 

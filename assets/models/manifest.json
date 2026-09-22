@@ -17687,36 +17687,6 @@
    "zh": "钢笔",
    "v": "e4eca01db1"
   },
-  "p2078e6e9": {
-   "kind": "pet",
-   "aliases": [
-    "cat"
-   ],
-   "bbox": {
-    "x": [
-     -0.187,
-     0.187
-    ],
-    "y": [
-     0,
-     0.607
-    ],
-    "z": [
-     -0.343,
-     0.41
-    ]
-   },
-   "bytes": 86780,
-   "en": "cat",
-   "file": "pets/p2078e6e9.glb",
-   "key": "p2078e6e9",
-   "prims": 16,
-   "skipped": 0,
-   "tri": 2120,
-   "verts": 2122,
-   "zh": "小猫",
-   "v": "ae2adaba5a"
-  },
   "p22d07222": {
    "kind": "pet",
    "aliases": [
@@ -18068,36 +18038,6 @@
    "verts": 960,
    "zh": "电影院",
    "v": "75a4232751"
-  },
-  "p2d53b992": {
-   "kind": "pet",
-   "aliases": [
-    "mouse"
-   ],
-   "bbox": {
-    "x": [
-     -0.179,
-     0.179
-    ],
-    "y": [
-     0,
-     0.44
-    ],
-    "z": [
-     -0.18,
-     0.235
-    ]
-   },
-   "bytes": 90448,
-   "en": "mouse",
-   "file": "pets/p2d53b992.glb",
-   "key": "p2d53b992",
-   "prims": 16,
-   "skipped": 0,
-   "tri": 2320,
-   "verts": 2126,
-   "zh": "老鼠",
-   "v": "a7f4f0419a"
   },
   "p2dc87089": {
    "kind": "pet",
@@ -19703,36 +19643,6 @@
    "verts": 1656,
    "zh": "天气",
    "v": "ed09733f1d"
-  },
-  "p5254c5d4": {
-   "kind": "pet",
-   "aliases": [
-    "dog"
-   ],
-   "bbox": {
-    "x": [
-     -0.219,
-     0.219
-    ],
-    "y": [
-     0,
-     0.6
-    ],
-    "z": [
-     -0.356,
-     0.513
-    ]
-   },
-   "bytes": 91968,
-   "en": "dog",
-   "file": "pets/p5254c5d4.glb",
-   "key": "p5254c5d4",
-   "prims": 16,
-   "skipped": 0,
-   "tri": 2524,
-   "verts": 2172,
-   "zh": "小狗",
-   "v": "4d635cbb47"
   },
   "p531de6a3": {
    "kind": "pet",
@@ -24438,36 +24348,6 @@
    "zh": "夏天",
    "v": "51a469cdd6"
   },
-  "pba3b3f7d": {
-   "kind": "pet",
-   "aliases": [
-    "fox"
-   ],
-   "bbox": {
-    "x": [
-     -0.187,
-     0.187
-    ],
-    "y": [
-     0,
-     0.683
-    ],
-    "z": [
-     -0.419,
-     0.468
-    ]
-   },
-   "bytes": 111320,
-   "en": "fox",
-   "file": "pets/pba3b3f7d.glb",
-   "key": "pba3b3f7d",
-   "prims": 21,
-   "skipped": 0,
-   "tri": 2936,
-   "verts": 2736,
-   "zh": "狐狸",
-   "v": "84a51a0621"
-  },
   "pbac73bb1": {
    "kind": "pet",
    "aliases": [
@@ -26572,36 +26452,6 @@
    "verts": 2218,
    "zh": "医生",
    "v": "14f935c2b8"
-  },
-  "pe09ebe1b": {
-   "kind": "pet",
-   "aliases": [
-    "squirrel"
-   ],
-   "bbox": {
-    "x": [
-     -0.15,
-     0.167
-    ],
-    "y": [
-     0.005,
-     0.609
-    ],
-    "z": [
-     -0.335,
-     0.221
-    ]
-   },
-   "bytes": 94056,
-   "en": "squirrel",
-   "file": "pets/pe09ebe1b.glb",
-   "key": "pe09ebe1b",
-   "prims": 17,
-   "skipped": 0,
-   "tri": 2976,
-   "verts": 2152,
-   "zh": "松鼠",
-   "v": "99589b4b05"
   },
   "pe183de4d": {
    "kind": "pet",
@@ -29261,6 +29111,156 @@
    "verts": 404,
    "zh": null,
    "v": "126375cfac"
+  },
+  "p53be56a2": {
+   "kind": "pet",
+   "aliases": [
+    "squirrel"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.18
+    ],
+    "y": [
+     0.005,
+     0.609
+    ],
+    "z": [
+     -0.335,
+     0.221
+    ]
+   },
+   "bytes": 109700,
+   "en": "squirrel",
+   "file": "pets/p53be56a2.glb",
+   "key": "p53be56a2",
+   "prims": 20,
+   "skipped": 0,
+   "tri": 3408,
+   "verts": 2490,
+   "zh": "松鼠",
+   "v": "6eac51bcb1"
+  },
+  "pa90e65d2": {
+   "kind": "pet",
+   "aliases": [
+    "mouse"
+   ],
+   "bbox": {
+    "x": [
+     -0.179,
+     0.179
+    ],
+    "y": [
+     0,
+     0.44
+    ],
+    "z": [
+     -0.18,
+     0.235
+    ]
+   },
+   "bytes": 98720,
+   "en": "mouse",
+   "file": "pets/pa90e65d2.glb",
+   "key": "pa90e65d2",
+   "prims": 22,
+   "skipped": 0,
+   "tri": 2416,
+   "verts": 2330,
+   "zh": "老鼠",
+   "v": "f714787637"
+  },
+  "pc2bb86ff": {
+   "kind": "pet",
+   "aliases": [
+    "cat"
+   ],
+   "bbox": {
+    "x": [
+     -0.23,
+     0.23
+    ],
+    "y": [
+     0,
+     0.607
+    ],
+    "z": [
+     -0.343,
+     0.41
+    ]
+   },
+   "bytes": 95044,
+   "en": "cat",
+   "file": "pets/pc2bb86ff.glb",
+   "key": "pc2bb86ff",
+   "prims": 22,
+   "skipped": 0,
+   "tri": 2216,
+   "verts": 2326,
+   "zh": "小猫",
+   "v": "0797028a59"
+  },
+  "pf322dbeb": {
+   "kind": "pet",
+   "aliases": [
+    "dog"
+   ],
+   "bbox": {
+    "x": [
+     -0.219,
+     0.219
+    ],
+    "y": [
+     0,
+     0.6
+    ],
+    "z": [
+     -0.356,
+     0.513
+    ]
+   },
+   "bytes": 107948,
+   "en": "dog",
+   "file": "pets/pf322dbeb.glb",
+   "key": "pf322dbeb",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2876,
+   "verts": 2532,
+   "zh": "小狗",
+   "v": "8b79ba1174"
+  },
+  "pff59e9dd": {
+   "kind": "pet",
+   "aliases": [
+    "fox"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     0,
+     0.683
+    ],
+    "z": [
+     -0.419,
+     0.468
+    ]
+   },
+   "bytes": 116056,
+   "en": "fox",
+   "file": "pets/pff59e9dd.glb",
+   "key": "pff59e9dd",
+   "prims": 25,
+   "skipped": 0,
+   "tri": 3000,
+   "verts": 2872,
+   "zh": "狐狸",
+   "v": "333ee5ed14"
   }
  }
 }
