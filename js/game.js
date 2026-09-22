@@ -15,6 +15,16 @@ function playerVariantTag(gender, wear) {
   return [gender, wear.hat || '', wear.balloon ? 'balloon' : '', wear.wand ? 'wand' : '']
     .filter(Boolean).join('-');
 }
+
+// 按部件定 key（必须与 scripts/extract-prims.mjs 的 partKeyOf 完全一致）：
+//   帽子只影响 head、气球/魔杖只影响 armL/armR/rest —— 这样烘的资产从 312 个降到 34 个
+function playerPartKey(gender, wear, part) {
+  const hat = wear.hat || 'none';
+  const bw = (wear.balloon ? 'b' : '-') + (wear.wand ? 'w' : '-');
+  if (part === 'head') return `p-${gender}-${hat}-head`;
+  if (part === 'legL' || part === 'legR' || part === 'body') return `p-${gender}-${part}`;
+  return `p-${gender}-${bw}-${part}`;
+}
 import * as assets from './assets.js';
 import { contactShadow, updateContactShadow } from './shadow.js';   // 脚下接触阴影（见该文件注释）   // 词宠 GLB 换装（见 _refreshRanchPets）
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
@@ -96,7 +106,10 @@ const SHOP_ITEMS = [
   // 称号：排行榜名字旁亮金字（星星的新消耗口）
   { id: 'title-explorer', type: 'title', value: 'explorer', emoji: '🧭', name: t('x.g240'), desc: t('x.g241'), price: 20 },
   { id: 'title-star', type: 'title', value: 'star', emoji: '🌟', name: t('x.g242'), desc: t('x.g243'), price: 35 },
-  { id: 'title-legend', type: 'title', value: 'legend', emoji: '🏆', name: t('x.g244'), desc: t('x.g245'), price: 60 },
+  { id: 'title-legend', type: 'title', value: 'legend', emoji: '🏆', name: t('x.g244'), desc: t('x.g245'), price: 60 },,
+  { type: 'hat', value: 'helmet', emoji: '🏎️', name: t('shop.helmet'), price: 12 },
+  { type: 'hat', value: 'crown', emoji: '👑', name: t('shop.crown'), price: 20 },
+  { type: 'hat', value: 'chef', emoji: '👨‍🍳', name: t('shop.chef'), price: 12 },
 ];
 
 export class Game {
@@ -333,7 +346,7 @@ export class Game {
     // Group 引用（js/game.js 的 playerParts.*），Group 自身的 transform 与引用必须保留。
     // rest 指"不在 parts 里的散件"（花帽、魔杖星），用 additive 追加到外层 group。
     assets.applyParts(p.group, p.parts, 'player',
-      (name) => playerVariantTag(save.getGender(), save.getWear()) + ':' + name, { rest: true });
+      (name) => playerPartKey(save.getGender(), save.getWear(), name), { rest: true });
     this.player = p.group;
     this.playerParts = p.parts;
     this.player.rotation.y = Math.PI; // 面朝北（河流方向）
@@ -5332,7 +5345,7 @@ export class Game {
     // Group 引用（js/game.js 的 playerParts.*），Group 自身的 transform 与引用必须保留。
     // rest 指"不在 parts 里的散件"（花帽、魔杖星），用 additive 追加到外层 group。
     assets.applyParts(p.group, p.parts, 'player',
-      (name) => playerVariantTag(save.getGender(), save.getWear()) + ':' + name, { rest: true });
+      (name) => playerPartKey(save.getGender(), save.getWear(), name), { rest: true });
     this.player = p.group;
     this.playerParts = p.parts;
     this.player.position.copy(old.position);

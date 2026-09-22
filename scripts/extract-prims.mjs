@@ -128,6 +128,17 @@ const out = await page.evaluate(async ({ kind, limit }) => {
     return prims;
   }
 
+  // 按部件定 key：同一 (部件, 性别, 相关装扮) 只出一格 —— 帽子只影响 head、
+  // 气球/魔杖只影响 armL/armR/rest，所以没必要按"整套组合"烘（48 变体 → 34 格）
+  const partKeyOf = (gender, wear, part) => {
+    const hat = wear.hat || 'none';
+    const bw = (wear.balloon ? 'b' : '-') + (wear.wand ? 'w' : '-');
+    if (part === 'head') return `p-${gender}-${hat}-head`;
+    if (part === 'legL' || part === 'legR' || part === 'body') return `p-${gender}-${part}`;
+    return `p-${gender}-${bw}-${part}`;   // armL / armR / rest / balloon / wandTip
+  };
+  const partCells = new Map();     // key → cell（同 key 内容一致，首次为准）
+
   const cells = [];
   if (kind === 'pet') {
     const { WORDS } = await import(new URL('js/words.js', location.href).href);
@@ -145,7 +156,7 @@ const out = await page.evaluate(async ({ kind, limit }) => {
     let PART_ROOTS = [];
     // 枚举**全部**装扮组合（帽子 3 × 气球 2 × 魔杖 2 = 12）× 2 性别 = 24 变体。
     // 只烘 4 种组合的话，其它组合会静默回退程序化（实测踩过）。
-    const HATS = ['', 'wizard', 'flower'];
+    const HATS = ['', 'wizard', 'flower', 'helmet', 'crown', 'chef'];   // 6 顶 × 气球/魔杖 4 组合 = 24 × 2 性别
     const WEARS = [];
     for (const hat of HATS) for (const balloon of [false, true]) for (const wand of [false, true]) {
       WEARS.push({ hat, balloon, wand });
@@ -165,12 +176,19 @@ const out = await page.evaluate(async ({ kind, limit }) => {
           done.add(part);
           const prims = extract(part, PART_ROOTS);   // 相对"部件自身"的局部坐标（跳过其它部件的子树）
           if (!prims.length) continue;
-          cells.push({ key: tag + ':' + pn, variant: tag, part: pn, prims, nanDropped: part.userData.__nanDropped || 0, keptDropped: part.userData.__keptDropped || 0, bbox: part.userData.__bbox });
+          const pk = partKeyOf(gender, wear, pn);
+          if (!partCells.has(pk)) {
+            partCells.set(pk, { key: pk, variant: tag, part: pn, gender, wear, prims,
+              nanDropped: part.userData.__nanDropped || 0, keptDropped: part.userData.__keptDropped || 0, bbox: part.userData.__bbox });
+          }
         }
         // 剩下的（不在 parts 里的散件，如气球绳/魔杖星）按"整棵树的差集"提取一次
         // rest：直接排除所有部件子树（skipRoots 语义准确；之前的"矩阵指纹"法因基准不同永远匹配不上）
         const rest = extract(g, PART_ROOTS);
-        if (rest.length) cells.push({ key: tag + ':rest', variant: tag, part: 'rest', prims: rest });
+        if (rest.length) {
+          const pk = partKeyOf(gender, wear, 'rest');
+          if (!partCells.has(pk)) partCells.set(pk, { key: pk, variant: tag, part: 'rest', gender, wear, prims: rest });
+        }
       }
     }
   } else if (kind === 'npc') {
@@ -190,6 +208,9 @@ const out = await page.evaluate(async ({ kind, limit }) => {
       if (bodyPrims.length) cells.push({ key: 'npc' + i + ':body', variant: 'npc' + i, part: 'body', prims: bodyPrims });
     }
   }
+  // 玩家分支：把"按部件去重"的结果并入 cells
+  for (const c2 of partCells.values()) cells.push(c2);
+
   return { kind, cells };
 }, { kind, limit });
 
