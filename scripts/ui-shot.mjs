@@ -57,6 +57,7 @@ const PANELS = [
   { name: 'help', open: async () => page.click('#btn-help').catch(() => {}) },
   { name: 'about', open: async () => page.click('#btn-about').catch(() => {}) },
   { name: 'profile', open: async () => { await page.evaluate(() => document.getElementById('profile')?.classList.remove('hidden')); } },
+  { name: 'charsel', open: async () => { await page.evaluate(() => document.getElementById('btn-charsel').click()); } },   // 角色选择卡（本轮新功能）
 ];
 
 const closeAll = () => page.evaluate(() => {
