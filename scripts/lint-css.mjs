@@ -15,6 +15,7 @@ const ROOT = path.resolve(import.meta.dirname, '..');
 const files = fs.readdirSync(path.join(ROOT, 'css')).filter((f) => f.endsWith('.css'));
 const gate = process.argv.includes('--gate');
 let selfRefs = 0;
+let undef = 0;
 let hardTotal = 0;
 const rows = [];
 
@@ -35,14 +36,34 @@ for (const f of files) {
     if (m) hard += m.length;
   }
   hardTotal += hard;
-  rows.push({ f, hard, refs });
+  // 3) 用了但没定义的变量：与自引用同类 —— 那条规则会静默失效（界面看起来"这里没样式"）
+  // 只统计**没有 fallback** 的 var(--x)（带 fallback 的即使未定义也不会让规则失效）
+  const used = new Set([...src.matchAll(/var\(--([a-z0-9-]+)\s*\)/gi)].map((m) => m[1]));
+  const defined = new Set();
+  // 跨文件：CSS 里定义的
+  for (const g of fs.readdirSync(path.join(ROOT, 'css')).filter((x) => x.endsWith('.css'))) {
+    const t = fs.readFileSync(path.join(ROOT, 'css', g), 'utf8');
+    for (const m of t.matchAll(/--([a-z0-9-]+)\s*:/gi)) defined.add(m[1]);
+  }
+  // 以及 JS 里 setProperty('--x') / style.setProperty 设的（实测 --dx/--rot/--deg 就是这么来的）
+  for (const d of ['js']) {
+    for (const g of fs.readdirSync(path.join(ROOT, d))) {
+      if (!g.endsWith('.js')) continue;
+      const t = fs.readFileSync(path.join(ROOT, d, g), 'utf8');
+      for (const m of t.matchAll(/setProperty\(\s*['"]--([a-z0-9-]+)['"]/gi)) defined.add(m[1]);
+    }
+  }
+  const missing = [...used].filter((v) => !defined.has(v));
+  undef += missing.length;
+  rows.push({ f, hard, refs, missing });
 }
 
 console.log('CSS 体检');
 for (const r of rows) {
-  console.log(`  ${r.f.padEnd(18)} 硬编码色值 ${String(r.hard).padStart(4)} 处 | 变量自引用 ${r.refs} 处`);
+  console.log(`  ${r.f.padEnd(18)} 硬编码色值 ${String(r.hard).padStart(4)} 处 | 自引用 ${r.refs} | 未定义变量 ${r.missing.length}`);
+  if (r.missing.length) console.log(`      ⚠ ${r.missing.map((v) => '--' + v).join(', ')}`);
 }
-console.log(`\n合计：硬编码色值 ${hardTotal} 处（token 强制化的目标：0），自引用 ${selfRefs} 处（必须 0）`);
+console.log(`\n合计：硬编码色值 ${hardTotal} 处（目标 0），自引用 ${selfRefs} 处（必须 0），未定义变量 ${undef} 处（必须 0）`);
 if (selfRefs) console.log('⚠ 自引用会让变量失效 → 对应样式全部不生效（例如"选中态浅底"）');
-if (gate && selfRefs) { console.log('✗ --gate：自引用必须为 0'); process.exitCode = 1; }
-else if (gate) console.log('✓ --gate：无自引用');
+if (gate && (selfRefs || undef)) { console.log('✗ --gate：自引用与未定义变量都必须为 0'); process.exitCode = 1; }
+else if (gate) console.log('✓ --gate：无自引用、无未定义变量');
