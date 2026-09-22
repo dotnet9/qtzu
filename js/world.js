@@ -1660,6 +1660,28 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         const perchTopAbs = Y(px, pz, 3.45);              // 台顶绝对高度（含地形）
         world.perchPos = world.perchPos || {};
         world.perchPos[key] = { x: +(cx + px).toFixed(2), z: +(cz + pz).toFixed(2), top: +perchTopAbs.toFixed(3) };
+        // 台顶奖杯：爬上去才够得着（引导与正反馈的落点，见 js/game.js 的 _updatePerchTrophy）
+        {
+          const tx = px + 0.78, tz = pz + 0.18;
+          const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.1, 0.24, 14), M('#E8C86A', { rough: 0.4, metal: 0.15 }));
+          cup.position.set(tx, perchTopAbs + 0.3, tz);
+          cup.castShadow = true;
+          grp.add(cup);
+          const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.05, 0.1, 10), M('#C9A43A', { rough: 0.45, metal: 0.15 }));
+          stem.position.set(tx, perchTopAbs + 0.15, tz);
+          grp.add(stem);
+          const base = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.05, 12), M('#C9A43A', { rough: 0.45, metal: 0.15 }));
+          base.position.set(tx, perchTopAbs + 0.08, tz);
+          grp.add(base);
+          for (const sgn of [-1, 1]) {   // 两侧耳（半环）
+            const ear = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.018, 8, 12, Math.PI), M('#E8C86A', { rough: 0.4, metal: 0.15 }));
+            ear.position.set(tx + sgn * 0.17, perchTopAbs + 0.3, tz);
+            ear.rotation.set(0, Math.PI / 2, sgn > 0 ? Math.PI : 0);
+            grp.add(ear);
+          }
+          world.perchTrophy = world.perchTrophy || {};
+          world.perchTrophy[key] = { x: +(cx + tx).toFixed(2), z: +(cz + tz).toFixed(2), y: +(perchTopAbs + 0.3).toFixed(3), taken: false, mesh: [cup, stem, base] };
+        }
         // 从台顶往外退：每级水平退 1.7、目标顶面降 1.35（相邻高差恒定，单跳 1.85 够用）
         // 形态按城轮换：约 1/3 的城用**云梯**（小朋友点名要的那种），其余用石阶。
         // 云朵造型复用农场岛的 PROPS.cloud，力学与石阶完全一致（水平 1.7 / 顶面降 1.35）。

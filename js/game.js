@@ -504,7 +504,12 @@ export class Game {
 
   // 本关放上高台的蛋：剧情钥匙蛋和天空岛的蛋不动，剩下的按关卡序号轮换一颗
   _perchEggId() {
-    if (!this.world.perch) return null;
+    // 城市模式：观景石台 + 台阶挑战由 world.jumpSteps[key] 标记（见 world.js 的城市跳跃挑战①）
+    // 农场岛：world.perch（老石台）。两者都没有就不分配高台蛋。
+    if (this.cityTour) {
+      const st = this._currentStage();
+      if (!st || !(this.world.jumpSteps && this.world.jumpSteps[st.key] && this.world.jumpSteps[st.key].length)) return null;
+    } else if (!this.world.perch) return null;
     const GATES = ['boat', 'light', 'wind', 'seed', 'rain'];
     const ids = this.currentChapter.words.filter(id => !GATES.includes(id) && WORD_MAP[id].zone !== 'sky');
     return ids.length ? ids[this.chapterIndex(this.hatchedInScope()) % ids.length] : null;
@@ -1093,6 +1098,41 @@ export class Game {
 
   _eggById(id) { const e = this.eggs.get(id); return e ? e.group.position : null; }
 
+  // 高台引导：本城有台阶挑战、且高台蛋还没孵 → 指向最低一级台阶（让孩子知道"从这儿往上跳"）
+  _perchGuideTarget() {
+    const st = this._currentStage();
+    if (!st) return null;
+    const perchId = this._perchEggId();
+    if (!perchId || save.isHatched(perchId)) return null;     // 高台蛋已孵 / 本关没有
+    const steps = (this.world.jumpSteps && this.world.jumpSteps[st.key]) || [];
+    if (!steps.length) return null;
+    const low = steps[0];                                      // 由远及近：[0] = 最低那级
+    const pp = (this.world.perchPos && this.world.perchPos[st.key]) || null;
+    const rel = pp ? (pp.top - this._groundY(pp.x, pp.z)) : 3.45;
+    return { text: t('x.g255', { a0: Math.round(rel) }), target: { x: low.x, z: low.z } };
+  }
+
+  // 台顶奖杯：踩上台面就给一次奖励（+3 ⭐ + 彩带 + 大笑 + 提示），每城一次
+  _updatePerchTrophy() {
+    const st = this._currentStage();
+    if (!st) return;
+    const T = this.world.perchTrophy && this.world.perchTrophy[st.key];
+    if (!T || T.taken) return;
+    const p = this.player.position;
+    const d = Math.hypot(p.x - T.x, p.z - T.z);
+    // 站上台面：水平 1.8 内且高度接近台顶（容差 0.8）
+    if (d > 1.8 || p.y < T.y - 1.4) return;
+    T.taken = true;
+    for (const m of T.mesh || []) { m.visible = false; }
+    save.addStars(3);
+    sfx.great();
+    ui.confettiBurst(80);
+    ui.toast(t('x.g341'), 3600);
+    this._faceMood('joy', 2.2);                                // 主角大笑（表情系统）
+    this._letterBurst(new THREE.Vector3(T.x, T.y, T.z), '🏆');
+    save.awardBadge('perch_' + st.key);
+  }
+
   _nearestReachableEgg() {
     const p = this.player.position;
     let best = null, bd = 1e9;
@@ -1143,6 +1183,12 @@ export class Game {
         if (bd >= pd - 2) best = prev;
       }
       this._lastGuideEggId = best ? best.word.id : null;
+      if (!best) {
+        // 只剩"高台上的蛋"时，可达蛋为空 → 原来 target=null（箭头与光点都消失，孩子不知道去哪）。
+        // 改成指向**最低一级台阶**（world.jumpSteps 由远及近，[0] 是最低那级），文案用已有的高台提示。
+        const pt2 = this._perchGuideTarget();
+        if (pt2) return pt2;
+      }
       return { text: t('q.egg'), target: best ? best.group.position : null };
     }
     if (total >= this.total) {
@@ -1220,6 +1266,10 @@ export class Game {
           target: onMain ? { x: -9, z: 9.6 } : { x: here.cx, z: here.cz - 2.5 },
         };
       }
+    }
+    if (!e) {
+      const pt2 = this._perchGuideTarget();
+      if (pt2) return pt2;
     }
     return {
       text: t('y.29', { a0: chIdx + 1, a1: chapters[chIdx].name, a2: left, a3: total, a4: this.total }),
@@ -1300,6 +1350,7 @@ export class Game {
   // 区域进入提示
   // 小人的小生命感：随机眨眼；站着不动时轻轻歪头张望
   _updateIdleLife(dt, t) {
+    this._updatePerchTrophy();   // 台顶奖杯（踩上去给奖励，见该函数）
     // 孵化奖励：走到刚孵出的词宠身边 → +1 飘字，爪印飞进词宠胶囊，数字弹跳 +1
     let reward = null;
     for (const pt of this.pets.all()) {
