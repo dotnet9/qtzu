@@ -360,6 +360,7 @@ export class Game {
     this.scene.add(this.player);
     this.climbing = false;
     this.walkT = 0;
+    this._breatheT = 0;   // 待机呼吸的独立相位（与 walkT 解耦，见 _updateMovement）
     this.lastZone = null;
     this.dustT = 0;       // 跑步尘土计时
     this.sparkT = 0;      // 魔法棒星星计时
@@ -2764,7 +2765,12 @@ export class Game {
       this.playerParts.legR.rotation.x = this.onGround ? -sw : -0.35;
       this.playerParts.armL.rotation.x = -sw * 0.8;
       this.playerParts.armR.rotation.x = sw * 0.8;
-      this.playerParts.body.position.y = 0.3 + Math.abs(Math.sin(this.walkT)) * (moving && this.onGround ? 0.03 : 0.008);
+      // 待机呼吸：静止时叠加一个更慢、幅度更大的起伏（0.014），让主角"活着"；
+      // 走动时交给步态起伏（0.03），不叠加 —— 两个频率一起动会显得发抖
+      const idleNow = !moving && this.onGround;
+      this._breatheT += dt * (idleNow ? 1.6 : 0);
+      const breathe = idleNow ? Math.sin(this._breatheT) * 0.014 : 0;
+      this.playerParts.body.position.y = 0.3 + Math.abs(Math.sin(this.walkT)) * (moving && this.onGround ? 0.03 : 0.008) + breathe;
     }
 
     this._collide();
