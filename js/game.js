@@ -497,13 +497,20 @@ export class Game {
 
   // 本关藏进悬浮砖块的蛋：非钥匙/天空/高台蛋，按关卡序号轮换；换关时砖块重置
   _brickEggId(perchId = null) {
-    if (this.cityTour || !this.world.brickSpots) return null;   // 城市巡游：没有悬浮砖块，蛋全在城市舞台
+    // 城市巡游现在也有悬浮砖块（见 world.js 的城市跳跃挑战②），所以不再排除 cityTour；
+    // 只排除"确实没有砖块"的情况（农场模式未建或旧存档）
+    if (!this.world.brickSpots || !this.world.brickSpots.length) return null;
     const pid = perchId ?? this._perchEggId();
     const GATES = ['boat', 'light', 'wind', 'seed', 'rain', 'banana'];
     const ids = this.currentChapter.words.filter(id => !GATES.includes(id) && id !== pid && WORD_MAP[id].zone !== 'sky');
     if (!ids.length) return null;
     const id = ids[this.chapterIndex(this.hatchedInScope()) % ids.length];
-    const brick = this.world.brickSpots[this.chapterIndex(this.hatchedInScope()) % this.world.brickSpots.length];
+    // 城市巡游只有 1 块城市砖块，其余是农场的 → 城市模式下限定在"属于本城"的那块
+    const pool = this.cityTour
+      ? this.world.brickSpots.filter((b) => b.city === this._currentStage().key)
+      : this.world.brickSpots;
+    if (!pool.length) return null;
+    const brick = pool[this.chapterIndex(this.hatchedInScope()) % pool.length];
     if (brick.eggId !== id) {
       brick.eggId = id;
       brick.used = false;

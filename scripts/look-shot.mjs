@@ -77,6 +77,19 @@ const shot = async (name, cam) => {
       g.player.position.set(st.cx, 0, st.cz + st.r * 0.16);
       g.player.rotation.y = Math.PI;
       g.camYaw = 0; g.camPitch = 0.30; g.camDist = g.camDistTarget = 6.6;
+    } else if (c.kind === 'jump') {
+      // 站在台阶外侧、面向石台：台阶与台顶的蛋都进画面
+      const W = g.world;
+      const steps = (W.jumpSteps && W.jumpSteps[st.key]) || [];
+      const pp = (W.perchPos && W.perchPos[st.key]) || null;
+      if (!pp) return;
+      const outer = steps.length ? steps[0] : { x: pp.x, z: pp.z };
+      const ux = outer.x - pp.x, uz = outer.z - pp.z;
+      const n = Math.hypot(ux, uz) || 1;
+      g.player.position.set(outer.x + (ux / n) * 2.2, 0, outer.z + (uz / n) * 2.2);
+      g.player.rotation.y = Math.atan2(-ux / n, -uz / n);
+      g.camYaw = Math.atan2(ux / n, uz / n);
+      g.camPitch = u(c.pitch); g.camDist = g.camDistTarget = u(c.dist);
     } else if (c.kind === 'ground') {
       // 贴地俯视：站在城外圈的空地上往城心看，画面里几乎全是地面（散点/纹理/法线都在这张里）
       g.player.position.set(st.cx + st.r * 0.42, 0, st.cz + st.r * 0.42);
@@ -120,6 +133,7 @@ const CAMS = {
   default: { kind: 'default' },
   ground: { kind: 'ground', pitch: 1.02, dist: 9 },    // 贴地俯视：纹理颗粒/散点
   edge: { kind: 'edge', pitch: 0.40, dist: 17 },       // 台地/农田边界：色带过渡
+  jump: { kind: 'jump', pitch: 0.34, dist: 14 },       // 跳跃挑战：台阶 + 观景石台（看台阶好走不好走）
   street: { kind: 'street', yaw: 0, pitch: 0.30, dist: 6.6 },
   gate: { kind: 'gate', pitch: 0.26, dist: 7.0 },
   city: { kind: 'city', yaw: 0.6, pitch: 0.95, dist: 78 },

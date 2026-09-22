@@ -1648,6 +1648,61 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       box(grp, 1.6, 3.2, 1.6, '#C8B898', px, Y(px, pz, 1.6), pz);
       box(grp, 2.1, 0.3, 2.1, '#D8CCA8', px, Y(px, pz, 3.3), pz);
       colTop(cx + px, cz + pz, 1.15, Y(px, pz, 3.45));
+
+      // ---- 每关跳跃挑战①：三级石阶 → 观景石台（台顶那颗蛋要跳上去才够得着）----
+      // 力学依据（js/game.js）：起跳 vy=8.6、重力 20 → 单跳 1.85、二段跳 3.30；
+      // 石台顶面在地形之上 3.45 → 平地二段跳差 0.15（这就是"上不去"的根因）。
+      // 三级台阶把这段差拆成 0.95 / 1.90 / 2.85 / 3.45，每段 ≤1.5。
+      {
+        world.jumpSteps = world.jumpSteps || {};   // 逐城记录（供引导与 verify-jump 校验）
+        const dPerch = Math.hypot(px, pz) || 1;
+        const ux = px / dPerch, uz = pz / dPerch;
+        const perchTopAbs = Y(px, pz, 3.45);              // 台顶绝对高度（含地形）
+        world.perchPos = world.perchPos || {};
+        world.perchPos[key] = { x: +(cx + px).toFixed(2), z: +(cz + pz).toFixed(2), top: +perchTopAbs.toFixed(3) };
+        // 从台顶往外退：每级水平退 1.7、目标顶面降 1.35（相邻高差恒定，单跳 1.85 够用）
+        const steps = [];
+        for (let k = 1; k <= 5; k++) {
+          const dist = dPerch - k * 1.7;
+          if (dist < r * 0.05) break;                      // 太靠城心就不再放（别踩广场正中）
+          let sx2 = ux * dist, sz2 = uz * dist;
+          if (polySim) [sx2, sz2] = clampPoly(polySim, sx2, sz2, bw + 0.6);
+          const g = Y(sx2, sz2, 0);                        // 该处地形高度
+          const want = perchTopAbs - 1.35 * k;             // 这一级的目标顶面
+          if (want < g + 0.3) break;                       // 地形已经爬到这儿了 → 剩下交给坡道
+          const h = want - g;
+          const stone = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 1.0, h, 12), M('#BCC8B4'));
+          stone.position.set(sx2, g + h / 2, sz2);
+          stone.castShadow = true;
+          stone.receiveShadow = true;
+          grp.add(stone);
+          colTop(cx + sx2, cz + sz2, 0.85, want);          // 世界坐标（碰撞体表用世界系）
+          steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 0.85, ground: +g.toFixed(3) });
+        }
+        steps.reverse();   // 由远及近（校验器按这个顺序看"逐级上升"）
+        world.jumpSteps[key] = steps;
+      }
+
+      // ---- 每关跳跃挑战②：城市版悬浮砖块（顶爆掉蛋）----
+      {
+        world.brickSpots = world.brickSpots || [];   // cityOnly 模式下农场段被跳过，这里兜底
+        let bx2 = Math.cos(lay.baseA + 3.9) * r * 0.5, bz2 = Math.sin(lay.baseA + 3.9) * r * 0.5;
+        if (polySim) [bx2, bz2] = clampPoly(polySim, bx2, bz2, bw + 1.0);
+        const bTop = Y(bx2, bz2, 2.6);
+        const brick = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.62, 0.68), M('#E8B04B', { rough: 0.7 }));
+        brick.position.set(bx2, bTop - 0.31, bz2);
+        brick.castShadow = true;
+        grp.add(brick);
+        // 记录用**世界坐标**：顶砖判定（js/game.js 的 pp.x - b.x）与蛋位都用世界系
+        const rec = { x: cx + bx2, z: cz + bz2, top: bTop, bottom: bTop - 0.62, mesh: brick, city: key, used: false };
+        world.brickSpots.push(rec);
+        const q = new THREE.Sprite(new THREE.SpriteMaterial({ map: letterTexture('？', '#7A4A12', '#FFF2D0'), transparent: true, depthWrite: false }));
+        q.position.set(bx2, bTop + 0.08, bz2);
+        q.scale.setScalar(0.4);
+        grp.add(q);
+        rec.q = q;
+        addPlatform(rec.x, rec.z, 0.55, bTop);   // 站到砖块顶上也行
+      }
       // 中英文城市名牌：已取消常驻 3D 名牌（城市名由顶栏胶囊与介绍卡表达，拉远后牌面过大不协调）
       // 特产装饰 emoji 撒一圈（随到访版本的城市特色；初始角按城市个性旋转）
       (isl.decos || ['🏮']).forEach((em, i) => {
