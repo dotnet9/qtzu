@@ -2839,6 +2839,47 @@ export function showBookPanel(data) {
 }
 export function closeBookPanel() { if (bookOv) bookOv.classList.add('hidden'); }
 
+// ---------- 角色选择（大卡 + 全身图 + 名字牌 + 金框选中） ----------
+// 用户最看重的一项：参考图那种"角色选择"界面。
+// 卡片只列"已拥有"的装扮（未拥有不显示 —— 避免"看得到点不了"的挫败）；
+// 缩略图用 models 的 playerThumbnail（384px、三点光、接触阴影，见 js/models/build.js）。
+let charselOv = null;
+export function showCharSelect({ cards, current, onPick, onShop }) {
+  if (!charselOv) {
+    charselOv = document.createElement('div');
+    charselOv.className = 'overlay';
+    charselOv.id = 'charsel';
+    document.body.appendChild(charselOv);
+    charselOv.addEventListener('click', e => { if (e.target === charselOv) charselOv.classList.add('hidden'); });
+  }
+  const cells = cards.map((c, i) => `
+    <button class="cs-card${i === current ? ' on' : ''}" data-i="${i}">
+      <img class="cs-img" src="${c.img}" alt="">
+      <span class="cs-name">${c.name}</span>
+      ${c.title ? `<span class="cs-title">${c.title}</span>` : ''}
+      ${c.badges && c.badges.length ? `<span class="cs-badges">${c.badges.join(' ')}</span>` : ''}
+    </button>`).join('');
+  charselOv.innerHTML = `
+    <div id="charsel-card">
+      <div id="charsel-head">
+        <span>${t('menu.charsel')}</span>
+        <button id="charsel-close" class="round-btn small">✕</button>
+      </div>
+      <div id="charsel-grid">${cells}</div>
+      <button id="charsel-shop" class="menu-item">🪙 ${t('menu.toShop')}</button>
+    </div>`;
+  charselOv.classList.remove('hidden');
+  charselOv.querySelector('#charsel-close').onclick = () => charselOv.classList.add('hidden');
+  charselOv.querySelector('#charsel-shop').onclick = () => { charselOv.classList.add('hidden'); onShop && onShop(); };
+  charselOv.querySelectorAll('.cs-card').forEach(b => b.addEventListener('click', () => {
+    sfx.pop();
+    const i = +b.dataset.i;
+    onPick && onPick(i);
+    charselOv.querySelectorAll('.cs-card').forEach((x, k) => x.classList.toggle('on', k === i));
+  }));
+}
+export function closeCharSelect() { if (charselOv) charselOv.classList.add('hidden'); }
+
 // ---------- 许愿井星星商店 ----------
 let shopOv = null;
 export function showShop({ stars, items, onBuy, onToggle }) {
@@ -3087,7 +3128,7 @@ function applyLang() {
   document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
 }
 // ---------- 绑定 HUD 按钮 ----------
-export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, onHungryPill, onMic, onMicEnd, onRank, onReport, onAccount, onAbout, isTouch }) {
+export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, onHungryPill, onMic, onMicEnd, onRank, onReport, onAccount, onAbout, onCharSelect, isTouch }) {
   isTouchMode = !!isTouch;
   els.btnCatalog.addEventListener('click', onCatalog);
   els.btnHelp.addEventListener('click', showHelp);
@@ -3114,6 +3155,9 @@ export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, 
       toast(isBgmMuted() ? t('x.g222') : t('x.g223'));
     });
   }
+  // 角色选择（菜单入口；档案页入口见 js/game.js 的 _openCharSelect）
+  const csBtn = document.getElementById('btn-charsel');
+  if (csBtn && onCharSelect) csBtn.addEventListener('click', () => { sfx.pop(); onCharSelect(); });
   // 镜头跟随开关（与音乐开关同一套写法）
   const camBtn = document.getElementById('btn-cam');
   if (camBtn) {

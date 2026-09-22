@@ -24,7 +24,7 @@ import { NPCManager } from './npcs.js';
 import { cityLandmark, cityLayout } from './world.js';
 import { t } from './i18n.js';
 import { buildWorld } from './world.js';
-import { buildPlayer, letterTexture, petThumbnail, speechBubbleTexture, PROPS } from './models.js';
+import { buildPlayer, letterTexture, petThumbnail, playerThumbnail, speechBubbleTexture, PROPS } from './models.js';
 import { EggManager, PetManager } from './pets.js';
 import * as save from './save.js';
 import * as ui from './ui.js';
@@ -800,6 +800,7 @@ export class Game {
 
   _initUI() {
     ui.bindHUD({
+      onCharSelect: () => this._openCharSelect(),   // 角色选择卡（菜单 🎭）
       onCatalog: () => this._openCatalog(),
       onHelp: () => {},
       onBook: () => this._openBook(),
@@ -5244,6 +5245,45 @@ export class Game {
       this.scene.remove(star);
       this.scene.remove(ripple);
       sfx.good();
+    });
+  }
+
+  // 角色选择卡：只列"已拥有"的装扮组合（基础性别 2 张 + 已拥有帽子 2 张 = 最多 4~6 张）
+  _openCharSelect() {
+    const wear = save.getWear();
+    const badgesOf = (g, hat) => {
+      const b = [];
+      if (wear.balloonOwned) b.push('🎈');
+      if (wear.wandOwned) b.push('🪄');
+      return b;
+    };
+    const cards = [];
+    const title = save.TITLE_NAMES[wear.title] || '';   // TITLE_NAMES 由 save.js 导出
+    for (const g of ['boy', 'girl']) {
+      cards.push({
+        gender: g, hat: '', name: t(g === 'boy' ? 'menu.boy' : 'menu.girl'), title,
+        img: playerThumbnail(g, { hat: '', title }),
+        badges: badgesOf(g, ''),
+      });
+      for (const hat of (wear.hatOwned || [])) {
+        cards.push({
+          gender: g, hat, name: t(g === 'boy' ? 'menu.boy' : 'menu.girl'),
+          title, img: playerThumbnail(g, { hat, title }),
+          badges: badgesOf(g, hat),
+        });
+      }
+    }
+    const cur = cards.findIndex((c) => c.gender === save.getGender() && (c.hat || '') === (wear.hat || ''));
+    ui.showCharSelect({
+      cards, current: cur < 0 ? 0 : cur,
+      onPick: (i) => {
+        const c = cards[i];
+        if (!c) return;
+        save.setGender(c.gender);
+        save.updateWear({ hat: c.hat });   // 帽子是"拥有即可选"（许愿井里买过）
+        this._refreshPlayerLook();   // 既有方法：重建玩家 + 重新应用部件换装
+      },
+      onShop: () => this._openShop(),
     });
   }
 

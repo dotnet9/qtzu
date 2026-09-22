@@ -143,8 +143,15 @@ const out = await page.evaluate(async ({ kind, limit }) => {
     // 换装时对每个部件单独换 children，Group 的 transform 与引用都不动。
     const PART_NAMES = ['legL', 'legR', 'armL', 'armR', 'body', 'head', 'balloon'];
     let PART_ROOTS = [];
+    // 枚举**全部**装扮组合（帽子 3 × 气球 2 × 魔杖 2 = 12）× 2 性别 = 24 变体。
+    // 只烘 4 种组合的话，其它组合会静默回退程序化（实测踩过）。
+    const HATS = ['', 'wizard', 'flower'];
+    const WEARS = [];
+    for (const hat of HATS) for (const balloon of [false, true]) for (const wand of [false, true]) {
+      WEARS.push({ hat, balloon, wand });
+    }
     for (const gender of ['boy', 'girl']) {
-      for (const wear of [{}, { hat: 'wizard' }, { hat: 'flower' }, { balloon: true, wand: true }]) {
+      for (const wear of WEARS) {
         const tag = [gender, wear.hat || '', wear.balloon ? 'balloon' : '', wear.wand ? 'wand' : ''].filter(Boolean).join('-');
         const built = m.buildPlayer(gender, wear);
         const g = built && built.group ? built.group : built;
