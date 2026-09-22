@@ -8,7 +8,7 @@ import { WORD_MAP } from './words.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, getHomeCity, hasHomeCity, setLang, getLang, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub, extraStats } from './save.js';
+import { setHomeCity, getHomeCity, hasHomeCity, setLang, getLang, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub, extraStats, getCamFollow, setCamFollow } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -3112,6 +3112,18 @@ export function bindHUD({ onCatalog, onHelp, onBook, onSummon, onPrompt, onMap, 
       setBgmMuted(!isBgmMuted());
       paint();
       toast(isBgmMuted() ? t('x.g222') : t('x.g223'));
+    });
+  }
+  // 镜头跟随开关（与音乐开关同一套写法）
+  const camBtn = document.getElementById('btn-cam');
+  if (camBtn) {
+    const label = camBtn.querySelector('span');
+    const paint = () => { if (label) label.textContent = getCamFollow() ? t('menu.camOn') : t('menu.camOff'); };
+    paint();
+    camBtn.addEventListener('click', () => {
+      setCamFollow(!getCamFollow());
+      paint();
+      toast(getCamFollow() ? t('x.g224') : t('x.g225'));
     });
   }
   const summonBtn = document.getElementById('btn-summon');

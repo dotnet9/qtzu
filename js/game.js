@@ -312,7 +312,8 @@ export class Game {
     }
     // 默认机位按参考图定：俯角 0.42→0.30、距离 8.5→6.6 —— 低角度、主体大、纵深强；
     // 缩放范围（2.8~550）与双击拉远一律保留，孩子随时能拉远看全景
-    this.camYaw = 0; this.camPitch = 0.30; this.camDist = 6.6; this.camDistTarget = 6.6;   // 缩放目标值：滚轮/键盘改它，每帧平滑趋近
+    this.camYaw = 0; this.camPitch = 0.30; this.camDist = 6.6; this.camDistTarget = 6.6;
+    this._camHold = 0;        // 孩子刚拖过镜头 → 暂停自动跟随的剩余秒数（见 _updatePlayer）   // 缩放目标值：滚轮/键盘改它，每帧平滑趋近
     this.gateTries = {};   // 每个机关猜错的次数（一次答对有星星奖励）
     this.lockInput = false;   // 通关卡/演出期间锁操作
     this.cinematic = false;   // 镜头动画接管中（不再按轨道公式覆盖机位）
@@ -622,6 +623,8 @@ export class Game {
     addEventListener('pointermove', e => {
       if (dragging) {
         this.camYaw -= (e.clientX - lx) * 0.006;
+        this._camHold = 1.2;   // 孩子想自己看：暂停自动跟随 1.2 秒
+        this._moveBasisYaw = this.camYaw;   // 拖拽=转向：把移动基准重新对齐到新朝向   // 孩子想自己看：暂停自动跟随 1.2 秒
         this.camPitch = THREE.MathUtils.clamp(this.camPitch + (e.clientY - ly) * 0.004, 0.08, 1.1);
         lx = e.clientX; ly = e.clientY;
         return;
@@ -631,6 +634,8 @@ export class Game {
         const dx = e.clientX - p.x, dy = e.clientY - p.y;
         if (this.touchCam.size === 1) {
           this.camYaw -= dx * 0.007;
+          this._camHold = 1.2;
+          this._moveBasisYaw = this.camYaw;   // 同上：拖拽=转向   // 同上：手指拖过镜头就暂停跟随
           this.camPitch = THREE.MathUtils.clamp(this.camPitch + dy * 0.005, 0.08, 1.1);
         }
         p.x = e.clientX; p.y = e.clientY;
@@ -2671,6 +2676,12 @@ export class Game {
       }
     }
     const moving = move.lengthSq() > 0;
+    // 移动基准锁存：相机相对的移动若每帧跟着 camYaw 转，会与"镜头跟随"形成反馈环
+    // （按住 A/D 侧走时偏差恒为 π/2 → 镜头无限旋转，死区也挡不住）。
+    // 所以开始走时锁定当时的 camYaw，期间方向不变；停下解除；拖拽镜头时重新锁定（拖=转向）。
+    if (moving && !this._wasMoving) this._moveBasisYaw = this.camYaw;
+    if (!moving) this._moveBasisYaw = null;
+    this._wasMoving = moving;
     // 空中保留操控且带一点冲劲：方向键+空格 = 向前跳；骑词宠快 60%
     if (this.sprinting && performance.now() > this._sprintUntil) this.sprinting = false;
     const speed = PLAYER_SPEED * (this.mount ? 1.6 : 1) * (this.onGround ? 1 : 1.38) * (this.sprinting ? 1.55 : 1);
@@ -2686,7 +2697,8 @@ export class Game {
     if (moving) {
       if (cameraRelative) {
         // 绕 Y 轴转 camYaw（等价于原 applyAxisAngle，不建临时对象）
-        const s = Math.sin(this.camYaw), c = Math.cos(this.camYaw);
+        const basis = this._moveBasisYaw != null ? this._moveBasisYaw : this.camYaw;
+        const s = Math.sin(basis), c = Math.cos(basis);
         const mx = move.x * c + move.z * s, mz = move.z * c - move.x * s;
         move.x = mx; move.z = mz;
       }
@@ -2704,6 +2716,20 @@ export class Game {
       while (dy > Math.PI) dy -= Math.PI * 2;
       while (dy < -Math.PI) dy += Math.PI * 2;
       this.player.rotation.y += dy * Math.min(1, dt * 12);
+      // 镜头跟随（可选）：小人转身时镜头平滑转到背后。
+      // 60° 死区是关键：不加的话"镜头转→前进方向跟着转→小人转→镜头再转"会互相追着转成圈。
+      // 只在走路时跟；骑词宠/演出/看远景(缩放>45)/刚拖过镜头都不跟。
+      if (save.getCamFollow() && !this._camHold && !this.mount && this.camDistTarget <= 45) {
+        let dc = this.player.rotation.y - this.camYaw;
+        while (dc > Math.PI) dc -= Math.PI * 2;
+        while (dc < -Math.PI) dc += Math.PI * 2;
+        const a = Math.abs(dc);
+        // 滞回：>60° 才开始跟，跟到 <7° 才停。只用死区的话镜头会永远停在死区边缘
+        // （实测收敛到差 1.01 rad ≈ 58°，看起来就像"跟随没生效"）。
+        if (a > 1.05) this._camFollowing = true;
+        else if (a < 0.12) this._camFollowing = false;
+        if (this._camFollowing) this.camYaw += dc * Math.min(1, dt * 1.6);   // ≈1 秒到位
+      }
       this.walkT += dt * 9;
       // 雪线以上留脚印：短生命期贴片，走一步留一个（间隔 0.28s）
       if (this.onGround && this._onSnow(this.player.position.x, this.player.position.z)) {
@@ -3114,6 +3140,7 @@ export class Game {
   }
 
   _updateCamera(dt) {
+    if (this._camHold > 0) this._camHold = Math.max(0, this._camHold - dt);   // 拖过镜头的暂停计时
     // PERFECT 时的镜头微震：幅度指数衰减，不干扰操作
     if (this.shakeT > 0) {
       this.shakeT = Math.max(0, this.shakeT - dt);

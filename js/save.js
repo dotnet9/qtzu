@@ -32,6 +32,7 @@ function fresh() {
     profile: { username: '', password: '', registered: false, score: 0, sessionScore: 0, gender: 'boy', stars: 0, city: 'beijing', token: '',
       wear: { hat: '', hatOwned: [], balloon: false, balloonOwned: false, wand: false, wandOwned: false, title: '', titleOwned: [] },
       lang: 'bi',        // 文案语言：bi=中英双语（默认） en=纯英语
+      camFollow: true,   // 镜头跟随：小人转身时镜头是否平滑转到背后（默认开，见 js/game.js）
     },
     daily: { day: '', idx: 0, n: 0, done: false },
     cityTask: { city: '', kind: '', n: 0, goal: 0, done: false },   // 进城小任务：帮游客集章/喂食/找牌
@@ -78,6 +79,8 @@ function load() {
     // 是否已建过档案（用来决定是否直接续玩）；老存档默认 false，下次填一次名字即可
     if (typeof merged.profile.registered !== 'boolean') merged.profile.registered = false;
     if (merged.profile.lang !== 'en') merged.profile.lang = 'bi';
+    // 老存档没有这个字段：默认开（孩子一开始就能感受到"镜头跟着走"）
+    if (typeof merged.profile.camFollow !== 'boolean') merged.profile.camFollow = true;
     merged.milestones = d.milestones || {};
     merged.weekly = Array.isArray(d.weekly) ? d.weekly : [];
     merged.naughty = d.naughty || {};
@@ -607,6 +610,8 @@ export function setUsername(name) {
   data.profile.username = String(name || '').trim().slice(0, 20);
   save();
 }
+export function getCamFollow() { return data.profile.camFollow !== false; }   // 默认开
+export function setCamFollow(v) { data.profile.camFollow = !!v; save(); }
 export function getGender() { return data.profile.gender === 'girl' ? 'girl' : 'boy'; }
 export function setGender(g) {
   data.profile.gender = g === 'girl' ? 'girl' : 'boy';
