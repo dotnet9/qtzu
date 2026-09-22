@@ -554,8 +554,20 @@ const server = http.createServer(async (req, res) => {
   serveStatic(req, res, pathname);
 });
 
-server.listen(PORT, HOST, () => {
-  console.log(`Q淘族后端已启动: http://127.0.0.1:${PORT}`);
+// 端口被占时自动让路（开发机上"上一个窗口还开着"很常见）
+let actualPort = PORT;
+let tried = 0;
+function listenWithFallback() {
+  server.listen(actualPort, HOST, onListening);
+}
+function onListening() {
+  // 记下实际端口，供脚本/前端读取（run.bat 用 --open 直接打开，不必猜）
+  try {
+    fs.mkdirSync(path.join(ROOT, '.cache'), { recursive: true });
+    fs.writeFileSync(path.join(ROOT, '.cache/dev-port.txt'), String(actualPort));
+  } catch { /* 忽略 */ }
+  const url = `http://localhost:${actualPort}/`;
+  console.log(`Q淘族后端已启动: http://127.0.0.1:${actualPort}`);
   console.log(`  静态目录 : ${ROOT}`);
   console.log(`  排行榜   : ${BOARD_FILE}`);
   console.log(`  账号     : ${ACCOUNTS_FILE}（密码 MD5×3 加盐保存，不存明文）`);
@@ -563,9 +575,29 @@ server.listen(PORT, HOST, () => {
   console.log(`  备份     : ${BACKUP_DIR}\\（每日一份，保留全部历史）`);
   console.log('  接口     : GET /api/leaderboard   POST /api/score|register|login|update');
   console.log('  nginx 反代 /api/ 指向本服务即可');
-});
+  if (actualPort !== PORT) console.log(`  （端口 ${PORT} 被占，已改用 ${actualPort}）`);
+  console.log(`\n  浏览器打开： ${url}\n`);
+  // --open：自己打开浏览器（指向实际端口），这样 run.bat 不必猜端口
+  if (process.argv.includes('--open')) {
+    try {
+      const { spawn } = require('child_process');
+      spawn('cmd', ['/c', 'start', '', url], { detached: true, stdio: 'ignore' }).unref();
+    } catch { /* 打开失败不影响服务 */ }
+  }
+}
 
 server.on('error', err => {
-  console.error(`[错误] 无法监听 ${HOST}:${PORT} —— ${err.message}`);
+  if (err.code === 'EADDRINUSE' && tried < 10) {
+    tried++;
+    console.warn(`[提示] 端口 ${actualPort} 被占，改试 ${actualPort + 1}`);
+    actualPort++;
+    setTimeout(listenWithFallback, 60);
+    return;
+  }
+  console.error(`[错误] 无法监听 ${HOST}:${actualPort} —— ${err.message}`);
   process.exit(1);
 });
+
+// 启动监听。必须显式调用：上面把原来的 server.listen(...) 换成了带"端口让路"的实现，
+// 少了这一行进程会直接退出 —— 表现就是"双击 run.bat 一闪而过、什么都没发生"。
+listenWithFallback();
