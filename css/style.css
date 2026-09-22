@@ -11,7 +11,7 @@
      每种情绪一种糖果色，界面整体保持奶油卡面 + 彩色点缀的活泼感 */
   --c-primary: #FF6FA5;         /* 行动/选中（主粉） */
   --c-primary-deep: #E8487F;    /* 按压/描边 */
-  --c-primary-soft: var(--c-primary-soft);    /* 选中浅底 */
+  --c-primary-soft: #FFE3EF;                   /* 选中浅底（原来写成 var(--c-primary-soft) 自引用 → 失效） */
   --c-text: #5B5148;            /* 正文 */
   --c-text-2: #9C8C7A;          /* 辅助说明 */
   --c-line: #F3E5DC;            /* 中性边框（输入框/下拉/分隔） */
@@ -160,8 +160,8 @@ body {
 /* ---------- FEVER 连击 ---------- */
 #fever-bar {
   position: fixed; top: calc(56px + var(--sat)); left: 50%; transform: translateX(-50%); z-index: 70;
-  background: linear-gradient(90deg, #FF7A45, #FFB93C, #FF7A45); background-size: 200% 100%;
-  color: #fff; font-weight: bold; font-size: 14px; padding: 7px 20px; border-radius: 999px;
+  background: linear-gradient(90deg, #FF7A45, var(--c-sun), #FF7A45); background-size: 200% 100%;
+  color: var(--c-field); font-weight: bold; font-size: 14px; padding: 7px 20px; border-radius: 999px;
   box-shadow: 0 4px 18px rgba(255, 122, 69, .45); pointer-events: none;
   animation: fever-in .3s cubic-bezier(.34, 1.56, .64, 1), fever-slide 1s ease-in-out .3s infinite;
   white-space: nowrap; text-shadow: 0 1px 2px rgba(160, 60, 0, .4);
@@ -169,7 +169,7 @@ body {
 @keyframes fever-in { from { transform: translateX(-50%) scale(.5); opacity: 0 } }
 @keyframes fever-slide { 0%, 100% { background-position: 0% 0 } 50% { background-position: 100% 0 } }
 /* 连击期间分数胶囊持续发光，提醒“现在星星翻倍” */
-body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 185, 60, .35), 0 2px 10px rgba(255, 140, 40, .35); }
+body.fever #score-pill { border-color: var(--c-sun); box-shadow: 0 0 0 3px rgba(255, 185, 60, .35), 0 2px 10px rgba(255, 140, 40, .35); }
 
 /* ---------- 交互提示（手机上可直接点它） ---------- */
 #prompt {
@@ -182,7 +182,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 #prompt:active { transform: translateX(-50%) scale(0.96); }
 #prompt-key {
-  background: #7CC96F; color: #fff; border-radius: 8px; padding: 2px 10px; font-size: 15px;
+  background: #7CC96F; color: var(--c-field); border-radius: 8px; padding: 2px 10px; font-size: 15px;
 }
 
 /* ---------- 任务气泡：跟着小人走，尾巴指向他 ---------- */
@@ -203,7 +203,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #quest-close {
   pointer-events: auto; position: absolute; top: -7px; right: -7px;
   width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #F2C98C;
-  background: #fff; color: #A98F70; font-size: 10px; line-height: 1;
+  background: var(--c-field); color: #A98F70; font-size: 10px; line-height: 1;
   cursor: pointer; font-family: inherit; padding: 0;
 }
 #quest-close:hover { background: #FFF3D6; color: #B47514; }
@@ -249,7 +249,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   position: fixed; top: calc(58px + var(--sat)); left: calc(14px + var(--sal));
   z-index: 22; cursor: pointer;
   background: linear-gradient(90deg, rgba(255,159,190,.9), rgba(255,209,102,.9));
-  border-radius: 999px; padding: 6px 18px; font-size: 14px; font-weight: 900; color: #FFF;
+  border-radius: 999px; padding: 6px 18px; font-size: 14px; font-weight: 900; color: var(--c-field);
   text-shadow: 0 1px 2px rgba(120,50,80,.4); white-space: nowrap;
   box-shadow: 0 4px 14px rgba(200,100,130,.35);
   animation: fadeIn .3s;
@@ -361,7 +361,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #city-card .cc-quiz-rs.bad { color: #C4577E; }
 #city-card #cc-go {
   margin-top: 14px; width: 100%; padding: 12px; font-size: 16px; font-weight: 900; font-family: inherit;
-  color: #FFF; background: var(--c-primary);
+  color: var(--c-field); background: var(--c-primary);
   border: none; border-radius: 999px; cursor: pointer;
   box-shadow: 0 3px 0 var(--c-primary-deep);
 }
@@ -414,9 +414,9 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   color: #6B5844; background: #FFF4F8; border: 2px solid #FFD3E0; border-radius: 999px; cursor: pointer;
 }
 .train-quiz .tq-opts button:active { transform: scale(.95); }
-.train-quiz .tq-opts button.right { color: #FFF; background: #5FAE5F; border-color: #5FAE5F; }
-.train-quiz .tq-opts button.wrong { color: #FFF; background: #E08A96; border-color: #E08A96; }
-.train-quiz .tq-rs { min-height: 18px; margin-top: 6px; text-align: center; font-size: 12px; font-weight: 900; color: #9C8C7A; }
+.train-quiz .tq-opts button.right { color: var(--c-field); background: #5FAE5F; border-color: #5FAE5F; }
+.train-quiz .tq-opts button.wrong { color: var(--c-field); background: #E08A96; border-color: #E08A96; }
+.train-quiz .tq-rs { min-height: 18px; margin-top: 6px; text-align: center; font-size: 12px; font-weight: 900; color: var(--c-text-2); }
 .train-quiz .tq-rs.good { color: #4E7A46; }
 .train-quiz .tq-rs.bad { color: #C4577E; }
 
@@ -438,9 +438,9 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   color: #6B5844; background: #FFF4F8; border: 2px solid #FFD3E0; border-radius: 14px; cursor: pointer;
 }
 .word-quiz .wq-opts button:active { transform: scale(.97); }
-.word-quiz .wq-opts button.right { color: #FFF; background: #5FAE5F; border-color: #5FAE5F; }
-.word-quiz .wq-opts button.wrong { color: #FFF; background: #E08A96; border-color: #E08A96; }
-.word-quiz .wq-rs { min-height: 18px; margin-top: 6px; text-align: center; font-size: 13px; font-weight: 900; color: #9C8C7A; }
+.word-quiz .wq-opts button.right { color: var(--c-field); background: #5FAE5F; border-color: #5FAE5F; }
+.word-quiz .wq-opts button.wrong { color: var(--c-field); background: #E08A96; border-color: #E08A96; }
+.word-quiz .wq-rs { min-height: 18px; margin-top: 6px; text-align: center; font-size: 13px; font-weight: 900; color: var(--c-text-2); }
 .word-quiz .wq-rs.good { color: #4E7A46; }
 .word-quiz .wq-rs.bad { color: #C4577E; }
 
@@ -451,7 +451,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   box-shadow: var(--shadow-pop);
 }
 #word-game .wg-t { font-size: 17px; font-weight: 900; color: #C4577E; text-align: center; }
-#word-game .wg-sub { margin: 4px 0 10px; font-size: 12px; font-weight: bold; color: #9C8C7A; text-align: center; }
+#word-game .wg-sub { margin: 4px 0 10px; font-size: 12px; font-weight: bold; color: var(--c-text-2); text-align: center; }
 #word-game .wg-cols { display: flex; gap: 10px; }
 #word-game .wg-col { flex: 1; display: flex; flex-direction: column; gap: 7px; }
 #word-game .wg-w, #word-game .wg-c {
@@ -465,13 +465,13 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #word-game .wg-w.locked b, #word-game .wg-c.locked b { color: #4E7A46; }
 #word-game .shake { animation: wgShake .4s; }
 @keyframes wgShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-#word-game .wg-rs { min-height: 20px; margin-top: 10px; text-align: center; font-size: 13px; font-weight: 900; color: #9C8C7A; }
+#word-game .wg-rs { min-height: 20px; margin-top: 10px; text-align: center; font-size: 13px; font-weight: 900; color: var(--c-text-2); }
 #word-game .wg-rs.good { color: #4E7A46; }
 
 /* 🌐 语言切换（档案卡）：弱化为小果冻 pill，不抢主次 */
 #profile-lang { display: flex; gap: 8px; margin-bottom: 10px; }
 #profile-lang .lang-btn { flex: 1; padding: 8px 6px; font-size: 12.5px; border-radius: 999px; }
-#profile-lang .lang-btn.active { background: var(--grad-cta); border-color: transparent; color: #fff; text-shadow: 0 1px 0 rgba(199,42,95,.35); box-shadow: 0 3px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.45); }
+#profile-lang .lang-btn.active { background: var(--grad-cta); border-color: transparent; color: var(--c-field); text-shadow: 0 1px 0 rgba(199,42,95,.35); box-shadow: 0 3px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.45); }
 
 /* 🏷️ 排行榜称号金字 */
 .rank-title {
@@ -483,7 +483,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .lb-tabs { display: flex; gap: 6px; justify-content: center; margin-bottom: 8px; flex-wrap: wrap; }
 .lb-tab {
   padding: 4px 10px; font-size: 11px; font-weight: 900; font-family: inherit;
-  color: #9C8C7A; background: #F7F3EE; border: 2px solid #E9E1D8; border-radius: 999px; cursor: pointer;
+  color: var(--c-text-2); background: #F7F3EE; border: 2px solid #E9E1D8; border-radius: 999px; cursor: pointer;
 }
 .lb-tab.on { color: #C4577E; background: #FFF0F5; border-color: #FF9FB9; }
 
@@ -494,7 +494,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   box-shadow: var(--shadow-pop);
 }
 #dub-card .dub-t { font-size: 17px; font-weight: 900; color: #C4577E; text-align: center; }
-#dub-card .dub-sub { margin: 6px 0 12px; font-size: 12px; font-weight: bold; color: #9C8C7A; text-align: center; line-height: 1.5; }
+#dub-card .dub-sub { margin: 6px 0 12px; font-size: 12px; font-weight: bold; color: var(--c-text-2); text-align: center; line-height: 1.5; }
 #dub-card .dub-scenes { display: flex; flex-direction: column; gap: 9px; }
 #dub-card .dub-scene {
   display: flex; align-items: center; gap: 10px; padding: 11px 14px; font-family: inherit;
@@ -515,7 +515,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #dub-card .dub-rs { margin: 4px 0 12px; text-align: center; font-size: 13px; font-weight: 900; color: #B4436F; }
 #dub-card .dub-again, #dub-card .dub-share {
   margin-top: 8px; width: 100%; padding: 11px; font-size: 14px; font-weight: 900; font-family: inherit;
-  color: #FFF; border: none; border-radius: 999px; cursor: pointer;
+  color: var(--c-field); border: none; border-radius: 999px; cursor: pointer;
 }
 #dub-card .dub-again { background: var(--c-primary); }
 #dub-card .dub-share { background: linear-gradient(180deg, #FFC94E, #F0A83E); }
@@ -539,7 +539,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #mini-game .mg-sub { margin: 6px 0 12px; font-size: var(--fs-sub); font-weight: bold; color: var(--c-text-2); }
 #mini-game #mg-hear {
   padding: 12px 26px; font-size: 16px; font-weight: 900; font-family: inherit; cursor: pointer;
-  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
+  color: var(--c-field); background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
   transition: transform .12s, box-shadow .12s;
 }
 #mini-game #mg-hear:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--c-primary-deep); }
@@ -572,7 +572,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #rest-card .rest-sub { font-size: var(--fs-body); color: var(--c-text-2); line-height: 1.6; margin: 8px 0 14px; }
 #rest-card #rest-ok {
   width: 100%; padding: 11px; font-size: 15px; font-weight: 900; font-family: inherit; cursor: pointer;
-  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
+  color: var(--c-field); background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
 }
 #rest-card #rest-ok:active { transform: translateY(2px); box-shadow: none; }
 
@@ -596,7 +596,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #quiz-card .qz-zh { font-size: 22px; font-weight: 900; color: var(--c-text); margin: 10px 0; }
 #quiz-card #qz-hear {
   padding: 9px 22px; font-size: 15px; font-weight: 900; font-family: inherit; cursor: pointer;
-  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
+  color: var(--c-field); background: var(--c-primary); border: none; border-radius: 999px; box-shadow: 0 3px 0 var(--c-primary-deep);
 }
 #quiz-card .qz-opts { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
 #quiz-card .qz-opts button {
@@ -609,7 +609,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #quiz-card .qz-opts button.wrong { background: #FBEBEE; border-color: #E08A96; color: #C4577E; }
 #quiz-card #qz-ok {
   width: 100%; margin-top: 12px; padding: 11px; font-size: 15px; font-weight: 900; font-family: inherit;
-  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; cursor: pointer;
+  color: var(--c-field); background: var(--c-primary); border: none; border-radius: 999px; cursor: pointer;
   box-shadow: 0 3px 0 var(--c-primary-deep);
 }
 #quiz-card #qz-ok:active { transform: translateY(2px); box-shadow: none; }
@@ -617,7 +617,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 /* ---------- 北京终章成就卡 ---------- */
 #travel-card {
   width: min(420px, 92vw); max-height: calc(100dvh - 28px); overflow-y: auto;
-  background: linear-gradient(180deg, #FFF3D8, #FFFDF8 60%);
+  background: linear-gradient(180deg, #FFF3D8, var(--c-surface) 60%);
   border-radius: var(--r-card); border: 1px solid var(--c-line);
   box-shadow: var(--shadow-pop);
   padding: 20px; text-align: center;
@@ -628,7 +628,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #travel-card .tb-city { background: var(--c-surface); border: 2px solid #FFE08A; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: bold; color: #6B5844; }
 #travel-card .tb-ok {
   margin-top: 14px; width: 100%; padding: 11px; font-size: 15px; font-weight: 900; font-family: inherit;
-  color: #FFF; background: linear-gradient(180deg, #FFC94E, #F0A83E); border: none; border-radius: 999px; cursor: pointer;
+  color: var(--c-field); background: linear-gradient(180deg, #FFC94E, #F0A83E); border: none; border-radius: 999px; cursor: pointer;
 }
 #travel-card .tb-ok:active { transform: scale(.96); }
 #travel-card .tb-share {
@@ -647,12 +647,12 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .share-pop-btns { display: flex; gap: 10px; margin-top: 10px; }
 .share-pop-btns button {
   flex: 1; padding: 10px; font-weight: 900; font-family: inherit; font-size: 14px;
-  color: #FFF; border: none; border-radius: 999px; cursor: pointer;
+  color: var(--c-field); border: none; border-radius: 999px; cursor: pointer;
 }
 .share-pop-btns button:active { transform: scale(.96); }
 .share-pop .sp-share { background: var(--c-primary); }
 .share-pop .sp-save { background: linear-gradient(180deg, #FFC94E, #F0A83E); }
-.share-pop-tip { min-height: 18px; margin-top: 8px; font-size: 12px; color: #9C8C7A; text-align: center; font-weight: bold; }
+.share-pop-tip { min-height: 18px; margin-top: 8px; font-size: 12px; color: var(--c-text-2); text-align: center; font-weight: bold; }
 .share-pop .sp-close { position: absolute; top: 20px; right: 20px; }
 
 /* ---------- 二选一询问卡 ---------- */
@@ -668,7 +668,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   transition: transform .15s;
 }
 #ask-card button:active { transform: scale(.96); }
-#ask-card .ak-yes { color: #FFF; background: var(--c-primary); border: none; }
+#ask-card .ak-yes { color: var(--c-field); background: var(--c-primary); border: none; }
 #ask-card .ak-no { color: #B4436F; background: #FFF0F5; border: 2px solid #FFD3E0; }
 .cu-chip .en { font-style: normal; font-size: 10px; color: #A08A6E; }
 .cc-chips.col { flex-direction: column; }
@@ -684,7 +684,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #city-card.final { position: relative; border-color: #FFD34E; box-shadow: 0 0 0 4px rgba(255, 211, 78, .25), 0 16px 40px rgba(180, 120, 30, .25); }
 .cc-final-badge {
   position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: linear-gradient(90deg, #FFC94E, #FF9F68); color: #FFF; font-weight: 900; font-size: 12px;
+  background: linear-gradient(90deg, #FFC94E, #FF9F68); color: var(--c-field); font-weight: 900; font-size: 12px;
   padding: 4px 14px; border-radius: 999px; box-shadow: 0 3px 8px rgba(200, 140, 30, .4);
   white-space: nowrap; letter-spacing: 1px;
 }
@@ -713,13 +713,13 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .cc-dots i.on { background: var(--c-surface); transform: scale(1.3); }
 .cc-cap {
   position: absolute; left: 0; right: 0; bottom: 22px; text-align: center; z-index: 2;
-  color: #FFF; font-weight: 900; font-size: 13px; text-shadow: 0 1px 4px rgba(90, 50, 30, .7);
+  color: var(--c-field); font-weight: 900; font-size: 13px; text-shadow: 0 1px 4px rgba(90, 50, 30, .7);
 }
 .cc-hist { font-size: 12px; color: #8A6B4A; line-height: 1.7; text-align: justify; background: rgba(255, 224, 184, .25); border-radius: 12px; padding: 8px 10px; margin-bottom: 8px; }
 .cc-imp { font-size: 12px; font-weight: bold; color: #C4577E; background: rgba(255, 159, 190, .14); border-radius: 10px; padding: 5px 8px; margin-top: 8px; }
 .uni-list { display: flex; flex-direction: column; gap: 8px; }
 .uni-card { background: var(--c-surface); border: 2px solid #D8E8F8; border-radius: 14px; padding: 8px 10px; text-align: left; }
-.uni-card .uni-img { display: block; width: 100%; height: 130px; object-fit: contain; border-radius: 10px; margin-bottom: 7px; background: #FFF; border: 1px solid #EFF3F8; }
+.uni-card .uni-img { display: block; width: 100%; height: 130px; object-fit: contain; border-radius: 10px; margin-bottom: 7px; background: var(--c-field); border: 1px solid #EFF3F8; }
 .uni-card .uni-name {
   display: block; width: 100%; text-align: left; cursor: pointer; font-family: inherit;
   font-size: 14px; font-weight: 900; color: #3E7CB1; background: none; border: none; padding: 0;
@@ -729,7 +729,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .uni-card .uni-en { font-size: 11px; color: #A0907E; margin: 2px 0 6px 0; }
 .uni-card .uni-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 8px; font-size: 11px; color: #8A6B4A; font-weight: bold; }
 .uni-card .uni-grid .hot { color: #D46A4A; }
-.uni-card .uni-hist { font-size: 11px; color: #9C8C7A; margin-top: 5px; line-height: 1.5; }
+.uni-card .uni-hist { font-size: 11px; color: var(--c-text-2); margin-top: 5px; line-height: 1.5; }
 .cc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .item-card {
   background: var(--c-surface); border: 2px solid #FFE0B8; border-radius: 14px; overflow: hidden;
@@ -745,7 +745,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 .item-card .it-name { font-size: 12px; font-weight: 900; color: #6B5844; padding: 6px 8px 0; }
 .item-card .it-name i { font-style: normal; font-weight: normal; color: #A0907E; font-size: 10px; margin-left: 4px; }
-.item-card .it-desc { font-size: 11px; color: #9C8C7A; padding: 2px 8px 8px; line-height: 1.5; }
+.item-card .it-desc { font-size: 11px; color: var(--c-text-2); padding: 2px 8px 8px; line-height: 1.5; }
 
 /* ---------- 牌子详情弹卡 ---------- */
 #sign-card {
@@ -769,10 +769,10 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 900; color: #3E7CB1;
   background: #EAF3FC; border-radius: 999px; padding: 5px 12px; text-decoration: none;
 }
-#sign-card .sg-meta { font-size: 11px; color: #9C8C7A; margin-top: 8px; }
-#sign-card .sg-hist { font-size: 11px; color: #9C8C7A; line-height: 1.6; margin-top: 6px; text-align: justify; }
+#sign-card .sg-meta { font-size: 11px; color: var(--c-text-2); margin-top: 8px; }
+#sign-card .sg-hist { font-size: 11px; color: var(--c-text-2); line-height: 1.6; margin-top: 6px; text-align: justify; }
 #sign-card .sg-tip { font-size: 10px; color: #B8A890; margin-top: 10px; }
-#city-card .cc-tab.on { color: #FFF; background: var(--c-primary); border-color: var(--c-primary); }
+#city-card .cc-tab.on { color: var(--c-field); background: var(--c-primary); border-color: var(--c-primary); }
 #city-card .cc-body { min-height: 120px; overflow-y: auto; flex: 1 1 auto; overscroll-behavior: contain; padding-right: 4px; }
 #city-card .cc-scene { font-weight: 900; color: #4E7A46; font-size: 14px; margin-bottom: 6px; }
 #city-card .cc-sub { color: #8A6B4A; font-size: 12px; margin-top: 6px; }
@@ -821,7 +821,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #report-card .rp-sub { margin-top: 10px; font-size: 12px; color: #A08A6E; }
 #report-card .rp-share {
   margin-top: 12px; width: 100%; padding: 10px; font-weight: 900; font-size: 14px; font-family: inherit;
-  color: #FFF; background: var(--c-primary); border: none; border-radius: 999px; cursor: pointer;
+  color: var(--c-field); background: var(--c-primary); border: none; border-radius: 999px; cursor: pointer;
   transition: background .2s, transform .15s;
 }
 #report-card .rp-share:active { transform: scale(.97); }
@@ -929,12 +929,12 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #cheer.c-cool    { color: #31A8FF; text-shadow: 0 0 24px #B5E3FF, 0 4px 0 #1B82D4, 0 9px 24px rgba(49,168,255,.38); }
 #cheer.c-nice    { color: #58B84E; text-shadow: 0 0 18px #D8F0CE, 0 4px 0 #3E8F36, 0 8px 20px rgba(88,184,78,.35); }
 #cheer.c-bad     { color: #B08BBF; text-shadow: 0 3px 0 #8A6A9C; }
-#cheer.c-miss    { color: #9C8C7A; text-shadow: 0 3px 0 #7A6C5E; }
+#cheer.c-miss    { color: var(--c-text-2); text-shadow: 0 3px 0 #7A6C5E; }
 #score-ring {
   width: 92px; height: 92px; margin: 0 auto; border-radius: 50%;
   background: conic-gradient(#7CC96F var(--deg, 270deg), #EFE9DC 0deg);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  border: 4px solid #fff; box-shadow: 0 4px 14px rgba(120,160,90,.3);
+  border: 4px solid var(--c-field); box-shadow: 0 4px 14px rgba(120,160,90,.3);
 }
 #score-num { font-size: 30px; font-weight: 900; color: #4E7A46; line-height: 1; }
 #score-unit { font-size: 11px; color: #8FAF83; }
@@ -950,7 +950,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .listen-opt {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   padding: 12px 8px; border-radius: 16px; cursor: pointer;
-  background: linear-gradient(180deg, #FFFDF8, #FFF3F9);
+  background: linear-gradient(180deg, var(--c-surface), #FFF3F9);
   border: 2.5px solid #FFD9E8; box-shadow: 0 3px 10px rgba(232,72,127,.12);
   transition: transform .12s, box-shadow .12s, border-color .12s;
 }
@@ -969,7 +969,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #pet-card { display: flex; align-items: center; justify-content: center; z-index: 80; }
 #pet-card-card {
   position: relative; width: min(320px, 86vw); border-radius: 22px; padding: 22px 18px 18px;
-  background: linear-gradient(170deg, #FFFDF8, #FFEFF7);
+  background: linear-gradient(170deg, var(--c-surface), #FFEFF7);
   border: 3px solid #FFD9E8; box-shadow: 0 12px 34px rgba(232,72,127,.28); text-align: center;
   animation: popIn .35s cubic-bezier(.34,1.56,.64,1);
 }
@@ -985,7 +985,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .pc-tag-evo { color: #B47514; background: #FFF6E8; border-color: #FFE3B8; }
 .pc-tag-rare { color: #C05555; background: #FFEEF0; border-color: #FFC9CF; }
 #pet-card-share { width: 100%; padding: 12px; border-radius: 14px; font-size: 15px; font-weight: 800;
-  color: #fff; background: linear-gradient(135deg, #FF8FB2, #E85A4B); border: 0; cursor: pointer;
+  color: var(--c-field); background: linear-gradient(135deg, #FF8FB2, #E85A4B); border: 0; cursor: pointer;
   box-shadow: 0 4px 14px rgba(232,90,75,.3); transition: transform .12s; }
 #pet-card-share:active { transform: scale(.97); }
 
@@ -997,7 +997,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 #map-head { display: flex; justify-content: space-between; align-items: center; color: #4E7A46; font-weight: bold; margin-bottom: 8px; }
 #map-canvas { border-radius: 14px; display: block; width: auto; max-width: 100%; height: auto; max-height: calc(100dvh - 170px); margin: 0 auto; }
-#map-legend { font-size: 11px; color: #9C8C7A; margin-top: 8px; text-align: center; }
+#map-legend { font-size: 11px; color: var(--c-text-2); margin-top: 8px; text-align: center; }
 
 /* ---------- 课本朗读练习 ---------- */
 #book-card {
@@ -1014,7 +1014,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 .book-chip:hover { transform: translateY(-2px); border-color: #FFB1CC; }
 .book-chip:active { transform: scale(.94); }
-.book-chip.active { background: var(--c-primary); border-color: var(--c-primary); color: #fff; box-shadow: 0 3px 0 var(--c-primary-deep); }
+.book-chip.active { background: var(--c-primary); border-color: var(--c-primary); color: var(--c-field); box-shadow: 0 3px 0 var(--c-primary-deep); }
 #book-units { overflow-y: auto; display: flex; flex-direction: column; gap: 8px; max-height: 52vh; }
 #book-quick { margin: 0 0 12px; background: var(--c-primary); box-shadow: 0 3px 0 var(--c-primary-deep); }
 .book-row {
@@ -1024,7 +1024,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .book-row .bn { color: var(--c-text); font-weight: bold; font-size: 15px; }
 .book-row .bp { color: var(--c-text-2); font-size: 12px; margin-top: 2px; }
 .book-go {
-  border: none; background: var(--c-primary); color: #fff; font-weight: bold; font-size: 13px;
+  border: none; background: var(--c-primary); color: var(--c-field); font-weight: bold; font-size: 13px;
   padding: 9px 14px; border-radius: 999px; cursor: pointer; box-shadow: 0 3px 0 var(--c-primary-deep);
   white-space: nowrap; font-family: inherit;
 }
@@ -1126,7 +1126,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 }
 .pfield.small input { padding: 9px 12px 9px 38px; font-size: 16px; font-weight: normal; }
 .pfield input:focus {
-  background: #FFFDF8; border-color: var(--c-primary); box-shadow: var(--ring);
+  background: var(--c-surface); border-color: var(--c-primary); box-shadow: var(--ring);
   transform: translateY(-1px);
 }
 #profile-name[readonly] { background: #F7F2EC; color: #A09084; box-shadow: none; }
@@ -1134,7 +1134,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 /* 性别 = 3D 角色卡：白卡浮起 + 底部彩色投影，选中果冻渐变高亮 + ✓ 角标 */
 #profile-gender { display: flex; gap: 12px; margin: 0 0 12px; }
 #profile-gender .gender-btn {
-  position: relative; flex: 1; border: 2px solid #F3E5DC; background: #FFFDF8; color: var(--c-text);
+  position: relative; flex: 1; border: 2px solid var(--c-line); background: var(--c-surface); color: var(--c-text);
   font: inherit; font-weight: 900; font-size: 15px; padding: 13px 8px; border-radius: 18px;
   cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s, border-color .15s, color .15s;
   box-shadow: 0 4px 0 #F0DFD2, 0 8px 14px rgba(150, 110, 80, .10);
@@ -1142,13 +1142,13 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #profile-gender .gender-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #F0DFD2, 0 12px 18px rgba(150, 110, 80, .14); }
 #profile-gender .gender-btn:active { transform: translateY(1px) scale(.98); box-shadow: 0 2px 0 #F0DFD2; }
 #profile-gender .gender-btn.active {
-  background: var(--grad-cta); border-color: transparent; color: #fff; text-shadow: 0 1px 0 rgba(199,42,95,.35);
+  background: var(--grad-cta); border-color: transparent; color: var(--c-field); text-shadow: 0 1px 0 rgba(199,42,95,.35);
   box-shadow: 0 5px 0 var(--c-primary-deep), 0 12px 20px rgba(232, 72, 127, .30);
   animation: btnPop .28s cubic-bezier(.34,1.56,.64,1);
 }
 #profile-gender .gender-btn.active::after {
   content: '✓'; position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; line-height: 22px;
-  background: var(--c-sun); color: #fff; font-size: 13px; font-weight: 900; border-radius: 50%;
+  background: var(--c-sun); color: var(--c-field); font-size: 13px; font-weight: 900; border-radius: 50%;
   box-shadow: 0 2px 5px rgba(180, 117, 20, .4);
 }
 @keyframes btnPop { 0% { transform: scale(.92); } 60% { transform: scale(1.05); } 100% { transform: scale(1); } }
@@ -1162,7 +1162,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23B9A08E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 13px center;
 }
-#profile-card select:focus { background-color: #FFFDF8; border-color: var(--c-primary); box-shadow: var(--ring); }
+#profile-card select:focus { background-color: var(--c-surface); border-color: var(--c-primary); box-shadow: var(--ring); }
 #profile-card select:hover { border-color: #F5C9D8; }
 /* 我的城市：自定义选择器（通讯录式弹层），外观与原生 select 一致 */
 #profile-card .fake-select {
@@ -1201,7 +1201,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   width: 16px; height: 16px; border-radius: 50%; border: 2px solid #D8CFC5; flex: none;
 }
 #city-picker .city-row.on { color: #C4577E; font-weight: 900; }
-#city-picker .city-row.on .city-dot { border-color: var(--c-primary); background: radial-gradient(circle, var(--c-primary) 45%, #FFF 50%); }
+#city-picker .city-row.on .city-dot { border-color: var(--c-primary); background: radial-gradient(circle, var(--c-primary) 45%, var(--c-field) 50%); }
 #city-picker .cp-rail {
   display: flex; flex-direction: column; justify-content: center; gap: 1px; align-items: center;
   width: 18px; flex: none;
@@ -1211,12 +1211,12 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   color: #C4788F; background: none; border: none; cursor: pointer; border-radius: 4px;
 }
 #city-picker .cp-rail button:active { background: var(--c-primary-soft); }
-#city-picker .cp-rail button.active { background: var(--c-primary); color: #FFF; }
+#city-picker .cp-rail button.active { background: var(--c-primary); color: var(--c-field); }
 #profile-card select:focus { border-color: var(--c-primary); box-shadow: var(--ring); }
 #profile-card select:invalid { color: var(--c-text-2); }
 #profile-card .profile-tip { color: var(--c-text-2); font-size: var(--fs-sub); margin: 2px 0 12px; }
 #profile-start {
-  position: relative; border: none; background: var(--grad-cta); color: #fff; font: inherit; font-weight: 900;
+  position: relative; border: none; background: var(--grad-cta); color: var(--c-field); font: inherit; font-weight: 900;
   padding: 14px 34px; border-radius: 999px; cursor: pointer; font-size: 17px; letter-spacing: 2px;
   box-shadow: 0 6px 0 var(--c-primary-deep), 0 14px 24px rgba(232, 72, 127, .32), inset 0 2px 0 rgba(255,255,255,.5);
   text-shadow: 0 1px 0 rgba(199,42,95,.35);
@@ -1259,7 +1259,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .rank-row b { font-size: 18px; }
 .rank-row span { text-align: left; font-weight: bold; overflow: hidden; text-overflow: ellipsis; }
 .rank-row strong { color: var(--c-primary-deep); }
-.rank-loading { color: #9C8C7A; padding: 18px 8px; }
+.rank-loading { color: var(--c-text-2); padding: 18px 8px; }
 
 /* ---------- 挑战卡片 ---------- */
 #modal-card {
@@ -1286,7 +1286,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #word-en.spell-hidden { visibility: hidden; height: 0; margin: 0; }
 #word-ipa { font-size: 15px; color: #7C9BC4; font-weight: bold; margin-top: 3px; letter-spacing: 1px; }
 #word-zh { font-size: 16px; color: #C4788F; margin-top: 4px; font-weight: bold; }
-#word-hint { font-size: 14px; color: #9C8C7A; margin-top: 8px; }
+#word-hint { font-size: 14px; color: var(--c-text-2); margin-top: 8px; }
 #voice-area { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 12px 0 4px; flex-wrap: wrap; }
 #btn-play, #btn-mic {
   border: none; cursor: pointer; border-radius: 999px; font-weight: bold;
@@ -1299,7 +1299,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   border: 1px solid var(--c-line); animation: pulse 1.8s infinite;
 }
 #btn-mic {
-  background: var(--c-primary); color: #fff; font-size: 15px; padding: 10px 22px;
+  background: var(--c-primary); color: var(--c-field); font-size: 15px; padding: 10px 22px;
   display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 0 var(--c-primary-deep);
   letter-spacing: 1px;
 }
@@ -1307,7 +1307,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #btn-mic.listening { animation: micPulse .9s infinite; background: linear-gradient(#FF8080, #FF6B6B); box-shadow: 0 4px 0 #D14B4B; }
 #btn-mic.listening #mic-label::after {
   content: ''; display: inline-block; width: 2px; height: 14px; margin-left: 4px;
-  background: #fff; vertical-align: middle; animation: blink .5s infinite;
+  background: var(--c-field); vertical-align: middle; animation: blink .5s infinite;
 }
 @keyframes blink { 50% { opacity: 0 } }
 @keyframes micPulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.07) } }
@@ -1318,11 +1318,11 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #voice-feedback.bad { color: #D06A9C; }
 /* 跟读音节高亮 */
 #voice-feedback .syl { padding: 0 1px; border-radius: 6px; transition: all .15s; }
-#voice-feedback .syl.on { color: #fff; background: #FF8FB0; }
+#voice-feedback .syl.on { color: var(--c-field); background: #FF8FB0; }
 
 /* ---------- 拼字母块 ---------- */
 #spell-area { margin-top: 12px; border-top: 2px dashed #FFE0B8; padding-top: 14px; }
-#spell-title { text-align: center; color: #9C8C7A; font-size: 14px; margin-bottom: 10px; }
+#spell-title { text-align: center; color: var(--c-text-2); font-size: 14px; margin-bottom: 10px; }
 #spell-slots { display: flex; justify-content: center; gap: 8px; min-height: 52px; margin-bottom: 12px; }
 .slot {
   width: 40px; height: 46px; border-radius: 11px; border: 2px dashed #E8CFA8;
@@ -1373,7 +1373,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .pick-chip .z { color: #8FAF83; font-size: 12px; }
 .station-chip { min-width: 150px; justify-content: center; }
 .station-chip.locked { opacity: .55; cursor: not-allowed; background: #F4F0EC; border-color: #E5DDD4; }
-.station-chip.locked .n { color: #9C8C7A; }
+.station-chip.locked .n { color: var(--c-text-2); }
 .st-emoji { font-size: 26px; width: 40px; text-align: center; }
 #picker-close { position: absolute; top: 14px; right: 14px; }
 
@@ -1418,7 +1418,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #levelup { z-index: 125; background: rgba(90, 60, 80, .5); }
 #levelup-card {
   width: min(420px, 92vw); max-height: calc(100dvh - 32px); overflow-y: auto;
-  background: linear-gradient(180deg, #FFF9EC, #FFFDF8 55%);
+  background: linear-gradient(180deg, #FFF9EC, var(--c-surface) 55%);
   border-radius: var(--r-card); border: 1px solid var(--c-line);
   box-shadow: var(--shadow-pop);
   padding: 22px 20px 18px; text-align: center; position: relative;
@@ -1448,7 +1448,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .lvlup-chip i { color: #8A6B4A; font-size: 11px; font-style: normal; }
 #levelup-next {
   margin-top: 16px; width: 100%; padding: 12px; font-size: 16px; font-weight: 900; font-family: inherit;
-  color: #FFF; background: var(--c-primary);
+  color: var(--c-field); background: var(--c-primary);
   border: none; border-radius: 999px; cursor: pointer;
   box-shadow: 0 5px 14px rgba(220, 90, 130, .4), inset 0 1px 0 rgba(255,255,255,.4);
   transition: transform .15s, box-shadow .15s;
@@ -1465,7 +1465,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   border-radius: 999px; padding: 12px 30px;
   box-shadow: 0 8px 26px rgba(150, 80, 110, .35);
 }
-#chapter-banner-text { font-size: 20px; font-weight: 900; color: #FFF; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(120, 50, 80, .45); }
+#chapter-banner-text { font-size: 20px; font-weight: 900; color: var(--c-field); letter-spacing: 1px; text-shadow: 0 2px 4px rgba(120, 50, 80, .45); }
 #chapter-banner.run { animation: bannerIn 3.2s cubic-bezier(.22,1.2,.36,1) forwards; }
 @keyframes bannerIn {
   0% { opacity: 0; transform: translate(-50%, -50%) scale(.5) }
@@ -1487,7 +1487,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
   max-width: 92vw;
 }
 #update-bar .update-text {
-  color: #FFF; font-weight: 900; font-size: 14px;
+  color: var(--c-field); font-weight: 900; font-size: 14px;
   text-shadow: 0 1px 2px rgba(120, 50, 80, .35);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
@@ -1500,14 +1500,14 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #update-now:active { transform: scale(.94); }
 #update-later {
   flex: none; cursor: pointer; width: 26px; height: 26px; border: none; border-radius: 50%;
-  background: rgba(255, 255, 255, .35); color: #FFF; font-size: 13px; font-weight: 900; line-height: 1;
+  background: rgba(255, 255, 255, .35); color: var(--c-field); font-size: 13px; font-weight: 900; line-height: 1;
 }
 #update-later:active { transform: scale(.9); }
 #intro-emoji { font-size: 42px; }
 #intro-text { color: #6B5844; font-size: 15px; line-height: 1.7; margin: 10px 0 14px; }
 #intro-text b { color: #E0678D; }
 #intro-next {
-  border: none; background: var(--c-primary); color: #fff; font-size: 15px; font-weight: bold;
+  border: none; background: var(--c-primary); color: var(--c-field); font-size: 15px; font-weight: bold;
   padding: 10px 32px; border-radius: 999px; cursor: pointer; box-shadow: 0 4px 0 #E0678D; font-family: inherit;
 }
 #intro-next:active { transform: translateY(3px); box-shadow: 0 2px 0 #E0678D; }
@@ -1553,15 +1553,15 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 .shop-name { color: #5A4632; font-weight: bold; font-size: 15px; }
 .shop-desc { color: #B9AC9E; font-size: 12px; margin-top: 2px; }
 .shop-buy {
-  border: none; background: #FFB93C; color: #fff; font: inherit; font-weight: bold; font-size: 14px;
+  border: none; background: var(--c-sun); color: var(--c-field); font: inherit; font-weight: bold; font-size: 14px;
   padding: 9px 16px; border-radius: 999px; cursor: pointer; box-shadow: 0 3px 0 #D99A2F; white-space: nowrap;
 }
 .shop-buy:active { transform: translateY(2px); box-shadow: 0 1px 0 #D99A2F; }
 .shop-wear {
-  border: 2px solid #CDEBC8; background: #fff; color: #7A9C6E; font: inherit; font-weight: bold; font-size: 13px;
+  border: 2px solid #CDEBC8; background: var(--c-field); color: #7A9C6E; font: inherit; font-weight: bold; font-size: 13px;
   padding: 7px 14px; border-radius: 999px; cursor: pointer; white-space: nowrap;
 }
-.shop-wear.on { background: #7CC96F; border-color: #7CC96F; color: #fff; box-shadow: 0 3px 0 #5CA85C; }
+.shop-wear.on { background: #7CC96F; border-color: #7CC96F; color: var(--c-field); box-shadow: 0 3px 0 #5CA85C; }
 
 /* ---------- 每日任务板 ---------- */
 #daily-card {
@@ -1665,7 +1665,7 @@ body.fever #score-pill { border-color: #FFB93C; box-shadow: 0 0 0 3px rgba(255, 
 #ach-wall .ach-row.done { background: #EFF7EC; border-color: #9CCF9C; }
 #ach-wall .ach-row i { font-style: normal; }
 #ach-wall .ach-row b { color: #6B5844; flex: none; }
-#ach-wall .ach-row .ach-desc { flex: 1; color: #9C8C7A; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#ach-wall .ach-row .ach-desc { flex: 1; color: var(--c-text-2); font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #ach-wall .ach-row .ach-n { font-weight: 900; color: #C4577E; flex: none; }
 #ach-wall .ach-row.done .ach-n { color: #4E7A46; }
 
@@ -1825,7 +1825,7 @@ body {
 }
 /* Toast：白奶油 + 彩虹细边，提示也带一点节日感 */
 #toast {
-  background: linear-gradient(180deg, #FFFDF8, #FFF4E8);
+  background: linear-gradient(180deg, var(--c-surface), #FFF4E8);
   border: 2px solid rgba(255,169,120,.75);
   box-shadow: 0 8px 24px rgba(232, 72, 127, .18);
 }
@@ -1854,12 +1854,12 @@ body {
   box-shadow: inset 0 2px 5px rgba(150, 110, 80, .13);
 }
 .overlay input:not([type=checkbox]):not([type=radio]):not(.round-btn):focus, .overlay select:focus {
-  background: #FFFDF8; border-color: var(--c-primary); box-shadow: var(--ring);
+  background: var(--c-surface); border-color: var(--c-primary); box-shadow: var(--ring);
 }
 /* 主 CTA 果冻化收编：引导按钮与商店购买键 */
 #intro-next, .shop-buy {
   background: var(--grad-cta) !important;
-  border: none; color: #fff; font-weight: 900;
+  border: none; color: var(--c-field); font-weight: 900;
   box-shadow: 0 5px 0 var(--c-primary-deep), inset 0 2px 0 rgba(255,255,255,.45) !important;
   text-shadow: 0 1px 0 rgba(199,42,95,.35);
 }

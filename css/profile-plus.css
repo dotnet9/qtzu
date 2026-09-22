@@ -3,7 +3,7 @@
    下面 absolute 元素的定位属性一律 !important 压回 */
 .prof-bubble {
   position: absolute !important; top: -12px; right: calc(50% + 36px); left: auto;
-  background: #FFFDF8; border: 2px solid #FFD3E0; border-radius: 14px;
+  background: var(--c-surface); border: 2px solid #FFD3E0; border-radius: 14px;
   padding: 4px 12px; font-size: 12.5px; font-weight: 900; color: #B4436F;
   box-shadow: 0 3px 8px rgba(232, 72, 127, .16); white-space: nowrap; z-index: 2;
   animation: floaty2 2.6s ease-in-out infinite;
@@ -28,7 +28,7 @@
   position: absolute !important; right: 12px; bottom: 64px; top: auto; left: auto;
   width: 40px; height: 40px;
   border-radius: 50%; border: 2px solid #FFD3E0;
-  background: linear-gradient(180deg, #FFFDF8, #FFF0F5);
+  background: linear-gradient(180deg, var(--c-surface), #FFF0F5);
   font-size: 17px; cursor: pointer; box-shadow: 0 3px 8px rgba(232, 72, 127, .16);
   transition: transform .12s;
 }
