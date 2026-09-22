@@ -1301,8 +1301,9 @@ export class Game {
         this._blinkT = 2.4 + Math.random() * 3.4;
         this.addTween(0.18, k => {
           const s = k < 0.5 ? 1 - k * 2 : (k - 0.5) * 2;
-          for (const e of parts.eyes) e.scale.y = (e.userData.eyeH || 1) * Math.max(0.08, s);
-        }, () => { for (const e of parts.eyes) e.scale.y = e.userData.eyeH || 1; });
+          // 乘上表情的"笑眼"系数：眨眼（闭）与笑眼（眯）互不覆盖
+          for (const e of parts.eyes) e.scale.y = (e.userData.eyeH || 1) * Math.max(0.08, s) * (this._squint || 1);
+        }, () => { for (const e of parts.eyes) e.scale.y = (e.userData.eyeH || 1) * (this._squint || 1); });
       }
     }
     if (parts.head) {
@@ -1310,6 +1311,32 @@ export class Game {
       const want = idle ? Math.sin(t * 0.7) * 0.15 : 0;
       parts.head.rotation.y += (want - parts.head.rotation.y) * Math.min(1, dt * 5);
     }
+    // 表情通道：起 25% 进、中间保持、末 25% 退（不需要 tween 栈，也不会与眨眼打架）
+    if (parts.mouth && this._expr) {
+      const e = this._expr;
+      const k = Math.min(1, (performance.now() - e.t0) / (e.dur * 1000));
+      const ease = k < 0.25 ? k / 0.25 : (k > 0.75 ? (1 - k) / 0.25 : 1);
+      const mix = (a, b) => a + (b - a) * ease;
+      parts.mouth.scale.x = mix(1, e.sx);
+      parts.mouth.scale.y = mix(1, e.sy);
+      this._squint = mix(1, e.squint);
+      if (k >= 1) {
+        parts.mouth.scale.set(1, 1, 1);
+        this._squint = 1;
+        this._expr = null;
+      }
+    }
+  }
+
+  // 表情：kind = smile（微笑）/ joy（大笑，配笑眼）
+  // 只动嘴与眼睛 —— 其余部件都被既有动画占用（见本文件 playerParts.* 的用法）
+  _faceMood(kind = 'smile', dur = 1.6) {
+    const parts = this.playerParts;
+    if (!parts || !parts.mouth) return;
+    const spec = kind === 'joy'
+      ? { sx: 1.5, sy: 1.55, squint: 0.42 }    // 大笑：嘴张开（纵向拉长）+ 眼睛眯成弯
+      : { sx: 1.18, sy: 1.06, squint: 1 };     // 微笑：嘴略宽，眼睛不变
+    this._expr = { kind, dur, t0: performance.now(), ...spec };
   }
 
   // ================= 岛屿随机事件 =================
@@ -3781,6 +3808,7 @@ export class Game {
       const pet = this.pets.get(id);
       pet.jumping = true; pet.jt = 0;
       this._letterBurst(pet.group.position.clone().add(new THREE.Vector3(0, 1, 0)), '💗');
+      this._faceMood('smile', 1.6);   // 摸词宠：主角跟着微笑
       sfx.pat();
       const w = pet.word || WORD_MAP[id];
       if (w) speak(w.en);
@@ -4029,6 +4057,7 @@ export class Game {
 
   _hatchReveal(word, score, eggObj, via = 'voice') {
     save.hatch(word.id);
+    this._faceMood('joy', 2.4);   // 孵出词宠：主角大笑（嘴张开 + 笑眼）
     this.syncRanch();   // 🐾 新词宠入住乐园
     save.addPoint();
     ui.updatePlayerScore(save.getScore(), save.getSessionScore());
