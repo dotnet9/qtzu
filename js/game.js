@@ -15,7 +15,8 @@ function playerVariantTag(gender, wear) {
   return [gender, wear.hat || '', wear.balloon ? 'balloon' : '', wear.wand ? 'wand' : '']
     .filter(Boolean).join('-');
 }
-import * as assets from './assets.js';   // 词宠 GLB 换装（见 _refreshRanchPets）
+import * as assets from './assets.js';
+import { contactShadow, updateContactShadow } from './shadow.js';   // 脚下接触阴影（见该文件注释）   // 词宠 GLB 换装（见 _refreshRanchPets）
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
@@ -933,6 +934,7 @@ export class Game {
     const dt = Math.min(this.clock.getDelta(), 0.05);
     const t = this.clock.elapsedTime;
     this._updatePlayer(dt);
+    this._updateContactShadows();   // 玩家/词宠脚下的接触阴影（每帧跟随，见 js/shadow.js）
     this._updateCamera(dt);
     this._updateShadowFollow();   // 阴影框跟人（见该函数注释：固定 ±60 时城的外圈没有投影）
     if (this.chinaMap) this.chinaMap.setRouteFade(this.camDist);   // 巡游路线虚线：拉远才显现
@@ -2598,6 +2600,27 @@ export class Game {
     sfx.boing();
     this._petEmoji(pet, '😍');
     ui.toast(t('y.ride', { a0: pet.word.en, a1: this.mountFly ? t('y.37') : t('y.38') }), 3000);
+  }
+
+  // 接触阴影：玩家 + 牧场词宠（+ 骑乘中的词宠）。贴地跟随、离地越高越大越淡。
+  // 挂在 scene 上而不是实体子节点上 —— 词宠本身是悬浮的，阴影必须贴地面。
+  _updateContactShadows() {
+    if (this.isTouch) return;   // 触屏省这点开销（与 SMAA/环境反射同一个降级判据）
+    const scene = this.scene;
+    const one = (obj, radius, x, z, lift) => {
+      if (!obj.userData.cshadow) {
+        const m = contactShadow(radius);
+        scene.add(m);
+        obj.userData.cshadow = m;
+      }
+      updateContactShadow(obj.userData.cshadow, x, z, this._groundY(x, z), lift);
+    };
+    const pp = this.player && this.player.position;
+    if (pp) one(this.player, 0.44, pp.x, pp.z, Math.max(0, pp.y - this._groundY(pp.x, pp.z)));
+    for (const p of this._ranchPets || []) {
+      const g = p.group;
+      one(g, 0.3, g.position.x, g.position.z, Math.max(0, g.position.y - this._groundY(g.position.x, g.position.z)));
+    }
   }
 
   _updatePlayer(dt) {

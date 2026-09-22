@@ -16,7 +16,7 @@ const CORE = [
   'favicon.ico', 'favicon.png', 'apple-touch-icon.png',
   'js/compat.js', 'js/version.js', 'js/main.js', 'js/game.js', 'js/ui.js',
   'js/save.js', 'js/words.js', 'js/cities.js', 'js/curriculum.js', 'js/data.js',
-  'js/models.js', 'js/assets.js', 'js/pets.js', 'js/world.js', 'js/audio.js', 'js/speech.js',
+  'js/models.js', 'js/assets.js', 'js/shadow.js', 'js/pets.js', 'js/world.js', 'js/audio.js', 'js/speech.js',
   'js/npcs.js', 'js/china-base.js', 'js/china-map.js', 'js/city-shape.js',
   'js/city-shape-data.js', 'js/pep-extra.js', 'js/uni-gate-models.js',
   'js/uni-gates.js', 'js/whisper.js', 'js/track.js', 'js/festival.js',
