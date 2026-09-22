@@ -116,13 +116,26 @@ function stats(img, samples) {
   };
 }
 
-function meanDiff(a, b) {
+// 开/关后期合成的亮度差。
+// ⚠ 只量**中心区**：这个指标的本意是抓"色彩空间/色调映射错位"（缺 OutputPass 时开后期会整幅变色），
+// 那是**全局**问题。而 ⑩ 新加的暗角是**设计上**的全画面亮度变化（四角压暗），
+// 拿它判 composerDiff 会把"画面变好看"判成"不达标"（实测 0.005 → 0.023，门槛 0.02）。
+// 暗角按 smoothstep(0.55, 1) 衰减 → 归一化半径 < 0.5 的中心区**完全不受影响**，
+// 所以只在这里取样：色彩空间错位仍会被抓到，暗角不会误报。
+// 全画幅数字另存 composerDiffAll（仅供参考，不进门槛）。
+function meanDiff(a, b, centerOnly) {
   if (a.w !== b.w || a.h !== b.h) return null;
   let sum = 0, n = 0;
-  for (let y = 0; y < a.h; y += 2) for (let x = 0; x < a.w; x += 2) {
-    const i = (y * a.w + x) * a.ch;
-    sum += Math.abs(lumOf(a.px[i], a.px[i + 1], a.px[i + 2]) - lumOf(b.px[i], b.px[i + 1], b.px[i + 2]));
-    n++;
+  for (let y = 0; y < a.h; y += 2) {
+    for (let x = 0; x < a.w; x += 2) {
+      if (centerOnly) {
+        const u = x / a.w - 0.5, v = y / a.h - 0.5;
+        if (Math.hypot(u, v) * 1.41421356 > 0.5) continue;   // 只留中心椭圆
+      }
+      const i = (y * a.w + x) * a.ch;
+      sum += Math.abs(lumOf(a.px[i], a.px[i + 1], a.px[i + 2]) - lumOf(b.px[i], b.px[i + 1], b.px[i + 2]));
+      n++;
+    }
   }
   return sum / Math.max(1, n);
 }
@@ -144,6 +157,11 @@ const drive = (page, cam) => page.evaluate(({ dist, pitch, at }) => {
   g.lockInput = false; g.cinematic = false;
   // 钉住天气：_updateWeather 每 90~180 秒会随机切雨/雪（主光 ×0.62/×0.78 = 整幅画面变暗），
   // 不钉住的话同一套参数两次跑出来的数字能差 0.13（比要修的问题还大）
+  // 钉住"帧率看门狗"：_fpsWatch 在 6 秒内平均 <25fps 时会把 composer 整个拆掉（低端机降级），
+  // 而 headless 软渲染（SwiftShader）必然慢 → 同一套参数两趟跑，一趟量到"有后期"、一趟量到
+  // "无后期"，数字差一整档（实测 composerDiff 0.023 / 0.000）。置 _lowFx 让看门狗直接返回，
+  // 保留真实的后期链（含 ⑩ 的暗角 pass），测量才可复现。
+  g._lowFx = true;
   const w = g._weatherState || (g._weatherState = { cur: 'clear', next: 1e9 });
   w.cur = 'clear'; w.next = 1e9;
   if (g.world.anim.rain) g.world.anim.rain.visible = false;
@@ -463,7 +481,8 @@ for (const v of views) {
     grassLumRange: st.grassLum25 == null ? null : [+st.grassLum25.toFixed(3), +st.grassLum75.toFixed(3)],
     sampleN: st.n,
     samples: st.samples.map((s) => ({ rgb: s.rgb, lum: +s.lum.toFixed(3), sat: +s.sat.toFixed(3) })),
-    composerDiff: +(meanDiff(main.img, noPost.img) ?? NaN).toFixed(4),
+    composerDiff: +(meanDiff(main.img, noPost.img, true) ?? NaN).toFixed(4),
+    composerDiffAll: +(meanDiff(main.img, noPost.img) ?? NaN).toFixed(4),
     noPost: { over: +npSt.over.toFixed(4), top: +npSt.top.toFixed(4), grassLum: npSt.grassLum == null ? null : +npSt.grassLum.toFixed(3), grassSat: npSt.grassSat == null ? null : +npSt.grassSat.toFixed(3) },
     probe,
   };

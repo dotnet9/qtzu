@@ -350,6 +350,32 @@ export function buildFloatingIsland(grp, ptsF, cx, cz, anim) {
   }
 }
 
+// 天空云层贴图：絮状软云。与环岛云海那张（硬圆叠加）不同 —— 穹顶上面积大，
+// 硬边圆斑会变成"一串白球"，所以这里用多层低透明度径向渐变叠出絮状边缘。
+let _skyCloudTex = null;
+function sharedSkyCloudTexture() {
+  if (_skyCloudTex) return _skyCloudTex;
+  const cv = document.createElement('canvas');
+  cv.width = 512; cv.height = 256;
+  const g = cv.getContext('2d');
+  g.clearRect(0, 0, 512, 256);
+  const puffs = [
+    [110, 150, 92, .55], [180, 128, 76, .60], [250, 156, 84, .52], [320, 132, 70, .58],
+    [150, 176, 58, .42], [280, 180, 62, .44], [390, 150, 66, .50], [210, 108, 52, .40],
+  ];
+  for (const [x, y, r, a] of puffs) {
+    const rg = g.createRadialGradient(x, y, r * 0.15, x, y, r);
+    rg.addColorStop(0, 'rgba(255,255,255,' + a + ')');
+    rg.addColorStop(0.55, 'rgba(255,255,255,' + (a * 0.5).toFixed(3) + ')');
+    rg.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = rg;
+    g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
+  }
+  _skyCloudTex = new THREE.CanvasTexture(cv);
+  _skyCloudTex.colorSpace = THREE.SRGBColorSpace;
+  return _skyCloudTex;
+}
+
 let _cloudTex = null;
 function sharedCloudTexture() {
   if (_cloudTex) return _cloudTex;
@@ -653,6 +679,31 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
   const dome = new THREE.Mesh(new THREE.SphereGeometry(1000, 32, 20),
     new THREE.MeshBasicMaterial({ map: skyTex, side: THREE.BackSide, fog: false }));
   scene.add(dome);
+
+  // ---- 天空体积云：穹顶内侧两层平铺云（缓慢平移 → 视差） ----
+  // 方案 §3 的"天空体积云"：不引入体积渲染，用穹顶上的两层球面片 + 云贴图平铺，
+  // 靠不同半径 / 不同速度制造视差，肉眼上就是"厚云层"。1 张共享贴图、2 个 draw call。
+  // 与穹顶一样 BackSide + fog:false（天空不该被雾洗白）。触屏由 game.js 整组隐藏。
+  {
+    const skyCloudTex = sharedSkyCloudTexture();
+    // [半径, 起始极角(×π), 极角跨度(×π), 平铺次数, 不透明度, 漂移速度]
+    const SPEC = [
+      [940, 0.06, 0.30, 5, 0.30, 0.0035],
+      [900, 0.14, 0.26, 3, 0.22, 0.0060],
+    ];
+    for (const [r, phi0, phiLen, rep, op, spd] of SPEC) {
+      const tex = skyCloudTex.clone();
+      tex.needsUpdate = true;
+      tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(rep, 1);
+      const layer = new THREE.Mesh(
+        new THREE.SphereGeometry(r, 48, 20, 0, Math.PI * 2, Math.PI * phi0, Math.PI * phiLen),
+        new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: op, depthWrite: false, side: THREE.BackSide, fog: false }));
+      layer.renderOrder = -1;          // 先于其它透明物，免得被海面/浪花抢排序
+      scene.add(layer);
+      (world.anim.skyClouds = world.anim.skyClouds || []).push({ mesh: layer, tex, speed: spd });
+    }
+  }
   const cityOnly0 = !!semIslands.length && semIslands[0].level != null;
   // 两种模式的雾色都调成"大气"而不是"白纸"：近白雾色（0xDFF3EC）在成都尺度上会把城对面整片洗白
   scene.fog = cityOnly0 ? new THREE.Fog(0xCBE6F2, 90, 420) : new THREE.Fog(0xDFF3EC, 42, 150);

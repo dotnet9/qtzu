@@ -5,6 +5,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 import { WORD_MAP, ZONE_NAMES, allWordsForSem, chaptersFor, islandsForSem, BOOK_LABEL, makeSeedRand, shuffleSeed } from './words.js';
@@ -50,6 +51,42 @@ const CITY_SCALE = 0.84;   // 城市地图尺度倍率（×5 后缩 1/3≈1.67�
 // 中性顶光——浅色马卡龙表面被抬白、绿被压成灰绿，这就是"地图发白"的核心来源之一。
 // 0.10 是实测值：草地亮度/饱和度两个指标同时落进目标区间（scripts/check-render.mjs）
 const ENV_ROOM_DIM = 0.10;
+// 轻后处理（方案 §3）：暗角 + 色彩分级。**注意**：这一 pass 跑在 OutputPass 之前，
+// 也就是在**线性空间**里工作（暗角乘在线性空间才是物理正确的光衰减；分级也按线性值调）。
+// 触屏/低端机整条 composer 都不建，所以这个 pass 天然只在桌面端生效。
+const VIGNETTE_GRADE = {
+  uniforms: {
+    tDiffuse: { value: null },
+    uVig: { value: 0.32 },     // 暗角强度（画面四角最多压到 68%）
+    uLift: { value: 0.0 },     // 抬黑（lift）
+    uGamma: { value: 1.0 },    // 中间调（gamma）
+    // gain 保持 1.0：曾用 1.03 去"抵掉暗角压掉的平均亮度"，但那等于让**中心区**整体提亮 3%，
+    // 而中心区正是 check-render 判"开/关后期是否变色"的取样区（composerDiff 0.0204 > 门槛 0.02）。
+    // 与其把门槛放宽，不如让分级在中心区保持中性：暗角照旧生效，指标仍能抓色彩空间错位。
+    uGain: { value: 1.0 },     // 增益（gain）
+    uSat: { value: 1.05 },     // 饱和：马卡龙配色略微回甜（几乎不动亮度，故不影响上面那个指标）
+  },
+  vertexShader: /* glsl */`
+    varying vec2 vUv;
+    void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }
+  `,
+  fragmentShader: /* glsl */`
+    uniform sampler2D tDiffuse;
+    uniform float uVig, uLift, uGamma, uGain, uSat;
+    varying vec2 vUv;
+    void main() {
+      vec4 c = texture2D(tDiffuse, vUv);
+      vec3 col = c.rgb * uGain + uLift;
+      col = pow(max(col, 0.0), vec3(1.0 / max(uGamma, 0.001)));
+      float l = dot(col, vec3(0.2126, 0.7152, 0.0722));
+      col = mix(vec3(l), col, uSat);
+      // 暗角：按对角归一化，smoothstep 让中心大片保持干净，只在边缘渐暗
+      float r = length(vUv - 0.5) * 1.41421356;
+      col *= 1.0 - uVig * smoothstep(0.55, 1.0, r);
+      gl_FragColor = vec4(col, c.a);
+    }
+  `,
+};
 // 情景单词点：词与场景实物绑定记忆（走近弹气泡并念一遍；只启用词库里真实存在的词）
 const SCENE_WORDS = [
   { x: -20, z: -14, en: 'apple', emoji: '🍎' },
@@ -256,6 +293,7 @@ export class Game {
     });
     // 辉光后期：桌面端开启；触屏设备（内存紧张、容易崩上下文）跳过，直接普通渲染
     const lowEnd = matchMedia('(pointer: coarse)').matches;
+    this._lowEnd = lowEnd;   // 供天空云层等"触屏关"的装饰用（见 _applySkyCloudLOD）
     if (!lowEnd) {
       try {
         // MSAA 必须挂在 composer 的离屏 RT 上：renderer 的 antialias 只作用于"渲染到默认帧缓冲"，
@@ -290,6 +328,9 @@ export class Game {
         this.composer.addPass(this.bloom);
         // SMAA：后期链里的抗锯齿（MSAA 在 iGPU 上太贵，见上）。
         // 放在 OutputPass 之前，这样它处理的是已经合成好的线性画面。
+        // 轻后处理：暗角 + 色彩分级（在 SMAA 之前、OutputPass 之前 = 线性空间）
+        this.vignette = new ShaderPass(VIGNETTE_GRADE);
+        this.composer.addPass(this.vignette);
         this.composer.addPass(new SMAAPass(innerWidth * this.renderer.getPixelRatio(), innerHeight * this.renderer.getPixelRatio()));
         // OutputPass 必须是最后一层：r160 的色调映射与色域转换只在"渲染到画布"时生效
         // （WebGLPrograms.getParameters：currentRenderTarget !== null 时 toneMapping=NoToneMapping、
@@ -972,6 +1013,7 @@ export class Game {
     this._updateZoneHint(dt);
     this._updateFx(dt);
     this._updateIslandLOD();
+    this._applySkyCloudLOD();
     // 水面法线 UV 滚动：两层不同速度/方向 → 波纹在动，且看不出平铺重复。
     // 每帧只改 offset（不重传纹理），代价可忽略。
     const wm = this.world.anim.waterMats;
@@ -3324,6 +3366,10 @@ export class Game {
       cl.position.x += dt * 0.7;
       if (cl.position.x > 62) cl.position.x = -62;
     }
+    // 天空云层：两层按不同速度平移（贴图 offset，不移动网格）→ 视差；offset.x 回绕防浮点累积
+    for (const sc of a.skyClouds || []) {
+      sc.tex.offset.x = (sc.tex.offset.x + dt * sc.speed) % 1;
+    }
     // 水面呼吸：河水轻起伏、透明度微变，岛边浪花一圈涨落，海面缓慢升降
     if (a.water) {
       // 水面波动范围 0.043~0.099：最低点高于地面(y=0)避免与地面深度冲突（闪烁碎块），
@@ -3553,6 +3599,8 @@ export class Game {
       dn.baseSun = 0.35; dn.sun.intensity = 0.35; dn.hemi.intensity = 0.45;   // baseSun 供天气按比例打折
       dn.fog.color.set(0x39466B);
       dn.dome.material.color.set(0x6B7FB8);
+      // 天空云层同样压暗：白云压在深蓝穹顶上会变成一片发亮的白斑（穹顶变色而云不变 = 穿帮）
+      for (const sc of (this.world.anim.skyClouds || [])) sc.mesh.material.color.set(0x66739F);
       if (sea) sea.material.color.set('#2E5F8A');
       if (this.world.anim.nightFire) this.world.anim.nightFire.material.opacity = 0.85;
     } else {
@@ -3578,6 +3626,7 @@ export class Game {
       dn.hemi.intensity = 0.50 + h * 0.16;
       dn.fog.color.set(0xCBE6F2);   // 与天空同色系的浅蓝：远处是"大气"，不是"白纸"（近白雾色是发白的主因之一）
       dn.dome.material.color.set(0xFFFFFF);
+      for (const sc of (this.world.anim.skyClouds || [])) sc.mesh.material.color.set(0xFFFFFF);
       if (sea) sea.material.color.set('#4A9ED9');
       if (this.world.anim.nightFire) this.world.anim.nightFire.material.opacity = 0;
       dn.sun.color.set(hr < 8 ? 0xFFE2B8 : hr >= 16 ? 0xFFC98A : 0xFFF2DC);
@@ -3586,6 +3635,16 @@ export class Game {
 
   // 外圈海岛懒加载：雾外的岛整组隐藏（省 draw call），走近再显示，视觉无感
   // 城市巡游模式：只显示当前城市舞台（其他城市在雾外"等待解锁"）
+  // 触屏/低端机：天空云层整组隐藏（方案 §3「触屏关」）
+  _applySkyCloudLOD() {
+    const a = this.world && this.world.anim;
+    if (!a || !a.skyClouds) return;
+    const off = !!this._lowEnd;
+    if (this._skyCloudOff === off) return;   // 状态没变不写，避免无谓打断渲染
+    this._skyCloudOff = off;
+    for (const sc of a.skyClouds) sc.mesh.visible = !off;
+  }
+
   _updateIslandLOD() {
     this._lodT = (this._lodT || 0) - 1;
     if (this._lodT > 0) return;
