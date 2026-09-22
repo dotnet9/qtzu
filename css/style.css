@@ -1890,3 +1890,92 @@ body.touch #brand-badge{display:none}
   .pfield i{left:11px;font-size:15px}
   .pfield input{padding-left:36px}
 }
+
+
+/* ===== 视觉语言升级（附加式：删掉本块即回退） =====
+   1) 三档圆角：弹层 28 / 卡片 18 / 控件 12（原来所有元素共用 --r-card 一档，层次感弱）
+   2) 拟物按压：按钮带"底部厚边"，按下时厚边变薄并下沉 2px
+   3) 统一回弹曲线 + 面板进入上浮
+   4) 统一深色描边（与 3D 侧的硬棱呼应） */
+:root {
+  --r-lg: 28px;            /* 弹层/大卡 */
+  --r-md: 18px;            /* 卡片 */
+  --r-sm: 12px;            /* 控件 */
+  --ease-pop: cubic-bezier(.34, 1.56, .64, 1);   /* 回弹（按下/弹出统一用它） */
+  --edge: 0 4px 0 rgba(232, 72, 127, .22);        /* 按钮底部厚边（拟物） */
+  --edge-press: 0 1px 0 rgba(232, 72, 127, .22);
+  --outline: 2px solid rgba(91, 81, 72, .18);     /* 统一深色描边 */
+}
+
+/* 圆形功能按钮（菜单/关闭/召唤）：厚边 + 按压 */
+.round-btn {
+  box-shadow: 0 4px 0 rgba(232, 72, 127, .20), inset 0 1px 0 rgba(255, 255, 255, .95);
+  transition: transform .12s var(--ease-pop), box-shadow .12s var(--ease-pop), background .15s;
+}
+.round-btn:active {
+  transform: translateY(3px) scale(.96);
+  box-shadow: 0 1px 0 rgba(232, 72, 127, .20), inset 0 1px 0 rgba(255, 255, 255, .95);
+}
+
+/* 胶囊（HUD 信息/星星）：同样给厚边，但按压幅度小（它不是主操作） */
+.pill {
+  box-shadow: 0 3px 0 rgba(232, 72, 127, .16), inset 0 1px 0 rgba(255, 255, 255, .9);
+  transition: transform .12s var(--ease-pop);
+}
+.pill:active { transform: translateY(2px) scale(.98); }
+
+/* 菜单项：从"扁胶囊"变成"可点的卡片行"——左移高光 + 描边加深 */
+.menu-item {
+  box-shadow: 0 2px 0 rgba(91, 81, 72, .08), inset 0 1px 0 rgba(255, 255, 255, .9);
+  transition: transform .12s var(--ease-pop), border-color .15s, background .15s, box-shadow .12s;
+}
+.menu-item:active {
+  transform: translateY(2px) scale(.985);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border-color: var(--c-primary);
+  background: var(--c-primary-soft);
+}
+@media (hover: hover) {
+  .menu-item:hover { border-color: var(--c-primary); background: #FFF6FA; }
+}
+
+/* 其它可点控件（性别/迷你按钮/方向键）统一按压手感 */
+.gender-btn, .mini-btn, .joy-dir, .pfield, .fake-select, .cat-page-btn {
+  transition: transform .12s var(--ease-pop), box-shadow .12s var(--ease-pop), border-color .15s;
+}
+.gender-btn:active, .mini-btn:active, .cat-page-btn:active { transform: translateY(2px) scale(.97); }
+.joy-dir:active { transform: scale(.92); }
+
+/* 主 CTA（开始/继续/下一关）：厚边 + 按下沉 —— 与 round-btn 同一套语言 */
+#profile-start, #intro-next, #levelup-next, #btn-play, .cta, .btn-primary {
+  box-shadow: 0 5px 0 rgba(200, 40, 96, .28), 0 8px 18px rgba(232, 72, 127, .18);
+  transition: transform .12s var(--ease-pop), box-shadow .12s var(--ease-pop), filter .15s;
+}
+#profile-start:active, #intro-next:active, #levelup-next:active, #btn-play:active, .cta:active, .btn-primary:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(200, 40, 96, .28), 0 3px 8px rgba(232, 72, 127, .14);
+}
+@media (hover: hover) {
+  #profile-start:hover, #intro-next:hover, #levelup-next:hover, #btn-play:hover, .cta:hover, .btn-primary:hover { filter: brightness(1.04); }
+}
+
+/* 弹层进入：120ms 上浮 + 回弹（原来只有 display 切换，显得"啪"地跳出来） */
+.overlay:not(.hidden) > .sheet, .overlay:not(.hidden) > .card, .overlay:not(.hidden) > .modal {
+  animation: uiPop .22s var(--ease-pop) both;
+}
+@keyframes uiPop {
+  from { transform: translateY(14px) scale(.97); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* 可访问性：减少动效时关掉回弹与上浮（前庭敏感的孩子不该被弹动打扰） */
+@media (prefers-reduced-motion: reduce) {
+  .round-btn, .pill, .menu-item, .gender-btn, .mini-btn, .joy-dir,
+  #profile-start, #intro-next, #levelup-next, #btn-play, .cta, .btn-primary {
+    transition: none !important;
+  }
+  .overlay:not(.hidden) > .sheet, .overlay:not(.hidden) > .card, .overlay:not(.hidden) > .modal {
+    animation: none !important;
+  }
+}
+/* ===== 视觉语言升级 结束 ===== */
