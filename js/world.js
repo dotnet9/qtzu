@@ -7,6 +7,7 @@ import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 import { createCityTerrain } from './terrain.js';
 import { brickNormal, grainNormal, grassDetail } from './textures.js';
 import { WALL, WALL_BANDS, BEACON, beaconHeights } from './wall-spec.js';   // 城市边界断面 + 敌楼造型：两侧共用同一份数据
+import { buildSkyIsles } from './sky-isles.js';   // 城市上空的浮岛链 + 四条上岛通道
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 import * as assets from './assets.js';
 
@@ -2168,6 +2169,32 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           colC(cx + sp[0], cz + sp[1], Math.max(w, 1.6) * 0.75, h);
         }
       }
+    }
+    // ---- 天空群岛（每座城市上空一条浮岛链 + 四条上岛通道，见 js/sky-isles.js）----
+    // 挂在 grp 上而不是 scene：岛链跟着岛组走，"只显示当前城"的 LOD 白拿；
+    // 没去过的城走的是上面的轻量占位分支，提前 return，零成本。
+    if (isCity) {
+      const cb = (world.cityBounds || {})[key];
+      const sky = buildSkyIsles({
+        key, cx, cz, r, color, poly: sim, cityGrp: grp, colliders: C,
+        terrain: cb && cb.terrainField ? { waterAt: (lx, lz) => cb.terrainField.waterAt(lx, lz) } : null,
+        fogColor: scene.fog ? '#' + scene.fog.color.getHexString() : '#CBE6F2',
+      });
+      // 岛面 / 桥面 / 木台：纯平台（不挡路），能站、走出边缘自然下落
+      for (const p of sky.platforms) addPlatform(p.x, p.z, p.r, p.top);
+      // 弹簧蘑菇跳板：带 bounce 的平台（复用 game 的 vy=12.5 弹跳）+ 一个"顶面高度"碰撞体
+      for (const b of sky.bounces) colTop(b.x, b.z, b.r, b.top, b.bottom, true);
+      // 会浮的云踏板：塞进 cloudStair 那条现成的动画轨（上下浮 + 远景淡出都白拿）
+      world.anim.cloudStair = world.anim.cloudStair || [];
+      for (const p of sky.pads) {
+        addPlatform(p.x, p.z, p.r, p.top);
+        const pf = world.platforms[world.platforms.length - 1];
+        pf.baseTop = p.top;
+        pf.bob = { amp: p.amp, speed: 1.05, phase: p.phase };
+        world.anim.cloudStair.push({ mesh: p.mesh, pf, baseY: p.baseY });
+      }
+      world.skyIsles = world.skyIsles || {};
+      world.skyIsles[key] = sky;
     }
     const decoSpots = [];
     const treeN = isCity ? 3 : 7;
