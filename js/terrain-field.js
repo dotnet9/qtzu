@@ -295,6 +295,39 @@ export function makeHeightField({ pts, cfg }) {
     return 1 - smoothstep(0.7, 1.0, Math.max(Math.abs(nx2), Math.abs(nz2)));
   };
   const farmMask = (x, z) => FRM ? 1 - smoothstep(FRM.r0, FRM.r1, Math.hypot(x - FRM.c[0], z - FRM.c[1])) : 0;
+  /* ---- 斑驳光影查表（每城一份，懒构建）----
+     为什么查表：光斑要按 1024² 逐像素求值，直接算 n2 是 3 次三角函数 ——
+     实测整个区域色贴图生成 350ms，其中光斑占近一半。而光斑是尺度 4~10 单位的**平滑场**，
+     256² 表（0.68 单位/格，一个斑块 6~15 格）+ 双线性插值肉眼看不出差别，成本降到 1/16。
+     ⚠ 查表按**未 warp** 的 x/z 索引：树影固定在世界里，不该跟着遮罩噪声扭动。 */
+  const DAP_N = 256;
+  let _dapLut = null;
+  const dappleAt = (x, z) => {
+    if (!_dapLut) {
+      _dapLut = new Float32Array(DAP_N * DAP_N);
+      const sx0 = (maxX - minX) / DAP_N, sz0 = (maxZ - minZ) / DAP_N;
+      for (let j = 0; j < DAP_N; j++) {
+        const zz = minZ + (j + 0.5) * sz0;
+        for (let i = 0; i < DAP_N; i++) {
+          const xx = minX + (i + 0.5) * sx0;
+          // n2 的原生周期是 48~118 单位；乘 11 → 4.4 / 10.7 / 8.0 单位，
+          // 正是参考图里"树影打在草地上"的斑块大小
+          _dapLut[j * DAP_N + i] = n2(xx * 11 + 7.7, zz * 11 - 4.1) / 2;   // ≈ -1 ~ 1
+        }
+      }
+    }
+    let fx = (x - minX) / (maxX - minX) * DAP_N - 0.5;
+    let fz = (z - minZ) / (maxZ - minZ) * DAP_N - 0.5;
+    fx = fx < 0 ? 0 : (fx > DAP_N - 1 ? DAP_N - 1 : fx);
+    fz = fz < 0 ? 0 : (fz > DAP_N - 1 ? DAP_N - 1 : fz);
+    const i0 = Math.floor(fx), j0 = Math.floor(fz);
+    const i1 = i0 + 1 < DAP_N ? i0 + 1 : i0, j1 = j0 + 1 < DAP_N ? j0 + 1 : j0;
+    const tx = fx - i0, tz = fz - j0;
+    const a = _dapLut[j0 * DAP_N + i0], b = _dapLut[j0 * DAP_N + i1];
+    const c = _dapLut[j1 * DAP_N + i0], d = _dapLut[j1 * DAP_N + i1];
+    return (a * (1 - tx) + b * tx) * (1 - tz) + (c * (1 - tx) + d * tx) * tz;
+  };
+
   // 线性版配色（渲染专用）：只做一次 sRGB→线性，配色规则与 zoneColor 共用同一份，不会漂移
   function zoneColorLinear(x, z, hSm, band, out) {
     zoneColor(x, z, hSm, band, out);
@@ -338,16 +371,20 @@ export function makeHeightField({ pts, cfg }) {
     const st = smoothstep(snowRange[0], snowRange[1], quant(hSm));
     if (st > 0 && CL.snow) { r += (CL.snow[0] - r) * st; g += (CL.snow[1] - g) * st; b += (CL.snow[2] - b) * st; }
     // 迎宾主街：与 world.js 的迎宾主街同向（沿 z），从城心铺到边缘；两侧各一条深缘石
+    // roadAmt / plazaAmt 除了着色，还给下面的"铺装材质层"用（石板缝/裂缝/苔藓/车辙）
+    let roadAmt = 0, plazaAmt = 0;
     if (CL.plaza && Math.abs(sz - cz0) < HZ * 0.98) {
       const lx = Math.abs(sx - cx0);
       const onRoad = 1 - smoothstep(AV_W, AV_W + 0.7, lx);
       if (onRoad > 0) {
         r += (CL.plaza[0] - r) * onRoad; g += (CL.plaza[1] - g) * onRoad; b += (CL.plaza[2] - b) * onRoad;
+        roadAmt = onRoad;
       } else {
         const kerb = 1 - smoothstep(AV_W, AV_W + AV_K, lx);
         if (kerb > 0) {   // 缘石：铺装色压暗 35%，读起来就是"路沿"
           const kr = CL.plaza[0] * 0.65, kg = CL.plaza[1] * 0.65, kb = CL.plaza[2] * 0.65;
           r += (kr - r) * kerb; g += (kg - g) * kerb; b += (kb - b) * kerb;
+          roadAmt = kerb;
         }
       }
     }
@@ -356,7 +393,50 @@ export function makeHeightField({ pts, cfg }) {
       if (dp < PLZ.inner + 1) {
         const m = 1 - smoothstep(PLZ.inner, PLZ.inner + 2.5, dp);
         r += (CL.plaza[0] - r) * m; g += (CL.plaza[1] - g) * m; b += (CL.plaza[2] - b) * m;
+        plazaAmt = m;
       }
+    }
+
+    /* ---- 铺装材质层（只作用于主街/缘石/广场）----
+       参考图的广场之所以"像铺过的"，靠的是石板分格缝 + 裂缝 + 苔藓 + 车辙这几层细节；
+       原来这里只有"整块平涂的 plaza 色"。四层全部是解析式或单次噪声，不引入任何贴图资产。 */
+    const pavedAmt = Math.max(roadAmt, plazaAmt);
+    if (pavedAmt > 0.02) {
+      const CELL = 2.2, SEAM_W = 0.10;            // 石板格宽 2.2 米、缝宽 10cm（≈ 参考图的石板比例）
+      const seamAt = (v) => 1 - smoothstep(0, SEAM_W, Math.abs(v / CELL - Math.round(v / CELL)) * CELL);
+      // 主街：只有横向缝（石板沿街方向长条铺）；广场：方格缝
+      const grid = Math.max(seamAt(sz) * roadAmt, Math.max(seamAt(sx), seamAt(sz)) * plazaAmt);
+      // 裂缝：高频脊线（n2 的三项和值域约 ±2，先归一到 0~1 再取脊）
+      // ⚠ n2 的三项是 2π/0.131≈48、2π/0.053≈118、2π/0.071≈88 单位周期，
+      //   乘 3.1 只到 15~38 单位 —— 那是"地块级花纹"不是裂缝。乘 34 得到 1.4~3.5 单位，
+      //   脊线宽度才落在 0.1~0.3 米（真正的石缝裂纹）。
+      const crack = smoothstep(0.80, 0.93, (n2(sx * 34 + 4.4, sz * 34 - 2.2) + 2) / 4) * pavedAmt;
+      // 苔藓：缝附近 × 低频"潮湿"噪声 → 冷绿（亮度几乎不变，不顶破草地亮度门槛）
+      // 苔藓的"潮湿"分布：几米一块（乘 5 → 8~24 单位），不是整城一块
+      const damp = smoothstep(0.45, 0.85, (n2(sx * 5 + 11.3, sz * 5 - 3.7) + 2) / 4);
+      const moss = grid * damp * 0.9;
+      // 车辙：主街中心两条平行暗带（沿街长、跨街窄）
+      const rut = roadAmt > 0 ? (1 - smoothstep(0.30, 0.62, Math.abs(Math.abs(sx - cx0) - 0.62))) * roadAmt : 0;
+      const dk = 1 - 0.16 * grid - 0.14 * crack - 0.07 * rut;
+      r *= dk; g *= dk; b *= dk;
+      r += (0.42 - r) * moss; g += (0.55 - g) * moss; b += (0.36 - b) * moss;
+    }
+
+    /* ---- 斑驳光影（阳光透叶隙）----
+       用 n2 的低频项（天然尺度约 9~24 世界单位，正是参考图里光斑的大小），只乘亮度、不动色相。
+       ⚠ 亮部幅度必须小于暗部（+3% / -8%）：check-render 的草地亮度上界是 0.70，当前实测 0.668
+          已经贴近，所以净效果要**略变暗**、不能往上推（门槛不放宽）。
+       ⚠ 水面不排除：湖面是**独立网格**（opacity 0.92）且高度与湖底高度场几乎相同，
+          水底那点光斑被水面几乎完全挡住；而逐像素调用 waterAt 是 O(河采样点×点数)，会拖死生成。
+       ⚠ window.__noDapple 是**测试专用**开关（scripts/verify-dapple.mjs 用它做"开/关"对照），
+          生产环境不设它 → 恒为 1。 */
+    if (!(typeof window !== 'undefined' && window.__noDapple)) {
+      const dap = dappleAt(x, z);
+      // 亮部 +8% / 暗部 -16%（参考图的树影强度）。**亮部幅度必须小于暗部**：
+      //   净效果是略变暗，绝不会把 check-render 的草地亮度（上界 0.70，当前 0.668）往上推；
+      //   乘性调制不改 HSV 饱和度，所以草地饱和下界（0.30）也不受影响。
+      const dk = dap > 0 ? 1 + dap * 0.08 : 1 + dap * 0.16;
+      r *= dk; g *= dk; b *= dk;
     }
     // 抖动：原来按 colorCell 网格吸附算随机（格子本身就是 2.5 单位的色块），
     // 现在用连续（已 warp）坐标 → 与网格分辨率同级的细颗粒
