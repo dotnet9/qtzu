@@ -1,16 +1,16 @@
 {
  "blender": "4.5.14 LTS",
- "generated": "2026-09-21T09:20:32.043Z",
+ "generated": "2026-09-23T09:05:34.711Z",
  "kinds": {
-  "ground": {
-   "blender": "4.5.14 LTS",
-   "generated": "2026-09-21T17:20:30",
-   "count": 52
-  },
   "gate": {
    "blender": "4.5.14 LTS",
    "generated": "2026-09-21T08:24:09",
    "count": 384
+  },
+  "ground": {
+   "blender": "4.5.14 LTS",
+   "generated": "2026-09-23T17:00:40",
+   "count": 52
   },
   "landmark": {
    "blender": "4.5.14 LTS",
@@ -439,27 +439,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -64.054,
-     63.432
+     -64.712,
+     64.123
     ],
     "y": [
      -3.6,
-     4.114
+     4.011
     ],
     "z": [
-     -77.843,
-     78.256
+     -78.296,
+     78.748
     ]
    },
-   "bytes": 2683452,
+   "bytes": 3700348,
    "city": "hefei",
    "file": "ground/044bda5c.glb",
    "key": "hefei",
    "radius": 77,
-   "tri": 14180,
-   "verts": 11110,
+   "tri": 23844,
+   "verts": 20926,
    "zh": "合肥",
-   "v": "8a96a79097"
+   "v": "e693d5a736"
   },
   "04514e2a": {
    "kind": "gate",
@@ -1103,27 +1103,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.614,
-     77.228
+     -79.717,
+     77.625
     ],
     "y": [
      -3.6,
      9.031
     ],
     "z": [
-     -77.182,
-     77.306
+     -77.329,
+     77.554
     ]
    },
-   "bytes": 2927284,
+   "bytes": 3978340,
    "city": "hohhot",
    "file": "ground/0d35d5d9.glb",
    "key": "hohhot",
    "radius": 76,
-   "tri": 16546,
-   "verts": 11971,
+   "tri": 26514,
+   "verts": 22459,
    "zh": "呼和浩特",
-   "v": "d3027e5f21"
+   "v": "c54f66d191"
   },
   "0e2b5990": {
    "kind": "gate",
@@ -1506,53 +1506,53 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -82.221,
-     83.857
+     -82.699,
+     85.007
     ],
     "y": [
      -3.6,
      8.975
     ],
     "z": [
-     -40.717,
-     40.739
+     -40.821,
+     40.913
     ]
    },
-   "bytes": 1764604,
+   "bytes": 2519424,
    "city": "xian",
    "file": "ground/147db7ee.glb",
    "key": "xian",
    "radius": 81,
-   "tri": 9264,
-   "verts": 8557,
+   "tri": 16388,
+   "verts": 15477,
    "zh": "西安",
-   "v": "aefa8f911a"
+   "v": "65ae86963c"
   },
   "14867c7f": {
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.305,
-     78.198
+     -78.676,
+     78.661
     ],
     "y": [
      -3.6,
      9.032
     ],
     "z": [
-     -56.721,
-     57.044
+     -57.001,
+     57.257
     ]
    },
-   "bytes": 2313908,
+   "bytes": 3367720,
    "city": "lanzhou",
    "file": "ground/14867c7f.glb",
    "key": "lanzhou",
    "radius": 77,
-   "tri": 13688,
-   "verts": 12961,
+   "tri": 23612,
+   "verts": 23537,
    "zh": "兰州",
-   "v": "5f02457fc2"
+   "v": "dcf7cd7934"
   },
   "15dd1b66": {
    "kind": "gate",
@@ -1848,27 +1848,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -79.217,
-     78.94
+     -79.769,
+     79.012
     ],
     "y": [
      -3.6,
-     4.106
+     4.005
     ],
     "z": [
-     -28.607,
-     27.765
+     -29.328,
+     28.524
     ]
    },
-   "bytes": 1816780,
+   "bytes": 2653332,
    "city": "changsha",
    "file": "ground/188c6cab.glb",
    "key": "changsha",
    "radius": 78,
-   "tri": 9948,
-   "verts": 10599,
+   "tri": 17948,
+   "verts": 19159,
    "zh": "长沙",
-   "v": "b4d2afff03"
+   "v": "1f709ec80f"
   },
   "19979eef": {
    "kind": "gate",
@@ -2338,27 +2338,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -70.04,
-     70.247
+     -70.545,
+     70.354
     ],
     "y": [
      -3.6,
-     4.109
+     4.014
     ],
     "z": [
-     -79.725,
-     80.621
+     -80.141,
+     81.278
     ]
    },
-   "bytes": 2240552,
+   "bytes": 3185484,
    "city": "kaohsiung",
    "file": "ground/269a8c5d.glb",
    "key": "kaohsiung",
    "radius": 79,
-   "tri": 11172,
-   "verts": 10385,
+   "tri": 20100,
+   "verts": 19241,
    "zh": "高雄",
-   "v": "e85d6577f0"
+   "v": "8130e92f80"
   },
   "27caa4e7": {
    "kind": "landmark",
@@ -2596,27 +2596,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.287,
-     77.289
+     -77.447,
+     77.765
     ],
     "y": [
      -3.6,
-     4.111
+     4.011
     ],
     "z": [
-     -47.237,
-     46.287
+     -48.02,
+     46.721
     ]
    },
-   "bytes": 2055264,
+   "bytes": 2993052,
    "city": "kaifeng",
    "file": "ground/2b0a4041.glb",
    "key": "kaifeng",
    "radius": 76,
-   "tri": 11282,
-   "verts": 9507,
+   "tri": 20190,
+   "verts": 18731,
    "zh": "开封",
-   "v": "beb9fb9bb2"
+   "v": "531c0b52da"
   },
   "2b168894": {
    "kind": "landmark",
@@ -3260,27 +3260,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.373,
-     77.441
+     -77.881,
+     78.01
     ],
     "y": [
      -3.6,
      4.549
     ],
     "z": [
-     -75.183,
-     75.303
+     -75.531,
+     75.471
     ]
    },
-   "bytes": 3061632,
+   "bytes": 4125820,
    "city": "haikou",
    "file": "ground/359cac3a.glb",
    "key": "haikou",
    "radius": 76,
-   "tri": 16536,
-   "verts": 11441,
+   "tri": 26688,
+   "verts": 21553,
    "zh": "海口",
-   "v": "6147980baa"
+   "v": "048f1f4951"
   },
   "365b9b08": {
    "kind": "gate",
@@ -3460,27 +3460,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -65.451,
-     65.277
+     -65.834,
+     65.731
     ],
     "y": [
      -3.6,
      9.02
     ],
     "z": [
-     -77.219,
-     77.301
+     -77.397,
+     77.826
     ]
    },
-   "bytes": 2625232,
+   "bytes": 3627928,
    "city": "xining",
    "file": "ground/39669e92.glb",
    "key": "xining",
    "radius": 76,
-   "tri": 14944,
-   "verts": 11061,
+   "tri": 24452,
+   "verts": 20597,
    "zh": "西宁",
-   "v": "8788376125"
+   "v": "d9b56f0100"
   },
   "396760e2": {
    "kind": "gate",
@@ -4008,27 +4008,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.342,
-     78.301
+     -78.787,
+     78.674
     ],
     "y": [
      -3.6,
      4.505
     ],
     "z": [
-     -68.877,
-     69.474
+     -69.281,
+     70.107
     ]
    },
-   "bytes": 2550532,
+   "bytes": 3760984,
    "city": "jinan",
    "file": "ground/40c06011.glb",
    "key": "jinan",
    "radius": 77,
-   "tri": 13802,
-   "verts": 12648,
+   "tri": 25366,
+   "verts": 24992,
    "zh": "济南",
-   "v": "c4d92bdcd6"
+   "v": "b2fe1b0589"
   },
   "40dd8bd8": {
    "kind": "gate",
@@ -4063,27 +4063,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.261,
-     78.158
+     -78.491,
+     78.525
     ],
     "y": [
      -3.6,
      5.403
     ],
     "z": [
-     -38.663,
-     38.608
+     -39.02,
+     38.778
     ]
    },
-   "bytes": 2059392,
+   "bytes": 2929228,
    "city": "zhengzhou",
    "file": "ground/411a69f9.glb",
    "key": "zhengzhou",
    "radius": 77,
-   "tri": 11470,
-   "verts": 9488,
+   "tri": 19714,
+   "verts": 17888,
    "zh": "郑州",
-   "v": "f882b7409f"
+   "v": "96a5808ecc"
   },
   "4136e5ae": {
    "kind": "gate",
@@ -4292,27 +4292,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -76.208,
-     76.316
+     -76.704,
+     76.657
     ],
     "y": [
      -3.6,
      9.041
     ],
     "z": [
-     -54.383,
-     52.924
+     -55.461,
+     53.421
     ]
    },
-   "bytes": 1888508,
+   "bytes": 2592048,
    "city": "dunhuang",
    "file": "ground/4358a3ca.glb",
    "key": "dunhuang",
    "radius": 75,
-   "tri": 9646,
-   "verts": 6185,
+   "tri": 16142,
+   "verts": 11601,
    "zh": "敦煌",
-   "v": "290c8ba205"
+   "v": "5534c769f7"
   },
   "435f2021": {
    "kind": "gate",
@@ -4521,27 +4521,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -81.458,
-     81.157
+     -82.044,
+     81.584
     ],
     "y": [
      -3.6,
      7.237
     ],
     "z": [
-     -47.701,
-     47.692
+     -47.91,
+     47.83
     ]
    },
-   "bytes": 2268288,
+   "bytes": 3205668,
    "city": "hangzhou",
    "file": "ground/46ac39e9.glb",
    "key": "hangzhou",
    "radius": 80,
-   "tri": 12128,
-   "verts": 11442,
+   "tri": 21064,
+   "verts": 20890,
    "zh": "杭州",
-   "v": "03bcf8e31e"
+   "v": "7c01ca0b0d"
   },
   "46e05050": {
    "kind": "gate",
@@ -4750,27 +4750,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.072,
-     78.128
+     -78.433,
+     78.438
     ],
     "y": [
      -3.6,
      4.53
     ],
     "z": [
-     -66.39,
-     67.902
+     -66.989,
+     68.696
     ]
    },
-   "bytes": 2997960,
+   "bytes": 4174244,
    "city": "nanchang",
    "file": "ground/4ac88df3.glb",
    "key": "nanchang",
    "radius": 77,
-   "tri": 16482,
-   "verts": 12251,
+   "tri": 27730,
+   "verts": 24003,
    "zh": "南昌",
-   "v": "e4a8996735"
+   "v": "9ef73c0f56"
   },
   "4b07607f": {
    "kind": "gate",
@@ -4834,27 +4834,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -65.323,
-     65.19
+     -65.493,
+     65.448
     ],
     "y": [
      -3.6,
-     4.108
+     4.005
     ],
     "z": [
-     -80.677,
-     81.361
+     -81.068,
+     81.65
     ]
    },
-   "bytes": 2832968,
+   "bytes": 4159472,
    "city": "tianjin",
    "file": "ground/4d227097.glb",
    "key": "tianjin",
    "radius": 80,
-   "tri": 16492,
-   "verts": 13146,
+   "tri": 29176,
+   "verts": 26882,
    "zh": "天津",
-   "v": "c447fc2683"
+   "v": "1df003034e"
   },
   "4de2ad8c": {
    "kind": "landmark",
@@ -5469,27 +5469,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -88.374,
-     89.727
+     -88.912,
+     90.826
     ],
     "y": [
      -3.6,
      14.799
     ],
     "z": [
-     -62.872,
-     62.8
+     -62.963,
+     63.52
     ]
    },
-   "bytes": 2959036,
+   "bytes": 4067360,
    "city": "chengdu",
    "file": "ground/58c74cc3.glb",
    "key": "chengdu",
    "radius": 87,
-   "tri": 16308,
-   "verts": 13623,
+   "tri": 26876,
+   "verts": 24775,
    "zh": "成都",
-   "v": "68b3ebd405"
+   "v": "7d65d623be"
   },
   "58c76278": {
    "kind": "landmark",
@@ -6046,27 +6046,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -60.97,
-     60.151
+     -61.818,
+     60.69
     ],
     "y": [
      -3.6,
-     4.104
+     4.004
     ],
     "z": [
-     -79.23,
-     79.217
+     -79.469,
+     79.706
     ]
    },
-   "bytes": 2630116,
+   "bytes": 3842696,
    "city": "shenyang",
    "file": "ground/6170aac5.glb",
    "key": "shenyang",
    "radius": 78,
-   "tri": 15062,
-   "verts": 12426,
+   "tri": 26618,
+   "verts": 24794,
    "zh": "沈阳",
-   "v": "8543164a15"
+   "v": "edd7855cfa"
   },
   "61786aa7": {
    "kind": "landmark",
@@ -6188,27 +6188,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.423,
-     77.027
+     -77.998,
+     77.62
     ],
     "y": [
      -3.6,
      10.833
     ],
     "z": [
-     -49.363,
-     49.178
+     -49.579,
+     49.601
     ]
    },
-   "bytes": 2006496,
+   "bytes": 2855368,
    "city": "lhasa",
    "file": "ground/636a5212.glb",
    "key": "lhasa",
    "radius": 76,
-   "tri": 10992,
-   "verts": 8723,
+   "tri": 18976,
+   "verts": 16715,
    "zh": "拉萨",
-   "v": "1b7a484c1b"
+   "v": "86723cc6ac"
   },
   "63cfd523": {
    "kind": "landmark",
@@ -6794,27 +6794,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.317,
-     77.191
+     -77.567,
+     77.649
     ],
     "y": [
      -3.6,
-     4.114
+     4.012
     ],
     "z": [
-     -63.201,
-     63.061
+     -63.799,
+     63.135
     ]
    },
-   "bytes": 2432356,
+   "bytes": 3562168,
    "city": "wuxi",
    "file": "ground/6d1a757e.glb",
    "key": "wuxi",
    "radius": 76,
-   "tri": 12594,
-   "verts": 9645,
+   "tri": 23366,
+   "verts": 20317,
    "zh": "无锡",
-   "v": "b84900d2bc"
+   "v": "5e79b6d152"
   },
   "6d3812ad": {
    "kind": "landmark",
@@ -6907,27 +6907,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -63.081,
-     63.819
+     -63.53,
+     64.517
     ],
     "y": [
      -3.6,
-     4.107
+     4.009
     ],
     "z": [
-     -81.017,
-     80.94
+     -81.408,
+     81.369
     ]
    },
-   "bytes": 2467492,
+   "bytes": 3570424,
    "city": "guangzhou",
    "file": "ground/6e8f1710.glb",
    "key": "guangzhou",
    "radius": 80,
-   "tri": 12874,
-   "verts": 10841,
+   "tri": 23350,
+   "verts": 21697,
    "zh": "广州",
-   "v": "804f16154e"
+   "v": "f84181e702"
   },
   "6ee7d124": {
    "kind": "gate",
@@ -7078,27 +7078,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.814,
-     77.378
+     -78.619,
+     77.654
     ],
     "y": [
      -3.6,
-     4.112
+     4.012
     ],
     "z": [
-     -61.331,
-     61.247
+     -61.708,
+     61.674
     ]
    },
-   "bytes": 2644796,
+   "bytes": 3713220,
    "city": "shaoxing",
    "file": "ground/703ea133.glb",
    "key": "shaoxing",
    "radius": 76,
-   "tri": 14246,
-   "verts": 11496,
+   "tri": 24458,
+   "verts": 22528,
    "zh": "绍兴",
-   "v": "cc42d5af77"
+   "v": "5117c6a9b3"
   },
   "70b5dd84": {
    "kind": "gate",
@@ -7510,27 +7510,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -79.098,
-     79.568
+     -79.917,
+     80.581
     ],
     "y": [
      -3.6,
-     4.107
+     4.011
     ],
     "z": [
-     -62.786,
-     62.835
+     -63.119,
+     63.35
     ]
    },
-   "bytes": 2592784,
+   "bytes": 3686584,
    "city": "nanning",
    "file": "ground/77617e4b.glb",
    "key": "nanning",
    "radius": 77,
-   "tri": 14062,
-   "verts": 12490,
+   "tri": 24498,
+   "verts": 23818,
    "zh": "南宁",
-   "v": "a735118baf"
+   "v": "3a661f5b45"
   },
   "7839dacc": {
    "kind": "gate",
@@ -8551,27 +8551,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.145,
-     78.807
+     -77.45,
+     79.924
     ],
     "y": [
      -3.6,
      4.531
     ],
     "z": [
-     -75.248,
-     74.599
+     -75.923,
+     75.1
     ]
    },
-   "bytes": 2956152,
+   "bytes": 4290964,
    "city": "quanzhou",
    "file": "ground/8386d03d.glb",
    "key": "quanzhou",
    "radius": 76,
-   "tri": 16544,
-   "verts": 14128,
+   "tri": 29320,
+   "verts": 28160,
    "zh": "泉州",
-   "v": "ab5047f348"
+   "v": "c49c333548"
   },
   "84f1692e": {
    "kind": "gate",
@@ -8722,27 +8722,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.132,
-     77.318
+     -77.413,
+     77.459
     ],
     "y": [
      -3.6,
      4.526
     ],
     "z": [
-     -75.582,
-     75.65
+     -75.756,
+     75.926
     ]
    },
-   "bytes": 2622868,
+   "bytes": 3621792,
    "city": "zhuhai",
    "file": "ground/8820c6af.glb",
    "key": "zhuhai",
    "radius": 76,
-   "tri": 13394,
-   "verts": 8935,
+   "tri": 22882,
+   "verts": 17695,
    "zh": "珠海",
-   "v": "945bf0c294"
+   "v": "cea243a931"
   },
   "88888d5c": {
    "kind": "gate",
@@ -9067,27 +9067,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -52.024,
-     53.032
+     -52.559,
+     53.954
     ],
     "y": [
      -3.6,
-     4.113
+     4.012
     ],
     "z": [
-     -81.579,
-     80.884
+     -82.663,
+     81.223
     ]
    },
-   "bytes": 2525724,
+   "bytes": 3741764,
    "city": "nanjing",
    "file": "ground/8d11eea0.glb",
    "key": "nanjing",
    "radius": 80,
-   "tri": 13596,
-   "verts": 11699,
+   "tri": 25224,
+   "verts": 23939,
    "zh": "南京",
-   "v": "9e41e82172"
+   "v": "3dcad75319"
   },
   "8e58deda": {
    "kind": "gate",
@@ -9297,26 +9297,26 @@
    "bbox": {
     "x": [
      -78.011,
-     77.042
+     77.032
     ],
     "y": [
      -3.6,
      8.136
     ],
     "z": [
-     -77.02,
-     77.026
+     -77.006,
+     77.022
     ]
    },
-   "bytes": 2223500,
+   "bytes": 3337532,
    "city": "urumqi",
    "file": "ground/904c106b.glb",
    "key": "urumqi",
    "radius": 76,
-   "tri": 11870,
-   "verts": 9663,
+   "tri": 22458,
+   "verts": 19567,
    "zh": "乌鲁木齐",
-   "v": "785917dafd"
+   "v": "e076cabd7e"
   },
   "90c4256e": {
    "kind": "gate",
@@ -9438,27 +9438,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -76.391,
-     76.572
+     -76.912,
+     77.201
     ],
     "y": [
      -3.6,
      6.353
     ],
     "z": [
-     -65.121,
-     64.501
+     -65.448,
+     64.926
     ]
    },
-   "bytes": 2191684,
+   "bytes": 3264252,
    "city": "datong",
    "file": "ground/9190d601.glb",
    "key": "datong",
    "radius": 75,
-   "tri": 12228,
-   "verts": 9584,
+   "tri": 22320,
+   "verts": 19480,
    "zh": "大同",
-   "v": "ebb8cd4ea9"
+   "v": "7e68e04685"
   },
   "9257d174": {
    "kind": "gate",
@@ -9928,27 +9928,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.173,
-     78.855
+     -77.729,
+     80.003
     ],
     "y": [
      -3.6,
      8.138
     ],
     "z": [
-     -62.89,
-     62.729
+     -62.991,
+     63.105
     ]
    },
-   "bytes": 2453660,
+   "bytes": 3479456,
    "city": "luoyang",
    "file": "ground/9aaa892e.glb",
    "key": "luoyang",
    "radius": 76,
-   "tri": 14046,
-   "verts": 11113,
+   "tri": 23690,
+   "verts": 21033,
    "zh": "洛阳",
-   "v": "3818ef53c1"
+   "v": "b3857b86ac"
   },
   "9ac62196": {
    "kind": "gate",
@@ -10128,27 +10128,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -66.617,
-     66.501
+     -66.928,
+     66.753
     ],
     "y": [
      -3.6,
      10.82
     ],
     "z": [
-     -77.295,
-     77.015
+     -77.516,
+     77.453
     ]
    },
-   "bytes": 2487488,
+   "bytes": 3448876,
    "city": "yinchuan",
    "file": "ground/9d793b68.glb",
    "key": "yinchuan",
    "radius": 76,
-   "tri": 13414,
-   "verts": 9326,
+   "tri": 22522,
+   "verts": 18214,
    "zh": "银川",
-   "v": "b61e038615"
+   "v": "fe21c6f120"
   },
   "9f058b15": {
    "kind": "gate",
@@ -10705,27 +10705,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.281,
-     77.434
+     -77.788,
+     78
     ],
     "y": [
      -3.6,
-     4.111
+     4.012
     ],
     "z": [
-     -68.721,
-     68.963
+     -68.928,
+     69.572
     ]
    },
-   "bytes": 2430648,
+   "bytes": 3366220,
    "city": "suzhou",
    "file": "ground/a6152dbe.glb",
    "key": "suzhou",
    "radius": 76,
-   "tri": 12348,
-   "verts": 9534,
+   "tri": 21224,
+   "verts": 18150,
    "zh": "苏州",
-   "v": "3a756f5009"
+   "v": "fc3fc328a3"
   },
   "a6246cf8": {
    "kind": "gate",
@@ -11514,27 +11514,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -72.946,
-     73.513
+     -73.041,
+     74.176
     ],
     "y": [
      -3.6,
      7.236
     ],
     "z": [
-     -78.261,
-     77.981
+     -78.63,
+     78.288
     ]
    },
-   "bytes": 2967472,
+   "bytes": 4448396,
    "city": "qingdao",
    "file": "ground/b2514c10.glb",
    "key": "qingdao",
    "radius": 77,
-   "tri": 16566,
-   "verts": 13473,
+   "tri": 30790,
+   "verts": 28529,
    "zh": "青岛",
-   "v": "b630bbea6a"
+   "v": "3df1684cfc"
   },
   "b2ef230a": {
    "kind": "landmark",
@@ -11598,27 +11598,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.166,
-     77.441
+     -77.614,
+     78.01
     ],
     "y": [
      -3.6,
      4.502
     ],
     "z": [
-     -67.863,
-     68.173
+     -68.246,
+     68.493
     ]
    },
-   "bytes": 2553096,
+   "bytes": 3482772,
    "city": "qufu",
    "file": "ground/b3823dde.glb",
    "key": "qufu",
    "radius": 76,
-   "tri": 13894,
-   "verts": 9276,
+   "tri": 22706,
+   "verts": 17644,
    "zh": "曲阜",
-   "v": "5ca1d75128"
+   "v": "c6f8e606e1"
   },
   "b44c0e7b": {
    "kind": "gate",
@@ -11682,27 +11682,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -58.777,
-     58.147
+     -59.756,
+     58.515
     ],
     "y": [
      -3.6,
-     4.113
+     4.013
     ],
     "z": [
-     -77.296,
-     78.847
+     -77.473,
+     79.986
     ]
    },
-   "bytes": 2583056,
+   "bytes": 3593468,
    "city": "yangzhou",
    "file": "ground/b4b15b05.glb",
    "key": "yangzhou",
    "radius": 76,
-   "tri": 13396,
-   "verts": 9736,
+   "tri": 22996,
+   "verts": 19392,
    "zh": "扬州",
-   "v": "13b27da03c"
+   "v": "75d120b009"
   },
   "b57a726a": {
    "kind": "landmark",
@@ -11795,27 +11795,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.14,
-     77.456
+     -78.299,
+     77.876
     ],
     "y": [
      -3.6,
      6.32
     ],
     "z": [
-     -45.871,
-     46.524
+     -46.156,
+     46.91
     ]
    },
-   "bytes": 1814920,
+   "bytes": 2695352,
    "city": "taiyuan",
    "file": "ground/b61b2d5f.glb",
    "key": "taiyuan",
    "radius": 77,
-   "tri": 10048,
-   "verts": 8752,
+   "tri": 18244,
+   "verts": 17296,
    "zh": "太原",
-   "v": "5e260935ae"
+   "v": "11e2eea143"
   },
   "b730956a": {
    "kind": "landmark",
@@ -11879,27 +11879,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -56.124,
-     55.996
+     -56.528,
+     56.345
     ],
     "y": [
      -3.6,
      10.831
     ],
     "z": [
-     -81.834,
-     80.223
+     -82.979,
+     80.724
     ]
    },
-   "bytes": 2781712,
+   "bytes": 4031800,
    "city": "kunming",
    "file": "ground/b79397b8.glb",
    "key": "kunming",
    "radius": 79,
-   "tri": 15322,
-   "verts": 12733,
+   "tri": 27298,
+   "verts": 25469,
    "zh": "昆明",
-   "v": "00e8b59336"
+   "v": "1281eb4b13"
   },
   "b7c3e551": {
    "kind": "gate",
@@ -12021,27 +12021,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.902,
-     79.46
+     -79.348,
+     79.844
     ],
     "y": [
      -3.6,
      5.408
     ],
     "z": [
-     -48.711,
-     48.008
+     -49.24,
+     48.412
     ]
    },
-   "bytes": 1948472,
+   "bytes": 2797560,
    "city": "dalian",
    "file": "ground/b847bee1.glb",
    "key": "dalian",
    "radius": 79,
-   "tri": 10560,
-   "verts": 10149,
+   "tri": 18608,
+   "verts": 17773,
    "zh": "大连",
-   "v": "2d12cf7a06"
+   "v": "b068bf7172"
   },
   "b8503fba": {
    "kind": "gate",
@@ -12076,27 +12076,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.367,
-     77.757
+     -77.786,
+     78.472
     ],
     "y": [
      -3.6,
      6.313
     ],
     "z": [
-     -52.876,
-     52.725
+     -53.104,
+     53.213
     ]
    },
-   "bytes": 2320856,
+   "bytes": 3233852,
    "city": "shijiazhuang",
    "file": "ground/b8bbedc5.glb",
    "key": "shijiazhuang",
    "radius": 76,
-   "tri": 13000,
-   "verts": 11200,
+   "tri": 21664,
+   "verts": 20232,
    "zh": "石家庄",
-   "v": "a1a81d8933"
+   "v": "1817f788aa"
   },
   "b8fbac79": {
    "kind": "gate",
@@ -12276,27 +12276,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.286,
-     78.254
+     -78.522,
+     78.534
     ],
     "y": [
      -3.6,
      4.504
     ],
     "z": [
-     -37.626,
-     37.868
+     -38.029,
+     38.265
     ]
    },
-   "bytes": 1936156,
+   "bytes": 2864316,
    "city": "shenzhen",
    "file": "ground/bafa26ad.glb",
    "key": "shenzhen",
    "radius": 77,
-   "tri": 10046,
-   "verts": 9133,
+   "tri": 18902,
+   "verts": 18381,
    "zh": "深圳",
-   "v": "f1fc0478bc"
+   "v": "99f14f9abd"
   },
   "bafae5ee": {
    "kind": "landmark",
@@ -12621,27 +12621,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -68.051,
-     68.483
+     -68.558,
+     69.111
     ],
     "y": [
      -3.6,
      8.146
     ],
     "z": [
-     -80.819,
-     81.217
+     -81.228,
+     81.621
     ]
    },
-   "bytes": 2516400,
+   "bytes": 3521584,
    "city": "taipei",
    "file": "ground/c0d583c4.glb",
    "key": "taipei",
    "radius": 80,
-   "tri": 12706,
-   "verts": 8688,
+   "tri": 22270,
+   "verts": 18320,
    "zh": "台北",
-   "v": "9102990680"
+   "v": "02db9cf12d"
   },
   "c13207f7": {
    "kind": "gate",
@@ -12821,27 +12821,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -79.111,
-     79.909
+     -79.464,
+     80.647
     ],
     "y": [
      -3.6,
-     4.112
+     4.014
     ],
     "z": [
-     -45.899,
-     45.939
+     -46.268,
+     46.228
     ]
    },
-   "bytes": 2235764,
+   "bytes": 3106916,
    "city": "harbin",
    "file": "ground/c3f69a44.glb",
    "key": "harbin",
    "radius": 78,
-   "tri": 13212,
-   "verts": 13849,
+   "tri": 21368,
+   "verts": 22073,
    "zh": "哈尔滨",
-   "v": "9167458de7"
+   "v": "c964313836"
   },
   "c492b81c": {
    "kind": "gate",
@@ -12992,27 +12992,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -76.444,
-     75.528
+     -77.136,
+     75.906
     ],
     "y": [
      -3.6,
      7.898
     ],
     "z": [
-     -77.115,
-     77.087
+     -77.259,
+     77.503
     ]
    },
-   "bytes": 2943388,
+   "bytes": 4123644,
    "city": "guiyang",
    "file": "ground/c64a02f0.glb",
    "key": "guiyang",
    "radius": 76,
-   "tri": 16100,
-   "verts": 11657,
+   "tri": 27424,
+   "verts": 23137,
    "zh": "贵阳",
-   "v": "79976687ba"
+   "v": "9d3125f30d"
   },
   "c6bd4205": {
    "kind": "landmark",
@@ -13076,27 +13076,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.405,
-     77.305
+     -77.958,
+     77.51
     ],
     "y": [
      -3.6,
      4.511
     ],
     "z": [
-     -43.15,
-     42.697
+     -43.797,
+     42.863
     ]
    },
-   "bytes": 1853056,
+   "bytes": 2614676,
    "city": "sanya",
    "file": "ground/c75491c8.glb",
    "key": "sanya",
    "radius": 76,
-   "tri": 8880,
-   "verts": 6744,
+   "tri": 16096,
+   "verts": 13696,
    "zh": "三亚",
-   "v": "267e5d56d3"
+   "v": "25070cb4a3"
   },
   "c82b9b90": {
    "kind": "gate",
@@ -13392,27 +13392,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.631,
-     78.382
+     -79.293,
+     78.736
     ],
     "y": [
      -3.6,
-     4.108
+     4.007
     ],
     "z": [
-     -53.362,
-     53.647
+     -53.721,
+     54.094
     ]
    },
-   "bytes": 2243016,
+   "bytes": 3278036,
    "city": "changchun",
    "file": "ground/cdc90249.glb",
    "key": "changchun",
    "radius": 77,
-   "tri": 12890,
-   "verts": 12852,
+   "tri": 22746,
+   "verts": 23148,
    "zh": "长春",
-   "v": "4f91de8c98"
+   "v": "264ebca33c"
   },
   "ce89b849": {
    "kind": "gate",
@@ -13766,27 +13766,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -82.619,
-     82.092
+     -83.265,
+     82.412
     ],
     "y": [
      -3.6,
-     4.108
+     4.006
     ],
     "z": [
-     -60.693,
-     60.387
+     -60.924,
+     60.794
     ]
    },
-   "bytes": 2633668,
+   "bytes": 3497892,
    "city": "shanghai",
    "file": "ground/d43ad24e.glb",
    "key": "shanghai",
    "radius": 81,
-   "tri": 13648,
-   "verts": 9541,
+   "tri": 21856,
+   "verts": 17477,
    "zh": "上海",
-   "v": "fd18cb3cca"
+   "v": "1842484fb4"
   },
   "d43c1405": {
    "kind": "gate",
@@ -14227,27 +14227,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -81.903,
-     81.389
+     -82.669,
+     81.948
     ],
     "y": [
      -3.6,
      5.429
     ],
     "z": [
-     -37.016,
-     36.854
+     -37.641,
+     37.209
     ]
    },
-   "bytes": 1764564,
+   "bytes": 2515032,
    "city": "taichung",
    "file": "ground/da9faa63.glb",
    "key": "taichung",
    "radius": 80,
-   "tri": 8776,
-   "verts": 8111,
+   "tri": 15900,
+   "verts": 15207,
    "zh": "台中",
-   "v": "8c266c895b"
+   "v": "d6ad98bf9f"
   },
   "db159c08": {
    "kind": "landmark",
@@ -14398,27 +14398,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -78.512,
-     78.385
+     -79.106,
+     79.114
     ],
     "y": [
      -3.6,
-     4.101
+     4.005
     ],
     "z": [
-     -76.969,
-     76.811
+     -77.186,
+     77.028
     ]
    },
-   "bytes": 3094780,
+   "bytes": 4193232,
    "city": "xiamen",
    "file": "ground/dcb5da27.glb",
    "key": "xiamen",
    "radius": 77,
-   "tri": 16626,
-   "verts": 10882,
+   "tri": 27114,
+   "verts": 21042,
    "zh": "厦门",
-   "v": "6bb7d0fffb"
+   "v": "9e6b919154"
   },
   "dd67788c": {
    "kind": "gate",
@@ -14453,27 +14453,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.315,
-     76.741
+     -77.847,
+     77.163
     ],
     "y": [
      -3.6,
      7.245
     ],
     "z": [
-     -56.632,
-     56.627
+     -56.883,
+     56.839
     ]
    },
-   "bytes": 2412320,
+   "bytes": 3415192,
    "city": "chengde",
    "file": "ground/dd71a25e.glb",
    "key": "chengde",
    "radius": 76,
-   "tri": 13726,
-   "verts": 12237,
+   "tri": 23282,
+   "verts": 22157,
    "zh": "承德",
-   "v": "13a4b66172"
+   "v": "58bb951048"
   },
   "debb91f7": {
    "kind": "gate",
@@ -14624,27 +14624,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -81.21,
-     81.124
+     -81.578,
+     81.589
     ],
     "y": [
      -3.6,
      4.54
     ],
     "z": [
-     -66.979,
-     67.124
+     -67.264,
+     67.655
     ]
    },
-   "bytes": 2671032,
+   "bytes": 4053520,
    "city": "chongqing",
    "file": "ground/df9557c1.glb",
    "key": "chongqing",
    "radius": 80,
-   "tri": 15404,
-   "verts": 14922,
+   "tri": 28716,
+   "verts": 29458,
    "zh": "重庆",
-   "v": "3cb7d432a9"
+   "v": "9bcfdc2e27"
   },
   "e07b293b": {
    "kind": "landmark",
@@ -15520,27 +15520,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -80.325,
-     80.246
+     -80.867,
+     80.597
     ],
     "y": [
      -3.6,
      4.513
     ],
     "z": [
-     -67.327,
-     67.09
+     -67.577,
+     67.501
     ]
    },
-   "bytes": 2933488,
+   "bytes": 3842928,
    "city": "tainan",
    "file": "ground/f083e394.glb",
    "key": "tainan",
    "radius": 79,
-   "tri": 15710,
-   "verts": 11492,
+   "tri": 24358,
+   "verts": 20220,
    "zh": "台南",
-   "v": "3ad2ea8b9f"
+   "v": "20bfb4eb9a"
   },
   "f0973598": {
    "kind": "gate",
@@ -15749,27 +15749,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -80.215,
-     80.791
+     -80.66,
+     81.436
     ],
     "y": [
      -3.6,
-     4.11
+     4.013
     ],
     "z": [
-     -81.369,
-     81.538
+     -81.692,
+     82.168
     ]
    },
-   "bytes": 2847408,
+   "bytes": 3996192,
    "city": "wuhan",
    "file": "ground/f2bd049d.glb",
    "key": "wuhan",
    "radius": 80,
-   "tri": 15302,
-   "verts": 12394,
+   "tri": 26262,
+   "verts": 23426,
    "zh": "武汉",
-   "v": "f2fc92353b"
+   "v": "20be052972"
   },
   "f2e607a2": {
    "kind": "landmark",
@@ -15833,27 +15833,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -77.068,
-     75.91
+     -77.29,
+     76.321
     ],
     "y": [
      -3.6,
-     4.103
+     4.003
     ],
     "z": [
-     -64.118,
-     68.739
+     -64.238,
+     69.092
     ]
    },
-   "bytes": 2878124,
+   "bytes": 4013316,
    "city": "fuzhou",
    "file": "ground/f3f5368e.glb",
    "key": "fuzhou",
    "radius": 77,
-   "tri": 15966,
-   "verts": 13747,
+   "tri": 26830,
+   "verts": 24275,
    "zh": "福州",
-   "v": "fe9eeb40f6"
+   "v": "d4e46a0c1d"
   },
   "f4796b8e": {
    "kind": "gate",
@@ -16468,27 +16468,27 @@
    "kind": "ground",
    "bbox": {
     "x": [
-     -104.306,
-     104.983
+     -104.9,
+     105.79
     ],
     "y": [
      -3.6,
      8.127
     ],
     "z": [
-     -81.097,
-     81.009
+     -81.336,
+     81.185
     ]
    },
-   "bytes": 3746284,
+   "bytes": 5282380,
    "city": "beijing",
    "file": "ground/feecd450.glb",
    "key": "beijing",
    "radius": 103,
-   "tri": 22510,
-   "verts": 17063,
+   "tri": 37222,
+   "verts": 32767,
    "zh": "北京",
-   "v": "3d7eba340a"
+   "v": "83eedf9d07"
   },
   "feef7dd1": {
    "kind": "gate",
@@ -16547,6 +16547,1070 @@
    "verts": 2488,
    "zh": "安徽农业大学",
    "v": "1705269f93"
+  },
+  "p-boy----armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32140,
+   "en": null,
+   "file": "players/p-boy----armL.glb",
+   "key": "p-boy----armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "a0b7b0105d"
+  },
+  "p-boy----armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32140,
+   "en": null,
+   "file": "players/p-boy----armR.glb",
+   "key": "p-boy----armR",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "d42e941b19"
+  },
+  "p-boy--w-armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32140,
+   "en": null,
+   "file": "players/p-boy--w-armL.glb",
+   "key": "p-boy--w-armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "cd3765bf06"
+  },
+  "p-boy--w-armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.06,
+     0.06
+    ],
+    "y": [
+     -0.324,
+     0.037
+    ],
+    "z": [
+     -0.049,
+     0.179
+    ]
+   },
+   "bytes": 51468,
+   "en": null,
+   "file": "players/p-boy--w-armR.glb",
+   "key": "p-boy--w-armR",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1132,
+   "verts": 1212,
+   "zh": null,
+   "v": "af661f72c0"
+  },
+  "p-boy-b--armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32140,
+   "en": null,
+   "file": "players/p-boy-b--armL.glb",
+   "key": "p-boy-b--armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "6c76e46c4d"
+  },
+  "p-boy-b--armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32140,
+   "en": null,
+   "file": "players/p-boy-b--armR.glb",
+   "key": "p-boy-b--armR",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "8045a9db51"
+  },
+  "p-boy-b--balloon": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     0,
+     0.726
+    ],
+    "z": [
+     -0.108,
+     0.108
+    ]
+   },
+   "bytes": 15288,
+   "en": null,
+   "file": "players/p-boy-b--balloon.glb",
+   "key": "p-boy-b--balloon",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 288,
+   "verts": 316,
+   "zh": null,
+   "v": "29ef580026"
+  },
+  "p-boy-body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.162,
+     0.162
+    ],
+    "y": [
+     -0.04,
+     0.31
+    ],
+    "z": [
+     -0.162,
+     0.164
+    ]
+   },
+   "bytes": 36840,
+   "en": null,
+   "file": "players/p-boy-body.glb",
+   "key": "p-boy-body",
+   "prims": 10,
+   "skipped": 0,
+   "tri": 768,
+   "verts": 758,
+   "zh": null,
+   "v": "0a69814e4a"
+  },
+  "p-boy-bw-armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32140,
+   "en": null,
+   "file": "players/p-boy-bw-armL.glb",
+   "key": "p-boy-bw-armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "1e5b1a34c5"
+  },
+  "p-boy-bw-armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.06,
+     0.06
+    ],
+    "y": [
+     -0.324,
+     0.037
+    ],
+    "z": [
+     -0.049,
+     0.179
+    ]
+   },
+   "bytes": 51468,
+   "en": null,
+   "file": "players/p-boy-bw-armR.glb",
+   "key": "p-boy-bw-armR",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1132,
+   "verts": 1212,
+   "zh": null,
+   "v": "ea93ac9bfe"
+  },
+  "p-boy-bw-balloon": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     0,
+     0.726
+    ],
+    "z": [
+     -0.108,
+     0.108
+    ]
+   },
+   "bytes": 15288,
+   "en": null,
+   "file": "players/p-boy-bw-balloon.glb",
+   "key": "p-boy-bw-balloon",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 288,
+   "verts": 316,
+   "zh": null,
+   "v": "0ebab2a7a2"
+  },
+  "p-boy-chef-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.208,
+     0.213
+    ],
+    "y": [
+     -0.176,
+     0.56
+    ],
+    "z": [
+     -0.219,
+     0.207
+    ]
+   },
+   "bytes": 90816,
+   "en": null,
+   "file": "players/p-boy-chef-head.glb",
+   "key": "p-boy-chef-head",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2928,
+   "verts": 2062,
+   "zh": null,
+   "v": "3db1aab9f7"
+  },
+  "p-boy-crown-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.197,
+     0.2
+    ],
+    "y": [
+     -0.176,
+     0.325
+    ],
+    "z": [
+     -0.219,
+     0.199
+    ]
+   },
+   "bytes": 107668,
+   "en": null,
+   "file": "players/p-boy-crown-head.glb",
+   "key": "p-boy-crown-head",
+   "prims": 23,
+   "skipped": 0,
+   "tri": 3248,
+   "verts": 2450,
+   "zh": null,
+   "v": "f20cb84b17"
+  },
+  "p-boy-flower-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.209,
+     0.209
+    ],
+    "y": [
+     -0.176,
+     0.323
+    ],
+    "z": [
+     -0.219,
+     0.213
+    ]
+   },
+   "bytes": 216612,
+   "en": null,
+   "file": "players/p-boy-flower-head.glb",
+   "key": "p-boy-flower-head",
+   "prims": 42,
+   "skipped": 0,
+   "tri": 8032,
+   "verts": 5324,
+   "zh": null,
+   "v": "1d2ca3c3b8"
+  },
+  "p-boy-helmet-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.215,
+     0.215
+    ],
+    "y": [
+     -0.176,
+     0.309
+    ],
+    "z": [
+     -0.219,
+     0.212
+    ]
+   },
+   "bytes": 94400,
+   "en": null,
+   "file": "players/p-boy-helmet-head.glb",
+   "key": "p-boy-helmet-head",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2832,
+   "verts": 2156,
+   "zh": null,
+   "v": "e672e8c018"
+  },
+  "p-boy-legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.064,
+     0.064
+    ],
+    "y": [
+     -0.321,
+     -0.01
+    ],
+    "z": [
+     -0.064,
+     0.091
+    ]
+   },
+   "bytes": 26908,
+   "en": null,
+   "file": "players/p-boy-legL.glb",
+   "key": "p-boy-legL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 508,
+   "verts": 600,
+   "zh": null,
+   "v": "97730b2d9b"
+  },
+  "p-boy-legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.064,
+     0.064
+    ],
+    "y": [
+     -0.321,
+     -0.01
+    ],
+    "z": [
+     -0.064,
+     0.091
+    ]
+   },
+   "bytes": 26908,
+   "en": null,
+   "file": "players/p-boy-legR.glb",
+   "key": "p-boy-legR",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 508,
+   "verts": 600,
+   "zh": null,
+   "v": "1fb74f4c86"
+  },
+  "p-boy-none-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.205,
+     0.205
+    ],
+    "y": [
+     -0.176,
+     0.29
+    ],
+    "z": [
+     -0.219,
+     0.205
+    ]
+   },
+   "bytes": 84056,
+   "en": null,
+   "file": "players/p-boy-none-head.glb",
+   "key": "p-boy-none-head",
+   "prims": 15,
+   "skipped": 0,
+   "tri": 2448,
+   "verts": 1898,
+   "zh": null,
+   "v": "86daf7e8f6"
+  },
+  "p-boy-wizard-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.176,
+     0.588
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 99464,
+   "en": null,
+   "file": "players/p-boy-wizard-head.glb",
+   "key": "p-boy-wizard-head",
+   "prims": 18,
+   "skipped": 0,
+   "tri": 2880,
+   "verts": 2300,
+   "zh": null,
+   "v": "d517598c0b"
+  },
+  "p-girl----armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32128,
+   "en": null,
+   "file": "players/p-girl----armL.glb",
+   "key": "p-girl----armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "2bd50d1772"
+  },
+  "p-girl----armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32128,
+   "en": null,
+   "file": "players/p-girl----armR.glb",
+   "key": "p-girl----armR",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "70a518c05d"
+  },
+  "p-girl--w-armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32128,
+   "en": null,
+   "file": "players/p-girl--w-armL.glb",
+   "key": "p-girl--w-armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "a52460fb3a"
+  },
+  "p-girl--w-armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.06,
+     0.06
+    ],
+    "y": [
+     -0.324,
+     0.037
+    ],
+    "z": [
+     -0.049,
+     0.179
+    ]
+   },
+   "bytes": 51456,
+   "en": null,
+   "file": "players/p-girl--w-armR.glb",
+   "key": "p-girl--w-armR",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1132,
+   "verts": 1212,
+   "zh": null,
+   "v": "eb5fdb5ee6"
+  },
+  "p-girl-b--armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32128,
+   "en": null,
+   "file": "players/p-girl-b--armL.glb",
+   "key": "p-girl-b--armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "b0cb24bbd6"
+  },
+  "p-girl-b--armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32128,
+   "en": null,
+   "file": "players/p-girl-b--armR.glb",
+   "key": "p-girl-b--armR",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "808fb52a7e"
+  },
+  "p-girl-b--balloon": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     0,
+     0.726
+    ],
+    "z": [
+     -0.108,
+     0.108
+    ]
+   },
+   "bytes": 15288,
+   "en": null,
+   "file": "players/p-girl-b--balloon.glb",
+   "key": "p-girl-b--balloon",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 288,
+   "verts": 316,
+   "zh": null,
+   "v": "1b0c5b17dc"
+  },
+  "p-girl-body": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.3,
+     0.3
+    ],
+    "y": [
+     -0.016,
+     0.455
+    ],
+    "z": [
+     -0.3,
+     0.3
+    ]
+   },
+   "bytes": 22212,
+   "en": null,
+   "file": "players/p-girl-body.glb",
+   "key": "p-girl-body",
+   "prims": 6,
+   "skipped": 0,
+   "tri": 288,
+   "verts": 588,
+   "zh": null,
+   "v": "173efbd842"
+  },
+  "p-girl-bw-armL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.057,
+     0.057
+    ],
+    "y": [
+     -0.248,
+     -0.004
+    ],
+    "z": [
+     -0.049,
+     0.08
+    ]
+   },
+   "bytes": 32128,
+   "en": null,
+   "file": "players/p-girl-bw-armL.glb",
+   "key": "p-girl-bw-armL",
+   "prims": 4,
+   "skipped": 0,
+   "tri": 824,
+   "verts": 764,
+   "zh": null,
+   "v": "44ba5093c7"
+  },
+  "p-girl-bw-armR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.06,
+     0.06
+    ],
+    "y": [
+     -0.324,
+     0.037
+    ],
+    "z": [
+     -0.049,
+     0.179
+    ]
+   },
+   "bytes": 51456,
+   "en": null,
+   "file": "players/p-girl-bw-armR.glb",
+   "key": "p-girl-bw-armR",
+   "prims": 11,
+   "skipped": 0,
+   "tri": 1132,
+   "verts": 1212,
+   "zh": null,
+   "v": "40d4e1970d"
+  },
+  "p-girl-bw-balloon": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.108,
+     0.108
+    ],
+    "y": [
+     0,
+     0.726
+    ],
+    "z": [
+     -0.108,
+     0.108
+    ]
+   },
+   "bytes": 15288,
+   "en": null,
+   "file": "players/p-girl-bw-balloon.glb",
+   "key": "p-girl-bw-balloon",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 288,
+   "verts": 316,
+   "zh": null,
+   "v": "4eae9fb10e"
+  },
+  "p-girl-chef-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.256,
+     0.256
+    ],
+    "y": [
+     -0.197,
+     0.56
+    ],
+    "z": [
+     -0.219,
+     0.207
+    ]
+   },
+   "bytes": 120668,
+   "en": null,
+   "file": "players/p-girl-chef-head.glb",
+   "key": "p-girl-chef-head",
+   "prims": 22,
+   "skipped": 0,
+   "tri": 4080,
+   "verts": 2782,
+   "zh": null,
+   "v": "6083d01a07"
+  },
+  "p-girl-crown-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.256,
+     0.256
+    ],
+    "y": [
+     -0.197,
+     0.325
+    ],
+    "z": [
+     -0.219,
+     0.199
+    ]
+   },
+   "bytes": 135084,
+   "en": null,
+   "file": "players/p-girl-crown-head.glb",
+   "key": "p-girl-crown-head",
+   "prims": 29,
+   "skipped": 0,
+   "tri": 4400,
+   "verts": 3170,
+   "zh": null,
+   "v": "2c8cae9c38"
+  },
+  "p-girl-flower-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.256,
+     0.256
+    ],
+    "y": [
+     -0.197,
+     0.323
+    ],
+    "z": [
+     -0.219,
+     0.213
+    ]
+   },
+   "bytes": 246460,
+   "en": null,
+   "file": "players/p-girl-flower-head.glb",
+   "key": "p-girl-flower-head",
+   "prims": 48,
+   "skipped": 0,
+   "tri": 9184,
+   "verts": 6044,
+   "zh": null,
+   "v": "f1ebcfc68b"
+  },
+  "p-girl-helmet-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.256,
+     0.256
+    ],
+    "y": [
+     -0.197,
+     0.309
+    ],
+    "z": [
+     -0.219,
+     0.212
+    ]
+   },
+   "bytes": 124256,
+   "en": null,
+   "file": "players/p-girl-helmet-head.glb",
+   "key": "p-girl-helmet-head",
+   "prims": 24,
+   "skipped": 0,
+   "tri": 3984,
+   "verts": 2876,
+   "zh": null,
+   "v": "0016e36c23"
+  },
+  "p-girl-legL": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.058,
+     0.058
+    ],
+    "y": [
+     -0.321,
+     -0.01
+    ],
+    "z": [
+     -0.052,
+     0.091
+    ]
+   },
+   "bytes": 22712,
+   "en": null,
+   "file": "players/p-girl-legL.glb",
+   "key": "p-girl-legL",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 460,
+   "verts": 502,
+   "zh": null,
+   "v": "cd25008caf"
+  },
+  "p-girl-legR": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.058,
+     0.058
+    ],
+    "y": [
+     -0.321,
+     -0.01
+    ],
+    "z": [
+     -0.052,
+     0.091
+    ]
+   },
+   "bytes": 22712,
+   "en": null,
+   "file": "players/p-girl-legR.glb",
+   "key": "p-girl-legR",
+   "prims": 3,
+   "skipped": 0,
+   "tri": 460,
+   "verts": 502,
+   "zh": null,
+   "v": "8e5f4a039f"
+  },
+  "p-girl-none-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.256,
+     0.256
+    ],
+    "y": [
+     -0.197,
+     0.22
+    ],
+    "z": [
+     -0.219,
+     0.199
+    ]
+   },
+   "bytes": 95108,
+   "en": null,
+   "file": "players/p-girl-none-head.glb",
+   "key": "p-girl-none-head",
+   "prims": 17,
+   "skipped": 0,
+   "tri": 3264,
+   "verts": 2204,
+   "zh": null,
+   "v": "d1cb1e6f93"
+  },
+  "p-girl-wizard-head": {
+   "kind": "player",
+   "aliases": [],
+   "bbox": {
+    "x": [
+     -0.28,
+     0.28
+    ],
+    "y": [
+     -0.197,
+     0.588
+    ],
+    "z": [
+     -0.28,
+     0.28
+    ]
+   },
+   "bytes": 129316,
+   "en": null,
+   "file": "players/p-girl-wizard-head.glb",
+   "key": "p-girl-wizard-head",
+   "prims": 24,
+   "skipped": 0,
+   "tri": 4032,
+   "verts": 3020,
+   "zh": null,
+   "v": "1469a84ad6"
   },
   "p01b02a70": {
    "kind": "pet",
@@ -17687,6 +18751,36 @@
    "zh": "钢笔",
    "v": "e4eca01db1"
   },
+  "p2078e6e9": {
+   "kind": "pet",
+   "aliases": [
+    "cat"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     0,
+     0.607
+    ],
+    "z": [
+     -0.343,
+     0.41
+    ]
+   },
+   "bytes": 86780,
+   "en": "cat",
+   "file": "pets/p2078e6e9.glb",
+   "key": "p2078e6e9",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2120,
+   "verts": 2122,
+   "zh": "小猫",
+   "v": "missing"
+  },
   "p22d07222": {
    "kind": "pet",
    "aliases": [
@@ -18038,6 +19132,36 @@
    "verts": 960,
    "zh": "电影院",
    "v": "75a4232751"
+  },
+  "p2d53b992": {
+   "kind": "pet",
+   "aliases": [
+    "mouse"
+   ],
+   "bbox": {
+    "x": [
+     -0.179,
+     0.179
+    ],
+    "y": [
+     0,
+     0.44
+    ],
+    "z": [
+     -0.18,
+     0.235
+    ]
+   },
+   "bytes": 90448,
+   "en": "mouse",
+   "file": "pets/p2d53b992.glb",
+   "key": "p2d53b992",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2320,
+   "verts": 2126,
+   "zh": "老鼠",
+   "v": "missing"
   },
   "p2dc87089": {
    "kind": "pet",
@@ -19643,6 +20767,36 @@
    "verts": 1656,
    "zh": "天气",
    "v": "ed09733f1d"
+  },
+  "p5254c5d4": {
+   "kind": "pet",
+   "aliases": [
+    "dog"
+   ],
+   "bbox": {
+    "x": [
+     -0.219,
+     0.219
+    ],
+    "y": [
+     0,
+     0.6
+    ],
+    "z": [
+     -0.356,
+     0.513
+    ]
+   },
+   "bytes": 91968,
+   "en": "dog",
+   "file": "pets/p5254c5d4.glb",
+   "key": "p5254c5d4",
+   "prims": 16,
+   "skipped": 0,
+   "tri": 2524,
+   "verts": 2172,
+   "zh": "小狗",
+   "v": "missing"
   },
   "p531de6a3": {
    "kind": "pet",
@@ -24348,6 +25502,36 @@
    "zh": "夏天",
    "v": "51a469cdd6"
   },
+  "pba3b3f7d": {
+   "kind": "pet",
+   "aliases": [
+    "fox"
+   ],
+   "bbox": {
+    "x": [
+     -0.187,
+     0.187
+    ],
+    "y": [
+     0,
+     0.683
+    ],
+    "z": [
+     -0.419,
+     0.468
+    ]
+   },
+   "bytes": 111320,
+   "en": "fox",
+   "file": "pets/pba3b3f7d.glb",
+   "key": "pba3b3f7d",
+   "prims": 21,
+   "skipped": 0,
+   "tri": 2936,
+   "verts": 2736,
+   "zh": "狐狸",
+   "v": "missing"
+  },
   "pbac73bb1": {
    "kind": "pet",
    "aliases": [
@@ -26453,6 +27637,36 @@
    "zh": "医生",
    "v": "14f935c2b8"
   },
+  "pe09ebe1b": {
+   "kind": "pet",
+   "aliases": [
+    "squirrel"
+   ],
+   "bbox": {
+    "x": [
+     -0.15,
+     0.167
+    ],
+    "y": [
+     0.005,
+     0.609
+    ],
+    "z": [
+     -0.335,
+     0.221
+    ]
+   },
+   "bytes": 94056,
+   "en": "squirrel",
+   "file": "pets/pe09ebe1b.glb",
+   "key": "pe09ebe1b",
+   "prims": 17,
+   "skipped": 0,
+   "tri": 2976,
+   "verts": 2152,
+   "zh": "松鼠",
+   "v": "missing"
+  },
   "pe183de4d": {
    "kind": "pet",
    "aliases": [
@@ -27711,1220 +28925,6 @@
    "verts": 1062,
    "zh": "美国",
    "v": "4b4824f6e9"
-  },
-  "p53be56a2": {
-   "kind": "pet",
-   "aliases": [
-    "squirrel"
-   ],
-   "bbox": {
-    "x": [
-     -0.15,
-     0.18
-    ],
-    "y": [
-     0.005,
-     0.609
-    ],
-    "z": [
-     -0.335,
-     0.221
-    ]
-   },
-   "bytes": 109700,
-   "en": "squirrel",
-   "file": "pets/p53be56a2.glb",
-   "key": "p53be56a2",
-   "prims": 20,
-   "skipped": 0,
-   "tri": 3408,
-   "verts": 2490,
-   "zh": "松鼠",
-   "v": "6eac51bcb1"
-  },
-  "pa90e65d2": {
-   "kind": "pet",
-   "aliases": [
-    "mouse"
-   ],
-   "bbox": {
-    "x": [
-     -0.179,
-     0.179
-    ],
-    "y": [
-     0,
-     0.44
-    ],
-    "z": [
-     -0.18,
-     0.235
-    ]
-   },
-   "bytes": 98720,
-   "en": "mouse",
-   "file": "pets/pa90e65d2.glb",
-   "key": "pa90e65d2",
-   "prims": 22,
-   "skipped": 0,
-   "tri": 2416,
-   "verts": 2330,
-   "zh": "老鼠",
-   "v": "f714787637"
-  },
-  "pc2bb86ff": {
-   "kind": "pet",
-   "aliases": [
-    "cat"
-   ],
-   "bbox": {
-    "x": [
-     -0.23,
-     0.23
-    ],
-    "y": [
-     0,
-     0.607
-    ],
-    "z": [
-     -0.343,
-     0.41
-    ]
-   },
-   "bytes": 95044,
-   "en": "cat",
-   "file": "pets/pc2bb86ff.glb",
-   "key": "pc2bb86ff",
-   "prims": 22,
-   "skipped": 0,
-   "tri": 2216,
-   "verts": 2326,
-   "zh": "小猫",
-   "v": "0797028a59"
-  },
-  "pf322dbeb": {
-   "kind": "pet",
-   "aliases": [
-    "dog"
-   ],
-   "bbox": {
-    "x": [
-     -0.219,
-     0.219
-    ],
-    "y": [
-     0,
-     0.6
-    ],
-    "z": [
-     -0.356,
-     0.513
-    ]
-   },
-   "bytes": 107948,
-   "en": "dog",
-   "file": "pets/pf322dbeb.glb",
-   "key": "pf322dbeb",
-   "prims": 18,
-   "skipped": 0,
-   "tri": 2876,
-   "verts": 2532,
-   "zh": "小狗",
-   "v": "8b79ba1174"
-  },
-  "pff59e9dd": {
-   "kind": "pet",
-   "aliases": [
-    "fox"
-   ],
-   "bbox": {
-    "x": [
-     -0.187,
-     0.187
-    ],
-    "y": [
-     0,
-     0.683
-    ],
-    "z": [
-     -0.419,
-     0.468
-    ]
-   },
-   "bytes": 116056,
-   "en": "fox",
-   "file": "pets/pff59e9dd.glb",
-   "key": "pff59e9dd",
-   "prims": 25,
-   "skipped": 0,
-   "tri": 3000,
-   "verts": 2872,
-   "zh": "狐狸",
-   "v": "333ee5ed14"
-  },
-  "p-boy----armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32140,
-   "en": null,
-   "file": "players/p-boy----armL.glb",
-   "key": "p-boy----armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "a0b7b0105d"
-  },
-  "p-boy----armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32140,
-   "en": null,
-   "file": "players/p-boy----armR.glb",
-   "key": "p-boy----armR",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "d42e941b19"
-  },
-  "p-boy--w-armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32140,
-   "en": null,
-   "file": "players/p-boy--w-armL.glb",
-   "key": "p-boy--w-armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "cd3765bf06"
-  },
-  "p-boy--w-armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.06,
-     0.06
-    ],
-    "y": [
-     -0.324,
-     0.037
-    ],
-    "z": [
-     -0.049,
-     0.179
-    ]
-   },
-   "bytes": 51468,
-   "en": null,
-   "file": "players/p-boy--w-armR.glb",
-   "key": "p-boy--w-armR",
-   "prims": 11,
-   "skipped": 0,
-   "tri": 1132,
-   "verts": 1212,
-   "zh": null,
-   "v": "af661f72c0"
-  },
-  "p-boy-b--armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32140,
-   "en": null,
-   "file": "players/p-boy-b--armL.glb",
-   "key": "p-boy-b--armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "6c76e46c4d"
-  },
-  "p-boy-b--armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32140,
-   "en": null,
-   "file": "players/p-boy-b--armR.glb",
-   "key": "p-boy-b--armR",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "8045a9db51"
-  },
-  "p-boy-b--balloon": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.108,
-     0.108
-    ],
-    "y": [
-     0,
-     0.726
-    ],
-    "z": [
-     -0.108,
-     0.108
-    ]
-   },
-   "bytes": 15288,
-   "en": null,
-   "file": "players/p-boy-b--balloon.glb",
-   "key": "p-boy-b--balloon",
-   "prims": 3,
-   "skipped": 0,
-   "tri": 288,
-   "verts": 316,
-   "zh": null,
-   "v": "29ef580026"
-  },
-  "p-boy-body": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.162,
-     0.162
-    ],
-    "y": [
-     -0.04,
-     0.31
-    ],
-    "z": [
-     -0.162,
-     0.164
-    ]
-   },
-   "bytes": 36840,
-   "en": null,
-   "file": "players/p-boy-body.glb",
-   "key": "p-boy-body",
-   "prims": 10,
-   "skipped": 0,
-   "tri": 768,
-   "verts": 758,
-   "zh": null,
-   "v": "0a69814e4a"
-  },
-  "p-boy-bw-armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32140,
-   "en": null,
-   "file": "players/p-boy-bw-armL.glb",
-   "key": "p-boy-bw-armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "1e5b1a34c5"
-  },
-  "p-boy-bw-armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.06,
-     0.06
-    ],
-    "y": [
-     -0.324,
-     0.037
-    ],
-    "z": [
-     -0.049,
-     0.179
-    ]
-   },
-   "bytes": 51468,
-   "en": null,
-   "file": "players/p-boy-bw-armR.glb",
-   "key": "p-boy-bw-armR",
-   "prims": 11,
-   "skipped": 0,
-   "tri": 1132,
-   "verts": 1212,
-   "zh": null,
-   "v": "ea93ac9bfe"
-  },
-  "p-boy-bw-balloon": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.108,
-     0.108
-    ],
-    "y": [
-     0,
-     0.726
-    ],
-    "z": [
-     -0.108,
-     0.108
-    ]
-   },
-   "bytes": 15288,
-   "en": null,
-   "file": "players/p-boy-bw-balloon.glb",
-   "key": "p-boy-bw-balloon",
-   "prims": 3,
-   "skipped": 0,
-   "tri": 288,
-   "verts": 316,
-   "zh": null,
-   "v": "0ebab2a7a2"
-  },
-  "p-boy-chef-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.208,
-     0.213
-    ],
-    "y": [
-     -0.176,
-     0.56
-    ],
-    "z": [
-     -0.219,
-     0.207
-    ]
-   },
-   "bytes": 90816,
-   "en": null,
-   "file": "players/p-boy-chef-head.glb",
-   "key": "p-boy-chef-head",
-   "prims": 16,
-   "skipped": 0,
-   "tri": 2928,
-   "verts": 2062,
-   "zh": null,
-   "v": "3db1aab9f7"
-  },
-  "p-boy-crown-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.197,
-     0.2
-    ],
-    "y": [
-     -0.176,
-     0.325
-    ],
-    "z": [
-     -0.219,
-     0.199
-    ]
-   },
-   "bytes": 107668,
-   "en": null,
-   "file": "players/p-boy-crown-head.glb",
-   "key": "p-boy-crown-head",
-   "prims": 23,
-   "skipped": 0,
-   "tri": 3248,
-   "verts": 2450,
-   "zh": null,
-   "v": "f20cb84b17"
-  },
-  "p-boy-flower-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.209,
-     0.209
-    ],
-    "y": [
-     -0.176,
-     0.323
-    ],
-    "z": [
-     -0.219,
-     0.213
-    ]
-   },
-   "bytes": 216612,
-   "en": null,
-   "file": "players/p-boy-flower-head.glb",
-   "key": "p-boy-flower-head",
-   "prims": 42,
-   "skipped": 0,
-   "tri": 8032,
-   "verts": 5324,
-   "zh": null,
-   "v": "1d2ca3c3b8"
-  },
-  "p-boy-helmet-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.215,
-     0.215
-    ],
-    "y": [
-     -0.176,
-     0.309
-    ],
-    "z": [
-     -0.219,
-     0.212
-    ]
-   },
-   "bytes": 94400,
-   "en": null,
-   "file": "players/p-boy-helmet-head.glb",
-   "key": "p-boy-helmet-head",
-   "prims": 18,
-   "skipped": 0,
-   "tri": 2832,
-   "verts": 2156,
-   "zh": null,
-   "v": "e672e8c018"
-  },
-  "p-boy-legL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.064,
-     0.064
-    ],
-    "y": [
-     -0.321,
-     -0.01
-    ],
-    "z": [
-     -0.064,
-     0.091
-    ]
-   },
-   "bytes": 26908,
-   "en": null,
-   "file": "players/p-boy-legL.glb",
-   "key": "p-boy-legL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 508,
-   "verts": 600,
-   "zh": null,
-   "v": "97730b2d9b"
-  },
-  "p-boy-legR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.064,
-     0.064
-    ],
-    "y": [
-     -0.321,
-     -0.01
-    ],
-    "z": [
-     -0.064,
-     0.091
-    ]
-   },
-   "bytes": 26908,
-   "en": null,
-   "file": "players/p-boy-legR.glb",
-   "key": "p-boy-legR",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 508,
-   "verts": 600,
-   "zh": null,
-   "v": "1fb74f4c86"
-  },
-  "p-boy-none-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.205,
-     0.205
-    ],
-    "y": [
-     -0.176,
-     0.29
-    ],
-    "z": [
-     -0.219,
-     0.205
-    ]
-   },
-   "bytes": 84056,
-   "en": null,
-   "file": "players/p-boy-none-head.glb",
-   "key": "p-boy-none-head",
-   "prims": 15,
-   "skipped": 0,
-   "tri": 2448,
-   "verts": 1898,
-   "zh": null,
-   "v": "86daf7e8f6"
-  },
-  "p-boy-wizard-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.28,
-     0.28
-    ],
-    "y": [
-     -0.176,
-     0.588
-    ],
-    "z": [
-     -0.28,
-     0.28
-    ]
-   },
-   "bytes": 99464,
-   "en": null,
-   "file": "players/p-boy-wizard-head.glb",
-   "key": "p-boy-wizard-head",
-   "prims": 18,
-   "skipped": 0,
-   "tri": 2880,
-   "verts": 2300,
-   "zh": null,
-   "v": "d517598c0b"
-  },
-  "p-girl----armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32128,
-   "en": null,
-   "file": "players/p-girl----armL.glb",
-   "key": "p-girl----armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "2bd50d1772"
-  },
-  "p-girl----armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32128,
-   "en": null,
-   "file": "players/p-girl----armR.glb",
-   "key": "p-girl----armR",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "70a518c05d"
-  },
-  "p-girl--w-armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32128,
-   "en": null,
-   "file": "players/p-girl--w-armL.glb",
-   "key": "p-girl--w-armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "a52460fb3a"
-  },
-  "p-girl--w-armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.06,
-     0.06
-    ],
-    "y": [
-     -0.324,
-     0.037
-    ],
-    "z": [
-     -0.049,
-     0.179
-    ]
-   },
-   "bytes": 51456,
-   "en": null,
-   "file": "players/p-girl--w-armR.glb",
-   "key": "p-girl--w-armR",
-   "prims": 11,
-   "skipped": 0,
-   "tri": 1132,
-   "verts": 1212,
-   "zh": null,
-   "v": "eb5fdb5ee6"
-  },
-  "p-girl-b--armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32128,
-   "en": null,
-   "file": "players/p-girl-b--armL.glb",
-   "key": "p-girl-b--armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "b0cb24bbd6"
-  },
-  "p-girl-b--armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32128,
-   "en": null,
-   "file": "players/p-girl-b--armR.glb",
-   "key": "p-girl-b--armR",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "808fb52a7e"
-  },
-  "p-girl-b--balloon": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.108,
-     0.108
-    ],
-    "y": [
-     0,
-     0.726
-    ],
-    "z": [
-     -0.108,
-     0.108
-    ]
-   },
-   "bytes": 15288,
-   "en": null,
-   "file": "players/p-girl-b--balloon.glb",
-   "key": "p-girl-b--balloon",
-   "prims": 3,
-   "skipped": 0,
-   "tri": 288,
-   "verts": 316,
-   "zh": null,
-   "v": "1b0c5b17dc"
-  },
-  "p-girl-body": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.3,
-     0.3
-    ],
-    "y": [
-     -0.016,
-     0.455
-    ],
-    "z": [
-     -0.3,
-     0.3
-    ]
-   },
-   "bytes": 22212,
-   "en": null,
-   "file": "players/p-girl-body.glb",
-   "key": "p-girl-body",
-   "prims": 6,
-   "skipped": 0,
-   "tri": 288,
-   "verts": 588,
-   "zh": null,
-   "v": "173efbd842"
-  },
-  "p-girl-bw-armL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.057,
-     0.057
-    ],
-    "y": [
-     -0.248,
-     -0.004
-    ],
-    "z": [
-     -0.049,
-     0.08
-    ]
-   },
-   "bytes": 32128,
-   "en": null,
-   "file": "players/p-girl-bw-armL.glb",
-   "key": "p-girl-bw-armL",
-   "prims": 4,
-   "skipped": 0,
-   "tri": 824,
-   "verts": 764,
-   "zh": null,
-   "v": "44ba5093c7"
-  },
-  "p-girl-bw-armR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.06,
-     0.06
-    ],
-    "y": [
-     -0.324,
-     0.037
-    ],
-    "z": [
-     -0.049,
-     0.179
-    ]
-   },
-   "bytes": 51456,
-   "en": null,
-   "file": "players/p-girl-bw-armR.glb",
-   "key": "p-girl-bw-armR",
-   "prims": 11,
-   "skipped": 0,
-   "tri": 1132,
-   "verts": 1212,
-   "zh": null,
-   "v": "40d4e1970d"
-  },
-  "p-girl-bw-balloon": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.108,
-     0.108
-    ],
-    "y": [
-     0,
-     0.726
-    ],
-    "z": [
-     -0.108,
-     0.108
-    ]
-   },
-   "bytes": 15288,
-   "en": null,
-   "file": "players/p-girl-bw-balloon.glb",
-   "key": "p-girl-bw-balloon",
-   "prims": 3,
-   "skipped": 0,
-   "tri": 288,
-   "verts": 316,
-   "zh": null,
-   "v": "4eae9fb10e"
-  },
-  "p-girl-chef-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.256,
-     0.256
-    ],
-    "y": [
-     -0.197,
-     0.56
-    ],
-    "z": [
-     -0.219,
-     0.207
-    ]
-   },
-   "bytes": 120668,
-   "en": null,
-   "file": "players/p-girl-chef-head.glb",
-   "key": "p-girl-chef-head",
-   "prims": 22,
-   "skipped": 0,
-   "tri": 4080,
-   "verts": 2782,
-   "zh": null,
-   "v": "6083d01a07"
-  },
-  "p-girl-crown-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.256,
-     0.256
-    ],
-    "y": [
-     -0.197,
-     0.325
-    ],
-    "z": [
-     -0.219,
-     0.199
-    ]
-   },
-   "bytes": 135084,
-   "en": null,
-   "file": "players/p-girl-crown-head.glb",
-   "key": "p-girl-crown-head",
-   "prims": 29,
-   "skipped": 0,
-   "tri": 4400,
-   "verts": 3170,
-   "zh": null,
-   "v": "2c8cae9c38"
-  },
-  "p-girl-flower-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.256,
-     0.256
-    ],
-    "y": [
-     -0.197,
-     0.323
-    ],
-    "z": [
-     -0.219,
-     0.213
-    ]
-   },
-   "bytes": 246460,
-   "en": null,
-   "file": "players/p-girl-flower-head.glb",
-   "key": "p-girl-flower-head",
-   "prims": 48,
-   "skipped": 0,
-   "tri": 9184,
-   "verts": 6044,
-   "zh": null,
-   "v": "f1ebcfc68b"
-  },
-  "p-girl-helmet-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.256,
-     0.256
-    ],
-    "y": [
-     -0.197,
-     0.309
-    ],
-    "z": [
-     -0.219,
-     0.212
-    ]
-   },
-   "bytes": 124256,
-   "en": null,
-   "file": "players/p-girl-helmet-head.glb",
-   "key": "p-girl-helmet-head",
-   "prims": 24,
-   "skipped": 0,
-   "tri": 3984,
-   "verts": 2876,
-   "zh": null,
-   "v": "0016e36c23"
-  },
-  "p-girl-legL": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.058,
-     0.058
-    ],
-    "y": [
-     -0.321,
-     -0.01
-    ],
-    "z": [
-     -0.052,
-     0.091
-    ]
-   },
-   "bytes": 22712,
-   "en": null,
-   "file": "players/p-girl-legL.glb",
-   "key": "p-girl-legL",
-   "prims": 3,
-   "skipped": 0,
-   "tri": 460,
-   "verts": 502,
-   "zh": null,
-   "v": "cd25008caf"
-  },
-  "p-girl-legR": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.058,
-     0.058
-    ],
-    "y": [
-     -0.321,
-     -0.01
-    ],
-    "z": [
-     -0.052,
-     0.091
-    ]
-   },
-   "bytes": 22712,
-   "en": null,
-   "file": "players/p-girl-legR.glb",
-   "key": "p-girl-legR",
-   "prims": 3,
-   "skipped": 0,
-   "tri": 460,
-   "verts": 502,
-   "zh": null,
-   "v": "8e5f4a039f"
-  },
-  "p-girl-none-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.256,
-     0.256
-    ],
-    "y": [
-     -0.197,
-     0.22
-    ],
-    "z": [
-     -0.219,
-     0.199
-    ]
-   },
-   "bytes": 95108,
-   "en": null,
-   "file": "players/p-girl-none-head.glb",
-   "key": "p-girl-none-head",
-   "prims": 17,
-   "skipped": 0,
-   "tri": 3264,
-   "verts": 2204,
-   "zh": null,
-   "v": "d1cb1e6f93"
-  },
-  "p-girl-wizard-head": {
-   "kind": "player",
-   "aliases": [],
-   "bbox": {
-    "x": [
-     -0.28,
-     0.28
-    ],
-    "y": [
-     -0.197,
-     0.588
-    ],
-    "z": [
-     -0.28,
-     0.28
-    ]
-   },
-   "bytes": 129316,
-   "en": null,
-   "file": "players/p-girl-wizard-head.glb",
-   "key": "p-girl-wizard-head",
-   "prims": 24,
-   "skipped": 0,
-   "tri": 4032,
-   "verts": 3020,
-   "zh": null,
-   "v": "1469a84ad6"
   }
  }
 }

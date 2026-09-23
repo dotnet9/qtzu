@@ -103,6 +103,22 @@ def cone_gltf(r, h, seg, y0, color_fn):
     return v, f, col
 
 
+def merlon_gltf(w, h, d, slit_w, slit_h):
+    """带箭孔的垛口：左右两段小墙 + 下段墙（与 js/world.js 的 merlonGeometry() 同规则）。
+
+    为什么用真凹口而不是贴图：垛口只有 0.38 厚，凹口在侧光下有影子，近看才像砌出来的。
+    """
+    half = (w - slit_w) / 2.0
+    low_h = h - slit_h
+    v, f = [], []
+    for (cx, ww, hh) in ((-(slit_w + half) / 2.0, half, h), ((slit_w + half) / 2.0, half, h), (0.0, slit_w, low_h)):
+        bv, bf = box_gltf(ww, hh, d)
+        base = len(v)
+        v += [(p[0] + cx, p[1], p[2]) for p in bv]
+        f += [[base + i for i in fc] for fc in bf]
+    return v, f
+
+
 def yaw_gltf(verts, yaw, tx, ty, tz):
     """绕竖直轴旋转 + 平移到世界位置（glTF 轴内做，避免与 at() 的轴映射纠缠）。"""
     ca, sa = math.cos(yaw), math.sin(yaw)
@@ -183,7 +199,13 @@ def wall(lay, spec):
         return 0, 0
     if pts[0] != pts[-1]:
         pts.append(pts[0])
-    H, TH, gap = w['H'], w['thick'], w['merlonGap']
+    H = w['H']
+    bands = w['bands']
+    mk = w['merlon']
+    # 垛口站在墙顶**外侧露台**上（断面 off 0.62…1.00 之间），中心在 mk['off']
+    m_off, gap = mk['off'], mk['gap']
+    # 哪些断面带走砖纹（与 js/world.js 的 BRICK_BANDS 同名同义）→ 进槽 2
+    BRICK_BANDS = ('inner', 'topLedge', 'outer')
     normals = _miter_normals(pts)
     # 外法线朝向：拿第一个顶点试一下，指向多边形外的那一侧才是"外面"（与 js 的 outerSign 同思路）
     sign = 1.0
@@ -192,30 +214,46 @@ def wall(lay, spec):
     if _inside(pts, trial[0], trial[1]):
         sign = -1.0
     n_before = len(lay.f)
-    verts, faces = [], []
+    # 砖面带逐顶点的 (TEXCOORD_0)：u = 环形弧长、v = 断面两端的高度比。
+    # 为什么不能用 build_one 那套世界坐标 UV：u = co.x/tile 在**南北向墙段**上几乎不变，
+    # 砖纹会被拉成一条条竖条纹（城墙各方向都有段，这个问题肉眼很明显）。
+    lay.wall_uv = {}
     arcs, acc = [0.0], 0.0
     for i in range(len(pts) - 1):
         acc += math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1])
         arcs.append(acc)
-    for i in range(len(pts) - 1):
-        a, b = pts[i], pts[i + 1]
-        na = (normals[i][0] * sign, normals[i][1] * sign)
-        nb = (normals[i + 1][0] * sign, normals[i + 1][1] * sign)
-        k = len(verts)
-        # 外壁（底 → 顶）、内壁、顶面：与 js/world.js:1136-1153 的 buildWallGeometry 同一结构
-        verts += [(a[0] + na[0] * TH, 0, a[1] + na[1] * TH), (a[0] + na[0] * TH, H, a[1] + na[1] * TH),
-                  (b[0] + nb[0] * TH, 0, b[1] + nb[1] * TH), (b[0] + nb[0] * TH, H, b[1] + nb[1] * TH),
-                  (a[0] - na[0] * TH, 0, a[1] - na[1] * TH), (a[0] - na[0] * TH, H, a[1] - na[1] * TH),
-                  (b[0] - nb[0] * TH, 0, b[1] - nb[1] * TH), (b[0] - nb[0] * TH, H, b[1] - nb[1] * TH)]
-        faces += [[k + 0, k + 2, k + 3, k + 1],          # 外壁
-                  [k + 4, k + 5, k + 7, k + 6],          # 内壁（反向）
-                  [k + 1, k + 3, k + 7, k + 5],          # 顶面
-                  [k + 0, k + 4, k + 6, k + 2]]          # 底封口（防止从纸面下看到空洞）
-    lay.push(verts, faces, rgb_hex(w['brick']), smooth=False, jitter=0.02, seed=spec['key'] + 'wall')
+    # 按**断面**扫掠：每条带走一圈四边形（与 js/world.js 的 buildWallGeometry 同一份 bands 数据）。
+    # 每条带单独 push：一是颜色不同（顶点色），二是顶点不跨带共享 → 折角不会被平滑掉。
+    # 砖面带（inner / topLedge / outer）进槽 2 且顶点色写**白**：颜色由运行时挂的砖纹贴图承担
+    # （写砖色会与贴图相乘 → 双重变暗）。
+    for bd in bands:
+        (oa, ya), (ob, yb) = bd['a'], bd['b']
+        brick = bd['name'] in BRICK_BANDS
+        lay.cur_mat = 2 if brick else 1
+        verts, faces = [], []
+        for i in range(len(pts) - 1):
+            a, b = pts[i], pts[i + 1]
+            na = (normals[i][0] * sign, normals[i][1] * sign)
+            nb = (normals[i + 1][0] * sign, normals[i + 1][1] * sign)
+            k = len(verts)
+            verts += [(a[0] + na[0] * oa, ya, a[1] + na[1] * oa), (a[0] + na[0] * ob, yb, a[1] + na[1] * ob),
+                      (b[0] + nb[0] * oa, ya, b[1] + nb[1] * oa), (b[0] + nb[0] * ob, yb, b[1] + nb[1] * ob)]
+            faces.append([k + 0, k + 2, k + 3, k + 1])
+        col = (1.0, 1.0, 1.0) if brick else rgb_hex(w['colors'][bd['c']])
+        base0 = len(lay.v)
+        lay.push(verts, faces, col, smooth=False, jitter=0.02, seed=spec['key'] + 'wall' + bd['name'])
+        if brick:
+            # 每条带每段 4 个顶点：(0, 2) 落在顶点 a → u=arcs[i]；(1, 3) 落在顶点 b → u=arcs[i+1]
+            for i in range(len(pts) - 1):
+                k = base0 + i * 4
+                lay.wall_uv[k] = (arcs[i], bd['va']); lay.wall_uv[k + 1] = (arcs[i + 1], bd['vb'])
+                lay.wall_uv[k + 2] = (arcs[i], bd['va']); lay.wall_uv[k + 3] = (arcs[i + 1], bd['vb'])
+    lay.cur_mat = 1   # 垛口回到槽 1（平色，与 js 侧的垛口材质一致）
     # 垛口：按弧长等距放在墙顶外侧（InstancedMesh 在 Blender 侧就是重复的盒子）
     total = arcs[-1]
     n_m = max(2, int(total / gap))
     mv, mf = [], []
+    mv_one, mf_one = merlon_gltf(mk['w'], mk['h'], mk['d'], mk['slitW'], mk['slitH'])
     for m in range(n_m):
         target = (m + 0.5) * gap
         i = min(len(arcs) - 2, max(0, int(target / (total / (len(arcs) - 1)))))
@@ -229,11 +267,10 @@ def wall(lay, spec):
         nl = math.hypot(nx, nz) or 1.0
         nx, nz = nx / nl, nz / nl
         yaw = math.atan2(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]) + math.pi / 2
-        bv, bf = box_gltf(1.5, 1.1, 1.0)
         base = len(mv)
-        mv += yaw_gltf(bv, yaw, px + nx * TH * 0.5, H, pz + nz * TH * 0.5)
-        mf += [[base + i for i in fc] for fc in bf]
-    lay.push(mv, mf, rgb_hex(w['merlon']), smooth=False, jitter=0.01, seed=spec['key'] + 'merlon')
+        mv += yaw_gltf(mv_one, yaw, px + nx * m_off, H, pz + nz * m_off)
+        mf += [[base + i for i in fc] for fc in mf_one]
+    lay.push(mv, mf, rgb_hex(w['colors']['merlon']), smooth=False, jitter=0.01, seed=spec['key'] + 'merlon')
     return n_before, len(lay.f) - n_before
 
 
@@ -315,7 +352,10 @@ def build_one(spec):
     me.from_pydata([tuple(v) for v in lay.v], [], [list(f) for f in lay.f])
     me.validate(verbose=False)
     me.materials.append(albedo_material(spec))          # 槽 0：地形面
-    me.materials.append(C.clay_material('#FFFFFF', 0.94))  # 槽 1：院墙/垛口/岩裙/雪峰
+    me.materials.append(C.clay_material('#FFFFFF', 0.94))  # 槽 1：垛口/岩裙/雪峰
+    # 槽 2：院墙砖面带。**必须给显式 key** —— 用默认 key 会与槽 1 共用同一个 datablock，
+    # 导出时被去重成同一个材质索引，运行时就没法只给墙挂砖纹（实测踩过）。
+    me.materials.append(C.clay_material('#FFFFFF', 0.94, key='ground_wall'))
     for poly, smooth, mi in zip(me.polygons, lay.smooth, lay.mat):
         poly.use_smooth = smooth
         poly.material_index = mi
@@ -336,6 +376,17 @@ def build_one(spec):
         # 第一版把 V 轴写成 co.z，导致整城贴着贴图的一条水平线采样（uv1.v 恒为 0.494）。
         uv_detail.data[loop.index].uv = (co.x / tile, -co.y / tile)
         uv_albedo.data[loop.index].uv = ((co.x - g0['minX']) / span_x, (-co.y - g0['minZ']) / span_z)
+    # 院墙（材质槽 2）的 TEXCOORD_0 用生成时记录的 (弧长, 断面V)：
+    # u = 弧长/uvArc（砖纹沿墙走向铺，与游戏侧同一条公式），v = 断面两端的高度比。
+    wuv = getattr(lay, 'wall_uv', None)
+    if wuv:
+        uv_arc = float(spec['wall'].get('uvArc', 8))
+        for poly in me.polygons:
+            if poly.material_index != 2:
+                continue
+            for li in poly.loop_indices:
+                au, vv = wuv.get(me.loops[li].vertex_index, (0.0, 0.5))
+                uv_detail.data[li].uv = (au / uv_arc, vv)
     me.update()
     ob = bpy.data.objects.new(name, me)
     bpy.context.collection.objects.link(ob)

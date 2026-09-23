@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { familyFor, SIGNATURE } from '../../js/uni-gates.js';
+import { WALL, WALL_BANDS } from '../../js/wall-spec.js';
 import { readCity, radiusOf, worldPtsOf, makeField, cityIds } from '../terrain-lib.mjs';
 import { simplifyPoly } from '../../js/city-shape.js';
 import { writePng } from '../png.mjs';
@@ -145,8 +146,8 @@ export function allLandmarks(only) {
 // js/terrain-field.js（与游戏运行时同一份实现）算好整段倒出去，Blender 只做几何与风格化，
 // 绝不重算地形——js/terrain-field.js 的注释就写着"各写一套必然漂移"。
 //
-// 城墙/岩裙/雪峰这几个参数直接照抄 js/world.js 的常量（那里是权威值）：
-const WALL = { H: 3.0, thick: 1.0, merlonGap: 3.4, brick: '#8C9C9F', merlon: '#A9B8B7' };   // world.js:1137,1156
+// 城墙断面/颜色/垛口来自 js/wall-spec.js（与游戏侧共用同一份，不再手抄）。
+// 断面数字不再手抄：直接读 js/wall-spec.js（游戏侧同一份）
 const SKIRT = { sink: -3.6, tuck: 0.94, color: '#87928F' };                                  // world.js:1294,1305
 // 雪峰配色与 terrain.js:66-69 同一套（sRGB，Blender 侧转线性）
 const PEAK_ROCK = [0.26, 0.22, 0.20], PEAK_SNOW = [0.95, 0.97, 1.0];
@@ -242,7 +243,12 @@ export function groundSpec(cityKey) {
     city: cityKey, key: cityKey, zh: city.name || cityKey,
     radius: radiusOf(cityKey, city), seed: cfg.seed ?? 42,
     outline: pts.map(([x, z]) => [+x.toFixed(3), +z.toFixed(3)]),
-    wall: { outline: wallOutline.map(([x, z]) => [+x.toFixed(3), +z.toFixed(3)]), ...WALL },
+    wall: {
+      outline: wallOutline.map(([x, z]) => [+x.toFixed(3), +z.toFixed(3)]),
+      H: WALL.H, uvArc: WALL.uvArc, colors: WALL.colors, merlon: WALL.merlon,
+      // 断面 12 条带原样搬过去：ground.py 照它扫掠，两侧几何因此逐点一致
+      bands: WALL_BANDS.map((b) => ({ name: b.name, a: b.a, b: b.b, c: b.c, va: b.va, vb: b.vb })),
+    },
     skirt: SKIRT,
     peaks, peakColors: { rock: PEAK_ROCK, snow: PEAK_SNOW, snowRange: cfg.snow ?? [5.2, 6.6] },
     grid: { minX, minZ, gsz, nx, nz }, step: F.step,

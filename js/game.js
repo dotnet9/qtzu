@@ -2875,13 +2875,16 @@ export class Game {
   _updateContactShadows() {
     if (this.isTouch) return;   // 触屏省这点开销（与 SMAA/环境反射同一个降级判据）
     const scene = this.scene;
+    // 接触阴影强度：白天有真影子时压到 40%（否则"投影 + 脚下暗斑"叠成一团糊影），
+    // 夜里或低画质降级（_fpsWatch 关掉 shadowMap）时给足 0.9 —— 那时它是唯一的落地感。
+    const gain = this._contactShadowGain();
     const one = (obj, radius, x, z, lift) => {
       if (!obj.userData.cshadow) {
         const m = contactShadow(radius);
         scene.add(m);
         obj.userData.cshadow = m;
       }
-      updateContactShadow(obj.userData.cshadow, x, z, this._groundY(x, z), lift);
+      updateContactShadow(obj.userData.cshadow, x, z, this._groundY(x, z), lift, gain);
     };
     const pp = this.player && this.player.position;
     if (pp) one(this.player, 0.44, pp.x, pp.z, Math.max(0, pp.y - this._groundY(pp.x, pp.z)));
@@ -2889,6 +2892,20 @@ export class Game {
       const g = p.group;
       one(g, 0.3, g.position.x, g.position.z, Math.max(0, g.position.y - this._groundY(g.position.x, g.position.z)));
     }
+  }
+
+  /* 接触阴影强度：0.9（唯一落地感）→ 0.36（让真影子当主角）。
+     判据只用两个现成状态，不新增持久化：阴影贴图是否在开、太阳高度角。 */
+  _contactShadowGain() {
+    if (this._lowFx) return 0.9;                     // 低画质：shadowMap 已关 → 全靠它
+    if (!this.renderer || !this.renderer.shadowMap || !this.renderer.shadowMap.enabled) return 0.9;
+    const dn = this.world && this.world.anim && this.world.anim.dayNight;
+    if (!dn) return 0.9;
+    const hr = new Date().getHours() + new Date().getMinutes() / 60;
+    if (hr < 6 || hr >= 18) return 0.9;              // 夜里：太阳不在，真影子没有
+    // 白天按太阳高度角平滑过渡（清晨/黄昏影子很长很斜，接触阴影仍该给一点）
+    const h = Math.max(0, Math.sin(Math.PI * (1 - (hr - 6) / 12)));
+    return 0.36 + 0.34 * (1 - Math.min(1, h * 1.6));
   }
 
   _updatePlayer(dt) {

@@ -21,6 +21,7 @@ const all = args.has('--all') || !city;
 const limit = optOf('--limit');
 const nobudget = args.has('--nobudget');
 const verify = args.has('--verify');
+const mergeOnly = args.has('--merge-only');   // 只重合并 manifest（不跑 Blender）
 const kinds = (optOf('--kinds') || 'gate').split(',');
 
 // Blender 装在仓库之外（便携版 zip，不提交 git）：BLENDER_PATH 优先，其次常见位置
@@ -48,6 +49,11 @@ const run = (cmd, argv, opts = {}) => {
   return r;
 };
 
+// **允许进主 manifest 的类别白名单**：.cache/ 里可能残留临时分册（例如试烘的 ground-test），
+// 它们常常与正式类别**共用同一个资产 id**（同一座城）—— 合并不设白名单时，后合并的会把正式
+// 条目覆盖掉，运行时按 kind 查不到 → 换装静默失败（实测踩过：成都的地面整个没换装，slot 空）。
+const MERGE_KINDS = ['gate', 'ground', 'landmark', 'pet', 'player'];
+
 const BAKERS = {
   gate: { script: 'gates.py', prefix: 'gates' },
   landmark: { script: 'landmarks.py', prefix: 'landmarks' },
@@ -70,7 +76,7 @@ const blender = resolveBlender();
 console.log(`Blender: ${blender}`);
 fs.mkdirSync(CACHE, { recursive: true });
 
-for (const kind of kinds) {
+for (const kind of (mergeOnly ? [] : kinds)) {
   const baker = BAKERS[kind];
   if (!baker) throw new Error(`未知类别 ${kind}`);
   // 1) 规格：规则只有一份，specs.mjs 只做搬运（校门=一校一门，地标=一城最多三个）
@@ -115,7 +121,9 @@ const kindsInCache = fs.existsSync(CACHE)
   ? fs.readdirSync(CACHE).filter((f) => f.endsWith('.manifest.json')).map((f) => f.replace('.manifest.json', ''))
   : [];
 const merged = { blender: path.basename(path.dirname(blender)), generated: new Date().toISOString(), kinds: {}, assets: {} };
-for (const kind of [...new Set([...kinds, ...kindsInCache])]) {
+const skipped = kindsInCache.filter((k) => MERGE_KINDS.indexOf(k) < 0);
+if (skipped.length) console.log(`[merge] 跳过非白名单类别：${skipped.join(', ')}（.cache 里的临时分册，可能覆盖正式条目）`);
+for (const kind of [...new Set([...kinds, ...kindsInCache])].filter((k) => MERGE_KINDS.indexOf(k) >= 0)) {
   const mf = path.join(CACHE, `${kind}.manifest.json`);
   if (!fs.existsSync(mf)) continue;
   const part = JSON.parse(fs.readFileSync(mf, 'utf8'));

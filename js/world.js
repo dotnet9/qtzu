@@ -6,6 +6,7 @@ import { buildUniGate, attachGateAsset } from './uni-gate-models.js';
 import { clampPoly, simplifyPoly, polyOffsetRing } from './city-shape.js';
 import { createCityTerrain } from './terrain.js';
 import { brickNormal, grainNormal, grassDetail } from './textures.js';
+import { WALL, WALL_BANDS, BEACON, beaconHeights } from './wall-spec.js';   // 城市边界断面 + 敌楼造型：两侧共用同一份数据
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 import * as assets from './assets.js';
 
@@ -148,8 +149,48 @@ const seedOfPoints = (list) => {
   return h | 0;
 };
 
-// 沿闭合曲线挤出的墙体几何：外壁/内壁/顶面三幅独立顶点（法线分面更硬朗）
-function buildWallGeometry(curve, H, THICK) {
+// 哪些断面带挂砖纹贴图（其它带是平色饰面：马道/压顶石/女墙/条石基座）
+const BRICK_BANDS = ['inner', 'topLedge', 'outer'];
+let _trimMat = null;
+function trimMaterial() {
+  if (_trimMat) return _trimMat;
+  _trimMat = new THREE.MeshStandardMaterial({
+    vertexColors: true, roughness: 0.9, side: THREE.DoubleSide,
+  });
+  return _trimMat;
+}
+
+// 带箭孔的垛口：把"左右两段小墙 + 下段墙"三块盒合并成一个几何
+// （参数取自 js/wall-spec.js 的 WALL.merlon —— 与烘焙侧同一份数据）。
+// 为什么用真凹口而不是贴图：垛口只有 0.38 厚，凹口在侧光下有影子，近看才是砌出来的。
+let _merlonGeo = null;
+function merlonGeometry() {
+  if (_merlonGeo) return _merlonGeo;
+  const m = WALL.merlon;
+  const half = (m.w - m.slitW) / 2;                       // 左右两段的宽度
+  const lowH = m.h - m.slitH;                             // 下段高度（凹口从顶面下切 slitH）
+  const box = (w, h, d, x, y) => {
+    const g = new THREE.BoxGeometry(w, h, d).toNonIndexed();
+    g.translate(x, y, 0);
+    return g;
+  };
+  _merlonGeo = mergeParts([
+    box(half, m.h, m.d, -(m.slitW + half) / 2, 0),        // 左段（局部 y 以底面为 0）
+    box(half, m.h, m.d, (m.slitW + half) / 2, 0),         // 右段
+    box(m.slitW, lowH, m.d, 0, -(m.slitH / 2)),           // 下段（补回凹口下方）
+  ]);
+  return _merlonGeo;
+}
+
+// 沿闭合曲线**扫掠断面**（断面数据在 js/wall-spec.js 的 WALL_BANDS，与烘焙侧共用一份）。
+//
+// 与旧版（外壁/内壁/顶面三幅平带）的区别：
+//   · 断面有 12 条带：内侧女墙 / 马道 / 两条压顶石 / 外侧收分 / 墙根条石基座 —— 才像"能走的城墙"
+//   · 每条带**独立顶点环**（不跨带共享顶点）→ 折角不会被 computeVertexNormals 抹圆
+//   · 分成两组几何：**砖面带**（挂砖纹贴图，外观与旧版逐像素一致）与**饰面带**（平色）
+//     —— 这样砖面不用为"饰面要更亮"而牺牲（顶点色 >1 在 8bit COLOR_0 里会被截断）
+// 返回值仍带 samples / normals / arcs / len：垛口与烽火台的定位依赖它们，不能动。
+function buildWallGeometry(curve) {
   const len = curve.getLength();
   const N = Math.max(160, Math.min(1600, Math.round(len / 1.3)));
   const P = curve.getSpacedPoints(N);            // N+1 个点，闭合曲线首尾同点
@@ -162,67 +203,105 @@ function buildWallGeometry(curve, H, THICK) {
     const tl = Math.hypot(tx, tz) || 1;
     normals.push([-tz / tl, tx / tl]);           // 左法线
   }
-  const pos = [], uv = [], idx = [];
-  const push = (x, y, z, u, v) => { pos.push(x, y, z); uv.push(u, v); };
-  for (let i = 0; i <= N; i++) {                 // 外壁（一行底 + 一行顶）
-    const p = P[i], [nx, nz] = normals[i], u = arcs[i] / 8;
-    push(p.x + nx * THICK, 0, p.z + nz * THICK, u, 0);
-    push(p.x + nx * THICK, H, p.z + nz * THICK, u, 1);
-  }
-  for (let i = 0; i <= N; i++) {                 // 内壁
-    const p = P[i], [nx, nz] = normals[i], u = arcs[i] / 8;
-    push(p.x - nx * THICK, 0, p.z - nz * THICK, u, 0);
-    push(p.x - nx * THICK, H, p.z - nz * THICK, u, 1);
-  }
-  for (let i = 0; i <= N; i++) {                 // 顶面（贴到砖纹的墙帽色带）
-    const p = P[i], [nx, nz] = normals[i], u = arcs[i] / 8;
-    push(p.x + nx * THICK, H, p.z + nz * THICK, u, 0.97);
-    push(p.x - nx * THICK, H, p.z - nz * THICK, u, 0.97);
-  }
-  const rowI = (N + 1) * 2, rowT = (N + 1) * 4;
-  for (let i = 0; i < N; i++) {
-    const a = i * 2, b = a + 2;
-    idx.push(a, b, a + 1, b, b + 1, a + 1);      // 外壁
-    const c = rowI + i * 2, d = c + 2;
-    idx.push(c, d, c + 1, d, d + 1, c + 1);      // 内壁
-    const e = rowT + i * 2, f = e + 2;
-    idx.push(e, f, e + 1, f, f + 1, e + 1);      // 顶面
-  }
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
-  g.setIndex(idx);
-  g.computeVertexNormals();
-  return { geo: g, samples: P, normals, arcs, len };
+  const mk = (bands, withColor) => {
+    const pos = [], uv = [], idx = [], col = [];
+    const rows = (N + 1) * 2;
+    bands.forEach((bd, bi) => {
+      const [oa, ya] = bd.a, [ob, yb] = bd.b;
+      const base = bi * rows;
+      const c = withColor ? new THREE.Color(WALL.colors[bd.c] || '#FFFFFF') : null;
+      for (let i = 0; i <= N; i++) {
+        const p = P[i], [nx, nz] = normals[i], u = arcs[i] / WALL.uvArc;
+        pos.push(p.x + nx * oa, ya, p.z + nz * oa); uv.push(u, bd.va);
+        pos.push(p.x + nx * ob, yb, p.z + nz * ob); uv.push(u, bd.vb);
+        if (c) { col.push(c.r, c.g, c.b, c.r, c.g, c.b); }
+      }
+      for (let i = 0; i < N; i++) {
+        // 绕向与烘焙侧（scripts/bake/ground.py 的 wall()）严格一致：断面是闭合环，
+        // 一致的遍历方向配一致的绕向才会得到"朝外"的法线（逐面验算过：马道朝上、内壁朝城内）。
+        // 反过来（a, b, a+1）会里朝外 —— DoubleSide 会按 gl_FrontFacing 翻法线掩盖住，
+        // 但那是"碰巧对"，一旦有人把材质改成单面就整段消失。
+        const a = base + i * 2, b = a + 2;
+        idx.push(a, a + 1, b, a + 1, b + 1, b);
+      }
+    });
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    if (col.length) g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+    g.setIndex(idx);
+    g.computeVertexNormals();
+    return g;
+  };
+  const brickBands = WALL_BANDS.filter((b) => BRICK_BANDS.indexOf(b.name) >= 0);
+  const trimBands = WALL_BANDS.filter((b) => BRICK_BANDS.indexOf(b.name) < 0);
+  return { geoBrick: mk(brickBands, false), geoTrim: mk(trimBands, true), samples: P, normals, arcs, len };
 }
 
-// 烽火台低模：底台 + 楼身 + 顶帽 + 四角垛口 + 瞭望窗 + 城市色小旗 + 火盆（点火点）
+// 烽火台（敌楼）低模：底台 + 楼身 + 平座 + **下层腰檐** + 二层 + **上层正顶**
+// + 正脊/垂脊/四角起翘 + 宝顶火盆（点火锚点）。
+// 造型数据与高度推导都在 js/wall-spec.js 的 BEACON / beaconHeights()，此处只摆件。
 function buildBeaconTower(color) {
   const g = new THREE.Group();
   const grey = (c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.95 });
-  const box = (w, h, d, mat, x, y, z) => {
+  const H = beaconHeights();
+  const B = BEACON;
+  const box = (w, h, d, mat, x, y, z, rx = 0, rz = 0) => {
     const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
-    m.position.set(x, y, z); g.add(m); return m;
+    m.position.set(x, y, z);
+    if (rx) m.rotation.x = rx;
+    if (rz) m.rotation.z = rz;
+    g.add(m);
+    return m;
   };
-  box(5.2, 2.6, 5.2, grey('#879899'), 0, 1.3, 0);            // 底台
-  box(4.2, 2.3, 4.2, grey('#94A4A6'), 0, 3.75, 0);           // 楼身
-  box(4.9, 0.8, 4.9, grey('#7C8D8F'), 0, 5.3, 0);            // 顶帽
-  const tooth = grey('#A9B8B7');
-  for (const [dx, dz] of [[-1.8, -1.8], [1.8, -1.8], [-1.8, 1.8], [1.8, 1.8]]) {
-    box(1.15, 1.05, 1.15, tooth, dx, 6.2, dz);               // 顶上四角垛口
+  const M_BASE = grey('#879899'), M_SHAFT = grey('#94A4A6');
+  const M_ROOF = grey('#6A6F6C'), M_ROOF_TOP = grey('#5E6462'), M_RIDGE = grey('#E8C86A');
+
+  box(B.base.w, B.base.h, B.base.w, M_BASE, 0, B.base.h / 2, 0);              // 底台
+  box(B.shaft.w, B.shaft.h, B.shaft.w, M_SHAFT, 0, (H.baseTop + H.shaftTop) / 2, 0);   // 楼身
+  box(B.balcony.w, B.balcony.h, B.balcony.w, M_ROOF_TOP, 0, (H.shaftTop + H.balconyTop) / 2, 0);  // 平座
+
+  // 一层檐 / 二层檐：逐级收窄的薄板堆出凹曲屋面；最下面那级略微外挑（檐口出檐）
+  const tier = (spec, y0, matA, matB) => {
+    const step = spec.h / spec.steps;
+    for (let k = 0; k < spec.steps; k++) {
+      const t = k / spec.steps;
+      const w = spec.w * (1 - spec.taper * t) * (k === 0 ? spec.flare : 1);
+      box(w, step, w, k === spec.steps - 1 ? matB : matA, 0, y0 + (k + 0.5) * step, 0);
+    }
+    return spec.w * spec.flare / 2;                                          // 檐口半宽（放起翘角用）
+  };
+  const halfLow = tier(B.eaveLow, H.balconyTop, M_ROOF, M_ROOF);
+  box(B.upper.w, B.upper.h, B.upper.w, M_SHAFT, 0, (H.eaveLowTop + H.upperTop) / 2, 0);   // 二层楼身
+  const halfTop = tier(B.eaveTop, H.upperTop, M_ROOF, M_ROOF_TOP);
+
+  // 正脊 + 4 条垂脊（金）：脊是中式屋顶的"骨架"，没有它屋顶读起来只是一摞板子
+  box(B.ridge.l, B.ridge.h, B.ridge.w, M_RIDGE, 0, H.eaveTopTop + B.ridge.h / 2, 0);
+  for (const sx of [-1, 1]) {
+    box(B.hip.w, B.hip.h, B.hip.l, M_RIDGE, sx * (B.ridge.l / 2 - B.hip.l * 0.2), H.eaveTopTop + B.hip.h / 2, 0, 0, 0);
+    box(B.hip.l, B.hip.h, B.hip.w, M_RIDGE, 0, H.eaveTopTop + B.hip.h / 2, sx * (B.ridge.l / 2 - B.hip.l * 0.2));
   }
-  box(1.3, 1.5, 0.3, grey('#49565A'), 0, 3.9, 2.1);          // 瞭望窗（朝城内那面）
-  const bowl = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.6, 0.55, 8), grey('#5A4A3C'));
-  bowl.position.set(0, 6.0, 0); g.add(bowl);                 // 火盆
-  // 城市色小旗：每座城的烽火台有自己的颜色识别度
-  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 2.4, 5), grey('#6B5A48'));
-  pole.position.set(1.6, 7.2, 0); g.add(pole);
-  const flag = new THREE.Mesh(
-    new THREE.PlaneGeometry(1.5, 0.95),
-    new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide })
-  );
-  flag.position.set(2.4, 7.9, 0); g.add(flag);
-  g.userData.bowlY = 6.3;                                    // 火苗锚点（本地高度）
+  // 四角起翘：外旋的小楔块（参考图里最像"中式"的一笔）
+  for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+    for (const [half, y0] of [[halfLow, H.balconyTop], [halfTop, H.upperTop]]) {
+      const m = box(B.corner.w, B.corner.h, B.corner.d, M_RIDGE,
+        sx * (half - B.corner.w * 0.35), y0 + B.corner.h, sz * (half - B.corner.d * 0.35));
+      m.rotation.set(sz * B.corner.tilt, 0, -sx * B.corner.tilt);
+    }
+  }
+  // 瞭望窗（朝城内那面）
+  box(1.2, 1.3, 0.3, grey('#49565A'), 0, H.baseTop + B.shaft.h * 0.55, B.shaft.w / 2);
+  // 宝顶火盆：骑在正脊上（点火锚点 = 盆口）
+  const bowl = new THREE.Mesh(new THREE.CylinderGeometry(B.bowl.rTop, B.bowl.r, B.bowl.h, 10), grey('#5A4A3C'));
+  bowl.position.set(0, H.ridgeTop + B.bowl.lift + B.bowl.h / 2, 0);
+  g.add(bowl);
+  // 城市色小旗：挂在平座外侧（屋顶加大后旗子不能再摆在顶上，会跟正脊打架）
+  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.2, 5), grey('#6B5A48'));
+  pole.position.set(1.95, H.balconyTop + 1.1, 0); g.add(pole);
+  const flag = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.9),
+    new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+  flag.position.set(2.65, H.balconyTop + 1.75, 0); g.add(flag);
+  g.userData.bowlY = H.bowlTop;                              // 火苗锚点（本地高度）
   return g;
 }
 
@@ -1321,7 +1400,8 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
       // 只做装饰、无碰撞体：玩家/物件边界仍走 game 的钳制公式；直墙半厚 1.0 比旧圆管瘦，
       // 视觉上更通透，窄颈处也显得更好走。保留墙根渐变过渡带（改为灰绿色调配砖墙）。
       {
-        const H = 3.0, THICK = 1.0;
+        // 断面数字来自 js/wall-spec.js（与烘焙侧共用，避免两套实现漂移）
+        const H = WALL.H, THICK = WALL.thick;
         const ptIn = (px, pz) => {
           let hit = false;
           for (let i = 0, j = pts.length - 2; i < pts.length - 1; j = i++) {
@@ -1334,24 +1414,31 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
         // 张力 0：样条贴着轮廓顶点走，不再在拐角处过冲甩出"S"形波浪——
         // 旧版墙体自己扭来扭去，垛口跟着甩得东倒西歪，看着像乱摆的砖
         const curve = new THREE.CatmullRomCurve3(fpts, true, 'catmullrom', 0);
-        const { geo: wallGeo, samples, normals, arcs, len } = buildWallGeometry(curve, H, THICK);
+        const { geoBrick, geoTrim, samples, normals, arcs, len } = buildWallGeometry(curve);
         // 外侧方向：取一个样本点测试内外，整条边界绕向一致
         const outerSign = ptIn(samples[0].x + normals[0][0] * 2, samples[0].z + normals[0][1] * 2) ? -1 : 1;
         // 法线与 albedo 同 UV 空间（见 textures.js 的 brickNormal）：砖块因此有了凹凸，
-        // 原来只有平面贴图，远看就是一条平墙
-        const wall = new THREE.Mesh(wallGeo, new THREE.MeshStandardMaterial({
+        // 原来只有平面贴图，远看就是一条平墙。
+        // 砖面带：贴图 + 法线，**没有顶点色** —— 与旧版逐像素一致（不冒改色的风险）。
+        const wall = new THREE.Mesh(geoBrick, new THREE.MeshStandardMaterial({
           map: brickTexture(), normalMap: brickNormal().normalMap,
           normalScale: new THREE.Vector2(0.75, 0.75), roughness: 0.95, side: THREE.DoubleSide,
         }));
+        wall.name = 'city-wall-brick';
         grp.add(wall);
         procGround.push(wall);
+        // 饰面带：马道 / 压顶石 / 女墙 / 条石基座 —— 平色（顶点色），不挂砖纹
+        const trim = new THREE.Mesh(geoTrim, trimMaterial());
+        trim.name = 'city-wall-trim';
+        grp.add(trim);
+        procGround.push(trim);
         // 垛口：沿墙顶外侧等距小块（InstancedMesh，节奏感的关键）
-        const merlonGap = 3.4;
+        const merlonGap = WALL.merlon.gap;
         const rng = wrngOf(seedOfPoints(pts));   // 垛口细节的确定性随机源
         const merlonN = Math.max(2, Math.floor(len / merlonGap));
         const merlons = new THREE.InstancedMesh(
-          new THREE.BoxGeometry(1.5, 1.1, 1.0),
-          new THREE.MeshStandardMaterial({ color: '#A9B8B7', roughness: 0.9 }),
+          merlonGeometry(),
+          new THREE.MeshStandardMaterial({ color: WALL.merlon, roughness: 0.9 }),
           merlonN
         );
         {
@@ -1374,8 +1461,10 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             const pa = samples[Math.max(0, i - 1)], pb = samples[Math.min(samples.length - 1, i + 1)];
             const yaw = Math.atan2(pb.x - pa.x, pb.z - pa.z) + Math.PI / 2;
             q.setFromAxisAngle(up, yaw);
+            // 垛口站在墙顶**外侧露台**上（off 0.62…1.00 之间）：横跨 = d、中心在 WALL.merlon.off
             m4.compose(
-              new THREE.Vector3(p.x + nx * THICK * outerSign * 0.5, H + 0.5, p.z + nz * THICK * outerSign * 0.5),
+              new THREE.Vector3(p.x + nx * outerSign * WALL.merlon.off, WALL.H + WALL.merlon.h / 2,
+                p.z + nz * outerSign * WALL.merlon.off),
               q, sc
             );
             merlons.setMatrixAt(k, m4);
@@ -1386,6 +1475,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           merlons.instanceMatrix.needsUpdate = true;
           if (merlons.instanceColor) merlons.instanceColor.needsUpdate = true;
         }
+        merlons.name = 'city-wall-merlon';
         grp.add(merlons);
         procGround.push(merlons);
         // 烽火台：弧长均分 3~4 座，落在窄域（塔内侧净空不足）就顺延错位或跳过
@@ -1409,6 +1499,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             if (!placed) continue;
             const { i, p } = placed;
             const tower = buildBeaconTower(color);
+            tower.name = 'city-beacon';
             // 朝向城心：瞭望窗/小旗都在朝里那面
             tower.rotation.y = Math.atan2(-p.x, -p.z);
             tower.position.set(p.x, 0, p.z);
@@ -1416,7 +1507,7 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
             beacons.push({
               lx: p.x, lz: p.z,
               wx: cx + p.x, wz: cz + p.z,
-              top: 6.3,               // 火盆口高度（本地）
+              top: beaconHeights().bowlTop,   // 火盆口高度（本地，取自 wall-spec 的 BEACON）
               lit: false, flame: null, smokeT: 0,
             });
           }
@@ -1572,10 +1663,21 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           // —— 在着色器里就是 vNormalMapUv（法线用的那一套），拿 vMapUv 去采会得到一团糊。
           const gd = grassDetail(256, 11).map;
           const DETAIL_KEY = 'ground-detail-v1';
+          // 砖纹：烘焙院墙（材质名 ground_wall，见 scripts/bake/ground.py 的槽 2）在烘焙侧**没有**
+          // 砖纹（那里是顶点色平涂），而程序化侧有 —— 这条差异让烘焙墙远看就是一条灰带。
+          // 现在挂上与程序化侧**同一张**贴图与同一套 UV 尺度（墙的 TEXCOORD_0 已改成弧长制）。
+          const bw = brickTexture(), bn = brickNormal().normalMap;
           (slotG || grp).traverse((o) => {
             if (!o.isMesh) return;
             for (const m of (Array.isArray(o.material) ? o.material : [o.material])) {
               if (!m || !m.isMeshStandardMaterial) continue;
+              if (m.name === 'ground_wall') {
+                m.map = bw;
+                m.normalMap = bn;
+                m.normalScale = new THREE.Vector2(0.75, 0.75);
+                m.needsUpdate = true;
+                continue;            // 院墙不是地面：不再叠草叶颗粒细节（那会让砖面发绿）
+              }
               m.normalMap = gn;
               m.normalScale = new THREE.Vector2(0.5, 0.5);
               if (m.map) {   // 只有地层面（带区域色图）才叠平铺细节

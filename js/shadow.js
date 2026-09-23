@@ -27,7 +27,7 @@ function ensure() {
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
   mat = new THREE.MeshBasicMaterial({
-    map: tex, transparent: true, depthWrite: false, opacity: 0.9,
+    map: tex, transparent: true, depthWrite: false, opacity: 1.0,   // 实际强度逐帧由 updateContactShadow 给
     // 不参与光照（阴影不该被自己的光照亮/照亮别人）
     toneMapped: false,
   });
@@ -49,8 +49,14 @@ export function contactShadow(radius = 0.42) {
 /**
  * 每帧更新：把阴影放到实体正下方的地面上，并按"离地高度"放大变淡。
  *   lift = 实体脚底到地面的距离（0 = 贴地）
+ *   gain = 整体强度系数（默认 0.9）。
+ *
+ * 为什么要 gain：角色/词宠**本来就有真实投影**（js/assets.js:128 与 models/kit.js:17 都开了
+ * castShadow，阴影贴图 2048）。白天太阳高、真影子清楚时，脚下再压一块暗斑会糊成一团；
+ * 而**夜里**（太阳落山）与**低画质降级**（js/game.js 的 _fpsWatch 会把 shadowMap 整个关掉）
+ * 真影子不存在，这块接触阴影就是唯一的"落地感"。所以强度由调用方按这两种情况给。
  */
-export function updateContactShadow(mesh, x, z, groundY, lift = 0) {
+export function updateContactShadow(mesh, x, z, groundY, lift = 0, gain = 0.9) {
   if (!mesh) return;
   const r = mesh.userData.shadowRadius || 0.42;
   const k = Math.min(1, Math.max(0, lift) / 2.2);         // 0（贴地）→ 1（离地 2.2 以上）
@@ -58,5 +64,5 @@ export function updateContactShadow(mesh, x, z, groundY, lift = 0) {
   mesh.scale.set(s, 1, s);
   mesh.position.set(x, groundY + 0.035, z);               // 略高于地面，避免 z-fighting
   mesh.visible = groundY > -900;
-  mesh.material.opacity = 0.9 * (1 - k * 0.62);           // 越高越淡
+  mesh.material.opacity = gain * (1 - k * 0.62);          // 越高越淡
 }

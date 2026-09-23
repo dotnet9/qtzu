@@ -462,8 +462,11 @@ def build_object(soup, name):
     return ob
 
 
-def clay_material(color, rough=0.92, emissive=None, ei=0.6):
-    key = 'clay_%s_%s_%s' % (color, rough, emissive or '-')
+def clay_material(color, rough=0.92, emissive=None, ei=0.6, key=None):
+    # key 可以显式给：同名同参的材质会被缓存复用，而"同参数但要各自独立"的场合
+    # （例如地面里"院墙"必须能与"岩裙/雪峰"分开挂贴图）需要各自的 datablock——
+    # 共用 datablock 会被 glTF 导出器去重成同一个材质索引。
+    key = key or 'clay_%s_%s_%s' % (color, rough, emissive or '-')
     m = bpy.data.materials.get(key)
     if m:
         return m
