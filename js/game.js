@@ -1001,6 +1001,7 @@ export class Game {
     this._updatePlayer(dt);
     this._updateContactShadows();   // 玩家/词宠脚下的接触阴影（每帧跟随，见 js/shadow.js）
     this._updateCamera(dt);
+    this._updatePlayerFill();   // 主角补光跟随（见 _setupPlayerFill）
     this._updateShadowFollow();   // 阴影框跟人（见该函数注释：固定 ±60 时城的外圈没有投影）
     if (this.chinaMap) this.chinaMap.setRouteFade(this.camDist);   // 巡游路线虚线：拉远才显现
     if (this.chinaMap) this.chinaMap.setDetail(this.camDist);   // 邻城地形浮雕：中距才画
@@ -3635,6 +3636,38 @@ export class Game {
 
   // 外圈海岛懒加载：雾外的岛整组隐藏（省 draw call），走近再显示，视觉无感
   // 城市巡游模式：只显示当前城市舞台（其他城市在雾外"等待解锁"）
+  // 主角补光：缩略图是三点光（有轮廓光把角色从背景里拉出来），游戏内只有 hemi 0.62 + sun 1.35
+  // → 同一套模型两边看着像两个人。这里补两盏**跟随主角、无阴影**的方向光（fill + rim），
+  // 并把 hemi/sun 各降一档抵掉增量（用户要求"缩略图与游戏内两边向中间靠"）。
+  // 降级：触屏/低画质不加（与 SMAA/环境反射同一判据）。
+  _setupPlayerFill() {
+    if (this._pFill || this._lowEnd || this._lowFx) return;
+    const mk = (color, intensity) => {
+      const l = new THREE.DirectionalLight(color, intensity);
+      l.castShadow = false;                       // 不投影：只补亮度与轮廓，不增加阴影开销
+      this.scene.add(l);
+      this.scene.add(l.target);
+      return l;
+    };
+    this._pFill = mk(0xDCE8FF, 0.5);              // 冷调补光：压掉背光面的死黑
+    this._pRim = mk(0xFFFFFF, 0.75);              // 轮廓光：从逆光侧勾边
+    const dn = this.world && this.world.anim && this.world.anim.dayNight;
+    if (dn) { dn.hemi.intensity *= 0.88; dn.sun.intensity *= 0.92; }
+  }
+
+  // 光位跟着相机转：fill 在相机左后上方、rim 在相机正对面偏上 → 转到任何方向都有立体感
+  _updatePlayerFill() {
+    this._setupPlayerFill();
+    if (!this._pFill) return;
+    const p = this.player.position;
+    const yaw = this.camYaw || 0;
+    const fx = Math.sin(yaw + 0.9), fz = Math.cos(yaw + 0.9);
+    this._pFill.position.set(p.x - fx * 3, p.y + 4.2, p.z - fz * 3);
+    this._pFill.target.position.set(p.x, p.y + 0.4, p.z);
+    this._pRim.position.set(p.x + Math.sin(yaw) * 4, p.y + 3.4, p.z + Math.cos(yaw) * 4);
+    this._pRim.target.position.set(p.x, p.y + 0.5, p.z);
+  }
+
   // 触屏/低端机：天空云层整组隐藏（方案 §3「触屏关」）
   _applySkyCloudLOD() {
     const a = this.world && this.world.anim;
