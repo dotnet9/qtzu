@@ -46,6 +46,7 @@ import { speak, sfx, stopSpeaking, setBgmMood, setBgmCity, isSpeaking } from './
 import { ensureWhisper, recognizeBlob, preloadWhisper, loadPercent } from './whisper.js';
 import { buildChinaMap } from './china-map.js';
 import { CURRICULUM } from './curriculum.js';
+import { SKY, SKY_FLYERS } from './sky-isles.js';   // 天空群岛：岛链数据 + 四条通道的常量
 
 const PLAYER_SPEED = 3.65;  // 移速同步城市缩 1/2（7.3 的一半），穿城节奏不变
 const CITY_SCALE = 0.84;   // 城市地图尺度倍率（×5 后缩 1/3≈1.67，再按反馈缩 1/2）
@@ -497,6 +498,7 @@ export class Game {
     const cur = new Set(this.currentChapter.words);
     const perchId = this._perchEggId();
     const brickId = this._brickEggId(perchId);
+    const skyIds = this._skyEggIds(perchId, brickId);
     for (const w of this.scopeWords) {
       if (save.isHatched(w.id)) {
         let pet = this.pets.get(w.id);
@@ -521,7 +523,8 @@ export class Game {
         egg.group.userData.wordId = w.id;
         egg.baseY = y0;
         // 本关有一颗蛋放上跳跳石高台：要跳上去才够得着，加点小挑战
-        if (perchId === w.id) this._putEggOnPerch(egg);
+        if (skyIds.includes(w.id)) this._putEggOnSky(egg, skyIds.indexOf(w.id));   // 本关 2~3 颗蛋放上天空岛
+        else if (perchId === w.id) this._putEggOnPerch(egg);
         else if (this.cityTour && this._signEggSpots && this._signEggSpots.length && w.zone !== 'sky') {
           // 一部分蛋按 seed 放到牌子旁边：找牌子=找蛋，探索感更强。
           // 落点统一走 _freeEggSpot：牌旁点常被钳到同一处，不分配就会多颗蛋叠在一起。
@@ -611,6 +614,35 @@ export class Game {
     const pf = this.world.perch;
     egg.baseY = pf.top;
     egg.group.position.set(pf.x, pf.top, pf.z);
+  }
+
+  /* ================= 天空群岛：岛上的蛋 =================
+     本关挑 2~3 颗蛋放到岛上（每座岛最多一颗）——跳上去取蛋 → 孵化 → 跳下来找剩下的蛋，
+     这就是用户要的闭环。挑法与 _perchEggId 同思路：排除剧情钥匙蛋 / 天空金蛋 / 高台蛋 / 砖块蛋，
+     再按 (城市+词) 的哈希排序取前 n 个 —— 确定性、不重复，换城/换关自然换蛋。 */
+  _skyEggIds(perchId = null, brickId = null) {
+    const sky = this._sky();
+    if (!sky || !sky.eggSpots.length) return [];
+    const pid = perchId ?? this._perchEggId();
+    const bid = brickId ?? this._brickEggId(pid);
+    const GATES = ['boat', 'light', 'wind', 'seed', 'rain', 'banana'];
+    const ids = this.currentChapter.words.filter(id => !GATES.includes(id) && id !== pid && id !== bid
+      && WORD_MAP[id] && WORD_MAP[id].zone !== 'sky');
+    if (!ids.length) return [];
+    const st = this._currentStage();
+    const sorted = ids.slice().sort((a, b) => this._hashStr(st.key + '#' + a) - this._hashStr(st.key + '#' + b));
+    // 2~3 颗：本关词够多就 3 颗，只剩两三个词就少放一点（不能把本关的蛋全搬上天）
+    const n = ids.length >= 4 ? 3 : ids.length >= 2 ? 2 : 1;
+    return sorted.slice(0, Math.min(n, sky.eggSpots.length - 1));
+  }
+
+  _putEggOnSky(egg, k = 0) {
+    const sky = this._sky();
+    const spots = sky && sky.eggSpots;
+    if (!spots || !spots.length) return;
+    const s = spots[k % Math.max(1, spots.length - 1)];   // 末位是小岛（宝箱），不摆蛋
+    egg.baseY = s.y;
+    egg.group.position.set(s.x, s.y, s.z);
   }
 
   // 钥匙词蛋：只要对应机关还没触发就一直留在场上，保证剧情卡不死
@@ -788,6 +820,9 @@ export class Game {
   // ================= 跳跃 =================
   // 最多连跳两次：地面起跳算第 1 跳，空中再按一次空格/跳 = 第 2 跳（稍微矮一点），之后只能等落地
   _jump() {
+    // 骑着"会飞的词宠"时，跳跃键 = 驮我上天／飞回地面。
+    // 这个键在骑乘态本来是空的，而触屏的跳键也走这里 → 手机同样能用这条通道。
+    if (this.mount && this.mountFlying && this._skyFlyToggle()) return;
     if (this.climbing || this.riding || this.mount) return;   // 骑乘时不跳（词宠驮着呢）
     if (ui.challengeOpen()) return;
     if (document.querySelector('.overlay:not(.hidden)')) return;  // 弹窗打开时不跳
@@ -1018,6 +1053,7 @@ export class Game {
     this._updateIdleLife(dt, t);
     this._updateEvents(dt);
     this._updateBeacons(dt);
+    this._updateSky(dt, t);      // 天空群岛：气流 / 驮飞 / 机关 / 动物 / 引导
     this._updateWeather(dt, t);
     this._updateGuide(t);
     this._updateJumpCoach(dt);   // 跳跃挑战的引导与反馈（走近提示/逐级反馈/失败提醒/首次演示）
@@ -1036,6 +1072,7 @@ export class Game {
       }
     }
     this._updateDayNight();
+    this._updateSkyFog();        // 站在岛上时把雾略微加浓（"云上"感）
     this.eggs.update(dt, t);
     this.pets.update(dt, t, this.player.position);
     // 词宠溜达守规矩：不穿墙、不下河、不出世界（boat 词宠本来就漂在河里，跳过）
@@ -2409,8 +2446,11 @@ export class Game {
     // 补建精建岛后城界才可用：本关的蛋重新钳进新城——
     // 上一关通关演出出蛋时新城还是占位岛（无城界），蛋会被圆形兜底甩到城墙外，看得见够不着
     const perchId = this._perchEggId();
+    const skyIds = this._skyEggIds(perchId);
     for (const [eid, eg] of this.eggs.eggs) {
       if (!eg.group.visible || !this.currentChapter.words.includes(eid)) continue;
+      // 天空岛上的蛋：岛位固定，跟高台蛋一样不参与重新分配
+      if (skyIds.includes(eid)) { this._putEggOnSky(eg, skyIds.indexOf(eid)); continue; }
       if (eid === perchId) { this._putEggOnPerch(eg); continue; }   // 高台蛋位固定，不参与分配
       if (eg.word.zone !== 'sky' && this._eggReachable(eg.group.position.x, eg.group.position.z)) continue;   // 城内/牌旁蛋位不动
       const c2 = this._cityPos(eg.word, cur);
@@ -2803,8 +2843,9 @@ export class Game {
   // 骑词宠：跑得更快、视野更高；飞行词宠驮着飘半空。再触发一次下来
   _ridePet(id) {
     if (this.mount === id) {   // 下骑
-      this.mount = null; this.mountPet = null; this.mountFly = false;
-      this.player.position.y = this.onIsle ? 14 : 0;
+      this.mount = null; this.mountPet = null; this.mountFly = false; this.mountFlying = false;
+      // 从哪一层下来的就落回哪一层（地面 0 / 农场天空岛 14 / 城市天空岛 15+）
+      this.player.position.y = this._supportAt(this.player.position.x, this.player.position.z);
       this.onGround = true; this.vy = 0;
       sfx.pop();
       ui.hidePrompt();
@@ -2815,6 +2856,12 @@ export class Game {
     this.mount = id;
     this.mountPet = pet;
     this.mountFly = !!pet.flying;
+    // 会不会飞是词宠的"本事"（不是"正在飞"这个瞬时状态）：鸟/蜜蜂/风筝/风能驮人上天
+    this.mountFlying = SKY_FLYERS.has(pet.word.pet);
+    if (this.mountFlying && this._sky() && !save.hasBadge('skyfly_' + this._currentStage().key)) {
+      save.awardBadge('skyfly_' + this._currentStage().key);
+      setTimeout(() => ui.toast(t('x.g612', { a0: pet.word.en }), 4800), 900);
+    }
     this.onGround = true; this.vy = 0; this.jumps = 0;
     sfx.boing();
     this._petEmoji(pet, '😍');
@@ -3027,7 +3074,8 @@ export class Game {
     // 骑词宠：贴在词宠背上（飞行词宠驮着飘），接管高度、不参与跳跃物理
     if (this.mount && this.mountPet) {
       const base = this.mountFly ? 1.6 : 0.72;
-      pp.y = (this.onIsle ? 14 : 0) + base + Math.sin(performance.now() / 280) * (this.mountFly ? 0.14 : 0.045);
+      // 站在哪一层（地面 0 / 农场天空岛 14 / 城市天空岛 15+）就贴在那一层的上面
+      pp.y = this._supportAt(pp.x, pp.z) + base + Math.sin(performance.now() / 280) * (this.mountFly ? 0.14 : 0.045);
       this.mountPet.group.position.set(
         pp.x - Math.sin(this.player.rotation.y) * 0.15,
         pp.y - base + (this.mountFly ? 0.1 : 0.06),
@@ -3041,6 +3089,8 @@ export class Game {
     const support = this._supportAt(pp.x, pp.z);
     if (!this.onGround) {
       this.vy -= 20 * dt;
+      // 上升气流里的缓降（蒲公英式飘落）：标志由 _updateSkyWays 每帧给，离开气柱立刻恢复正常重力
+      if (this._skyFloat) this.vy = Math.max(this.vy, -SKY.FLOAT_VY);
       this.player.position.y += this.vy * dt;
       if (this.vy <= 0 && this.player.position.y <= support + 0.04) {
         this.player.position.y = support;
@@ -3865,6 +3915,378 @@ export class Game {
     for (const sc of a.skyClouds) sc.mesh.visible = !off;
   }
 
+  /* ================= 天空群岛：玩法层 =================
+     岛链几何与四条通道的"路"在 js/sky-isles.js（world.js 注册成平台）；这里只管规则：
+       ① 上升气流的"吹上去 / 飘下来"  ② 词宠驮飞  ③ 岛上的宝箱 / 风车 / 旗  ④ 采集与动物  ⑤ 高处的雾
+     状态全部复用现有字段（climbing 那把"垂直演出"的锁 / mount / addTween / this.fx），
+     不新增并行状态机 —— 骑乘、攀爬、弹跳、孵化流程都照旧。 */
+  _sky() {
+    const st = this._currentStage();
+    return (st && this.world.skyIsles && this.world.skyIsles[st.key]) || null;
+  }
+
+  // 存档 → 场景：已经开过的宝箱 / 转过的风车 / 升过的旗 / 今天采过的点，换城与重载都要对得上
+  _syncSkyState() {
+    const sky = this._sky();
+    if (!sky) return;
+    const key = this._currentStage().key;
+    if (sky.mill) sky.mill.solved = save.skyDone('mill', key);
+    if (sky.lift) sky.lift.lit = !!sky.mill && sky.mill.solved;
+    if (sky.flag) {
+      sky.flag.solved = save.skyDone('flag', key);
+      if (sky.flag.cloth) sky.flag.cloth.scale.y = sky.flag.solved ? 1 : 0.02;
+    }
+    if (sky.chest) {
+      sky.chest.opened = save.skyDone('chest', key);
+      if (sky.chest.opened && sky.chest.lid) sky.chest.lid.rotation.x = -1.15;
+    }
+    for (const f of sky.forage) f.mesh.visible = !save.forageTaken(key, f.idx);
+  }
+
+  // ⚠ 形参不能叫 t：函数体里要调用 i18n 的 t()，同名会把文案函数遮成数字
+  _updateSky(dt, tm) {
+    const sky = this._sky();
+    if (!sky) return;
+    const st = this._currentStage();
+    if (this._skyKey !== st.key) { this._skyKey = st.key; this._syncSkyState(); }
+    const p = this.player.position;
+
+    // ---- 动物：海鸥绕岛盘旋 / 蝴蝶绕花丛（与农场那套同一写法）----
+    for (const gu of sky.anim.gulls) {
+      const c = gu.userData.center, ph = gu.userData.phase, rr = gu.userData.radius;
+      const a = tm * 0.32 + ph;
+      gu.position.set(c[0] + Math.cos(a) * rr, gu.userData.height + Math.sin(tm + ph) * 0.5, c[1] + Math.sin(a) * rr);
+      gu.rotation.y = -a;
+      gu.userData.wingL.rotation.z = Math.sin(tm * 7 + ph) * 0.5;
+      gu.userData.wingR.rotation.z = -Math.sin(tm * 7 + ph) * 0.5;
+    }
+    for (const bf of sky.anim.butterflies) {
+      const c = bf.userData.center, ph = bf.userData.phase, y = bf.userData.y || 0;
+      bf.position.set(c[0] + Math.sin(tm * 0.5 + ph) * 2.2, y + 0.9 + Math.sin(tm * 1.6 + ph) * 0.35, c[1] + Math.cos(tm * 0.42 + ph) * 2.2);
+      bf.rotation.y = -tm * 0.5;
+      bf.userData.wings[0].rotation.z = Math.sin(tm * 16 + ph) * 0.95;
+      bf.userData.wings[1].rotation.z = -Math.sin(tm * 16 + ph) * 0.95;
+    }
+    // ---- 蒲公英：走近就吹散（绒球缩掉，一会儿再长回来）----
+    for (const d of sky.anim.dandelions) {
+      if (d.blown > 0) {
+        d.blown -= dt;
+        d.mesh.scale.setScalar(Math.max(0.04, d.blown / 12));
+        if (d.blown <= 0) { d.mesh.scale.setScalar(1); d.mesh.visible = true; }
+      } else if (Math.hypot(p.x - d.x, p.z - d.z) < 1.7 && Math.abs(p.y - d.y) < 3) {
+        d.blown = 12;
+        for (let i = 0; i < 7; i++) this._skyPetal(d.x, d.y + 0.5, d.z, true);
+        sfx.pop();
+      }
+    }
+    // ---- 机关的可视状态：风车叶片、气流柱亮度 ----
+    if (sky.mill && sky.mill.blades) sky.mill.blades.rotation.z -= dt * (sky.mill.solved ? 2.6 : 0.45);
+    if (sky.lift) {
+      const lit = sky.lift.lit ? 1 : 0;
+      for (const w of sky.lift.winds) {
+        const want = 0.1 + lit * 0.3 + Math.sin(tm * 2.4 + w.position.y) * 0.05;
+        w.material.opacity += (want - w.material.opacity) * Math.min(1, dt * 3);
+      }
+      sky.lift.ring.material.opacity = 0.5 + lit * 0.3 + Math.sin(tm * 3) * 0.2;
+    }
+    // ---- 远景 LOD：人离岛链远时收起岛上的小装饰（树/路灯/栅栏/花/飞鸟）----
+    // 岛体/云梯/栈桥/宝箱这些"看得见才玩得成"的一律常显；只有贴岛的小件收起来。
+    // 近处（≤45 米）全开 —— 上岛时装饰一个不少。
+    {
+      const i0 = sky.isles[0];
+      const near = Math.hypot(p.x - i0.x, p.z - i0.z) < 45 || p.y > 8;
+      if (this._skyDecorNear !== near) {
+        this._skyDecorNear = near;
+        for (const d of sky.decor) d.visible = near;
+      }
+    }
+    // ---- 引导：第一次走近云梯最下面一级时讲一次（每城一次，且本关天上确实还有蛋）----
+    const low = sky.stairs[0];
+    if (low && !save.hasBadge('skyseen_' + st.key)
+      && Math.hypot(p.x - low.x, p.z - low.z) < 5.5
+      && this._skyEggIds().some(id => !save.isHatched(id))) {
+      save.awardBadge('skyseen_' + st.key);
+      ui.toast(t('x.g604'), 4600);
+    }
+    this._updateSkyWays(dt);
+  }
+
+  // 通道②的两种状态：走进地面光圈被吹上去；从顶上的云台走进气柱则缓降（蒲公英式飘落）
+  _updateSkyWays(dt) {
+    const wasFloat = this._skyFloat;
+    this._skyFloat = false;
+    this._liftCd = Math.max(0, (this._liftCd || 0) - dt);
+    const sky = this._sky();
+    if (!sky) return;
+    const p = this.player.position;
+    const L = sky.lift;
+    if (L && !this.climbing && !this.riding && !this.mount) {
+      const d = Math.hypot(p.x - L.x, p.z - L.z);
+      const g = this._groundY(p.x, p.z);
+      if (this.onGround) {
+        // 刚飘下来的那一瞬间别再把人吹上去：否则落到光圈上立刻又起飞，来回弹
+        if (wasFloat) this._liftCd = 2.5;
+      } else if (this.vy <= 0 && d < L.r) {
+        // 一整段匀速飘落：只挂一个标志，真正的限速在 _updatePlayer 的重力那一步做
+        // （那里才知道本帧的 dt，clamp 在积分之前才算得准）。
+        this._skyFloat = true;
+        this._skyT = (this._skyT || 0) - dt;
+        if (this._skyT <= 0) { this._skyT = 0.1; this._skyPetal(p.x, p.y - 0.2, p.z); }
+      }
+      if (this.onGround && p.y < g + 1.2 && d < L.r && this._liftCd <= 0) this._skyRise();
+    }
+    // ---- 保底：落在水里动不了就送回岸边 --------------------------------------------
+    // 岛链架在城内上空，掉下来本该落在城里；万一正好落在湖面（地形城才有），必须有救，
+    // 否则孩子会卡在水中央（涉水阻挡会把每一帧的移动都退回去）。
+    if (this.cityTour && this.onGround && !this.mount && this._waterAt(p.x, p.z) > 0.55) {
+      this._waterStuckT = (this._waterStuckT || 0) + dt;
+      if (this._waterStuckT > 2.2) {
+        this._waterStuckT = 0;
+        const sp = this._citySpawnPos(this._currentStage());
+        this.player.position.set(sp.x, this._groundY(sp.x, sp.z), sp.z);
+        this.vy = 0; this.onGround = true;
+        ui.toast(t('x.g613'), 3200);
+        sfx.pop();
+      }
+    } else this._waterStuckT = 0;
+  }
+
+  // 被气流吹上去：锁操作 1.6 秒，落到气柱顶上的云台（复用 climbing 这把锁，重力整段让位）
+  _skyRise() {
+    const sky = this._sky();
+    if (!sky || !sky.lift || this.climbing) return;
+    const L = sky.lift;
+    const from = this.player.position.clone();
+    const to = new THREE.Vector3(L.padX, L.padTop, L.padZ);
+    this.climbing = true;
+    this._clearMoveTarget();
+    sfx.magic();
+    ui.toast(t('x.g605'), 3800);
+    this.addTween(1.6, k => {
+      const e = k * k * (3 - 2 * k);
+      this.player.position.lerpVectors(from, to, e);
+      this.player.position.y = THREE.MathUtils.lerp(from.y, to.y, e) + Math.sin(e * Math.PI) * 0.35;
+      this.player.rotation.y += 0.14;
+      this._skyT = (this._skyT || 0) - 0.016;
+      if (this._skyT <= 0) { this._skyT = 0.08; this._skyPetal(this.player.position.x, this.player.position.y - 0.5, this.player.position.z); }
+    }, () => {
+      this.climbing = false;
+      this.player.position.copy(to);
+      this.onGround = true; this.vy = 0; this.jumps = 0;
+    });
+  }
+
+  // 通道③：词宠驮飞 —— 骑着会飞的词宠时按跳跃键：没在天上就飞上主岛，在岛上就飞回地面
+  _skyFlyToggle() {
+    const sky = this._sky();
+    if (!sky || !this.mountPet || !sky.isles.length || this.climbing) return false;
+    const isl = sky.isles[0];
+    const p = this.player.position;
+    const up = p.y < isl.top - 3;
+    let to;
+    if (up) {
+      to = new THREE.Vector3(isl.x, isl.top, isl.z);
+    } else {
+      let gx = p.x, gz = p.z;
+      if (this._waterAt(gx, gz) > 0.55) { const sp = this._citySpawnPos(this._currentStage()); gx = sp.x; gz = sp.z; }
+      to = new THREE.Vector3(gx, this._groundY(gx, gz), gz);
+    }
+    const from = p.clone();
+    const pet = this.mountPet;
+    this.climbing = true;            // 演出期间输入让位；词宠自己跟着飞（骑乘跟随在 _updatePlayer 里，这里手动补一遍）
+    this._clearMoveTarget();
+    sfx.boing();
+    this.addTween(1.9, k => {
+      const e = k * k * (3 - 2 * k);
+      const x = THREE.MathUtils.lerp(from.x, to.x, e);
+      const z = THREE.MathUtils.lerp(from.z, to.z, e);
+      const y = THREE.MathUtils.lerp(from.y, to.y, e) + Math.sin(e * Math.PI) * (up ? 3.4 : 2.2);
+      this.player.position.set(x, y, z);
+      if (Math.abs(to.x - from.x) + Math.abs(to.z - from.z) > 0.2) this.player.rotation.y = Math.atan2(to.x - from.x, to.z - from.z);
+      pet.group.position.set(x - Math.sin(this.player.rotation.y) * 0.15, y - 1.6, z - Math.cos(this.player.rotation.y) * 0.15);
+      pet.group.rotation.y = this.player.rotation.y;
+    }, () => {
+      this.climbing = false;
+      this.player.position.copy(to);
+      this.onGround = true; this.vy = 0; this.jumps = 0;
+      ui.toast(up ? t('x.g623') : t('x.g624'), 2600);
+    });
+    return true;
+  }
+
+  // 蒲公英 / 气流的白色绒球：一小片慢慢飘落的粒子（复用 fx 队列，有寿命自动回收）
+  _skyPetal(x, y, z, blow = false) {
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: softTexture(), color: 0xFFFDF4, transparent: true, opacity: 0.9, depthWrite: false }));
+    const a = Math.random() * Math.PI * 2, rr = blow ? 0.25 : 0.9;
+    s.position.set(x + Math.cos(a) * rr, y + (Math.random() - 0.5) * 0.5, z + Math.sin(a) * rr);
+    s.scale.setScalar(0.16 + Math.random() * 0.12);
+    this.scene.add(s);
+    const vx = Math.cos(a) * (blow ? 1.4 : 0.25), vz = Math.sin(a) * (blow ? 1.4 : 0.25);
+    this.fx.push({
+      obj: s, t: 0, dur: 1.7,
+      update: (tt, dt2) => {
+        s.position.x += vx * dt2 + Math.sin(tt * 3) * dt2 * 0.5;
+        s.position.z += vz * dt2;
+        s.position.y += (blow ? 0.25 : -0.35) * dt2;
+        s.material.opacity = 0.9 * (1 - tt / 1.7);
+      },
+    });
+  }
+
+  // ---------- 岛上的采集（果子 / 花）：每处每天可采一次，计数进存档 ----------
+  _skyForage(f) {
+    const key = this._currentStage().key;
+    if (!save.foragePick(key, f.idx)) { ui.toast(t('x.g621'), 2400); return; }
+    f.mesh.visible = false;
+    sfx.pop();
+    this._letterBurst(new THREE.Vector3(f.x, f.y + 0.7, f.z), f.kind === 'berry' ? '🍇' : '🌸');
+    this._starBurst(new THREE.Vector3(f.x, f.y + 0.9, f.z), 3);
+    ui.toast(t('x.g606', { a0: save.getForage() }), 2600);
+  }
+
+  // 果子喂词宠（复用喂食入口的存档语义：save.feed = 好感 +1；喂满 3 次照样进化）
+  _skyFeedBerry(id) {
+    if (!save.eatForage(1)) { ui.toast(t('x.g622'), 2400); return; }
+    save.feed(id);
+    const pet = this.pets.get(id);
+    if (pet) { this._petSay(pet, t('x.g607', { a0: pet.word.en }), 1.4); this.pets.celebrate(id); }
+    sfx.good();
+    ui.toast(t('x.g607', { a0: WORD_MAP[id].en }), 3000);
+    const d = save.getSave().pets[id];
+    if (d && d.feeds >= 3 && !d.evo) { save.markEvolved(id); if (pet) this._applyEvolved(pet, true); }
+    this._refreshHungry();
+  }
+
+  // ---------- 岛上的"念对单词开机关"：复用现有朗读弹窗（easy=读一遍就过，不惩罚）----------
+  _skyChallenge(onWin, salt = '') {
+    if (ui.challengeOpen()) return;
+    const st = this._currentStage();
+    const words = this.currentChapter.words.filter(id => WORD_MAP[id]);
+    if (!words.length) return;
+    const word = WORD_MAP[words[this._hashStr('skyq:' + st.key + ':' + salt) % words.length]];
+    this.currentWord = word;
+    this._maybePreloadWhisper(); this._warmMic();
+    ui.openChallenge({
+      word, mode: 'hatch', easy: true,
+      onSuccess: () => { ui.closeChallenge(); this.currentWord = null; onWin(word); },
+      onClose: () => { this.currentWord = null; },
+    });
+  }
+
+  _skyOpenChest() {
+    const sky = this._sky();
+    const key = this._currentStage().key;
+    if (!sky || !sky.chest || sky.chest.opened || save.skyDone('chest', key)) { ui.toast(t('x.g611'), 2400); return; }
+    this._skyChallenge(() => this._skyChestWin(), 'chest');
+  }
+
+  // 念对了：开盖 + 奖励（抽出来单独一个方法，校验脚本可以直接驱动这条"成功路径"）
+  _skyChestWin() {
+    const sky = this._sky();
+    const key = this._currentStage().key;
+    if (!sky || !sky.chest || sky.chest.opened) return;
+    const c = sky.chest;
+    c.opened = true;
+    save.markSkyDone('chest', key);
+    this.addTween(0.7, k => { if (c.lid) c.lid.rotation.x = -1.15 * k; });
+    sfx.great();
+    ui.confettiBurst(80);
+    this._letterBurst(new THREE.Vector3(c.x, c.y + 1.3, c.z), '🎁');
+    this._starBurst(new THREE.Vector3(c.x, c.y + 1.1, c.z), 8);
+    return this._skyChestReward();
+  }
+
+  // 宝箱奖励：① 先把一只已孵的词宠点亮成"稀有"（最有惊喜）② 没有就送还没拥有的配饰 ③ 都有就送星星
+  _skyChestReward() {
+    const key = this._currentStage().key;
+    const cand = this.chapters.flatMap(c => c.words).filter((id) => {
+      const d = save.getSave().pets[id];
+      return d && !d.rare && this.pets.get(id);
+    });
+    if (cand.length) {
+      const pick = cand[this._hashStr('rare:' + key) % cand.length];
+      save.markRare(pick);
+      const pet = this.pets.get(pick);
+      if (pet) this._applyRare(pet);
+      ui.toast(t('x.g608', { a0: WORD_MAP[pick].en }), 4200);
+      return 'rare';
+    }
+    const wear = save.getWear();
+    const pool = [];
+    if (!wear.hatOwned.includes('wizard')) pool.push({ patch: { hatOwned: [...wear.hatOwned, 'wizard'], hat: 'wizard' }, label: t('x.g232') });
+    if (!wear.hatOwned.includes('flower')) pool.push({ patch: { hatOwned: [...wear.hatOwned, 'flower'], hat: 'flower' }, label: t('x.g234') });
+    if (!wear.balloonOwned) pool.push({ patch: { balloonOwned: true, balloon: true }, label: t('x.g236') });
+    if (!wear.wandOwned) pool.push({ patch: { wandOwned: true, wand: true }, label: t('x.g238') });
+    if (pool.length) {
+      save.updateWear(pool[0].patch);
+      this._refreshPlayerLook();
+      ui.toast(t('y.30', { a0: pool[0].label }), 3800);
+      return 'wear';
+    }
+    save.addStars(8);
+    ui.updateStars(save.getStars());
+    ui.toast(t('x.g291'), 3000);
+    return 'stars';
+  }
+
+  // 风车：念对单词后转起来，并把上升气流点亮 —— 给出一条明确的"上天路"
+  _skySolveMill() {
+    const sky = this._sky();
+    const key = this._currentStage().key;
+    if (!sky || !sky.mill || sky.mill.solved || save.skyDone('mill', key)) { ui.toast(t('x.g611'), 2400); return; }
+    this._skyChallenge(() => this._skyMillWin(), 'mill');
+  }
+
+  _skyMillWin() {
+    const sky = this._sky();
+    const key = this._currentStage().key;
+    if (!sky || !sky.mill || sky.mill.solved) return;
+    sky.mill.solved = true;
+    save.markSkyDone('mill', key);
+    if (sky.lift) sky.lift.lit = true;
+    sfx.magic();
+    ui.confettiBurst(50);
+    ui.toast(t('x.g609'), 3800);
+    for (let i = 0; i < 8; i++) this._skyPetal(sky.mill.x, sky.mill.y + 3, sky.mill.z, true);
+  }
+
+  // 旗：念对单词后升起城市色的旗（可视成就）
+  _skySolveFlag() {
+    const sky = this._sky();
+    const key = this._currentStage().key;
+    if (!sky || !sky.flag || sky.flag.solved || save.skyDone('flag', key)) { ui.toast(t('x.g611'), 2400); return; }
+    this._skyChallenge(() => this._skyFlagWin(), 'flag');
+  }
+
+  _skyFlagWin() {
+    const sky = this._sky();
+    const key = this._currentStage().key;
+    if (!sky || !sky.flag || sky.flag.solved) return;
+    const fl = sky.flag;
+    fl.solved = true;
+    save.markSkyDone('flag', key);
+    const cloth = fl.cloth;
+    if (cloth) {
+      cloth.children.forEach((c) => { if (c.material) c.material.color.set(fl.color || '#FFB46B'); });
+      this.addTween(0.9, k => { cloth.scale.y = 0.02 + 0.98 * k; });
+    }
+    sfx.great();
+    ui.confettiBurst(60);
+    ui.toast(t('x.g610', { a0: this._currentStage().name }), 3600);
+    this._letterBurst(new THREE.Vector3(fl.x, fl.y + 3.4, fl.z), '🚩');
+  }
+
+  // 云上雾气：站在岛上把雾略微加浓（越高越像"云上"）。基准值只在第一次记下，回到地面完全还原
+  _updateSkyFog() {
+    const fog = this.scene && this.scene.fog;
+    if (!fog) return;
+    if (!this._fogBase) this._fogBase = { near: fog.near, far: fog.far };
+    const k = Math.min(1, Math.max(0, (this.player.position.y - 8) / 10));
+    const near = this._fogBase.near * (1 - 0.34 * k);
+    const far = this._fogBase.far * (1 - 0.34 * k);
+    if (Math.abs(fog.near - near) > 0.4 || Math.abs(fog.far - far) > 0.4) { fog.near = near; fog.far = far; }
+  }
+
   _updateIslandLOD() {
     this._lodT = (this._lodT || 0) - 1;
     if (this._lodT > 0) return;
@@ -4004,6 +4426,54 @@ export class Game {
     const egg = this.eggs.nearest(p, 4.2);
     if (egg && egg.group.position.y - p.y <= 1.8) {
       ui.showPrompt(t('x.g354'), 'E'); this.promptAction = () => this._openEgg(egg.word.id); return;
+    }
+    // 天空群岛：岛上的采点 / 宝箱 / 风车 / 旗，以及"用果子喂词宠"。
+    // 高度一起判（|Δy|）：站在城里地面时不会隔着 15 米触发天上的东西。
+    {
+      const sky = this._sky();
+      if (sky) {
+        const sk = po;
+        for (const f of sky.forage) {
+          if (save.forageTaken(sk, f.idx)) continue;
+          if (Math.hypot(p.x - f.x, p.z - f.z) < 2.2 && Math.abs(p.y - f.y) < 2.4) {
+            ui.showPrompt(t(f.kind === 'berry' ? 'x.g618' : 'x.g619'), 'E');
+            this.promptAction = () => this._skyForage(f);
+            return;
+          }
+        }
+        const chest = sky.chest;
+        if (chest && !chest.opened && Math.abs(p.y - chest.y) < 2.6 && Math.hypot(p.x - chest.x, p.z - chest.z) < 2.6) {
+          ui.showPrompt(t('x.g615'), 'E');
+          this.promptAction = () => this._skyOpenChest();
+          return;
+        }
+        const mill = sky.mill;
+        if (mill && !mill.solved && Math.abs(p.y - mill.y) < 2.8 && Math.hypot(p.x - mill.x, p.z - mill.z) < 3.0) {
+          ui.showPrompt(t('x.g616'), 'E');
+          this.promptAction = () => this._skySolveMill();
+          return;
+        }
+        const flag = sky.flag;
+        if (flag && !flag.solved && Math.abs(p.y - flag.y) < 2.8 && Math.hypot(p.x - flag.x, p.z - flag.z) < 3.0) {
+          ui.showPrompt(t('x.g617'), 'E');
+          this.promptAction = () => this._skySolveFlag();
+          return;
+        }
+        if (save.getForage() > 0) {
+          let near = null, bd = 2.6;
+          for (const pt of this.pets.all()) {
+            if (!save.isHatched(pt.word.id) || save.isHungry(pt.word.id)) continue;   // 饿了的那只走原来的喂食入口
+            if (pt.group.position.y > 2 && Math.abs(pt.group.position.y - p.y) > 2.4) continue;
+            const d = Math.hypot(p.x - pt.group.position.x, p.z - pt.group.position.z);
+            if (d < bd) { bd = d; near = pt; }
+          }
+          if (near) {
+            ui.showPrompt(t('x.g620', { a0: near.word.en, a1: save.getForage() }), 'E');
+            this.promptAction = () => this._skyFeedBerry(near.word.id);
+            return;
+          }
+        }
+      }
     }
     // 梯田采集：走近自家梯田按 E 采一穗（每城每天一次，+1⭐）
     if (this._terraceAt(p.x, p.z) && !save.hasSpotPick(po)) {

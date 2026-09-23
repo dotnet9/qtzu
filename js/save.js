@@ -49,6 +49,8 @@ function fresh() {
     lastQuizDay: '',   // 最近一次错词周测之日（每周日且距上次 ≥7 天才提醒）
     spotPicks: {},     // 地形采集：<城市id> -> 采集日期（梯田每城每天可采一次）
     spots: {},         // 地形打卡点：<城市id> -> { kind, at }（走近地标自动盖章）
+    // 天空群岛（见 js/sky-isles.js）：宝箱/风车/旗是"每城一次性"，采点每处每天可采一次
+    sky: { chest: {}, mill: {}, flag: {}, forage: { n: 0, picks: {} } },
   };
 }
 
@@ -94,6 +96,14 @@ function load() {
     merged.lastQuizDay = d.lastQuizDay || '';
     merged.daily = Object.assign({ day: '', idx: 0, n: 0, done: false }, d.daily || {});
     merged.cityTask = Object.assign({ city: '', kind: '', n: 0, goal: 0, done: false }, d.cityTask || {});
+    // 天空群岛：老存档没有 → 补空壳；有的话逐层合并（forage.picks 不能整个被 d.sky 顶掉）
+    merged.sky = Object.assign({ chest: {}, mill: {}, flag: {}, forage: { n: 0, picks: {} } }, d.sky || {});
+    merged.sky.chest = Object.assign({}, merged.sky.chest || {});
+    merged.sky.mill = Object.assign({}, merged.sky.mill || {});
+    merged.sky.flag = Object.assign({}, merged.sky.flag || {});
+    merged.sky.forage = Object.assign({ n: 0, picks: {} }, merged.sky.forage || {});
+    merged.sky.forage.n = Number(merged.sky.forage.n) || 0;
+    merged.sky.forage.picks = Object.assign({}, merged.sky.forage.picks || {});
     if (!merged.player) merged.player = null;
     return merged;
   } catch (e) {
@@ -686,6 +696,35 @@ export function markSpotPick(cityId) {
   if (hasSpotPick(cityId)) return false;
   data.spotPicks = data.spotPicks || {};
   data.spotPicks[cityId] = todayKey();
+  save();
+  return true;
+}
+
+// ---------- 天空群岛：宝箱 / 风车 / 旗（每城一次性）与采点（每处每天一次）----------
+// 采点计数只增不减地留在存档里（"我摘了多少果子"），每处能不能再采按日期判定 ——
+// 和梯田采集（spotPicks）同一套思路：当天采过就消失，隔天回来又长出来。
+export function skyDone(kind, cityId) { return !!(data.sky && data.sky[kind] && data.sky[kind][cityId]); }
+export function markSkyDone(kind, cityId) {
+  if (!data.sky || !data.sky[kind] || data.sky[kind][cityId]) return false;
+  data.sky[kind][cityId] = true;
+  save();
+  return true;
+}
+export function forageTaken(cityId, idx) {
+  return !!data.sky && data.sky.forage.picks[cityId + ':' + idx] === todayKey();
+}
+export function foragePick(cityId, idx) {
+  if (!data.sky) return false;
+  if (forageTaken(cityId, idx)) return false;
+  data.sky.forage.picks[cityId + ':' + idx] = todayKey();
+  data.sky.forage.n = (Number(data.sky.forage.n) || 0) + 1;
+  save();
+  return true;
+}
+export function getForage() { return Number(data.sky && data.sky.forage.n) || 0; }
+export function eatForage(n = 1) {
+  if (!data.sky || (Number(data.sky.forage.n) || 0) < n) return false;
+  data.sky.forage.n -= n;
   save();
   return true;
 }
