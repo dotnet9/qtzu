@@ -55,14 +55,30 @@
 <div id="hud">
   <div id="hud-left">
     <div id="user-pill" class="pill hidden">👤</div>
-    <div id="pet-count" class="pill">🐾 第1关 · 词宠 0/6</div>
-    <div id="score-pill" class="pill">🏆 0 分</div>
-    <div id="star-pill" class="pill star-pill">⭐ 0</div>
-    <div id="hungry-pill" class="pill warn hidden">🍖 有词宠想你啦</div>
-    <div id="festival-pill" class="pill hidden"></div>
-    <div id="streak-pill" class="pill hidden"></div>
+    <!-- 主进度条（参考图语言）：深色槽 + 糖果渐变填充 + 条内数字。
+         ⚠ #pet-count 是 homePaw() 的归航目标、#pet-count-text 是 renderPetCount() 的写入点，
+         两者都不能改名（改结构时漏改写入者会把新加的子元素擦掉）。 -->
+    <!-- 左列内部再分一列：用户名留在进度条**旁边**，不叠在它上方（否则左列高 133px 会撞到城市胶囊） -->
+    <div id="hud-col">
+      <div id="pet-count" class="hud-bar" title="本关进度">
+        <i class="hud-bar-fill" aria-hidden="true"></i>
+        <span class="hud-bar-icon" aria-hidden="true">🐾</span>
+        <span id="pet-count-text" class="hud-bar-text">0 / 0</span>
+      </div>
+      <div id="hud-chapter" class="hud-chapter"></div>
+      <!-- 词宠头像栏：本关随行的词宠（未孵化为虚线空槽）—— 参考图的"技能图标带计数" -->
+      <div id="pet-icon-bar" class="hud-icons" aria-hidden="true"></div>
+    </div>
   </div>
   <div id="hud-right">
+    <!-- 右上角标堆：参考图的四枚色块（色块只承载"数字/状态"，长文本另占一行） -->
+    <div id="hud-chips">
+      <div id="hungry-pill" class="pill warn hidden">🍖 有词宠想你啦</div>
+      <div id="star-pill" class="pill star-pill">⭐ <span id="star-pill-num">0</span></div>
+      <div id="score-pill" class="pill">🏆 <span id="score-pill-text">0 分</span></div>
+      <div id="streak-pill" class="pill hidden"></div>
+    </div>
+    <div id="festival-pill" class="pill hidden"></div>
     <button id="btn-summon" class="round-btn" title="召唤词宠帮忙">🪄</button>
     <button id="btn-menu" class="round-btn" title="菜单">☰</button>
     <div id="hud-menu" class="hidden">

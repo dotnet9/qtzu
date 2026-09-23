@@ -8,7 +8,7 @@ import { WORD_MAP } from './words.js';
 import { CURRICULUM, gradeKey } from './curriculum.js';
 import { CITIES } from './cities.js';
 import { CHINA_MAINLAND, CHINA_ISLANDS } from './china-base.js';
-import { setHomeCity, getHomeCity, hasHomeCity, setLang, getLang, hatchedCount, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub, extraStats, getCamFollow, setCamFollow } from './save.js';
+import { setHomeCity, getHomeCity, hasHomeCity, setLang, getLang, hatchedCount, isHatched, getUsername, hasBadge, awardBadge, getStamps, addStamp, isStampsDone, markStampsDone, addStars, getStars, bumpDub, extraStats, getCamFollow, setCamFollow } from './save.js';
 import { loadAppConfig } from './data.js';
 
 const $ = id => document.getElementById(id);
@@ -30,7 +30,8 @@ for (const id of ['loading', 'hud', 'user-pill', 'pet-count', 'score-pill', 'sta
   'update-bar', 'update-now', 'update-later', 'city-pill', 'city-pill-text',
   'toast', 'btn-catalog', 'btn-help', 'btn-account', 'profile-close', 'profile-logout', 'btn-report',
   'pet-card', 'pet-card-card', 'pet-card-close', 'pet-card-thumb', 'pet-card-name', 'pet-card-zh', 'pet-card-stats', 'pet-card-tags', 'pet-card-share',
-  'hud-menu', 'btn-menu']) els[id.replace(/-(\w)/g, (_, c) => c.toUpperCase())] = $(id);
+  'hud-menu', 'btn-menu',
+  'pet-count-text', 'star-pill-num', 'score-pill-text', 'hud-chapter', 'pet-icon-bar']) els[id.replace(/-(\w)/g, (_, c) => c.toUpperCase())] = $(id);
 
 // 音标表（tools/gen_ipa.py 生成，可选：404 时静默跳过）
 let ipaMap = null;
@@ -93,14 +94,69 @@ const SCORE_LEVELS = [
 
 let petDebt = 0;      // 已孵化但奖励还没领取的词宠数（走近它才 +1）
 let lastHUD = null;
+
+/* ---- 词宠头像栏（参考图的"技能图标带计数"）：本关随行的词宠，未孵化为虚线空槽 ----
+   缩略图由 models.js 提供。这里**懒加载**（不在模块顶层 import）：
+   ui.js 在 main.js 里是最早被导入的模块之一，静态 import three.js 会改变加载时序。
+   也支持由外部注入（game.js 已经 import 了 petThumbnail，可直接 setPetIconSource 传进来）。 */
+let _petIconFn = null, _petIconLoading = false, _iconKey = '', _iconIds = [], _iconHatched = null;
+export function setPetIconSource(fn) { if (fn) { _petIconFn = fn; _iconKey = ''; renderPetCount(); } }
+function ensurePetIconFn() {
+  if (_petIconFn || _petIconLoading) return;
+  _petIconLoading = true;
+  import('./models.js')
+    .then(m => { _petIconFn = m.petThumbnail || (() => ''); _iconKey = ''; renderPetCount(); })
+    .catch(() => { _petIconFn = () => ''; });
+}
+const PET_ICON_MAX = 6;
+function renderPetIcons(ids) {
+  const bar = els.petIconBar;
+  if (!bar) return;
+  // 已孵化的排前面（像参考图里"已拥有的技能"在前），末位留空槽表示还差几只
+  ids = (ids || []).slice().sort((a, b) => (isHatched(b) ? 1 : 0) - (isHatched(a) ? 1 : 0)).slice(0, PET_ICON_MAX);
+  const key = ids.join(',') + '|' + ids.map((x) => (isHatched(x) ? 1 : 0)).join('');
+  if (key === _iconKey) return;          // 同一关且孵化状态没变就不重建（缩略图是 dataURL，重建是浪费）
+  const prevHatched = _iconHatched;
+  _iconKey = key; _iconIds = ids;
+  _iconHatched = new Set(ids.filter((x) => isHatched(x)));
+  bar.textContent = '';
+  if (!ids.length) return;
+  ensurePetIconFn();
+  for (const id of ids) {
+    const d = document.createElement('div');
+    d.className = 'hud-pet-icon empty';
+    d.dataset.pet = id;
+    d.title = id;
+    bar.appendChild(d);
+    if (_petIconFn && isHatched(id)) {
+      try {
+        const url = _petIconFn(id);
+        if (url) {
+          const img = document.createElement('img');
+          img.alt = ''; img.src = url;
+          d.textContent = ''; d.appendChild(img);
+          d.classList.remove('empty');
+          // 新孵化的那一格蹦一下（旧状态已知、且这格本来不在里面 = 刚拿到）
+          if (prevHatched && !prevHatched.has(id)) d.classList.add('pop');
+        }
+      } catch (e) { /* 缩略图渲染失败就留空槽，不影响 HUD */ }
+    }
+  }
+}
+
+/* 主进度条：条内数字 + 填充比例 + 章节小字。
+   ⚠ 写入点是 #pet-count-text（不是容器 #pet-count）—— 写容器会把填充层与图标擦掉。 */
 function renderPetCount() {
   if (!lastHUD) return;
   const shown = Math.max(0, lastHUD.count - petDebt);
-  const narrow = window.matchMedia && matchMedia('(max-width: 640px)').matches;
-  const chShort = lastHUD.chapterText ? (lastHUD.chapterText.match(/第\d+关/) || [lastHUD.chapterText])[0] : '';
-  els.petCount.textContent = (isTouchMode || narrow)
-    ? `🐾 ${chShort ? chShort + ' · ' : ''}${shown}/${lastHUD.total}`
-    : t('y.0', { a0: lastHUD.chapterText ? lastHUD.chapterText + ' · ' : '', a1: shown, a2: lastHUD.total });
+  const total = Number(lastHUD.total) || 0;
+  const pct = total > 0 ? Math.max(0, Math.min(100, (shown / total) * 100)) : 0;
+  if (els.petCountText) els.petCountText.textContent = `${shown} / ${total}`;
+  const fill = els.petCount && els.petCount.querySelector('.hud-bar-fill');
+  if (fill) fill.style.width = pct + '%';
+  if (els.hudChapter) els.hudChapter.textContent = lastHUD.chapterText || '';
+  if (els.petCount) els.petCount.title = t('y.0', { a0: lastHUD.chapterText ? lastHUD.chapterText + ' · ' : '', a1: shown, a2: total });
+  renderPetIcons(lastHUD.petIds);
 }
 export function petRewardBegin() { petDebt++; renderPetCount(); }
 export function petRewardCollect() {
@@ -110,9 +166,8 @@ export function petRewardCollect() {
   void els.petCount.offsetWidth;
   els.petCount.classList.add('pet-pop-anim');
 }
-export function updateHUD(count, total, hungryCount, chapterText = '') {
-  // 手机上横向空间小：去掉可推断的字，只留数字
-  lastHUD = { count: Number(count) || 0, total, hungryCount, chapterText };
+export function updateHUD(count, total, hungryCount, chapterText = '', petIds = null) {
+  lastHUD = { count: Number(count) || 0, total, hungryCount, chapterText, petIds };
   renderPetCount();
   const hungry = hungryCount > 0;
   els.hungryPill.classList.toggle('hidden', !hungry);
@@ -136,7 +191,9 @@ export function updateStars(n) {
     els.starPill.classList.add('star-pop-anim');
   }
   lastStars = n;
-  els.starPill.textContent = `⭐ ${n}`;
+  // ⚠ 写内层 #star-pill-num：写容器会把 HTML 里的 ⭐ 图标擦掉
+  if (els.starPillNum) els.starPillNum.textContent = String(n);
+  else els.starPill.textContent = `⭐ ${n}`;
   els.starPill.title = t('x.g4');
 }
 // 手机端顶栏没有分数胶囊：点星星胶囊报一遍家底（桌面信息齐全不用点）
@@ -1854,7 +1911,12 @@ function setSpellMode(on) {
 let _scoreInfo = { score: 0, session: 0 };
 export function updatePlayerScore(score, sessionScore = score) {
   _scoreInfo = { score: Number(score) || 0, session: Number(sessionScore) || 0 };
-  if (els.scorePill) els.scorePill.textContent = isTouchMode ? `🏆 ${score}` : t('x.g125', { a0: score, a1: sessionScore });
+  if (els.scorePill) {
+    // ⚠ 写内层 #score-pill-text：写容器会把 HTML 里的 🏆 图标擦掉
+    const txt = isTouchMode ? String(score) : t('x.g125', { a0: score, a1: sessionScore }).replace(/^🏆\s*/, '');
+    if (els.scorePillText) els.scorePillText.textContent = txt;
+    else els.scorePill.textContent = isTouchMode ? `🏆 ${score}` : t('x.g125', { a0: score, a1: sessionScore });
+  }
   refreshMenuScore();
   leaderboardCurrent.score = Number(score) || 0;
   scheduleLeaderboardRefresh();

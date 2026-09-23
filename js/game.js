@@ -5093,7 +5093,10 @@ export class Game {
     const chIdx = this.chapterIndex();
     const chWords = this.chapters[chIdx].words;
     const inChapter = chWords.filter(id => save.isHatched(id)).length;
-    ui.updateHUD(inChapter, chWords.length, save.hungryPets().length, t('y.47', { a0: BOOK_LABEL(this.sem), a1: chIdx + 1 }));
+    // 第 5 参：本关的词宠 id（HUD 头像栏用，ui 负责排序/截断）
+    ui.updateHUD(inChapter, chWords.length, save.hungryPets().length,
+      t('y.47', { a0: BOOK_LABEL(this.sem), a1: chIdx + 1 }),
+      chWords.map(id => (WORD_MAP[id] || {}).pet).filter(Boolean));
   }
 
   // ---------- 召唤解谜 ----------

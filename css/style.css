@@ -2152,3 +2152,99 @@ body.touch #brand-badge{display:none}
   }
 }
 /* ===== ⑨ 面板深度换皮 结束 ===== */
+
+/* ===== HUD 游戏化（附加块：删掉本块即回退到旧的 emoji 药丸） =====
+   参考图（俯视 ARPG）的 HUD 语言：**深色槽 + 彩色填充的条形进度（条内带数字）**、
+   右上角**四枚色块堆**、**图标栏带计数**。本作原来的七枚 emoji 药丸没有"条"也没有层级，
+   读起来像标签而不是 HUD。这一块只改外观与结构，数据管线不动。
+
+   ⚠ 两条不能动的约束（改了会静默坏掉）：
+   1) #pet-count 是 homePaw() 的归航目标、#star-pill 上有 click 监听 → id 与可见尺寸必须保留
+   2) 写入点改为内层 span（#pet-count-text / #star-pill-num / #score-pill-text）——
+      renderPetCount/setStars/updatePlayerScore 若继续写容器，会把新加的子元素擦掉
+
+   数字可读性：白字压在**深槽**上是 14:1；压在填充上时靠 text-shadow + 描边保证可读
+   （填充用 --grad-cta-deep，白字对 #B02450 仍有 5.0:1）。 */
+
+:root {
+  --hud-chrome-shell: radial-gradient(120% 160% at 30% -20%, rgba(255,255,255,.9), rgba(255,252,246,.84));
+  --hud-track: linear-gradient(180deg, rgba(46,36,32,.62), rgba(30,24,21,.72));
+}
+
+#hud-left { flex-direction: row; align-items: flex-start; gap: 8px; }
+#hud-col { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-width: 0; }
+#hud-right { display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; justify-content: flex-end; max-width: 62vw; }
+#hud-chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+/* ---- 主进度条 ---- */
+#pet-count.hud-bar {
+  position: relative; overflow: hidden; flex: none;
+  width: clamp(132px, 20vw, 224px); height: 26px;
+  border-radius: 13px; border: 2px solid rgba(255,255,255,.7);
+  background: var(--hud-track);
+  box-shadow: 0 3px 12px rgba(60,40,50,.22), inset 0 2px 4px rgba(0,0,0,.3);
+  padding: 0; text-shadow: none;
+}
+#pet-count .hud-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0%;
+  border-radius: 12px 4px 4px 12px;
+  background: linear-gradient(180deg, #FF9CC0, #E8487F 55%, #C22A5C);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 0 10px rgba(255,140,180,.5);
+  transition: width .45s var(--ease-pop, cubic-bezier(.34,1.56,.64,1));
+}
+#pet-count .hud-bar-icon {
+  position: absolute; left: 8px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; z-index: 2; filter: drop-shadow(0 1px 2px rgba(0,0,0,.55));
+}
+#pet-count .hud-bar-text {
+  position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+  text-align: center; z-index: 2;
+  color: #FFF; font-size: 14px; font-weight: 900; letter-spacing: .4px;
+  text-shadow: 0 1px 3px rgba(40,20,30,.9), 0 0 8px rgba(40,20,30,.45);
+  -webkit-text-stroke: 2px rgba(74,40,58,.42); paint-order: stroke fill;
+}
+/* 章节小字：与进度条同一列，空则整行不占位 */
+#hud-chapter {
+  font-size: 12.5px; font-weight: 800; letter-spacing: .3px;
+  color: #5B5148; text-shadow: 0 1px 0 rgba(255,255,255,.8); padding-left: 8px;
+}
+#hud-chapter:empty { display: none; }
+
+/* ---- 词宠头像栏（参考图的"技能图标带计数"） ---- */
+.hud-icons { display: flex; gap: 3px; padding-left: 2px; }
+.hud-icons:empty { display: none; }
+.hud-pet-icon {
+  width: 26px; height: 26px; border-radius: 50%; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--hud-chrome-shell); border: 2px solid rgba(255,150,190,.85);
+  box-shadow: 0 2px 6px rgba(120,80,100,.18);
+}
+.hud-pet-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hud-pet-icon.empty { border-style: dashed; border-color: rgba(255,176,205,.85); background: rgba(255,255,255,.42); }
+.hud-pet-icon.empty::after { content: '?'; font-size: 12px; font-weight: 900; color: rgba(190,130,155,.85); }
+.hud-pet-icon.pop { animation: starPopAnim .5s cubic-bezier(.34,1.56,.64,1); }
+
+/* ---- 右上角标堆：色块只装"数字/短状态" ---- */
+#hud-chips .pill { font-size: 13.5px; padding: 5px 11px; }
+#festival-pill { max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
+
+/* 城市胶囊下移：左列现在有 进度条/章节/头像栏 三层，原来的 58px 会被盖住 */
+#city-pill { top: calc(102px + var(--sat)); }
+
+/* ---- 手机小屏：进度条占满左列，角标堆折成两行 ---- */
+@media (max-width: 640px) {
+  #hud-left { gap: 6px; }
+  #hud-col { gap: 4px; }
+  #hud-right { max-width: 54vw; gap: 6px; }
+  #pet-count.hud-bar { width: clamp(104px, 32vw, 156px); height: 22px; border-radius: 11px; }
+  #pet-count .hud-bar-text { font-size: 12.5px; }
+  #pet-count .hud-bar-icon { font-size: 12px; left: 6px; }
+  #hud-chips .pill { font-size: 12px; padding: 4px 9px; }
+  .hud-pet-icon { width: 22px; height: 22px; }
+  #hud-chapter { font-size: 11.5px; padding-left: 6px; }
+  #city-pill { top: calc(92px + var(--sat)); }
+  /* 旧的"星星+进度拼成一枚"规则作废：现在是 进度条 + 角标堆 两个独立控件 */
+  #star-pill { order: 0; border-radius: 999px; border-right-width: 2px; margin-left: 0; }
+  #pet-count { border-radius: 11px; border-left-width: 2px; margin-left: 0; }
+}
+/* ===== HUD 游戏化 结束 ===== */
