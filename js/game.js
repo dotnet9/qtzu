@@ -3948,6 +3948,7 @@ export class Game {
       if (sky.chest.opened && sky.chest.lid) sky.chest.lid.rotation.x = -1.15;
     }
     for (const f of sky.forage) f.mesh.visible = !save.forageTaken(key, f.idx);
+    this._skyDecorNear = null;   // 换城/重载后强制重算一次装饰 LOD（见 _updateSky）
   }
 
   // ⚠ 形参不能叫 t：函数体里要调用 i18n 的 t()，同名会把文案函数遮成数字
