@@ -15,6 +15,8 @@ import { serve, launch } from './browser.mjs';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const LOOK = path.join(ROOT, '.cache/look');
 const optOf = (k, d = null) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
+const HOUR_RAW = optOf('--hour', null);
+const HOUR = HOUR_RAW == null ? null : Number(HOUR_RAW);   // 固定小时（0~23），让出图可比
 const city = optOf('--city', 'chengdu');
 const tag = optOf('--tag', 'baseline');
 const compare = process.argv.includes('--compare');
@@ -43,6 +45,14 @@ await page.addInitScript(() => {
   } catch (e) { /* ignore */ }
 });
 
+// --hour：把页面里的时钟钉在指定小时，让光照/天色可复现 ——
+  // 前后对照（改造前 vs 改造后）必须同一时刻，否则会量到"黄金时刻"的差异（实测 87% 像素）。
+  if (HOUR != null) {
+    await page.addInitScript((h) => {
+      Date.prototype.getHours = function () { return h; };
+      Date.prototype.getMinutes = function () { return 0; };
+    }, HOUR);
+  }
 await page.goto(`${srv.base}?city=${city}&debug=1${msaa ? `&msaa=${msaa}` : ''}`, { waitUntil: 'load' });
 await page.waitForFunction(() => window.__game && window.__game.world, null, { timeout: 120000 });
 await page.waitForFunction(() => {

@@ -352,6 +352,37 @@ if (!baked.missing && !baked.noWallMat) {
     '烘焙墙用弧长 UV（u 是周长量级、v 是断面 0…1）', 'u ' + baked.uvU.join('~') + '  v ' + baked.uvV.join('~'));
 }
 
+/* ---------- 5) 点火彩蛋：火盆随屋顶抬高后仍能点着 ---------- */
+const ignite = await page.evaluate(async () => {
+  const g = window.__game;
+  let list = null;
+  g.scene.traverse((o) => { if (!list && o.userData && o.userData.beacons) list = o.userData.beacons; });
+  if (!list || !list.length) return { none: true };
+  const b = list.find((x) => !x.lit) || list[0];
+  b.lit = false;
+  g._beaconCd = 0;
+  // 走到塔边（判定半径 7.5，见 js/game.js）
+  // ⚠ 判定用的是**世界坐标** b.wx / b.wz，不是本地的 lx / lz（踩过：站错地方永远点不着）
+  g.player.position.set(b.wx + 3.0, 0, b.wz);
+  const st = g._currentStage();
+  for (let i = 0; i < 40 && !b.lit; i++) await new Promise((r) => setTimeout(r, 100));
+  const flame = b.flame;
+  return {
+    lit: !!b.lit,
+    hasFlame: !!flame,
+    flameY: flame ? +flame.position.y.toFixed(2) : null,
+    top: +b.top.toFixed(2),
+    onTower: !!st,
+  };
+});
+check(!ignite.none, '本城有烽火台（点火彩蛋的前提）');
+if (!ignite.none) {
+  check(ignite.lit, '走到塔边能点着（点火判定仍生效）', 'top=' + ignite.top);
+  check(ignite.hasFlame, '点着后有火苗 sprite');
+  check(ignite.flameY !== null && Math.abs(ignite.flameY - (ignite.top + 0.9)) < 0.01,
+    '火苗挂在新的盆口高度（top + 0.9）', ignite.flameY + ' vs ' + (ignite.top + 0.9).toFixed(2));
+}
+
 check(errs.length === 0, '0 页面异常', errs.slice(0, 2).join(' | '));
 
 await ctx.close();

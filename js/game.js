@@ -2390,6 +2390,11 @@ export class Game {
         Object.assign(wIsl, built, { light: false, full: true });
       }
     }
+    // 把精建岛的 group 链回**本列表**（this.islands）的对象上：
+    // _currentStage() 返回的就是这里的对象，而 _updateBeacons 用的是 st.grp。
+    // 城市路径原来只把 group 记在 this.world.islands（wIsl）上 → st.grp 恒为 undefined，
+    // 点火彩蛋（含火苗/烟柱）在城市模式下从未生效（由 verify-wall 的点火复测抓出）。
+    if (wIsl && wIsl.grp) cur.grp = wIsl.grp;
     this._buildSigns(cur);
     this._autoColliders(wIsl && wIsl.grp);   // 大件碰撞兜底+推开避让（须在牌子注册后，树才避得开牌子）
     if (this.npcs) this.npcs.spawnForCity(cur, (q, st) => this._clampCityPos(q, st), this.world.colliders, (x, z) => this._groundY(x, z));   // 每座城市重建自己的牌子

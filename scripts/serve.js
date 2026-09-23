@@ -301,7 +301,14 @@ function serveStatic(req, res, pathname) {
     }
     res.writeHead(200, headers);
     if (req.method === 'HEAD') { res.end(); return; }
-    fs.createReadStream(file).pipe(res);
+    // 静态文件用流：必须处理两端错误，否则客户端中途断开（关标签页 / 截图 / 导航）会抛
+    // 未捕获异常把整个本地服务弄崩 —— 浏览器看到 ERR_CONNECTION_CLOSED，之后页面都起不来。
+    // 地面 GLB 从 1.5MB 涨到 3.9MB 后这个坑很容易踩到（实测 check-render 连续两次失败）。
+    const stream = fs.createReadStream(file);
+    stream.on('error', () => { try { res.destroy(); } catch (e) { /* 已断开，忽略 */ } });
+    res.on('error', () => { try { stream.destroy(); } catch (e) { /* 同上 */ } });
+    res.on('close', () => { if (!stream.destroyed) stream.destroy(); });
+    stream.pipe(res);
   });
 }
 
