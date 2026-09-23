@@ -1733,14 +1733,19 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           world.perchTrophy = world.perchTrophy || {};
           world.perchTrophy[key] = { x: +(cx + tx).toFixed(2), z: +(cz + tz).toFixed(2), y: +(perchTopAbs + 0.3).toFixed(3), taken: false, mesh: [cup, stem, base] };
         }
-        // 从台顶往外退：每级水平退 1.7、目标顶面降 1.35（相邻高差恒定，单跳 1.85 够用）
+        // 从台顶往外退：每级水平退 1.5、目标顶面降 1.35（相邻高差恒定，单跳 1.85 够用）
+        // ⚠ 间距从 1.7 收到 1.25 是为了"看得懂"：用户报"jump.png 没看明白怎么玩"——
+        //   台阶半径只有 0.85（比角色步幅还窄）、离石台 1.7~5.1 米，远看就是一根柱子。
+        //   收间距 + 放大半径后，台阶连成一条明显的上行路（间距 1.25 < 2×1.4 会轻微重叠，
+        //   落地判定按"跳得够高才能落上去"（_supportAt 的 pf.top <= y + 0.3），所以重叠不会
+        //   让人直接走上去，只是视觉上连成一片）。
         // 形态按城轮换：约 1/3 的城用**云梯**（小朋友点名要的那种），其余用石阶。
         // 云朵造型复用农场岛的 PROPS.cloud，力学与石阶完全一致（水平 1.7 / 顶面降 1.35）。
         const rnd2 = (() => { let h = 0; for (const ch of key) h = (Math.imul(h, 31) + ch.charCodeAt(0)) | 0; return () => { h = (Math.imul(h, 48271) + 11) % 2147483647; return Math.abs(h) / 2147483647; }; })();
         const useClouds = rnd2() < 0.34;
         const steps = [];
         for (let k = 1; k <= 5; k++) {
-          const dist = dPerch - k * 1.7;
+          const dist = dPerch - k * 1.5;
           if (dist < r * 0.05) break;                      // 太靠城心就不再放（别踩广场正中）
           let sx2 = ux * dist, sz2 = uz * dist;
           if (polySim) [sx2, sz2] = clampPoly(polySim, sx2, sz2, bw + 0.6);
@@ -1749,29 +1754,59 @@ export function buildWorld(scene, semIslands = ISLANDS, opts = {}) {
           if (want < g + 0.3) break;                       // 地形已经爬到这儿了 → 剩下交给坡道
           const h = want - g;
           if (useClouds) {
-            const c2 = PROPS.cloud(1.15);
+            const c2 = PROPS.cloud(1.35);
             c2.position.set(sx2, want - 0.6, sz2);
             c2.traverse((o) => { if (o.isMesh) { o.material.transparent = true; o.material.opacity = 0.82; o.castShadow = true; } });
             grp.add(c2);
-            addPlatform(cx + sx2, cz + sz2, 1.35, want);   // 云是纯平台：跳穿了就落上去，不挡路
+            addPlatform(cx + sx2, cz + sz2, 1.5, want);   // 云是纯平台：跳穿了就落上去，不挡路
             const pf = world.platforms[world.platforms.length - 1];
             pf.baseTop = want;
             pf.bob = { amp: 0.12, speed: 1.0, phase: k * 1.7 };   // 轻微上下浮动（与农场云梯同款）
             world.anim.cloudStair = world.anim.cloudStair || [];
             world.anim.cloudStair.push({ mesh: c2, pf, baseY: want - 0.6 });
-            steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 1.35, ground: +g.toFixed(3) });
+            steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 1.5, ground: +g.toFixed(3) });
           } else {
-            const stone = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 1.0, h, 12), M('#BCC8B4'));
+            const stone = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.45, h, 14), M('#BCC8B4'));
             stone.position.set(sx2, g + h / 2, sz2);
             stone.castShadow = true;
             stone.receiveShadow = true;
             grp.add(stone);
-            colTop(cx + sx2, cz + sz2, 0.85, want);        // 世界坐标（碰撞体表用世界系）
-            steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 0.85, ground: +g.toFixed(3) });
+            colTop(cx + sx2, cz + sz2, 1.25, want);        // 世界坐标（碰撞体表用世界系）
+            steps.push({ x: +(cx + sx2).toFixed(2), z: +(cz + sz2).toFixed(2), top: +want.toFixed(3), r: 1.25, ground: +g.toFixed(3) });
           }
         }
         steps.reverse();   // 由远及近（校验器按这个顺序看"逐级上升"）
         world.jumpSteps[key] = steps;
+        // 发光序号 ①②③…：从最低一级开始编号 —— 孩子看到的顺序就是"①→②→③→台顶"。
+        // 为什么需要：台阶只有 1.4 半径，远看仍是一根柱子；编号 + 颜色梯度才把"这是一条向上的路"
+        // 讲清楚（参考图里最有效的引导就是地面上的发光环与发光圆点）。
+        {
+          const NUM = ['①', '②', '③', '④', '⑤'];
+          const NUM_C = ['#E8A93A', '#4FB98A', '#9A72E8', '#5FA8D8', '#E07A96'];
+          world.jumpMarks = world.jumpMarks || {};
+          world.jumpMarks[key] = [];
+          for (let i = 0; i < steps.length; i++) {
+            const s2 = steps[i];
+            const spr = new THREE.Sprite(new THREE.SpriteMaterial({
+              map: letterTexture(NUM[i] || String(i + 1), NUM_C[i % NUM_C.length], '#FFFDF4'),
+              transparent: true, depthWrite: false,
+            }));
+            spr.position.set(s2.x - cx, s2.top + 0.9, s2.z - cz);   // grp 在 (cx,cz)：用局部坐标
+            spr.scale.setScalar(0.62);
+            grp.add(spr);
+            world.jumpMarks[key].push({ sprite: spr, x: s2.x, z: s2.z, top: s2.top, n: i + 1 });
+          }
+        }
+        // 台顶发光环：标出"终点在这里"（与序号同一套语言）
+        {
+          const ring = new THREE.Mesh(new THREE.TorusGeometry(1.3, 0.08, 8, 30),
+            new THREE.MeshBasicMaterial({ color: '#FFE9A8', transparent: true, opacity: 0.85, fog: false }));
+          ring.rotation.x = -Math.PI / 2;
+          ring.position.set(px, perchTopAbs + 0.07, pz);
+          grp.add(ring);
+          world.anim.perchRing = world.anim.perchRing || [];
+          world.anim.perchRing.push({ mesh: ring, baseY: perchTopAbs + 0.07 });
+        }
         world.jumpKind = world.jumpKind || {};
         world.jumpKind[key] = useClouds ? 'clouds' : 'stairs';
       }

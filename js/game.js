@@ -796,6 +796,7 @@ export class Game {
       this.jumps = 2;
     } else return;
     sfx.pop();
+    (this._jumpTimes = this._jumpTimes || []).push(performance.now());
     // 起跳小蹲
     this.player.scale.set(1.08, 0.9, 1.08);
     this.addTween(0.16, k => {
@@ -1011,6 +1012,7 @@ export class Game {
     this._updateBeacons(dt);
     this._updateWeather(dt, t);
     this._updateGuide(t);
+    this._updateJumpCoach(dt);   // 跳跃挑战的引导与反馈（走近提示/逐级反馈/失败提醒/首次演示）
     this._updateZoneHint(dt);
     this._updateFx(dt);
     this._updateIslandLOD();
@@ -1152,7 +1154,8 @@ export class Game {
     const low = steps[0];                                      // 由远及近：[0] = 最低那级
     const pp = (this.world.perchPos && this.world.perchPos[st.key]) || null;
     const rel = pp ? (pp.top - this._groundY(pp.x, pp.z)) : 3.45;
-    return { text: t('x.g255', { a0: Math.round(rel) }), target: { x: low.x, z: low.z } };
+    // 分步文案：台阶只有 1.4 半径，只写"踩着石头跳上去"孩子不知道从哪一级开始、也不知道要连跳
+    return { text: t('x.g600', { a0: steps.length, a1: Math.round(rel) }), target: { x: low.x, z: low.z } };
   }
 
   // 台顶奖杯：踩上台面就给一次奖励（+3 ⭐ + 彩带 + 大笑 + 提示），每城一次
@@ -1174,6 +1177,96 @@ export class Game {
     this._faceMood('joy', 2.2);                                // 主角大笑（表情系统）
     this._letterBurst(new THREE.Vector3(T.x, T.y, T.z), '🏆');
     save.awardBadge('perch_' + st.key);
+  }
+
+  /* ================= 跳跃挑战的"讲清楚"（见 scripts/verify-jump-guide.mjs） =================
+     用户报"jump.png 没看明白怎么玩"。台阶本身现在有发光序号与颜色梯度（world.js），
+     这里补四件事：① 走近一次提示 ② 每上一级给反馈 ③ 连跳两次没上去就教 ④ 第一次自动演示一遍。
+     所有"只提示一次"都用 save 徽章去重（每城一次 / 每机一次）。 */
+  _updateJumpCoach(dt) {
+    const st = this._currentStage();
+    if (!st) return;
+    const steps = (this.world.jumpSteps && this.world.jumpSteps[st.key]) || [];
+    if (!steps.length) return;
+    if (this._jumpCity !== st.key) {          // 换城：重置本城进度
+      this._jumpCity = st.key;
+      this._jumpReached = 0;
+      this._jumpTimes = [];
+      this._jumpDemoDelay = 0;
+    }
+    const p = this.player.position;
+    const low = steps[0];
+
+    // ---- ① 走近一次提示（每城一次）----
+    const dLow = Math.hypot(p.x - low.x, p.z - low.z);
+    if (dLow < 4 && !save.hasBadge('jumpseen_' + st.key)) {
+      save.awardBadge('jumpseen_' + st.key);
+      ui.toast(t('x.g601'), 4200);
+      // ⚠ toast 只有一个元素：演示字幕会**覆盖**这条提示（实测校验器采不到 g601）。
+      // 而且先给演示、后给文字，孩子也来不及读。所以把演示推迟 1.6 秒。
+      this._jumpDemoDelay = 1.6;
+    }
+
+    // ---- ④ 第一次自动演示（每台机一次）：原地"幽灵跳"一遍，不碰玩家状态 ----
+    if (this._jumpDemoDelay > 0) {
+      this._jumpDemoDelay -= dt;
+      if (this._jumpDemoDelay > 0) { /* 等孩子读完提示 */ }
+    }
+    if (dLow < 6 && (this._jumpDemoDelay || 0) <= 0 && !save.hasBadge('jumpdemo') && !this._jumpDemo) {
+      save.awardBadge('jumpdemo');
+      this._jumpDemo = { t: 0, dur: 2.6 };
+      this.lockInput = true;
+      ui.toast(t('x.g603'), 2600);
+      const ghost = this.player.clone(true);
+      ghost.traverse((o) => {
+        if (o.isMesh && o.material) {
+          o.material = o.material.clone();
+          o.material.transparent = true;
+          o.material.opacity = 0.55;
+          o.material.depthWrite = false;
+        }
+      });
+      ghost.position.set(low.x, low.top, low.z);
+      ghost.rotation.y = this.player.rotation.y;
+      this.scene.add(ghost);
+      this._jumpDemo.ghost = ghost;
+      sfx.pop();
+    }
+    if (this._jumpDemo) {
+      const D = this._jumpDemo;
+      D.t += dt;
+      const k = Math.min(1, D.t / 1.5);
+      // 抛物线：先跳上第一级（1.85 的跳跃高度足够），落地后再跳第二次（二段跳）
+      const arc = k < 0.5 ? Math.sin(k * Math.PI) * 1.0 : Math.sin((k - 0.5) * Math.PI) * 1.7;
+      D.ghost.position.y = low.top + arc;
+      if (D.t >= D.dur) {
+        this.scene.remove(D.ghost);
+        D.ghost.traverse((o) => { if (o.isMesh && o.material && o.material.map) o.material.dispose(); });
+        this._jumpDemo = null;
+        this.lockInput = false;
+      }
+    }
+
+    // ---- ② 逐级反馈：踩上第 k 级 → 音效 + 飘字（只在第一次踩上时给）----
+    for (let i = 0; i < steps.length; i++) {
+      const s2 = steps[i];
+      if (p.y < s2.top - 0.45 || Math.hypot(p.x - s2.x, p.z - s2.z) > s2.r + 0.3) continue;
+      if (i + 1 > (this._jumpReached || 0)) {
+        this._jumpReached = i + 1;
+        sfx.good();
+        this._letterBurst(new THREE.Vector3(s2.x, s2.top + 1.2, s2.z), String(i + 1));
+      }
+    }
+
+    // ---- ③ 失败提醒：站在台阶区、8 秒内跳了 ≥2 次、一级都没踩上 → 教一遍手法（每城一次）----
+    const near = Math.hypot(p.x - low.x, p.z - low.z) < 6;
+    const now = performance.now();
+    const recent = (this._jumpTimes || []).filter((t0) => now - t0 < 8000);
+    if (near && this.onGround && !this._jumpReached && recent.length >= 2 && !save.hasBadge('jumpfail_' + st.key)) {
+      save.awardBadge('jumpfail_' + st.key);
+      this._jumpTimes = [];
+      ui.toast(t('x.g602'), 5200);
+    }
   }
 
   _nearestReachableEgg() {
@@ -3370,6 +3463,16 @@ export class Game {
     // 天空云层：两层按不同速度平移（贴图 offset，不移动网格）→ 视差；offset.x 回绕防浮点累积
     for (const sc of a.skyClouds || []) {
       sc.tex.offset.x = (sc.tex.offset.x + dt * sc.speed) % 1;
+    }
+    // 跳跃挑战的视觉引导：台顶发光环脉动 + 台阶序号轻微上下浮（"这里有东西"的动感）
+    for (const r of a.perchRing || []) {
+      const k = 0.5 + 0.5 * Math.sin(t * 2.2);
+      r.mesh.material.opacity = 0.45 + 0.4 * k;
+      r.mesh.scale.setScalar(0.94 + 0.1 * k);
+    }
+    const stKey = this._currentStage ? this._currentStage().key : null;
+    for (const m of ((this.world.jumpMarks && this.world.jumpMarks[stKey]) || [])) {
+      m.sprite.position.y = m.top + 0.9 + Math.sin(t * 2.4 + m.n) * 0.07;
     }
     // 水面呼吸：河水轻起伏、透明度微变，岛边浪花一圈涨落，海面缓慢升降
     if (a.water) {

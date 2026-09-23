@@ -688,5 +688,9 @@
   "g.terracePick": "You picked a rice ear!",
   "g.terraceDone": "Already picked here today",
   "g.spotStamp": "Stamped: {a0} +{a1}⭐",
-  "g.spotAll": "{a0} terrain spots stamped!"
+  "g.spotAll": "{a0} terrain spots stamped!",
+  "x.g600": "⬆️ That egg is up on the platform! Start on the glowing ① rock and hop up step by step ({a0} steps, about {a1}m high)",
+  "x.g601": "🦘 Stand on the glowing ① rock, then press Space (or the jump button) to hop to ②!",
+  "x.g602": "💡 Walk right onto the glowing ① first; then press jump AGAIN just before you land — you will go higher!",
+  "x.g603": "👀 Watch: hop up like this, one step at a time"
 }
