@@ -86,7 +86,7 @@ const shot = async (name, cam) => {
       const outer = steps.length ? steps[0] : { x: pp.x, z: pp.z };
       const ux = outer.x - pp.x, uz = outer.z - pp.z;
       const n = Math.hypot(ux, uz) || 1;
-      g.player.position.set(outer.x + (ux / n) * 2.2, 0, outer.z + (uz / n) * 2.2);
+      g.player.position.set(outer.x + (ux / n) * 3.4, 0, outer.z + (uz / n) * 3.4);
       g.player.rotation.y = Math.atan2(-ux / n, -uz / n);
       g.camYaw = Math.atan2(ux / n, uz / n);
       g.camPitch = u(c.pitch); g.camDist = g.camDistTarget = u(c.dist);
@@ -133,7 +133,7 @@ const CAMS = {
   default: { kind: 'default' },
   ground: { kind: 'ground', pitch: 1.02, dist: 9 },    // 贴地俯视：纹理颗粒/散点
   edge: { kind: 'edge', pitch: 0.40, dist: 17 },       // 台地/农田边界：色带过渡
-  jump: { kind: 'jump', pitch: 0.34, dist: 14 },       // 跳跃挑战：台阶 + 观景石台（看台阶好走不好走）
+  jump: { kind: 'jump', pitch: 0.45, dist: 9.5 },       // 跳跃挑战：台阶 + 编号 + 光环 + 台顶蛋（看"看不看得懂"）
   street: { kind: 'street', yaw: 0, pitch: 0.30, dist: 6.6 },
   gate: { kind: 'gate', pitch: 0.26, dist: 7.0 },
   city: { kind: 'city', yaw: 0.6, pitch: 0.95, dist: 78 },

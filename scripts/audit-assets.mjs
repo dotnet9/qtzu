@@ -126,11 +126,35 @@ function petSourceMinY() {
   }
   return out.size ? out : null;
 }
+// 主角部件：与 js/game.js 的 playerPartKey() 同构。
+// 为什么必须补这条：38 个部件是**按部件**烘的（帽子只影响 head、气球/魔杖只影响 armL/armR），
+// key 由代码拼出来 —— 没有这条规则，烘错命名 / 多烘 / 漏烘都不会被发现。
+function playerKeys() {
+  const src = fs.readFileSync(path.join(ROOT, 'js/models/player.js'), 'utf8');
+  const hats = ['none'];
+  for (const m of src.matchAll(/wear\.hat === '([a-z]+)'/g)) hats.push(m[1]);
+  const genders = ['boy', 'girl'];
+  const bw = ['--', 'b-', '-w', 'bw'];
+  const keys = new Set();
+  for (const g of genders) {
+    for (const h of hats) keys.add(`p-${g}-${h}-head`);
+    for (const part of ['body', 'legL', 'legR']) keys.add(`p-${g}-${part}`);
+    for (const b of bw) {
+      for (const part of ['armL', 'armR']) keys.add(`p-${g}-${b}-${part}`);
+      // 气球部件只在"带气球"的组合里存在（bw[0] === 'b'）——
+      // 不排除的话会算出 p-*-{--,-w}-balloon 这 4 个永远取不到的 key，报出假缺口
+      if (b[0] === 'b') keys.add(`p-${g}-${b}-balloon`);
+    }
+  }
+  return keys;
+}
+
 const REFS = {
   gate: { keyOf: (e) => e.zh, keys: uniNames, what: '校名' },
   ground: { keyOf: (e) => e.key, keys: cityKeys, what: '城市' },
   pet: { keyOf: (e) => (e.aliases || [])[0], keys: petKeys, what: '词宠 id' },
   landmark: { keyOf: (e) => e.key, keys: landmarkKeys, what: '城市地标位' },
+  player: { keyOf: (e) => e.key, keys: playerKeys, what: '主角部件（gender×帽子×气球/魔杖×部件）' },
 };
 
 function walkGlb(dir, acc = []) {
