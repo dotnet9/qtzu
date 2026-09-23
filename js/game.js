@@ -27,7 +27,8 @@ function playerPartKey(gender, wear, part) {
   return `p-${gender}-${bw}-${part}`;
 }
 import * as assets from './assets.js';
-import { contactShadow, updateContactShadow } from './shadow.js';   // 脚下接触阴影（见该文件注释）   // 词宠 GLB 换装（见 _refreshRanchPets）
+import { contactShadow, updateContactShadow } from './shadow.js';
+import { groundRing, updateGroundRing } from './ring.js';   // 脚下指示环（颜色随最近目标）   // 脚下接触阴影（见该文件注释）   // 词宠 GLB 换装（见 _refreshRanchPets）
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
@@ -1001,6 +1002,7 @@ export class Game {
     const t = this.clock.elapsedTime;
     this._updatePlayer(dt);
     this._updateContactShadows();   // 玩家/词宠脚下的接触阴影（每帧跟随，见 js/shadow.js）
+    this._updateGroundRing();       // 玩家脚下的指示环（见 js/ring.js）
     this._updateCamera(dt);
     this._updatePlayerFill();   // 主角补光跟随（见 _setupPlayerFill）
     this._updateShadowFollow();   // 阴影框跟人（见该函数注释：固定 ±60 时城的外圈没有投影）
@@ -2806,6 +2808,49 @@ export class Game {
     sfx.boing();
     this._petEmoji(pet, '😍');
     ui.toast(t('y.ride', { a0: pet.word.en, a1: this.mountFly ? t('y.37') : t('y.38') }), 3000);
+  }
+
+  // 脚下指示环：颜色随"最近可交互目标"变化。
+  // 目标按"操作方式"分三类（蛋=走过去 / 台阶=跳上去 / 奖杯=踩上台面），
+  // 环的颜色先给出"这是哪一类"，孩子不用先跑过去试。
+  //
+  // 性能：目标搜索（蛋 + 台阶 + 奖杯）不必每帧做 → 每 0.15s 算一次，其余帧只更新位置与脉动。
+  _ringTarget() {
+    const p = this.player && this.player.position;
+    if (!p) return { kind: 'none', d: Infinity };
+    const st = this._currentStage();
+    let best = { kind: 'none', d: Infinity };
+    const take = (kind, d) => { if (d < best.d) best = { kind, d }; };
+
+    // ① 蛋：用现成的最近蛋查询（半径 6 内含可见蛋才算"附近"）
+    if (this.eggs) {
+      const eg = this.eggs.nearest(p, 6);
+      if (eg && eg.group && eg.group.visible) take('egg', Math.hypot(eg.group.position.x - p.x, eg.group.position.z - p.z));
+    }
+    // ② 台阶/云梯：还没登顶时才提示
+    if (st && (this._jumpReached || 0) < 1) {
+      for (const s2 of (this.world.jumpSteps && this.world.jumpSteps[st.key]) || []) {
+        take('step', Math.hypot(p.x - s2.x, p.z - s2.z));
+      }
+    }
+    // ③ 台顶奖杯：只在"已经跳上台阶但还没踩到台面"时提示（否则站在地面上紫环会误导）
+    const T = st && this.world.perchTrophy && this.world.perchTrophy[st.key];
+    if (T && !T.taken && (this._jumpReached || 0) >= 1) {
+      take('trophy', Math.hypot(p.x - T.x, p.z - T.z));
+    }
+    // 6 米以外就不算"目标附近"，退回柔白（避免远处目标的颜色一路亮着）
+    if (best.d > 6) return { kind: 'none', d: best.d };
+    return best;
+  }
+
+  _updateGroundRing() {
+    const p = this.player && this.player.position;
+    if (!p) return;
+    if (!this._ring) { this._ring = groundRing(); this.scene.add(this._ring); }
+    this._ringT = (this._ringT || 0) + 1;
+    // 每 9 帧（约 0.15s）重算一次目标；中间帧沿用上次结果
+    if (this._ringT % 9 === 1) this._ringKind = this._ringTarget().kind;
+    updateGroundRing(this._ring, p.x, p.z, this._groundY(p.x, p.z), this._ringKind || 'none', this._ringClock = (this._ringClock || 0) + 0.016);
   }
 
   // 接触阴影：玩家 + 牧场词宠（+ 骑乘中的词宠）。贴地跟随、离地越高越大越淡。
