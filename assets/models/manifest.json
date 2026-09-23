@@ -24,7 +24,7 @@
   },
   "player": {
    "blender": "4.5.14 LTS",
-   "generated": "2026-09-22T22:26:38",
+   "generated": "2026-09-23T10:54:54",
    "count": 38
   }
  },
@@ -28063,28 +28063,28 @@
    "aliases": [],
    "bbox": {
     "x": [
-     -0.172,
-     0.172
+     -0.162,
+     0.162
     ],
     "y": [
-     0.18,
-     0.49
+     -0.04,
+     0.31
     ],
     "z": [
-     -0.172,
-     0.177
+     -0.162,
+     0.164
     ]
    },
-   "bytes": 21752,
+   "bytes": 36840,
    "en": null,
    "file": "players/p-boy-body.glb",
    "key": "p-boy-body",
-   "prims": 7,
+   "prims": 10,
    "skipped": 0,
-   "tri": 336,
-   "verts": 428,
+   "tri": 768,
+   "verts": 758,
    "zh": null,
-   "v": "7ef4058a77"
+   "v": "0a69814e4a"
   },
   "p-boy-bw-armL": {
    "kind": "player",
@@ -28187,16 +28187,16 @@
      0.207
     ]
    },
-   "bytes": 79040,
+   "bytes": 90816,
    "en": null,
    "file": "players/p-boy-chef-head.glb",
    "key": "p-boy-chef-head",
-   "prims": 14,
+   "prims": 16,
    "skipped": 0,
-   "tri": 2544,
-   "verts": 1766,
+   "tri": 2928,
+   "verts": 2062,
    "zh": null,
-   "v": "b028bb839a"
+   "v": "3db1aab9f7"
   },
   "p-boy-crown-head": {
    "kind": "player",
@@ -28215,16 +28215,16 @@
      0.199
     ]
    },
-   "bytes": 95892,
+   "bytes": 107668,
    "en": null,
    "file": "players/p-boy-crown-head.glb",
    "key": "p-boy-crown-head",
-   "prims": 21,
+   "prims": 23,
    "skipped": 0,
-   "tri": 2864,
-   "verts": 2154,
+   "tri": 3248,
+   "verts": 2450,
    "zh": null,
-   "v": "0e094ab460"
+   "v": "f20cb84b17"
   },
   "p-boy-flower-head": {
    "kind": "player",
@@ -28243,16 +28243,16 @@
      0.213
     ]
    },
-   "bytes": 204836,
+   "bytes": 216612,
    "en": null,
    "file": "players/p-boy-flower-head.glb",
    "key": "p-boy-flower-head",
-   "prims": 40,
+   "prims": 42,
    "skipped": 0,
-   "tri": 7648,
-   "verts": 5028,
+   "tri": 8032,
+   "verts": 5324,
    "zh": null,
-   "v": "13b788ab19"
+   "v": "1d2ca3c3b8"
   },
   "p-boy-helmet-head": {
    "kind": "player",
@@ -28271,100 +28271,100 @@
      0.212
     ]
    },
-   "bytes": 82624,
+   "bytes": 94400,
    "en": null,
    "file": "players/p-boy-helmet-head.glb",
    "key": "p-boy-helmet-head",
-   "prims": 16,
+   "prims": 18,
    "skipped": 0,
-   "tri": 2448,
-   "verts": 1860,
+   "tri": 2832,
+   "verts": 2156,
    "zh": null,
-   "v": "6fd8dcc13f"
+   "v": "e672e8c018"
   },
   "p-boy-legL": {
    "kind": "player",
    "aliases": [],
    "bbox": {
     "x": [
-     -0.062,
-     0.062
+     -0.064,
+     0.064
     ],
     "y": [
      -0.321,
-     -0.018
+     -0.01
     ],
     "z": [
-     -0.062,
+     -0.064,
      0.091
     ]
    },
-   "bytes": 22740,
+   "bytes": 26908,
    "en": null,
    "file": "players/p-boy-legL.glb",
    "key": "p-boy-legL",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 460,
-   "verts": 502,
+   "tri": 508,
+   "verts": 600,
    "zh": null,
-   "v": "f87d37ace9"
+   "v": "97730b2d9b"
   },
   "p-boy-legR": {
    "kind": "player",
    "aliases": [],
    "bbox": {
     "x": [
-     -0.062,
-     0.062
+     -0.064,
+     0.064
     ],
     "y": [
      -0.321,
-     -0.018
+     -0.01
     ],
     "z": [
-     -0.062,
+     -0.064,
      0.091
     ]
    },
-   "bytes": 22740,
+   "bytes": 26908,
    "en": null,
    "file": "players/p-boy-legR.glb",
    "key": "p-boy-legR",
-   "prims": 3,
+   "prims": 4,
    "skipped": 0,
-   "tri": 460,
-   "verts": 502,
+   "tri": 508,
+   "verts": 600,
    "zh": null,
-   "v": "78845a8620"
+   "v": "1fb74f4c86"
   },
   "p-boy-none-head": {
    "kind": "player",
    "aliases": [],
    "bbox": {
     "x": [
-     -0.26,
-     0.26
+     -0.205,
+     0.205
     ],
     "y": [
      -0.176,
-     0.261
+     0.29
     ],
     "z": [
-     -0.26,
-     0.26
+     -0.219,
+     0.205
     ]
    },
-   "bytes": 67684,
+   "bytes": 84056,
    "en": null,
    "file": "players/p-boy-none-head.glb",
    "key": "p-boy-none-head",
-   "prims": 12,
+   "prims": 15,
    "skipped": 0,
-   "tri": 2016,
-   "verts": 1504,
+   "tri": 2448,
+   "verts": 1898,
    "zh": null,
-   "v": "ed6ce150bf"
+   "v": "86daf7e8f6"
   },
   "p-boy-wizard-head": {
    "kind": "player",
@@ -28383,16 +28383,16 @@
      0.28
     ]
    },
-   "bytes": 87688,
+   "bytes": 99464,
    "en": null,
    "file": "players/p-boy-wizard-head.glb",
    "key": "p-boy-wizard-head",
-   "prims": 16,
+   "prims": 18,
    "skipped": 0,
-   "tri": 2496,
-   "verts": 2004,
+   "tri": 2880,
+   "verts": 2300,
    "zh": null,
-   "v": "119047a1d7"
+   "v": "d517598c0b"
   },
   "p-girl----armL": {
    "kind": "player",
@@ -28599,7 +28599,7 @@
      0.3
     ],
     "y": [
-     0.014,
+     -0.016,
      0.455
     ],
     "z": [
@@ -28616,7 +28616,7 @@
    "tri": 288,
    "verts": 588,
    "zh": null,
-   "v": "e37cafb6eb"
+   "v": "173efbd842"
   },
   "p-girl-bw-armL": {
    "kind": "player",
@@ -28719,16 +28719,16 @@
      0.207
     ]
    },
-   "bytes": 108888,
+   "bytes": 120668,
    "en": null,
    "file": "players/p-girl-chef-head.glb",
    "key": "p-girl-chef-head",
-   "prims": 20,
+   "prims": 22,
    "skipped": 0,
-   "tri": 3696,
-   "verts": 2486,
+   "tri": 4080,
+   "verts": 2782,
    "zh": null,
-   "v": "0a21706f1e"
+   "v": "6083d01a07"
   },
   "p-girl-crown-head": {
    "kind": "player",
@@ -28747,16 +28747,16 @@
      0.199
     ]
    },
-   "bytes": 123304,
+   "bytes": 135084,
    "en": null,
    "file": "players/p-girl-crown-head.glb",
    "key": "p-girl-crown-head",
-   "prims": 27,
+   "prims": 29,
    "skipped": 0,
-   "tri": 4016,
-   "verts": 2874,
+   "tri": 4400,
+   "verts": 3170,
    "zh": null,
-   "v": "d823fdc04f"
+   "v": "2c8cae9c38"
   },
   "p-girl-flower-head": {
    "kind": "player",
@@ -28775,16 +28775,16 @@
      0.213
     ]
    },
-   "bytes": 234684,
+   "bytes": 246460,
    "en": null,
    "file": "players/p-girl-flower-head.glb",
    "key": "p-girl-flower-head",
-   "prims": 46,
+   "prims": 48,
    "skipped": 0,
-   "tri": 8800,
-   "verts": 5748,
+   "tri": 9184,
+   "verts": 6044,
    "zh": null,
-   "v": "4050773e65"
+   "v": "f1ebcfc68b"
   },
   "p-girl-helmet-head": {
    "kind": "player",
@@ -28803,72 +28803,72 @@
      0.212
     ]
    },
-   "bytes": 112472,
+   "bytes": 124256,
    "en": null,
    "file": "players/p-girl-helmet-head.glb",
    "key": "p-girl-helmet-head",
-   "prims": 22,
+   "prims": 24,
    "skipped": 0,
-   "tri": 3600,
-   "verts": 2580,
+   "tri": 3984,
+   "verts": 2876,
    "zh": null,
-   "v": "5c6ef81d25"
+   "v": "0016e36c23"
   },
   "p-girl-legL": {
    "kind": "player",
    "aliases": [],
    "bbox": {
     "x": [
-     -0.057,
-     0.057
+     -0.058,
+     0.058
     ],
     "y": [
      -0.321,
-     -0.018
+     -0.01
     ],
     "z": [
-     -0.051,
+     -0.052,
      0.091
     ]
    },
-   "bytes": 18128,
+   "bytes": 22712,
    "en": null,
    "file": "players/p-girl-legL.glb",
    "key": "p-girl-legL",
-   "prims": 2,
+   "prims": 3,
    "skipped": 0,
-   "tri": 412,
-   "verts": 404,
+   "tri": 460,
+   "verts": 502,
    "zh": null,
-   "v": "605d42561f"
+   "v": "cd25008caf"
   },
   "p-girl-legR": {
    "kind": "player",
    "aliases": [],
    "bbox": {
     "x": [
-     -0.057,
-     0.057
+     -0.058,
+     0.058
     ],
     "y": [
      -0.321,
-     -0.018
+     -0.01
     ],
     "z": [
-     -0.051,
+     -0.052,
      0.091
     ]
    },
-   "bytes": 18128,
+   "bytes": 22712,
    "en": null,
    "file": "players/p-girl-legR.glb",
    "key": "p-girl-legR",
-   "prims": 2,
+   "prims": 3,
    "skipped": 0,
-   "tri": 412,
-   "verts": 404,
+   "tri": 460,
+   "verts": 502,
    "zh": null,
-   "v": "c74586d83e"
+   "v": "8e5f4a039f"
   },
   "p-girl-none-head": {
    "kind": "player",
@@ -28887,16 +28887,16 @@
      0.199
     ]
    },
-   "bytes": 83336,
+   "bytes": 95108,
    "en": null,
    "file": "players/p-girl-none-head.glb",
    "key": "p-girl-none-head",
-   "prims": 15,
+   "prims": 17,
    "skipped": 0,
-   "tri": 2880,
-   "verts": 1908,
+   "tri": 3264,
+   "verts": 2204,
    "zh": null,
-   "v": "3242e7cbbb"
+   "v": "d1cb1e6f93"
   },
   "p-girl-wizard-head": {
    "kind": "player",
@@ -28915,16 +28915,16 @@
      0.28
     ]
    },
-   "bytes": 117536,
+   "bytes": 129316,
    "en": null,
    "file": "players/p-girl-wizard-head.glb",
    "key": "p-girl-wizard-head",
-   "prims": 22,
+   "prims": 24,
    "skipped": 0,
-   "tri": 3648,
-   "verts": 2724,
+   "tri": 4032,
+   "verts": 3020,
    "zh": null,
-   "v": "fb17ea852c"
+   "v": "1469a84ad6"
   }
  }
 }

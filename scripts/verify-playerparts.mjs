@@ -72,11 +72,22 @@ const r = await page.evaluate(async () => {
     out.proc[k] = freshParts[k] ? info(freshParts[k]) : null;
   }
   // 重复 bbox 检测（同尺寸同位置的网格 = 重复换装）
+  // ⚠ 必须先排除"嵌套部件"：body 里嵌着 head / armL / armR（动画需要这个层级），
+  //   不排除的话每个嵌套网格会被算两次（自己一次 + 父级 traverse 一次），
+  //   报出 8 组"重复包围盒"的假警报。
+  const partRoots = Object.entries(P).filter(([, o]) => o && o.isObject3D).map(([k, o]) => [k, o]);
+  const isNested = (node, ownerKey) => {
+    for (const [k, o] of partRoots) {
+      if (k === ownerKey || o === node) continue;
+      for (let n = node.parent; n; n = n.parent) if (n === o) return true;
+    }
+    return false;
+  };
   const sigs = {};
-  for (const [k, o] of Object.entries(P)) {
-    if (!o || !o.isObject3D) continue;
+  for (const [k, o] of partRoots) {
     o.traverse((q) => {
       if (!q.isMesh) return;
+      if (isNested(q, k)) return;          // 这个网格属于另一个部件，会在那个部件里统计
       const bb = new THREE.Box3().setFromObject(q);
       const s = [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z].map((v) => v.toFixed(2)).join(',');
       sigs[s] = (sigs[s] || 0) + 1;
