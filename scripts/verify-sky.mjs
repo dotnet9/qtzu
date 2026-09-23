@@ -6,7 +6,9 @@
 //      （云 = 纹理 → 标准差变大；这是"肉眼能看到云"的数值代理）
 //   5) 后处理：composer 链里有 ShaderPass（暗角+分级）且带 uVig/uGain 等 uniform
 //   6) 暗角真的压暗了四角：同一帧对比中心区与角落的平均亮度
-//   7) 0 页面异常
+//   7) 暗角强度精确等于 0.42（原 scripts/verify-foreground.mjs 的断言搬来）
+//   8) 场景里没有相机挂载的前景枝叶（那层 8 片剪影已整层删除，见 .plan/01M37BM34ZHFFXD2G5BJD66ZKC.md，防回归）
+//   9) 0 页面异常
 //
 //   node scripts/verify-sky.mjs
 import { serve, launch } from './browser.mjs';
@@ -62,6 +64,8 @@ const r = await page.evaluate(async () => {
   out.passes = g.composer ? g.composer.passes.map((p) => p.constructor.name) : null;
   const vp = g.composer && g.composer.passes.find((p) => p.uniforms && p.uniforms.uVig);
   out.vig = vp ? { uVig: vp.uniforms.uVig.value, uGain: vp.uniforms.uGain.value, uSat: vp.uniforms.uSat.value } : null;
+  // 前景枝叶（相机挂载的 8 片剪影）已整层删除：这里做防回归
+  out.foliage = !!(g.scene.getObjectByName('frame-foliage') || g._fg);
   return out;
 });
 
@@ -74,7 +78,8 @@ check(r.drift.every((d) => d > 0), '云层在漂移（offset.x 推进）', r.dri
 check(r.hiddenOnTouch, '触屏/低端：云层整组隐藏');
 check(r.shownOnDesktop, '桌面：云层显示');
 check(!!r.passes && r.passes.includes('ShaderPass'), '后期链含 ShaderPass（暗角+分级）', (r.passes || []).join(' → '));
-check(!!r.vig && r.vig.uVig > 0, '暗角参数已生效', r.vig ? `uVig=${r.vig.uVig} uGain=${r.vig.uGain} uSat=${r.vig.uSat}` : 'null');
+check(!!r.vig && r.vig.uVig === 0.42, '暗角 uVig 精确 = 0.42（原 verify-foreground 的断言）', r.vig ? `uVig=${r.vig.uVig} uGain=${r.vig.uGain} uSat=${r.vig.uSat}` : 'null');
+check(!r.foliage, '场景里没有相机挂载的前景枝叶（已整层删除，防回归）');
 
 /* ---- 画面里真的有云 + 暗角真的压暗四角 ----
    ⚠ 渲染与 readPixels 必须在**同一个 evaluate** 里：renderer 没开 preserveDrawingBuffer，

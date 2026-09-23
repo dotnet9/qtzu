@@ -1,9 +1,12 @@
-// 镜头跟随校验（四条断言，全部用真实运行状态，不靠猜）：
-//   1) 走路转身后 camYaw 会向 player.rotation.y 收敛（跟随生效）
+// 镜头跟随校验（断言全部用真实运行状态，不靠猜）：
+//   1) 走路转身后 camYaw 会收敛到 player.rotation.y + π —— 也就是小人**背后**
+//      （机位公式 = 小人位置 + (sin camYaw, cos camYaw)·dist，所以 camYaw 表示"相机在哪一侧"；
+//        旧版追 player.rotation.y → 绕到小人正对面/脸上，这就是用户反馈的"镜头跟随感觉不对"）
 //   2) 拖拽镜头后 1.2 秒内 camYaw 不被自动改动（尊重"孩子想自己看"）
 //   3) 关掉开关后完全不跟
 //   4) 远景（camDistTarget > 45）时不跟
-//   5) 连续走路 3 秒 camYaw 不会持续自转（防"镜头与前进方向互相追着转"）
+//   5) 连续走路 3 秒 camYaw 不会持续自转（防"镜头与前进方向互相追着转"，也防漏归一化转整圈）
+//   6) 收敛后读**真实相机位置**：必须在人背后（归一化点积 < -0.7）—— 这一条才抓得住方向写反
 //
 //   node scripts/verify-cam.mjs [--city chengdu]
 import path from 'node:path';
@@ -68,12 +71,17 @@ const r = await page.evaluate(async () => {
   const P0 = ang(g.player.rotation.y);
   out.map = { basis0_playerYaw: +P0.toFixed(3) };
 
-  // ① 收敛：让镜头偏离小人朝向 2.0 rad，走 80 帧（≈1.3s）→ 应追到 ≈P
-  const B = P0;                        // 用一个固定 basis，小人朝向 ≈ B + π
+  // ① 收敛：让镜头偏离"正确机位"2.0 rad，走 300 帧 → 应追到小人**背后**
+  //    （跟随是 dt 驱动的：收敛量 = 2.0·e^(−1.6t)。帧数不能按"120 帧 ≈ 1.3 秒"估 ——
+  //      headless 能跑到 120fps，120 帧只有 1 秒 → 残差 0.40 会误报；300 帧在 30~120fps 下都收敛）
+  //    ⚠ 正确机位 = 小人朝向 + π：机位公式是 小人位置 + (sin camYaw, cos camYaw)·dist，
+  //    所以 camYaw 表示"相机在哪一侧"；追 rotation.y 会绕到小人正对面（旧版 bug）
+  const B = P0;                              // 用一个固定 basis，小人朝向 ≈ B + π
   const heading = ang(B + Math.PI);
+  const behind = ang(heading + Math.PI);     // 镜头该在的位置：小人正后方
   g._camFollowing = false;
-  out.follow = { from: +ang(heading - 2.0).toFixed(3), to: +(await walk(B, ang(heading - 2.0), 120)).toFixed(3), target: +heading.toFixed(3) };
-  out.follow.gap = +diff(out.follow.to, heading).toFixed(3);
+  out.follow = { from: +ang(behind - 2.0).toFixed(3), to: +(await walk(B, ang(behind - 2.0), 300)).toFixed(3), target: +behind.toFixed(3) };
+  out.follow.gap = +diff(out.follow.to, behind).toFixed(3);
 
   // ② 拖拽后暂停：camYaw 应停在原处
   out.hold = { yaw: +(await walk(B, 0.3, 20, 1.2)).toFixed(3), holdLeft: +g._camHold.toFixed(2) };
@@ -88,14 +96,26 @@ const r = await page.evaluate(async () => {
   out.far = { yaw: +(await walk(B, -0.4, 30)).toFixed(3) };
   g.camDistTarget = 6.6; g.camDist = 6.6;
 
-  // ⑤ 死区：镜头只偏离朝向 0.6 rad（< 1.05）→ 不该跟
-  const dz = ang(heading + 0.6);
+  // ⑤ 死区：镜头只偏离**正确机位** 0.6 rad（< 1.05）→ 不该跟
+  const dz = ang(behind + 0.6);
   g._camFollowing = false;   // 复位滞回：未开始跟时，0.6 rad 的偏差不该启动跟随
   out.deadzone = { yaw: +(await walk(B, dz, 30)).toFixed(3), expect: +dz.toFixed(3) };
 
-  // ⑥ 不自转：镜头与朝向一致 → 3 秒内漂移应极小
-  const y = await walk(B, heading, 90);
-  out.spin = { yaw: +y.toFixed(4), drift: +diff(y, heading).toFixed(4) };
+  // ⑥ 不自转：镜头已在正确机位（小人正后方）→ 3 秒内漂移应极小
+  const y = await walk(B, behind, 90);
+  out.spin = { yaw: +y.toFixed(4), drift: +diff(y, behind).toFixed(4) };
+
+  // ⑦ 真实机位必须在背后（这条才抓得住"追到正对面"）：相机位置 − 小人位置，
+  //    与"小人正对方向"的归一化点积应 ≈ −1（−1 = 正后方、+1 = 正对面）
+  {
+    const fx = Math.sin(g.player.rotation.y), fz = Math.cos(g.player.rotation.y);
+    const ox = g.camera.position.x - g.player.position.x, oz = g.camera.position.z - g.player.position.z;
+    const len = Math.hypot(ox, oz) || 1;
+    out.behind = {
+      cos: +((ox * fx + oz * fz) / len).toFixed(3),
+      yawCos: +Math.cos(ang(g.camYaw - g.player.rotation.y)).toFixed(3),
+    };
+  }
 
   g.keys.delete('KeyW');
   g.world.colliders = savedColliders;   // 还原
@@ -103,12 +123,14 @@ const r = await page.evaluate(async () => {
 });
 
 console.log(`镜头跟随（${city}）  映射：basis0 → 小人朝向 ${r.map.basis0_playerYaw}`);
-check(r.follow.gap < 0.15, '走路转身后镜头会收敛到背后', `从 ${r.follow.from} → ${r.follow.to}（目标 ${r.follow.target}，差 ${r.follow.gap}）`);
+check(r.follow.gap < 0.15, '走路转身后镜头会收敛到小人背后', `从 ${r.follow.from} → ${r.follow.to}（目标 ${r.follow.target}，差 ${r.follow.gap}）`);
+check(r.behind.cos < -0.7, '收敛后真实机位在小人背后（与朝向反向）', `归一化点积 ${r.behind.cos}（-1 = 正后方）`);
+check(r.behind.yawCos < -0.9, 'camYaw 与小人朝向差 ≈ π', `cos ${r.behind.yawCos}`);
 check(Math.abs(r.hold.yaw - 0.3) < 0.02, '拖拽后暂停跟随（1.2 秒内不动）', `yaw ${r.hold.yaw}（暂停剩 ${r.hold.holdLeft}s）`);
 check(Math.abs(r.off.yaw + 0.4) < 0.02, '关掉开关后完全不跟', `yaw ${r.off.yaw}`);
 check(Math.abs(r.far.yaw + 0.4) < 0.02, '远景（缩放 >45）不跟', `yaw ${r.far.yaw}`);
-check(Math.abs(r.deadzone.yaw - r.deadzone.expect) < 0.02, '死区内（偏离 0.6 rad）不跟', `yaw ${r.deadzone.yaw}（应停在 ${r.deadzone.expect}）`);
-check(r.spin.drift < 0.08, '朝向固定时不自转（防互相追着转）', `3 秒漂移 ${r.spin.drift} rad`);
+check(Math.abs(r.deadzone.yaw - r.deadzone.expect) < 0.02, '死区内（偏离正确机位 0.6 rad）不跟', `yaw ${r.deadzone.yaw}（应停在 ${r.deadzone.expect}）`);
+check(r.spin.drift < 0.08, '朝向固定时不自转（防互相追着转 + 防漏归一化转整圈）', `3 秒漂移 ${r.spin.drift} rad`);
 check(errs.length === 0, '0 页面异常', errs.slice(0, 2).join(' | '));
 
 await ctx.close();

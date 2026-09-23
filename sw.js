@@ -6,7 +6,7 @@
 //   音频 mp3                          → 缓存优先 + 按字节限量（边玩边攒，只留最近听过的）
 //   大模型 onnx/wasm/glb                 → 缓存优先 + 独立大文件桶（不受音频上限挤兑，也不挤占音频）
 //   /api/*（登录/存档同步）               → 永远走网络，不缓存
-const VER = 'qtzu-pwa-v19';   // v19：修"地图发白"（顶点色色空间/雾距/纸面色/太阳光晕/后期补 OutputPass）+ 新增 scripts/check-render.mjs（不入包）；.glb 仍归大文件桶
+const VER = 'qtzu-pwa-v20';   // v20：删掉相机挂载的前景枝叶（js/foreground.js 整层移除，暗角校验并入 verify-sky.mjs）+ 镜头跟随改到小人背后
 const NET_TIMEOUT = 3500;
 
 // 本地核心资源：装一次就离线可启动

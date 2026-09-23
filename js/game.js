@@ -29,7 +29,6 @@ function playerPartKey(gender, wear, part) {
 import * as assets from './assets.js';
 import { contactShadow, updateContactShadow } from './shadow.js';
 import { groundRing, updateGroundRing } from './ring.js';   // 脚下指示环（颜色随最近目标）
-import { makeForeground } from './foreground.js';           // 画面边缘的前景枝叶（见该文件注释）   // 脚下接触阴影（见该文件注释）   // 词宠 GLB 换装（见 _refreshRanchPets）
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
@@ -60,8 +59,8 @@ const ENV_ROOM_DIM = 0.10;
 const VIGNETTE_GRADE = {
   uniforms: {
     tDiffuse: { value: null },
-    // 暗角强度（画面四角最多压到 58%）。0.32 → 0.42 是配合"前景枝叶"一起做的纵深：
-    // 枝叶只是四边的点状遮挡，压边要靠暗角把整体边缘收进去才像"透过枝叶看"。
+    // 暗角强度（画面四角最多压到 58%）。0.42 = 只靠暗角把边缘收进去的纵深
+    // （0.32 → 0.42 原是配合相机挂载的前景枝叶做的；那层枝叶已整层删除，见 .plan/01M37BM34ZHFFXD2G5BJD66ZKC.md）。
     // ⚠ 安全性：暗角按 smoothstep(0.55, 1.0) 衰减，**归一化半径 <0.5 的中心区完全为 0**，
     //   而 check-render 的 composerDiff 正是在中心区取样（门槛 0.02 未放宽）→ 不受影响。
     uVig: { value: 0.42 },
@@ -1043,7 +1042,6 @@ export class Game {
     this._updatePlayer(dt);
     this._updateContactShadows();   // 玩家/词宠脚下的接触阴影（每帧跟随，见 js/shadow.js）
     this._updateGroundRing();       // 玩家脚下的指示环（见 js/ring.js）
-    this._updateForeground(t);      // 画面边缘的前景枝叶（见 js/foreground.js）
     this._updateCamera(dt);
     this._updatePlayerFill();   // 主角补光跟随（见 _setupPlayerFill）
     this._updateShadowFollow();   // 阴影框跟人（见该函数注释：固定 ±60 时城的外圈没有投影）
@@ -2875,17 +2873,6 @@ export class Game {
     ui.toast(t('y.ride', { a0: pet.word.en, a1: this.mountFly ? t('y.37') : t('y.38') }), 3000);
   }
 
-  // 前景枝叶：只在桌面端建（触屏/低画质不建，与 SMAA/天空云同一判据）。
-  // 尺寸依赖相机 aspect，所以横竖屏切换由 foreground.update() 自己重排（内部比 aspect 变化）。
-  _updateForeground(t) {
-    if (this._lowEnd || this._lowFx) return;
-    if (!this._fg) {
-      this._fg = makeForeground();
-      this.scene.add(this._fg.group);
-    }
-    this._fg.update(this.camera, t);
-  }
-
   // 脚下指示环：颜色随"最近可交互目标"变化。
   // 目标按"操作方式"分三类（蛋=走过去 / 台阶=跳上去 / 奖杯=踩上台面），
   // 环的颜色先给出"这是哪一类"，孩子不用先跑过去试。
@@ -3056,10 +3043,14 @@ export class Game {
       while (dy < -Math.PI) dy += Math.PI * 2;
       this.player.rotation.y += dy * Math.min(1, dt * 12);
       // 镜头跟随（可选）：小人转身时镜头平滑转到背后。
+      // ⚠ 目标角必须是 rotation.y + π：机位公式（_updateCamera）= 小人位置 + (sin camYaw, cos camYaw)·dist，
+      //   所以 camYaw 表示“相机所在的方向”；小人模型面朝本地 +Z（models/player.js 的脸在 z=+0.158），
+      //   rotation.y 就是“小人正对的方向” → 镜头要在背后 = 追 rotation.y + π。
+      //   （旧版追 rotation.y = 追到小人正对面/脸上：一按 W 就绕 180°，再按 W 小人又掉头，用户反馈的“感觉不对”）
       // 60° 死区是关键：不加的话"镜头转→前进方向跟着转→小人转→镜头再转"会互相追着转成圈。
       // 只在走路时跟；骑词宠/演出/看远景(缩放>45)/刚拖过镜头都不跟。
       if (save.getCamFollow() && !this._camHold && !this.mount && this.camDistTarget <= 45) {
-        let dc = this.player.rotation.y - this.camYaw;
+        let dc = (this.player.rotation.y + Math.PI) - this.camYaw;   // ← 唯一的行为改动：追“背后”而不是“正对面”
         while (dc > Math.PI) dc -= Math.PI * 2;
         while (dc < -Math.PI) dc += Math.PI * 2;
         const a = Math.abs(dc);
