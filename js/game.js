@@ -28,7 +28,8 @@ function playerPartKey(gender, wear, part) {
 }
 import * as assets from './assets.js';
 import { contactShadow, updateContactShadow } from './shadow.js';
-import { groundRing, updateGroundRing } from './ring.js';   // 脚下指示环（颜色随最近目标）   // 脚下接触阴影（见该文件注释）   // 词宠 GLB 换装（见 _refreshRanchPets）
+import { groundRing, updateGroundRing } from './ring.js';   // 脚下指示环（颜色随最近目标）
+import { makeForeground } from './foreground.js';           // 画面边缘的前景枝叶（见该文件注释）   // 脚下接触阴影（见该文件注释）   // 词宠 GLB 换装（见 _refreshRanchPets）
 import { CITY_MAP, CITIES, cityRoute, cityVariant, getCityQuiz, DECO_EMOJI, ensureCityData, bonusCities } from './cities.js';
 import { CITY_GEO } from './city-shape-data.js';
 import { getCityShape, clampPoly, polyNearest, polyInside } from './city-shape.js';
@@ -58,7 +59,11 @@ const ENV_ROOM_DIM = 0.10;
 const VIGNETTE_GRADE = {
   uniforms: {
     tDiffuse: { value: null },
-    uVig: { value: 0.32 },     // 暗角强度（画面四角最多压到 68%）
+    // 暗角强度（画面四角最多压到 58%）。0.32 → 0.42 是配合"前景枝叶"一起做的纵深：
+    // 枝叶只是四边的点状遮挡，压边要靠暗角把整体边缘收进去才像"透过枝叶看"。
+    // ⚠ 安全性：暗角按 smoothstep(0.55, 1.0) 衰减，**归一化半径 <0.5 的中心区完全为 0**，
+    //   而 check-render 的 composerDiff 正是在中心区取样（门槛 0.02 未放宽）→ 不受影响。
+    uVig: { value: 0.42 },
     uLift: { value: 0.0 },     // 抬黑（lift）
     uGamma: { value: 1.0 },    // 中间调（gamma）
     // gain 保持 1.0：曾用 1.03 去"抵掉暗角压掉的平均亮度"，但那等于让**中心区**整体提亮 3%，
@@ -1003,6 +1008,7 @@ export class Game {
     this._updatePlayer(dt);
     this._updateContactShadows();   // 玩家/词宠脚下的接触阴影（每帧跟随，见 js/shadow.js）
     this._updateGroundRing();       // 玩家脚下的指示环（见 js/ring.js）
+    this._updateForeground(t);      // 画面边缘的前景枝叶（见 js/foreground.js）
     this._updateCamera(dt);
     this._updatePlayerFill();   // 主角补光跟随（见 _setupPlayerFill）
     this._updateShadowFollow();   // 阴影框跟人（见该函数注释：固定 ±60 时城的外圈没有投影）
@@ -2808,6 +2814,17 @@ export class Game {
     sfx.boing();
     this._petEmoji(pet, '😍');
     ui.toast(t('y.ride', { a0: pet.word.en, a1: this.mountFly ? t('y.37') : t('y.38') }), 3000);
+  }
+
+  // 前景枝叶：只在桌面端建（触屏/低画质不建，与 SMAA/天空云同一判据）。
+  // 尺寸依赖相机 aspect，所以横竖屏切换由 foreground.update() 自己重排（内部比 aspect 变化）。
+  _updateForeground(t) {
+    if (this._lowEnd || this._lowFx) return;
+    if (!this._fg) {
+      this._fg = makeForeground();
+      this.scene.add(this._fg.group);
+    }
+    this._fg.update(this.camera, t);
   }
 
   // 脚下指示环：颜色随"最近可交互目标"变化。
