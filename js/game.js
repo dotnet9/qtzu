@@ -1123,8 +1123,15 @@ export class Game {
   // 低端机帧率自适应：连续 6 秒平均 FPS < 25 → 降级一次（关后期合成/阴影/天空动画），不恢复避免抖动
   _fpsWatch() {
     const now = performance.now();
+    if (!this._fpsT0) { this._fpsT0 = now; return; }
+    // 跳过"加载窗口"：头 8 秒里 GLB 解码与着色器编译都压在主线程上，帧率天然低。
+    // 拿这一段判"机器够不够快"会把正常机器也降级（后期链一拆就回不来）——
+    // 实测：城市组里多一片常驻几何（天空群岛）就足以把首个窗口压到 25fps 以下。
+    if (!this._fpsWarm) {
+      if (now - this._fpsT0 < 8000) { this._fpsT0 = now; return; }   // 窗口顺延，不计
+      this._fpsWarm = true; this._fpsT0 = now;
+    }
     this._fpsFrames = (this._fpsFrames || 0) + 1;
-    if (!this._fpsT0) this._fpsT0 = now;
     if (now - this._fpsT0 < 6000) return;
     const fps = Math.round(this._fpsFrames * 1000 / (now - this._fpsT0));
     this._fpsFrames = 0; this._fpsT0 = now;
