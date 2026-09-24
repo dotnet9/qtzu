@@ -75,10 +75,19 @@ const r = await page.evaluate(async () => {
   const bigN = (wIsl && wIsl.blockers || []).filter((b) => b.r >= 3).length;
   const skyN = ((g._sky() && g._sky().isles) || []).length;
   const big = g._bigShadows || [];
+  const inScene = big.filter((b) => b.mesh && b.mesh.parent === g.scene);
+  // 白天（真阴影贴图在开、太阳高）它们应当**隐藏**（纯填充开销、又几乎看不见）；
+  // 夜里/低画质才出场 —— 这里把 gain 顶到 0.9 复现"真影子不在场"的情形
+  const dayHidden = inScene.filter((b) => b.mesh.visible).length;
+  const realGain = g._contactShadowGain;
+  g._contactShadowGain = () => 0.9;
+  for (let i = 0; i < 3; i++) await frame();
   const placed = big.filter((b) => b.mesh && b.mesh.parent === g.scene && b.mesh.visible);
   const opac = placed.map((b) => +b.mesh.material.opacity.toFixed(3));
   const sizes = placed.map((b) => +b.mesh.scale.x.toFixed(2));
-  const isleShadow = big.filter((b) => b.lift > 8);
+  const isleShadow = placed.filter((b) => b.lift > 8);
+  g._contactShadowGain = realGain;
+  for (let i = 0; i < 2; i++) await frame();
 
   return {
     has: true, hour: +hr.toFixed(2), gainNow: +gainNow.toFixed(3), gainLow, gainNoMap,
@@ -86,7 +95,7 @@ const r = await page.evaluate(async () => {
     renderOrder: sh.renderOrder, noPick: !!sh.userData.noPick,
     shadowMapOn: shadowWas,
     baseOpacity: +sh.material.opacity.toFixed(3),
-    big: { want: bigN + skyN, got: placed.length, bigN, skyN, opac, sizes, isleShadow: isleShadow.length, isleScale: isleShadow[0] ? +isleShadow[0].mesh.scale.x.toFixed(1) : 0 },
+    big: { want: bigN + skyN, got: placed.length, inScene: inScene.length, dayHidden, bigN, skyN, opac, sizes, isleShadow: isleShadow.length, isleScale: isleShadow[0] ? +isleShadow[0].mesh.scale.x.toFixed(1) : 0 },
   };
 });
 
@@ -111,8 +120,9 @@ if (r.has) {
 }
 
 if (r.big) {
-  check(r.big.got >= 2, '大件（地标 + 天空岛）也有接触阴影', `${r.big.got} 块（地标 ${r.big.bigN} + 岛 ${r.big.skyN}）`);
-  check(r.big.got >= Math.min(2, r.big.want), '数量与预期一致（没漏建）', `${r.big.got}/${r.big.want}`);
+  check(r.big.inScene >= 2, '大件（地标 + 天空岛）都有接触阴影对象', `${r.big.inScene} 块（地标 ${r.big.bigN} + 岛 ${r.big.skyN}）`);
+  check(r.big.inScene === r.big.want, '数量与预期一致（没漏建）', `${r.big.inScene}/${r.big.want}`);
+  check(r.big.got === r.big.inScene, '夜里/无真影子时全部出场', `出场 ${r.big.got} / 共 ${r.big.inScene}（白天隐藏 ${r.big.dayHidden}）`);
   check(r.big.opac.every((o) => o > 0.03 && o < 0.5), '大件阴影强度克制（0.03~0.5，不压成黑斑；天上 15 米的岛最淡）', r.big.opac.join('/'));
   check(r.big.sizes.every((v) => v > 1.5), '大件阴影尺寸随占地放大', r.big.sizes.slice(0, 6).join('/'));
   check(r.big.isleShadow > 0 && r.big.isleScale > r.big.sizes[0], '天上的岛影子更大（离地越高越大）', `岛 ${r.big.isleScale}`);

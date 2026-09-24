@@ -92,7 +92,7 @@ const r = await page.evaluate((want) => {
       // ⑧ 远景群山：城组里两圈实例化山影（16 / 22 座），位置在城外的远处
       const wIsl = (g.world.islands || []).find((w) => w.uid === g._currentStage().uid);
       const inst = [];
-      if (wIsl && wIsl.grp) wIsl.grp.traverse((o) => { if (o.isInstancedMesh && o.count >= 16) inst.push(o.count); });
+      if (wIsl && wIsl.grp) wIsl.grp.traverse((o) => { if (o.isInstancedMesh && o.count >= 15 && o.count <= 60) inst.push(o.count); });
       c.mountains = inst;
       // ⑨ 高处的雾更浓（站在岛上 far 变小；回到地面完全还原）
       const fog = g.scene.fog;
@@ -158,7 +158,7 @@ for (const [i, c] of r.cities.entries()) {
   if (c.bridge) check(Math.abs(c.bridge.got - c.bridge.want) < 0.35, '桥面可走（_supportAt == 桥面）',
     `${c.bridge.got} vs ${c.bridge.want}`);
   if (c.bob) check(c.bob.moved === c.bob.n && c.bob.n > 0, '浮云踏板真的在动', `${c.bob.moved}/${c.bob.n}`);
-  if (c.mountains) check(c.mountains.length >= 2, '远景群山两圈（实例化，各 16/22 座）', c.mountains.join('/'));
+  if (c.mountains) check(c.mountains.length >= 3, '远景群山三层（实例化 26/20/15 座）', c.mountains.join('/'));
   if (c.fog) check(c.fog.far1 < c.fog.far0 && Math.abs(c.fog.back - c.fog.far0) < 0.5,
     '高处雾更浓、回地面完全还原', `地面 ${c.fog.near0}/${c.fog.far0} → 岛上 ${c.fog.near1}/${c.fog.far1} → 回地面 ${c.fog.back}`);
 }
