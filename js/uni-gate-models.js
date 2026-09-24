@@ -707,7 +707,13 @@ export function attachPlaque(g, img, beamY, beamW, fz, zh) {
     new THREE.PlaneGeometry(beamW - 0.3, 0.4),
     new THREE.MeshBasicMaterial({ map: tex, toneMapped: false })
   );
-  board.position.set(0, beamY, fz + 0.01);   // 正面外贴 0.01 防 z-fighting
+  // 正面外贴：0.01 太贴 —— 梁面做过倒角（scripts/bake/common.py 的 bevel），
+  // 它的表面是弧的，贴太近的平面会在上/下沿切进倒角里；再叠一层 polygonOffset
+  // 让"谁在前面"由偏移决定，而不是靠 0.01 的距离硬碰（近水平视角下最容易看出来）。
+  board.material.polygonOffset = true;
+  board.material.polygonOffsetFactor = -4;
+  board.material.polygonOffsetUnits = -4;
+  board.position.set(0, beamY, fz + 0.03);
   g.add(board);
 }
 

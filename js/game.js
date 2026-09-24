@@ -2938,6 +2938,34 @@ export class Game {
       const g = p.group;
       one(g, 0.3, g.position.x, g.position.z, Math.max(0, g.position.y - this._groundY(g.position.x, g.position.z)));
     }
+    // 大件（当前城的大地标 + 天上那几座岛）：真阴影框只有 ±26，出了框一点落地感都没有；
+    // 低太阳角或低画质（阴影被关掉）时更明显。给它们各一块放大变淡的软影 —— 只给地标与岛，
+    // 不给满城的树/灯（那会是几十个 draw call）。
+    const st = this._currentStage();
+    if (this._bigShadowKey !== st.key) this._syncBigShadows(st);
+    for (const b of this._bigShadows || []) {
+      updateContactShadow(b.mesh, b.x, b.z, this._groundY(b.x, b.z), b.lift, gain * b.k);
+    }
+  }
+
+  // 建"大件接触阴影"：当前城半径够大的装饰块（地标/大件）+ 天空群岛的岛面。换城重建（数量个位数）
+  _syncBigShadows(st) {
+    this._bigShadowKey = st.key;
+    for (const b of this._bigShadows || []) this.scene.remove(b.mesh);
+    this._bigShadows = [];
+    const put = (x, z, r, lift, k) => {
+      const mesh = contactShadow(Math.max(1.2, r * 1.25));
+      mesh.renderOrder = 2;
+      this.scene.add(mesh);
+      this._bigShadows.push({ mesh, x, z, lift, k });
+    };
+    const wIsl = (this.world.islands || []).find((w) => w.uid === st.uid);
+    for (const b of (wIsl && wIsl.blockers) || []) {
+      if (b.r < 3) continue;                                  // 小件跳过（树/灯）
+      put(st.cx + b.x, st.cz + b.z, b.r, 0, 0.5);
+    }
+    const sky = this._sky();
+    for (const isl of (sky && sky.isles) || []) put(isl.x, isl.z, isl.r, Math.max(0, isl.top - this._groundY(isl.x, isl.z)), 0.34);
   }
 
   /* 接触阴影强度：0.9（唯一落地感）→ 0.36（让真影子当主角）。
@@ -3535,6 +3563,9 @@ export class Game {
       const fogR = (this._currentStage() && this._currentStage().r) || 52;
       this.scene.fog.near = Math.max(fogR * 1.35, 34 + dist * 2);
       this.scene.fog.far = Math.max(fogR * 5.0, 142 + dist * 4);
+      // 记下"按镜头距离算好的"这一份：云上雾气（_updateSkyFog）必须在它上面调，
+      // 不能自己另立基准 —— 另立的话每帧都会把镜头距离那趟算好的雾覆盖掉。
+      this._fogCam = { near: this.scene.fog.near, far: this.scene.fog.far };
     }
     this.camera.position.lerp(v, Math.min(1, dt * 7));
     this.camera.lookAt(target.x, target.y + 0.88, target.z);   // 0.88：低角度下主体落在画面中偏上
@@ -3876,7 +3907,11 @@ export class Game {
   // 并把 hemi/sun 各降一档抵掉增量（用户要求"缩略图与游戏内两边向中间靠"）。
   // 降级：触屏/低画质不加（与 SMAA/环境反射同一判据）。
   _setupPlayerFill() {
-    if (this._pFill || this._lowEnd || this._lowFx) return;
+    if (this._pFill) return;
+    // 触屏/低画质原来**一盏补光都不加** → 背光面只剩 hemi，转到某些方位就是"纸片"。
+    // 现在低端机也保一盏（只补暗面、不做轮廓光），代价是一盏无阴影方向光；
+    // 桌面端照旧 fill + rim 两盏，hemi/sun 的抵扣量按实际加了几盏给。
+    const full = !this._lowEnd && !this._lowFx;
     const mk = (color, intensity) => {
       const l = new THREE.DirectionalLight(color, intensity);
       l.castShadow = false;                       // 不投影：只补亮度与轮廓，不增加阴影开销
@@ -3885,21 +3920,29 @@ export class Game {
       return l;
     };
     this._pFill = mk(0xDCE8FF, 0.5);              // 冷调补光：压掉背光面的死黑
-    this._pRim = mk(0xFFFFFF, 0.75);              // 轮廓光：从逆光侧勾边
+    if (full) this._pRim = mk(0xFFFFFF, 0.75);    // 轮廓光：从逆光侧勾边
     const dn = this.world && this.world.anim && this.world.anim.dayNight;
-    if (dn) { dn.hemi.intensity *= 0.88; dn.sun.intensity *= 0.92; }
+    if (dn) { dn.hemi.intensity *= full ? 0.88 : 0.94; dn.sun.intensity *= full ? 0.92 : 0.96; }
   }
 
-  // 光位跟着相机转：fill 在相机左后上方、rim 在相机正对面偏上 → 转到任何方向都有立体感
+  // 光位跟着**镜头三维方向**转（不只是方位角）：
+  //   · 补光在镜头的右上偏一侧（三分法里的 key 位）—— 压掉背光面的死黑；
+  //   · 轮廓光放在**镜头对面**（远侧）—— 才会沿着剪影勾出一条边。
+  // 早先两盏都在镜头这一侧：等于给可见面又加一层正面光，越加越平（"某些角度像纸片"的一部分原因），
+  // 而且只跟 yaw 不跟 pitch，俯视时轮廓光会扫到侧面去。
   _updatePlayerFill() {
     this._setupPlayerFill();
     if (!this._pFill) return;
     const p = this.player.position;
     const yaw = this.camYaw || 0;
-    const fx = Math.sin(yaw + 0.9), fz = Math.cos(yaw + 0.9);
-    this._pFill.position.set(p.x - fx * 3, p.y + 4.2, p.z - fz * 3);
+    const pitch = Math.min(1.1, Math.max(0.08, this.camPitch || 0.3));
+    const cp = Math.cos(pitch);
+    const cx = Math.sin(yaw) * cp, cy = Math.sin(pitch), cz = Math.cos(yaw) * cp;   // 目标 → 镜头
+    const rx = Math.cos(yaw), rz = -Math.sin(yaw);                                  // 镜头右方
+    this._pFill.position.set(p.x + rx * 3.2 - cx * 2.6, p.y + 2.6 + cy * 3.0, p.z + rz * 3.2 - cz * 2.6);
     this._pFill.target.position.set(p.x, p.y + 0.4, p.z);
-    this._pRim.position.set(p.x + Math.sin(yaw) * 4, p.y + 3.4, p.z + Math.cos(yaw) * 4);
+    if (!this._pRim) return;                      // 低端机只有补光这一盏
+    this._pRim.position.set(p.x - cx * 4.0, p.y + 1.6 + cy * 2.4, p.z - cz * 4.0);
     this._pRim.target.position.set(p.x, p.y + 0.5, p.z);
   }
 
@@ -4275,14 +4318,17 @@ export class Game {
     this._letterBurst(new THREE.Vector3(fl.x, fl.y + 3.4, fl.z), '🚩');
   }
 
-  // 云上雾气：站在岛上把雾略微加浓（越高越像"云上"）。基准值只在第一次记下，回到地面完全还原
+  // 云上雾气：站在岛上把雾略微加浓（越高越像"云上"）。
+  // ⚠ 基准取**当帧** _updateCamera 按镜头距离算好的那一份（this._fogCam）。
+  //   早先这里自己 latch 了一份首帧基准，于是每帧都把镜头距离那趟算好的雾覆盖回去 ——
+  //   拉远到 200+ 时整城重新被雾洗白，正是 _updateCamera 那段注释里说要避免的事。
   _updateSkyFog() {
     const fog = this.scene && this.scene.fog;
-    if (!fog) return;
-    if (!this._fogBase) this._fogBase = { near: fog.near, far: fog.far };
+    const base = this._fogCam;
+    if (!fog || !base) return;
     const k = Math.min(1, Math.max(0, (this.player.position.y - 8) / 10));
-    const near = this._fogBase.near * (1 - 0.34 * k);
-    const far = this._fogBase.far * (1 - 0.34 * k);
+    const near = base.near * (1 - 0.34 * k);
+    const far = base.far * (1 - 0.34 * k);
     if (Math.abs(fog.near - near) > 0.4 || Math.abs(fog.far - far) > 0.4) { fog.near = near; fog.far = far; }
   }
 

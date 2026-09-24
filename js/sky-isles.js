@@ -390,7 +390,8 @@ export function buildSkyIsles(o) {
         const px = a.lx + dx * f, pz = a.lz + dz * f, py = a.top + (b.top - a.top) * f;
         const mesh = PROPS.cloud(1.2);
         mesh.position.set(px, py - 0.55, pz);
-        mesh.traverse((q) => { if (q.isMesh) { q.material.transparent = true; q.material.opacity = 0.82; q.castShadow = false; } });
+        // depthWrite:false —— 透明云面互相抢深度排序，掠射角下会一块块闪；关掉写深度就只混合不抢
+        mesh.traverse((q) => { if (q.isMesh) { q.material.transparent = true; q.material.depthWrite = false; q.material.opacity = 0.82; q.castShadow = false; } });
         grp.add(mesh);
         const pf = { x: cx + px, z: cz + pz, r: 1.5, top: py, amp: SKY.PAD_AMP, phase: k * 2.1, mesh, baseY: py - 0.55, isle: -1 };
         out.pads.push(pf);
@@ -425,7 +426,7 @@ export function buildSkyIsles(o) {
       const top = SKY.PAD_H * (k + 1) + 0.4;
       const mesh = PROPS.cloud(1.3);
       mesh.position.set(px, top - 0.6, pz);
-      mesh.traverse((q) => { if (q.isMesh) { q.material.transparent = true; q.material.opacity = 0.84; q.castShadow = false; } });
+      mesh.traverse((q) => { if (q.isMesh) { q.material.transparent = true; q.material.depthWrite = false; q.material.opacity = 0.84; q.castShadow = false; } });
       grp.add(mesh);
       out.pads.push({ x: cx + px, z: cz + pz, r: SKY.PAD_R, top, amp: SKY.PAD_AMP, phase: k * 1.7, mesh, baseY: top - 0.6, isle: -1 });
       out.stairs.push({ x: cx + px, z: cz + pz, top, k: k + 1 });
@@ -443,7 +444,7 @@ export function buildSkyIsles(o) {
     const padX = colX + ux * 2.0, padZ = colZ + uz * 2.0;
     const cloud = PROPS.cloud(1.5);
     cloud.position.set(padX, top - 0.6, padZ);
-    cloud.traverse((q) => { if (q.isMesh) { q.material.transparent = true; q.material.opacity = 0.85; q.castShadow = false; } });
+    cloud.traverse((q) => { if (q.isMesh) { q.material.transparent = true; q.material.depthWrite = false; q.material.opacity = 0.85; q.castShadow = false; } });
     grp.add(cloud);
     out.pads.push({ x: cx + padX, z: cz + padZ, r: 1.5, top, amp: SKY.PAD_AMP * 0.8, phase: 1.1, mesh: cloud, baseY: top - 0.6, isle: -1 });
     // 地面光圈 + 一圈花：地上看得见、走得到的入口

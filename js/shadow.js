@@ -38,7 +38,10 @@ function ensure() {
 /** 造一个接触阴影（挂在 scene 上，不是实体的子节点——实体是悬浮的，阴影要贴地）。 */
 export function contactShadow(radius = 0.42) {
   ensure();
-  const m = new THREE.Mesh(geo, mat);
+  // 材质**逐块 clone**（贴图仍共享）：不透明度是"每块影子各自"的量，
+  // 共用一个材质实例时 updateContactShadow 会互相覆盖 —— 谁最后写谁生效，
+  // 结果玩家/词宠/大件的强度全变成最后那一块的值（抬高不再变淡）。
+  const m = new THREE.Mesh(geo, mat.clone());
   m.renderOrder = 2;          // 地面之后画（避免被地形盖住）
   m.userData.shadowRadius = radius;
   m.userData.noPick = true;   // 不参与点击拾取（js/game.js 的点击判定靠 intersectObjects）

@@ -69,12 +69,24 @@ const r = await page.evaluate(async () => {
   const gainNoMap = g._contactShadowGain();
   g.renderer.shadowMap.enabled = shadowWas;
 
+  // 大件接触阴影：当前城的大地标（wIsl.blockers 里 radius ≥3 的）+ 天空群岛的岛面
+  const st = g._currentStage();
+  const wIsl = (g.world.islands || []).find((w) => w.uid === st.uid);
+  const bigN = (wIsl && wIsl.blockers || []).filter((b) => b.r >= 3).length;
+  const skyN = ((g._sky() && g._sky().isles) || []).length;
+  const big = g._bigShadows || [];
+  const placed = big.filter((b) => b.mesh && b.mesh.parent === g.scene && b.mesh.visible);
+  const opac = placed.map((b) => +b.mesh.material.opacity.toFixed(3));
+  const sizes = placed.map((b) => +b.mesh.scale.x.toFixed(2));
+  const isleShadow = big.filter((b) => b.lift > 8);
+
   return {
     has: true, hour: +hr.toFixed(2), gainNow: +gainNow.toFixed(3), gainLow, gainNoMap,
     ground: a, high, back,
     renderOrder: sh.renderOrder, noPick: !!sh.userData.noPick,
     shadowMapOn: shadowWas,
     baseOpacity: +sh.material.opacity.toFixed(3),
+    big: { want: bigN + skyN, got: placed.length, bigN, skyN, opac, sizes, isleShadow: isleShadow.length, isleScale: isleShadow[0] ? +isleShadow[0].mesh.scale.x.toFixed(1) : 0 },
   };
 });
 
@@ -96,6 +108,14 @@ if (r.has) {
   check(Math.abs(r.gainNoMap - 0.9) < 1e-6, '阴影贴图被关掉时 → 强度回到 0.9', String(r.gainNoMap));
   check(Math.abs(r.ground.opacity - r.gainNow) < 0.03, '实际不透明度 == 自适应强度（接线正确）',
     `opacity ${r.ground.opacity} vs gain ${r.gainNow}`);
+}
+
+if (r.big) {
+  check(r.big.got >= 2, '大件（地标 + 天空岛）也有接触阴影', `${r.big.got} 块（地标 ${r.big.bigN} + 岛 ${r.big.skyN}）`);
+  check(r.big.got >= Math.min(2, r.big.want), '数量与预期一致（没漏建）', `${r.big.got}/${r.big.want}`);
+  check(r.big.opac.every((o) => o > 0.03 && o < 0.5), '大件阴影强度克制（0.03~0.5，不压成黑斑；天上 15 米的岛最淡）', r.big.opac.join('/'));
+  check(r.big.sizes.every((v) => v > 1.5), '大件阴影尺寸随占地放大', r.big.sizes.slice(0, 6).join('/'));
+  check(r.big.isleShadow > 0 && r.big.isleScale > r.big.sizes[0], '天上的岛影子更大（离地越高越大）', `岛 ${r.big.isleScale}`);
 }
 
 check(errs.length === 0, '0 页面异常', errs.slice(0, 2).join(' | '));

@@ -2519,7 +2519,9 @@ export function cityLandmark(type, color, seedStr, img, opts) {
     place(g, PROPS.palm(1.1), 0, 0);
     place(g, PROPS.palm(0.85), 2.2, 0.8);
     place(g, PROPS.palm(0.7), -2, 0.6);
-    const sand = new THREE.Mesh(new THREE.CircleGeometry(3.4, 20).rotateX(-Math.PI / 2), M('#EFDCA8'));
+    // 沙地贴片：全库唯一一片**单面**的贴地圆盘（其余都靠"相机永远在上方"侥幸没事）。
+    // 统一成双面：零成本，且不再依赖机位高度这个隐含前提（scripts/verify-angle.mjs 抓出来的）。
+    const sand = new THREE.Mesh(new THREE.CircleGeometry(3.4, 20).rotateX(-Math.PI / 2), M('#EFDCA8', { side: THREE.DoubleSide }));
     sand.position.y = 0.02; g.add(sand);
   } else if (type === 'dome') {
     // 圆顶（呼和浩特/乌鲁木齐/银川：蒙古包+尖）
